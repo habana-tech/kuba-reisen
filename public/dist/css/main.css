@@ -1,0 +1,26 @@
+/*!
+ * Kuba-reisen v0.0.1
+ * Kuba-reisen website.
+ * (c) 2019 HabanaTech
+ * MIT License
+ * https://github.com/habana-tech/kuba-reisen.git
+ */
+
+/**
+ * @section Base Styles
+ */
+/* line 5, src/Frontend/sass/components/_base.scss */
+body {
+  font-size: 125%;
+  margin: 0 auto;
+  max-width: 42em;
+  width: 88%;
+}
+
+/* line 12, src/Frontend/sass/components/_base.scss */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
