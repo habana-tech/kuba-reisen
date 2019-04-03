@@ -10,7 +10,7 @@ var settings = {
 	styles: true,
 	svgs: true,
 	copy: true,
-	reload: true
+	reload: false
 };
 
 
@@ -76,6 +76,7 @@ var flatmap = require('gulp-flatmap');
 var lazypipe = require('lazypipe');
 var rename = require('gulp-rename');
 var header = require('gulp-header');
+var babel = require('gulp-babel');
 var package = require('./package.json');
 
 // Scripts
@@ -119,10 +120,12 @@ var cleanDist = function (done) {
 
 // Repeated JavaScript tasks
 var jsTasks = lazypipe()
+//    .pipe(babel)
 	.pipe(header, banner.full, {package: package})
 	.pipe(optimizejs)
 	.pipe(dest, paths.scripts.output)
 	.pipe(rename, {suffix: '.min'})
+
 	.pipe(uglify)
 	.pipe(optimizejs)
 	.pipe(header, banner.min, {package: package})

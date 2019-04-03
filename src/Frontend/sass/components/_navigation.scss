@@ -1,0 +1,116 @@
+/* Menu icon styles */
+
+.menu-icon-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 34px;
+  height: 34px;
+  margin: 2em;
+  pointer-events: none;
+  transition: 0.1s;
+}
+
+.menu-icon-wrapper.scaled {
+  -webkit-transform: scale(0.5);
+  -ms-transform: scale(0.5);
+  transform: scale(0.5);
+}
+
+.menu-icon-wrapper svg {
+  position: absolute;
+  top: -33px;
+  left: -33px;
+  -webkit-transform: scale(0.1);
+  -ms-transform: scale(0.1);
+  transform: scale(0.1);
+  -webkit-transform-origin: 0 0;
+  -ms-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+
+.menu-icon-wrapper svg path {
+  stroke: #fff;
+  stroke-width: 60px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: transparent;
+}
+
+.menu-icon-wrapper .menu-icon-trigger {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  pointer-events: auto;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-icon-wrapper .menu-icon-trigger:hover,
+.menu-icon-wrapper .menu-icon-trigger:focus {
+  outline: none;
+}
+
+
+.navigation_menu{
+  position: fixed;
+  width: calc(100% - 12px);
+  background-image: linear-gradient(90deg,transparentize($color-blue-light,.2), transparentize( $color-blue-dark, .1 ));
+  /*visibility: hidden;*/
+  visibility: visible;
+  top: 6px;
+  left: 6px;
+  z-index: 1;
+  border-radius: 10px;
+  box-shadow: #000000aa 2px 2px 10px;
+  color: $color-white;
+  padding-top: 3em;
+
+  &--active{
+    visibility: visible;
+
+  }
+
+  &_headline_text{
+    font-weight: 700;
+  }
+
+  &_list{
+    list-style: none;
+    margin-left: 0;
+
+    &_item{
+      margin: 1em auto;
+
+      & span{
+        padding: 3px;
+        border-radius: 5px;
+        margin-left: .8em;
+        font-size: 80%;
+        background: linear-gradient($color-yellow-lighter, $color-yellow-light);
+      }
+    }
+  }
+}
+
+.navigation_brandline{
+  z-index: 100;
+  /*position: relative;
+  margin-top: 2em;*/
+
+  &_logo{
+    position: fixed;
+    top: 24px;
+    left: 2em;
+    z-index: 100;
+  }
+}
+
+.menu-icon-wrapper{
+  right: 0;
+  top: 0;
+  position: fixed;
+  z-index: 100;
+}

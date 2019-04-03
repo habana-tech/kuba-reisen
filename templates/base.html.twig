@@ -1,12 +1,26 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
+<html lang="en">
+<head>
+    <title>{% block title %}Welcome to Kuba-reisen!{% endblock %}</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% block metadescription %}Kuba-reisen: get your next travel to Cuba{% endblock %}">
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina|Open+Sans" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="shortcut icon" type="image/ico" href="{{ asset('dist/favicon.ico') }}">
+
+    <!-- Stylesheet -->
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('dist/css/main.css') }}" type="text/css">
+    {% endblock %}
+
+
+</head>
     <body>
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset('dist/js/vendors.min.js') }}"></script>
+            <script src="{{ asset('dist/js/main.js') }}"></script>
+        {% endblock %}
     </body>
 </html>
