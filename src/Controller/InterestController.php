@@ -20,7 +20,7 @@ class InterestController extends AbstractController
      */
     public function index(InterestRepository $interestRepository): Response
     {
-        return $this->render('interest/index.html.twig', [
+        return $this->render('backend/interest/index.html.twig', [
             'interests' => $interestRepository->findAll(),
         ]);
     }
@@ -42,7 +42,7 @@ class InterestController extends AbstractController
             return $this->redirectToRoute('interest_index');
         }
 
-        return $this->render('interest/new.html.twig', [
+        return $this->render('backend/interest/new.html.twig', [
             'interest' => $interest,
             'form' => $form->createView(),
         ]);
@@ -53,7 +53,7 @@ class InterestController extends AbstractController
      */
     public function show(Interest $interest): Response
     {
-        return $this->render('interest/show.html.twig', [
+        return $this->render('backend/interest/show.html.twig', [
             'interest' => $interest,
         ]);
     }
@@ -74,7 +74,7 @@ class InterestController extends AbstractController
             ]);
         }
 
-        return $this->render('interest/edit.html.twig', [
+        return $this->render('backend/interest/edit.html.twig', [
             'interest' => $interest,
             'form' => $form->createView(),
         ]);

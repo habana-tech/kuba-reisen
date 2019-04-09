@@ -1,23 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello User, welcome to Kuba-reisen {% endblock %}
+{% block title %}Contact Form {% endblock %}
 
 {% block body %}
 
+
+
 		<a class="visually-hidden focusable" href="#overview">Skip Navigation</a>
 
-		<header class="header full-height" >
+        <header class="header sixty-percent-height" >
 
 			{{ include('frontend/_navigation-menu.html.twig') }}
-			<img class="header_bigpicture" src="{{ asset('img/DSC_4129.jpg') }}" alt="wonnderfull img">
+			<img class="header_bigpicture" src="{{ asset('img/eva-blue-189555-unsplash.jpg') }}" alt="wonnderfull img">
 
 			<div class="row row-middle header_headline no-lat-margins">
 				<div class="grid-half">
 					<h1 class="header_headline_text">Get your next travel to Cuba!</h1>
-					<a href="{{ path("contact") }}" class="btn btn-transparent header_headline_btn">Help for planing</a>
+					<button class="btn btn-transparent header_headline_btn">Help for planing</button>
 				</div>
 			</div>
-		</header>
+        </header>
+
 
 		<main id="sections_container">
 			<section class="section overview "  id="overview" tabindex="-1">

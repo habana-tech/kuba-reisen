@@ -22,9 +22,7 @@ class FrontendController extends AbstractController
      */
     public function contact()
     {
-        return $this->render('frontend/index.html.twig', [
-            'controller_name' => 'FrontendController',
-        ]);
+        return $this->render('frontend/contact.html.twig', []);
     }
 
 
