@@ -98,5 +98,14 @@ trait ImageFieldTrait
         $this->updatedAt = $updatedAt;
     }
 
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function updateModificationDate()
+    {
+        $this->setUpdatedAt(new \DateTime());
+    }
+
 
 }

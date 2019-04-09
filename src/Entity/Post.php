@@ -14,6 +14,7 @@ class Post
 {
     use ImageFieldTrait;
     use LanguageFieldTrait;
+    use UserControlFieldsTrait;
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -48,11 +49,7 @@ class Post
      */
     private $published;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $modified_by;
+
 
     public function getId(): ?int
     {
@@ -83,19 +80,6 @@ class Post
         return $this;
     }
 
-
-    public function getTranslationFrom(): ?self
-    {
-        return $this->translation_from;
-    }
-
-    public function setTranslationFrom(?self $translation_from): self
-    {
-        $this->translation_from = $translation_from;
-
-        return $this;
-    }
-
     public function getPublished(): ?bool
     {
         return $this->published;
@@ -108,21 +92,11 @@ class Post
         return $this;
     }
 
-    public function getModifiedBy(): ?User
-    {
-        return $this->modified_by;
-    }
 
-    public function setModifiedBy(?User $modified_by): self
-    {
-        $this->modified_by = $modified_by;
-
-        return $this;
-    }
 
     public function __toString()
     {
-        return $this->getTitle();
+        return "(".$this->getId().") [".$this->getLanguage()."] - ".$this->getTitle();
     }
 
     /**

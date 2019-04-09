@@ -36,10 +36,7 @@ class ContactPlaning
      */
     private $travelBudget;
 
-    /**
-     * @ORM\Column(type="json_array", nullable=true)
-     */
-    private $interests;
+
 
     public function getId(): ?int
     {
@@ -94,15 +91,4 @@ class ContactPlaning
         return $this;
     }
 
-    public function getInterests()
-    {
-        return $this->interests;
-    }
-
-    public function setInterests($interests): self
-    {
-        $this->interests = $interests;
-
-        return $this;
-    }
 }

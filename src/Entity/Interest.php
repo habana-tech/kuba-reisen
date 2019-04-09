@@ -3,18 +3,29 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\InterestRepository")
+ * @Vich\Uploadable
+ * @ORM\HasLifecycleCallbacks
  */
 class Interest
 {
+    use LanguageFieldTrait;
+    use ImageFieldTrait;
+    use UserControlFieldsTrait;
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Interest")
+     */
+    private $translation_from;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -54,4 +65,5 @@ class Interest
 
         return $this;
     }
+
 }

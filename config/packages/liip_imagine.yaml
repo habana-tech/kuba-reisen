@@ -54,7 +54,7 @@ oneup_flysystem:
   adapters:
     uploaded_images:
       local:
-        directory:  "static"
+        directory:  "."
 
   filesystems:
     uploaded_images:

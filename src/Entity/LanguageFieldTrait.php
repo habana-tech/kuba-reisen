@@ -30,5 +30,15 @@ trait LanguageFieldTrait
         return $this;
     }
 
-    abstract function getTranslationFrom();
+    public function getTranslationFrom(): ?self
+    {
+        return $this->translation_from;
+    }
+
+    public function setTranslationFrom(?self $translation_from): self
+    {
+        $this->translation_from = $translation_from;
+
+        return $this;
+    }
 }
