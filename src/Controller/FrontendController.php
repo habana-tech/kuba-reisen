@@ -16,4 +16,16 @@ class FrontendController extends AbstractController
             'controller_name' => 'FrontendController',
         ]);
     }
+
+    /**
+     * @Route("/contact", name="contact")
+     */
+    public function contact()
+    {
+        return $this->render('frontend/index.html.twig', [
+            'controller_name' => 'FrontendController',
+        ]);
+    }
+
+
 }

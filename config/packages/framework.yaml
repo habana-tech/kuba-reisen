@@ -16,5 +16,20 @@ framework:
     php_errors:
         log: true
 
+    assets:
+        #version: 'v1'
+        #version_format: '%%s?ver=%%s'
+        base_path: ~
+        base_url: ['%env(MEDIA_STATIC_HOST_URL)%']
+        packages:
+            img:
+                base_path: /static/images/
+
     templating:
         engines: ['twig', 'php']
+
+parameters:
+    env(MEDIA_STATIC_HOST_URL): http://static.kuba-reisen.test
+    env(EMAIL_ADDRESS): no-reply@kuba-reisen.de
+    env(EMAIL_SENDER_NAME): Kuba-reisen
+

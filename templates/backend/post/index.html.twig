@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Post index{% endblock %}
+
+{% block body %}
+    <h1>Post index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Slug</th>
+                <th>Language</th>
+                <th>Published</th>
+                <th>Update_datetime</th>
+                <th>UpdatedAt</th>
+                <th>Image.name</th>
+                <th>Image.originalName</th>
+                <th>Image.mimeType</th>
+                <th>Image.size</th>
+                <th>Image.dimensions</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for post in posts %}
+            <tr>
+                <td>{{ post.id }}</td>
+                <td>{{ post.title }}</td>
+                <td>{{ post.slug }}</td>
+                <td>{{ post.language }}</td>
+                <td>{{ post.published ? 'Yes' : 'No' }}</td>
+                <td>{{ post.updatedAt ? post.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ post.image.name }}</td>
+                <td>{{ post.image.originalName }}</td>
+                <td>{{ post.image.mimeType }}</td>
+                <td>{{ post.image.size }}</td>
+                <td>{{ post.image.dimensions | join('x')}}</td>
+                <td>
+                    <a href="{{ path('post_show', {'id': post.id}) }}">show</a>
+                    <a href="{{ path('post_edit', {'id': post.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('post_new') }}">Create new</a>
+{% endblock %}
