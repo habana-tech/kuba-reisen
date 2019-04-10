@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\ContactPlaning;
+use App\Form\ContactPlaningType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class FrontendController extends AbstractController
@@ -20,9 +23,27 @@ class FrontendController extends AbstractController
     /**
      * @Route("/contact", name="contact")
      */
-    public function contact()
+    public function contact(Request $request)
     {
-        return $this->render('frontend/contact.html.twig', []);
+        $contact = new ContactPlaning();
+        $form = $this->createForm(ContactPlaningType::class, $contact);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($contact);
+            $entityManager->flush();
+
+            //TODO: show a sended form page
+
+            //return $this->redirectToRoute('post_index');
+        }
+
+        return $this->render('frontend/contact.html.twig', [
+            'contact' => $contact,
+            'form' => $form->createView(),
+        ]);
+
     }
 
 

@@ -6,11 +6,12 @@
   height: 100vh;
 }
 
-.sixty-percent-height{
-  height: 60vh;
+.eighty-percent-height{
+  height: 80vh;
 }
-
 .header{
+
+  position: relative;
 
   & .header_bigpicture{
     width: 100%;
@@ -129,12 +130,13 @@ $overviewLinksHeight: 5em;
 
 }
 
-.top-destinations{
+.top-destinations, .contact-form {
   padding-top: 3em;
 
-  &_title{
+  &_title {
     position: relative;
-    &::before, &::after{
+
+    &::before, &::after {
       content: " ";
       margin: .5em auto;
       height: 6px;
@@ -143,16 +145,19 @@ $overviewLinksHeight: 5em;
 
     }
 
-    &::before{
+    &::before {
       background: linear-gradient(90deg, #fbcf6e, #f7886c);
       margin-left: -190px;
 
     }
-    &::after{
+
+    &::after {
       background: linear-gradient(-90deg, #fbcf6e, #f7886c);
       margin-left: 40px;
     }
   }
+}
+.top-destinations{
 
   &_card{
     height: 65vh;
