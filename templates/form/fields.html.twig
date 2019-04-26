@@ -1,0 +1,44 @@
+{% block integer_widget %}
+    <div class="integer_widget">
+        {% set type = type|default('number') %}
+        {{ block('form_widget_simple') }}
+    </div>
+{% endblock %}
+
+{% block _contact_planing_flyTicket_widget %}
+    <div {{ block('widget_container_attributes') }}>
+        {%- for child in form %}
+            <div class="radio-switch__item">
+                {{- form_widget(child, {'attr':{'class':'radio-switch__input visually-hidden'}}) -}}
+                {{- form_label(child, null, {translation_domain: choice_translation_domain,
+                                            'label_attr':{'class':'radio-switch__label'}}) -}}
+                {% if loop.index == loop.last %}
+                    <div aria-hidden="true" class="radio-switch__marker"></div>
+                {% endif %}
+            </div>
+        {% endfor -%}
+    </div>
+{% endblock %}
+
+{%- block choice_widget_collapsed -%}
+
+    {%- if required and placeholder is none and not placeholder_in_choices and not multiple and (attr.size is not defined or attr.size <= 1) -%}
+        {% set required = false %}
+    {%- endif -%}
+    <select {{ block('widget_attributes') }}{% if multiple %} multiple="multiple"{% endif %}>
+        {%- if placeholder is not none -%}
+            <option value=""{% if required and value is empty %} selected="selected"{% endif %}>{{ placeholder != '' ? (translation_domain is same as(false) ? placeholder : placeholder|trans({}, translation_domain)) }}</option>
+        {%- endif -%}
+        {%- if preferred_choices|length > 0 -%}
+            {% set options = preferred_choices %}
+            {{- block('choice_widget_options') -}}
+            {%- if choices|length > 0 and separator is not none -%}
+                <option disabled="disabled">{{ separator }}</option>
+            {%- endif -%}
+        {%- endif -%}
+        {%- set options = choices -%}
+        {{- block('choice_widget_options') -}}
+    </select>
+    <svg class="icon" aria-hidden="true" viewBox="0 0 16 16"><g stroke-width="1.2" stroke="currentColor"><polyline fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="15.5,4.5 8,12 0.5,4.5 "></polyline></g></svg>
+
+{%- endblock choice_widget_collapsed -%}

@@ -34,6 +34,8 @@
 				</div>
 
 				{{ form_start(form) }}
+                {% form_theme form 'form/fields.html.twig' %}
+
 				<div class="row row-center float-center padding-top">
 						<div class="grid-fifth">
 							{{ form_label(form.travelDate) }}
@@ -47,7 +49,7 @@
 					<div class="grid-fifth">
 						{{ form_label(form.travelDuration) }}
 					</div>
-					<div class="grid-fourth">
+					<div class="grid-fourth select-control">
 						{{ form_widget(form.travelDuration) }}
 					</div>
 				</div>
@@ -56,7 +58,7 @@
 					<div class="grid-fifth">
 						{{ form_label(form.peopleAmount) }}
 					</div>
-					<div class="grid-fourth">
+					<div class="grid-fourth select-control">
 						{{ form_widget(form.peopleAmount) }}
 					</div>
 				</div>
@@ -65,7 +67,7 @@
 					<div class="grid-fifth">
 						{{ form_label(form.travelBudget) }}
 					</div>
-					<div class="grid-fourth">
+					<div class="grid-fourth select-control">
 						{{ form_widget(form.travelBudget) }}
 					</div>
 				</div>
@@ -102,32 +104,6 @@
 
 					<div class="travel-options_grid_container_item" style="grid-area: img4">
 						<img src="{{ asset('img/Cuba-09_SD.jpg') }}">
-					</div>
-
-					<div class="travel-options_grid_container_item" style="grid-area: img5">
-						<img src="{{ asset('img/Cuba-10_SD.jpg') }}">
-					</div>
-
-					<div class="travel-options_grid_container_item" style="grid-area: img6">
-						<img src="{{ asset('img/Cuba-11_SD.jpg') }}">
-					</div>
-
-					<div class="travel-options_grid_container_item" style="grid-area: img7">
-						<img src="{{ asset('img/Cuba-12_SD.jpg') }}">
-					</div>
-
-
-					<div class="travel-options_grid_container_item" style="grid-area: img8">
-						<img src="{{ asset('img/Cuba-13_SD.jpg') }}">
-					</div>
-					<div class="travel-options_grid_container_item" style="grid-area: img9">
-						<img src="{{ asset('img/Cuba-18_SD.jpg') }}">
-					</div>
-					<div class="travel-options_grid_container_item" style="grid-area: img10">
-						<img src="{{ asset('img/Cuba-15_SD.jpg') }}">
-					</div>
-					<div class="travel-options_grid_container_item" style="grid-area: img11">
-						<img src="{{ asset('img/Cuba-20_SD.jpg') }}">
 					</div>
 
 				</div>

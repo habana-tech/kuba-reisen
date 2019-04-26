@@ -38,7 +38,7 @@ class ContactPlaningType extends AbstractType
                 'choices'=>[
                     'Yes'=>'true',
                     'Not yet'=>'false',
-                ],'expanded'=>false])
+                ],'expanded'=>true, 'attr'=>['class'=>'radio-switch'], 'choice_attr'=>['class'=>'radio-switch__item']])
             ->add('selfConsider',null,['label'=>"When do you plan to travel to Cuba?"])
             ->add('selfCharacter')
             ->add('selfLuxury')
