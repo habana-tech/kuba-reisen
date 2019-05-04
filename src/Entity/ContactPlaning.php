@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -20,6 +21,7 @@ class ContactPlaning
     private $id;
 
     /**
+     * @Assert\Date()
      * @ORM\Column(type="datetime")
      */
     private $travelDate;
@@ -30,6 +32,7 @@ class ContactPlaning
     private $travelDuration;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\Column(type="string", length=255)
      */
     private $peopleAmount;
@@ -84,10 +87,24 @@ class ContactPlaning
      */
     private $requestId;
 
+    /**
+     * @Assert\NotBlank()
+     * @ORM\Column(type="string", length=255)
+     */
+    private $clientName;
+
+    /**
+     * @Assert\Email()
+     * @Assert\NotBlank()
+     * @ORM\Column(type="string", length=255)
+     */
+    private $clientEmail;
+
     public function __construct()
     {
         $this->interests = new ArrayCollection();
         $this->requestId = "KR-".substr(uniqid(),6,13);
+        $this->requestDateTime = new \DateTime();
     }
 
 
@@ -274,6 +291,30 @@ class ContactPlaning
     public function updateRequestDateTime()
     {
         $this->setRequestDateTime(new \DateTime());
+    }
+
+    public function getClientName(): ?string
+    {
+        return $this->clientName;
+    }
+
+    public function setClientName(string $clientName): self
+    {
+        $this->clientName = $clientName;
+
+        return $this;
+    }
+
+    public function getClientEmail(): ?string
+    {
+        return $this->clientEmail;
+    }
+
+    public function setClientEmail(string $clientEmail): self
+    {
+        $this->clientEmail = $clientEmail;
+
+        return $this;
     }
 
 }

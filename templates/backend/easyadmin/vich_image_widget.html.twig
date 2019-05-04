@@ -1,0 +1,40 @@
+{{ dump() }}
+    <div class="easyadmin-vich-image" style="border: solid 2px red;">
+        {% if image_uri|default('') is not empty %}
+            {% if download_uri|default('') is empty %}
+                <div class="easyadmin-thumbnail">
+                    <img style="cursor: initial" src="{{ asset(image_uri) }}" >
+                </div>
+            {% else %}
+                {% set _lightbox_id = 'easyadmin-lightbox-' ~ id %}
+
+                <a href="#" class="easyadmin-thumbnail" data-featherlight="#{{ _lightbox_id }}" data-featherlight-close-on-click="anywhere">
+                    <img src="{{ asset(download_uri) }}">
+                </a>
+
+                <div id="{{ _lightbox_id }}" class="easyadmin-lightbox">
+                    <img src="{{ asset(download_uri) }}">
+                </div>
+            {% endif %}
+        {% endif %}
+
+        {% set file_upload_js %}
+            var newFile = document.getElementById('{{ form.file.vars.id }}').files[0];
+            var fileSizeInMegabytes = newFile.size > 1024 * 1024;
+            var fileSize = fileSizeInMegabytes ? newFile.size / (1024 * 1024) : newFile.size / 1024;
+            document.getElementById('{{ form.file.vars.id }}_new_file_name').innerText = newFile.name + ' (' + fileSize.toFixed(2) + ' ' + (fileSizeInMegabytes ? 'MB' : 'KB') + ')';
+        {% endset %}
+
+        <div class="easyadmin-vich-image-actions">
+            {# the container element is needed to allow customizing the <input type="file" /> #}
+            <div class="btn btn-secondary input-file-container">
+                <i class="fa fa-upload"></i> {{ 'action.choose_file'|trans({}, 'EasyAdminBundle') }}
+                <span class="btn-label">{{ form_widget(form.file, { 'attr': { 'onchange': file_upload_js }}) }}</span>
+            </div>
+
+            {% if form.delete is defined %}
+                {{ form_row(form.delete, { label: 'form.label.delete'|trans({}, 'VichUploaderBundle') }) }}
+            {% endif %}
+        </div>
+        <div class="small" id="{{ form.file.vars.id }}_new_file_name"></div>
+    </div>

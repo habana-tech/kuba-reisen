@@ -1,7 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Contact Form {% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+	<script defer src="{{ asset('dist/js/contact.min.js') }}"></script>
+{% endblock javascripts %}
 
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('dist/css/contact.min.css') }}" type="text/css">
+
+
+{% endblock stylesheets %}
 {% block body %}
 
 
@@ -42,6 +52,7 @@
 						</div>
 						<div class="grid-fourth">
 							{{ form_widget(form.travelDate) }}
+							{{ form_errors(form.travelDate) }}
 						</div>
 				</div>
 
@@ -109,7 +120,7 @@
 				</div>
 
 
-				<div class="row row-center float-center padding-top">
+				<div class="row row-center float-center padding-top margin-top margin-bottom-large">
 					<div class="grid-fifth">
 						{{ form_label(form.flyTicket) }}
 					</div>
@@ -118,17 +129,128 @@
 					</div>
 				</div>
 
-				<button class="btn">{{ button_label|default('Save') }}</button>
+
+
+				<div class="row row-center float-center padding-top margin-top margin-bottom-large">
+					<div class="grid-fifth">
+						{{ form_label(form.selfConsider) }}
+
+
+					</div>
+					<div class="grid-fourth select-control">
+						{{ form_widget(form.selfConsider, {}) }}
+						<div id="{{ form.selfConsider.vars.id }}_container"></div>
+						<div class="slider-labels">
+							<div class="selfCharacter slider-labels_label first">
+								Menos
+							</div>
+							<div class="selfCharacter slider-labels_label value" id="{{ form.selfConsider.vars.id }}_value">{{ form.selfConsider.vars.id }}</div>
+							<div class="selfCharacter slider-labels_label last">
+								M'as
+							</div>
+						</div>
+
+					</div>
+					<ul class="visually-hidden" id="{{ form.selfConsider.vars.id }}_labels">
+						<li>Text A</li>
+						<li>Text B</li>
+						<li>Text C</li>
+						<li>Text D</li>
+						<li>Text E</li>
+					</ul>
+				</div>
+
+
+
+				<div class="row row-center float-center padding-top margin-top margin-bottom-large">
+					<div class="grid-fifth">
+						{{ form_label(form.selfCharacter) }}
+
+
+					</div>
+					<div class="grid-fourth select-control">
+						{{ form_widget(form.selfCharacter, {}) }}
+						{{ form_errors(form.selfCharacter) }}
+						<div id="{{ form.selfCharacter.vars.id }}_container"></div>
+						<div class="slider-labels">
+							<div class="selfCharacter slider-labels_label first">
+								Menos
+							</div>
+							<div class="selfCharacter slider-labels_label value" id="{{ form.selfCharacter.vars.id }}_value">{{ form.selfCharacter.vars.id }}</div>
+							<div class="selfCharacter slider-labels_label last">
+								M'as
+							</div>
+						</div>
+
+					</div>
+					<ul class="visually-hidden" id="{{ form.selfCharacter.vars.id }}_labels">
+						<li>Text 0</li>
+						<li>Text 1</li>
+						<li>Text 2</li>
+						<li>Text 3</li>
+						<li>Text 4</li>
+						<li>Text 5</li>
+						<li>Text 6</li>
+						<li>Text 7</li>
+					</ul>
+				</div>
+
+                <div class="row row-center float-center padding-top margin-top margin-bottom-large">
+                    <div class="grid-fifth">
+                        {{ form_label(form.selfLuxury) }}
+
+
+                    </div>
+                    <div class="grid-fourth select-control">
+                        {{ form_widget(form.selfLuxury, {}) }}
+                        <div id="{{ form.selfLuxury.vars.id }}_container"></div>
+                        <div class="slider-labels">
+                            <div class="selfCharacter slider-labels_label first">
+                                Menos
+                            </div>
+                            <div class="selfCharacter slider-labels_label value" id="{{ form.selfLuxury.vars.id }}_value">{{ form.selfLuxury.vars.id }}</div>
+                            <div class="selfCharacter slider-labels_label last">
+                                M'as
+                            </div>
+                        </div>
+
+                    </div>
+                    <ul class="visually-hidden" id="{{ form.selfLuxury.vars.id }}_labels">
+                        <li>Text A</li>
+                        <li>Text B</li>
+                        <li>Text C</li>
+                        <li>Text D</li>
+                        <li>Text E</li>
+                    </ul>
+                </div>
+
+
+				<div class="row row-center float-center padding-top">
+					{{ form_label(form.message) }}
+				</div>
+				<div class="row row-center float-center padding-top">
+					<div class="grid-half select-control">
+					{{ form_widget(form.message) }}
+					</div>
+				</div>
+
+				<div class="row  row-center row-middle header_headline no-lat-margins">
+
+				<button class="btn header_headline_btn">{{ button_label|default('Send form') }}</button>
+				</div>
+
+				{{ form_widget(form.interests) }}
+				{{ dump(form) }}
 				{{ form_end(form) }}
 
 			</section>
 
 			<section class="section contact_landscape contact_second margin-top" style="background-image: url({{ asset('img/kwan-fung-1134032-unsplash.jpg') }})">
 
-				<div class="row row-middle header_headline no-lat-margins">
+				<div class="row  row-center row-middle header_headline no-lat-margins">
 					<div class="grid-full text-center">
 						<h1 class="header_headline_text">Take a step toward your travel to Cuba</h1>
-						<button class="btn btn-transparent header_headline_btn">Talk to an Expert!</button>
+
 					</div>
 				</div>
 

@@ -13,7 +13,7 @@ trait UserControlFieldsTrait
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $modified_by;
 

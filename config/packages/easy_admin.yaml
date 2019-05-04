@@ -1,0 +1,39 @@
+easy_admin:
+    site_name: 'kuba-raisen admin'
+    entities:
+#        # List the entity class name you want to manage
+        Interest:
+            class: App\Entity\Interest
+            list:
+                fields:
+                    - { property: 'image', template: 'backend/easyadmin/vich_uploader_image.html.twig' }
+            form:
+                fields:
+                    - { type: 'group', label: 'Interest Data', icon: 'comments', columns: 8 }
+
+                    - { property: 'title' }
+                    - { property: 'description' }
+
+
+
+                    - { type: 'group', label: 'Language and Translation', icon: 'globe', columns: 4 }
+                    - { property: 'language', type: 'choice', type_options: {choices: {EN: 'EN', DE: 'DE',ES: 'ES'}} }
+                    - { property: 'translation_from', type: 'entity' }
+
+                    - { type: 'group', label: 'Image Info', icon: 'image', columns: 4 }
+                    #- { property: 'image', template: 'backend/easyadmin/vich_uploader_image.html.twig' }
+                    - { property: 'imageFile', type: 'vich_image' ,  template: 'backend/easyadmin/vich_image_widget.html.twig'}
+                    - { property: 'alternativeText' }
+                show:
+                    - { property: 'title' }
+                    - { property: 'description' }
+                    - { property: 'modified_by'}
+
+        DynamicPage:
+            class: App\Entity\DynamicPage
+            form:
+                - { property: 'pageName' }
+                - { property: 'pageTitle' }
+                - { property: 'blocks', type: 'collection',  type_options: { multiple: true, entry_type: 'App\Form\PageBlockType', by_reference: false }  }
+
+        #- App\Entity\User

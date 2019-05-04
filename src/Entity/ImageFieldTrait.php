@@ -42,6 +42,29 @@ trait ImageFieldTrait
      */
     protected $updatedAt;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $alternativeText;
+
+    /**
+     * @return mixed
+     */
+    public function getAlternativeText()
+    {
+        return $this->alternativeText;
+    }
+
+    /**
+     * @param mixed $alternativeText
+     */
+    public function setAlternativeText($alternativeText): void
+    {
+        $this->alternativeText = $alternativeText;
+    }
+
+
+
     public function __construct()
     {
         $this->image = new EmbeddedFile();

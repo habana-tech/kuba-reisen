@@ -26,7 +26,7 @@ class FrontendController extends AbstractController
     public function contact(Request $request)
     {
         $contact = new ContactPlaning();
-        $form = $this->createForm(ContactPlaningType::class, $contact);
+        $form = $this->createForm(ContactPlaningType::class, $contact, ['locale'=>$request->getLocale()]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

@@ -1,0 +1,11 @@
+@import "vendor/nouislider";
+
+.contact-form{
+  & .slider-labels{
+    display: flex;
+
+    &_label{
+      margin: auto;
+    }
+  }
+}
