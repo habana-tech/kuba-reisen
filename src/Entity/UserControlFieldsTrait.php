@@ -17,6 +17,8 @@ trait UserControlFieldsTrait
      */
     private $modified_by;
 
+    public  $hasUserModificationField = true;
+
     public function getModifiedBy(): ?User
     {
         return $this->modified_by;

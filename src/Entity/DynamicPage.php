@@ -33,7 +33,7 @@ class DynamicPage
     private $pageTitle;
 
     /**
-     * @ORM\Column(type="simple_array")
+     * @ORM\Column(type="simple_array", nullable=true)
      */
     private $pageContent;
 

@@ -7,6 +7,8 @@ easy_admin:
             list:
                 fields:
                     - { property: 'image', template: 'backend/easyadmin/vich_uploader_image.html.twig' }
+                    - { property: 'title' }
+                    - { property: 'modified_by' }
             form:
                 fields:
                     - { type: 'group', label: 'Interest Data', icon: 'comments', columns: 8 }
@@ -22,7 +24,7 @@ easy_admin:
 
                     - { type: 'group', label: 'Image Info', icon: 'image', columns: 4 }
                     #- { property: 'image', template: 'backend/easyadmin/vich_uploader_image.html.twig' }
-                    - { property: 'imageFile', type: 'vich_image' ,  template: 'backend/easyadmin/vich_image_widget.html.twig'}
+                    - { property: 'imageFile', type: 'vich_image' }
                     - { property: 'alternativeText' }
                 show:
                     - { property: 'title' }
@@ -35,5 +37,6 @@ easy_admin:
                 - { property: 'pageName' }
                 - { property: 'pageTitle' }
                 - { property: 'blocks', type: 'collection',  type_options: { multiple: true, entry_type: 'App\Form\PageBlockType', by_reference: false }  }
-
+        PageBlock:
+            class: App\Entity\PageBlock
         #- App\Entity\User

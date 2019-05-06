@@ -6,9 +6,13 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PageBlockRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class PageBlock
 {
+
+    use UserControlFieldsTrait;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
