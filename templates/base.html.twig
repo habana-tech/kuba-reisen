@@ -52,69 +52,47 @@
 
         <script type="text/javascript">
 
-            var lp = './img/';
-            var plp = '//placehold.it/350x250/';
-            var images = [
-                lp+'team1.jpg', lp+'team2.jpg', lp+'team3.jpg', plp+'78c5d6/fff/image1.jpg', plp+'459ba8/fff/image2.jpg', plp+'79c267/fff/image3.jpg',
-                plp+'c5d647/fff/image4.jpg', plp+'f28c33/fff/image5.jpg', plp+'e868a2/fff/image6.jpg', plp+'cc4360/fff/image7.jpg',
-                lp+'work-desk.jpg', lp+'phone-app.png', lp+'bg-gr-v.png'
-            ];
+
+            var images = [];
 
              var editor = grapesjs.init({
-        showOffsets: 1,
-        noticeOnUnload: 0,
-        container: '#sections_container',
-        height: '100%',
-        fromElement: true,
-        storageManager: {
-            id: 'gjosue-',             // Prefix identifier that will be used inside storing and loading
-            type: 'remote',        // Type of the storage
-            autosave: true,         // Store data automatically
-            urlStore: '{{ path('grapes') }}',
-            urlLoad: '{{ path('grapes') }}',
-        //    params: { _some_token: '....' },
-         //   autoload: true,         // Autoload stored data on init
-            stepsBeforeSave: 1,     // If autosave enabled, indicates how many changes are necessary before store method is triggered
-      //      storeComponents: true,  // Enable/Disable storing of components in JSON format
-            storeStyles: false,      // Enable/Disable storing of rules in JSON format
-            storeHtml: true,        // Enable/Disable storing of components as HTML string
-            storeCss: false,         // Enable/Disable storing of rules as CSS string 
-        },
-        styleManager : {
-          sectors: [{
-              name: 'General',
-              open: false,
-              buildProps: ['float', 'display', 'position', 'top', 'right', 'left', 'bottom']
-            },{
-              name: 'Flex',
-              open: false,
-              buildProps: ['flex-direction', 'flex-wrap', 'justify-content', 'align-items', 'align-content', 'order', 'flex-basis', 'flex-grow', 'flex-shrink', 'align-self']
-            },{
-              name: 'Dimension',
-              open: false,
-              buildProps: ['width', 'height', 'max-width', 'min-height', 'margin', 'padding'],
-            },{
-              name: 'Typography',
-              open: false,
-              buildProps: ['font-family', 'font-size', 'font-weight', 'letter-spacing', 'color', 'line-height', 'text-shadow'],
-            },{
-              name: 'Decorations',
-              open: false,
-              buildProps: ['border-radius-c', 'background-color', 'border-radius', 'border', 'box-shadow', 'background'],
-            },{
-              name: 'Extra',
-              open: false,
-              buildProps: ['transition', 'perspective', 'transform'],
-            }
-          ],
-        },
-      });
+                showOffsets: 1,
+                noticeOnUnload: 0,
+                container: '#sections_container',
+                height: '100%',
+                fromElement: true,
+                storageManager: {
+                    id: 'gjosue-',             // Prefix identifier that will be used inside storing and loading
+                    type: 'remote',        // Type of the storage
+                    autosave: true,         // Store data automatically
+                    urlStore: '{{ path('grapes') }}',
+                    urlLoad: '{{ path('grapes') }}',
+                //    params: { _some_token: '....' },
+                 //   autoload: true,         // Autoload stored data on init
+                    stepsBeforeSave: 1,     // If autosave enabled, indicates how many changes are necessary before store method is triggered
+              //      storeComponents: true,  // Enable/Disable storing of components in JSON format
+                    storeStyles: false,      // Enable/Disable storing of rules in JSON format
+                    storeHtml: false,        // Enable/Disable storing of components as HTML string
+                    storeCss: false,         // Enable/Disable storing of rules as CSS string
+                },
+                styleManager : {
+                  sectors: [{
+                      name: 'General',
+                      open: false,
+                      buildProps: ['float', 'display', 'position', 'top', 'right', 'left', 'bottom']
+                    },{
+                      name: 'Dimension',
+                      open: false,
+                      buildProps: ['width', 'height', 'max-width', 'min-height', 'margin', 'padding'],
+                    },{
+                      name: 'Typography',
+                      open: false,
+                      buildProps: ['font-size', 'font-weight', 'color', 'text-shadow'],
+                    }
+                  ],
+                },
+             });
 
-      editor.BlockManager.add('testBlock', {
-        label: 'Block',
-        attributes: { class:'gjs-fonts gjs-f-b1' },
-        content: `<div style="padding-top:50px; padding-bottom:50px; text-align:center">Test block</div>`
-      })
 
         </script>
     {% endif %}
