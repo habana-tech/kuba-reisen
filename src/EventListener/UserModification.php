@@ -21,13 +21,11 @@ class UserModification
 
     public function preUpdate(LifecycleEventArgs $args)
     {
-        echo "PRE-UPDATE--";
         $this->prePersist($args);
     }
 
     public function prePersist(LifecycleEventArgs $args)
     {
-        echo "PRE-UPDATE--";
         $entity = $args->getObject();
 
         // only act on some "Product" entity
