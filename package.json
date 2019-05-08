@@ -1,42 +1,49 @@
 {
-	"name": "Kuba-reisen",
-	"version": "0.0.1",
-	"description": "Kuba-reisen website.",
-	"main": "./public/js/main.js",
-	"author": {
-		"name": "HabanaTech",
-		"url": "http:/habana.tech"
-	},
-	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/habana-tech/kuba-reisen.git"
-	},
-	"devDependencies": {
-		"@babel/core": "^7.4.4",
-		"@babel/preset-env": "^7.4.4",
-		"babel": "^6.23.0",
-		"browser-sync": "2.26.3",
-		"del": "3.0.0",
-		"gulp": "4.0.0",
-		"gulp-autoprefixer": "6.0.0",
-		"gulp-babel": "^8.0.0",
-		"gulp-concat": "2.6.1",
-		"gulp-cssnano": "2.1.3",
-		"gulp-flatmap": "1.0.2",
-		"gulp-header": "2.0.5",
-		"gulp-jshint": "2.1.0",
-		"gulp-optimize-js": "1.1.0",
-		"gulp-rename": "1.4.0",
-		"gulp-sass": "4.0.2",
-		"gulp-svgmin": "2.1.0",
-		"gulp-terser": "1.1.7",
-		"jshint": "2.9.6",
-		"jshint-stylish": "2.2.1",
-		"lazypipe": "1.0.1"
-	},
-	"dependencies": {
-		"nouislider": "^13.1.5",
-		"npm": "^6.9.0"
-	}
+  "name": "kuba-reisen",
+  "version": "1.0.0",
+  "name": "Kuba-reisen",
+  "description": "Kuba-reisen website.",
+  "author": {
+    "name": "HabanaTech",
+ 	"url": "http:/habana.tech"
+ 	},
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/habana-tech/kuba-reisen.git"
+    },
+  "devDependencies": {
+    "autoprefixer": "^9.0.1",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-es2015": "^6.24.1",
+    "browser-sync": "^2.24.6",
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-cssnano": "^2.1.3",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-modernizr": "^3.0.0",
+    "gulp-postcss": "^7.0.1",
+    "gulp-rename": "^1.4.0",
+    "gulp-rev": "^8.1.1",
+    "gulp-sass": "^4.0.2",
+    "gulp-svg-sprite": "^1.4.0",
+    "gulp-svg2png": "^2.0.2",
+    "gulp-uglify": "^3.0.1",
+    "gulp-watch": "^5.0.1",
+    "postcss-hexrgba": "^1.0.1",
+    "postcss-import": "^11.1.0",
+    "postcss-mixins": "^6.2.0",
+    "postcss-simple-vars": "^4.1.0",
+    "usemin": "^0.5.0",
+    "webpack": "^4.16.3",
+    "webpack-cli": "^3.1.0"
+  },
+  "dependencies": {
+    "Kraken": "github:cferdinandi/kraken",
+    "grapesjs": "^0.14.61",
+    "normalize.css": "^8.0.1",
+    "nouislider": "^13.1.5",
+    "npm": "^6.9.0"
+  }
 }
