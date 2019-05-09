@@ -30,6 +30,8 @@
 
    #}
        {% block body %}{% endblock %}
+   <script src="{{ asset('scripts/app.js') }}"></script>
+   <script src="{{ asset('scripts/app_backend.js') }}"></script>
        {% if is_granted('ROLE_ADMIN') %}
 
        {# TODO: use cdn version, like
@@ -43,7 +45,6 @@
 
 
         {% block javascripts %}
-            <script src="{{ asset('scripts/app.js') }}"></script>
         
           {#  <script src="{{ asset('dist/js/vendors.min.js') }}"></script> #}
          {#   <script src="{{ asset('dist/js/main.js') }}"></script> ##}

@@ -58,8 +58,8 @@
   position: fixed;
   width: calc(100% - 12px);
   background-image: linear-gradient(90deg,transparentize($color-blue-light,.2), transparentize( $color-blue-dark, .1 ));
-  /*visibility: hidden;*/
-  visibility: visible;
+  visibility: hidden;
+  //visibility: visible;
   top: 6px;
   left: 6px;
   z-index: 1;

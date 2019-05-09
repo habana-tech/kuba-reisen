@@ -1,7 +1,7 @@
-import "d3-ease";
-import Segment from "segment";
+import {easeElasticOut, easeElasticIn, easeBounceOut} from "d3-ease";
+import Segment from "segment-js";
     
-    console.log("burger");
+console.log("burger");
 
 (function() {
 
@@ -23,7 +23,7 @@ import Segment from "segment";
 
 	function inAC2(s) {
 		s.draw('100% - 545', '100% - 305', 0.6, {
-			easing: ease.ease('elastic-out', 1, 0.3)
+			easing: easeElasticOut
 		});
 	}
 
@@ -37,7 +37,7 @@ import Segment from "segment";
 
 	function inB2(s) {
 		s.draw(beginB + 120, endB - 120, 0.3, {
-			easing: ease.ease('bounce-out', 1, 0.3)
+			easing: easeBounceOut
 		});
 	}
 
@@ -45,7 +45,7 @@ import Segment from "segment";
 
 	function outAC(s) {
 		s.draw('90% - 240', '90%', 0.1, {
-			easing: ease.ease('elastic-in', 1, 0.3),
+			easing: easeElasticIn,
 			callback: function() {
 				outAC2(s)
 			}
@@ -62,14 +62,14 @@ import Segment from "segment";
 
 	function outAC3(s) {
 		s.draw(beginAC, endAC, 0.7, {
-			easing: ease.ease('elastic-out', 1, 0.3)
+			easing: easeElasticOut
 		});
 	}
 
 	function outB(s) {
 		s.draw(beginB, endB, 0.7, {
 			delay: 0.1,
-			easing: ease.ease('elastic-out', 2, 0.4)
+			easing: easeElasticOut
 		});
 	}
 

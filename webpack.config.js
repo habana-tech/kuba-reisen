@@ -3,6 +3,8 @@ var path = require('path');
 module.exports = {
     entry: {
         app: "./assets/scripts/app.js",
+        app_backend: "./assets/scripts/app_backend.js",
+
     },
     output: {
         path: path.resolve(__dirname, "./public/static/scripts/"),
