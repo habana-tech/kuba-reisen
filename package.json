@@ -1,17 +1,16 @@
 {
-  "name": "kuba-reisen",
-  "version": "1.0.0",
   "name": "Kuba-reisen",
+  "version": "1.0.0",
   "description": "Kuba-reisen website.",
   "author": {
     "name": "HabanaTech",
- 	"url": "http:/habana.tech"
- 	},
+    "url": "http:/habana.tech"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/habana-tech/kuba-reisen.git"
-    },
+  },
   "devDependencies": {
     "autoprefixer": "^9.0.1",
     "babel-core": "^6.26.3",
@@ -41,9 +40,11 @@
   },
   "dependencies": {
     "Kraken": "github:cferdinandi/kraken",
+    "d3-ease": "^1.0.5",
     "grapesjs": "^0.14.61",
     "normalize.css": "^8.0.1",
     "nouislider": "^13.1.5",
-    "npm": "^6.9.0"
+    "npm": "^6.9.0",
+    "segment-js": "^1.1.2"
   }
 }
