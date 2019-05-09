@@ -1,3 +1,5 @@
-import SampleClass from './modules/_sample';
+// import SampleClass from './modules/_sample';
+import "./modules/_burger_menu";;
 
-new SampleClass();
+console.log('sds');
+// new SampleClass();

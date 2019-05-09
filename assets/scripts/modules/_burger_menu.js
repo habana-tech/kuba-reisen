@@ -1,4 +1,10 @@
+import "d3-ease";
+import Segment from "segment";
+    
+    console.log("burger");
+
 (function() {
+
 	/* In animations (to close icon) */
 
 	var beginAC = 80,
