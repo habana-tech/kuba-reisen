@@ -123,7 +123,7 @@
 }
 
 .padding-top-large {
-	padding-top: 2em;
+	padding-top: 4em;
 }
 
 .padding-bottom {
@@ -161,6 +161,10 @@
     position: absolute;
     white-space: nowrap; /* 1 */
     width: 1px;
+}
+
+.soft-hidden{
+	visibility: hidden;
 }
 
 /*

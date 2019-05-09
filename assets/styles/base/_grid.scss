@@ -21,6 +21,10 @@
 	margin-left: $grid-margins * -1;
 	margin-right: $grid-margins * -1;
 }
+.no-lat-margins{
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+}
 
 
 /**

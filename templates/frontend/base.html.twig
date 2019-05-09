@@ -13,7 +13,7 @@
    
     {% block stylesheets %}
         {% if  is_granted('ROLE_ADMIN') %}
-            <link rel="stylesheet" href="{{ asset('style/kraken_backend.css') }}" type="text/css">
+            <link rel="stylesheet" href="{{ asset('styles/kraken_backend.css') }}" type="text/css">
         {% else %}
             <link rel="stylesheet" href="{{ asset('styles/kraken.css') }}" type="text/css">
         {% endif %}

@@ -19,7 +19,9 @@ p {
 	margin: 0 0 $spacing;
 }
 
-
+.underline{
+	text-decoration: underline;
+}
 /**
  * Hyperlink styling
  * 1. Remove the gray background on active links in IE 10.
@@ -152,12 +154,14 @@ h1, h2, h3, h4, h5, h6 {
 	margin: 0 0 1em;
 	padding: 1em 0 0;
 	word-wrap: break-word;
+	font-family: $font-primary;
 }
 
 h1,
 .h1 {
 	font-size: 1.5em;
 	padding-top: .5em;
+	font-family: $font-titles;
 
 	@media (min-width: $bp-medium) {
 		font-size: 1.75em;
@@ -169,6 +173,10 @@ h2,
 	font-size: 1.3125em;
 }
 
+.section h2{
+	font-size: 2em;
+	font-weight: 600;
+}
 h3,
 .h3 {
 	font-size: 1.1875em;
@@ -299,3 +307,5 @@ q:before,
 q:after {
 	content: '';
 }
+
+a:hover{color: $color-white;}
