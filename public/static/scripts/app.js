@@ -94,7 +94,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\n__webpack_require__(/*! ./modules/_burger_menu */ \"./assets/scripts/modules/_burger_menu.js\");\n\nconsole.log('sds');\n// new SampleClass();\n// import SampleClass from './modules/_sample';\n\n//# sourceURL=webpack:///./assets/scripts/app.js?");
+eval("\n\n__webpack_require__(/*! ./modules/_burger_menu */ \"./assets/scripts/modules/_burger_menu.js\");\n\n//# sourceURL=webpack:///./assets/scripts/app.js?");
 
 /***/ }),
 

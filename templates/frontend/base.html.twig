@@ -12,7 +12,7 @@
    
    
     {% block stylesheets %}
-        {% if  is_granted('ROLE_ADMIN') %}
+        {% if  is_granted('ROLE_USER') %}
             <link rel="stylesheet" href="{{ asset('styles/kraken_backend.css') }}" type="text/css">
         {% else %}
             <link rel="stylesheet" href="{{ asset('styles/kraken.css') }}" type="text/css">
@@ -30,80 +30,19 @@
 
    #}
        {% block body %}{% endblock %}
-   <script src="{{ asset('scripts/app.js') }}"></script>
-   <script src="{{ asset('scripts/app_backend.js') }}"></script>
-       {% if is_granted('ROLE_ADMIN') %}
 
-       {# TODO: use cdn version, like
-           https://cdnjs.cloudflare.com/ajax/libs/grapesjs/0.12.17/grapes.min.js
-           https://cdnjs.cloudflare.com/ajax/libs/grapesjs/0.12.17/css/grapes.min.css
-       #}
+       <script src="{{ asset('scripts/app.js') }}"></script>
 
-       <div class="panel__top">
-           <div class="panel__basic-actions"></div>
-       </div>
+       {% if is_granted('ROLE_USER') %}
 
+           <script src="{{ asset('scripts/app_backend.js') }}"></script>
+           <div class="panel__top">
+               <div class="panel__basic-actions"></div>
+           </div>
 
-        {% block javascripts %}
-        
-          {#  <script src="{{ asset('dist/js/vendors.min.js') }}"></script> #}
-         {#   <script src="{{ asset('dist/js/main.js') }}"></script> ##}
-        {% endblock %}
+           {% block javascripts %}{% endblock %}
 
-        {#
-
-            <link rel="stylesheet" href="{{ asset('static/vendor/grapes/grapes.min.css') }}" type="text/css">
-            <script src="{{ asset('static/vendor/grapes/grapes.min.js') }}"></script>
-            
-
-        <script type="text/javascript">
-
-
-            var images = [];
-
-             var editor = grapesjs.init({
-                showOffsets: 1,
-                noticeOnUnload: 0,
-                container: '#sections_container',
-                height: '100%',
-                fromElement: true,
-                storageManager: {
-                    id: 'gjosue-',             // Prefix identifier that will be used inside storing and loading
-                    type: 'remote',        // Type of the storage
-                    autosave: true,         // Store data automatically
-                    urlStore: '{{ path('grapes') }}',
-                    urlLoad: '{{ path('grapes') }}',
-                //    params: { _some_token: '....' },
-                 //   autoload: true,         // Autoload stored data on init
-                    stepsBeforeSave: 1,     // If autosave enabled, indicates how many changes are necessary before store method is triggered
-              //      storeComponents: true,  // Enable/Disable storing of components in JSON format
-                    storeStyles: false,      // Enable/Disable storing of rules in JSON format
-                    storeHtml: false,        // Enable/Disable storing of components as HTML string
-                    storeCss: false,         // Enable/Disable storing of rules as CSS string
-                },
-                styleManager : {
-                  sectors: [{
-                      name: 'General',
-                      open: false,
-                      buildProps: ['float', 'display', 'position', 'top', 'right', 'left', 'bottom']
-                    },{
-                      name: 'Dimension',
-                      open: false,
-                      buildProps: ['width', 'height', 'max-width', 'min-height', 'margin', 'padding'],
-                    },{
-                      name: 'Typography',
-                      open: false,
-                      buildProps: ['font-size', 'font-weight', 'color', 'text-shadow'],
-                    }
-                  ],
-                },
-             });
-
-
-        </script>
-        
-        #}
-    {% endif %}
+        {% endif %}
 
     </body>
 </html>
