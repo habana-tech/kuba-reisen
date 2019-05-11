@@ -12,37 +12,40 @@
    
    
     {% block stylesheets %}
-        {% if  is_granted('ROLE_USER') %}
-            <link rel="stylesheet" href="{{ asset('styles/kraken_backend.css') }}" type="text/css">
-        {% else %}
+        {# TODO: EL ROLE NECESARIO DEBE SER AL MENOS ROLE_EDITOR #}
+        {% if not is_granted('ROLE_USER') %}
             <link rel="stylesheet" href="{{ asset('styles/kraken.css') }}" type="text/css">
+            <link rel="stylesheet" href="{{ asset('styles/styles.css') }}" type="text/css">
+        {% else %}
+            <link rel="stylesheet" href="{{ asset('styles/all_backend_css.css') }}" type="text/css">
+
+
         {% endif %}
     {% endblock %}
     
-    <link rel="stylesheet" href="{{ asset('styles/styles.css') }}" type="text/css">
+
 
 </head>
     <body>
-   {#
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/regular.css" integrity="sha384-FKw7x8fCxuvzBwOJmhTJJsKzBl8dnN9e2R4+pXRfYoHivikuHkzWyhKWDSMcGNK8" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/fontawesome.css" integrity="sha384-vd1e11sR28tEK9YANUtpIOdjGW14pS87bUBuOIoBILVWLFnS+MCX9T6MMf0VdPGq" crossorigin="anonymous">
-
-   #}
        {% block body %}{% endblock %}
 
-       <script src="{{ asset('scripts/app.js') }}"></script>
+        {% block javascripts %}
+            <script src="{{ asset('scripts/app.js') }}"></script>
 
-       {% if is_granted('ROLE_USER') %}
+            {# TODO: EL ROLE NECESARIO DEBE SER AL MENOS ROLE_EDITOR #}
+            {% if is_granted('ROLE_USER') %}
+                <script>
+                    //APP_ROUTES & PARAMS
+                    var app_js_param__csrf_token = "{{ csrf_token('grapejs_editor_token') }}"
+                    var app_js_routing__styles_css = "{{ absolute_url(asset('styles/all_backend_css.css')) }}"
+                    var app_js_routing__grape_endpoint = "{{ absolute_url(path('endpoint')) }}"
+                </script>
+               <script src="{{ asset('scripts/app_backend.js') }}"></script>
+            {% endif %}
+        {% endblock %}
 
-           <script src="{{ asset('scripts/app_backend.js') }}"></script>
-           <div class="panel__top">
-               <div class="panel__basic-actions"></div>
-           </div>
 
-           {% block javascripts %}{% endblock %}
-
-        {% endif %}
 
     </body>
 </html>

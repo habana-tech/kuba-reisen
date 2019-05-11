@@ -21,26 +21,8 @@
 		</header>
 
 		<main id="sections_container">
-{% if  is_granted('ROLE_ADMIN') %}
-	{# MOSTRAR EDITOR HTML #}
-<style>
-   .panel__top {
-       padding: 0;
-       width: 100%;
-       display: flex;
-       position: initial;
-       justify-content: center;
-       justify-content: space-between;
-   }
-   .panel__basic-actions {
-       position: initial;
-   }
-
-   {{ source('@public/dist/css/__main.css') }}
-</style>
 
 
-{% endif %}
 <section class="section overview "  id="overview" tabindex="-1">
 
    <div class="row row-end overview_links no-lat-margins">

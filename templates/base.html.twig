@@ -21,80 +21,14 @@
 
 </head>
     <body>
-   {#
-
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/regular.css" integrity="sha384-FKw7x8fCxuvzBwOJmhTJJsKzBl8dnN9e2R4+pXRfYoHivikuHkzWyhKWDSMcGNK8" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/fontawesome.css" integrity="sha384-vd1e11sR28tEK9YANUtpIOdjGW14pS87bUBuOIoBILVWLFnS+MCX9T6MMf0VdPGq" crossorigin="anonymous">
-
-   #}
        {% block body %}{% endblock %}
        {% if is_granted('ROLE_ADMIN') %}
 
-       {# TODO: use cdn version, like
-           https://cdnjs.cloudflare.com/ajax/libs/grapesjs/0.12.17/grapes.min.js
-           https://cdnjs.cloudflare.com/ajax/libs/grapesjs/0.12.17/css/grapes.min.css
-       #}
-
-       <div class="panel__top">
-           <div class="panel__basic-actions"></div>
-       </div>
-
-
         {% block javascripts %}
-            <script src="{{ asset('dist/js/vendors.min.js') }}"></script>
-            <script src="{{ asset('dist/js/main.js') }}"></script>
+
         {% endblock %}
 
 
-            <link rel="stylesheet" href="{{ asset('static/vendor/grapes/grapes.min.css') }}" type="text/css">
-            <script src="{{ asset('static/vendor/grapes/grapes.min.js') }}"></script>
-            
-
-        <script type="text/javascript">
-
-
-            var images = [];
-
-             var editor = grapesjs.init({
-                showOffsets: 1,
-                noticeOnUnload: 0,
-                container: '#sections_container',
-                height: '100%',
-                fromElement: true,
-                storageManager: {
-                    id: 'gjosue-',             // Prefix identifier that will be used inside storing and loading
-                    type: 'remote',        // Type of the storage
-                    autosave: true,         // Store data automatically
-                    urlStore: '{{ path('grapes') }}',
-                    urlLoad: '{{ path('grapes') }}',
-                //    params: { _some_token: '....' },
-                 //   autoload: true,         // Autoload stored data on init
-                    stepsBeforeSave: 1,     // If autosave enabled, indicates how many changes are necessary before store method is triggered
-              //      storeComponents: true,  // Enable/Disable storing of components in JSON format
-                    storeStyles: false,      // Enable/Disable storing of rules in JSON format
-                    storeHtml: false,        // Enable/Disable storing of components as HTML string
-                    storeCss: false,         // Enable/Disable storing of rules as CSS string
-                },
-                styleManager : {
-                  sectors: [{
-                      name: 'General',
-                      open: false,
-                      buildProps: ['float', 'display', 'position', 'top', 'right', 'left', 'bottom']
-                    },{
-                      name: 'Dimension',
-                      open: false,
-                      buildProps: ['width', 'height', 'max-width', 'min-height', 'margin', 'padding'],
-                    },{
-                      name: 'Typography',
-                      open: false,
-                      buildProps: ['font-size', 'font-weight', 'color', 'text-shadow'],
-                    }
-                  ],
-                },
-             });
-
-
-        </script>
     {% endif %}
 
     </body>

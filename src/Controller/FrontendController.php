@@ -47,31 +47,6 @@ class FrontendController extends AbstractController
 
     }
 
-    /**
-     * @Route("/endpoint", name="grapes")
-     */
-    public function endpoint(Request $request)
-    {
-    
-        if ($request->getContentType() != 'json' || !$request->getContent()) {
-             throw new BadRequestHttpException('invalid json body');
-        }
-        
-        $data = json_decode($request->getContent(), true);
-        //header('Access-Control-Allow-Origin: http://localhost:8080');  
-        //header('Content-Type: application/json');
-       
-        
-        if (json_last_error() !== JSON_ERROR_NONE) {
-            throw new BadRequestHttpException('invalid json body: ' . json_last_error_msg());
-        }
-        
-        $request->request->replace(is_array($data) ? $data : array());
-       
-       
-        $txt = $request->get('gjosue-components');
-        
-        return $this->json($txt);
-    }
+
 
 }

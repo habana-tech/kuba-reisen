@@ -33,19 +33,9 @@ class DynamicPage
     private $pageTitle;
 
     /**
-     * @ORM\Column(type="simple_array", nullable=true)
+     * @ORM\Column(type="array", nullable=true)
      */
-    private $pageContent;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\PageBlock", mappedBy="dynamicPage", orphanRemoval=true, cascade={"persist","remove"})
-     */
-    private $blocks;
-
-    public function __construct()
-    {
-        $this->blocks = new ArrayCollection();
-    }
+    private $pageContent = [];
 
     public function getId(): ?int
     {
@@ -76,46 +66,16 @@ class DynamicPage
         return $this;
     }
 
-    public function getPageContent()
+    public function getPageContent(): ?array
     {
         return $this->pageContent;
     }
 
-    public function setPageContent($pageContent): self
+    public function setPageContent(?array $pageContent): self
     {
         $this->pageContent = $pageContent;
 
         return $this;
     }
 
-    /**
-     * @return Collection|PageBlock[]
-     */
-    public function getBlocks(): Collection
-    {
-        return $this->blocks;
-    }
-
-    public function addBlock(PageBlock $block): self
-    {
-        if (!$this->blocks->contains($block)) {
-            $this->blocks[] = $block;
-            $block->setDynamicPage($this);
-        }
-
-        return $this;
-    }
-
-    public function removeBlock(PageBlock $block): self
-    {
-        if ($this->blocks->contains($block)) {
-            $this->blocks->removeElement($block);
-            // set the owning side to null (unless already changed)
-            if ($block->getDynamicPage() === $this) {
-                $block->setDynamicPage(null);
-            }
-        }
-
-        return $this;
-    }
 }
