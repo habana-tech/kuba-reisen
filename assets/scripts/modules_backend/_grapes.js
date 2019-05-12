@@ -19,7 +19,7 @@ var editor = grapesjs.init({
     noticeOnUnload: 0,
     container: '#sections_container',
     height: '100%',
-    params: { _grape_token: app_js_param__csrf_token},
+   // params: { _grape_token: app_js_param__csrf_token},
     fromElement: true,
     showDevices: false,
     storageManager: {
@@ -28,9 +28,12 @@ var editor = grapesjs.init({
         autosave: true,         // Store data automatically
         urlStore: app_js_routing__grape_endpoint,
         urlLoad: app_js_routing__grape_endpoint,
-        //    params: { _some_token: '....' },
+            params: {
+                _grapejs_editor_token: app_js_param__csrf_token,
+                _page_id: app_js_param__page_id
+            },
         //   autoload: true,         // Autoload stored data on init
-        stepsBeforeSave: 1,     // If autosave enabled, indicates how many changes are necessary before store method is triggered
+        stepsBeforeSave: 3,     // If autosave enabled, indicates how many changes are necessary before store method is triggered
         //      storeComponents: true,  // Enable/Disable storing of components in JSON format
         storeStyles: false,      // Enable/Disable storing of rules in JSON format
         storeHtml: false,        // Enable/Disable storing of components as HTML string
@@ -57,7 +60,11 @@ var editor = grapesjs.init({
         styles: [app_js_routing__styles_css]
     }
 });
-
+/*
+const RemoteStorage = editor.StorageManager.get('remote');
+RemoteStorage.set('params', {_grape_token: app_js_param__csrf_token})
+editor.store();
+*/
 editor.Panels.addButton
 ('options',
     [{

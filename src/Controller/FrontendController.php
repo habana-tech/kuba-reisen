@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\ContactPlaning;
 use App\Form\ContactPlaningType;
+use App\Repository\DynamicPageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -14,17 +16,25 @@ class FrontendController extends AbstractController
     /**
      * @Route("/", name="frontend")
      */
-    public function index()
+    public function index(Request $request, DynamicPageRepository $pageRepository)
     {
-        return $this->render('frontend/index.html.twig', [
+        if($dymanicPage = $pageRepository->findOneBy([
+            'pageName'=>'index',
+            'language'=>$request->getLocale()
+        ]))
+
+            return $this->render('frontend/index.html.twig', [
             'controller_name' => 'FrontendController',
+            'dynamic_page_id' => $dymanicPage->getId(),
         ]);
+
+        throw new NotFoundHttpException();
     }
 
     /**
      * @Route("/contact", name="contact")
      */
-    public function contact(Request $request)
+    public function contact(Request $request, DynamicPageRepository $pageRepository)
     {
         $contact = new ContactPlaning();
         $form = $this->createForm(ContactPlaningType::class, $contact, ['locale'=>$request->getLocale()]);

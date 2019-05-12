@@ -37,9 +37,10 @@
             {% if is_granted('ROLE_USER') %}
                 <script>
                     //APP_ROUTES & PARAMS
-                    var app_js_param__csrf_token = "{{ csrf_token('grapejs_editor_token') }}"
+                    var app_js_param__csrf_token = "{{ csrf_token('_grapejs_editor_token') }}"
                     var app_js_routing__styles_css = "{{ absolute_url(asset('styles/all_backend_css.css')) }}"
                     var app_js_routing__grape_endpoint = "{{ absolute_url(path('endpoint')) }}"
+                    var app_js_param__page_id = {% if dynamic_page_id is defined %}"{{ dynamic_page_id }}"{% else %}-1;{% endif %}
                 </script>
                <script src="{{ asset('scripts/app_backend.js') }}"></script>
             {% endif %}
