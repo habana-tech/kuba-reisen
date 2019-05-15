@@ -3,15 +3,16 @@
 namespace App\Controller;
 
 use App\Repository\DynamicPageRepository;
-use Liip\ImagineBundle\Exception\Config\Filter\NotFoundException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use Symfony\Component\Security\Core\Exception\CredentialsExpiredException;
+use App\DataConverter\RequestJsonDataConverter;
+use App\DataConverter\JsonTreeDataIterator;
+use App\DataConverter\GrapesjsDomTreeConverter;
+use App\Entity\DynamicPage;
 
 
 
@@ -25,60 +26,46 @@ class EndpointController extends AbstractController
 
         $this->denyAccessUnlessGranted('ROLE_EDITOR', null, 'Unable to access this page!');
 
-        if (!$request->isXmlHttpRequest() and $request->getContentType() != 'json' || !$request->getContent()) {
-            throw new BadRequestHttpException('invalid json body');
-        }
+        $requestJson = new RequestJsonDataConverter($request);
+        $jsonData = $requestJson->getData();
 
-        $data = json_decode($request->getContent(), true);
-        //header('Access-Control-Allow-Origin: http://localhost:8080');
-        //header('Content-Type: application/json');
+        if(!isset($jsonData['_grapejs_editor_token']) or !$this->isCsrfTokenValid('_grapejs_editor_token', $jsonData['_grapejs_editor_token']))
+            throw new BadRequestHttpException('invalid token. Try again!');
 
+        $page_id = $jsonData['_page_id'];
 
-        if (json_last_error() !== JSON_ERROR_NONE) {
-            throw new BadRequestHttpException('invalid json body: ' . json_last_error_msg());
-        }
-
-
-        $request->request->replace(is_array($data) ? $data : array());
-
-        if($grapejs_editor_token = $request->get('_grapejs_editor_token') and $this->isCsrfTokenValid('_grapejs_editor_token', $grapejs_editor_token))
+        $entityManager = $this->getDoctrine()->getManager();
+        if($dymanicPage = $pageRepository->find($page_id))
         {
-            $page_id = $request->get('_page_id');
+            $iterator = new GrapesjsDomTreeConverter($jsonData['grapes_page_content-components']);
 
-            $entityManager = $this->getDoctrine()->getManager();
-            if($dymanicPage = $pageRepository->find($page_id))
-            {
-                $txt = $request->get('grapes_page_content-components');
-                $tree = json_decode($txt);
-
-                $arrayiter = new \RecursiveArrayIterator($tree);
-                $iteriter = new \RecursiveIteratorIterator($arrayiter);
+            $dymanicPage->setPageContent($iterator->getFlatList());
 
 
-                foreach ($iteriter as $key => $value) {
-                    $d = $iteriter->getDepth();
-                    if($key == 'type' and $value == 'text')
-                        dump($iteriter);
-                    //echo "depth=$d k=$key v=$value\n";
-                }
 
-                return new Response("====");
-                //return $this->json($txt);
-            }
-            else //no existe esa pagina dinamica
-                throw new NotFoundHttpException();
+            $entityManager->persist($dymanicPage);
+            $entityManager->flush();
+            //return $this->json($txt);
         }
+        else //no existe esa pagina dinamica
+            throw new NotFoundHttpException();
 
-        throw new BadRequestHttpException('invalid token. Try again!');
-            dump($request);
+        dump($dymanicPage->getElement("grape03"));
+
         exit();
-
-
 
        /* return $this->render('endpoint/index.html.twig', [
             'controller_name' => 'EndpointController',
         ]);
        */
 
+    }
+
+    /**
+     * @Route("/endpoint/debug/{id}", name="endpoint_debug")
+     */
+    public function debug(DynamicPage $page)
+    {
+        return $this->json($page->getPageContent());
     }
 }

@@ -1,0 +1,437 @@
+{% extends 'frontend/base.html.twig' %}
+
+{% block title %}Hello User, welcome to Kuba-reisen {% endblock %}
+
+{% block body %}
+
+		<a class="visually-hidden focusable" href="#overview">Skip Navigation</a>
+
+		<header class="header full-height" >
+
+				{{ include('frontend/_navigation-menu.html.twig') }}
+
+			<img class="header_bigpicture" src="{{ asset('img/DSC_4129.jpg') }}" alt="wonnderfull img">
+
+			<div class="row row-middle header_headline no-lat-margins">
+				<div class="grid-half">
+					<h1 class="header_headline_text" data-grapeid="header_headline_text">{{ page.ElementContent('header_headline_text',"Get your next travel to Cuba!") | raw }}</h1>
+					<a href="{{ path("contact") }}" class="btn btn-transparent header_headline_btn" data-grapeid="header_headline_btn">{{ page.ElementContent('header_headline_btn',"Help for planing") | raw }}</a>
+				</div>
+			</div>
+		</header>
+
+		<main id="sections_container">
+
+
+<section class="section overview "  id="overview" tabindex="-1">
+
+    <div class="grid-half">
+        <h1 class="header_headline_text" data-grapeid="header_headline_text">{{ page.ElementContent('header_headline_text',"Get your next travel to Cuba!") | raw}}</h1>
+        <a href="{{ path("contact") }}" class="btn btn-transparent header_headline_btn" data-grapeid="header_headline_btn">{{ page.ElementContent('header_headline_btn',"Help for planing") | raw }}</a>
+
+    </div>
+   <div class="row row-end overview_links no-lat-margins">
+       <div class="grid-fourth overview_links_item" data-grapeid="header_link_1">{{ page.ElementContent('header_link_1',"Luxury") | raw }}</div>
+       <div class="grid-fourth overview_links_item" data-grapeid="header_link_2">{{ page.ElementContent('header_link_2',"Nature") | raw }}</div>
+       <div class="grid-fourth overview_links_item" data-grapeid="header_link_3">{{ page.ElementContent('header_link_3',"Culture") | raw }}</div>
+   </div>
+
+   <div class="row overviews_grid no-lat-margins">
+       <div class="grid-p16 overview_grid_first overviews_grid_item  text-center">
+           <h2 data-grapeid="s1_title">{{ page.ElementContent('s1_title',"You don't need to choose!") | raw }}</h2>
+           <p data-grapeid="s1_text">{{ page.ElementContent('s1_text',"While putting custom properties on the :root is great for things that you need to be available throughout your site, there are times when it makes more sense to scope your custom properties locally.") | raw }}</p>
+       </div>
+       <div class="grid-p28 overview_grid_item">
+           <img class="overview_grid_item_img" src="{{ asset('img/DSC_4137.jpg') }}">
+       </div>
+       <div class="grid-p28 overview_grid_item">
+           <img class="overview_grid_item_img" src="{{ asset('img/DSC_4144.jpg') }}">
+       </div>
+       <div class="grid-p28 overview_grid_item">
+           <img class="overview_grid_item_img" src="{{ asset('img/DSC_4272.jpg') }}">
+       </div>
+   </div>
+</section>
+
+
+<section class="section whoweare">
+   <div class="row no-lat-margins">
+       <div class="grid-auto whoweare_img no-lat-margins">
+           <img src="{{ asset('img/whoweare.jpg') }}">
+       </div>
+       <div class="grid-fifth whoweare_text  text-center">
+           <h2 data-grapeid="s2_title">{{ page.ElementContent('s2_title',"Who we are?") | raw }}</h2>
+           <p data-grapeid="s2_text">{{ page.ElementContent('s2_text',"While putting custom properties on the :root is great for things that you need to be available throughout your site, there are times when it makes more sense to scope your custom properties locally.") | raw }}</p>
+       </div>
+   </div>
+</section>
+
+<section class="section whywithus container">
+   <div class="row">
+       <div class="grid-full text-center">
+           <h2 class="whywithus_title" data-grapeid="s3_title">
+               {{ page.ElementContent('s3_title',"Who we are?") | raw }}
+           </h2>
+       </div>
+   </div>
+
+   <div class="row">
+
+       <div class="grid-half text-center">
+           <b   data-grapeid="grape02">Title of reason</b>
+           <p   data-grapeid="grape03">While putting custom <b>of properties</b>properties on the :root is great for things that you need to be available throughout your site</p>
+       </div>
+
+       <div class="grid-half text-center">
+           <b>Title of reason</b>
+           <p>While putting custom properties on the :root is great for things that you need to be available throughout your site</p>
+       </div>
+   </div>
+
+   <div class="row">
+       <div class="grid-half text-center">
+           <b>Title of reason</b>
+           <p>While putting custom properties on the :root is great for things that you need to be available throughout your site</p>
+       </div>
+
+       <div class="grid-half text-center">
+           <b>Title of reason</b>
+           <p>While putting custom properties on the :root is great for things that you need to be available throughout your site</p>
+       </div>
+
+   </div>
+</section>
+
+<section class="section contact_landscape contact_first" style="background-image: url({{ asset('img/header_pic.jpg') }})">
+
+   <div class="row row-middle header_headline no-lat-margins">
+       <div class="grid-full text-center">
+           <h1 class="header_headline_text">Take a step toward your travel to Cuba</h1>
+           <button class="btn btn-transparent header_headline_btn">Talk to an Expert!</button>
+       </div>
+   </div>
+
+</section>
+
+<section class="section top-destinations container">
+   <div class="row">
+       <div class="grid-full text-center">
+           <h2 class="top-destinations_title">
+               Cuba top destinations
+           </h2>
+           <p>While putting custom properties on the :root is great for things that you need to be available throughout your site</p>
+       </div>
+   </div>
+
+   <div class="row float-center padding-top top-destinations_places">
+       <div class="grid-half">
+           <div class="top-destinations_card place1">
+               <img src="{{ asset('img/DSC_4138.jpg') }}">
+               <a href="#" class="top-destinations_card_link">Trinidad</a>
+           </div>
+       </div>
+       <div class="grid-half">
+           <div class="top-destinations_card place2">
+               <img src="{{ asset('img/DSC_4144.jpg') }}">
+               <a href="#" class="top-destinations_card_link">Vinales</a>
+           </div>
+       </div>
+   </div>
+
+   <div class="row float-center margin-top padding-top-large">
+       <div class="grid-half">
+           <div class="top-destinations_card  place3">
+               <img src="{{ asset('img/Cuba-56_SD.jpg') }}">
+               <a href="#" class="top-destinations_card_link">Havana</a>
+           </div>
+       </div>
+       <div class="grid-half">
+           <div class="top-destinations_card  place4">
+               <img src="{{ asset('img/DSC_4261.jpg') }}">
+               <a href="#" class="top-destinations_card_link">Cienfuegos</a>
+           </div>
+       </div>
+   </div>
+</section>
+
+<section class="section clients-think ">
+   <div class="row no-lat-margins">
+       <div class="grid-fifth clients-think_text  text-center">
+           <h2>What our clients think about us?</h2>
+           <p>While putting custom properties on the :root is great for things that you need to be available throughout your site, there are times when it makes more sense to scope your custom properties locally.</p>
+       </div>
+       <div class="grid-auto clients-think_img no-lat-margins text-center float-center">
+           <img src="{{ asset('img/DSC_4107.jpg') }}">
+           <div class="grid-half float-center clients-think_img_quote">
+               <h2>"brathtaking"</h2>
+               <blockquote>While putting custom properties on the :root is great for things that you need to be available throughout your site
+                   <cite>- Joseph Laurent</cite>
+               </blockquote>
+           </div>
+
+       </div>
+
+   </div>
+</section>
+
+<section class="section we-think ">
+   <div class="row no-lat-margins">
+
+       <div class="grid-auto we-think_img no-lat-margins text-center float-center">
+           <img src="{{ asset('img/Cuba-01_SD.jpg') }}">
+           <div class="grid-half float-center clients-think_img_quote">
+               <h2>"brathtaking"</h2>
+               <blockquote>While putting custom properties on the :root is great for things that you need to be available throughout your site
+                   <cite>- Joseph Laurent</cite>
+               </blockquote>
+           </div>
+       </div>
+       <div class="grid-fifth we-think_text  text-center">
+           <h2>What our clients think about us?</h2>
+           <p>While putting custom properties on the :root is great for things that you need to be available throughout your site, there are times when it makes more sense to scope your custom properties locally.</p>
+       </div>
+
+   </div>
+</section>
+
+<section class="section travel-options container">
+   <div class="row">
+       <div class="grid-full text-center">
+           <h2 class="travel-options_title">
+               A variety of travel options
+           </h2>
+
+       </div>
+   </div>
+
+   <div class="row">
+
+       <div class="grid-half text-center">
+           <b>Title of reason</b>
+           <p>While putting custom properties on the :root is great for things that you need to be available throughout your site</p>
+       </div>
+
+       <div class="grid-half text-center">
+           <b>Title of reason</b>
+           <p>While putting custom properties on the :root is great for things that you need to be available throughout your site</p>
+       </div>
+   </div>
+
+   <div class="row">
+       <div class="grid-half text-center">
+           <b>Title of reason</b>
+           <p>While putting custom properties on the :root is great for things that you need to be available throughout your site</p>
+       </div>
+
+       <div class="grid-half text-center">
+           <b>Title of reason</b>
+           <p>While putting custom properties on the :root is great for things that you need to be available throughout your site</p>
+       </div>
+
+   </div>
+</section>
+
+<section class="travel-options_grid">
+
+   <div class="row padding-top no-lat-margins">
+       <div class="travel-options_grid_container">
+
+           <div class="travel-options_grid_container_item" style="grid-area: img1">
+               <img src="{{ asset('img/Cuba-56_SD.jpg') }}">
+           </div>
+
+           <div class="travel-options_grid_container_item" style="grid-area: img2">
+               <img src="{{ asset('img/Cuba-07_SD.jpg') }}">
+           </div>
+
+           <div class="travel-options_grid_container_item" style="grid-area: img3">
+               <img src="{{ asset('img/Cuba-08_SD.jpg') }}">
+           </div>
+
+           <div class="travel-options_grid_container_item" style="grid-area: img4">
+               <img src="{{ asset('img/Cuba-09_SD.jpg') }}">
+           </div>
+
+           <div class="travel-options_grid_container_item" style="grid-area: img5">
+               <img src="{{ asset('img/Cuba-10_SD.jpg') }}">
+           </div>
+
+           <div class="travel-options_grid_container_item" style="grid-area: img6">
+               <img src="{{ asset('img/Cuba-11_SD.jpg') }}">
+           </div>
+
+           <div class="travel-options_grid_container_item" style="grid-area: img7">
+               <img src="{{ asset('img/Cuba-12_SD.jpg') }}">
+           </div>
+
+
+           <div class="travel-options_grid_container_item" style="grid-area: img8">
+               <img src="{{ asset('img/Cuba-13_SD.jpg') }}">
+           </div>
+           <div class="travel-options_grid_container_item" style="grid-area: img9">
+               <img src="{{ asset('img/Cuba-18_SD.jpg') }}">
+           </div>
+           <div class="travel-options_grid_container_item" style="grid-area: img10">
+               <img src="{{ asset('img/Cuba-15_SD.jpg') }}">
+           </div>
+           <div class="travel-options_grid_container_item" style="grid-area: img11">
+               <img src="{{ asset('img/Cuba-20_SD.jpg') }}">
+           </div>
+
+       </div>
+
+   </div>
+
+</section>
+
+<section class="section contact_landscape contact_second margin-top" style="background-image: url({{ asset('img/kwan-fung-1134032-unsplash.jpg') }})">
+
+   <div class="row row-middle header_headline no-lat-margins">
+       <div class="grid-full text-center">
+           <h1 class="header_headline_text">Take a step toward your travel to Cuba</h1>
+           <button class="btn btn-transparent header_headline_btn">Talk to an Expert!</button>
+       </div>
+   </div>
+
+</section>
+
+</main>
+
+<footer class="footer">
+<div class="texture"  style="background: url({{ asset('img/Textura.png') }}) no-repeat 100% 100%">
+   <div class="row no-lat-margins">
+
+       <div class="grid-fourth">
+           <h2 class="navigation_menu_headline_text">Destination Cuba</h2>
+           <ul class="navigation_menu_list">
+               <li class="navigation_menu_list_item">
+                   La Habana
+               </li>
+               <li class="navigation_menu_list_item">
+                   Playas
+               </li>
+               <li class="navigation_menu_list_item">
+                   Lugares olvidados
+               </li>
+               <li class="navigation_menu_list_item">
+                   Must see places
+               </li>
+               <li class="navigation_menu_list_item">
+                   West of Cuba
+               </li>
+
+           </ul>
+       </div>
+
+       <div class="grid-fourth">
+           <h2 class="navigation_menu_headline_text">Activities</h2>
+           <ul class="navigation_menu_list">
+               <li class="navigation_menu_list_item">
+                   Cannopig in Vinales
+               </li>
+               <li class="navigation_menu_list_item">
+                   Diving in Varadero
+               </li>
+               <li class="navigation_menu_list_item">
+                   Horse riding in Vinales
+                   <span>New!</span>
+               </li>
+
+
+           </ul>
+       </div>
+
+       <div class="grid-fourth">
+           <h2 class="navigation_menu_headline_text">Experience Cuba</h2>
+           <ul class="navigation_menu_list">
+               <li class="navigation_menu_list_item">
+                   Individual
+               </li>
+               <li class="navigation_menu_list_item">
+                   Group<span>Trending!</span>
+               </li>
+               <li class="navigation_menu_list_item">
+                   Thematic
+               </li>
+               <li class="navigation_menu_list_item">
+                   Family
+               </li>
+               <li class="navigation_menu_list_item">
+                   Rent a car
+               </li>
+
+
+           </ul>
+       </div>
+
+       <div class="grid-fourth">
+           <h2 class="navigation_menu_headline_text">Travel Info</h2>
+           <ul class="navigation_menu_list">
+               <li class="navigation_menu_list_item">
+                   Documents
+               </li>
+               <li class="navigation_menu_list_item">
+                   Checklists
+               </li>
+               <li class="navigation_menu_list_item">
+                   Vacines
+               </li>
+
+
+
+           </ul>
+       </div>
+   </div>
+   <hr style="border-top: 4px solid #ffffff; width: 80%">
+   <div class="row  no-lat-margins row-around">
+       <div class="grid-fourth">
+           <h2 class="navigation_menu_headline_text">Contact in Germany</h2>
+           <ul class="navigation_menu_list">
+               <li class="navigation_menu_list_item">
+                   While putting custom properties on the :root is great for things that you need to be available throughout your site
+               </li>
+
+
+
+
+           </ul>
+       </div>
+
+       <div class="grid-fourth">
+           <h2 class="navigation_menu_headline_text">Contact in Cuba</h2>
+           <ul class="navigation_menu_list">
+               <li class="navigation_menu_list_item">
+                   While putting custom properties on the :root is great for things that you need to be available throughout your site
+               </li>
+
+
+
+
+           </ul>
+       </div>
+       <div class="grid-fourth">
+           <ul class="navigation_menu_list">
+               <li class="navigation_menu_list_item">
+                   Documents
+               Suscribe to our newsletter about offers and travel tips
+               <li class="navigation_menu_list_item">
+                   <input type="text">
+                   <button class="btn btn-transparent float-right">Sing me up!</button>
+               </li>
+
+
+
+
+           </ul>
+       </div>
+   </div>
+   <div class="row no-lat-margins margin-top">
+       <div class="grid-full text-center">
+           <p>Copyright Kuba-reisen.de 2019</p>
+       </div>
+   </div>
+</div>
+
+</footer>
+
+{% endblock %}

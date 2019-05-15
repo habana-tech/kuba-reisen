@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+use App\PageManager\DynamicPageManager;
 
 class FrontendController extends AbstractController
 {
@@ -29,6 +30,33 @@ class FrontendController extends AbstractController
         ]);
 
         throw new NotFoundHttpException();
+    }
+
+    /**
+     * @Route("/page/{page_name}", name="page_show")
+     */
+    public function pageShow(Request $request, DynamicPageManager $pm, $page_name)
+    {
+        $pageinfo = [
+            'pageName'=>$page_name,
+            'language'=>$request->getLocale()
+        ];
+
+        if($this->isGranted('ROLE_ADMIN'))
+            $page = $pm->findByOrCreateIfDoesntExist($pageinfo);
+        else {
+            $page = $pm->findOneBy($pageinfo);
+        }
+
+        if(!$page)
+            throw new NotFoundHttpException();
+
+        return $this->render('frontend/'.$page->getPageTemplate(), [
+            'controller_name' => 'FrontendController',
+            'dynamic_page_id' => $page->getId(),
+            'page' => $page,
+        ]);
+
     }
 
     /**

@@ -33,9 +33,25 @@ class DynamicPage
     private $pageTitle;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $pageTemplate;
+
+    /**
      * @ORM\Column(type="array", nullable=true)
      */
     private $pageContent = [];
+
+    private $elementsList;
+
+    /**
+     * DynamicPage constructor.
+     * @param $pageTemplate
+     */
+    public function __construct()
+    {
+        $this->pageTemplate = 'example.html.twig';
+    }
 
     public function getId(): ?int
     {
@@ -78,4 +94,58 @@ class DynamicPage
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getPageTemplate()
+    {
+        return $this->pageTemplate;
+    }
+
+    /**
+     * @param mixed $pageTemplate
+     */
+    public function setPageTemplate($pageTemplate): void
+    {
+        $this->pageTemplate = $pageTemplate;
+    }
+
+
+
+
+    public function getElement($grapeid)
+    {
+        foreach ($this->pageContent as $item) {
+            if(isset($item['grapesid']) and $item['grapesid'] == $grapeid)
+                return $item;
+        }
+        return;
+    }
+    public function getElementContent($grapeid, $default = null)
+    {
+        foreach ($this->pageContent as $item) {
+            if(isset($item['grapesid']) and $item['grapesid'] == $grapeid)
+            {
+                if(isset($item['content']))
+                    return $item['content'];
+                if(isset($item['components']))
+                    return $this->getHtmlFromComponents($item['components']);
+            }
+
+        }
+        return $default;
+    }
+
+    private function getHtmlFromComponents($components)
+    {
+        $html = '';
+        foreach ($components as $component)
+        {
+            if(isset($component['tagName']))
+                $html .= "<".$component['tagName'].">".$component['content']."</".$component['tagName'].">";
+            else
+                $html .= $component['content'];
+        }
+        return $html;
+    }
 }
