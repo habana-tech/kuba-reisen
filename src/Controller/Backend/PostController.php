@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Backend;
 
 use App\Entity\Post;
 use App\Form\PostType;
@@ -11,12 +11,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/post")
+ * @Route("/admin/post")
  */
 class PostController extends AbstractController
 {
     /**
-     * @Route("/", name="post_index", methods={"GET"})
+     * @Route("/", name="backend_post_index", methods={"GET"})
      */
     public function index(PostRepository $postRepository): Response
     {
@@ -26,7 +26,7 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="post_new", methods={"GET","POST"})
+     * @Route("/new", name="backend_post_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -39,7 +39,7 @@ class PostController extends AbstractController
             $entityManager->persist($post);
             $entityManager->flush();
 
-            return $this->redirectToRoute('post_index');
+            return $this->redirectToRoute('backend_post_index');
         }
 
         return $this->render('backend/post/new.html.twig', [
@@ -49,7 +49,7 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="post_show", methods={"GET"})
+     * @Route("/{id}", name="backend_post_show", methods={"GET"})
      */
     public function show(Post $post): Response
     {
@@ -59,7 +59,7 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="post_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="backend_post_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Post $post): Response
     {
@@ -69,7 +69,7 @@ class PostController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('post_index', [
+            return $this->redirectToRoute('backend_post_index', [
                 'id' => $post->getId(),
             ]);
         }
@@ -81,7 +81,7 @@ class PostController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="post_delete", methods={"DELETE"})
+     * @Route("/{id}", name="backend_post_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Post $post): Response
     {
@@ -91,6 +91,6 @@ class PostController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('post_index');
+        return $this->redirectToRoute('backend_post_index');
     }
 }

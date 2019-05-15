@@ -45,6 +45,11 @@ class DynamicPage
     private $elementsList;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\DynamicPage")
+     */
+    private $translation_from;
+
+    /**
      * DynamicPage constructor.
      * @param $pageTemplate
      */
@@ -147,5 +152,10 @@ class DynamicPage
                 $html .= $component['content'];
         }
         return $html;
+    }
+
+    public function __toString()
+    {
+        return $this->pageName."(".$this->language.")";
     }
 }

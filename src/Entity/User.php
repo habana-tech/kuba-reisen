@@ -16,7 +16,7 @@ use Vich\UploaderBundle\Entity\File as EmbeddedFile;
  */
 class User extends BaseUser
 {
-    use ImageFieldTrait;
+    //use ImageFieldTrait;
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")

@@ -19,7 +19,7 @@ easy_admin:
 
 
                     - { type: 'group', label: 'Language and Translation', icon: 'globe', columns: 4 }
-                    - { property: 'language', type: 'choice', type_options: {choices: {EN: 'EN', DE: 'DE',ES: 'ES'}} }
+                    - { property: 'language', type: 'choice', type_options: {choices: {en: 'en', de: 'de',es: 'es'}} }
                     - { property: 'translation_from', type: 'entity' }
 
                     - { type: 'group', label: 'Image Info', icon: 'image', columns: 4 }
@@ -33,10 +33,25 @@ easy_admin:
 
         DynamicPage:
             class: App\Entity\DynamicPage
+            list:
+                fields:
+                    - { property: 'id' }
+                    - { property: 'pageName' }
+                    - { property: 'pageTitle' }
+                    - { property: 'language' }
+                    - { property: 'pageTemplate' }
+                    - { property: 'modified_by' }
             form:
-                - { property: 'pageName' }
-                - { property: 'pageTitle' }
-                - { property: 'blocks', type: 'collection',  type_options: { multiple: true, entry_type: 'App\Form\PageBlockType', by_reference: false }  }
-        PageBlock:
-            class: App\Entity\PageBlock
+                fields:
+                    - { type: 'group', label: 'Page Info', icon: 'comments', columns: 8 }
+                    - { property: 'pageName' }
+                    - { property: 'pageTitle' }
+
+                    - { type: 'group', label: 'Language and Translation', icon: 'globe', columns: 4 }
+                    - { property: 'language', type: 'choice', type_options: {choices: {en: 'en', de: 'de',es: 'es'}} }
+                    - { property: 'translation_from', type: 'entity' }
+
+                    - { property: 'pageTemplate' }
+        Users:
+            class: App\Entity\User
         #- App\Entity\User

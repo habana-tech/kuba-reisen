@@ -3,17 +3,25 @@
 <head>
     <meta charset="UTF-8" />
     <title></title>
+    <link rel="stylesheet" href="{{ asset('styles/kraken.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('styles/styles.css') }}" type="text/css">
 </head>
 <body>
-<div>
-    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-        {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
-        <a href="{{ path('fos_user_security_logout') }}">
-            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-        </a>
-    {% else %}
-        <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-    {% endif %}
+<div class="container">
+
+    <div class="row row-end">
+        <div class="grid-fourth text-right margin-top margin-bottom-large">
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                <a href="{{ path('fos_user_security_logout') }}">
+                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                </a>
+            {% else %}
+                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+            {% endif %}
+        </div>
+    </div>
+
 </div>
 
 {% if app.request.hasPreviousSession %}
@@ -26,7 +34,7 @@
     {% endfor %}
 {% endif %}
 
-<div>
+<div class="container">
     {% block fos_user_content %}
     {% endblock fos_user_content %}
 </div>

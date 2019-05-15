@@ -45,19 +45,11 @@ class EndpointController extends AbstractController
 
             $entityManager->persist($dymanicPage);
             $entityManager->flush();
-            //return $this->json($txt);
+
+            return new Response("OK");
         }
         else //no existe esa pagina dinamica
             throw new NotFoundHttpException();
-
-        dump($dymanicPage->getElement("grape03"));
-
-        exit();
-
-       /* return $this->render('endpoint/index.html.twig', [
-            'controller_name' => 'EndpointController',
-        ]);
-       */
 
     }
 
@@ -66,6 +58,8 @@ class EndpointController extends AbstractController
      */
     public function debug(DynamicPage $page)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
+
         return $this->json($page->getPageContent());
     }
 }
