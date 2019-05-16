@@ -9,7 +9,8 @@
     <link rel="shortcut icon" type="image/ico" href="{{ asset('dist/favicon.ico') }}">
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="{{ asset('dist/css/main.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('styles/kraken.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('styles/styles.css') }}" type="text/css">
     {% block stylesheets %}
         {#% if  is_granted('ROLE_ADMIN') %}
 
@@ -20,13 +21,14 @@
 
 
 </head>
-    <body>
+    <body class="container">
        {% block body %}{% endblock %}
+       {% block javascripts %}
+
+       {% endblock %}
        {% if is_granted('ROLE_ADMIN') %}
 
-        {% block javascripts %}
 
-        {% endblock %}
 
 
     {% endif %}
