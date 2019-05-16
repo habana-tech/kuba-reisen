@@ -8,6 +8,19 @@
 
 
 // Colors
+
+$light-blue: #35cfd4;
+$dark-blue: #14a1e6;
+
+$light-green: #62ab03;
+$dark-green: #004d00;
+
+$light-orange: #f9c90d;
+$dark-orange: #f96e10;
+
+$light-red: #f7360d;
+$grey: #666;
+
 $color-primary: #0088cc;
 $color-black: #000000;
 $color-white: #ffffff;
@@ -33,12 +46,11 @@ $color-yellow-light: #f96e10;
 $color-yellow-dark: #f7360d;
 
 
-
-
 // Font Stacks
-$font-primary: 'Open Sans', sans-serif;
+$font-text: 'Open Sans', sans-serif;
 $font-titles: 'Baloo Bhaina', cursive;
-$font-monospace: Menlo, Monaco, "Courier New", monospace;
+$font-titles-secundary: 'Gotham Black', cursive;
+$font-formated: 'Open Sans', monospace;
 
 
 // Breakpoints

@@ -1,0 +1,352 @@
+/**
+ * @section Regions
+ * Styling for some regions
+ */
+.full-height{
+  height: 100vh;
+}
+
+.eighty-percent-height{
+  height: 80vh;
+}
+
+.header{
+  position: relative;
+}
+
+
+
+.whoweare{
+  &_img img{
+    width: 100%;
+  }
+}
+
+.whywithus{
+
+  padding: 5em 0;
+  &_tcontact-formitle{
+    position: relative;
+    &::before, &::after{
+      content: " ";
+      margin: .5em auto;
+      height: 6px;
+      width: 150px;
+      position: absolute;
+
+    }
+
+    &::before{
+      background: linear-gradient(90deg, $color-blue-dark, $color-blue-light);
+      margin-left: -190px;
+
+    }
+    &::after{
+      background: linear-gradient(-90deg, $color-blue-dark, $color-blue-light);
+      margin-left: 40px;
+    }
+  }
+}
+
+.contact_landscape{
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.contact_landscape.contact_first{
+;
+}
+
+.top-destinations, .contact-form {
+  padding-top: 3em;
+
+  &_title {
+    position: relative;
+
+    &::before, &::after {
+      content: " ";
+      margin: .5em auto;
+      height: 6px;
+      width: 150px;
+      position: absolute;
+
+    }
+
+    &::before {
+      background: linear-gradient(90deg, #fbcf6e, #f7886c);
+      margin-left: -190px;
+
+    }
+
+    &::after {
+      background: linear-gradient(-90deg, #fbcf6e, #f7886c);
+      margin-left: 40px;
+    }
+  }
+}
+.top-destinations{
+
+  &_card{
+    height: 65vh;
+    max-width: 65vh;
+    overflow: hidden;
+    position: relative;
+
+    &.place1{
+      box-shadow: #80d9e9 -25px -25px 1px;
+    }
+
+    &.place2{
+      box-shadow: #a0cd68 -25px -25px 1px;
+    }
+
+    &.place3{
+      box-shadow: #fbcf6e -25px -25px 1px;
+    }
+
+    &.place4{
+      box-shadow: #f7886c -25px -25px 1px;
+    }
+    & img{
+      position: absolute;
+      height: 100%;
+      width: auto;
+      min-width: 100%;
+    }
+
+
+    &_link{
+      color: $color-white;
+      text-decoration: none;
+
+      position: absolute;
+
+      bottom: 1em;
+
+      margin: 0 auto;
+
+      width: 100%;
+
+      text-align: center;
+
+      font-size: 2.5em;
+
+      font-weight: 800;
+      text-shadow: black 2px 2px 5px;
+    }
+
+
+  }
+
+
+  &_places{
+    &:nth-child(3){
+     /* box-shadow: #880e14 5px 5px 1px;*/
+    }
+
+  }
+}
+/*
+.top-destinations_card:nth-of-type(odd){
+
+}
+
+.top-destinations_card:nth-of-type(even){
+
+}
+
+.top-destinations_places:nth-child(-n+1) .grid-half > .top-destinations_card:nth-child(-n+1){
+  box-shadow: #dd1144 5px 5px 1px;
+}
+
+.top-destinations_places:nth-child(-n+2) .grid-half > .top-destinations_card:nth-child(-n+2){
+  box-shadow: #880e14 5px 5px 1px;
+}
+
+*/
+
+
+.clients-think  {
+  margin-top: 4em;
+  &_img {
+    position: relative;
+
+    & img {
+      width: 100%;
+    }
+    &_quote {
+        position: absolute;
+      top: 50%;
+      left: 50%;
+      color: $color-white;
+      font-size: 110%;
+      transform: translateX(-50%) translateY(-50%);
+
+      & h2{
+        font-weight: 700;
+      }
+      & cite{
+        color: $color-white;
+        font-size: 100%;
+      }
+    }
+
+  }
+
+  &::before{
+    background: linear-gradient(90deg, #20c755, #12893b);
+    content: " ";
+
+    height: 6px;
+
+    width: 60%;
+
+    position: absolute;
+
+    left: 20%;
+
+    margin-bottom: 3em;
+  }
+
+  & .no-lat-margins{
+    padding-top: 2em;
+  }
+
+  &_text{
+    position: relative;
+
+    & h2{
+      padding-bottom: 1em;
+    }
+  }
+  &_text p::before{
+    background: linear-gradient(90deg, #fbcf6e, #f7886c);
+    content: " ";
+
+    height: 6px;
+
+    width: 60%;
+
+    position: absolute;
+
+    left: 20%;
+
+    margin-top: -2em;
+  }
+}
+
+.we-think{
+  &_img {
+    position: relative;
+
+    & img {
+      width: 100%;
+    }
+    &_quote {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      color: $color-white;
+      font-size: 110%;
+      transform: translateX(-50%) translateY(-50%);
+
+      & h2{
+        font-weight: 700;
+      }
+      & cite{
+        color: $color-white;
+        font-size: 100%;
+      }
+    }
+
+  }
+  &_text{
+    position: relative;
+
+    & h2{
+      padding-bottom: 1em;
+    }
+  }
+  &_text p::before{
+    background: linear-gradient(90deg, #20c755, #12893b);
+    content: " ";
+
+    height: 6px;
+
+    width: 60%;
+
+    position: absolute;
+
+    left: 20%;
+
+    margin-top: -2em;
+  }
+}
+
+.travel-options{
+  padding-top: 3em;
+
+  &_title{
+    position: relative;
+    &::before, &::after{
+      content: " ";
+      margin: .5em auto;
+      height: 6px;
+      width: 150px;
+      position: absolute;
+
+    }
+
+    &::before{
+      background: linear-gradient(90deg, #fbcf6e, #f7886c);
+      margin-left: -190px;
+
+    }
+    &::after{
+      background: linear-gradient(-90deg, #fbcf6e, #f7886c);
+      margin-left: 40px;
+    }
+  }
+  & .grid-half{
+    margin: 2em auto;
+  }
+}
+
+.travel-options_grid{
+  &_container{
+    display: grid;
+    grid-template-areas: "img1 img1 img2 img2 img3"
+                         "img4 img5 img2 img2 img3"
+                         "img4 img5 img6 img6 img3"
+                         "img4 img7 img6 img6 img3"
+                         "img8 img8 img8 img9 img10"
+                         "img11 img11 img11 img9 img10";
+    grid-template-rows: 30vh 20vh 10vh 10vh 30vh 30vh;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: .5em;
+
+    &_item{
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+
+
+    & img{
+      min-height: 100%;
+      width: auto;
+      min-width: 100%;
+    }
+    }
+  }
+}
+
+.footer{
+  background: linear-gradient(45deg, $color-blue-light,$color-blue-dark);
+  color: $color-white;
+  & .row{
+
+  }
+  & li > span{
+    display: none;
+  }
+}

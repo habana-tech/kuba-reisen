@@ -1,0 +1,26 @@
+.why_with_us{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 2em;
+
+    &__reasons{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        width: 80%;
+
+        & h5{
+            margin: 0;
+        }
+
+        &__reason{
+            width: 45%;
+            text-align: center;
+        }
+    }
+}

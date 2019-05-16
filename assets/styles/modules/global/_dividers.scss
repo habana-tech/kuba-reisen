@@ -1,0 +1,23 @@
+.divider{
+    width: 100%;
+    margin: 3em 0;
+    display: flex;
+    justify-content: center;
+
+    &::before{
+        content: '';
+        position: relative;
+        width: 80%;
+        height: 2px;
+        border-radius: 2px;
+        background: linear-gradient(45deg, $light-blue, $dark-blue);
+    }
+
+    &--orange::before{
+        background: linear-gradient(45deg, $light-orange, $dark-orange);
+    }
+
+    &--white::before{
+        background: white;
+    }
+}

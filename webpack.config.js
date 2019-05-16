@@ -4,6 +4,9 @@ module.exports = {
     entry: {
         app: "./assets/scripts/app.js",
         app_backend: "./assets/scripts/app_backend.js",
+        index: "./assets/scripts/index.js",
+        destination: "./assets/scripts/destination.js",
+        faq: "./assets/scripts/faq.js",
 
     },
     output: {

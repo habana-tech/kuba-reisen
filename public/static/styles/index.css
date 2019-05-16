@@ -1,0 +1,139 @@
+.hero {
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center; }
+  .hero__content {
+    position: relative;
+    width: 50%;
+    margin: 2em;
+    color: #ffffff;
+    z-index: 1; }
+  .hero__content__text {
+      font-size: 2.5em;
+      font-weight: 700; }
+  .hero__buttom-links {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 54%;
+    left: 27%;
+    z-index: 1; }
+  .hero__buttom-links__item {
+      position: relative;
+      height: 5em;
+      transition: all .3s ease-in-out; }
+  .hero__buttom-links__item a {
+        color: white;
+        font-family: "Baloo Bhaina", cursive; }
+  .hero__buttom-links__item:before {
+        content: '';
+        position: absolute;
+        background-color: white;
+        width: 2px;
+        height: calc(100% - 2em);
+        top: 2em; }
+  .hero__buttom-links__item__nav {
+        left: -1.25em;
+        position: relative;
+        opacity: 0;
+        -webkit-transform: translateY(85%);
+                transform: translateY(85%);
+        transition: all .3s ease-in-out;
+        list-style: none; }
+  .hero__buttom-links__item--active {
+        height: 10em; }
+  .hero__buttom-links__item--active .hero__buttom-links__item__nav {
+          -webkit-transform: translateY(5%);
+                  transform: translateY(5%);
+          opacity: 1; }
+  #canvas_hero {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: black;
+  height: 100vh;
+  width: 100vw;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+  -o-object-fit: cover;
+     object-fit: cover; }
+  .slide-wrapper {
+  display: none; }
+  .overview {
+  display: flex;
+  background: white;
+  z-index: 1; }
+  .overview__item {
+    width: 25%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    max-height: 80vh; }
+  .overview__item img {
+      width: auto;
+      height: 100%; }
+  .overview__item__text {
+      padding: 1em 1.5em; }
+  .overview__item:first-child {
+      flex-wrap: wrap; }
+  .overview__item:first-child .section__title {
+        padding: 0 1.5em; }
+  .who_we_are {
+  display: flex;
+  margin: 1px 0; }
+  .who_we_are__image {
+    width: 75%;
+    overflow: hidden; }
+  .who_we_are__image img {
+      width: 100%; }
+  .who_we_are__text {
+    width: 25%;
+    padding: 1em 1.5em; }
+  .why_with_us {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-bottom: 2em; }
+  .why_with_us__reasons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 80%; }
+  .why_with_us__reasons h5 {
+      margin: 0; }
+  .why_with_us__reasons__reason {
+      width: 45%;
+      text-align: center; }
+  .banner_sky {
+  height: 75vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; }
+  .banner_sky__image {
+    position: absolute; }
+  .banner_sky__content {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; }
+  .banner_sky__content__titles {
+      text-align: center;
+      width: 100%; }
+  .banner_sky__content__titles h2, .banner_sky__content__titles h3 {
+        color: white;
+        margin: .5em;
+        padding: 0; }
+  .banner_sky__content__titles h2 {
+        font-size: 2.5em; }
+  .banner_sky__content__titles h3 {
+        font-size: 1.5em; }
