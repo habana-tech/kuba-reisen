@@ -33,28 +33,13 @@ var editor = grapesjs.init({
                 _page_id: app_js_param__page_id
             },
         //   autoload: true,         // Autoload stored data on init
-        stepsBeforeSave: 3,     // If autosave enabled, indicates how many changes are necessary before store method is triggered
+        stepsBeforeSave: 1,     // If autosave enabled, indicates how many changes are necessary before store method is triggered
         //      storeComponents: true,  // Enable/Disable storing of components in JSON format
         storeStyles: false,      // Enable/Disable storing of rules in JSON format
         storeHtml: false,        // Enable/Disable storing of components as HTML string
         storeCss: false,         // Enable/Disable storing of rules as CSS string
     },
-    styleManager : {
-        sectors: [{
-            name: 'General',
-            open: false,
-            buildProps: ['float', 'display', 'position', 'top', 'right', 'left', 'bottom']
-        },{
-            name: 'Dimension',
-            open: false,
-            buildProps: ['width', 'height', 'max-width', 'min-height', 'margin', 'padding'],
-        },{
-            name: 'Typography',
-            open: false,
-            buildProps: ['font-size', 'font-weight', 'color', 'text-shadow'],
-        }
-        ],
-    },
+    panels: { defaults: [] },
     canvas: {
       //  scripts: ['https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'],
         styles: [app_js_routing__styles_css]
@@ -65,6 +50,7 @@ const RemoteStorage = editor.StorageManager.get('remote');
 RemoteStorage.set('params', {_grape_token: app_js_param__csrf_token})
 editor.store();
 */
+/*
 editor.Panels.addButton
 ('options',
     [{
@@ -75,6 +61,8 @@ editor.Panels.addButton
     }]
 );
 
+ */
+
 // Add the command
 editor.Commands.add
 ('save-db', {
@@ -84,6 +72,8 @@ editor.Commands.add
         editor.store();
     }
 });
+
+
 /*
 editor.on('storage:load', function(e) { console.log('Loaded ', e);});
 editor.on('storage:store', function(e) { console.log('Stored ', e);});

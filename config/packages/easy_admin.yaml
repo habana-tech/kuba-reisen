@@ -15,6 +15,7 @@ easy_admin:
 
                     - { property: 'title' }
                     - { property: 'description' }
+                    - { property: 'filterTags', type: 'entity' }
 
 
 
@@ -24,7 +25,7 @@ easy_admin:
 
                     - { type: 'group', label: 'Image Info', icon: 'image', columns: 4 }
                     #- { property: 'image', template: 'backend/easyadmin/vich_uploader_image.html.twig' }
-                    - { property: 'imageFile', type: 'vich_image' }
+                    #- { property: 'imageFile', type: 'vich_image' }
                     - { property: 'alternativeText' }
                 show:
                     - { property: 'title' }
@@ -54,4 +55,7 @@ easy_admin:
                     - { property: 'pageTemplate' }
         Users:
             class: App\Entity\User
+
+        FilterTags:
+            class: App\Entity\FilterTag
         #- App\Entity\User
