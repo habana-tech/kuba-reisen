@@ -16,7 +16,8 @@ use App\PageManager\DynamicPageManager;
 class FrontendController extends AbstractController
 {
     /**
-     * @Route("/", name="frontend")
+     * @Route("/{_locale}", defaults={"_locale": "de"},
+     *     requirements={"_locale": "en|es|de"}, name="frontend")
      */
     public function index(Request $request, DynamicPageRepository $pageRepository)
     {
@@ -35,7 +36,9 @@ class FrontendController extends AbstractController
     }
 
     /**
-     * @Route("/page/{page_name}", name="page_show")
+     * @Route("/{_locale}/page/{page_name}", defaults={"_locale": "de"},
+     *     requirements={"_locale": "en|es|de"}, name="page_show")
+     * @Route("/page/{page_name}")
      */
     public function pageShow(Request $request, DynamicPageManager $pm, $page_name)
     {
@@ -64,7 +67,9 @@ class FrontendController extends AbstractController
 
 
     /**
-     * @Route("/contact", name="contact")
+     * @Route("/{_locale}/contact", defaults={"_locale": "de"},
+     *     requirements={"_locale": "en|es|de"}, name="contact")
+     * @Route("/contact")
      */
     public function contact(Request $request, DynamicPageRepository $pageRepository)
     {
@@ -98,10 +103,14 @@ class FrontendController extends AbstractController
     }
 
     /**
-     * @Route("/destination/{id}/{name}", name="destination")
+     * @Route("/{_locale}/destination/{id}/{name}", defaults={"_locale": "de"},
+     *     requirements={"_locale": "en|es|de"}, name="destination")
+     * @Route("/destination/{id}/{name}")
      */
-    public function place(Request $request, Destination $destination, DynamicPageRepository $pageRepository, DynamicPageManager $pm)
+    public function Place(Request $request, Destination $destination, DynamicPageRepository $pageRepository, DynamicPageManager $pm)
     {
+
+
         if(!$destination)
             throw new NotFoundHttpException();
 
@@ -127,14 +136,16 @@ class FrontendController extends AbstractController
     }
 
     /**
-     * @Route("/activities", name="activities")
+     * @Route("/{_locale}/faq", defaults={"_locale": "de"},
+     *     requirements={"_locale": "en|es|de"}, name="faq")
+     * @Route("/faq")
      */
-    public function activities(Request $request, DynamicPageRepository $pageRepository, DynamicPageManager $pm)
+    public function faq(Request $request, DynamicPageRepository $pageRepository, DynamicPageManager $pm)
     {
 
         $pageinfo = [
-            'pageName'=>'activities',
-            'language'=>$request->getLocale()
+            'pageName'=> 'faq',
+            'language' => $request->getLocale()
         ];
 
         if($this->isGranted('ROLE_ADMIN'))
@@ -146,21 +157,12 @@ class FrontendController extends AbstractController
         if(!$page)
             throw new NotFoundHttpException();
 
-        return $this->render('frontend/activities.html.twig', [
+        return $this->render('frontend/faq.html.twig', [
             'dynamic_page_id' => $page->getId(),
             'page' => $page,
         ]);
-    }
 
 
-    /**
-     * @Route("/faq", name="faq")
-     */
-    public function faq(Request $request)
-    {
-        return $this->render('frontend/faq.html.twig', [
-            'controller_name' => 'FrontendController',
-        ]);
 
     }
 
