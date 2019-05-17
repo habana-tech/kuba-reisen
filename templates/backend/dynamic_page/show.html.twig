@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DynamicPage{% endblock %}
+
+{% block body %}
+    <h1>DynamicPage</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ dynamic_page.id }}</td>
+            </tr>
+            <tr>
+                <th>PageName</th>
+                <td>{{ dynamic_page.pageName }}</td>
+            </tr>
+            <tr>
+                <th>PageTitle</th>
+                <td>{{ dynamic_page.pageTitle }}</td>
+            </tr>
+            <tr>
+                <th>PageTemplate</th>
+                <td>{{ dynamic_page.pageTemplate }}</td>
+            </tr>
+            <tr>
+                <th>PageContent</th>
+                <td>{{ dynamic_page.pageContent ? dynamic_page.pageContent|join(', ') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Language</th>
+                <td>{{ dynamic_page.language }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('backend_dynamic_page_index') }}">back to list</a>
+
+    <a href="{{ path('backend_dynamic_page_edit', {'id': dynamic_page.id}) }}">edit</a>
+
+    {{ include('backend/dynamic_page/_delete_form.html.twig') }}
+{% endblock %}

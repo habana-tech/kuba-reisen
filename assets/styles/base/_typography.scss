@@ -4,9 +4,9 @@
  */
 
 body {
-	background: $color-white;
-	color: $color-black;
-	font-family: $font-primary;
+	background: white;
+	color: $grey;
+	font-family: $font-text;
 	font-size: $font-size;
 	line-height: 1.5;
 
@@ -14,6 +14,7 @@ body {
 		line-height: 1.5625;
 	}
 }
+
 
 p {
 	margin: 0 0 $spacing;
@@ -29,8 +30,8 @@ p {
  */
 
 a {
+    color: $grey;
 	background-color: transparent; /* 1 */
-	color: $color-primary;
 	text-decoration: none;
 	text-decoration-skip: objects; /* 2 */
 	word-wrap: break-word;
@@ -46,7 +47,7 @@ a {
 	&:active,
 	&:focus,
 	&:hover {
-		color: darken( $color-primary, 15% );
+		color: darken($grey, 15%);
 		text-decoration: underline;
 	}
 }
@@ -154,7 +155,7 @@ h1, h2, h3, h4, h5, h6 {
 	margin: 0 0 1em;
 	padding: 1em 0 0;
 	word-wrap: break-word;
-	font-family: $font-primary;
+	font-family: $font-titles;
 }
 
 h1,
@@ -173,10 +174,6 @@ h2,
 	font-size: 1.3125em;
 }
 
-.section h2{
-	font-size: 2em;
-	font-weight: 600;
-}
 h3,
 .h3 {
 	font-size: 1.1875em;

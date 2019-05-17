@@ -141,17 +141,34 @@ class DynamicPage
         return $default;
     }
 
+
     private function getHtmlFromComponents($components)
     {
         $html = '';
         foreach ($components as $component)
         {
             if(isset($component['tagName']))
-                $html .= "<".$component['tagName'].">".$component['content']."</".$component['tagName'].">";
+                if(isset($component['content']))
+                    $html .= "<".$component['tagName'].">".$component['content']."</".$component['tagName'].">";
+                else
+                    $html .= "<".$component['tagName'].">";
             else
                 $html .= $component['content'];
         }
         return $html;
+    }
+
+    public function getElementAttr($grapeid, $attr, $default = null)
+    {
+        foreach ($this->pageContent as $item) {
+            if(isset($item['grapesid']) and $item['grapesid'] == $grapeid)
+            {
+                if(isset($item['attributes'][$attr]))
+                    return $item['attributes'][$attr];
+                return $default;
+            }
+        }
+        return $default;
     }
 
     public function __toString()

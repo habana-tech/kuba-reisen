@@ -6,11 +6,11 @@
     <meta name="description" content="{% block metadescription %}Kuba-reisen: get your next travel to Cuba{% endblock %}">
     <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina|Open+Sans" rel="stylesheet">
     <!-- Icons -->
-    <link rel="shortcut icon" type="image/ico" href="{{ asset('dist/favicon.ico') }}">
+    <link rel="shortcut icon" type="image/ico" href="{{ asset('favicon.ico') }}">
 
     <!-- Stylesheet -->
 
-    {% if  is_granted('ROLE_USER') %}
+    {% if  is_granted('ROLE_EDITOR') %}
         <link rel="stylesheet" href="{{ asset('styles/kraken_backend.css') }}" type="text/css">
     {% else %}
         <link rel="stylesheet" href="{{ asset('styles/kraken.css') }}" type="text/css">
@@ -35,7 +35,7 @@
        <script src="{{ asset('scripts/app.js') }}"></script>
 
    {# TODO: EL ROLE NECESARIO DEBE SER AL MENOS ROLE_EDITOR #}
-       {% if is_granted('ROLE_USER') %}
+       {% if is_granted('ROLE_EDITOR') %}
 
            <script>
             //APP_ROUTES & PARAMS
@@ -46,9 +46,7 @@
            </script>
 
            <script src="{{ asset('scripts/app_backend.js') }}"></script>
-           <div class="panel__top">
-               <div class="panel__basic-actions"></div>
-           </div>
+
 
         {% endif %}
 

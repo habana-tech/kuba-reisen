@@ -41,9 +41,15 @@ class Activity
      */
     private $translation_from;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Destination", mappedBy="activities")
+     */
+    private $destinations;
+
     public function __construct()
     {
         $this->filterTags = new ArrayCollection();
+        $this->destinations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -84,6 +90,34 @@ class Activity
     {
         if ($this->filterTags->contains($filterTag)) {
             $this->filterTags->removeElement($filterTag);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Destination[]
+     */
+    public function getDestinations(): Collection
+    {
+        return $this->destinations;
+    }
+
+    public function addDestination(Destination $destination): self
+    {
+        if (!$this->destinations->contains($destination)) {
+            $this->destinations[] = $destination;
+            $destination->addActivity($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDestination(Destination $destination): self
+    {
+        if ($this->destinations->contains($destination)) {
+            $this->destinations->removeElement($destination);
+            $destination->removeActivity($this);
         }
 
         return $this;

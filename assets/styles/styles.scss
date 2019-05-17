@@ -1,6 +1,12 @@
 @import "base/config";
 @import "modules/forms/form_radio-switch";
-@import "modules/regions";
-@import "modules/animations";
-@import "modules/navigation";
-@import "modules/header";
+@import "modules/global/regions";
+@import "modules/global/animations";
+@import "modules/global/navigation";
+@import "modules/global/form";
+@import "modules/global/header";
+@import "modules/global/hero";
+@import "modules/global/sections";
+@import "modules/global/dividers";
+@import "modules/global/top_destinations";
+@import "modules/global/footer";
