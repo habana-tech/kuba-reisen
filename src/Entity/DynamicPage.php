@@ -33,18 +33,29 @@ class DynamicPage
     private $pageTitle;
 
     /**
-     * @ORM\Column(type="simple_array", nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $pageContent;
+    private $pageTemplate;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\PageBlock", mappedBy="dynamicPage", orphanRemoval=true, cascade={"persist","remove"})
+     * @ORM\Column(type="array", nullable=true)
      */
-    private $blocks;
+    private $pageContent = [];
 
+    private $elementsList;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\DynamicPage")
+     */
+    private $translation_from;
+
+    /**
+     * DynamicPage constructor.
+     * @param $pageTemplate
+     */
     public function __construct()
     {
-        $this->blocks = new ArrayCollection();
+        $this->pageTemplate = 'example.html.twig';
     }
 
     public function getId(): ?int
@@ -76,12 +87,12 @@ class DynamicPage
         return $this;
     }
 
-    public function getPageContent()
+    public function getPageContent(): ?array
     {
         return $this->pageContent;
     }
 
-    public function setPageContent($pageContent): self
+    public function setPageContent(?array $pageContent): self
     {
         $this->pageContent = $pageContent;
 
@@ -89,33 +100,62 @@ class DynamicPage
     }
 
     /**
-     * @return Collection|PageBlock[]
+     * @return mixed
      */
-    public function getBlocks(): Collection
+    public function getPageTemplate()
     {
-        return $this->blocks;
+        return $this->pageTemplate;
     }
 
-    public function addBlock(PageBlock $block): self
+    /**
+     * @param mixed $pageTemplate
+     */
+    public function setPageTemplate($pageTemplate): void
     {
-        if (!$this->blocks->contains($block)) {
-            $this->blocks[] = $block;
-            $block->setDynamicPage($this);
+        $this->pageTemplate = $pageTemplate;
+    }
+
+
+
+
+    public function getElement($grapeid)
+    {
+        foreach ($this->pageContent as $item) {
+            if(isset($item['grapesid']) and $item['grapesid'] == $grapeid)
+                return $item;
         }
-
-        return $this;
+        return;
     }
-
-    public function removeBlock(PageBlock $block): self
+    public function getElementContent($grapeid, $default = null)
     {
-        if ($this->blocks->contains($block)) {
-            $this->blocks->removeElement($block);
-            // set the owning side to null (unless already changed)
-            if ($block->getDynamicPage() === $this) {
-                $block->setDynamicPage(null);
+        foreach ($this->pageContent as $item) {
+            if(isset($item['grapesid']) and $item['grapesid'] == $grapeid)
+            {
+                if(isset($item['content']))
+                    return $item['content'];
+                if(isset($item['components']))
+                    return $this->getHtmlFromComponents($item['components']);
             }
-        }
 
-        return $this;
+        }
+        return $default;
+    }
+
+    private function getHtmlFromComponents($components)
+    {
+        $html = '';
+        foreach ($components as $component)
+        {
+            if(isset($component['tagName']))
+                $html .= "<".$component['tagName'].">".$component['content']."</".$component['tagName'].">";
+            else
+                $html .= $component['content'];
+        }
+        return $html;
+    }
+
+    public function __toString()
+    {
+        return $this->pageName."(".$this->language.")";
     }
 }

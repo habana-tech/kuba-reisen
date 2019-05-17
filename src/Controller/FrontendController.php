@@ -4,21 +4,59 @@ namespace App\Controller;
 
 use App\Entity\ContactPlaning;
 use App\Form\ContactPlaningType;
+use App\Repository\DynamicPageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+use App\PageManager\DynamicPageManager;
 
 class FrontendController extends AbstractController
 {
     /**
      * @Route("/", name="frontend")
      */
-    public function index()
+    public function index(Request $request, DynamicPageRepository $pageRepository)
     {
-        return $this->render('frontend/index.html.twig', [
+        if($dymanicPage = $pageRepository->findOneBy([
+            'pageName'=>'index',
+            'language'=>$request->getLocale()
+        ]))
+
+            return $this->render('frontend/index.html.twig', [
             'controller_name' => 'FrontendController',
+            'dynamic_page_id' => $dymanicPage->getId(),
         ]);
+
+        throw new NotFoundHttpException();
+    }
+
+    /**
+     * @Route("/page/{page_name}", name="page_show")
+     */
+    public function pageShow(Request $request, DynamicPageManager $pm, $page_name)
+    {
+        $pageinfo = [
+            'pageName'=>$page_name,
+            'language'=>$request->getLocale()
+        ];
+
+        if($this->isGranted('ROLE_ADMIN'))
+            $page = $pm->findByOrCreateIfDoesntExist($pageinfo);
+        else {
+            $page = $pm->findOneBy($pageinfo);
+        }
+
+        if(!$page)
+            throw new NotFoundHttpException();
+
+        return $this->render('frontend/'.$page->getPageTemplate(), [
+            'controller_name' => 'FrontendController',
+            'dynamic_page_id' => $page->getId(),
+            'page' => $page,
+        ]);
+
     }
 
     /**
@@ -45,7 +83,7 @@ class FrontendController extends AbstractController
     /**
      * @Route("/contact", name="contact")
      */
-    public function contact(Request $request)
+    public function contact(Request $request, DynamicPageRepository $pageRepository)
     {
         $contact = new ContactPlaning();
         $form = $this->createForm(ContactPlaningType::class, $contact, ['locale'=>$request->getLocale()]);
@@ -68,32 +106,7 @@ class FrontendController extends AbstractController
 
     }
 
-    /**
-     * @Route("/endpoint", name="grapes")
-     */
-    public function endpoint(Request $request)
-    {
-    
-        if ($request->getContentType() != 'json' || !$request->getContent()) {
-             throw new BadRequestHttpException('invalid json body');
-        }
-        
-        $data = json_decode($request->getContent(), true);
-        //header('Access-Control-Allow-Origin: http://localhost:8080');  
-        //header('Content-Type: application/json');
-       
-        
-        if (json_last_error() !== JSON_ERROR_NONE) {
-            throw new BadRequestHttpException('invalid json body: ' . json_last_error_msg());
-        }
-        
-        $request->request->replace(is_array($data) ? $data : array());
-       
-       
-        $txt = $request->get('gjosue-components');
-        
-        return $this->json($txt);
-    }
+
 
 
 

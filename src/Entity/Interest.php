@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -37,6 +39,16 @@ class Interest
      */
     private $description;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\FilterTag", mappedBy="interests")
+     */
+    private $filterTags;
+
+    public function __construct()
+    {
+        $this->filterTags = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +81,34 @@ class Interest
     public function __toString()
     {
         return $this->title;
+    }
+
+    /**
+     * @return Collection|FilterTag[]
+     */
+    public function getFilterTags(): Collection
+    {
+        return $this->filterTags;
+    }
+
+    public function addFilterTag(FilterTag $filterTag): self
+    {
+        if (!$this->filterTags->contains($filterTag)) {
+            $this->filterTags[] = $filterTag;
+            $filterTag->addInterest($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFilterTag(FilterTag $filterTag): self
+    {
+        if ($this->filterTags->contains($filterTag)) {
+            $this->filterTags->removeElement($filterTag);
+            $filterTag->removeInterest($this);
+        }
+
+        return $this;
     }
 
 

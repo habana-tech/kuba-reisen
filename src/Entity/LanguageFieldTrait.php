@@ -12,7 +12,7 @@ trait LanguageFieldTrait
 {
 
     /**
-     * @Assert\Choice(choices = {"ES", "EN", "DE"}, message = "Select language")
+     * @Assert\Choice(choices = {"es", "en", "de"}, message = "Select language")
      * @ORM\Column(type="string", length=255)
      */
     private $language;
