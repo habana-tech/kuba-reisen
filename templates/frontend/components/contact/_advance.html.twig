@@ -9,24 +9,43 @@
         </div>
     </div>
 
-    <div class="travel-options_grid_container">
+    <div class="travel-interest">
+        <div class="travel-interest__options">
 
-        <div class="travel-options_grid_container_item" style="grid-area: img1">
-            <img src="{{ asset('img/Cuba-56_SD.jpg') }}">
+            <div class="travel-interest__options__item" style="grid-area: img1">
+                <img src="{{ asset('img/grid/square1.jpg') }}">
+            </div>
+
+            <div class="travel-interest__options__item" style="grid-area: img2">
+                <img src="{{ asset('img/grid/portraid1.jpg') }}">
+            </div>
+
+            <div class="travel-interest__options__item" style="grid-area: img3">
+                <img src="{{ asset('img/grid/wide1.jpg') }}" style="height: auto;max-height: none;">
+            </div>
+
+            <div class="travel-interest__options__item" style="grid-area: img4">
+                <img src="{{ asset('img/grid/portraid2.jpg') }}" style="width: auto;max-width: none;">
+            </div>
+
+            <div class="travel-interest__options__item" style="grid-area: img5">
+                <img src="{{ asset('img/grid/square2.jpg') }}">
+            </div>
+
+            <div class="travel-interest__options__item" style="grid-area: img6">
+                <img src="{{ asset('img/grid/wide.jpg') }}">
+            </div>
+
+            <div class="travel-interest__options__item" style="grid-area: img7">
+                <img src="{{ asset('img/grid/portraid3.jpg') }}">
+            </div>
+
+            <div class="travel-interest__options__item" style="grid-area: img8">
+                <img src="{{ asset('img/grid/portraid4.jpg') }}">
+            </div>
+
+
         </div>
-
-        <div class="travel-options_grid_container_item" style="grid-area: img2">
-            <img src="{{ asset('img/Cuba-07_SD.jpg') }}">
-        </div>
-
-        <div class="travel-options_grid_container_item" style="grid-area: img3">
-            <img src="{{ asset('img/Cuba-08_SD.jpg') }}">
-        </div>
-
-        <div class="travel-options_grid_container_item" style="grid-area: img4">
-            <img src="{{ asset('img/Cuba-09_SD.jpg') }}">
-        </div>
-
     </div>
 
 
@@ -38,7 +57,6 @@
             {{ form_widget(form.flyTicket) }}
         </div>
     </div>
-
 
     <div class="form__item">
 
@@ -67,8 +85,6 @@
             <li>Text E</li>
         </ul>
     </div>
-
-
 
     <div class="form__item">
         <div class="form__item__label">
@@ -106,9 +122,8 @@
     <div class="form__item">
         <div class="form__item__label">
             {{ form_label(form.selfLuxury) }}
-
-
         </div>
+
         <div class="form__item__input select-control">
             {{ form_widget(form.selfLuxury, {}) }}
             <div id="{{ form.selfLuxury.vars.id }}_container"></div>
@@ -143,8 +158,7 @@
     </div>
 
     <div class="row  row-center row-middle header_headline no-lat-margins">
-
-        <button class="btn header_headline_btn">{{ button_label|default('Send form') }}</button>
+        <a class="btn header_headline_btn">{{ button_label|default('Send form') }}</a>
     </div>
 
     {{ form_widget(form.interests) }}
