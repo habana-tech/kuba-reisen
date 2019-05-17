@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .overview{
     display: flex;
     background: white;
@@ -29,4 +30,37 @@
     }
 
 
+=======
+.overview{
+    display: flex;
+    background: white;
+    z-index: 1;
+
+    &__item{
+        width: 25%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        max-height: 80vh;
+
+        & img{
+            width: auto;
+            height: 100%;
+        }
+
+        &__text{
+            padding: 1em 1.5em;
+        }
+
+        &:first-child{
+            flex-wrap: wrap;
+
+            & .section__title {
+                padding: 0 1.5em;
+            }
+        }
+    }
+
+
+>>>>>>> 91cfd1d435910199c627ba0b79cad76f39139094
 }

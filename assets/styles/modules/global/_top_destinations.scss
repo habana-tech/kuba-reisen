@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .top_destinations{
     display: flex;
     flex-wrap: wrap;
@@ -82,4 +83,90 @@
     top: 0;
     left: 0;
     z-index: 2;
+=======
+.top_destinations{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    &__places{
+        width: 80%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        &__place{
+            width: 45%;
+            margin: 3em 0;
+            max-height: 75vh;
+            position: relative;
+
+            &::before{
+                content: '';
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                z-index: 0;
+                left: -25px;
+                top: -25px;
+                background: linear-gradient(45deg, $light-blue, $dark-blue 20%, transparent);
+            }
+
+            &--orange::before{
+                background: linear-gradient(45deg, $light-orange, $dark-orange 20%, transparent);
+            }
+
+            &--green::before{
+                background: linear-gradient(45deg, $light-green, $dark-green 20%, transparent);
+            }
+
+            &__image{
+                overflow: hidden;
+                position: relative;
+                height: 100%;
+
+                & img{
+                    height: 100%;
+                    z-index: -2;
+
+                    &:nth-child(2){
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                    }
+                }
+
+            }
+
+            &__text{
+                position: absolute;
+                transform: translate(-50%, -100%);
+                left: 50%;
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                text-align: center;
+                z-index: 2;
+
+                & span{
+                    display: block;
+                    color: white;
+                    font-family: $font-titles-secundary;
+                    font-size: 2em;
+                }
+
+                & p{
+                    color: white;
+                }
+            }
+        }
+    }
+}
+
+#canvas_destinations{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+>>>>>>> 91cfd1d435910199c627ba0b79cad76f39139094
 }

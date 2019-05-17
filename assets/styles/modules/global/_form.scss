@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .form{
     width: 80%;
     margin: auto;
@@ -25,4 +26,33 @@
 
 .icon{
     display: none;
+=======
+.form{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    &__item{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        &__label{
+            width: 40%;
+            margin: 0 2em;
+            padding: .5em 0;
+        }
+
+        &__input{
+            width: 40%;
+        }
+    }
+}
+
+.icon{
+    display: none;
+>>>>>>> 91cfd1d435910199c627ba0b79cad76f39139094
 }

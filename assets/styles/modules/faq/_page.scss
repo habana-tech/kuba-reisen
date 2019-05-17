@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .main{
     background:  linear-gradient(45deg, $light-blue, $dark-blue);
 
@@ -10,4 +11,18 @@
         padding: 2em 15%;
         box-shadow: 2px 2px 10px $grey;
     }
+=======
+.main{
+    background:  linear-gradient(45deg, $light-blue, $dark-blue);
+
+    &__page{
+        top: -3em;
+        position: relative;
+        background-color: white;
+        width: 95%;
+        margin: 0 auto;
+        padding: 2em 15%;
+        box-shadow: 2px 2px 10px $grey;
+    }
+>>>>>>> 91cfd1d435910199c627ba0b79cad76f39139094
 }

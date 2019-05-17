@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <section class="section contact">
 
     <div class="section__title ">
@@ -50,3 +51,57 @@
     </div>
 
 </section>
+=======
+<section class="section contact">
+
+    <div class="section__title ">
+        <div class="section__title__highlight section__title__highlight--orange">
+            <h2>Let's start with the basic</h2>
+        </div>
+        <div class="section__title__description">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        </div>
+    </div>
+
+    {{ form_start(form, { 'attr': {'class': 'form'} } ) }}
+    {% form_theme form 'form/fields.html.twig' %}
+
+    <div class="form__item">
+        <div class="form__item__label">
+            {{ form_label(form.travelDate) }}
+        </div>
+        <div class="form__item__input">
+            {{ form_widget(form.travelDate) }}
+            {{ form_errors(form.travelDate) }}
+        </div>
+    </div>
+
+    <div class="form__item">
+        <div class="form__item__label">
+            {{ form_label(form.travelDuration) }}
+        </div>
+        <div class="form__item__input">
+            {{ form_widget(form.travelDuration) }}
+        </div>
+    </div>
+
+    <div class="form__item">
+        <div class="form__item__label">
+            {{ form_label(form.peopleAmount) }}
+        </div>
+        <div class="form__item__input">
+            {{ form_widget(form.peopleAmount) }}
+        </div>
+    </div>
+
+    <div class="form__item">
+        <div class="form__item__label">
+            {{ form_label(form.travelBudget) }}
+        </div>
+        <div class="form__item__input">
+            {{ form_widget(form.travelBudget) }}
+        </div>
+    </div>
+
+</section>
+>>>>>>> 91cfd1d435910199c627ba0b79cad76f39139094

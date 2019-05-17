@@ -1,4 +1,4 @@
-import './../vendors/TweenMax.min'
+import './../../vendors/TweenMax.min'
 
 var hoverEffect = function(opts) {
     var vertex = `

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // @section Configuration Settings
 // Adjust colors, font stacks, breakpoints and sizing.
 //
@@ -100,4 +101,108 @@ $grid-breakpoints: (
 	($bp-small, ".row-start-small", false),
 	($bp-medium, null, true),
 );
+=======
+// @section Configuration Settings
+// Adjust colors, font stacks, breakpoints and sizing.
+//
+// Typographic Scale
+// (For math purposes. Actual font sizes in ems.)
+// 1px, 4px, 5px, 8px, 9px, 11px, 12px, 13px, 15px, 16px, 19px, 21px, 24px, 28px, 32px, 48px, 64px, 80px, 96px
+// line height: 1.5em on small screens, 1.5625em on big screens
+
+
+// Colors
+
+$light-blue: #35cfd4;
+$dark-blue: #14a1e6;
+
+$light-green: #62ab03;
+$dark-green: #004d00;
+
+$light-orange: #f9c90d;
+$dark-orange: #f96e10;
+
+$light-red: #f7360d;
+$grey: #666;
+
+$color-primary: #0088cc;
+$color-black: #000000;
+$color-white: #ffffff;
+
+$color-info: #0088cc; // Blue
+$color-success: #377f31; // Green
+$color-danger: #880e14; // Red
+$color-warning: #dba909; // Yellow
+$color-code: #dd1144;
+
+$color-gray-dark: #666666;
+$color-gray-light: #e5e5e5;
+$color-gray-lighter: #f7f7f7;
+
+$color-blue-light: #35cfd4;
+$color-blue-dark: #14a1e6;
+
+$color-green-light: #62ab03;
+$color-green-dark: #004d00;
+
+$color-yellow-lighter: #f9c90d;
+$color-yellow-light: #f96e10;
+$color-yellow-dark: #f7360d;
+
+
+// Font Stacks
+$font-text: 'Open Sans', sans-serif;
+$font-titles: 'Baloo Bhaina', cursive;
+$font-titles-secundary: 'Gotham Black', cursive;
+$font-formated: 'Open Sans', monospace;
+
+
+// Breakpoints
+$bp-xsmall: 20em;
+$bp-small: 30em;
+$bp-medium: 40em;
+$bp-large: 60em;
+$bp-xlarge: 80em;
+
+
+// Sizing
+$font-size: 100%;
+$spacing: 1.5625em;
+$container-width: 88%;
+$container-max-width: 80em;
+
+
+// Grid
+$grid-margins: 1.4%;
+$grid-sizes: (
+	// Grid width options
+	// Add/remove grid's as needed
+	// $name: $width
+	// $name - {string} class suffix
+	// $width - {string} width of the grid
+	tenth: 10%,
+	p16: 16%,
+	fifth: 20%,
+	fourth: 25%,
+	p28: 28%,
+	three-tenth: 30%,
+	third: 33.33333333333%,
+	four-tenth: 40%,
+	half: 50%,
+	two-thirds: 66.666666666667%,
+	three-fourths: 75%,
+	full: 100%
+);
+$grid-breakpoints: (
+	// Breakpoints at which to activate grid
+	// Add/remove breakpoints as needed
+	// ($breakpoint, $prefix-class, $include-offsets)
+	// $breakpoint - {string|variable} the breakpoint
+	// $prefix-class - {string|optional} class to be used with `.row` to activate grid
+	// $include-offsets - {boolean} if true, include offset classes at this breakpoint
+	($bp-xsmall, ".row-start-xsmall", false),
+	($bp-small, ".row-start-small", false),
+	($bp-medium, null, true),
+);
+>>>>>>> 91cfd1d435910199c627ba0b79cad76f39139094
 $grid-wrap: true;

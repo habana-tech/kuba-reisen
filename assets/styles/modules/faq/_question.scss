@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .questions{
 
     &__topic{
@@ -40,4 +41,48 @@
              transform: translateY(0);
          }
      }
+=======
+.questions{
+
+    &__topic{
+        margin: 6em auto;
+
+        &__title{
+            &::after{
+                content: '';
+                position: absolute;
+                height: 2px;
+                width: 100%;
+                background: linear-gradient(to right, $light-blue 10%, $dark-blue 20%, transparent);
+            }
+        }
+
+        &:first-child{
+            margin: 0;
+        }
+    }
+
+}
+
+.question{
+
+     &__title{
+        cursor: pointer;
+     }
+
+     &__answer{
+         position: absolute;
+         opacity: 0;
+         transform: translateY(-20%);
+         z-index: -1;
+         transition: all .3s ease-in-out;
+
+         &--active{
+             position: relative;
+             z-index: 1;
+             opacity: 1;
+             transform: translateY(0);
+         }
+     }
+>>>>>>> 91cfd1d435910199c627ba0b79cad76f39139094
  }

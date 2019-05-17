@@ -9,85 +9,12 @@
 .eighty-percent-height{
   height: 80vh;
 }
+
 .header{
-
   position: relative;
-
-  & .header_bigpicture{
-    width: 100%;
-    max-height: 100%;
-    position: absolute;
-    top: 0;
-    z-index: -1;
-    left: 0;
-    overflow: hidden;
-  }
-
-  &_headline{
-    height: calc(80vh - 60px);
-    color: $color-white;
-
-    &_text{
-      font-size: 3.8em;
-      font-weight: 800;
-
-    }
-
-    &_btn{
-      border: #ffffff solid 2px;
-      font-size: 2em;
-      font-weight: 400;
-      padding-right: 1.5em;
-      padding-left: 1.5em;
-    }
-  }
 }
 
 
-$overviewLinksHeight: 5em;
-
-#sections_container{
-  position: relative;
-  top: -$overviewLinksHeight;
-  margin-bottom: -$overviewLinksHeight;
-}
-
-.overview{
-
-  &_links{
-
-    height: $overviewLinksHeight;
-
-    &_item{
-      font-size: 1.5em;
-      font-weight: 400;
-      color: $color-white;
-      padding-left: 2em;
-      position: relative;
-
-      &::before{
-        content: " ";
-        border-left: solid 2px;
-        height: 2em;
-        width: 3px;
-        background: $color-white;
-        position: absolute;
-        left: 2.2em;
-        top: 1.3em;
-      }
-    }
-  }
-  &_grid_item{
-    margin: 0;;
-
-    &_img{
-      height: 100%;
-      max-height: 100%;
-      min-width: 100%;
-      width: auto;
-    }
-  }
-}
 
 .whoweare{
   &_img img{
@@ -98,7 +25,7 @@ $overviewLinksHeight: 5em;
 .whywithus{
 
   padding: 5em 0;
-  &_title{
+  &_tcontact-formitle{
     position: relative;
     &::before, &::after{
       content: " ";
@@ -127,7 +54,7 @@ $overviewLinksHeight: 5em;
 }
 
 .contact_landscape.contact_first{
-
+;
 }
 
 .top-destinations, .contact-form {

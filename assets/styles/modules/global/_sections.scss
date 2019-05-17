@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .section{
     width: 100%;
     position: relative;
@@ -67,4 +68,75 @@
         }
     }
 
+=======
+.section{
+    width: 100%;
+    position: relative;
+    background-color: white;
+
+    &__title{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+
+        &__highlight {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 600;
+
+            & h2{
+                font-size: 2.5em;
+            }
+
+            &::before, &::after {
+                content: '';
+                position: relative;
+                height: 4px;
+                border-radius: 2px;
+                width: 8em;
+                margin: 0 .5em;
+            }
+
+            &:before {
+                background: linear-gradient(45deg, $light-blue, $dark-blue);
+            }
+
+            &::after {
+                background: linear-gradient(-45deg, $light-blue, $dark-blue);
+            }
+
+            & p {
+                width: 50%;
+            }
+
+            &--orange {
+
+                &:before {
+                    background: linear-gradient(45deg, $light-orange, $dark-orange);
+                }
+                &::after {
+                    background: linear-gradient(-45deg, $light-orange, $dark-orange);
+                }
+
+            }
+
+            &--no-decorator::before,
+            &--no-decorator::after{
+                display: none;
+            }
+        }
+
+        &__description{
+            position: relative;
+            top: -2em;
+            width: 50%;
+            text-align: center;
+        }
+    }
+
+>>>>>>> 91cfd1d435910199c627ba0b79cad76f39139094
 }
