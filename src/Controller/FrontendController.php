@@ -65,7 +65,7 @@ class FrontendController extends AbstractController
     public function contact(Request $request, DynamicPageRepository $pageRepository)
     {
         $contact = new ContactPlaning();
-        $form = $this->createForm(ContactPlaningType::class, $contact, ['locale'=>$request->getLocale()]);
+        $form = $this->createForm(ContactPlaningType::class, $contact, ['locale' => $request->getLocale()]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -82,6 +82,8 @@ class FrontendController extends AbstractController
             'contact' => $contact,
             'form' => $form->createView(),
         ]);
+    }
+
     /**
      * @Route("/destination", name="destination")
      */
