@@ -45,7 +45,7 @@
             </tr>
             <tr>
                 <th>Image.dimensions</th>
-                <td>{{ activity.image.dimensions }}</td>
+                <td>{{ activity.image.dimensions | join('x')  }}</td>
             </tr>
         </tbody>
     </table>

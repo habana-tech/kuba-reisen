@@ -11,10 +11,13 @@
 <div class="example-wrapper">
     <h1>Hello {{ controller_name }}! ✅</h1>
 
-    This friendly message is coming from:
+    You can add or edit the following entities:
     <ul>
-        <li>Your controller at <code><a href="{{ 'E:/Work/kuba-reisen/src/Controller/BackendController.php'|file_link(0) }}">src/Controller/BackendController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'E:/Work/kuba-reisen/templates/backend/index.html.twig'|file_link(0) }}">templates/backend/index.html.twig</a></code></li>
-    </ul>
+        <li><a href="{{ path('backend_activity_index') }}">Activities</a> </li>
+        <li><a href="{{ path('backend_dynamic_page_index') }}">Contenido de Paginas dinamicas</a> </li>
+        <li><a href="{{ path('backend_filter_tag_index') }}">Tags de filtros</a> </li>
+        <li><a href="{{ path('backend_interest_index') }}">Intereses</a> </li>
+        <li><a href="{{ path('backend_post_index') }}">Posts</a> </li>
+     </ul>
 </div>
 {% endblock %}

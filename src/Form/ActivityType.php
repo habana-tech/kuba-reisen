@@ -15,10 +15,12 @@ class ActivityType extends AbstractType
     {
         $builder
             ->add('title')
+            ->add('description')
             ->add('language',  ChoiceType::class, ['choices' => [
-                'es' => 'es',
+                'de' => 'de',
                 'en' => 'en',
-                'de' => 'de']])
+                'es' => 'es',
+            ]])
             ->add('alternativeText')
             ->add('filterTags')
             ->add('translation_from')

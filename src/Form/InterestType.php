@@ -22,9 +22,10 @@ class InterestType extends AbstractType
             ->add('modified_by')
             ->add('imageFile', VichImageType::class)
             ->add('language',  ChoiceType::class, ['choices' => [
-                'ES' => 'ES',
-                'EN' => 'EN',
-                'DE' => 'DE']])
+                'de' => 'de',
+                'en' => 'en',
+                'es' => 'es',
+            ]])
         ;
     }
 

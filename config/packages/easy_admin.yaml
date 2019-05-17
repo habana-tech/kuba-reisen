@@ -50,9 +50,10 @@ easy_admin:
 
                     - { type: 'group', label: 'Language and Translation', icon: 'globe', columns: 4 }
                     - { property: 'language', type: 'choice', type_options: {choices: {en: 'en', de: 'de',es: 'es'}} }
-                    - { property: 'translation_from', type: 'entity' }
+                    - { property: 'translation_from', type: 'entity', class: 'App\Entity\DynamicPage' }
 
                     - { property: 'pageTemplate' }
+
         Users:
             class: App\Entity\User
 
@@ -77,7 +78,7 @@ easy_admin:
                         - { property: 'language', type: 'choice', type_options: {choices: {en: 'en', de: 'de',es: 'es'}} }
                         - { property: 'translation_from', type: 'entity' }
 
-                        - { type: 'group', label: 'Image Info', icon: 'image', columns: 4 }
+                        #- { type: 'group', label: 'Image Info', icon: 'image', columns: 4 }
                         #- { property: 'image', template: 'backend/easyadmin/vich_uploader_image.html.twig' }
                         #- { property: 'imageFile', type: 'vich_image' }
                         - { property: 'alternativeText' }
@@ -85,6 +86,10 @@ easy_admin:
                         - { property: 'title' }
                         - { property: 'description' }
                         - { property: 'modified_by'}
+
         FilterTags:
             class: App\Entity\FilterTag
+
+        Destination:
+            class: App\Entity\Destination
         #- App\Entity\User

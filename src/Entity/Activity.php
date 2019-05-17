@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Entity\File as EmbeddedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
@@ -46,11 +47,19 @@ class Activity
      */
     private $destinations;
 
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $description;
+
     public function __construct()
     {
         $this->filterTags = new ArrayCollection();
         $this->destinations = new ArrayCollection();
+        $this->image = new EmbeddedFile();
+        // your own logic
     }
+
 
     public function getId(): ?int
     {
@@ -122,4 +131,23 @@ class Activity
 
         return $this;
     }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->title." (".$this->language.")";
+    }
+
+
 }
