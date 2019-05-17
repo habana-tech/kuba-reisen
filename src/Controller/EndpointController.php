@@ -68,7 +68,7 @@ class EndpointController extends AbstractController
     /**
      * @Route("/endpoint/search/activities/", name="endpoint_search_activities")
      */
-    public function searchActivities(Request $request, ActivityRepository)
+    public function searchActivities(Request $request, ActivityRepository $activityRepository)
     {
 
 
