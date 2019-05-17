@@ -72,7 +72,7 @@ class EndpointController extends AbstractController
     {
 
 
-        return $this->json($page->getPageContent());
+        return $this->json([]);
     }
 
 
