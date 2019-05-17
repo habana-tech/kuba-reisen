@@ -25,7 +25,7 @@ Descr: Custom radio toggle
   border: 1px solid $color-gray-light;
 
   &:focus-within, &:active {
-    box-shadow: 0 0 0 3px $color-gray-light; // focus effect
+    box-shadow: 0 0 0 1px $color-gray-light; // focus effect
   }
 }
 
@@ -68,7 +68,9 @@ Descr: Custom radio toggle
   top: 0;
   left: -100%;
   border-radius: var(--radio-switch-radius);
-  background-color: $color-blue-dark;
+
+  background: linear-gradient(45deg, $light-blue, $dark-blue);
+
   height: calc(var(--radio-switch-height) - 2*var(--radio-switch-padding));
   width: calc(var(--radio-switch-width)*0.5 -  var(--radio-switch-padding));
   transition: transform var(--radio-switch-animation-duration);

@@ -7,6 +7,7 @@ module.exports = {
         index: "./assets/scripts/index.js",
         destination: "./assets/scripts/destination.js",
         faq: "./assets/scripts/faq.js",
+        contact: "./assets/scripts/contact.js",
 
     },
     output: {

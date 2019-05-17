@@ -3,6 +3,7 @@
     display: flex;
     justify-content: space-between;
     position: absolute;
+    z-index: 3;
 
 
     &__logo{
@@ -60,8 +61,6 @@
                 &__title{
                     & a{
                         color: white;
-                        font-size: 1.25em;
-                        font-weight: 700;
                     }
                 }
 
@@ -74,19 +73,38 @@
 
                         & a {
                             color: white;
+                        }
 
-                            & span {
-                                padding: 3px;
-                                border-radius: 5px;
-                                margin-left: .8em;
-                                font-size: 80%;
-                                background: linear-gradient($color-yellow-lighter, $color-yellow-light);
-                            }
-
+                        & span {
+                            padding: 3px;
+                            border-radius: 5px;
+                            margin-left: .8em;
+                            font-size: 80%;
+                            background: linear-gradient($color-yellow-lighter, $color-yellow-light);
                         }
                     }
                 }
             }
         }
+    }
+}
+
+.headroom {
+    will-change: transform;
+    transition: transform 200ms linear;
+
+    &--pinned &--top {
+        position: relative;
+    }
+
+    &--pinned{
+        position: fixed;
+        transform: translateY(0%);
+
+    }
+
+    &--unpinned{
+        position: fixed;
+        transform: translateY(-100%);
     }
 }

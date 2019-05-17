@@ -22,8 +22,8 @@ import './../../vendors/TweenMax.min'
             this.DOM.detailsItems = Array.from(this.settings.detailsEl.querySelectorAll('.details__item'));
             this.totalDetailItems = this.DOM.detailsItems.length;
             // The details box that has the close control. When clicking on it call the onHideDetails passed in the initialization options.
-            this.DOM.hideDetailsCtrl = this.DOM.detailsItems.filter(item => item.classList.contains('details__item--close'))[0];
-            this.DOM.hideDetailsCtrl.addEventListener('click', () => this.settings.onHideDetails());
+            // this.DOM.hideDetailsCtrl = this.DOM.detailsItems.filter(item => item.classList.contains('details__item--close'))[0];
+            // this.DOM.hideDetailsCtrl.addEventListener('click', () => this.settings.onHideDetails());
             // Some config values.
             this.config = {
                 animation: {
@@ -251,6 +251,7 @@ import './../../vendors/TweenMax.min'
 
     // The Slideshow class.
     class Slideshow {
+
         constructor(el) {
             this.DOM = {el: el};
             // Initialize the navigation instance. When clicking the next or prev ctrl buttons, trigger the navigate function.
@@ -295,11 +296,27 @@ import './../../vendors/TweenMax.min'
             this.slides[this.current].setCurrent();
             this.initEvents();
         }
+
         initEvents() {
             // Open the details boxes.
-            this.DOM.detailsCtrl.addEventListener('click', () => this.openDetailsBoxes());
+            this.DOM.detailsCtrl.addEventListener('click',
+                (e) => this.toggleDetailBoxes(e));
+
         }
+
+        toggleDetailBoxes(e){
+            if (this.DOM.details[this.current].classList.contains('details--current'))
+                this.closeDetailsBoxes();
+            else
+                this.openDetailsBoxes();
+
+            e.preventDefault();
+            return false;
+        }
+
         openDetailsBoxes() {
+
+
             if ( this.isAnimating ) return;
             this.isAnimating = true;
 

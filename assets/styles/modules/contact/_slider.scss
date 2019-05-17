@@ -1,0 +1,28 @@
+@import "../../node_modules/nouislider/distribute/nouislider.css";
+
+.select-control,
+.radio-switch{
+    margin-bottom: 2em;
+}
+
+.noUi-horizontal {
+    height: .5em;
+
+    .noUi-connects {
+        background: linear-gradient(45deg, $light-blue, $dark-blue);
+    }
+
+    .noUi-handle{
+        height: 20px;
+
+        &::before, &::after{
+            height: 6px;
+        }
+    }
+}
+
+.slider-labels{
+    display: flex;
+    justify-content: space-between;
+    margin-top: .75em;
+}

@@ -18,7 +18,7 @@ Descr: Custom radio toggle
   border-radius: calc(var(--radio-switch-radius) * 1.4);
   border: 1px solid #e5e5e5; }
 .radio-switch:focus-within, .radio-switch:active {
-    box-shadow: 0 0 0 3px #e5e5e5; }
+    box-shadow: 0 0 0 1px #e5e5e5; }
 .radio-switch__item {
   position: relative;
   display: inline-block;
@@ -51,7 +51,7 @@ Descr: Custom radio toggle
   top: 0;
   left: -100%;
   border-radius: var(--radio-switch-radius);
-  background-color: #14a1e6;
+  background: linear-gradient(45deg, #35cfd4, #14a1e6);
   height: calc(var(--radio-switch-height) - 2*var(--radio-switch-padding));
   width: calc(var(--radio-switch-width)*0.5 -  var(--radio-switch-padding));
   transition: -webkit-transform var(--radio-switch-animation-duration);
@@ -427,7 +427,8 @@ Descr: Custom radio toggle
   width: 100%;
   display: flex;
   justify-content: space-between;
-  position: absolute; }
+  position: absolute;
+  z-index: 3; }
 .header__logo {
     margin: 1em;
     z-index: 3; }
@@ -463,9 +464,7 @@ Descr: Custom radio toggle
 .header__nav__menu__column:last-child::after {
           display: none; }
 .header__nav__menu__column__title a {
-          color: white;
-          font-size: 1.25em;
-          font-weight: 700; }
+          color: white; }
 .header__nav__menu__column__list {
           list-style: none;
           margin-left: 1em; }
@@ -473,12 +472,27 @@ Descr: Custom radio toggle
             margin: .5em auto; }
 .header__nav__menu__column__list__link a {
               color: white; }
-.header__nav__menu__column__list__link a span {
-                padding: 3px;
-                border-radius: 5px;
-                margin-left: .8em;
-                font-size: 80%;
-                background: linear-gradient(#f9c90d, #f96e10); }
+.header__nav__menu__column__list__link span {
+              padding: 3px;
+              border-radius: 5px;
+              margin-left: .8em;
+              font-size: 80%;
+              background: linear-gradient(#f9c90d, #f96e10); }
+.headroom {
+  will-change: transform;
+  transition: -webkit-transform 200ms linear;
+  transition: transform 200ms linear;
+  transition: transform 200ms linear, -webkit-transform 200ms linear; }
+.headroom--pinned .headroom--top {
+    position: relative; }
+.headroom--pinned {
+    position: fixed;
+    -webkit-transform: translateY(0%);
+            transform: translateY(0%); }
+.headroom--unpinned {
+    position: fixed;
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%); }
 .hero {
   height: 70vh;
   overflow: hidden;
@@ -666,12 +680,14 @@ Descr: Custom radio toggle
       justify-content: space-between; }
 .footer__content__links__column {
         width: 23%; }
-.footer__content__links__column h3 {
-          margin-bottom: .25em; }
+.footer__content__links__column__title a {
+          color: white; }
 .footer__content__links__column ul {
           margin-left: .25em; }
 .footer__content__links__column ul li {
             list-style: none; }
+.footer__content__links__column ul li a {
+              color: white; }
 .footer__content__infos {
       width: 100%;
       display: flex;
