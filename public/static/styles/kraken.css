@@ -557,6 +557,13 @@ figure {
  * @section Typography
  * Sets font styles for entire site
  */
+*::-moz-selection {
+  background-color: rgba(53, 207, 212, 0.3); }
+*::selection {
+  background-color: rgba(53, 207, 212, 0.3); }
+body {
+  overflow-x: hidden;
+  position: relative; }
 body {
   background: white;
   color: #666;

@@ -3,6 +3,15 @@
  * Sets font styles for entire site
  */
 
+*::selection{
+    background-color: rgba($light-blue, .3);
+}
+
+body{
+    overflow-x: hidden;
+    position: relative;
+}
+
 body {
 	background: white;
 	color: $grey;

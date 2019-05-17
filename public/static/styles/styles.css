@@ -299,11 +299,14 @@ Descr: Custom radio toggle
   align-items: center; }
 .hero__image {
     width: 100%;
-    max-height: 100%;
+    height: 100%;
     position: absolute;
     top: 0;
     left: 0;
     overflow: hidden; }
+.hero__image img {
+      height: 100%;
+      width: auto; }
 .hero__content {
     width: 50%;
     margin: 2em;
@@ -311,8 +314,35 @@ Descr: Custom radio toggle
     position: relative;
     color: #ffffff; }
 .hero__content__text {
-      font-size: 2.5em;
-      font-weight: 700; }
+      font-size: 2em;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2); }
+.hero__content__text::first-letter {
+        font-size: 2em;
+        text-transform: uppercase; }
+.banner_sky {
+  height: 75vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; }
+.banner_sky__image {
+    position: absolute; }
+.banner_sky__content {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; }
+.banner_sky__content__titles {
+      text-align: center;
+      width: 100%; }
+.banner_sky__content__titles h2, .banner_sky__content__titles h3 {
+        color: white;
+        margin: .5em;
+        padding: 0; }
+.banner_sky__content__titles h2 {
+        font-size: 2.5em; }
+.banner_sky__content__titles h3 {
+        font-size: 1.5em; }
 .section {
   width: 100%;
   position: relative;
@@ -348,6 +378,10 @@ Descr: Custom radio toggle
         background: linear-gradient(45deg, #f9c90d, #f96e10); }
 .section__title__highlight--orange::after {
         background: linear-gradient(-45deg, #f9c90d, #f96e10); }
+.section__title__highlight--green:before {
+        background: linear-gradient(45deg, #62ab03, #004d00); }
+.section__title__highlight--green::after {
+        background: linear-gradient(-45deg, #62ab03, #004d00); }
 .section__title__highlight--no-decorator::before, .section__title__highlight--no-decorator::after {
         display: none; }
 .section__title__description {

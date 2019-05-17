@@ -53,6 +53,17 @@
 
             }
 
+            &--green {
+
+                &:before {
+                    background: linear-gradient(45deg, $light-green, $dark-green);
+                }
+                &::after {
+                    background: linear-gradient(-45deg, $light-green, $dark-green);
+                }
+
+            }
+
             &--no-decorator::before,
             &--no-decorator::after{
                 display: none;

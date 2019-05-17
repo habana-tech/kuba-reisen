@@ -12,6 +12,9 @@
     z-index: 1; }
   .hero__content__text {
       font-size: 2.25em; }
+  .hero__content__text::first-letter {
+        font-size: inherit;
+        text-transform: none; }
   .hero__buttom-links {
     position: absolute;
     bottom: 0;
@@ -131,27 +134,3 @@
         height: 100%;
         max-height: 100%;
         max-width: 100%; }
-  .banner_sky {
-  height: 75vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden; }
-  .banner_sky__image {
-    position: absolute; }
-  .banner_sky__content {
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center; }
-  .banner_sky__content__titles {
-      text-align: center;
-      width: 100%; }
-  .banner_sky__content__titles h2, .banner_sky__content__titles h3 {
-        color: white;
-        margin: .5em;
-        padding: 0; }
-  .banner_sky__content__titles h2 {
-        font-size: 2.5em; }
-  .banner_sky__content__titles h3 {
-        font-size: 1.5em; }

@@ -2,27 +2,26 @@
 
 namespace App\Form;
 
-use App\Entity\DynamicPage;
+use App\Entity\Destination;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class DynamicPageType extends AbstractType
+class DestinationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('pageName')
-            ->add('pageTitle')
-            ->add('pageTemplate')
-//            ->add('pageContent')
+            ->add('name')
+            ->add('title')
             ->add('language',  ChoiceType::class, ['choices' => [
                 'de' => 'de',
                 'en' => 'en',
                 'es' => 'es',
             ]])
-            ->add('translation_from')
+            ->add('activities')
+            ->add('filterTags')
             ->add('modified_by')
         ;
     }
@@ -30,7 +29,7 @@ class DynamicPageType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => DynamicPage::class,
+            'data_class' => Destination::class,
         ]);
     }
 }

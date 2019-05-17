@@ -26,6 +26,7 @@ class FrontendController extends AbstractController
             'language'=>$request->getLocale()
         ]))
 
+
             return $this->render('frontend/index.html.twig', [
             'controller_name' => 'FrontendController',
             'dynamic_page_id' => $dymanicPage->getId(),
@@ -65,11 +66,11 @@ class FrontendController extends AbstractController
     }
 
 
-
     /**
      * @Route("/{_locale}/contact", defaults={"_locale": "de"},
      *     requirements={"_locale": "en|es|de"}, name="contact")
-     * @Route("/contact")
+     * @Route("/contact",  defaults={"_locale": "de"},
+     *     requirements={"_locale": "en|es|de"})
      */
     public function contact(Request $request, DynamicPageRepository $pageRepository)
     {
@@ -77,7 +78,10 @@ class FrontendController extends AbstractController
             'pageName'=>'contact',
             'language'=>$request->getLocale()
         ]))
+
             throw new NotFoundHttpException();
+
+
 
 
         $contact = new ContactPlaning();
@@ -107,7 +111,7 @@ class FrontendController extends AbstractController
      *     requirements={"_locale": "en|es|de"}, name="destination")
      * @Route("/destination/{id}/{name}")
      */
-    public function Place(Request $request, Destination $destination, DynamicPageRepository $pageRepository, DynamicPageManager $pm)
+    public function destination(Request $request, Destination $destination, DynamicPageRepository $pageRepository, DynamicPageManager $pm)
     {
 
 
@@ -165,7 +169,31 @@ class FrontendController extends AbstractController
 
 
     }
+    /**
+     * @Route("/activities", name="activities")
+     */
+    public function activities(Request $request, DynamicPageRepository $pageRepository, DynamicPageManager $pm)
+    {
 
+        $pageinfo = [
+            'pageName'=>'activities',
+            'language'=>$request->getLocale()
+        ];
+
+        if($this->isGranted('ROLE_ADMIN'))
+            $page = $pm->findByOrCreateIfDoesntExist($pageinfo);
+        else {
+            $page = $pm->findOneBy($pageinfo);
+        }
+
+        if(!$page)
+            throw new NotFoundHttpException();
+
+        return $this->render('frontend/activities.html.twig', [
+            'dynamic_page_id' => $page->getId(),
+            'page' => $page,
+        ]);
+    }
 
 
 

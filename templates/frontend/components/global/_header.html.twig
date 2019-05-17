@@ -54,10 +54,10 @@
                         <a href="">Sleep & Eat</a>
                     </li>
                     <li class="header__nav__menu__column__list__link">
-                        <a href="">Havanna</a>
+                        <a href="{{ path('destination', {'id':1, '_locale': app.request.locale, 'name':'havanna' }) }}">Havanna</a>
                     </li>
                     <li class="header__nav__menu__column__list__link">
-                        <a href="">Cayos & Beaches</a>
+                        <a href="{{ path('destination', {'id':2, '_locale': app.request.locale, 'name':'cayos_beaches' }) }}">Cayos & Beaches</a>
                     </li>
                     <li class="header__nav__menu__column__list__link">
                         <a href="">Tourist Destination Highlights</a>
@@ -107,16 +107,16 @@
                         </a>
                     </li>
                     <li class="header__nav__menu__column__list__link">
-                        <a href="">Gruppenreise </a> <span>Trending!</span>
+                        <a href="{{ path('activities') }} ">Gruppenreise </a> <span>Trending!</span>
                     </li>
                     <li class="header__nav__menu__column__list__link">
-                        <a href="">Themenreise</a>
+                        <a href="{{ path('activities') }}">Themenreise</a>
                     </li>
                     <li class="header__nav__menu__column__list__link">
-                        <a href="">Familienreise</a>
+                        <a href="{{ path('activities') }}">Familienreise</a>
                     </li>
                     <li class="header__nav__menu__column__list__link">
-                        <a href="">Mietwagenreise</a>
+                        <a href="{{ path('activities') }}">Mietwagenreise</a>
                     </li>
                 </ul>
             </div>
@@ -137,7 +137,7 @@
                             <a href="">Gut zu wissen</a>
                         </li>
                         <li class="header__nav__menu__column__list__link">
-                            <a href="">Reise FAQ für kuba</a>
+                            <a href="{{ path('faq') }}">Reise FAQ für kuba</a>
                         </li>
                     </ul>
             </div>
