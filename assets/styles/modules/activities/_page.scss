@@ -1,0 +1,19 @@
+.activities{
+
+    &__selectors{
+        width: 80%;
+        margin: auto;
+        display: flex;
+        justify-content: space-around;
+
+        &__filters{
+            width: 45%;
+
+            &__list
+        }
+
+        &__search{
+            width: 45%;
+        }
+    }
+}

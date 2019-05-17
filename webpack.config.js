@@ -8,6 +8,7 @@ module.exports = {
         destination: "./assets/scripts/destination.js",
         faq: "./assets/scripts/faq.js",
         contact: "./assets/scripts/contact.js",
+        activities: "./assets/scripts/activities.js",
 
     },
     output: {

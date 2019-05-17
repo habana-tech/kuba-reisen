@@ -1,9 +1,14 @@
 global.__banner_sky_headline__: 'Take a step toward your travel to Cuba'
 global.__banner_sky_subtitle__: 'Take a step toward'
 global.__banner_sky_contact_btn__: 'Talk to an expert!'
+
 contact.selfConsider.min: __contact.selfConsider.min
 contact.selfConsider.max: __contact.selfConsider.max
 contact.selfCharacter.min: __contact.selfCharacter.min
 contact.selfCharacter.max: __contact.selfCharacter.max
 contact.selfLuxury.min: __contact.selfLuxury.min
 contact.selfLuxury.max: __contact.selfLuxury.max
+
+hero:
+  activities:
+    title: 'activities'

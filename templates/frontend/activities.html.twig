@@ -1,0 +1,37 @@
+{% extends 'frontend/base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/activities.css') }}" type="text/css">
+{% endblock %}
+
+{% block body %}
+
+    {{ include('frontend/components/global/_header.html.twig') }}
+
+    <main class="main">
+
+
+        {% set hero_title = 'hero.activities.title' | trans %}
+        {% include 'frontend/components/global/_hero.html.twig' with  {'hero_title': hero_title} only %}
+
+        {% if is_granted('ROLE_EDITOR') %}
+            <div id="grapes-editable">
+        {% endif %}
+
+                {{ include('frontend/components/activities/_popular_activities.html.twig') }}
+
+
+        {% if is_granted('ROLE_EDITOR') %}
+            </div>
+        {% endif %}
+    </main>
+
+    {{ include('frontend/components/global/_footer.html.twig') }}
+
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('scripts/activities.js') }}"></script>
+{% endblock %}

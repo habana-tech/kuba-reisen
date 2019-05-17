@@ -100,10 +100,8 @@ class FrontendController extends AbstractController
     /**
      * @Route("/destination/{id}/{name}", name="destination")
      */
-    public function Place(Request $request, Destination $destination, DynamicPageRepository $pageRepository, DynamicPageManager $pm)
+    public function place(Request $request, Destination $destination, DynamicPageRepository $pageRepository, DynamicPageManager $pm)
     {
-
-
         if(!$destination)
             throw new NotFoundHttpException();
 
@@ -127,6 +125,33 @@ class FrontendController extends AbstractController
             'destination' => $destination,
         ]);
     }
+
+    /**
+     * @Route("/activities", name="activities")
+     */
+    public function activities(Request $request, DynamicPageRepository $pageRepository, DynamicPageManager $pm)
+    {
+
+        $pageinfo = [
+            'pageName'=>'activities',
+            'language'=>$request->getLocale()
+        ];
+
+        if($this->isGranted('ROLE_ADMIN'))
+            $page = $pm->findByOrCreateIfDoesntExist($pageinfo);
+        else {
+            $page = $pm->findOneBy($pageinfo);
+        }
+
+        if(!$page)
+            throw new NotFoundHttpException();
+
+        return $this->render('frontend/activities.html.twig', [
+            'dynamic_page_id' => $page->getId(),
+            'page' => $page,
+        ]);
+    }
+
 
     /**
      * @Route("/faq", name="faq")

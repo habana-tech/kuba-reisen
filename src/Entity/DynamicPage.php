@@ -99,6 +99,10 @@ class DynamicPage
         return $this;
     }
 
+    public function getJsonContent(){
+        return json_encode($this->pageContent);
+    }
+
     /**
      * @return mixed
      */

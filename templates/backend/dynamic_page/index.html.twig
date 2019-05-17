@@ -24,7 +24,7 @@
                 <td>{{ dynamic_page.pageName }}</td>
                 <td>{{ dynamic_page.pageTitle }}</td>
                 <td>{{ dynamic_page.pageTemplate }}</td>
-                <td>{{ dynamic_page.pageContent ? dynamic_page.pageContent|join(', ') : '' }}</td>
+                {#<td>{{ dynamic_page.JsonContent }}</td>#}
                 <td>{{ dynamic_page.language }}</td>
                 <td>
                     <a href="{{ path('backend_dynamic_page_show', {'id': dynamic_page.id}) }}">show</a>
