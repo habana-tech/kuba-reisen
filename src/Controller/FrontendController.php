@@ -82,6 +82,24 @@ class FrontendController extends AbstractController
             'contact' => $contact,
             'form' => $form->createView(),
         ]);
+    /**
+     * @Route("/destination", name="destination")
+     */
+    public function Place(Request $request)
+    {
+        return $this->render('frontend/destination.html.twig', [
+            'controller_name' => 'FrontendController',
+        ]);
+    }
+
+    /**
+     * @Route("/faq", name="faq")
+     */
+    public function faq(Request $request)
+    {
+        return $this->render('frontend/faq.html.twig', [
+            'controller_name' => 'FrontendController',
+        ]);
 
     }
 
