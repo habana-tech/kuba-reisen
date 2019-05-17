@@ -3,6 +3,8 @@
     flex-wrap: wrap;
     justify-content: center;
     position: relative;
+    background: linear-gradient(45deg, $color-blue-light,$color-blue-dark);
+    color: $color-white;
 
     &__banner{
         width: 100%;
@@ -15,6 +17,7 @@
 
         &__image{
             position: absolute;
+            width: 100%;
             top: 0;
             left: 0;
         }

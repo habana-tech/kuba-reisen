@@ -6,6 +6,7 @@ use App\Entity\ContactPlaning;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -70,7 +71,12 @@ class ContactPlaningType extends AbstractType
 
             ->add('selfLuxury', HiddenType::class )
 
+            ->add('name')
+            ->add('email', EmailType::class ,[
+                'label'=>'field.email'
+            ])
             ->add('message')
+
             ->add('locale', HiddenType::class, ['attr'=>['value' => $options['locale']]])
             ->add('requestId', HiddenType::class)
             ->add('interests')

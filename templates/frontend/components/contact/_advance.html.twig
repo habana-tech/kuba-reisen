@@ -147,20 +147,4 @@
         </ul>
     </div>
 
-
-    <div class="row row-center float-center padding-top">
-        {{ form_label(form.message) }}
-    </div>
-    <div class="row row-center float-center padding-top">
-        <div class="grid-half select-control">
-            {{ form_widget(form.message) }}
-        </div>
-    </div>
-
-    <div class="row  row-center row-middle header_headline no-lat-margins">
-        <a class="btn header_headline_btn">{{ button_label|default('Send form') }}</a>
-    </div>
-
-    {{ form_widget(form.interests) }}
-    {{ form_end(form) }}
 </section>
