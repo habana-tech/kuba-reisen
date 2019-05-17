@@ -7,25 +7,33 @@
     <link rel="stylesheet" href="{{ asset('styles/contact.css') }}" type="text/css">
 {% endblock stylesheets %}
 
+{% block javascripts %}
+	{{ parent() }}
+	<script defer src="{{ asset('scripts/contact.js') }}"></script>
+{% endblock javascripts %}
+
+
 {% block body %}
 
     {{ include('frontend/components/global/_header.html.twig') }}
 
     <main class="main">
 
-        {% set hero_title = "Contact" %}
+        {% set hero_title = page.pageTitle %}
         {% include 'frontend/components/global/_hero.html.twig' with  {'hero_title': hero_title} only %}
 
+    {% if is_granted('ROLE_EDITOR') %}
+        <div id="grapes-editable">
+    {% endif %}
         {{ include('frontend/components/contact/_basic.html.twig') }}
 
         {{ include('frontend/components/contact/_advance.html.twig') }}
 
+    {% if is_granted('ROLE_EDITOR') %}
+        </div>
+    {% endif %}
     </main>
 
     {{ include('frontend/components/global/_footer.html.twig') }}
 
-{% endblock %}
-
-{% block javascripts %}
-    <script src="{{ asset('scripts/contact.js') }}"></script>
 {% endblock %}

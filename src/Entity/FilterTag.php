@@ -37,9 +37,21 @@ class FilterTag
      */
     private $translation_from;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Activity", mappedBy="filterTags")
+     */
+    private $activities;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Destination", mappedBy="filterTags")
+     */
+    private $destinations;
+
     public function __construct()
     {
         $this->interests = new ArrayCollection();
+        $this->activities = new ArrayCollection();
+        $this->destinations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -88,6 +100,62 @@ class FilterTag
     public function __toString()
     {
         return $this->title. " (".$this->language.")";
+    }
+
+    /**
+     * @return Collection|Activity[]
+     */
+    public function getActivities(): Collection
+    {
+        return $this->activities;
+    }
+
+    public function addActivity(Activity $activity): self
+    {
+        if (!$this->activities->contains($activity)) {
+            $this->activities[] = $activity;
+            $activity->addFilterTag($this);
+        }
+
+        return $this;
+    }
+
+    public function removeActivity(Activity $activity): self
+    {
+        if ($this->activities->contains($activity)) {
+            $this->activities->removeElement($activity);
+            $activity->removeFilterTag($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Destination[]
+     */
+    public function getDestinations(): Collection
+    {
+        return $this->destinations;
+    }
+
+    public function addDestination(Destination $destination): self
+    {
+        if (!$this->destinations->contains($destination)) {
+            $this->destinations[] = $destination;
+            $destination->addFilterTag($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDestination(Destination $destination): self
+    {
+        if ($this->destinations->contains($destination)) {
+            $this->destinations->removeElement($destination);
+            $destination->removeFilterTag($this);
+        }
+
+        return $this;
     }
 
 

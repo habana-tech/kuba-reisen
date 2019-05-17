@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New DynamicPage{% endblock %}
+
+{% block body %}
+    <h1>Create new DynamicPage</h1>
+
+    {{ include('backend/dynamic_page/_form.html.twig') }}
+
+    <a href="{{ path('backend_dynamic_page_index') }}">back to list</a>
+{% endblock %}

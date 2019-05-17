@@ -18,9 +18,10 @@ class PostType extends AbstractType
             ->add('title')
             ->add('slug')
             ->add('language',  ChoiceType::class, ['choices' => [
-            'ES' => 'ES',
-            'EN' => 'EN',
-            'DE' => 'DE']])
+                'de' => 'de',
+                'en' => 'en',
+                'es' => 'es',
+            ]])
 
 
             ->add('content', CKEditorType::class)

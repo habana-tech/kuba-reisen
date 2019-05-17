@@ -1,3 +1,2 @@
 download: Download
-
-form.label.delete: Delete?
+form.label.delete: 'Delete?'

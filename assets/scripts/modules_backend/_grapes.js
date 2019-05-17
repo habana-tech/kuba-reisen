@@ -17,7 +17,7 @@ console.log("ptm");
 var editor = grapesjs.init({
     showOffsets: 1,
     noticeOnUnload: 0,
-    container: '#sections_container',
+    container: '#grapes-editable',
     height: '100%',
    // params: { _grape_token: app_js_param__csrf_token},
     fromElement: true,

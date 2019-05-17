@@ -1,3 +1,59 @@
+<<<<<<< HEAD
+<html class="js" lang="en">
+<head>
+    <title>{% block title %}Welcome to Kuba-reisen!{% endblock %}</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% block metadescription %}Kuba-reisen: get your next travel to Cuba{% endblock %}">
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina|Open+Sans" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="shortcut icon" type="image/ico" href="{{ asset('favicon.ico') }}">
+
+    <!-- Stylesheet -->
+
+    {% if  is_granted('ROLE_EDITOR') %}
+        <link rel="stylesheet" href="{{ asset('styles/kraken_backend.css') }}" type="text/css">
+    {% else %}
+        <link rel="stylesheet" href="{{ asset('styles/kraken.css') }}" type="text/css">
+    {% endif %}
+
+    <link rel="stylesheet" href="{{ asset('styles/styles.css') }}" type="text/css">
+
+    {% block stylesheets %}{% endblock %}
+
+</head>
+    <body>
+   {#
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/regular.css" integrity="sha384-FKw7x8fCxuvzBwOJmhTJJsKzBl8dnN9e2R4+pXRfYoHivikuHkzWyhKWDSMcGNK8" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/fontawesome.css" integrity="sha384-vd1e11sR28tEK9YANUtpIOdjGW14pS87bUBuOIoBILVWLFnS+MCX9T6MMf0VdPGq" crossorigin="anonymous">
+   #}
+       {% block body %}{% endblock %}
+
+       {% block javascripts_vendors %}{% endblock %}
+       {% block javascripts %}{% endblock %}
+
+       <script src="{{ asset('scripts/app.js') }}"></script>
+
+   {# TODO: EL ROLE NECESARIO DEBE SER AL MENOS ROLE_EDITOR #}
+       {% if is_granted('ROLE_EDITOR') %}
+
+           <script>
+            //APP_ROUTES & PARAMS
+            var app_js_param__csrf_token = "{{ csrf_token('_grapejs_editor_token') }}"
+            var app_js_routing__styles_css = "{{ absolute_url(asset('styles/all_backend_css.css')) }}"
+            var app_js_routing__grape_endpoint = "{{ absolute_url(path('endpoint')) }}"
+            var app_js_param__page_id = {% if dynamic_page_id is defined %}"{{ dynamic_page_id }}"{% else %}-1;{% endif %}
+           </script>
+
+           <script src="{{ asset('scripts/app_backend.js') }}"></script>
+
+
+        {% endif %}
+
+    </body>
+</html>
+=======
 <html lang="en">
 <head>
     <title>{% block title %}Welcome to Kuba-reisen!{% endblock %}</title>
@@ -58,3 +114,4 @@
 
     </body>
 </html>
+>>>>>>> 91cfd1d435910199c627ba0b79cad76f39139094

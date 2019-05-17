@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\ActivityRepository;
 use App\Repository\DynamicPageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -62,4 +63,17 @@ class EndpointController extends AbstractController
 
         return $this->json($page->getPageContent());
     }
+
+
+    /**
+     * @Route("/endpoint/search/activities/", name="endpoint_search_activities")
+     */
+    public function searchActivities(Request $request, ActivityRepository $activityRepository)
+    {
+
+
+        return $this->json([]);
+    }
+
+
 }

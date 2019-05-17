@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\ContactPlaning;
+use App\Entity\Destination;
 use App\Form\ContactPlaningType;
 use App\Repository\DynamicPageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -27,6 +28,7 @@ class FrontendController extends AbstractController
             return $this->render('frontend/index.html.twig', [
             'controller_name' => 'FrontendController',
             'dynamic_page_id' => $dymanicPage->getId(),
+            'page' => $dymanicPage,
         ]);
 
         throw new NotFoundHttpException();
@@ -85,8 +87,15 @@ class FrontendController extends AbstractController
      */
     public function contact(Request $request, DynamicPageRepository $pageRepository)
     {
+        if(!$dymanicPage = $pageRepository->findOneBy([
+            'pageName'=>'contact',
+            'language'=>$request->getLocale()
+        ]))
+            throw new NotFoundHttpException();
+
+
         $contact = new ContactPlaning();
-        $form = $this->createForm(ContactPlaningType::class, $contact, ['locale'=>$request->getLocale()]);
+        $form = $this->createForm(ContactPlaningType::class, $contact, ['locale' => $request->getLocale()]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -102,9 +111,54 @@ class FrontendController extends AbstractController
         return $this->render('frontend/contact.html.twig', [
             'contact' => $contact,
             'form' => $form->createView(),
+            'dynamic_page_id' => $dymanicPage->getId(),
+            'page' => $dymanicPage,
+        ]);
+    }
+
+    /**
+     * @Route("/destination/{id}/{name}", name="destination")
+     */
+    public function Place(Request $request, Destination $destination, DynamicPageRepository $pageRepository, DynamicPageManager $pm)
+    {
+
+
+        if(!$destination)
+            throw new NotFoundHttpException();
+
+        $pageinfo = [
+            'pageName'=>$destination->getName(),
+            'language'=>$request->getLocale()
+        ];
+
+        if($this->isGranted('ROLE_ADMIN'))
+            $page = $pm->findByOrCreateIfDoesntExist($pageinfo);
+        else {
+            $page = $pm->findOneBy($pageinfo);
+        }
+
+        if(!$page)
+            throw new NotFoundHttpException();
+
+        return $this->render('frontend/destination.html.twig', [
+            'dynamic_page_id' => $page->getId(),
+            'page' => $page,
+            'destination' => $destination,
+        ]);
+    }
+
+    /**
+     * @Route("/faq", name="faq")
+     */
+    public function faq(Request $request)
+    {
+        return $this->render('frontend/faq.html.twig', [
+            'controller_name' => 'FrontendController',
         ]);
 
     }
+
+
 
 
 

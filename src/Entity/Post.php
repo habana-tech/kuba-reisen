@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Entity\File as EmbeddedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
@@ -125,4 +126,10 @@ class Post
         $this->setUpdatedAt(new \DateTime());
     }
 
+    public function __construct()
+    {
+        parent::__construct();
+        $this->image = new EmbeddedFile();
+        // your own logic
+    }
 }

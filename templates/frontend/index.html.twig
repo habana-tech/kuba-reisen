@@ -15,15 +15,18 @@
 
         {{ include('frontend/components/index/_hero.html.twig') }}
 
-        {{ include('frontend/components/index/_overview.html.twig') }}
+    {% if is_granted('ROLE_EDITOR') %}
+        <div id="grapes-editable">
+    {% endif %}
+            {{ include('frontend/components/index/_overview.html.twig') }}
 
-        {{ include('frontend/components/index/_who_we_are.html.twig') }}
+            {{ include('frontend/components/index/_who_we_are.html.twig') }}
 
-        {{ include('frontend/components/index/_why_with_us.html.twig') }}
+            {{ include('frontend/components/index/_why_with_us.html.twig') }}
 
-        {{ include('frontend/components/index/_banner_sky.html.twig') }}
+            {{ include('frontend/components/index/_banner_sky.html.twig') }}
 
-        {{ include('frontend/components/global/_top_destination.html.twig') }}
+            {{ include('frontend/components/global/_top_destination.html.twig') }}
 
             {#{{ include('frontend/components/_divider.html.twig') }}#}
 
@@ -31,7 +34,13 @@
 
             {#{{ include('frontend/components/index/_team_opinions.html.twig') }}#}
 
-        {{ include('frontend/components/index/_travel_options.html.twig') }}
+            {{ include('frontend/components/index/_travel_options.html.twig') }}
+
+    {% if is_granted('ROLE_EDITOR') %}
+        </div>
+    {% endif %}
+
+
 
     </main>
 

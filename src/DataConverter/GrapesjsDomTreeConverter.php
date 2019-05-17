@@ -8,7 +8,7 @@ class GrapesjsDomTreeConverter
 {
     private $grapesjsTree;
     private $filters = [
-        'tagName'=> '/b|i|a|div|p|button/',
+        'tagName'=> '/b|i|a|div|p|button|label/',
         'type'=> '/text|textnode/',
         'attributes'=>[0 =>'data-grapeid', 1 => '/grape[0-9]+/']];
     private $workElementList = [];

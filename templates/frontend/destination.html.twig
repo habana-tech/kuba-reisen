@@ -10,9 +10,13 @@
 
     <main class="main">
 
-        {% set hero_title = "Havana" %}
+
+        {% set hero_title = destination.title %}
         {% include 'frontend/components/global/_hero.html.twig' with  {'hero_title': hero_title} only %}
 
+        {% if is_granted('ROLE_EDITOR') %}
+        <div id="grapes-editable">
+        {% endif %}
         {{ include('frontend/components/destinations/_introduction.html.twig') }}
 
         {{ include('frontend/components/destinations/_features_list.html.twig') }}
@@ -21,6 +25,9 @@
 
         {{ include('frontend/components/global/_top_destination.html.twig') }}
 
+        {% if is_granted('ROLE_EDITOR') %}
+        </div>
+        {% endif %}
     </main>
 
     {{ include('frontend/components/global/_footer.html.twig') }}
