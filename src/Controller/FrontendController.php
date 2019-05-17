@@ -140,11 +140,29 @@ class FrontendController extends AbstractController
      *     requirements={"_locale": "en|es|de"}, name="faq")
      * @Route("/faq")
      */
-    public function faq(Request $request)
+    public function faq(Request $request, DynamicPageRepository $pageRepository, DynamicPageManager $pm)
     {
+
+        $pageinfo = [
+            'pageName'=> 'faq',
+            'language' => $request->getLocale()
+        ];
+
+        if($this->isGranted('ROLE_ADMIN'))
+            $page = $pm->findByOrCreateIfDoesntExist($pageinfo);
+        else {
+            $page = $pm->findOneBy($pageinfo);
+        }
+
+        if(!$page)
+            throw new NotFoundHttpException();
+
         return $this->render('frontend/faq.html.twig', [
-            'controller_name' => 'FrontendController',
+            'dynamic_page_id' => $page->getId(),
+            'page' => $page,
         ]);
+
+
 
     }
 
