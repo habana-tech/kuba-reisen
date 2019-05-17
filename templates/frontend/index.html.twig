@@ -53,5 +53,6 @@
 {% endblock %}
 
 {% block javascripts %}
+    {{ parent() }}
     <script src="{{ asset('scripts/index.js') }}"></script>
 {% endblock %}

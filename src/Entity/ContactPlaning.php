@@ -100,6 +100,16 @@ class ContactPlaning
      */
     private $clientEmail;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $email;
+
     public function __construct()
     {
         $this->interests = new ArrayCollection();
@@ -313,6 +323,30 @@ class ContactPlaning
     public function setClientEmail(string $clientEmail): self
     {
         $this->clientEmail = $clientEmail;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
 
         return $this;
     }

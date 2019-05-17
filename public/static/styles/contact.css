@@ -292,25 +292,10 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 .contact {
   width: 80%;
-  margin: auto; }
-.travel-options {
-  padding-top: 3em; }
-.travel-options_title {
-    position: relative; }
-.travel-options_title::before, .travel-options_title::after {
-      content: " ";
-      margin: .5em auto;
-      height: 6px;
-      width: 150px;
-      position: absolute; }
-.travel-options_title::before {
-      background: linear-gradient(90deg, #fbcf6e, #f7886c);
-      margin-left: -190px; }
-.travel-options_title::after {
-      background: linear-gradient(-90deg, #fbcf6e, #f7886c);
-      margin-left: 40px; }
-.travel-options .grid-half {
-    margin: 2em auto; }
+  margin: auto;
+  margin-bottom: 3em; }
+#contact_planing_interests {
+  display: none; }
 .travel-interest {
   margin: 2em 0;
   width: 120%;

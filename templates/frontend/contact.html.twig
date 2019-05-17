@@ -7,11 +7,6 @@
     <link rel="stylesheet" href="{{ asset('styles/contact.css') }}" type="text/css">
 {% endblock stylesheets %}
 
-{% block javascripts %}
-	{{ parent() }}
-	<script defer src="{{ asset('scripts/contact.js') }}"></script>
-{% endblock javascripts %}
-
 
 {% block body %}
 
@@ -29,6 +24,8 @@
 
         {{ include('frontend/components/contact/_advance.html.twig') }}
 
+        {{ include('frontend/components/contact/_personal.html.twig') }}
+
     {% if is_granted('ROLE_EDITOR') %}
         </div>
     {% endif %}
@@ -37,3 +34,8 @@
     {{ include('frontend/components/global/_footer.html.twig') }}
 
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script defer src="{{ asset('scripts/contact.js') }}"></script>
+{% endblock javascripts %}

@@ -30,5 +30,6 @@
 
 
 {% block javascripts %}
+    {{ parent() }}
     <script src="{{ asset('scripts/faq.js') }}"></script>
 {% endblock %}
