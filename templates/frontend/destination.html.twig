@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {% extends 'frontend/base.html.twig' %}
 
 {% block stylesheets %}
@@ -41,41 +40,4 @@
 
 {% block javascripts %}
     <script src="{{ asset('scripts/destination.js') }}"></script>
-=======
-{% extends 'frontend/base.html.twig' %}
-
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('styles/destinations.css') }}" type="text/css">
-{% endblock %}
-
-{% block body %}
-
-    {{ include('frontend/components/global/_header.html.twig') }}
-
-    <main class="main">
-
-        {% set hero_title = "Havana" %}
-        {% include 'frontend/components/global/_hero.html.twig' with  {'hero_title': hero_title} only %}
-
-        {{ include('frontend/components/destinations/_introduction.html.twig') }}
-
-        {{ include('frontend/components/destinations/_features_list.html.twig') }}
-
-        {{ include('frontend/components/destinations/_activities.html.twig') }}
-
-        {{ include('frontend/components/global/_top_destination.html.twig') }}
-
-    </main>
-
-    {{ include('frontend/components/global/_footer.html.twig') }}
-
-{% endblock %}
-
-{% block javascripts_vendors %}
-    <script src="{{ asset('scripts/vendors/three.min.js') }}"></script>
-{% endblock %}
-
-{% block javascripts %}
-    <script src="{{ asset('scripts/destination.js') }}"></script>
->>>>>>> 91cfd1d435910199c627ba0b79cad76f39139094
 {% endblock %}

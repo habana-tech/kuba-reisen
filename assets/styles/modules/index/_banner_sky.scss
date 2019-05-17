@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 .banner_sky{
     height: 75vh;
     display: flex;
@@ -35,42 +34,4 @@
             }
         }
     }
-=======
-.banner_sky{
-    height: 75vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-
-    &__image{
-        position: absolute;
-    }
-
-    &__content{
-        position: relative;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-
-        &__titles{
-            text-align: center;
-            width: 100%;
-
-            & h2, & h3{
-                color: white;
-                margin: .5em;
-                padding: 0;
-            }
-
-            & h2{
-                font-size: 2.5em;
-            }
-
-            & h3{
-                font-size: 1.5em;
-            }
-        }
-    }
->>>>>>> 91cfd1d435910199c627ba0b79cad76f39139094
 }

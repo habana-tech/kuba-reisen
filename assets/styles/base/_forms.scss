@@ -60,20 +60,13 @@ select {
 input,
 textarea,
 select {
-	border: 1px solid lighten( $color-gray-dark, 22% );
 	display: block;
 	line-height: 1.5;
 	margin-bottom: 1.1875em;
 	width: 100%;
-
 	padding: .5em .75em;
-
-	background: #fff;
-
-	background: var(--color-bg);
+	background: white;
 	border: 2px solid $color-blue-light;
-
-	width: 100%;
 
 	@media (min-width: $bp-medium) {
 		line-height: 1.5625;

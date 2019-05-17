@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 .why_with_us{
     display: flex;
     flex-wrap: wrap;
@@ -24,31 +23,4 @@
             text-align: center;
         }
     }
-=======
-.why_with_us{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: auto;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding-bottom: 2em;
-
-    &__reasons{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        width: 80%;
-
-        & h5{
-            margin: 0;
-        }
-
-        &__reason{
-            width: 45%;
-            text-align: center;
-        }
-    }
->>>>>>> 91cfd1d435910199c627ba0b79cad76f39139094
 }

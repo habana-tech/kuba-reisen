@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {% extends 'frontend/base.html.twig' %}
 
 {% block title %}Contact Form {% endblock %}
@@ -38,36 +37,3 @@
     {{ include('frontend/components/global/_footer.html.twig') }}
 
 {% endblock %}
-=======
-{% extends 'frontend/base.html.twig' %}
-
-{% block title %}Contact Form {% endblock %}
-
-{% block stylesheets %}
-    {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('styles/contact.css') }}" type="text/css">
-{% endblock stylesheets %}
-
-{% block body %}
-
-    {{ include('frontend/components/global/_header.html.twig') }}
-
-    <main class="main">
-
-        {% set hero_title = "Contact" %}
-        {% include 'frontend/components/global/_hero.html.twig' with  {'hero_title': hero_title} only %}
-
-        {{ include('frontend/components/contact/_basic.html.twig') }}
-
-        {{ include('frontend/components/contact/_advance.html.twig') }}
-
-    </main>
-
-    {{ include('frontend/components/global/_footer.html.twig') }}
-
-{% endblock %}
-
-{% block javascripts %}
-    <script src="{{ asset('scripts/contact.js') }}"></script>
-{% endblock %}
->>>>>>> 91cfd1d435910199c627ba0b79cad76f39139094

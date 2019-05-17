@@ -1,0 +1,267 @@
+.introduction {
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding: 2em 0; }
+  .introduction__content {
+    width: 50%;
+    text-align: center; }
+  .feature {
+  display: flex;
+  width: 100%; }
+  .feature__text {
+    order: 1;
+    width: 50%;
+    padding: 1em 5em; }
+  .feature__text__title {
+      width: 100%; }
+  .feature__text__title h2 {
+        font-size: 2em; }
+  .feature__image {
+    order: 2;
+    width: 50%; }
+  .feature--inverse .feature__text {
+    order: 2; }
+  .feature--inverse .feature__image {
+    order: 1; }
+  .activities__container {
+  position: relative; }
+  body {
+  --color-text: #000;
+  --color-bg: #fff;
+  --color-link: #000;
+  --color-link-hover: #858585;
+  --color-header: #858585;
+  --color-nav-bg: #fff;
+  --color-nav-hover: #858585;
+  --color-cart-bg: #000;
+  --color-cart: #fff;
+  --color-close-bg: #6a6a6a;
+  --color-close: #fff;
+  --color-details-hover: #858585; }
+  /* Icons */
+  .icon {
+  display: block;
+  width: 1.5em;
+  height: 1.5em;
+  margin: 0 auto;
+  fill: currentColor; }
+  .slideshow {
+  position: relative;
+  width: 100%;
+  margin-top: 1rem; }
+  .slideshow::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.4s; }
+  .slideshow--details::after {
+  opacity: 1; }
+  .slide {
+  width: 100%;
+  height: 50vh;
+  top: 0;
+  left: 0;
+  position: absolute;
+  overflow-x: hidden;
+  pointer-events: none;
+  opacity: 0; }
+  .slide--current {
+    opacity: 1;
+    z-index: 999;
+    pointer-events: auto;
+    position: relative; }
+  .slide__wrap {
+    width: 100%;
+    height: 50vh;
+    overflow: hidden;
+    position: relative; }
+  .slide__img {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: white;
+    background-size: cover;
+    background-position: 50% 50%;
+    position: absolute;
+    pointer-events: none; }
+  .slide__title-wrap {
+    position: absolute;
+    width: 50%;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+    left: 4em;
+    color: white; }
+  .slide__title {
+    margin: 0;
+    font-size: 1.5rem;
+    line-height: 0.9;
+    white-space: pre; }
+  .slide__title span {
+      display: inline-block; }
+  .slide__subtitle {
+    font-size: 1.15rem;
+    font-weight: normal; }
+  .boxnav {
+  position: absolute;
+  bottom: 2em;
+  left: 0;
+  display: flex;
+  z-index: 1000;
+  width: 100%;
+  background-color: white; }
+  .boxnav__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border: 0;
+    height: 4rem;
+    flex: 1;
+    margin-bottom: 1em; }
+  .boxnav__details {
+    position: absolute;
+    font-weight: bold;
+    width: 100%;
+    bottom: 0;
+    text-align: center; }
+  .controls {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  bottom: 0;
+  z-index: 1000;
+  height: 2em;
+  background-color: white;
+  width: 15em;
+  display: flex;
+  justify-content: space-around; }
+  .controls .action:hover {
+    color: #666; }
+  .boxnav__item--prev:hover,
+.boxnav__item--next:hover {
+  color: var(--color-nav-hover); }
+  .boxnav__item:focus {
+  outline: none; }
+  .boxnav__label {
+  padding: 0 0.5rem;
+  font-size: 1.15rem;
+  position: relative; }
+  .boxnav__label--total::before {
+  content: '';
+  position: absolute;
+  right: 100%;
+  top: 0;
+  width: 2px;
+  height: 1.45rem;
+  background: #000;
+  -webkit-transform: rotate(22.5deg);
+          transform: rotate(22.5deg); }
+  .icon--caret-rot {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg); }
+  .category {
+  font-weight: normal; }
+  .details-wrap {
+  position: relative;
+  pointer-events: none;
+  width: 100%;
+  z-index: 10000; }
+  .details {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  display: grid;
+  overflow: hidden; }
+  .details-wrap--open .details--current {
+  pointer-events: auto; }
+  .details__item {
+  overflow: hidden; }
+  .details__item--addtocart {
+  grid-row: 4; }
+  .details__inner {
+  width: 100%;
+  height: 100%; }
+  .details__inner {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  -webkit-transform: translate3d(100%, 0, 0);
+          transform: translate3d(100%, 0, 0); }
+  .details__item-img {
+  display: none; }
+  .details__inner--sizes {
+  background: #d4d4d4; }
+  .details__size {
+  position: relative;
+  cursor: pointer; }
+  .details__size--selected::before {
+  content: '';
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  top: 50%;
+  left: 50%;
+  margin: -1rem 0 0 -1rem;
+  border: 2px solid #333;
+  border-radius: 50%; }
+  .details__inner--price {
+  background: linear-gradient(45deg, rgba(53, 207, 212, 0.9), rgba(20, 161, 230, 0.9));
+  color: #fff;
+  padding: 2em 1.5em; }
+  .details__inner--grid {
+  display: grid;
+  padding: 1rem;
+  grid-template-columns: repeat(6, 1fr); }
+  .action--addtocart {
+  background: var(--color-cart-bg);
+  color: var(--color-cart); }
+  .action--close {
+  background: var(--color-close-bg);
+  color: var(--color-close);
+  text-transform: lowercase; }
+  @media screen and (min-width: 53em) {
+  .slideshow {
+    overflow: hidden;
+    margin: 0;
+    height: 90vh; }
+  .slide {
+    height: 90vh; }
+    .slide__title {
+      font-size: 2em; }
+      .slide__title__title-wrap {
+        padding: calc(6rem + 10vh) 0 0 4rem;
+        text-align: left; }
+    .slide__wrap {
+      height: 100%;
+      position: absolute; }
+    .slide__img {
+      background-position: 50% 0; }
+  .boxnav {
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+    width: auto; }
+  .boxnav__item {
+    width: 5em;
+    height: 4em;
+    flex: none; }
+  .details-wrap {
+    position: absolute;
+    top: 0;
+    right: 0;
+    pointer-events: none; }
+  .details {
+    width: 30%; } }
