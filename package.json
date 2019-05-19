@@ -42,9 +42,11 @@
     "Kraken": "github:cferdinandi/kraken",
     "d3-ease": "^1.0.5",
     "grapesjs": "^0.14.61",
+    "grapesjs-tui-image-editor": "^0.1.2",
     "normalize.css": "^8.0.1",
     "nouislider": "^13.1.5",
     "npm": "^6.9.0",
-    "segment-js": "^1.1.2"
+    "segment-js": "^1.1.2",
+    "tui-image-editor": "^3.5.2"
   }
 }
