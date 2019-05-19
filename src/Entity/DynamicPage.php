@@ -50,12 +50,18 @@ class DynamicPage
     private $translation_from;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\UploadedImage", mappedBy="dynamic_page")
+     */
+    private $uploadedImages;
+
+    /**
      * DynamicPage constructor.
      * @param $pageTemplate
      */
-    public function __construct()
+    public function __construct($pageTemplate = 'example.html.twig')
     {
-        $this->pageTemplate = 'example.html.twig';
+        $this->pageTemplate = $pageTemplate;
+        $this->uploadedImages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -178,5 +184,36 @@ class DynamicPage
     public function __toString()
     {
         return $this->pageName."(".$this->language.")";
+    }
+
+    /**
+     * @return Collection|UploadedImage[]
+     */
+    public function getUploadedImages(): Collection
+    {
+        return $this->uploadedImages;
+    }
+
+    public function addUploadedImage(UploadedImage $uploadedImage): self
+    {
+        if (!$this->uploadedImages->contains($uploadedImage)) {
+            $this->uploadedImages[] = $uploadedImage;
+            $uploadedImage->setDynamicPage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUploadedImage(UploadedImage $uploadedImage): self
+    {
+        if ($this->uploadedImages->contains($uploadedImage)) {
+            $this->uploadedImages->removeElement($uploadedImage);
+            // set the owning side to null (unless already changed)
+            if ($uploadedImage->getDynamicPage() === $this) {
+                $uploadedImage->setDynamicPage(null);
+            }
+        }
+
+        return $this;
     }
 }

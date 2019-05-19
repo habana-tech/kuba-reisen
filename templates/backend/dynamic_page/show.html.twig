@@ -23,9 +23,20 @@
                 <th>PageTemplate</th>
                 <td>{{ dynamic_page.pageTemplate }}</td>
             </tr>
+{#            <tr>#}
+{#                <th>PageContent</th>#}
+{#                <td>{{ dynamic_page.pageContent ? dynamic_page.pageContent|join(', ') : '' }}</td>#}
+{#            </tr>#}
+
             <tr>
-                <th>PageContent</th>
-                <td>{{ dynamic_page.pageContent ? dynamic_page.pageContent|join(', ') : '' }}</td>
+                <th>UploadedImages</th>
+                <td>{% if dynamic_page.uploadedImages %}
+                        {% for image in dynamic_page.uploadedImages %}
+                            <img src="{{ asset(image.imagePath | imagine_filter('squared_thumbnail')) }}">
+                            {{ image.imagePath }}
+                        {% endfor %}
+                    {% endif %}
+                   </td>
             </tr>
             <tr>
                 <th>Language</th>

@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Entity\File as EmbeddedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
@@ -47,6 +48,7 @@ class Interest
     public function __construct()
     {
         $this->filterTags = new ArrayCollection();
+        $this->image = new EmbeddedFile();
     }
 
     public function getId(): ?int

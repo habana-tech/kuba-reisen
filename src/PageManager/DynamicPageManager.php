@@ -46,5 +46,15 @@ class DynamicPageManager
         return $this->dynamicPage = $this->repository->findOneBy($findOneBy);
     }
 
+    public function find($id)
+    {
+        return $this->dynamicPage = $this->repository->find($id);
+    }
+
+    public function saveChanges(){
+        $this->entitymanager->persist($this->dynamicPage);
+        $this->entitymanager->flush();
+
+    }
 
 }

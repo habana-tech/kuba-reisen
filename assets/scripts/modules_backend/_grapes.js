@@ -71,7 +71,17 @@ var editor = grapesjs.init({
     canvas: {
       //  scripts: ['https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'],
         styles: [app_js_routing__styles_css]
-    }
+    },
+     assetManager: {
+    // Upload endpoint, set `false` to disable upload, default `false`
+    upload: app_js_routing__grape_endpoint_upload,
+    params: {
+                _grapejs_editor_token: app_js_param__csrf_token,
+                _page_id: app_js_param__page_id
+            },
+
+    
+  }
 });
 /*
 const RemoteStorage = editor.StorageManager.get('remote');

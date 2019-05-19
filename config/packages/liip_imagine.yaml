@@ -11,7 +11,7 @@ liip_imagine:
       flysystem:
         filesystem_service: oneup_flysystem.uploaded_images_filesystem
         root_url: '%env(MEDIA_STATIC_HOST_URL)%'
-        cache_prefix:       cache
+        cache_prefix:       ~
         visibility:         public
 
 
