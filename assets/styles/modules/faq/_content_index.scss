@@ -1,9 +1,15 @@
 .content_index{
 
-    & ul{
+    &__list{
         list-style-type: decimal;
       & li{
+          & a{
+              color: $grey;
 
+              &:hover{
+                color: $grey;
+              }
+          }
       }
     }
 

@@ -67,98 +67,29 @@
 
     <div class="activities__list">
         <div class="activities__list__title">
-            <h3>We have found 5 activities</h3>
+            <h3>We have found {{ activities | length }} activities</h3>
         </div>
 
-        <div class="activity">
-            <div class="activity__image">
-                <img src="{{ asset('img/grid/square2.jpg') }}" alt="">
+        {% for activity in activities %}
+            <div class="activity">
+                <a href="{{ path('activity', {'id':activity.id, 'name':activity.machineName}) }}">
+                    <div class="activity__image">
+                        <img src="{{ asset(activity.imagePath) }}" alt="">
+                    </div>
+                    <div class="activity__content">
+                        <div class="activity__content__title">
+                            <h4>{{ activity.name }}</h4>
+                        </div>
+                        <div class="activity__content__description">
+                            <p>{{ activity.description }}</p>
+                        </div>
+                    </div>
+                </a>
             </div>
-            <div class="activity__content">
-                <div class="activity__content__title">
-                    <h4>Sky surfing in varadero</h4>
-                </div>
-                <div class="activity__content__description">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aperiam beatae delectus deserunt eaque eligendi facere, facilis fuga inventore laborum libero nam nesciunt numquam officia optio quas quo rem tempore!</p>
-                </div>
-            </div>
+            {% else %}
+            <p>something</p>
+        {% endfor %}
 
-        </div>
-
-        <div class="activity">
-            <div class="activity__image">
-                <img src="{{ asset('img/grid/square1.jpg') }}" alt="">
-            </div>
-            <div class="activity__content">
-                <div class="activity__content__title">
-                    <h4>Sky surfing in varadero</h4>
-                </div>
-                <div class="activity__content__description">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aperiam beatae delectus deserunt eaque eligendi facere, facilis fuga inventore laborum libero nam nesciunt numquam officia optio quas quo rem tempore!</p>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="activity">
-            <div class="activity__image">
-                <img src="{{ asset('img/grid/square3.jpg') }}" alt="">
-            </div>
-            <div class="activity__content">
-                <div class="activity__content__title">
-                    <h4>Sky surfing in varadero</h4>
-                </div>
-                <div class="activity__content__description">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aperiam beatae delectus deserunt eaque eligendi facere, facilis fuga inventore laborum libero nam nesciunt numquam officia optio quas quo rem tempore!</p>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="activity">
-            <div class="activity__image">
-                <img src="{{ asset('img/grid/square1.jpg') }}" alt="">
-            </div>
-            <div class="activity__content">
-                <div class="activity__content__title">
-                    <h4>Sky surfing in varadero</h4>
-                </div>
-                <div class="activity__content__description">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aperiam beatae delectus deserunt eaque eligendi facere, facilis fuga inventore laborum libero nam nesciunt numquam officia optio quas quo rem tempore!</p>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="activity">
-            <div class="activity__image">
-                <img src="{{ asset('img/grid/square3.jpg') }}" alt="">
-            </div>
-            <div class="activity__content">
-                <div class="activity__content__title">
-                    <h4>Sky surfing in varadero</h4>
-                </div>
-                <div class="activity__content__description">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aperiam beatae delectus deserunt eaque eligendi facere, facilis fuga inventore laborum libero nam nesciunt numquam officia optio quas quo rem tempore!</p>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="activity">
-            <div class="activity__image">
-                <img src="{{ asset('img/grid/square2.jpg') }}" alt="">
-            </div>
-            <div class="activity__content">
-                <div class="activity__content__title">
-                    <h4>Sky surfing in varadero</h4>
-                </div>
-                <div class="activity__content__description">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aperiam beatae delectus deserunt eaque eligendi facere, facilis fuga inventore laborum libero nam nesciunt numquam officia optio quas quo rem tempore!</p>
-                </div>
-            </div>
-
-        </div>
     </div>
 
 </section>

@@ -29,12 +29,6 @@
         &__text{
             font-size: 2em;
             text-shadow: 2px 2px 10px rgba(black, .2);
-
-            &::first-letter{
-                font-size: 2em;
-                text-transform: uppercase;
-            }
-
         }
     }
 }
