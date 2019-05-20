@@ -9,6 +9,7 @@ module.exports = {
         faq: "./assets/scripts/faq.js",
         contact: "./assets/scripts/contact.js",
         activities: "./assets/scripts/activities.js",
+        activity: "./assets/scripts/activity.js",
 
     },
     output: {

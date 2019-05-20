@@ -15,8 +15,12 @@
   justify-content: center; }
   .intro__content {
     width: 70%; }
-  .content_index ul {
+  .content_index__list {
   list-style-type: decimal; }
+  .content_index__list li a {
+    color: #666; }
+  .content_index__list li a:hover {
+      color: #666; }
   .questions__topic {
   margin: 6em auto; }
   .questions__topic__title::after {

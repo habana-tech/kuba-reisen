@@ -14,7 +14,7 @@ class ActivityType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
+            ->add('name')
             ->add('description')
             ->add('language',  ChoiceType::class, ['choices' => [
                 'de' => 'de',

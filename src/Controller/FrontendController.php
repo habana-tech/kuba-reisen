@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\ContactPlaning;
 use App\Entity\Destination;
+use App\Entity\Activity;
 use App\Form\ContactPlaningType;
+use App\Repository\ActivityRepository;
 use App\Repository\DynamicPageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -82,8 +84,6 @@ class FrontendController extends AbstractController
             throw new NotFoundHttpException();
 
 
-
-
         $contact = new ContactPlaning();
         $form = $this->createForm(ContactPlaningType::class, $contact, ['locale' => $request->getLocale()]);
         $form->handleRequest($request);
@@ -113,8 +113,6 @@ class FrontendController extends AbstractController
      */
     public function destination(Request $request, Destination $destination, DynamicPageRepository $pageRepository, DynamicPageManager $pm)
     {
-
-
         if(!$destination)
             throw new NotFoundHttpException();
 
@@ -169,10 +167,13 @@ class FrontendController extends AbstractController
 
 
     }
+
     /**
-     * @Route("/activities", name="activities")
+     * @Route("/{_locale}/activities", defaults={"_locale": "de"},
+     *     requirements={"_locale": "en|es|de"}, name="activities")
+     * @Route("/activities")
      */
-    public function activities(Request $request, DynamicPageRepository $pageRepository, DynamicPageManager $pm)
+    public function activities(Request $request, DynamicPageRepository $pageRepository, DynamicPageManager $pm, ActivityRepository $activityRepository)
     {
 
         $pageinfo = [
@@ -189,15 +190,44 @@ class FrontendController extends AbstractController
         if(!$page)
             throw new NotFoundHttpException();
 
+        $activities = $activityRepository->findBy(['language'=>$request->getLocale()]);
+
         return $this->render('frontend/activities.html.twig', [
             'dynamic_page_id' => $page->getId(),
             'page' => $page,
+            'activities'=>$activities,
         ]);
     }
 
+    /**
+     * @Route("/{_locale}/activity/{id}/{name}", defaults={"_locale": "de"},
+     *     requirements={"_locale": "en|es|de"}, name="activity")
+     * @Route("/activity/{id}/{name}")
+     */
+    public function activity(Request $request, Activity $activity, DynamicPageRepository $pageRepository, DynamicPageManager $pm)
+    {
+        if(!$activity)
+            throw new NotFoundHttpException();
 
+        $pageinfo = [
+            'pageName'=>$activity->getName(),
+            'language'=>$request->getLocale()
+        ];
 
+        if($this->isGranted('ROLE_ADMIN'))
+            $page = $pm->findByOrCreateIfDoesntExist($pageinfo);
+        else {
+            $page = $pm->findOneBy($pageinfo);
+        }
 
+        if(!$page)
+            throw new NotFoundHttpException();
 
+        return $this->render('frontend/activity.html.twig', [
+            'dynamic_page_id' => $page->getId(),
+            'page' => $page,
+            'activity' => $activity,
+        ]);
+    }
 
 }
