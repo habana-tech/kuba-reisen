@@ -14,7 +14,6 @@ class DestinationType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('title')
             ->add('language',  ChoiceType::class, ['choices' => [
                 'de' => 'de',
                 'en' => 'en',

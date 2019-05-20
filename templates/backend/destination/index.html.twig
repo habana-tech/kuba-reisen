@@ -10,7 +10,6 @@
             <tr>
                 <th>Id</th>
                 <th>Name</th>
-                <th>Title</th>
                 <th>Language</th>
                 <th>actions</th>
             </tr>
@@ -20,7 +19,6 @@
             <tr>
                 <td>{{ destination.id }}</td>
                 <td>{{ destination.name }}</td>
-                <td>{{ destination.title }}</td>
                 <td>{{ destination.language }}</td>
                 <td>
                     <a href="{{ path('backend_destination_show', {'id': destination.id}) }}">show</a>

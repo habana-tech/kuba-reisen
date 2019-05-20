@@ -5,14 +5,19 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Entity\File as EmbeddedFile;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\DestinationRepository")
+ * @Vich\Uploadable
+ * @ORM\HasLifecycleCallbacks
  */
 class Destination
 {
     use LanguageFieldTrait;
     use UserControlFieldsTrait;
+    use ImageFieldTrait;
 
     /**
      * @ORM\Id()
@@ -36,15 +41,12 @@ class Destination
      */
     private $filterTags;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $title;
 
     public function __construct()
     {
         $this->activities = new ArrayCollection();
         $this->filterTags = new ArrayCollection();
+        $this->image = new EmbeddedFile();
     }
 
     public function getId(): ?int
@@ -62,6 +64,10 @@ class Destination
         $this->name = $name;
 
         return $this;
+    }
+
+    public function getMachineName(){
+        return urlencode($this->getName());
     }
 
     /**
@@ -116,15 +122,4 @@ class Destination
         return $this;
     }
 
-    public function getTitle(): ?string
-    {
-        return $this->title;
-    }
-
-    public function setTitle(string $title): self
-    {
-        $this->title = $title;
-
-        return $this;
-    }
 }
