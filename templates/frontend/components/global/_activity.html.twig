@@ -1,0 +1,15 @@
+<div class="activity">
+    <a href="{{ path('activity', {'id':activity.id, 'name':activity.machineName}) }}">
+        <div class="activity__image">
+            <img src="{{ asset(activity.imagePath ) }}" alt="">
+        </div>
+        <div class="activity__content">
+            <div class="activity__content__title">
+                <h4>{{ activity.name }}</h4>
+            </div>
+            <div class="activity__content__description">
+                <p>{{ activity.description }}</p>
+            </div>
+        </div>
+    </a>
+</div>

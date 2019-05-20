@@ -1855,9 +1855,6 @@ figure {
 *::selection {
   background-color:rgba(53, 207, 212, 0.3); }
 body {
-  overflow-x: hidden;
-  position: relative; }
-body {
   background: white;
   color: #666;
   font-family: "Open Sans", sans-serif;
@@ -2134,6 +2131,9 @@ pre code {
     background-image:linear-gradient(to right, transparent 50%, rgba(53, 207, 212, 0.9), rgba(20, 161, 230, 0.9)); }
 .btn--transparent:hover {
       background-position: right center; }
+.btn--small-circle {
+    padding: .25em .5em;
+    border-radius: 15px; }
 /**
  * @section Forms
  * Styling for form elements.

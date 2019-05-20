@@ -50,36 +50,3 @@
   .activities__list__title {
     width: 100%;
     text-align: center; }
-  .activities__list .activity {
-    width: 30%;
-    margin: .5em 0;
-    cursor: pointer;
-    position: relative; }
-  .activities__list .activity__image {
-      height: 35vh;
-      overflow: hidden;
-      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-      border-radius: 5px;
-      position: relative; }
-  .activities__list .activity__image img {
-        width: 100%;
-        transition: -webkit-transform .3s ease-in-out;
-        transition: transform .3s ease-in-out;
-        transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out; }
-  .activities__list .activity__image:hover img {
-        -webkit-transform: scale(1.1);
-                transform: scale(1.1); }
-  .activities__list .activity__content {
-      position: relative;
-      top: -1em;
-      background-color: white;
-      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-      padding: 1em;
-      width: 90%;
-      margin: auto;
-      border-radius: 5px; }
-  .activities__list .activity__content__title {
-        text-decoration: underline;
-        text-align: center; }
-  .activities__list .activity__content__description {
-        text-align: center; }

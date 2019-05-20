@@ -1,0 +1,31 @@
+.bottom_bar{
+    position: fixed;
+    bottom: 0;
+    width: 99vw;
+    margin: auto;
+    z-index: 1000;
+    background: linear-gradient(45deg, rgba($light-blue, .9), rgba($dark-blue, .9));
+    border: 1px solid rgba(white, .9);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em 0;
+
+    &__icon{
+        width: 10%;
+        color: white;
+    }
+
+    &__text{
+        width: 60%;
+        color: white;
+
+        & p{
+            margin: 0;
+        }
+    }
+
+    &__button{
+        width: 20%;
+    }
+}

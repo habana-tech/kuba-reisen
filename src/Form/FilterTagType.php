@@ -20,6 +20,8 @@ class FilterTagType extends AbstractType
                 'es' => 'es',
                 ]])
             ->add('interests')
+            ->add('activities')
+            ->add('destinations')
             ->add('translation_from')
             ->add('activities')
             ->add('modified_by')

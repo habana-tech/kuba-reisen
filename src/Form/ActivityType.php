@@ -27,7 +27,7 @@ class ActivityType extends AbstractType
             ->add('dynamicPage')
             ->add('modified_by')
 
-            ->add('imageFile', VichImageType::class)
+            ->add('imageFile', VichImageType::class, ['required'=> false])
         ;
     }
 

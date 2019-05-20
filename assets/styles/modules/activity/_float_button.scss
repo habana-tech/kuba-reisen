@@ -1,0 +1,19 @@
+.float_button{
+    &__container{
+        position: relative;
+    }
+
+    &__button {
+        position: sticky;
+        //left: 3em;
+        top: 0px;
+        padding: .5em;
+        background: linear-gradient(45deg, $light-green, $dark-green);
+        z-index: 1000;
+        color: white;
+
+        &--sticky{
+
+        }
+    }
+}

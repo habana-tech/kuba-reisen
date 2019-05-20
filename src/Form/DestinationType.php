@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class DestinationType extends AbstractType
 {
@@ -22,6 +23,8 @@ class DestinationType extends AbstractType
             ->add('activities')
             ->add('filterTags')
             ->add('modified_by')
+
+            ->add('imageFile', VichImageType::class, ['required'=> false])
         ;
     }
 

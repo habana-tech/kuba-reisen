@@ -113,7 +113,7 @@ body {
 
 .boxnav {
     position: absolute;
-    bottom: 2em;
+    bottom: 0;
     left: 0;
     display: flex;
     z-index: 1000;
@@ -131,31 +131,9 @@ body {
         margin-bottom: 1em;
     }
 
-    &__details {
-        position: absolute;
-        font-weight: bold;
-        width: 100%;
-        bottom: 0;
-        text-align: center;
-    }
+
 }
 
-.controls{
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 0;
-    z-index: 1000;
-    height: 2em;
-    background-color: white;
-    width: 15em;
-    display: flex;
-    justify-content: space-around;
-
-    & .action:hover{
-        color: $grey;
-    }
-}
 
 .boxnav__item--prev:hover,
 .boxnav__item--next:hover {
@@ -191,84 +169,6 @@ body {
     font-weight: normal;
 }
 
-.details-wrap {
-    position: relative;
-    pointer-events: none;
-    width: 100%;
-    z-index: 10000;
-}
-
-.details {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    display: grid;
-    overflow: hidden;
-}
-
-.details-wrap--open .details--current {
-    pointer-events: auto;
-}
-
-.details__item {
-    overflow: hidden;
-}
-
-.details__item--addtocart {
-    grid-row: 4;
-}
-
-.details__inner {
-    width: 100%;
-    height: 100%;
-}
-
-.details__inner {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    transform: translate3d(100%,0,0);
-}
-
-.details__item-img {
-    display: none;
-}
-
-.details__inner--sizes {
-    background: #d4d4d4;
-}
-
-.details__size {
-    position: relative;
-    cursor: pointer;
-}
-
-.details__size--selected::before {
-    content: '';
-    position: absolute;
-    width: 2rem;
-    height: 2rem;
-    top: 50%;
-    left: 50%;
-    margin: -1rem 0 0 -1rem;
-    border: 2px solid #333;
-    border-radius: 50%;
-}
-
-.details__inner--price {
-    background: linear-gradient(45deg, rgba($light-blue, .9), rgba($dark-blue, .9));
-    color: #fff;
-    padding: 2em 1.5em;
-}
-
-
-.details__inner--grid {
-    display: grid;
-    padding: 1rem;
-    grid-template-columns: repeat(6,1fr);
-}
 
 
 .action--addtocart {
@@ -326,13 +226,4 @@ body {
         flex: none;
     }
 
-    .details-wrap {
-        position: absolute;
-        top: 0;
-        right: 0;
-        pointer-events: none;
-    }
-    .details {
-        width: 30%;
-    }
 }

@@ -5,5 +5,10 @@
         </div>
     </div>
 
-
+    {% for activity in related_activities %}
+        {% include 'frontend/components/global/_activity.html.twig'
+            with {'activity':activity} only %}
+    {% else %}
+        <p>something</p>
+    {% endfor %}
 </section>

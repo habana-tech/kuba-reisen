@@ -8,12 +8,14 @@ use App\Entity\Activity;
 use App\Form\ContactPlaningType;
 use App\Repository\ActivityRepository;
 use App\Repository\DynamicPageRepository;
+use App\Repository\FilterTagRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use App\PageManager\DynamicPageManager;
+use Doctrine\Common\Collections\ArrayCollection;
 
 class FrontendController extends AbstractController
 {
@@ -171,9 +173,17 @@ class FrontendController extends AbstractController
     /**
      * @Route("/{_locale}/activities", defaults={"_locale": "de"},
      *     requirements={"_locale": "en|es|de"}, name="activities")
+     * @Route("/{_locale}/activities/search/{search}", defaults={"_locale": "de"},
+     *     requirements={"_locale": "en|es|de"}, name="activities_search")
+     * @Route("/{_locale}/activities/search/{search}/filters/{filters}", defaults={"_locale": "de"},
+     *     requirements={"_locale": "en|es|de"}, name="activities_search_filter")
+     * @Route("/{_locale}/activities/filters/{filters}", defaults={"_locale": "de"},
+     *     requirements={"_locale": "en|es|de"}, name="activities_filters")
      * @Route("/activities")
      */
-    public function activities(Request $request, DynamicPageRepository $pageRepository, DynamicPageManager $pm, ActivityRepository $activityRepository)
+    public function activities(Request $request, DynamicPageRepository $pageRepository,
+                               DynamicPageManager $pm, ActivityRepository $activityRepository,
+                               string $search=null, string $filter=null)
     {
 
         $pageinfo = [
@@ -204,7 +214,9 @@ class FrontendController extends AbstractController
      *     requirements={"_locale": "en|es|de"}, name="activity")
      * @Route("/activity/{id}/{name}")
      */
-    public function activity(Request $request, Activity $activity, DynamicPageRepository $pageRepository, DynamicPageManager $pm)
+    public function activity(Request $request, Activity $activity, DynamicPageRepository $pageRepository,
+                             DynamicPageManager $pm, ActivityRepository $activityRepository,
+                             FilterTagRepository $filterTagRepository)
     {
         if(!$activity)
             throw new NotFoundHttpException();
@@ -223,11 +235,34 @@ class FrontendController extends AbstractController
         if(!$page)
             throw new NotFoundHttpException();
 
+        $tags = $activity->getFilterTags();
+        $related_activities = new ArrayCollection();
+        foreach ($tags as $tag)
+        {
+            $current_tag_activities = $tag->getActivities();
+            foreach ($current_tag_activities as $_activity)
+            {
+                if($_activity != $activity)
+                if (!$related_activities->contains($_activity)) {
+                    $related_activities[] = $_activity;
+                }
+            }
+        }
+
+
+
+//        = $activityRepository->createQueryBuilder('activity')
+//        ->andWhere('activity.filterTags  2')
+//        ->setParameter('val', $tags_id)
+//        ->setMaxResults(3)
+//        ->getQuery()
+//        ->getResult();
+
         return $this->render('frontend/activity.html.twig', [
             'dynamic_page_id' => $page->getId(),
             'page' => $page,
             'activity' => $activity,
+            'related_activities'=>$related_activities,
         ]);
     }
-
 }
