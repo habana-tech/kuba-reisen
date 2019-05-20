@@ -24,6 +24,7 @@ class ActivityType extends AbstractType
             ->add('alternativeText')
             ->add('filterTags')
             ->add('translation_from')
+            ->add('dynamicPage')
             ->add('modified_by')
 
             ->add('imageFile', VichImageType::class)

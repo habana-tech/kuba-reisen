@@ -52,6 +52,12 @@ class Activity
      */
     private $description;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\DynamicPage", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $dynamic_page;
+
     public function __construct()
     {
         $this->filterTags = new ArrayCollection();
@@ -147,6 +153,18 @@ class Activity
     public function __toString()
     {
         return $this->title." (".$this->language.")";
+    }
+
+    public function getDynamicPage(): ?DynamicPage
+    {
+        return $this->dynamic_page;
+    }
+
+    public function setDynamicPage(DynamicPage $dynamic_page): self
+    {
+        $this->dynamic_page = $dynamic_page;
+
+        return $this;
     }
 
 
