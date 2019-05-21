@@ -69,7 +69,10 @@ class ActivityRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findBySearch($search): ?Activity{
+    /**
+     * @return Activity[] Returns an array of Activity objects
+     */
+    public function findBySearch($search){
         return $this->createQueryBuilder('activity')
             ->where('activity.name like :search')
             ->setParameter('search',"%$search%")

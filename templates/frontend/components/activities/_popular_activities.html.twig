@@ -23,41 +23,9 @@
             <h3>Select the filters</h3>
             
             <ul class="activities__selectors__filters__lists">
-                <li>
-                    Nature
-                </li>
-
-                <li>
-                    Yoga
-                </li>
-
-                <li>
-                    Family
-                </li>
-
-                <li>
-                    Sky
-                </li>
-
-                <li>
-                    Cigar
-                </li>
-
-                <li>
-                    Vinales
-                </li>
-
-                <li>
-                    Children
-                </li>
-
-                <li>
-                    Yoga
-                </li>
-
-                <li>
-                    Animals
-                </li>
+                {% for filterTag in filterTags %}
+                    <li>{{ filterTag.title }}</li>
+                {% endfor %}
             </ul>
         </div>
         <div class="activities__selectors__search">

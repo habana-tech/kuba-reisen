@@ -10,6 +10,7 @@ use App\Repository\ActivityRepository;
 use App\Repository\DynamicPageRepository;
 use App\Repository\FilterTagRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
@@ -207,6 +208,7 @@ class FrontendController extends AbstractController
         if(!$page)
             throw new NotFoundHttpException();
 
+        $filterTags = $filterTagRepository->findBy(['language'=>$request->getLocale()]);
 
         $activities = [];
         if ($filters==null and $search==null)
@@ -222,13 +224,59 @@ class FrontendController extends AbstractController
         else
             print_r('todo');
 
-        dump($activities);
 
         return $this->render('frontend/activities.html.twig', [
             'dynamic_page_id' => $page->getId(),
             'page' => $page,
             'activities'=>$activities,
+            'filterTags'=>$filterTags,
         ]);
+    }
+
+    /**
+     * @Route("/{_locale}/api_activities/search/{search}", defaults={"_locale": "de"},
+     *     requirements={"_locale": "en|es|de"}, name="api_activities_search")
+     * @Route("/{_locale}/api_activities/search/{search}/filters/{filters}", defaults={"_locale": "de"},
+     *     requirements={"_locale": "en|es|de"}, name="api_activities_search_filter")
+     * @Route("/{_locale}/api_activities/filters/{filters}", defaults={"_locale": "de"},
+     *     requirements={"_locale": "en|es|de"}, name="api_activities_filters")
+     */
+    public function api_activities(Request $request, DynamicPageRepository $pageRepository,
+                               DynamicPageManager $pm, ActivityRepository $activityRepository,
+                               string $search=null, string $filters=null,
+                               FilterTagRepository $filterTagRepository)
+    {
+
+        $filterTags = $filterTagRepository->findBy(['language'=>$request->getLocale()]);
+
+        $activities = [];
+//        if ($filters==null and $search==null)
+            $activities = $activityRepository->createQueryBuilder('activity')
+                ->where('activity.language = :lang')
+                ->setParameter('lang', $request->getLocale())
+                ->getQuery()
+                ->getResult();
+//        else if ($filters!=null and $search==null)
+//            $activities = $activityRepository->findByFilter($filters, $filterTagRepository);
+//        else if ($filters==null and $search!=null)
+//            $activities = $activityRepository->findBySearch($search);
+//        else
+//            print_r('todo');
+
+        $data = array();
+        $posCount = 0;
+        foreach ($activities as $activity){
+            array_push($data, array(
+                'currentIndex' => $posCount++,
+                'title' => $activity->getName(),
+            ));
+        }
+
+        $response = new Response();
+        $response->setContent(json_encode($data));
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
     }
 
     /**
