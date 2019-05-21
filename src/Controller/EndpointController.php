@@ -105,7 +105,7 @@ class EndpointController extends AbstractController
         foreach ($page->getUploadedImages() as $image)
         {
             $data[] = [
-                'src' => $this->getParameter('MEDIA_STATIC_HOST_URL').$image->getImagePath(),
+                'src' => '/static/'.$image->getImagePath(),
                 'type' => 'image',
                 'height' => $image->getImage()->getDimensions()[0],
                 'width' => $image->getImage()->getDimensions()[1],

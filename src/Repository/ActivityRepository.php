@@ -3,6 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Activity;
+use App\Entity\FilterTag;
+use App\Repository\FilterTagRepository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -47,4 +49,32 @@ class ActivityRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /**
+    * @return Activity[] Returns an array of Activity objects
+    */
+    public function findByFilter($filters, FilterTagRepository $filterTagRepository) {
+
+        $filters = explode(',', $filters);
+        $filter_objs = $filterTagRepository->findBy(['title'=>$filters]);
+
+        $filter_ids = array_map( function (FilterTag $filterTag) {return $filterTag->getId();},
+                                $filter_objs);
+
+        return $this->createQueryBuilder('activity')
+            ->join('activity.filterTags', 'filter_tags')
+            ->where('filter_tags.id in (:ids)')
+            ->setParameter('ids', $filter_ids)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findBySearch($search): ?Activity{
+        return $this->createQueryBuilder('activity')
+            ->where('activity.name like :search')
+            ->setParameter('search',"%$search%")
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

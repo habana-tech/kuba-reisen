@@ -8,7 +8,7 @@
  * Remove the tap delay in webkit
  * @link https://medium.com/@adactio/delay-a9df9edceef3#.7dmbl3xow
  */
-a, .link-block-styled,
+a,
 button,
 input,
 select,
@@ -579,7 +579,7 @@ p {
  * 1. Remove the gray background on active links in IE 10.
  * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.
  */
-a, .link-block-styled {
+a {
   color: #666;
   background-color: transparent;
   /* 1 */
@@ -591,18 +591,11 @@ a, .link-block-styled {
   /**
 	 * Improve readability when focused and also mouse hovered in all browsers.
 	 */ }
-a:active, .link-block-styled:active, a:hover, .link-block-styled:hover, .link-block:hover .link-block-styled {
+a:active, a:hover {
     outline: 0; }
-a:active, .link-block-styled:active, a:focus, .link-block-styled:focus, a:hover, .link-block-styled:hover, .link-block:hover .link-block-styled {
+a:active, a:focus, a:hover {
     color: #404040;
     text-decoration: underline; }
-/**
- * Creates block-level links
- */
-a.link-block, .link-block.link-block-styled {
-  color: #000000;
-  display: block;
-  text-decoration: none; }
 /**
  * List styling
  */
@@ -774,8 +767,6 @@ blockquote:after,
 q:before,
 q:after {
   content: ''; }
-a:hover, .link-block-styled:hover, .link-block:hover .link-block-styled {
-  color: #ffffff; }
 /**
  * @section Code
  * Styling for code and preformatted text.
@@ -819,7 +810,7 @@ pre code {
 .btn {
   background-image: linear-gradient(to right, rgba(53, 207, 212, 0.9), rgba(20, 161, 230, 0.9));
   background-size: 200%;
-  border: 2px white solid;
+  border: 1px white solid;
   color: white;
   font-size: 1em;
   font-weight: 700;
@@ -830,7 +821,8 @@ pre code {
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08); }
 .btn:hover {
     background-position: right center;
-    text-decoration: none; }
+    text-decoration: none;
+    color: white; }
 .btn--big {
     padding: .75em 1.5em;
     font-size: 1.25em; }
@@ -1224,19 +1216,18 @@ td {
   /**
 	 * Underline all links
 	 */
-  a, .link-block-styled,
-  a:visited,
-  .link-block-styled:visited {
+  a,
+  a:visited {
     text-decoration: underline; }
   /**
 	 * Show URL after links
 	 */
-  a[href]:after, .link-block-styled[href]:after {
+  a[href]:after {
     content: " (" attr(href) ")"; }
   /**
 	 * Don't show URL for internal links
 	 */
-  a[href^="#"]:after, .link-block-styled[href^="#"]:after {
+  a[href^="#"]:after {
     content: ""; }
   /**
 	 * Specifies the minimum number of lines to print at the top and bottom of a page.

@@ -1301,7 +1301,7 @@ span.CodeMirror-selectedtext{background:none}
 @-webkit-keyframes gjs-slide-up{0%{-webkit-transform:translate(0, 0);transform:translate(0, 0);opacity:1}100%{-webkit-transform:translate(0, -3rem);transform:translate(0, -3rem);opacity:0}}
 @keyframes gjs-slide-up{0%{-webkit-transform:translate(0, 0);transform:translate(0, 0);opacity:1}100%{-webkit-transform:translate(0, -3rem);transform:translate(0, -3rem);opacity:0}}
 .cm-s-hopscotch span.cm-error{color:#ffffff}
-a, .link-block-styled,
+a,
 button,
 input,
 select,
@@ -1872,7 +1872,7 @@ p {
  * 1. Remove the gray background on active links in IE 10.
  * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.
  */
-a, .link-block-styled {
+a {
   color: #666;
   background-color: transparent;
   /* 1 */
@@ -1884,18 +1884,11 @@ a, .link-block-styled {
   /**
 	 * Improve readability when focused and also mouse hovered in all browsers.
 	 */ }
-a:active, .link-block-styled:active, a:hover, .link-block-styled:hover, .link-block:hover .link-block-styled {
+a:active, a:hover {
     outline: 0; }
-a:active, .link-block-styled:active, a:focus, .link-block-styled:focus, a:hover, .link-block-styled:hover, .link-block:hover .link-block-styled {
+a:active, a:focus, a:hover {
     color: #404040;
     text-decoration: underline; }
-/**
- * Creates block-level links
- */
-a.link-block, .link-block.link-block-styled {
-  color: #000000;
-  display: block;
-  text-decoration: none; }
 /**
  * List styling
  */
@@ -2067,8 +2060,6 @@ blockquote:after,
 q:before,
 q:after {
   content: ''; }
-a:hover, .link-block-styled:hover, .link-block:hover .link-block-styled {
-  color: #ffffff; }
 /**
  * @section Code
  * Styling for code and preformatted text.
@@ -2112,7 +2103,7 @@ pre code {
 .btn {
   background-image:linear-gradient(to right, rgba(53, 207, 212, 0.9), rgba(20, 161, 230, 0.9));
   background-size: 200%;
-  border: 2px white solid;
+  border: 1px white solid;
   color: white;
   font-size: 1em;
   font-weight: 700;
@@ -2123,7 +2114,8 @@ pre code {
   box-shadow:0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08); }
 .btn:hover {
     background-position: right center;
-    text-decoration: none; }
+    text-decoration: none;
+    color: white; }
 .btn--big {
     padding: .75em 1.5em;
     font-size: 1.25em; }
@@ -3548,7 +3540,7 @@ Descr: Custom radio toggle
       width: 100%;
       text-align: center;
       margin: 1em 0; }
-.header__nav__lang a, .header__nav__lang .link-block-styled {
+.header__nav__lang a {
         color: white;
         font-weight: 700;
         font-size: 1.25em; }
@@ -3570,14 +3562,14 @@ Descr: Custom radio toggle
           top: 25%; }
 .header__nav__menu__column:last-child::after {
           display: none; }
-.header__nav__menu__column__title a, .header__nav__menu__column__title .link-block-styled {
+.header__nav__menu__column__title a {
           color: white; }
 .header__nav__menu__column__list {
           list-style: none;
           margin-left: 1em; }
 .header__nav__menu__column__list__link {
             margin: .5em auto; }
-.header__nav__menu__column__list__link a, .header__nav__menu__column__list__link .link-block-styled {
+.header__nav__menu__column__list__link a {
               color: white; }
 .header__nav__menu__column__list__link span {
               padding: 3px;
@@ -3800,7 +3792,6 @@ Descr: Custom radio toggle
     margin: auto;
     border-radius: 5px; }
 .activity__content__title {
-      text-decoration: underline;
       text-align: center; }
 .activity__content__description {
       text-align: center; }
@@ -3876,13 +3867,13 @@ Descr: Custom radio toggle
       justify-content: space-between; }
 .footer__content__links__column {
         width: 23%; }
-.footer__content__links__column__title a, .footer__content__links__column__title .link-block-styled {
+.footer__content__links__column__title a {
           color: white; }
 .footer__content__links__column ul {
           margin-left: .25em; }
 .footer__content__links__column ul li {
             list-style: none; }
-.footer__content__links__column ul li a, .footer__content__links__column ul li .link-block-styled {
+.footer__content__links__column ul li a {
               color: white; }
 .footer__content__infos {
       width: 100%;
@@ -3906,6 +3897,15 @@ Descr: Custom radio toggle
     position: absolute;
     bottom: 0;
     z-index: 0; }
+.editor__imagen_list {
+  width: 80%;
+  margin: auto;
+  position: relative; }
+.editor__imagen_list__item {
+    margin: 2em 0;
+    position: relative; }
+.editor__imagen_list__item img {
+      width: 100%; }
 .hero {
   height: 100vh;
   overflow: hidden;
@@ -3936,7 +3936,7 @@ Descr: Custom radio toggle
       position: relative;
       height: 5em;
       transition: all .3s ease-in-out; }
-.hero__buttom-links__item a, .hero__buttom-links__item .link-block-styled {
+.hero__buttom-links__item a {
         color: white;
         font-family: "Baloo Bhaina", cursive; }
 .hero__buttom-links__item:before {
@@ -3960,7 +3960,7 @@ Descr: Custom radio toggle
           -webkit-transform: translateY(5%);
                   transform: translateY(5%);
           opacity: 1; }
-.hero h1, .hero a, .hero .link-block-styled {
+.hero h1, .hero a {
     text-shadow:2px 2px 10px rgba(0, 0, 0, 0.5); }
 #canvas_hero {
   display: block;

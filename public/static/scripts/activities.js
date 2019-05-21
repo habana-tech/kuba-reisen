@@ -94,7 +94,19 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\n//# sourceURL=webpack:///./assets/scripts/activities.js?");
+eval("\n\nvar _filter = __webpack_require__(/*! ./modules/activities/_filter */ \"./assets/scripts/modules/activities/_filter.js\");\n\nvar _filter2 = _interopRequireDefault(_filter);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nnew _filter2.default();\n\n//# sourceURL=webpack:///./assets/scripts/activities.js?");
+
+/***/ }),
+
+/***/ "./assets/scripts/modules/activities/_filter.js":
+/*!******************************************************!*\
+  !*** ./assets/scripts/modules/activities/_filter.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nvar FilterStyle = function () {\n    function FilterStyle() {\n        _classCallCheck(this, FilterStyle);\n\n        this.filters = document.querySelectorAll('.activities__selectors__filters__lists li');\n        this.events();\n    }\n\n    _createClass(FilterStyle, [{\n        key: 'events',\n        value: function events() {\n            this.filters.forEach(function (x) {\n                x.addEventListener('click', function (e) {\n                    e.preventDefault();\n                    var element = e.target;\n                    element.classList.toggle('selected');\n                });\n            });\n        }\n    }]);\n\n    return FilterStyle;\n}();\n\nexports.default = FilterStyle;\n\n//# sourceURL=webpack:///./assets/scripts/modules/activities/_filter.js?");
 
 /***/ })
 

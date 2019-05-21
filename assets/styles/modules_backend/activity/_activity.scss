@@ -1,0 +1,14 @@
+.editor__imagen_list{
+    width: 80%;
+    margin: auto;
+    position: relative;
+
+    &__item{
+        margin: 2em 0;
+        position: relative;
+
+        & img{
+            width: 100%;
+        }
+    }
+}

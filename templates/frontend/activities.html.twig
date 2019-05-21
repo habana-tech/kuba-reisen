@@ -13,19 +13,12 @@
         {% set hero_title = 'hero.activities.title' | trans %}
         {% include 'frontend/components/global/_hero.html.twig' with  {'hero_title': hero_title} only %}
 
-        {% if is_granted('ROLE_EDITOR') %}
-            <div id="grapes-editable">
-        {% endif %}
+        {%  include 'frontend/components/activities/_popular_activities.html.twig' with {'activities':activities} %}
 
-            {%  include 'frontend/components/activities/_popular_activities.html.twig' with {'activities':activities} %}
+        {{ include('frontend/components/global/_banner_sky.html.twig') }}
 
-            {{ include('frontend/components/global/_banner_sky.html.twig') }}
+        {{ include('frontend/components/activities/_clients_opinions.html.twig') }}
 
-            {{ include('frontend/components/activities/_clients_opinions.html.twig') }}
-
-        {% if is_granted('ROLE_EDITOR') %}
-            </div>
-        {% endif %}
     </main>
 
     {{ include('frontend/components/global/_footer.html.twig') }}

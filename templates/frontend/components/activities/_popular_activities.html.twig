@@ -1,53 +1,62 @@
-<section class="section activities">
+<section id="activities" class="section activities">
 
-    <div class="section__title ">
-        <div class="section__title__highlight">
-            <h2 data-grapeid="contact_t1">{{ page.ElementContent('contact_t1',"Popular activities") | raw }}</h2>
+    {% if is_granted('ROLE_EDITOR') %}
+        <div id="grapes-editable" style="max-height: 10em; overflow: hidden">
+    {% endif %}
+
+
+        <div class="section__title ">
+            <div class="section__title__highlight">
+                <h2 data-grapeid="contact_t1">{{ page.ElementContent('contact_t1',"Popular activities") | raw }}</h2>
+            </div>
+            <div class="section__title__description">
+                <p data-grapeid="contact_p1">{{ page.ElementContent('contact_p1',"We have some many that is hard to choose") | raw }}</p>
+            </div>
         </div>
-        <div class="section__title__description">
-            <p data-grapeid="contact_p1">{{ page.ElementContent('contact_p1',"We have some many that is hard to choose") | raw }}</p>
+
+    {% if is_granted('ROLE_EDITOR') %}
         </div>
-    </div>
+    {% endif %}
 
     <div class="activities__selectors">
         <div class="activities__selectors__filters">
             <h3>Select the filters</h3>
             
             <ul class="activities__selectors__filters__lists">
-                <li class="selected">
-                    <a href="#">Nature</a>
+                <li>
+                    Nature
                 </li>
 
                 <li>
-                    <a href="#">Yoga</a>
+                    Yoga
                 </li>
 
                 <li>
-                    <a href="#">Family</a>
-                </li>
-
-                <li class="selected">
-                    <a href="#">Sky</a>
+                    Family
                 </li>
 
                 <li>
-                    <a href="#">Cigar</a>
+                    Sky
                 </li>
 
                 <li>
-                    <a href="#">Vinales</a>
+                    Cigar
                 </li>
 
                 <li>
-                    <a href="#">Children</a>
+                    Vinales
                 </li>
 
                 <li>
-                    <a href="#">Yoga</a>
+                    Children
                 </li>
 
                 <li>
-                    <a href="#">Animals</a>
+                    Yoga
+                </li>
+
+                <li>
+                    Animals
                 </li>
             </ul>
         </div>

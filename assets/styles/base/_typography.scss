@@ -62,24 +62,6 @@ a {
 }
 
 
-/**
- * Creates block-level links
- */
-
-a.link-block {
-	color: $color-black;
-	display: block;
-	text-decoration: none;
-}
-
-.link-block-styled {
-	@extend a;
-
-	.link-block:hover & {
-		@extend a:hover;
-	}
-}
-
 
 /**
  * List styling
@@ -313,5 +295,3 @@ q:before,
 q:after {
 	content: '';
 }
-
-a:hover{color: $color-white;}
