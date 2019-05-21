@@ -303,7 +303,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   position: relative; }
 .travel-interest__options {
     display: grid;
-    grid-template-areas: "img1 img4 img6 img6" "img2 img4 img7 img8" "img2 img5 img7 img8" "img3 img3 img3 img3";
+    grid-template-areas: "img1 img4 img6 img6" "img2 img4 img7 img8" "img2 img5 img7 img8" "img3 img3 img3 img3";
     grid-template-rows: 40vh 40vh 40vh 40vh;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: .25em; }

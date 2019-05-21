@@ -3298,7 +3298,9 @@ body > textarea {
   height: 90%; }
 .gjs-mdl-dialog.gjs-one-bg.gjs-two-color {
   width: inherit !important;
-  max-width: 90vw; }
+  max-width: 90vw !important; }
+#tie-btn-draw, #tie-btn-shape, #tie-btn-icon, #tie-btn-text {
+  display: none; }
 /* --------------------------------
 
 Title: Radio Switch
@@ -4029,7 +4031,7 @@ Descr: Custom radio toggle
   margin-bottom: 2em; }
 .travel-options__grid {
     display: grid;
-    grid-template-areas: "img1 img5 img8 img8" "img2 img5 img9 img9" "img3 img3 img3 img3" "img4 img6 img6 img10" "img4 img7 img7 img10";
+    grid-template-areas: "img1 img5 img8 img8" "img2 img5 img9 img9" "img3 img3 img3 img3" "img4 img6 img6 img10" "img4 img7 img7 img10";
     grid-template-rows: 40vh 40vh 40vh 40vh;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: .25em; }
