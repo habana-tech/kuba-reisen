@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\DynamicPage;
 
 /**
  * @Route("/admin/destination")
@@ -35,9 +36,16 @@ class DestinationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $dynamicPage = new DynamicPage();
+
+            $dynamicPage->setPageName($destination->getMachineName());
+            $dynamicPage->setLanguage($destination->getLanguage());
+            $destination->setDynamicPage($dynamicPage);
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($destination);
-            $entityManager->flush();
+            $entityManager->persist($dynamicPage);
 
             return $this->redirectToRoute('backend_destination_index');
         }

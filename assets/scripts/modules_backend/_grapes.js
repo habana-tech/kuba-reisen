@@ -45,6 +45,7 @@ var editor = grapesjs.init({
     plugins: [tUIImageEditor],
     pluginsOpts: {
     [tUIImageEditor]: {
+        upload: true,
         icons: {
       'menu.normalIcon.path': `../static/svg/icon-d.svg`,
       'menu.activeIcon.path': `../static/svg/icon-b.svg`,
@@ -52,21 +53,22 @@ var editor = grapesjs.init({
       'menu.hoverIcon.path': `../static/svg/icon-c.svg`,
       'submenu.normalIcon.path': `../static/svg/icon-d.svg`,
       'submenu.activeIcon.path': `../static/svg/icon-c.svg`,
-    },
-     script: [
-        'static/scripts/vendors/fabric.min.js',
-        'static/scripts/vendors/tui-code-snippet.min.js',
-        'static/scripts/vendors/tui-color-picker.min.js',
-        'static/scripts/vendors/tui-image-editor.min.js'
-      ],
+        },
+         script: [
+            'static/scripts/vendors/fabric.min.js',
+            'static/scripts/vendors/tui-code-snippet.min.js',
+            'static/scripts/vendors/tui-color-picker.min.js',
+            'static/scripts/vendors/tui-image-editor.min.js'
+          ],
 
-    // In case the script is loaded this style will be loaded too
-    style: [
-     
-    
-    ],
-    
-    height: '90vh', width: '90vw' /* options */ }
+        // In case the script is loaded this style will be loaded too
+        style: [
+
+
+        ],
+
+        height: '90vh', width: '90vw' /* options */
+    }
     },
     canvas: {
       //  scripts: ['https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'],

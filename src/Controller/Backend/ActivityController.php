@@ -3,6 +3,7 @@
 namespace App\Controller\Backend;
 
 use App\Entity\Activity;
+use App\Entity\DynamicPage;
 use App\Form\ActivityType;
 use App\Repository\ActivityRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -31,12 +32,22 @@ class ActivityController extends AbstractController
     public function new(Request $request): Response
     {
         $activity = new Activity();
+
+
         $form = $this->createForm(ActivityType::class, $activity);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $dynamicPage = new DynamicPage();
+
+            $dynamicPage->setPageName($activity->getMachineName());
+            $dynamicPage->setLanguage($activity->getLanguage());
+            $activity->setDynamicPage($dynamicPage);
+
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($activity);
+            $entityManager->persist($dynamicPage);
             $entityManager->flush();
 
             return $this->redirectToRoute('backend_activity_index');

@@ -7,6 +7,7 @@ use App\PageManager\DynamicPageManager;
 use App\Repository\ActivityRepository;
 use App\Repository\DynamicPageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -82,18 +83,35 @@ class EndpointController extends AbstractController
 
         $em = $this->getDoctrine()->getManager();
 
+
+        $images = [];
         if($page = $pm->find($request->get('_page_id')))
         {
-            //dump($request->files);
+
             $files = $request->files->get('files');
-            dump($files);
+            //dump($files);
             if($files)
             {
+                //dump($files);
                 foreach ($files as $file) {
+
+
                     $image = new UploadedImage();
+
+//                    if($file->getClientMimeType("application/octet-stream"))
+//                    {
+//                        $output_file = tmpfile();
+//                        $ifp = fopen( $output_file, 'wb' );
+//                        $data = explode( ',', $request->get('image') );
+//                        fwrite( $ifp, base64_decode( $data[ 1 ] ) );
+//                        fclose( $ifp );
+//                    }
+
                     $image->setImageFile($file);
+                    //dump($image);
                     $em->persist($image);
                     $page->addUploadedImage($image);
+                    $images[] = $image;
                     $em->persist($page);
                 }
             }
@@ -102,10 +120,10 @@ class EndpointController extends AbstractController
         }
         $data = [];
 
-        foreach ($page->getUploadedImages() as $image)
+        foreach ($images as $image)
         {
             $data[] = [
-                'src' => $this->getParameter('MEDIA_STATIC_HOST_URL').$image->getImagePath(),
+                'src' => $image->getStaticImagePath(),
                 'type' => 'image',
                 'height' => $image->getImage()->getDimensions()[0],
                 'width' => $image->getImage()->getDimensions()[1],

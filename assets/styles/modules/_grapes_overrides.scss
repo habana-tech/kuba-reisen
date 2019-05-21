@@ -42,6 +42,9 @@ element {
 .gjs-mdl-dialog.gjs-one-bg.gjs-two-color {
 
     width: inherit !important;
-    max-width: 90vw;
+    max-width: 90vw !important;
 
+}
+#tie-btn-draw, #tie-btn-shape, #tie-btn-icon, #tie-btn-text {
+display: none;
 }

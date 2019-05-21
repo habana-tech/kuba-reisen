@@ -23,21 +23,28 @@ class FrontendController extends AbstractController
      * @Route("/{_locale}", defaults={"_locale": "de"},
      *     requirements={"_locale": "en|es|de"}, name="frontend")
      */
-    public function index(Request $request, DynamicPageRepository $pageRepository)
+    public function index(Request $request, DynamicPageRepository $pageRepository, DynamicPageManager $pm)
     {
-        if($dymanicPage = $pageRepository->findOneBy([
+        $pageinfo = [
             'pageName'=>'index',
             'language'=>$request->getLocale()
-        ]))
+        ];
 
+        if($this->isGranted('ROLE_ADMIN'))
+            $page = $pm->findByOrCreateIfDoesntExist($pageinfo);
+        else {
+            $page = $pm->findOneBy($pageinfo);
+        }
+
+        if(!$page)
+            throw new NotFoundHttpException();
 
             return $this->render('frontend/index.html.twig', [
             'controller_name' => 'FrontendController',
-            'dynamic_page_id' => $dymanicPage->getId(),
-            'page' => $dymanicPage,
+            'dynamic_page_id' => $page->getId(),
+            'page' => $page,
         ]);
 
-        throw new NotFoundHttpException();
     }
 
     /**

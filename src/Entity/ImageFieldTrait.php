@@ -19,6 +19,12 @@ trait ImageFieldTrait
     public function getImagePath(){
         return 'uploads/images/'.$this->getImage()->getName();
     }
+
+
+    //TODO: debera conincidircon la variable ENV del MEDIA_STATIC_HOST_URL
+    public function getStaticImagePath(){
+        return 'static/uploads/images/'.$this->getImage()->getName();
+    }
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
@@ -36,7 +42,7 @@ trait ImageFieldTrait
     protected $image;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      *
      * @var \DateTime
      */
