@@ -49,6 +49,7 @@ class Interest
     {
         $this->filterTags = new ArrayCollection();
         $this->image = new EmbeddedFile();
+        $this->language = 'de';
     }
 
     public function getId(): ?int

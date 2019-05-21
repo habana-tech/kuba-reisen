@@ -5,47 +5,29 @@
 {% block body %}
     <h1>Interest index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Language</th>
-                <th>UpdatedAt</th>
-                <th>Image.name</th>
-                <th>Image.originalName</th>
-                <th>Image.mimeType</th>
-                <th>Image.size</th>
-                <th>Image.dimensions</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for interest in interests %}
-            <tr>
-                <td>{{ interest.id }}</td>
-                <td>{{ interest.title }}</td>
-                <td>{{ interest.description }}</td>
-                <td>{{ interest.language }}</td>
-                <td>{{ interest.updatedAt ? interest.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ interest.image.name }}</td>
-                <td>{{ interest.image.originalName }}</td>
-                <td>{{ interest.image.mimeType }}</td>
-                <td>{{ interest.image.size }}</td>
-                <td>{{ interest.image.dimensions  | join('x')}}</td>
-                <td>
-                    <a href="{{ path('backend_interest_show', {'id': interest.id}) }}">show</a>
-                    <a href="{{ path('backend_interest_edit', {'id': interest.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="11">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <hr>
 
-    <a href="{{ path('backend_interest_new') }}">Create new</a>
+    <section class="section other_activities">
+        <div class="section__title ">
+            {% for interest in interests %}
+                <div class="activity">
+
+                    <div class="activity__content">
+                        <div class="activity__content__title">
+                            <h4>{{ interest.title }}</h4>
+                        </div>
+                        <div class="activity__content__description">
+                            <a href="{{ path('backend_interest_show', {'id': interest.id}) }}">show</a>
+                            <a href="{{ path('backend_interest_edit', {'id': interest.id}) }}">edit</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+    </section>
+
+    <hr>
+
+    <a href="{{ path('backend_interest_new') }}" class="btn">Create new</a>
 {% endblock %}

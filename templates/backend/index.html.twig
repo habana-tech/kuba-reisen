@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello BackendController!{% endblock %}
+{% block title %}Hello {{ app.user }}{% endblock %}
 
 {% block body %}
 <style>
@@ -9,16 +9,21 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>Hello {{ app.user }}! ✅</h1>
 
-    You can add or edit the following entities:
-    <ul>
-        <li><a href="{{ path('backend_activity_index') }}">Activities</a> </li>
-        <li><a href="{{ path('backend_destination_index') }}">Destinations</a> </li>
-        <li><a href="{{ path('backend_dynamic_page_index') }}">Contenido de Paginas dinamicas</a> </li>
-        <li><a href="{{ path('backend_filter_tag_index') }}">Tags de filtros</a> </li>
-        <li><a href="{{ path('backend_interest_index') }}">Intereses</a> </li>
-        <li><a href="{{ path('backend_post_index') }}">Posts</a> </li>
+    <hr>
+    You can see, edit or add one of the following entities:
+    <div style="display: inline-flex;">
+        <a href="{{ path('backend_activity_index') }}"  class="btn">Activities</a>
+      <a href="{{ path('backend_destination_index') }}" class="btn">Destinations</a>
+ <a href="{{ path('backend_interest_index') }}" class="btn">Interest</a>
+     <a href="{{ path('backend_filter_tag_index') }}" class="btn">Tags</a>
+    </div>
+
+
+
+{#        <li><a href="{{ path('backend_dynamic_page_index') }}">Contenido de Paginas dinamicas</a> </li>#}
+{#        <li><a href="{{ path('backend_post_index') }}">Posts</a> </li>#}
      </ul>
 </div>
 {% endblock %}

@@ -14,17 +14,16 @@ class FilterTagType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('language',  ChoiceType::class, ['choices' => [
-                'de' => 'de',
-                'en' => 'en',
-                'es' => 'es',
-                ]])
-            ->add('interests')
-            ->add('activities')
-            ->add('destinations')
-            ->add('translation_from')
-            ->add('activities')
-            ->add('modified_by')
+//            ->add('language',  ChoiceType::class, ['choices' => [
+//                'de' => 'de',
+//                'en' => 'en',
+//                'es' => 'es',
+//                ]])
+//            ->add('interests')
+//            ->add('activities')
+//            ->add('destinations')
+//            ->add('translation_from')
+//            ->add('modified_by')
         ;
     }
 

@@ -15,17 +15,17 @@ class InterestType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('description')
-            ->add('language')
-            ->add('translation_from')
-
-            ->add('modified_by')
+//            ->add('description')
+//            ->add('language')
+//            ->add('translation_from')
+//
+//            ->add('modified_by')
             ->add('imageFile', VichImageType::class, ['required'=> false])
-            ->add('language',  ChoiceType::class, ['choices' => [
-                'de' => 'de',
-                'en' => 'en',
-                'es' => 'es',
-            ]])
+//            ->add('language',  ChoiceType::class, ['choices' => [
+//                'de' => 'de',
+//                'en' => 'en',
+//                'es' => 'es',
+//            ]])
 
         ;
     }

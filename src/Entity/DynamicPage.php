@@ -30,11 +30,6 @@ class DynamicPage
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $pageTitle;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
     private $pageTemplate;
 
     /**
@@ -43,11 +38,6 @@ class DynamicPage
     private $pageContent = [];
 
     private $elementsList;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\DynamicPage")
-     */
-    private $translation_from;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\UploadedImage", mappedBy="dynamic_page")
@@ -62,6 +52,7 @@ class DynamicPage
     {
         $this->pageTemplate = $pageTemplate;
         $this->uploadedImages = new ArrayCollection();
+        $this->language = 'de';
     }
 
     public function getId(): ?int

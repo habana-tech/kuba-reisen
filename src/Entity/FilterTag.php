@@ -52,6 +52,7 @@ class FilterTag
         $this->interests = new ArrayCollection();
         $this->activities = new ArrayCollection();
         $this->destinations = new ArrayCollection();
+        $this->language = 'de';
     }
 
     public function getId(): ?int

@@ -40,12 +40,13 @@ class DestinationController extends AbstractController
             $dynamicPage = new DynamicPage();
 
             $dynamicPage->setPageName($destination->getMachineName());
-            $dynamicPage->setLanguage($destination->getLanguage());
             $destination->setDynamicPage($dynamicPage);
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($destination);
             $entityManager->persist($dynamicPage);
+
+            $entityManager->flush();
 
             return $this->redirectToRoute('backend_destination_index');
         }

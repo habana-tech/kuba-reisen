@@ -15,19 +15,21 @@ class ActivityType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('description')
-            ->add('language',  ChoiceType::class, ['choices' => [
-                'de' => 'de',
-                'en' => 'en',
-                'es' => 'es',
-            ]])
-            ->add('alternativeText')
-            ->add('filterTags')
-            ->add('translation_from')
-            ->add('dynamicPage')
-            ->add('modified_by')
+            ->add('description', null, ['label'=>'Short description, it will be show in the activities page'])
+//            ->add('language',  ChoiceType::class, ['choices' => [
+//                'de' => 'de',
+//                'en' => 'en',
+//                'es' => 'es',
+//            ]])
+
+            ->add('filterTags',null,  ['label'=>'Tags, select all you need for this activity'])
+            ->add('destinations',null,  ['label'=>'Destinations to do the activity'])
+//            ->add('translation_from')
+//            ->add('dynamicPage')
+//            ->add('modified_by')
 
             ->add('imageFile', VichImageType::class, ['required'=> false])
+            ->add('alternativeText', null,  ['label'=>'Alternative Text, a short description about image'])
         ;
     }
 

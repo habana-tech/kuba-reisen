@@ -41,7 +41,6 @@ class ActivityController extends AbstractController
             $dynamicPage = new DynamicPage();
 
             $dynamicPage->setPageName($activity->getMachineName());
-            $dynamicPage->setLanguage($activity->getLanguage());
             $activity->setDynamicPage($dynamicPage);
 
 

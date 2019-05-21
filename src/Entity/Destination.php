@@ -32,7 +32,7 @@ class Destination
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Activity", inversedBy="destinations")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Activity", mappedBy="destinations")
      */
     private $activities;
 
@@ -52,7 +52,10 @@ class Destination
     {
         $this->activities = new ArrayCollection();
         $this->filterTags = new ArrayCollection();
+
         $this->image = new EmbeddedFile();
+
+        $this->language = 'de';
     }
 
     public function getId(): ?int
