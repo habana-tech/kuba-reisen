@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 use Vich\UploaderBundle\Form\Type\VichImageType;
@@ -18,8 +19,10 @@ class UserType extends AbstractType
             ->add('imageFile', VichImageType::class, ['required'=>false])
             ->add('email')
             ->add('enabled')
-            ->add('password')
-            ->add('lastLogin')
+            ->add('changepassword', PasswordType::class, ['label'=> 'Write a new password, only to change it',
+                                        'required'=>false,
+                                        'attr'=>['value'=>'']
+                                ])
             ->add('roles')
         ;
     }

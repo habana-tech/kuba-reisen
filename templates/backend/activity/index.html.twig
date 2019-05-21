@@ -9,12 +9,12 @@
     <hr>
 
 <section class="section other_activities">
-    <div class="section__title ">
+    <div class="section__title " style="justify-content: space-between;">
     {% for activity in activities %}
         <div class="activity">
             <div class="activity__image">
                 <a href="{{ path('activity', {'id':activity.id, 'name':activity.machineName}) }}">
-                    <img src="{{ asset(activity.imagePath ) }}" alt="">
+                    <img src="{{ asset(activity.staticImagePath | imagine_filter('squared_thumbnail')) }}" alt="">
                 </a>
             </div>
             <div class="activity__content">

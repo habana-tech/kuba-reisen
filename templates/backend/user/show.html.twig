@@ -3,7 +3,7 @@
 {% block title %}User{% endblock %}
 
 {% block body %}
-    <h1>User</h1>
+    <h1>All users</h1>
 
     <table class="table">
         <tbody>
@@ -28,21 +28,10 @@
                 <td>{{ user.enabled ? 'Yes' : 'No' }}</td>
             </tr>
             <tr>
-                <th>Salt</th>
-                <td>{{ user.salt }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
-            <tr>
                 <th>LastLogin</th>
                 <td>{{ user.lastLogin ? user.lastLogin|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
-            <tr>
-                <th>ConfirmationToken</th>
-                <td>{{ user.confirmationToken }}</td>
-            </tr>
+
             <tr>
                 <th>PasswordRequestedAt</th>
                 <td>{{ user.passwordRequestedAt ? user.passwordRequestedAt|date('Y-m-d H:i:s') : '' }}</td>

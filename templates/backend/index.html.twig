@@ -4,8 +4,7 @@
 
 {% block body %}
 <style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 80%; font: 18px/1.5 sans-serif; }
 </style>
 
 <div class="example-wrapper">
@@ -13,17 +12,16 @@
 
     <hr>
     You can see, edit or add one of the following entities:
-    <div style="display: inline-flex;">
-        <a href="{{ path('backend_activity_index') }}"  class="btn">Activities</a>
-      <a href="{{ path('backend_destination_index') }}" class="btn">Destinations</a>
- <a href="{{ path('backend_interest_index') }}" class="btn">Interest</a>
-     <a href="{{ path('backend_filter_tag_index') }}" class="btn">Tags</a>
-    </div>
+<div class="container margin-top">
+    <ul class="list-inline" style="display: inline-flex; align-content: space-evenly; list-style: none">
+        <li> <a href="{{ path('backend_activity_index') }}"  class="btn">Activities</a></li>
+        <li>  <a href="{{ path('backend_destination_index') }}" class="btn">Destinations</a></li>
+        <li> <a href="{{ path('backend_interest_index') }}" class="btn">Interest</a></li>
+        <li> <a href="{{ path('backend_filter_tag_index') }}" class="btn">Tags</a></li>
+    </ul>
+</div>
 
 
 
-{#        <li><a href="{{ path('backend_dynamic_page_index') }}">Contenido de Paginas dinamicas</a> </li>#}
-{#        <li><a href="{{ path('backend_post_index') }}">Posts</a> </li>#}
-     </ul>
 </div>
 {% endblock %}

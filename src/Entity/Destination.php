@@ -146,6 +146,6 @@ class Destination
 
     public function __toString()
     {
-        return $this->name. "(". $this->language . ")";
+        return $this->name. " (". $this->language . ")";
     }
 }

@@ -15,10 +15,7 @@
                 <th>PageName</th>
                 <td>{{ dynamic_page.pageName }}</td>
             </tr>
-            <tr>
-                <th>PageTitle</th>
-                <td>{{ dynamic_page.pageTitle }}</td>
-            </tr>
+
             <tr>
                 <th>PageTemplate</th>
                 <td>{{ dynamic_page.pageTemplate }}</td>
@@ -30,13 +27,21 @@
 
             <tr>
                 <th>UploadedImages</th>
-                <td>{% if dynamic_page.uploadedImages %}
+                <td style="display: grid;
+
+                                grid-template-columns: 1fr 1fr 1fr;
+
+                                grid-gap: 15px;">
+                    {% if dynamic_page.uploadedImages %}
                         {% for image in dynamic_page.uploadedImages %}
-                            <img src="{{ asset(image.imagePath | imagine_filter('squared_thumbnail')) }}">
-                            {{ image.imagePath }}
+                            <div style="border: rgba(3,3,3,.5) solid 1px; border-radius: 25px; padding: 20px">
+                                <img src="{{ asset(image.staticImagePath | imagine_filter('squared_thumbnail')) }}" style="max-height: 200px; width: 200px;display: block; margin: 0 auto">
+                                {{ image.imagePath }}
+                            </div>
+
                         {% endfor %}
                     {% endif %}
-                   </td>
+               </td>
             </tr>
             <tr>
                 <th>Language</th>
@@ -45,9 +50,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('backend_dynamic_page_index') }}">back to list</a>
+    <a href="{{ path('backend_dynamic_page_index') }}" CLASS="btn">back to list</a>
 
-    <a href="{{ path('backend_dynamic_page_edit', {'id': dynamic_page.id}) }}">edit</a>
+    <a href="{{ path('backend_dynamic_page_edit', {'id': dynamic_page.id}) }}" class="btn">edit</a>
 
     {{ include('backend/dynamic_page/_delete_form.html.twig') }}
 {% endblock %}
