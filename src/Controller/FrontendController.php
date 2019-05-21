@@ -219,10 +219,8 @@ class FrontendController extends AbstractController
             $activities = $activityRepository->findByFilter($filters, $filterTagRepository);
         else if ($filters==null and $search!=null)
             $activities = $activityRepository->findBySearch($search);
-        else
-            print_r('todo');
-
-        dump($activities);
+//        else
+//            print_r('todo');
 
         return $this->render('frontend/activities.html.twig', [
             'dynamic_page_id' => $page->getId(),
