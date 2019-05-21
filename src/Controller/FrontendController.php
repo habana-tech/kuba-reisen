@@ -190,9 +190,9 @@ class FrontendController extends AbstractController
      */
     public function activities(Request $request, DynamicPageRepository $pageRepository,
                                DynamicPageManager $pm, ActivityRepository $activityRepository,
-                               string $search=null, string $filter=null)
+                               string $search=null, string $filters=null,
+                               FilterTagRepository $filterTagRepository)
     {
-
         $pageinfo = [
             'pageName'=>'activities',
             'language'=>$request->getLocale()
@@ -207,7 +207,22 @@ class FrontendController extends AbstractController
         if(!$page)
             throw new NotFoundHttpException();
 
-        $activities = $activityRepository->findBy(['language'=>$request->getLocale()]);
+
+        $activities = [];
+        if ($filters==null and $search==null)
+            $activities = $activityRepository->createQueryBuilder('activity')
+            ->where('activity.language = :lang')
+            ->setParameter('lang', $request->getLocale())
+            ->getQuery()
+            ->getResult();
+        else if ($filters!=null and $search==null)
+            $activities = $activityRepository->findByFilter($filters, $filterTagRepository);
+        else if ($filters==null and $search!=null)
+            $activities = $activityRepository->findBySearch($search);
+        else
+            print_r('todo');
+
+        dump($activities);
 
         return $this->render('frontend/activities.html.twig', [
             'dynamic_page_id' => $page->getId(),
@@ -249,21 +264,11 @@ class FrontendController extends AbstractController
             $current_tag_activities = $tag->getActivities();
             foreach ($current_tag_activities as $_activity)
             {
-                if($_activity != $activity)
-                if (!$related_activities->contains($_activity)) {
+                if($_activity != $activity and !$related_activities->contains($_activity)) {
                     $related_activities[] = $_activity;
                 }
             }
         }
-
-
-
-//        = $activityRepository->createQueryBuilder('activity')
-//        ->andWhere('activity.filterTags  2')
-//        ->setParameter('val', $tags_id)
-//        ->setMaxResults(3)
-//        ->getQuery()
-//        ->getResult();
 
         return $this->render('frontend/activity.html.twig', [
             'dynamic_page_id' => $page->getId(),

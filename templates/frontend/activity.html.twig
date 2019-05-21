@@ -14,15 +14,22 @@
         {% include 'frontend/components/global/_hero.html.twig'
             with  {'hero_title': activity.name} only %}
 
-        <div class="float_button__container">
+
+        {% if is_granted('ROLE_EDITOR') %}
+            <div id="grapes-editable">
+        {% endif %}
+
             {% include 'frontend/components/activity/_description.html.twig' with {'description':activity.description } %}
 
             {% include 'frontend/components/activity/_images.html.twig' %}
 
             {% include 'frontend/components/activity/_related_activities.html.twig' %}
 
-            {% include 'frontend/components/activity/_float_button.html.twig' %}
-        </div>
+            {#{% include 'frontend/components/activity/_float_button.html.twig' %}#}
+
+        {% if is_granted('ROLE_EDITOR') %}
+            </div>
+        {% endif %}
 
         {% include 'frontend/components/global/_bottom_bar.html.twig' %}
 
@@ -38,5 +45,7 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="{{ asset('scripts/activity.js') }}"></script>
+    {% if not is_granted('ROLE_EDITOR') %}
+        <script src="{{ asset('scripts/activity.js') }}"></script>
+    {% endif %}
 {% endblock %}

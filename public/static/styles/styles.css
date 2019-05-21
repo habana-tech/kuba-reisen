@@ -491,7 +491,6 @@ Descr: Custom radio toggle
     margin: auto;
     border-radius: 5px; }
 .activity__content__title {
-      text-decoration: underline;
       text-align: center; }
 .activity__content__description {
       text-align: center; }

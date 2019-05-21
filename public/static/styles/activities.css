@@ -21,9 +21,10 @@
         padding: .2em .4em;
         text-align: center;
         margin: .5em 0;
-        position: relative; }
-  .activities__selectors__filters ul li a {
-          color: white; }
+        position: relative;
+        transition: all .3s ease-in-out;
+        cursor: pointer;
+        color: white; }
   .activities__selectors__filters ul li.selected {
           border: 2px solid rgba(102, 102, 102, 0.7); }
   .activities__selectors__filters ul li.selected::after {
