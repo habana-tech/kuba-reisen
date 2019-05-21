@@ -11,19 +11,51 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="{{ asset('styles/kraken.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('styles/styles.css') }}" type="text/css">
-    <style>a:hover, a:active{color: #6a6a6a}</style>
+    <style>a:hover, a:active{color: #6a6a6a}
+        
+                                             .vich-image img{
+                                                 max-height: 200px;
+                                                 width: auto;
+                                                 margin: 1em;
+                                             }
+    </style>
     {% block stylesheets %}
 
     {% endblock %}
 
 
 </head>
-    <body class="container">
-       {% block body %}{% endblock %}
-       {% block javascripts %}
+<body class="">
 
-       {% endblock %}
+<div class="container" style=" min-height: calc(100vh - 12em);">
+    {% block body %}{% endblock %}
+    {% block javascripts %}
+
+    {% endblock %}
 
 
-    </body>
+</div>
+
+
+<footer class="container container-small" style=" height: 4em;">
+    <hr>
+    {% if is_granted("ROLE_EDITOR") %}
+    <nav>
+        <h3>Others links</h3>
+        <ul class="list-inline">
+            <li><a href="{{ path('backend') }}">Admin</a> </li>
+            <li><a href="{{ path('backend_dynamic_page_index') }}">DynamicPages</a> </li>
+{#            <li><a href="{{ path('backend_post_index') }}">Posts</a> </li>#}
+            <li><a href="{{ path('user_index') }}">All users</a> </li>
+            <li><a href="{{ path('fos_user_profile_show') }}">Your profile</a> </li>
+
+            <li style="float: right;"><a href="{{ path('fos_user_security_logout') }}">Logout</a> </li>
+        </ul>
+    </nav>
+    {% endif %}
+    <p class="text-small text-muted">Made with ❤️ <a href="https://habana.tech">Habana.Tech</a> | {{ 'now'|date('Y') }}</p>
+</footer>
+
+</body>
+
 </html>

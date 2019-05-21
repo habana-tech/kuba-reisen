@@ -39,12 +39,33 @@ class User extends BaseUser
      */
     private $enterprise;
 
+
+    private $changepassword;
+
     public function __construct()
     {
         parent::__construct();
         $this->image = new EmbeddedFile();
         // your own logic
     }
+
+    /**
+     * @return mixed
+     */
+    public function getChangepassword()
+    {
+        return $this->changepassword;
+    }
+
+    /**
+     * @param mixed $changepassword
+     */
+    public function setChangepassword($changepassword): void
+    {
+        $this->changepassword = $changepassword;
+    }
+
+    
 
     public function getBio(): ?string
     {

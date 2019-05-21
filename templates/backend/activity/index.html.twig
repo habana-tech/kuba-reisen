@@ -3,49 +3,39 @@
 {% block title %}Activity index{% endblock %}
 
 {% block body %}
-    <h1>Activity index</h1>
+    <h1>All the activities</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Language</th>
-                <th>UpdatedAt</th>
-                <th>AlternativeText</th>
-                <th>Image.name</th>
-                <th>Image.originalName</th>
-                <th>Image.mimeType</th>
-                <th>Image.size</th>
-                <th>Image.dimensions</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for activity in activities %}
-            <tr>
-                <td>{{ activity.id }}</td>
-                <td>{{ activity.name }}</td>
-                <td>{{ activity.language }}</td>
-                <td>{{ activity.updatedAt ? activity.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ activity.alternativeText }}</td>
-                <td>{{ activity.image.name }}</td>
-                <td>{{ activity.image.originalName }}</td>
-                <td>{{ activity.image.mimeType }}</td>
-                <td>{{ activity.image.size/1000 }}kb</td>
-                <td>{{ activity.image.dimensions | join('x')  }}px </td>
-                <td>
-                    <a href="{{ path('backend_activity_show', {'id': activity.id}) }}">show</a>
-                    <a href="{{ path('backend_activity_edit', {'id': activity.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="11">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <a href="{{ path('backend_activity_new') }}" class="btn">Create new</a>
+    <hr>
 
-    <a href="{{ path('backend_activity_new') }}">Create new</a>
+<section class="section other_activities">
+    <div class="section__title " style="justify-content: space-between;">
+    {% for activity in activities %}
+        <div class="activity">
+            <div class="activity__image">
+                <a href="{{ path('activity', {'id':activity.id, 'name':activity.machineName}) }}">
+                    <img src="{{ asset(activity.staticImagePath | imagine_filter('squared_thumbnail')) }}" alt="">
+                </a>
+            </div>
+            <div class="activity__content">
+                <div class="activity__content__title">
+                    <a href="{{ path('activity', {'id':activity.id, 'name':activity.machineName}) }}">
+                        <h4>{{ activity.name }}</h4>
+                    </a>
+                </div>
+                <div class="activity__content__description">
+                    <p>{{ activity.description }}</p>
+                    <hr>
+                    <a href="{{ path('backend_activity_show', {'id': activity.id}) }}" class="btn">show</a>
+                    <a href="{{ path('backend_activity_edit', {'id': activity.id}) }}" class="btn">edit</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    </div>
+</section>
+    <hr>
+
+    <a href="{{ path('backend_activity_new') }}" class="btn">Create new</a>
 {% endblock %}

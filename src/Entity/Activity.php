@@ -43,7 +43,7 @@ class Activity
     private $translation_from;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Destination", mappedBy="activities")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Destination",  inversedBy="activities")
      */
     private $destinations;
 
@@ -63,6 +63,7 @@ class Activity
         $this->filterTags = new ArrayCollection();
         $this->destinations = new ArrayCollection();
         $this->image = new EmbeddedFile();
+        $this->language = 'de';
         // your own logic
     }
 

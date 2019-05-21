@@ -224,7 +224,6 @@ class FrontendController extends AbstractController
         else
             print_r('todo');
 
-
         return $this->render('frontend/activities.html.twig', [
             'dynamic_page_id' => $page->getId(),
             'page' => $page,

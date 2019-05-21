@@ -15,14 +15,14 @@ class DestinationType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('language',  ChoiceType::class, ['choices' => [
-                'de' => 'de',
-                'en' => 'en',
-                'es' => 'es',
-            ]])
-            ->add('activities')
+//            ->add('language',  ChoiceType::class, ['choices' => [
+//                'de' => 'de',
+//                'en' => 'en',
+//                'es' => 'es',
+//            ]])
+//            ->add('activities')
             ->add('filterTags')
-            ->add('modified_by')
+//            ->add('modified_by')
 
             ->add('imageFile', VichImageType::class, ['required'=> false])
         ;
