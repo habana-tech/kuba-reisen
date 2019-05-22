@@ -32,7 +32,7 @@ class UserController extends AbstractController
     /**
      * @Route("/new", name="user_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request,  UserPasswordEncoderInterface $passwordEncoder): Response
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
@@ -40,6 +40,9 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            if($user->getChangepassword())
+                $user->setPassword($passwordEncoder->encodePassword($user, $user->getChangepassword()));
+
             $entityManager->persist($user);
             $entityManager->flush();
 
