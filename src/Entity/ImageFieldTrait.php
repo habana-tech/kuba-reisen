@@ -23,7 +23,7 @@ trait ImageFieldTrait
 
     //TODO: debera conincidircon la variable ENV del MEDIA_STATIC_HOST_URL
     public function getStaticImagePath(){
-        return 'static/uploads/images/'.$this->getImage()->getName();
+        return '/static/uploads/images/'.$this->getImage()->getName();
     }
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
