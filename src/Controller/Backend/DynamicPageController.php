@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class DynamicPageController extends AbstractController
 {
     /**
-     * @Route("/", name="backend_dynamic_page_index", methods={"GET"})
+     * @Route("/index", name="backend_dynamic_page_index", methods={"GET"})
      */
     public function index(DynamicPageRepository $dynamicPageRepository): Response
     {

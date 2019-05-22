@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class BackendController extends AbstractController
 {
     /**
-     * @Route("/admin/", name="backend")
+     * @Route("/admin/index", name="backend")
      */
     public function index()
     {

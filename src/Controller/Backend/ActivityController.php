@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ActivityController extends AbstractController
 {
     /**
-     * @Route("/", name="backend_activity_index", methods={"GET"})
+     * @Route("/index", name="backend_activity_index", methods={"GET"})
      */
     public function index(ActivityRepository $activityRepository): Response
     {

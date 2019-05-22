@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class PostController extends AbstractController
 {
     /**
-     * @Route("/", name="backend_post_index", methods={"GET"})
+     * @Route("/index", name="backend_post_index", methods={"GET"})
      */
     public function index(PostRepository $postRepository): Response
     {

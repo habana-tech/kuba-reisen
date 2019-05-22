@@ -17,7 +17,7 @@ use App\Entity\DynamicPage;
 class DestinationController extends AbstractController
 {
     /**
-     * @Route("/", name="backend_destination_index", methods={"GET"})
+     * @Route("/index", name="backend_destination_index", methods={"GET"})
      */
     public function index(DestinationRepository $destinationRepository): Response
     {

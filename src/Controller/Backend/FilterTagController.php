@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class FilterTagController extends AbstractController
 {
     /**
-     * @Route("/", name="backend_filter_tag_index", methods={"GET"})
+     * @Route("/index", name="backend_filter_tag_index", methods={"GET"})
      */
     public function index(FilterTagRepository $filterTagRepository): Response
     {

@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class InterestController extends AbstractController
 {
     /**
-     * @Route("/", name="backend_interest_index", methods={"GET"})
+     * @Route("/index", name="backend_interest_index", methods={"GET"})
      */
     public function index(InterestRepository $interestRepository): Response
     {
