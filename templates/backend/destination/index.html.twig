@@ -24,7 +24,8 @@
                         </div>
                         <div class="activity__content__description">
 
-                            <a href="{{ path('backend_destination_show', {'id': destination.id}) }}" class="btn">show</a>
+                            <a href="{{ path('destination', {'id':destination.id, 'name':destination.machineName}) }}" class="btn">show and edit on website</a>
+
                             <a href="{{ path('backend_destination_edit', {'id': destination.id}) }}" class="btn">edit</a>
                         </div>
                     </div>

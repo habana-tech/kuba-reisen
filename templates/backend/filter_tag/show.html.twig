@@ -22,9 +22,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('filter_tag_index') }}">back to list</a>
+    <a href="{{ path('backend_filter_tag_index') }}" class="btn">back to list</a>
 
-    <a href="{{ path('filter_tag_edit', {'id': filter_tag.id}) }}">edit</a>
+    <a href="{{ path('backend_filter_tag_edit', {'id': filter_tag.id}) }}" class="btn">edit</a>
 
-    {{ include('filter_tag/_delete_form.html.twig') }}
+    {{ include('backend/filter_tag/_delete_form.html.twig') }}
 {% endblock %}

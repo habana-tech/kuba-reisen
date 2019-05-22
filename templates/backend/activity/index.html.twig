@@ -26,8 +26,8 @@
                 <div class="activity__content__description">
                     <p>{{ activity.description }}</p>
                     <hr>
-                    <a href="{{ path('backend_activity_show', {'id': activity.id}) }}" class="btn">show</a>
-                    <a href="{{ path('backend_activity_edit', {'id': activity.id}) }}" class="btn">edit</a>
+                    <a href="{{ path('activity', {'id':activity.id, 'name':activity.machineName}) }}" class="btn">show and edit on website</a>
+                    <a href="{{ path('backend_activity_edit', {'id': activity.id}) }}" class="btn">edit on admin</a>
                 </div>
             </div>
         </div>
