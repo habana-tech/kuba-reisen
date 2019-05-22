@@ -191,8 +191,8 @@ class FrontendController extends AbstractController
      */
     public function activities(Request $request, DynamicPageRepository $pageRepository,
                                DynamicPageManager $pm, ActivityRepository $activityRepository,
-                               string $search=null, string $filters=null,
-                               FilterTagRepository $filterTagRepository)
+                               FilterTagRepository $filterTagRepository,
+                               string $search=null, string $filters=null)
     {
         $pageinfo = [
             'pageName'=>'activities',
@@ -265,17 +265,13 @@ class FrontendController extends AbstractController
         $data = array();
         $posCount = 0;
         foreach ($activities as $activity){
-            array_push($data, array(
+            $data[] = [
                 'currentIndex' => $posCount++,
-                'title' => $activity->getName(),
-            ));
+                'title' => $activity->getName()
+            ];
         }
 
-        $response = new Response();
-        $response->setContent(json_encode($data));
-        $response->headers->set('Content-Type', 'application/json');
-
-        return $response;
+        return $this->json($data);
     }
 
     /**
