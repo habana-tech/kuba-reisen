@@ -32,7 +32,7 @@ class FrontendController extends AbstractController
         ];
 
         if($this->isGranted('ROLE_ADMIN'))
-            $page = $pm->findByOrCreateIfDoesntExist($pageinfo);
+            $page = $pm->findByOrCreateIfDoesNotExist($pageinfo);
         else {
             $page = $pm->findOneBy($pageinfo);
         }
@@ -61,7 +61,7 @@ class FrontendController extends AbstractController
         ];
 
         if($this->isGranted('ROLE_ADMIN'))
-            $page = $pm->findByOrCreateIfDoesntExist($pageinfo);
+            $page = $pm->findByOrCreateIfDoesNotExist($pageinfo);
         else {
             $page = $pm->findOneBy($pageinfo);
         }
@@ -132,7 +132,7 @@ class FrontendController extends AbstractController
         ];
 
         if($this->isGranted('ROLE_ADMIN'))
-            $page = $pm->findByOrCreateIfDoesntExist($pageinfo);
+            $page = $pm->findByOrCreateIfDoesNotExist($pageinfo);
         else {
             $page = $pm->findOneBy($pageinfo);
         }
@@ -161,7 +161,7 @@ class FrontendController extends AbstractController
         ];
 
         if($this->isGranted('ROLE_ADMIN'))
-            $page = $pm->findByOrCreateIfDoesntExist($pageinfo);
+            $page = $pm->findByOrCreateIfDoesNotExist($pageinfo);
         else {
             $page = $pm->findOneBy($pageinfo);
         }
@@ -200,7 +200,7 @@ class FrontendController extends AbstractController
         ];
 
         if($this->isGranted('ROLE_ADMIN'))
-            $page = $pm->findByOrCreateIfDoesntExist($pageinfo);
+            $page = $pm->findByOrCreateIfDoesNotExist($pageinfo);
         else {
             $page = $pm->findOneBy($pageinfo);
         }
@@ -242,8 +242,8 @@ class FrontendController extends AbstractController
      */
     public function api_activities(Request $request, DynamicPageRepository $pageRepository,
                                DynamicPageManager $pm, ActivityRepository $activityRepository,
-                               string $search=null, string $filters=null,
-                               FilterTagRepository $filterTagRepository)
+                               FilterTagRepository $filterTagRepository,
+                               string $search=null, string $filters=null)
     {
 
         $filterTags = $filterTagRepository->findBy(['language'=>$request->getLocale()]);
@@ -292,7 +292,7 @@ class FrontendController extends AbstractController
         ];
 
         if($this->isGranted('ROLE_ADMIN'))
-            $page = $pm->findByOrCreateIfDoesntExist($pageinfo);
+            $page = $pm->findByOrCreateIfDoesNotExist($pageinfo);
         else {
             $page = $pm->findOneBy($pageinfo);
         }
@@ -318,6 +318,54 @@ class FrontendController extends AbstractController
             'page' => $page,
             'activity' => $activity,
             'related_activities'=>$related_activities,
+        ]);
+    }
+
+    public function blockTopDestinations(Request $request, DynamicPageManager $pm)
+    {
+        $pageinfo = [
+            'pageName'=>'_top_destinations',
+            'language'=>$request->getLocale()
+        ];
+
+        $page = $pm->findByOrCreateIfDoesNotExist($pageinfo, 'components/global/_top_destination.html.twig');
+        if(!$page)
+            throw new NotFoundHttpException();
+
+        return $this->render('frontend/'.$page->getPageTemplate(), [
+            'page' => $page,
+        ]);
+    }
+
+    public function blockTravelOptions(Request $request, DynamicPageManager $pm)
+    {
+        $pageinfo = [
+            'pageName'=>'_travel_options',
+            'language'=>$request->getLocale()
+        ];
+
+        $page = $pm->findByOrCreateIfDoesNotExist($pageinfo, 'components/index/_travel_options.html.twig');
+        if(!$page)
+            throw new NotFoundHttpException();
+
+        return $this->render('frontend/'.$page->getPageTemplate(), [
+            'page' => $page,
+        ]);
+    }
+
+    public function blockFooter(Request $request, DynamicPageManager $pm)
+    {
+        $pageinfo = [
+            'pageName'=>'_footer',
+            'language'=>$request->getLocale()
+        ];
+
+        $page = $pm->findByOrCreateIfDoesNotExist($pageinfo, 'components/global/_footer.html.twig');
+        if(!$page)
+            throw new NotFoundHttpException();
+
+        return $this->render('frontend/'.$page->getPageTemplate(), [
+            'page' => $page,
         ]);
     }
 }

@@ -3,26 +3,29 @@
     <div class="footer__banner">
 
         <div class="footer__banner__image">
-            <img src="{{ asset('img/banner/footer.png') }}" alt="">
+            <img data-grapepagename="_footer" data-grapeid="footer_img1" src="{{ page.ElementAttr('footer_img1', 'src', asset('img/banner/footer.png')) | raw }}" alt="">
         </div>
 
         <div class="footer__banner__content">
             <div class="footer__banner__content__titles">
-                <h2>
-                    Take a step toward your travel to Cuba
+                <h2 data-grapepagename="_footer" data-grapeid="footer_txt1">
+                    {{ page.ElementContent('footer_txt1',"Take a step toward your travel to Cuba") | raw }}
                 </h2>
                 {#<h3>#}
                     {#Take a step toward#}
                 {#</h3>#}
             </div>
 
-            <a class="btn" href="#">Talk to an Expert!</a>
+            <a class="btn" href="#" data-grapepagename="_footer" data-grapeid="footer_btn1">
+                {{ page.ElementContent('footer_btn1',"Talk to an Expert!") | raw }}
+            </a>
         </div>
 
     </div>
 
     <div class="footer__content">
 
+        {#            TODO: links del menu#}
         <div class="footer__content__links">
 
             <div class="footer__content__links__column">
@@ -131,18 +134,20 @@
         <div class="footer__content__infos">
 
             <div class="footer__content__infos__column">
-                <h3>Destination Cuba</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam beatae blanditiis cumque dicta distinctio ea explicabo iste maxime nihil, perferendis recusandae rem reprehenderit velit voluptas. Magnam natus odit placeat?</p>
+                <h3  data-grapepagename="_footer" data-grapeid="footer_t1">{{ page.ElementContent('footer_t1',"Destination Cuba") | raw }}</h3>
+                <p data-grapepagename="_footer" data-grapeid="footer_t2">
+                    {{ page.ElementContent('footer_t2',"Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam beatae blanditiis cumque dicta distinctio ea explicabo iste maxime nihil, perferendis recusandae rem reprehenderit velit voluptas. Magnam natus odit placeat?") | raw }}
+                </p>
             </div>
 
             <div class="footer__content__infos__column">
-                <h3>Destination Cuba</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam beatae blanditiis cumque dicta distinctio ea explicabo iste maxime nihil, perferendis recusandae rem reprehenderit velit voluptas. Magnam natus odit placeat?</p>
+                <h3 data-grapepagename="_footer" data-grapeid="footer_t3">{{ page.ElementContent('footer_t3',"Destination Cuba") | raw }}</h3>
+                <p data-grapepagename="_footer" data-grapeid="footer_t4">{{ page.ElementContent('footer_t4',"Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam beatae blanditiis cumque dicta distinctio ea explicabo iste maxime nihil, perferendis recusandae rem reprehenderit velit voluptas. Magnam natus odit placeat?") | raw }}
             </div>
 
             <div class="footer__content__infos__column">
-                <h3>Destination Cuba</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam beatae blanditiis cumque dicta distinctio ea explicabo iste maxime nihil, perferendis recusandae rem reprehenderit velit voluptas. Magnam natus odit placeat?</p>
+                <h3 data-grapepagename="_footer" data-grapeid="footer_t5">{{ page.ElementContent('footer_t5',"Destination Cuba") | raw }}</h3>
+                <p data-grapepagename="_footer" data-grapeid="footer_t6">{{ page.ElementContent('footer_t6',"Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam beatae blanditiis cumque dicta distinctio ea explicabo iste maxime nihil, perferendis recusandae rem reprehenderit velit voluptas. Magnam natus odit placeat?") | raw }}
             </div>
         </div>
 
@@ -152,6 +157,7 @@
         
         <div class="footer__content__social-networks">
             <ul>
+{#                TODO: social links#}
                 <li>
                     <a href="">
                         <img src="{{ asset('img/icons/linkedIn.png') }}" alt="">

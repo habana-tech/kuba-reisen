@@ -24,9 +24,12 @@ use Symfony\Component\HttpFoundation\FileBag;
 class EndpointController extends AbstractController
 {
     /**
-     * @Route("/endpoint", name="endpoint", methods={"POST"})
+     * @Route("/endpoint/{_locale}", defaults={"_locale": "de"},
+     *     requirements={"_locale": "en|es|de"})
+     * @Route("/endpoint", defaults={"_locale": "de"},
+     *     requirements={"_locale": "en|es|de"}, name="endpoint")
      */
-    public function index(Request $request, DynamicPageRepository $pageRepository)
+    public function index(Request $request, DynamicPageRepository $pageRepository, DynamicPageManager $pm)
     {
 
         $this->denyAccessUnlessGranted('ROLE_EDITOR', null, 'Unable to access this page!');
@@ -46,15 +49,30 @@ class EndpointController extends AbstractController
 
             $dymanicPage->setPageContent($iterator->getFlatList());
 
+            dump($iterator->getExternalPagesContent());
+            foreach ($iterator->getExternalPagesContent() as $pagename => $elements)
+            {
+                dump([$pagename, $elements]);
+                if($elements)
+                {
+                    dump(['pageName'=>$pagename, 'language'=>$request->getLocale()]);
+                    if($page = $pm->findOneBy(['pageName'=>$pagename, 'language'=>$request->getLocale()]))
+                    {
+                        dump($page);
+                        $page->setPageContent($elements);
+                        $entityManager->persist($page);
+                    }
+                }
+            }
 
 
             $entityManager->persist($dymanicPage);
             $entityManager->flush();
 
-            return new Response("OK");
+            return $this->json(['status'=>'OK']);
         }
         else //no existe esa pagina dinamica
-            throw new NotFoundHttpException();
+            return $this->json(['status'=>'Error'],404);
 
     }
 

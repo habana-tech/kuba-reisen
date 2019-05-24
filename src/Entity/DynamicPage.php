@@ -72,17 +72,6 @@ class DynamicPage
         return $this;
     }
 
-    public function getPageTitle(): ?string
-    {
-        return $this->pageTitle;
-    }
-
-    public function setPageTitle(?string $pageTitle): self
-    {
-        $this->pageTitle = $pageTitle;
-
-        return $this;
-    }
 
     public function getPageContent(): ?array
     {

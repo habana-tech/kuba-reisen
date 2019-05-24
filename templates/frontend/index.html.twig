@@ -11,13 +11,16 @@
 
     {{ include('frontend/components/global/_header.html.twig') }}
 
-    <main class="main">
-
-        {{ include('frontend/components/index/_hero.html.twig') }}
-
     {% if is_granted('ROLE_EDITOR') %}
         <div id="grapes-editable">
     {% endif %}
+
+    <main class="main {% if is_granted('ROLE_EDITOR') %}grapes-editable{% endif %}">
+
+
+        {{ include('frontend/components/index/_hero.html.twig') }}
+
+
             {{ include('frontend/components/index/_overview.html.twig') }}
 
             {{ include('frontend/components/index/_who_we_are.html.twig') }}
@@ -26,7 +29,8 @@
 
             {{ include('frontend/components/global/_banner_sky.html.twig') }}
 
-            {{ include('frontend/components/global/_top_destination.html.twig') }}
+            {{ render(controller('App\\Controller\\FrontendController::blockTopDestinations')) }}
+{#            {{ include('frontend/components/global/_top_destination.html.twig') }}#}
 
             {#{{ include('frontend/components/_divider.html.twig') }}#}
 
@@ -34,17 +38,20 @@
 
             {#{{ include('frontend/components/index/_team_opinions.html.twig') }}#}
 
-            {{ include('frontend/components/index/_travel_options.html.twig') }}
+            {{ render(controller('App\\Controller\\FrontendController::blockTravelOptions')) }}
+{#            {{ include('frontend/components/index/_travel_options.html.twig') }}#}
 
-    {% if is_granted('ROLE_EDITOR') %}
-        </div>
-    {% endif %}
+
 
 
 
     </main>
+    {{ render(controller('App\\Controller\\FrontendController::blockFooter')) }}
+{#    {{ include('frontend/components/global/_footer.html.twig') }}#}
 
-    {{ include('frontend/components/global/_footer.html.twig') }}
+    {% if is_granted('ROLE_EDITOR') %}
+        </div>
+    {% endif %}
 
 {% endblock %}
 

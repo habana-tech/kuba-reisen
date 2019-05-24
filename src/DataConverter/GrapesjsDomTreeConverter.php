@@ -4,6 +4,8 @@
 namespace App\DataConverter;
 
 
+use App\PageManager\DynamicPageManager;
+
 class GrapesjsDomTreeConverter
 {
     private $grapesjsTree;
@@ -12,6 +14,7 @@ class GrapesjsDomTreeConverter
         'type'=> '/text|textnode/',
         'attributes'=>[0 =>'data-grapeid', 1 => '/grape[0-9]+/']];
     private $workElementList = [];
+    private $externalPagesContent = [];
 
     /**
      * GrapesjsDomTreeConverter constructor.
@@ -49,6 +52,9 @@ class GrapesjsDomTreeConverter
     private function collectDataFromGrapeElement($element, $grapeParent){
         $data = [];
 
+        if(isset($element['attributes']['data-grapepagename']))
+            $data['grapepagename']=$element['attributes']['data-grapepagename'];
+
         if(isset($element['attributes']['data-grapeid']))
             $data['grapesid']=$element['attributes']['data-grapeid'];
         elseif ($grapeParent)
@@ -61,6 +67,7 @@ class GrapesjsDomTreeConverter
             $data['content']=$element['content'];
         if(isset($element['attributes']) and count($element['attributes']))
             $data['attributes']=$element['attributes'];
+
 
         if(count($data))
         {
@@ -119,5 +126,24 @@ class GrapesjsDomTreeConverter
             }
         }
     }
+
+    /**
+     * @return array
+     */
+    public function getExternalPagesContent(): array
+    {
+        if(!$this->workElementList)
+            $this->processTree();
+        foreach ($this->workElementList as $element)
+        {
+            //si contiene cont externo
+            if(isset($element['grapepagename']) and isset($element['grapesid']))
+                //se agrega en una lista, bajo la llave 'pagename'
+                $this->externalPagesContent[$element['grapepagename']][$element['grapesid']] =  $element;
+
+        }
+        return $this->externalPagesContent;
+    }
+
 
 }

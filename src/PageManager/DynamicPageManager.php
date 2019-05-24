@@ -23,11 +23,11 @@ class DynamicPageManager
     }
 
 
-    public function findByOrCreateIfDoesntExist(array $findOneBy)
+    public function findByOrCreateIfDoesNotExist(array $findOneBy, $template = null)
     {
         $this->dynamicPage = $this->repository->findOneBy($findOneBy);
         if(!$this->dynamicPage){
-            $page = new DynamicPage();
+            $page = new DynamicPage($template);
             $page->setPageName($findOneBy['pageName'])
                 ->setLanguage($findOneBy['language']);
 

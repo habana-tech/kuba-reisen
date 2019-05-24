@@ -10,7 +10,7 @@
 
     <!-- Stylesheet -->
 
-    {% if  is_granted('ROLE_USER') %}
+    {% if  is_granted('ROLE_EDITOR') %}
         <link rel="stylesheet" href="{{ asset('styles/kraken_backend.css') }}" type="text/css">
     {% else %}
         <link rel="stylesheet" href="{{ asset('styles/kraken.css') }}" type="text/css">
@@ -20,8 +20,7 @@
 
    
     {% block stylesheets %}
-        {# TODO: EL ROLE NECESARIO DEBE SER AL MENOS ROLE_EDITOR #}
-        {% if not is_granted('ROLE_USER') %}
+        {% if not is_granted('ROLE_EDITOR') %}
             <link rel="stylesheet" href="{{ asset('styles/kraken.css') }}" type="text/css">
             <link rel="stylesheet" href="{{ asset('styles/styles.css') }}" type="text/css">
         {% else %}
@@ -33,9 +32,14 @@
 
     </head>
 
-    <body>
+    <body {% if is_granted('ROLE_EDITOR') %}class="admin-logged"{% endif %}>
 
         {{ include('frontend/components/global/_icons.html.twig') }}
+
+
+        {% if is_granted('ROLE_EDITOR') %}
+            {{ include('backend/adminbar/admin_bar.html.twig') }}
+        {% endif %}
 
        {% block body %}{% endblock %}
 
@@ -44,7 +48,6 @@
         {% block javascripts %}
             <script src="{{ asset('scripts/app.js') }}"></script>
 
-            {# TODO: EL ROLE NECESARIO DEBE SER AL MENOS ROLE_EDITOR #}
             {% if is_granted('ROLE_EDITOR') %}
                 <script>
                     //APP_ROUTES & PARAMS

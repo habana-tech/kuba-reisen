@@ -2,10 +2,10 @@
 
     <div class="section__title ">
         <div class="section__title__highlight section__title__highlight--orange">
-            <h2 data-grapeid="top_destinations_title">{{ page.ElementContent('top_destinations_title',"Top destinations") | raw }}</h2>
+            <h2 data-grapepagename="top_destinations" data-grapeid="top_destinations_title">{{ page.ElementContent('top_destinations_title',"Top destinations") | raw }}</h2>
         </div>
         <div class="section__title__description">
-            <p data-grapeid="top_destinations_text">{{ page.ElementContent('top_destinations_text',"Lorem ipsum dolor sit amet, consectetur adipisicing elit.") | raw }}</p>
+            <p data-grapepagename="top_destinations" data-grapeid="top_destinations_text">{{ page.ElementContent('top_destinations_text',"Lorem ipsum dolor sit amet, consectetur adipisicing elit.") | raw }}</p>
         </div>
     </div>
 
@@ -16,15 +16,15 @@
                 <div class="top_destinations__places__place__image">
 
                     {# TODO: cambiar visualidad de estas regiones de imagenes en la vista adminisyrativa, con una imagen pequena para que ambas puedan editarse#}
-                    <div class="grid__item-img" data-displacement="{{ asset('img/dmaps/7.jpg') }}" data-intensity="-0.8">
-                        <img  data-grapeid="top_destination_img1_1" src="{{ page.ElementAttr('top_destination_img1_1', 'src', asset('img/destination/Img19.jpg')) | raw }}" alt="Image"/>
-                        <img  data-grapeid="top_destination_img1_2" src="{{ page.ElementAttr('top_destination_img1_2', 'src', asset('img/destination/Img20.jpg')) | raw }}" alt="Image Alt"/>
+                    <div class="grid__item-img" data-grapepagename="top_destinations" data-displacement="{{ asset('img/dmaps/7.jpg') }}" data-intensity="-0.8">
+                        <img data-grapepagename="top_destinations" data-grapeid="top_destination_img1_1" src="{{ page.ElementAttr('top_destination_img1_1', 'src', asset('img/destination/Img19.jpg')) | raw }}" alt="Image"/>
+                        <img data-grapepagename="top_destinations" data-grapeid="top_destination_img1_2" src="{{ page.ElementAttr('top_destination_img1_2', 'src', asset('img/destination/Img20.jpg')) | raw }}" alt="Image Alt"/>
                     </div>
 
                 </div>
                 <div class="top_destinations__places__place__text">
-                <span data-grapeid="top_destination_t1">{{ page.ElementContent('top_destination_t1',"Trinidad") | raw }}</span>
-                <p data-grapeid="top_destination_p1">{{ page.ElementContent('top_destination_p1',"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet enim ") | raw }}</p>
+                <span data-grapepagename="top_destinations" data-grapeid="top_destination_t1">{{ page.ElementContent('top_destination_t1',"Trinidad") | raw }}</span>
+                <p data-grapepagename="top_destinations" data-grapeid="top_destination_p1">{{ page.ElementContent('top_destination_p1',"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet enim ") | raw }}</p>
             </div>
             </a>
         </div>
@@ -32,14 +32,14 @@
         <div class="top_destinations__places__place top_destinations__places__place--orange">
             <a href="#">
                 <div class="top_destinations__places__place__image">
-                    <div class="grid__item-img" data-displacement="{{ asset('img/dmaps/7.jpg') }}" data-intensity="-0.8">
-                        <img  data-grapeid="top_destination_img2_1" src="{{ page.ElementAttr('top_destination_img2_1', 'src', asset('img/destination/Img20.jpg')) | raw }}" alt="Image"/>
-                        <img  data-grapeid="top_destination_img2_2" src="{{ page.ElementAttr('top_destination_img2_2', 'src', asset('img/destination/Img19.jpg')) | raw }}" alt="Image Alt"/>
+                    <div class="grid__item-img" data-grapepagename="top_destinations" data-displacement="{{ asset('img/dmaps/7.jpg') }}" data-intensity="-0.8">
+                        <img data-grapepagename="top_destinations" data-grapeid="top_destination_img2_1" src="{{ page.ElementAttr('top_destination_img2_1', 'src', asset('img/destination/Img20.jpg')) | raw }}" alt="Image"/>
+                        <img data-grapepagename="top_destinations" data-grapeid="top_destination_img2_2" src="{{ page.ElementAttr('top_destination_img2_2', 'src', asset('img/destination/Img19.jpg')) | raw }}" alt="Image Alt"/>
                     </div>
                 </div>
                 <div class="top_destinations__places__place__text">
-                    <span data-grapeid="top_destination_t2">{{ page.ElementContent('top_destination_t2',"Trinidad") | raw }}</span>
-                    <p data-grapeid="top_destination_p2">{{ page.ElementContent('top_destination_p2',"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet enim ") | raw }}</p>
+                    <span data-grapepagename="top_destinations" data-grapeid="top_destination_t2">{{ page.ElementContent('top_destination_t2',"Trinidad") | raw }}</span>
+                    <p data-grapepagename="top_destinations" data-grapeid="top_destination_p2">{{ page.ElementContent('top_destination_p2',"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet enim ") | raw }}</p>
                 </div>
             </a>
         </div>
@@ -47,14 +47,14 @@
         <div class="top_destinations__places__place top_destinations__places__place--green">
             <a href="#">
                 <div class="top_destinations__places__place__image">
-                    <div class="grid__item-img" data-displacement="{{ asset('img/dmaps/7.jpg') }}" data-intensity="-0.8">
-                        <img  data-grapeid="top_destination_img3_1" src="{{ page.ElementAttr('top_destination_img3_1', 'src', asset('img/destination/mg11.jpg')) | raw }}" alt="Image"/>
-                        <img  data-grapeid="top_destination_img3_2" src="{{ page.ElementAttr('top_destination_img3_2', 'src', asset('img/destination/Img19.jpg')) | raw }}" alt="Image Alt"/>
+                    <div class="grid__item-img" data-grapepagename="top_destinations" data-displacement="{{ asset('img/dmaps/7.jpg') }}" data-intensity="-0.8">
+                        <img data-grapepagename="top_destinations" data-grapeid="top_destination_img3_1" src="{{ page.ElementAttr('top_destination_img3_1', 'src', asset('img/destination/mg11.jpg')) | raw }}" alt="Image"/>
+                        <img data-grapepagename="top_destinations" data-grapeid="top_destination_img3_2" src="{{ page.ElementAttr('top_destination_img3_2', 'src', asset('img/destination/Img19.jpg')) | raw }}" alt="Image Alt"/>
                     </div>
                 </div>
                 <div class="top_destinations__places__place__text">
-                    <span data-grapeid="top_destination_t3">{{ page.ElementContent('top_destination_t3',"Trinidad") | raw }}</span>
-                    <p data-grapeid="top_destination_t3">{{ page.ElementContent('top_destination_p3',"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet enim ") | raw }}</p>
+                    <span data-grapepagename="top_destinations" data-grapeid="top_destination_t3">{{ page.ElementContent('top_destination_t3',"Trinidad") | raw }}</span>
+                    <p data-grapepagename="top_destinations" data-grapeid="top_destination_t3">{{ page.ElementContent('top_destination_p3',"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet enim ") | raw }}</p>
                 </div>
             </a>
         </div>
@@ -62,14 +62,14 @@
         <div class="top_destinations__places__place">
             <a href="#">
                 <div class="top_destinations__places__place__image">
-                    <div class="grid__item-img" data-displacement="{{ asset('img/dmaps/7.jpg') }}" data-intensity="-0.8">
-                        <img  data-grapeid="top_destination_img4_1" src="{{ page.ElementAttr('top_destination_img4_1', 'src', asset('img/destination/mg12.jpg')) | raw }}" alt="Image"/>
-                        <img  data-grapeid="top_destination_img4_2" src="{{ page.ElementAttr('top_destination_img4_2', 'src', asset('img/destination/Img19.jpg')) | raw }}" alt="Image Alt"/>
+                    <div class="grid__item-img" data-grapepagename="top_destinations" data-displacement="{{ asset('img/dmaps/7.jpg') }}" data-intensity="-0.8">
+                        <img data-grapepagename="top_destinations" data-grapeid="top_destination_img4_1" src="{{ page.ElementAttr('top_destination_img4_1', 'src', asset('img/destination/mg12.jpg')) | raw }}" alt="Image"/>
+                        <img data-grapepagename="top_destinations" data-grapeid="top_destination_img4_2" src="{{ page.ElementAttr('top_destination_img4_2', 'src', asset('img/destination/Img19.jpg')) | raw }}" alt="Image Alt"/>
                     </div>
                 </div>
                 <div class="top_destinations__places__place__text">
-                    <span data-grapeid="top_destination_t4">{{ page.ElementContent('top_destination_t4',"Trinidad") | raw }}</span>
-                    <p data-grapeid="top_destination_p4">{{ page.ElementContent('top_destination_p4',"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet enim ") | raw }}</p>
+                    <span data-grapepagename="top_destinations" data-grapeid="top_destination_t4">{{ page.ElementContent('top_destination_t4',"Trinidad") | raw }}</span>
+                    <p data-grapepagename="top_destinations" data-grapeid="top_destination_p4">{{ page.ElementContent('top_destination_p4',"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet enim ") | raw }}</p>
                 </div>
             </a>
         </div>
