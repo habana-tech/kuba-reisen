@@ -64,6 +64,7 @@ class Activity
         $this->destinations = new ArrayCollection();
         $this->image = new EmbeddedFile();
         $this->language = 'de';
+        $this->description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam beatae blanditiis cumque dicta distinctio ea explicabo iste maxime nihil, perferendis recusandae rem reprehenderit velit voluptas. Magnam natus odit placeat?";
         // your own logic
     }
 
@@ -172,5 +173,20 @@ class Activity
         return $this;
     }
 
+    public function __get($name){
+        if (array_key_exists($name, $this->getDynamicPage()->getPageContent()))
+            return $this->getDynamicPage()->getElement($name);
+    }
 
+
+    public function __set($name, $value){
+        $this->getDynamicPage()->setElementContent($name, $value);
+
+    }
+
+
+    public function getElement($name)
+    {
+        return $this->getDynamicPage()->getElement($name);
+    }
 }

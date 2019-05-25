@@ -3,9 +3,61 @@
 {% block title %}New Activity{% endblock %}
 
 {% block body %}
-    <h1>Create new Activity</h1>
+    <h1>Add new Activity</h1>
+    {{ form_start(form) }}
+    <div class="row margin-top margin-bottom-large padding-top-large padding-bottom-large">
+       <div class="grid-two-thirds">
+           <h2>Write the name of the activity to continue</h2>
+           {{ form_widget(form.name) }}
+       </div>
 
-    {{ include('backend/activity/_form.html.twig') }}
+    </div>
+    <div class="row">
+        <div class="grid offset-three-fourths">
+            {{ form_widget(form.saveAndEdit) }}
+        </div>
+    </div>
 
-    <a href="{{ path('backend_activity_index') }}" class="btn btn-secondary">back to list</a>
+
+    <hr class=" margin-top margin-bottom-large">
+    <h2>Additionally, you can set some of the following values...</h2>
+
+    <div class="row">
+        <div class="grid grid-half">
+            {{ form_row(form.description) }}
+        </div>
+        <div class="grid grid-fourth">
+            {{ form_row(form.destinations) }}
+        </div><div class="grid grid-fourth">
+            {{ form_row(form.filterTags) }}
+        </div>
+    </div>
+
+
+    <hr class=" margin-top margin-bottom-large">
+
+    <div class="row">
+        <div class="grid grid-half">
+            {{ form_row(form.imageFile) }}
+        </div>
+        <div class="grid grid-fourth">
+            {{ form_row(form.alternativeText) }}
+        </div>
+    </div>
+
+
+    {{ form_widget(form) }}
+    <div class="row">
+
+        <div class="grid grid-half"><button class="btn">{{ button_label|default('Save') }}</button></div>
+        <div class="grid grid-half margin-top"><a href="{{ path('backend_activity_index') }}" class="btn float-right">Go back to list</a></div>
+    </div>
+
+
+
+    {{ form_end(form) }}
+
+{#    {{ include('backend/activity/_form.html.twig') }}#}
+
+
 {% endblock %}
