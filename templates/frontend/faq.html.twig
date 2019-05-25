@@ -7,33 +7,20 @@
 {% endblock %}
 
 {% block body %}
-
-    {{ include('frontend/components/global/_header.html.twig') }}
     <main class="main">
 
-        {% set hero_title = "FAQ" %}
-        {% include 'frontend/components/global/_hero.html.twig' with  {'hero_title': hero_title} only %}
+        {{ include ('frontend/components/global/_hero.html.twig') }}
 
-        <div class="main__page"
-            {% if is_granted('ROLE_EDITOR') %}
-                id="grapes-editable"
-            {% endif %}>
+        {{ include ('frontend/components/faq/_intro.html.twig') }}
 
-            {% include 'frontend/components/faq/_intro.html.twig' %}
+        {{ include ('frontend/components/faq/_content_index.html.twig') }}
 
-            {% include 'frontend/components/faq/_content_index.html.twig' %}
-
-            {% include 'frontend/components/faq/_question.html.twig' %}
-        </div>
+        {{ include ('frontend/components/faq/_question.html.twig') }}
 
     </main>
-
-    {{ include('frontend/components/global/_footer.html.twig') }}
-
 {% endblock %}
 
 
 {% block javascripts %}
-    {{ parent() }}
     <script src="{{ asset('scripts/faq.js') }}"></script>
 {% endblock %}

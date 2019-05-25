@@ -7,6 +7,7 @@ use App\Entity\Destination;
 use App\Entity\Activity;
 use App\Form\ContactPlaningType;
 use App\Repository\ActivityRepository;
+use App\Repository\DestinationRepository;
 use App\Repository\DynamicPageRepository;
 use App\Repository\FilterTagRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,7 +25,8 @@ class FrontendController extends AbstractController
      * @Route("/{_locale}", defaults={"_locale": "de"},
      *     requirements={"_locale": "en|es|de"}, name="frontend")
      */
-    public function index(Request $request, DynamicPageRepository $pageRepository, DynamicPageManager $pm)
+    public function index(Request $request, DynamicPageRepository $pageRepository,
+                          DynamicPageManager $pm, DestinationRepository $destinationRepository)
     {
         $pageinfo = [
             'pageName'=>'index',
@@ -179,102 +181,6 @@ class FrontendController extends AbstractController
     }
 
     /**
-     * @Route("/{_locale}/activities", defaults={"_locale": "de"},
-     *     requirements={"_locale": "en|es|de"}, name="activities")
-     * @Route("/{_locale}/activities/search/{search}", defaults={"_locale": "de"},
-     *     requirements={"_locale": "en|es|de"}, name="activities_search")
-     * @Route("/{_locale}/activities/search/{search}/filters/{filters}", defaults={"_locale": "de"},
-     *     requirements={"_locale": "en|es|de"}, name="activities_search_filter")
-     * @Route("/{_locale}/activities/filters/{filters}", defaults={"_locale": "de"},
-     *     requirements={"_locale": "en|es|de"}, name="activities_filters")
-     * @Route("/activities")
-     */
-    public function activities(Request $request, DynamicPageRepository $pageRepository,
-                               DynamicPageManager $pm, ActivityRepository $activityRepository,
-                               FilterTagRepository $filterTagRepository,
-                               string $search=null, string $filters=null)
-    {
-        $pageinfo = [
-            'pageName'=>'activities',
-            'language'=>$request->getLocale()
-        ];
-
-        if($this->isGranted('ROLE_ADMIN'))
-            $page = $pm->findByOrCreateIfDoesNotExist($pageinfo);
-        else {
-            $page = $pm->findOneBy($pageinfo);
-        }
-
-        if(!$page)
-            throw new NotFoundHttpException();
-
-        $filterTags = $filterTagRepository->findBy(['language'=>$request->getLocale()]);
-
-        $activities = [];
-        if ($filters==null and $search==null)
-            $activities = $activityRepository->createQueryBuilder('activity')
-            ->where('activity.language = :lang')
-            ->setParameter('lang', $request->getLocale())
-            ->getQuery()
-            ->getResult();
-        else if ($filters!=null and $search==null)
-            $activities = $activityRepository->findByFilter($filters, $filterTagRepository);
-        else if ($filters==null and $search!=null)
-            $activities = $activityRepository->findBySearch($search);
-        else
-            print_r('todo');
-
-        return $this->render('frontend/activities.html.twig', [
-            'dynamic_page_id' => $page->getId(),
-            'page' => $page,
-            'activities'=>$activities,
-            'filterTags'=>$filterTags,
-        ]);
-    }
-
-    /**
-     * @Route("/{_locale}/api_activities/search/{search}", defaults={"_locale": "de"},
-     *     requirements={"_locale": "en|es|de"}, name="api_activities_search")
-     * @Route("/{_locale}/api_activities/search/{search}/filters/{filters}", defaults={"_locale": "de"},
-     *     requirements={"_locale": "en|es|de"}, name="api_activities_search_filter")
-     * @Route("/{_locale}/api_activities/filters/{filters}", defaults={"_locale": "de"},
-     *     requirements={"_locale": "en|es|de"}, name="api_activities_filters")
-     */
-    public function api_activities(Request $request, DynamicPageRepository $pageRepository,
-                               DynamicPageManager $pm, ActivityRepository $activityRepository,
-                               FilterTagRepository $filterTagRepository,
-                               string $search=null, string $filters=null)
-    {
-
-        $filterTags = $filterTagRepository->findBy(['language'=>$request->getLocale()]);
-
-        $activities = [];
-//        if ($filters==null and $search==null)
-            $activities = $activityRepository->createQueryBuilder('activity')
-                ->where('activity.language = :lang')
-                ->setParameter('lang', $request->getLocale())
-                ->getQuery()
-                ->getResult();
-//        else if ($filters!=null and $search==null)
-//            $activities = $activityRepository->findByFilter($filters, $filterTagRepository);
-//        else if ($filters==null and $search!=null)
-//            $activities = $activityRepository->findBySearch($search);
-//        else
-//            print_r('todo');
-
-        $data = array();
-        $posCount = 0;
-        foreach ($activities as $activity){
-            $data[] = [
-                'currentIndex' => $posCount++,
-                'title' => $activity->getName()
-            ];
-        }
-
-        return $this->json($data);
-    }
-
-    /**
      * @Route("/{_locale}/activity/{id}/{name}", defaults={"_locale": "de"},
      *     requirements={"_locale": "en|es|de"}, name="activity")
      * @Route("/activity/{id}/{name}")
@@ -321,51 +227,4 @@ class FrontendController extends AbstractController
         ]);
     }
 
-    public function blockTopDestinations(Request $request, DynamicPageManager $pm)
-    {
-        $pageinfo = [
-            'pageName'=>'_top_destinations',
-            'language'=>$request->getLocale()
-        ];
-
-        $page = $pm->findByOrCreateIfDoesNotExist($pageinfo, 'components/global/_top_destination.html.twig');
-        if(!$page)
-            throw new NotFoundHttpException();
-
-        return $this->render('frontend/'.$page->getPageTemplate(), [
-            'page' => $page,
-        ]);
-    }
-
-    public function blockTravelOptions(Request $request, DynamicPageManager $pm)
-    {
-        $pageinfo = [
-            'pageName'=>'_travel_options',
-            'language'=>$request->getLocale()
-        ];
-
-        $page = $pm->findByOrCreateIfDoesNotExist($pageinfo, 'components/index/_travel_options.html.twig');
-        if(!$page)
-            throw new NotFoundHttpException();
-
-        return $this->render('frontend/'.$page->getPageTemplate(), [
-            'page' => $page,
-        ]);
-    }
-
-    public function blockFooter(Request $request, DynamicPageManager $pm)
-    {
-        $pageinfo = [
-            'pageName'=>'_footer',
-            'language'=>$request->getLocale()
-        ];
-
-        $page = $pm->findByOrCreateIfDoesNotExist($pageinfo, 'components/global/_footer.html.twig');
-        if(!$page)
-            throw new NotFoundHttpException();
-
-        return $this->render('frontend/'.$page->getPageTemplate(), [
-            'page' => $page,
-        ]);
-    }
 }

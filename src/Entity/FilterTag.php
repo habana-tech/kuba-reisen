@@ -47,6 +47,11 @@ class FilterTag
      */
     private $destinations;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $pinned;
+
     public function __construct()
     {
         $this->interests = new ArrayCollection();
@@ -155,6 +160,18 @@ class FilterTag
             $this->destinations->removeElement($destination);
             $destination->removeFilterTag($this);
         }
+
+        return $this;
+    }
+
+    public function getPinned(): ?bool
+    {
+        return $this->pinned;
+    }
+
+    public function setPinned(?bool $pinned): self
+    {
+        $this->pinned = $pinned;
 
         return $this;
     }

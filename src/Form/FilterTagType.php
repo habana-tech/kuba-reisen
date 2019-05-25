@@ -14,6 +14,7 @@ class FilterTagType extends AbstractType
     {
         $builder
             ->add('title')
+            ->add('pinned')
 //            ->add('language',  ChoiceType::class, ['choices' => [
 //                'de' => 'de',
 //                'en' => 'en',

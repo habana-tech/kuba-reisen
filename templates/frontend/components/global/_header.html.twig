@@ -47,27 +47,19 @@
                 </div>
 
                 <ul class="header__nav__menu__column__list">
-                    <li class="header__nav__menu__column__list__link">
-                        <a href="#">Country info</a>
-                    </li>
-                    <li class="header__nav__menu__column__list__link">
-                        <a href="">Sleep & Eat</a>
-                    </li>
-                    <li class="header__nav__menu__column__list__link">
-                        <a href="{{ path('destination', {'id':1, '_locale': app.request.locale, 'name':'havanna' }) }}">Havanna</a>
-                    </li>
-                    <li class="header__nav__menu__column__list__link">
-                        <a href="{{ path('destination', {'id':2, '_locale': app.request.locale, 'name':'cayos_beaches' }) }}">Cayos & Beaches</a>
-                    </li>
-                    <li class="header__nav__menu__column__list__link">
-                        <a href="">Tourist Destination Highlights</a>
-                    </li>
-                    <li class="header__nav__menu__column__list__link">
-                        <a href="">Vergessene Orte</a>
-                    </li>
-                    <li class="header__nav__menu__column__list__link">
-                        <a href="">Oriente</a>
-                    </li>
+
+                    {% for destination in destinations %}
+                        <li class="header__nav__menu__column__list__link">
+                            <a href="{{ path('destination',
+                                {'id':destination.getId,
+                                '_locale': app.request.locale,
+                                'name':destination.getMachineName })
+                            }}">
+                                {{ destination.getName }}
+                            </a>
+                        </li>
+                    {% endfor %}
+
                 </ul>
             </div>
 
@@ -101,23 +93,15 @@
                 </div>
 
                 <ul class="header__nav__menu__column__list">
-                    <li class="header__nav__menu__column__list__link">
-                        <a href="{{ path('contact') }}">
-                            Individualreise
-                        </a>
-                    </li>
-                    <li class="header__nav__menu__column__list__link">
-                        <a href="{{ path('activities_filters', {'filters':'Gruppenreise'}) }}#activities">Gruppenreise </a> <span>Trending!</span>
-                    </li>
-                    <li class="header__nav__menu__column__list__link">
-                        <a href="{{ path('activities_filters', {'filters':'Themenreise'}) }}#activities">Themenreise</a>
-                    </li>
-                    <li class="header__nav__menu__column__list__link">
-                        <a href="{{ path('activities_filters', {'filters':'Familienreise'}) }}#activities">Familienreise</a>
-                    </li>
-                    <li class="header__nav__menu__column__list__link">
-                        <a href="{{ path('activities_filters', {'filters':'Mietwagenreise'}) }}#activities">Mietwagenreise</a>
-                    </li>
+
+                    {% for filter in filterTags %}
+                        <li class="header__nav__menu__column__list__link">
+                            <a href="{{ path('activitiesFilter', {'filters':filter.title }) }}#activities">
+                                {{ filter.title }}
+                            </a>
+                        </li>
+                    {% endfor %}
+
                 </ul>
             </div>
 

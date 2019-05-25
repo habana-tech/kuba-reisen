@@ -47,4 +47,12 @@ class DestinationRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findByLang($lang){
+        return $this->createQueryBuilder('destination')
+            ->where('destination.language = :lang')
+            ->setParameter('lang', $lang)
+            ->getQuery()
+            ->getResult();
+    }
 }

@@ -15,6 +15,9 @@
                     <div class="activity__content">
                         <div class="activity__content__title">
                            <h4>{{ filter_tag.title }}</h4>
+                            {% if filter_tag.pinned %}
+                                <small><i>(Pinned)</i></small>
+                            {% endif %}
                         </div>
                         <div class="activity__content__description">
                             <a href="{{ path('backend_filter_tag_show', {'id': filter_tag.id}) }}">show</a>
