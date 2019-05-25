@@ -1,37 +1,11 @@
-<nav id="admin_bar">
+<nav class="admin_bar">
     <ul>
-        <li> <a href="{{ path('backend_activity_new') }}">Add Activity</a></li>
+        <li class="admin_bar_action"> <a href="{{ path('backend_activity_new') }}">Add Activity</a></li>
         <li>  <a href="{{ path('backend_destination_new') }}">Add Destination</a></li>
         <li> <a href="{{ path('backend_interest_new') }}">Add Interest</a></li>
         <li> <a href="{{ path('backend_filter_tag_index') }}">View Tags</a></li>
         <li><a href="{{ path('backend') }}">Go to Admin</a> </li>
         <li><a href="{{ path('fos_user_security_logout') }}">Logout</a> </li>
     </ul>
+    <div class="admin_bar_fields"></div>
 </nav>
-
-{#TODO: set styles on css#}
-<style>
-    #admin_bar{
-        position:fixed;
-        top: 0;
-        width: 100%;
-        height: 2em;
-        background-image: linear-gradient(rgba(0,0,0,.8), #000);
-        border: solid 2px #272727;
-        z-index: 100;
-    }
-    #admin_bar ul{
-        display: flex;
-        list-style: none;
-    }
-    #admin_bar ul li{
-        margin: auto
-    }
-    #admin_bar a{
-        color: #fff;
-    }
-
-    body.admin-logged{
-        margin-top: 2em;
-    }
-</style>

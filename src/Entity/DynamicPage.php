@@ -108,57 +108,35 @@ class DynamicPage
 
 
 
-    public function getElement($grapeid)
+    public function getElement($grape_id, $format = 'html')
     {
-        foreach ($this->pageContent as $item) {
-            if(isset($item['grapesid']) and $item['grapesid'] == $grapeid)
-                return $item;
-        }
+        if(!isset($this->pageContent[$grape_id][$format]))
+            $format == 'html' ? $format = 'txt' :  $format = 'html';
+        if(isset($this->pageContent[$grape_id][$format]))
+            return $this->pageContent[$grape_id][$format];
         return;
     }
-    public function getElementContent($grapeid, $default = null)
+    public function setElementContent($grape_id, $value, $format = 'html')
     {
-        foreach ($this->pageContent as $item) {
-            if(isset($item['grapesid']) and $item['grapesid'] == $grapeid)
-            {
-                if(isset($item['content']))
-                    return $item['content'];
-                if(isset($item['components']))
-                    return $this->getHtmlFromComponents($item['components']);
-            }
+        if(!isset($this->pageContent[$grape_id][$format]))
+            $format == 'html' ? $format = 'txt' :  $format = 'html';
 
-        }
+        if(isset($this->pageContent[$grape_id][$format]))
+            $this->pageContent[$grape_id][$format] = $value;
+    }
+
+    public function getElementContent($grape_id, $default = null)
+    {
+        if($res = $this->getElement($grape_id))
+            return $res;
         return $default;
     }
 
 
-    private function getHtmlFromComponents($components)
-    {
-        $html = '';
-        foreach ($components as $component)
-        {
-            if(isset($component['tagName']))
-                if(isset($component['content']))
-                    $html .= "<".$component['tagName'].">".$component['content']."</".$component['tagName'].">";
-                else
-                    $html .= "<".$component['tagName'].">";
-            else
-                $html .= $component['content'];
-        }
-        return $html;
-    }
+    public function getElementAttr($grape_id, $attr, $default = null)
+    {//todo: delete  method
 
-    public function getElementAttr($grapeid, $attr, $default = null)
-    {
-        foreach ($this->pageContent as $item) {
-            if(isset($item['grapesid']) and $item['grapesid'] == $grapeid)
-            {
-                if(isset($item['attributes'][$attr]))
-                    return $item['attributes'][$attr];
-                return $default;
-            }
-        }
-        return $default;
+        return null;
     }
 
     public function __toString()
@@ -195,5 +173,9 @@ class DynamicPage
         }
 
         return $this;
+    }
+
+    public function getHtmlTextElement($name){
+        return $this->getPageContent()[$name];
     }
 }

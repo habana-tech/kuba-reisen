@@ -15,7 +15,6 @@ grapesjs.plugins.add('no-devices-selector', function(editor, options) {
 })
 
 */
-console.log("ptm");
 var editor = grapesjs.init({
     showOffsets: 1,
     noticeOnUnload: 0,
@@ -36,9 +35,9 @@ var editor = grapesjs.init({
             },
         //   autoload: true,         // Autoload stored data on init
         stepsBeforeSave: 1,     // If autosave enabled, indicates how many changes are necessary before store method is triggered
-        //      storeComponents: true,  // Enable/Disable storing of components in JSON format
+        storeComponents: false,  // Enable/Disable storing of components in JSON format
         storeStyles: false,      // Enable/Disable storing of rules in JSON format
-        storeHtml: false,        // Enable/Disable storing of components as HTML string
+        storeHtml: true,        // Enable/Disable storing of components as HTML string
         storeCss: false,         // Enable/Disable storing of rules as CSS string
     },
     panels: { defaults: [] },
@@ -55,10 +54,10 @@ var editor = grapesjs.init({
       'submenu.activeIcon.path': `../static/svg/icon-c.svg`,
         },
          script: [
-            'static/scripts/vendors/fabric.min.js',
-            'static/scripts/vendors/tui-code-snippet.min.js',
-            'static/scripts/vendors/tui-color-picker.min.js',
-            'static/scripts/vendors/tui-image-editor.min.js'
+            '/static/scripts/vendors/fabric.min.js',
+            '/static/scripts/vendors/tui-code-snippet.min.js',
+            '/static/scripts/vendors/tui-color-picker.min.js',
+            '/static/scripts/vendors/tui-image-editor.min.js'
           ],
 
         // In case the script is loaded this style will be loaded too

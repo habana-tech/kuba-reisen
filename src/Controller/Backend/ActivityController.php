@@ -5,11 +5,14 @@ namespace App\Controller\Backend;
 use App\Entity\Activity;
 use App\Entity\DynamicPage;
 use App\Form\ActivityType;
+use App\PageManager\DynamicPageManager;
 use App\Repository\ActivityRepository;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 /**
  * @Route("/admin/activity")
@@ -48,6 +51,12 @@ class ActivityController extends AbstractController
             $entityManager->persist($activity);
             $entityManager->persist($dynamicPage);
             $entityManager->flush();
+            if($form->get('saveAndEdit')->isClicked())
+                return $this->redirectToRoute('activity',[
+                    '_locale'=>$request->getLocale(),
+                    'id'=>$activity->getId(),
+                    'name'=>$activity->getMachineName()
+                    ]);
 
             return $this->redirectToRoute('backend_activity_index');
         }
@@ -73,11 +82,29 @@ class ActivityController extends AbstractController
      */
     public function edit(Request $request, Activity $activity): Response
     {
+
         $form = $this->createForm(ActivityType::class, $activity);
+
+        if($activity->getDynamicPage())
+        foreach ($activity->getDynamicPage()->getPageContent() as $key => $element)
+        {
+                if(isset($element['txt']))
+                    $form->add($key, null, ['label'=>'Content of '.$key, 'required' => false]);
+                else
+                    $form->add($key, CKEditorType::class, ['label'=>'Content of '.$key, 'required' => false]);
+        }
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //$this->getDoctrine()->getManager()->persist($activity->getDynamicPage());
             $this->getDoctrine()->getManager()->flush();
+
+            if($form->get('saveAndEdit')->isClicked())
+                return $this->redirectToRoute('activity',[
+                    '_locale'=>$request->getLocale(),
+                    'id'=>$activity->getId(),
+                    'name'=>$activity->getMachineName()
+                ]);
 
             return $this->redirectToRoute('backend_activity_index', [
                 'id' => $activity->getId(),

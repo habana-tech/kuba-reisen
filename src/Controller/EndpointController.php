@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\DataConverter\GrapesjsHtmlConverter;
 use App\Entity\UploadedImage;
 use App\PageManager\DynamicPageManager;
 use App\Repository\ActivityRepository;
@@ -14,8 +15,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use App\DataConverter\RequestJsonDataConverter;
-use App\DataConverter\JsonTreeDataIterator;
-use App\DataConverter\GrapesjsDomTreeConverter;
 use App\Entity\DynamicPage;
 use Symfony\Component\HttpFoundation\FileBag;
 
@@ -45,25 +44,23 @@ class EndpointController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         if($dymanicPage = $pageRepository->find($page_id))
         {
-            $iterator = new GrapesjsDomTreeConverter($jsonData['grapes_page_content-components']);
+            $grapePage = new GrapesjsHtmlConverter($jsonData['grapes_page_content-html']);
 
-            $dymanicPage->setPageContent($iterator->getFlatList());
+            if($grapePage->getPageElements())
+                $dymanicPage->setPageContent($grapePage->getPageElements());
 
-            dump($iterator->getExternalPagesContent());
-            foreach ($iterator->getExternalPagesContent() as $pagename => $elements)
-            {
-                dump([$pagename, $elements]);
-                if($elements)
+            if($grapePage->getExternalPagesContent())
+                foreach ($grapePage->getExternalPagesContent() as $pagename => $elements)
                 {
-                    dump(['pageName'=>$pagename, 'language'=>$request->getLocale()]);
-                    if($page = $pm->findOneBy(['pageName'=>$pagename, 'language'=>$request->getLocale()]))
+                    if($elements)
                     {
-                        dump($page);
-                        $page->setPageContent($elements);
-                        $entityManager->persist($page);
+                        if($page = $pm->findOneBy(['pageName'=>$pagename, 'language'=>$request->getLocale()]))
+                        {
+                            $page->setPageContent($elements);
+                            $entityManager->persist($page);
+                        }
                     }
                 }
-            }
 
 
             $entityManager->persist($dymanicPage);

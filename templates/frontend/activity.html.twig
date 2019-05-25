@@ -8,16 +8,19 @@
 
     {{ include('frontend/components/global/_header.html.twig') }}
 
-    <main class="main">
+    <main class="main" {% if is_granted('ROLE_EDITOR') %} id="grapes-editable" {% endif %} >
+
+
+{#    {% if is_granted('ROLE_EDITOR') %}#}
+{#        <div id="grapes-editable">#}
+{#    {% endif %}#}
+
 
 
         {% include 'frontend/components/global/_hero.html.twig'
             with  {'hero_title': activity.name} only %}
 
 
-        {% if is_granted('ROLE_EDITOR') %}
-            <div id="grapes-editable">
-        {% endif %}
 
             {% include 'frontend/components/activity/_description.html.twig' with {'description':activity.description } %}
 
@@ -27,15 +30,17 @@
 
             {#{% include 'frontend/components/activity/_float_button.html.twig' %}#}
 
-        {% if is_granted('ROLE_EDITOR') %}
-            </div>
-        {% endif %}
+
 
         {#{% include 'frontend/components/global/_bottom_bar.html.twig' %}#}
 
-    </main>
-
     {{ include('frontend/components/global/_footer.html.twig') }}
+{#    {% if is_granted('ROLE_EDITOR') %}#}
+{#        </div>#}
+{#    {% endif %}#}
+
+
+    </main>
 
 {% endblock %}
 

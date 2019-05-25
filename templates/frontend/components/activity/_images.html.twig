@@ -13,49 +13,66 @@
 
             <div class="slide">
                 <div class="slide__wrap">
-                    <div class="slide__img"
-                         style="background-image: url({{ page.ElementAttr('activity_images_img1','src', asset('img/feature/havana1.png')) | raw }});">
+                    <div class="slide__img" data-grape_id="activity_images_img1">
+                        <img src="{{ asset('img/feature/havana1.png') }}" alt="">
                     </div>
-                    <div class="slide__title-wrap">
-                        <h4 class="slide__subtitle">
-                            {{ page.ElementContent('activity_images_text1','description text') | raw }}
-                        </h4>
-                    </div>
-                </div>
-            </div>
-            <div class="slide">
-                <div class="slide__wrap">
-                    <div class="slide__img"
-                         style="background-image: url({{ page.ElementAttr('activity_images_img2','src', asset('img/feature/havana1.png')) | raw }});">
-                    </div>
-                    <div class="slide__title-wrap">
-                        <h4 class="slide__subtitle">
-                            {{ page.ElementContent('activity_images_text2','description text') | raw }}
-                        </h4>
+                    <div class="slide__title-wrap" data-grape_id="activity_images_img1_desc">
+                        {% if activity.getElement('activity_images_img1_desc') is null %}
+                            <h4 class="slide__subtitle">
+                                {{ page.ElementContent('activity_images_img1_desc') | raw }}
+                            </h4>
+                        {% else %}
+                            {{ activity.getElement('activity_images_img1_desc') }}
+                        {% endif %}
+
                     </div>
                 </div>
             </div>
             <div class="slide">
                 <div class="slide__wrap">
-                    <div class="slide__img"
-                         style="background-image: url({{ page.ElementAttr('activity_images_img3','src', asset('img/feature/havana1.png')) | raw }});">
+                    <div class="slide__img" data-grape_id="activity_images_img2">
+                        <img src="{{ asset('img/feature/havana1.png') }}" alt="">
                     </div>
-                    <div class="slide__title-wrap">
-                        <h4 class="slide__subtitle">
-                            {{ page.ElementContent('activity_images_text3','description text') | raw }}
-                        </h4>
+                    <div class="slide__title-wrap" data-grape_id="activity_images_img2_desc">
+                        {% if activity.getElement('activity_images_img2_desc') is null %}
+                            <h4 class="slide__subtitle">
+                                {{ page.ElementContent('activity_images_img2_desc') | raw }}
+                            </h4>
+                        {% else %}
+                            {{ activity.getElement('activity_images_img2_desc') }}
+                        {% endif %}
                     </div>
                 </div>
             </div>
             <div class="slide">
                 <div class="slide__wrap">
-                    <div class="slide__img"
-                         style="background-image: url({{ page.ElementAttr('activity_images_img4','src', asset('img/feature/havana1.png')) | raw }});">
+                    <div class="slide__img" data-grape_id="activity_images_img3">
+                        <img src="{{ asset('img/feature/havana1.png') }}" alt="">
                     </div>
-                    <div class="slide__title-wrap">
-                        <h4 class="slide__subtitle">
-                            {{ page.ElementContent('activity_images_text4','description text') | raw }}
-                        </h4>
+                    <div class="slide__title-wrap" data-grape_id="activity_images_img3_desc">
+                        {% if activity.getElement('activity_images_img3_desc') is null %}
+                            <h4 class="slide__subtitle">
+                                {{ page.ElementContent('activity_images_img3_desc') | raw }}
+                            </h4>
+                        {% else %}
+                            {{ activity.getElement('activity_images_img3_desc') }}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="slide__wrap">
+                    <div class="slide__img" data-grape_id="activity_images_img4">
+                        <img src="{{ asset('img/feature/havana1.png') }}" alt="">
+                    </div>
+                    <div class="slide__title-wrap" data-grape_id="activity_images_img4_desc">
+                        {% if activity.getElement('activity_images_img4_desc') is null %}
+                            <h4 class="slide__subtitle">
+                                {{ page.ElementContent('activity_images_img4_desc') | raw }}
+                            </h4>
+                        {% else %}
+                            {{ activity.getElement('activity_images_img4_desc') }}
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -82,28 +99,61 @@
     {% else %}
         <div class="editor__imagen_list">
             <div class="editor__imagen_list__item">
-                <img data-grapeid="activity_images_img1" src="{{ page.ElementAttr('activity_images_img1','src', asset('img/feature/havana1.png')) | raw }}" alt="">
-                <p data-grapeid="activity_images_text1">
-                    {{ page.ElementContent('activity_images_text1','description text') | raw }}
-                </p>
+                <div class="slide__img" data-grape_id="activity_images_img1">
+                    <img src="{{ asset('img/feature/havana1.png') }}" alt="">
+                </div>
+                <div class="slide__title-wrap" data-grape_id="activity_images_img1_desc">
+                    {% if activity.getElement('activity_images_img1_desc') is null %}
+                        <h4 class="slide__subtitle">
+                            {{ page.ElementContent('activity_images_img1_desc') | raw }}
+                        </h4>
+                    {% else %}
+                        {{ activity.getElement('activity_images_img1_desc') }}
+                    {% endif %}
+
+                </div>
             </div>
             <div class="editor__imagen_list__item">
-                <img data-grapeid="activity_images_img2" src="{{ page.ElementAttr('activity_images_img2','src', asset('img/feature/havana1.png')) | raw }}" alt="">
-                <p data-grapeid="activity_images_text2">
-                    {{ page.ElementContent('activity_images_text2','description text') | raw }}
-                </p>
+                <div class="slide__img" data-grape_id="activity_images_img2">
+                    <img src="{{ asset('img/feature/havana1.png') }}" alt="">
+                </div>
+                <div class="slide__title-wrap" data-grape_id="activity_images_img2_desc">
+                    {% if activity.getElement('activity_images_img2_desc') is null %}
+                        <h4 class="slide__subtitle">
+                            {{ page.ElementContent('activity_images_img2_desc') | raw }}
+                        </h4>
+                    {% else %}
+                        {{ activity.getElement('activity_images_img2_desc') }}
+                    {% endif %}
+                </div>
             </div>
             <div class="editor__imagen_list__item">
-                <img data-grapeid="activity_images_img3" src="{{ page.ElementAttr('activity_images_img3','src', asset('img/feature/havana1.png')) | raw }}" alt="">
-                <p data-grapeid="activity_images_text3">
-                    {{ page.ElementContent('activity_images_text3','description text') | raw }}
-                </p>
+                <div class="slide__img" data-grape_id="activity_images_img3">
+                    <img src="{{ asset('img/feature/havana1.png') }}" alt="">
+                </div>
+                <div class="slide__title-wrap" data-grape_id="activity_images_img3_desc">
+                    {% if activity.getElement('activity_images_img3_desc') is null %}
+                        <h4 class="slide__subtitle">
+                            {{ page.ElementContent('activity_images_img3_desc') | raw }}
+                        </h4>
+                    {% else %}
+                        {{ activity.getElement('activity_images_img3_desc') }}
+                    {% endif %}
+                </div>
             </div>
             <div class="editor__imagen_list__item">
-                <img data-grapeid="activity_images_img4" src="{{ page.ElementAttr('activity_images_img4','src', asset('img/feature/havana1.png')) | raw }}" alt="">
-                <p data-grapeid="activity_images_text4">
-                    {{ page.ElementContent('activity_images_text4','description text') | raw }}
-                </p>
+                <div class="slide__img" data-grape_id="activity_images_img4">
+                    <img src="{{ asset('img/feature/havana1.png') }}" alt="">
+                </div>
+                <div class="slide__title-wrap" data-grape_id="activity_images_img4_desc">
+                    {% if activity.getElement('activity_images_img4_desc') is null %}
+                        <h4 class="slide__subtitle">
+                            {{ page.ElementContent('activity_images_img4_desc') | raw }}
+                        </h4>
+                    {% else %}
+                        {{ activity.getElement('activity_images_img4_desc') }}
+                    {% endif %}
+                </div>
             </div>
         </div>
     {% endif %}
