@@ -42,10 +42,6 @@ class FilterTag
      */
     private $activities;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Destination", mappedBy="filterTags")
-     */
-    private $destinations;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
@@ -56,7 +52,6 @@ class FilterTag
     {
         $this->interests = new ArrayCollection();
         $this->activities = new ArrayCollection();
-        $this->destinations = new ArrayCollection();
         $this->language = 'de';
     }
 
@@ -136,33 +131,6 @@ class FilterTag
         return $this;
     }
 
-    /**
-     * @return Collection|Destination[]
-     */
-    public function getDestinations(): Collection
-    {
-        return $this->destinations;
-    }
-
-    public function addDestination(Destination $destination): self
-    {
-        if (!$this->destinations->contains($destination)) {
-            $this->destinations[] = $destination;
-            $destination->addFilterTag($this);
-        }
-
-        return $this;
-    }
-
-    public function removeDestination(Destination $destination): self
-    {
-        if ($this->destinations->contains($destination)) {
-            $this->destinations->removeElement($destination);
-            $destination->removeFilterTag($this);
-        }
-
-        return $this;
-    }
 
     public function getPinned(): ?bool
     {

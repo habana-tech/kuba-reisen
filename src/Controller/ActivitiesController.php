@@ -37,18 +37,70 @@ class ActivitiesController extends AbstractController
         if(!$page)
             throw new NotFoundHttpException();
 
-        $filterTags = $filterTagRepository->findBy(['language'=>$request->getLocale()]);
 
-        $activities = $activityRepository->findByLanguage($request->getLocale(),
-                                        0, $this->amountActivitiesDefault);
+        $filterTags = $filterTagRepository->findBy(['language'=>$request->getLocale()]);
+        $_activities = $activityRepository->findByLanguage($request->getLocale(),
+                                        0, $this->amountActivitiesDefault+1);
+
+        $loadMore = count($_activities) > $this->amountActivitiesDefault;
+        $loadMore = true;
+        $activities = array();
+        for ($i = 0; $i < min($this->amountActivitiesDefault, count($_activities)); $i++)
+            array_push($activities, $_activities[$i]);
 
         return $this->render('frontend/activities.html.twig', [
             'dynamic_page_id' => $page->getId(),
             'page' => $page,
             'activities'=>$activities,
             'filterTags'=>$filterTags,
+            'loadMore'=> $loadMore
         ]);
     }
+
+
+    /**
+     * @Route("/{_locale}/activitiesApiPos/{pos}/{amount}", defaults={"_locale": "de"},
+     *     requirements={"_locale": "en|es|de"}, name="activitiesApiPos")
+     */
+    public function activitiesApiPos(Request $request,
+                                     ActivityRepository $activityRepository,
+                                     $pos, $amount){
+
+        if($pos==null)
+            $pos=0;
+        if ($amount==null)
+            $amount=$this->amountActivitiesDefault;
+
+        $_activities = $activityRepository->findByLanguage($request->getLocale(),
+            $pos, $amount+1);
+
+        $loadMore = count($_activities) > $amount;
+        $activities = array();
+        for ($i = 0; $i < min($amount, count($_activities)); $i++)
+            array_push($activities, $_activities[$i]);
+
+        $activities_data = [];
+        foreach ($activities as $activity){
+            array_push($activities_data, array(
+                'name'=>$activity->getName(),
+                'image'=>$activity->getStaticImagePath(),
+                'imageAlt'=>$activity->getAlternativeText(),
+                'description'=>$activity->getDescription(),
+                'link'=>  $this->generateUrl('activity',
+                    ['id'=>$activity->getId(),
+                    'name'=>$activity->getMachineName(),
+                    '_locale'=>$request->getLocale()]),
+            ));
+        }
+
+        $data = array(
+            'activities'=>$activities_data,
+            'loadMore'=>$loadMore
+        );
+
+        return $this->json($data);
+    }
+
 
     /**
      * @Route("/{_locale}/activities/filter/{filters}", defaults={"_locale": "de"},
@@ -73,8 +125,14 @@ class ActivitiesController extends AbstractController
 
 
         $filters = explode(',', $filters);
-        $activities = $activityRepository->findByFilter($filters, $filterTagRepository,
-            0, $this->amountActivitiesDefault);
+        $_activities = $activityRepository->findByFilter($filters, $request->getLocale(),
+                                                        $filterTagRepository,
+                                                        0, $this->amountActivitiesDefault+1);
+
+        $loadMore = count($_activities) > $this->amountActivitiesDefault;
+        $activities = array();
+        for ($i = 0; $i < min($this->amountActivitiesDefault, count($_activities)); $i++)
+            array_push($activities, $_activities[$i]);
 
         $filterTags = $filterTagRepository->findBy(['language'=>$request->getLocale()]);
 
@@ -83,41 +141,10 @@ class ActivitiesController extends AbstractController
             'page' => $page,
             'activities'=>$activities,
             'filterTags'=>$filterTags,
+            'loadMore'=>$loadMore,
         ]);
     }
 
-
-
-
-
-
-    /**
-     * @Route("/{_locale}/activitiesApiPos/{pos}/{amount}", defaults={"_locale": "de"},
-     *     requirements={"_locale": "en|es|de"}, name="activitiesApiPos")
-     */
-    public function activitiesApiPos(Request $request,
-                                    ActivityRepository $activityRepository,
-                                    $pos, $amount){
-
-        if($pos==null)
-            $pos=0;
-        if ($amount==null)
-            $amount=$this->amountActivitiesDefault;
-
-        $activities = $activityRepository->findByLanguage($request->getLocale(),
-            $pos, $amount);
-
-        $activities_data = [];
-        foreach ($activities as $activity){
-            array_push($activities_data, array(
-                'name'=>$activity->getName(),
-                'image'=>$activity->getImagePath(),
-                'description'=>$activity->getDescription(),
-            ));
-        }
-
-        return $this->json($activities_data);
-    }
 
     /**
      * @Route("/{_locale}/activitiesApiPosFilter/{filters}/{pos}/{amount}", defaults={"_locale": "de"},
@@ -135,8 +162,13 @@ class ActivitiesController extends AbstractController
 
         $filters = explode(',', $filters);
 
-        $activities = $activityRepository->findByFilter($filters, $filterTagRepository,
-                                                        $pos, $amount);
+        $_activities = $activityRepository->findByFilter($filters, $request->getLocale(),
+                                                        $filterTagRepository,
+                                                        $pos, $amount+1);
+        $loadMore = count($_activities) > $amount;
+        $activities = array();
+        for ($i = 0; $i < min($this->amountActivitiesDefault, count($_activities)); $i++)
+            array_push($activities, $_activities[$i]);
 
         $activities_data = [];
         foreach ($activities as $activity){
@@ -144,10 +176,19 @@ class ActivitiesController extends AbstractController
                 'name'=>$activity->getName(),
                 'image'=>$activity->getImagePath(),
                 'description'=>$activity->getDescription(),
+                'link'=>  $this->generateUrl('activity',
+                    ['id'=>$activity->getId(),
+                    'name'=>$activity->getMachineName(),
+                    '_locale'=>$request->getLocale()]),
             ));
         }
 
-        return $this->json($activities_data);
+        $data = array(
+            'activities'=>$activities_data,
+            'loadMore'=>$loadMore
+        );
+
+        return $this->json($data);
     }
 
     /**
@@ -164,8 +205,13 @@ class ActivitiesController extends AbstractController
         if ($amount==null)
             $amount=$this->amountActivitiesDefault;
 
-        $activities = $activityRepository->findBySearch($search,
-                                                    $pos, $amount);
+        $_activities = $activityRepository->findBySearch($search, $request->getLocale(),
+                                                    $pos, $amount+1);
+
+        $loadMore = count($_activities) > $amount;
+        $activities = array();
+        for ($i = 0; $i < min($this->amountActivitiesDefault, count($_activities)); $i++)
+            array_push($activities, $_activities[$i]);
 
         $activities_data = [];
         foreach ($activities as $activity){
@@ -173,10 +219,18 @@ class ActivitiesController extends AbstractController
                 'name'=>$activity->getName(),
                 'image'=>$activity->getImagePath(),
                 'description'=>$activity->getDescription(),
+                'link'=>  $this->generateUrl('activity',
+                    ['id'=>$activity->getId(),
+                    'name'=>$activity->getMachineName(),
+                    '_locale'=>$request->getLocale()]),
             ));
         }
 
-        return $this->json($activities_data);
+        $data = array(
+            'activities'=>$activities_data,
+            'loadMore'=>$loadMore
+        );
+        return $this->json($data);
     }
 
 

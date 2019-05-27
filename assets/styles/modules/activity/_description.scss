@@ -1,6 +1,7 @@
 .description{
     width: 75%;
     margin: auto;
+    position: relative;
 
 
     &__text{
@@ -10,6 +11,32 @@
 
         &__content{
             width: 100%;
+        }
+
+        &__times{
+            display: flex;
+            width: 100%;
+            margin: auto;
+            position: relative;
+            justify-content: center;
+            text-align: center;
+
+            &__init{
+                width: 20%;
+            }
+
+            &__duration{
+                width: 20%;
+            }
+
+            &__finish{
+                width: 20%;
+            }
+
+            &__comments{
+                width: 40%;
+            }
+
         }
 
         &__included-details{

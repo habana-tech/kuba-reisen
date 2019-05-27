@@ -10,7 +10,8 @@
 .btn {
 	background-image: linear-gradient(to right, rgba($light-blue, .9), rgba($dark-blue, .9));
     background-size: 200%;
-	border: 1px white solid;
+	border: 2px white solid;
+	border-radius: 1px;
 	color: white;
 	font-size: 1em;
     font-weight: 700;
@@ -20,7 +21,7 @@
     transition: .5s;
     box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
 
-	&:hover{
+	&:hover, &:active{
 		background-position: right center;
 		text-decoration: none;
 		color: white;

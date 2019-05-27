@@ -36,10 +36,6 @@ class Destination
      */
     private $activities;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\FilterTag", inversedBy="destinations")
-     */
-    private $filterTags;
 
 
     /**
@@ -51,7 +47,6 @@ class Destination
     public function __construct()
     {
         $this->activities = new ArrayCollection();
-        $this->filterTags = new ArrayCollection();
 
         $this->image = new EmbeddedFile();
 
@@ -104,33 +99,6 @@ class Destination
 
         return $this;
     }
-
-    /**
-     * @return Collection|FilterTag[]
-     */
-    public function getFilterTags(): Collection
-    {
-        return $this->filterTags;
-    }
-
-    public function addFilterTag(FilterTag $filterTag): self
-    {
-        if (!$this->filterTags->contains($filterTag)) {
-            $this->filterTags[] = $filterTag;
-        }
-
-        return $this;
-    }
-
-    public function removeFilterTag(FilterTag $filterTag): self
-    {
-        if ($this->filterTags->contains($filterTag)) {
-            $this->filterTags->removeElement($filterTag);
-        }
-
-        return $this;
-    }
-
 
     public function getDynamicPage(): ?DynamicPage
     {

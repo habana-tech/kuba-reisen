@@ -29,18 +29,17 @@
         <div class="hero__buttom-links__item">
             <a href="#" data-slide="1">Kuba erkunden </a>
             <ul class="hero__buttom-links__item__nav">
-                <li>
-                    <a href="#">Havanna</a>
-                </li>
-                <li>
-                    <a href="#">Cayos & Beaches</a>
-                </li>
-                <li>
-                    <a href="#">Vergessene Orte</a>
-                </li>
-                <li>
-                    <a href="#">Oriente</a>
-                </li>
+                {% for destination in destinations | slice(0, 4) %}
+                    <li>
+                        <a href="{{ path('destination',
+                            {'id':destination.getId,
+                                '_locale': app.request.locale,
+                                'name':destination.getMachineName })
+                        }}">
+                            {{ destination.getName }}
+                        </a>
+                    </li>
+                {% endfor %}
             </ul>
         </div>
         <div class="hero__buttom-links__item">
@@ -63,18 +62,17 @@
         <div class="hero__buttom-links__item">
         <a href="#" data-slide="3">Kuba bereisen</a>
         <ul class="hero__buttom-links__item__nav">
-            <li>
-                <a href="#">Individualreise</a>
-            </li>
-            <li>
-                <a href="#">Gruppenreise</a>
-            </li>
-            <li>
-                <a href="#">Themenreise</a>
-            </li>
-            <li>
-                <a href="#">Familienreise</a>
-            </li>
+
+            <li><a href="{{ path('contact') }}">Individualreise</a></li>
+
+            {% for filter in filterTags | slice(0, 3) %}
+                <li>
+                    <a href="{{ path('activitiesFilter', {'filters':filter.title }) }}#activities">
+                        {{ filter.title }}
+                    </a>
+                </li>
+            {% endfor %}
+
         </ul>
     </div>
     </div>

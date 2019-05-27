@@ -1,11 +1,15 @@
 <section class="section description">
 
 
+    {% include 'frontend/components/activity/_float_button.html.twig' %}
+
+
+
     <div class="section__title ">
         <div class="section__title__highlight">
             <h2 data-grape_id="activity_Description_title" data-grape_format="txt">
                 {% if activity.getElement('activity_Description_title') is null %}
-                    Description
+                    Activity name
                 {% else %}
                     {{ activity.getElement('activity_Description_title') }}
                 {% endif %}
@@ -23,12 +27,41 @@
             {% endif %}
         </div>
 
+        <div class="description__text__times">
+            <div class="description__text__times__init">
+                <h3>Start Time</h3>
+
+                <p>May 15 at 9:00 hours</p>
+
+                <p>May 15 at 9:00 hours</p>
+            </div>
+            <div class="description__text__times__duration">
+                <h3>Duration</h3>
+
+                <p>5 hours</p>
+                <p>5 hours</p>
+            </div>
+            <div class="description__text__times__finish">
+                <h3>Finish time</h3>
+
+                <p>May 15 at 15 hours</p>
+                <p>May 15 at 15 hours</p>
+            </div>
+
+            <div class="description__text__times__comments">
+                <h3>Comments</h3>
+
+                <p>Lorem ipsum dolor sit amet, adipisicing</p>
+                <p>Lorem ipsum dolor sit amet, adipisicing</p>
+            </div>
+        </div>
+
         <div class="description__text__included-details">
             <div class="description__text__included-details__included">
 
                 <h3 data-grape_id="activity_included_title">
                     {% if activity.getElement('activity_included_title') is null %}
-                        What is included
+                        Included in the tour
                     {% else %}
                         {{ activity.getElement('activity_included_title') | raw }}
                     {% endif %}
@@ -43,29 +76,28 @@
                     {% endif %}
                 </div>
             </div>
-        </div>
 
-        <div class="description__text__included-details__not-included">
-            <h3 data-grape_id="activity_not_included_title">
-                {% if activity.getElement('activity_not_included_title') is null %}
-                        What is <u>not</u> included
-                {% else %}
-                    {{ activity.getElement('activity_not_included_title') | raw}}
-                {% endif %}
-            </h3>
-            <div data-grape_id="activity_not_included_text">
-                {% if activity.getElement('activity_not_included_text') is null %}
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet asperiores cumque deserunt, distinctio est id impedit libero modi nobis perferendis possimus provident, quae qui, quis sint vel velit vitae.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet asperiores cumque deserunt, distinctio est id impedit libero modi nobis perferendis possimus provident, quae qui, quis sint vel velit vitae.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet asperiores cumque deserunt, distinctio est id impedit libero modi nobis perferendis possimus provident, quae qui, quis sint vel velit vitae.</p>
-                {% else %}
-                    {{ activity.getElement('activity_not_included_text') | raw }}
-                {% endif %}
+            <div class="description__text__included-details__not-included">
+                <h3 data-grape_id="activity_not_included_title">
+                    {% if activity.getElement('activity_not_included_title') is null %}
+                        <u>Not</u> include in the tour
+                    {% else %}
+                        {{ activity.getElement('activity_not_included_title') | raw}}
+                    {% endif %}
+                </h3>
+                <div data-grape_id="activity_not_included_text">
+                    {% if activity.getElement('activity_not_included_text') is null %}
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet asperiores cumque deserunt, distinctio est id impedit libero modi nobis perferendis possimus provident, quae qui, quis sint vel velit vitae.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet asperiores cumque deserunt, distinctio est id impedit libero modi nobis perferendis possimus provident, quae qui, quis sint vel velit vitae.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet asperiores cumque deserunt, distinctio est id impedit libero modi nobis perferendis possimus provident, quae qui, quis sint vel velit vitae.</p>
+                    {% else %}
+                        {{ activity.getElement('activity_not_included_text') | raw }}
+                    {% endif %}
+                </div>
             </div>
-        </div>
+
         </div>
 
     </div>
-
 
 </section>

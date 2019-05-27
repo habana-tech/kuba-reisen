@@ -13,6 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class RegionsController extends AbstractController
 {
+
     public function regionTopDestinations(Request $request, DynamicPageManager $pm)
     {
         $pageinfo = [
@@ -45,7 +46,9 @@ class RegionsController extends AbstractController
         ]);
     }
 
-    public function regionFooter(Request $request, DynamicPageManager $pm)
+    public function regionFooter(Request $request, DynamicPageManager $pm,
+                                FilterTagRepository $filterTagRepository,
+                                DestinationRepository $destinationRepository)
     {
         $pageinfo = [
             'pageName'=>'_footer',
@@ -58,6 +61,8 @@ class RegionsController extends AbstractController
 
         return $this->render('frontend/components/global/_footer.html.twig', [
             'page' => $page,
+            'destinations'=>$destinationRepository->findByLang($request->getLocale()),
+            'filterTags'=>$filterTagRepository->findByPinned($request->getLocale()),
         ]);
     }
 

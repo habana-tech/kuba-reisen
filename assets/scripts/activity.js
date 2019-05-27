@@ -1,4 +1,4 @@
 import './modules/activity/_image';
-import FloatButton from './modules/activity/_float_button';
+import Cart from './modules/activity/_cart';
 
-new FloatButton();
+new Cart();

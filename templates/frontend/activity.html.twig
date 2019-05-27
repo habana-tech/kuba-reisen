@@ -8,16 +8,11 @@
 
     <main class="main" {% if is_granted('ROLE_EDITOR') %} id="grapes-editable" {% endif %} >
 
+        {{ include('frontend/components/activity/_images.html.twig') }}
 
-        {% include 'frontend/components/activity/_images.html.twig' %}
-
-        {% include 'frontend/components/activity/_description.html.twig' with {'description':activity.description } %}
+        {{ include('frontend/components/activity/_description.html.twig') }}
 
         {% include 'frontend/components/activity/_related_activities.html.twig' %}
-        
-        {#{% include 'frontend/components/activity/_float_button.html.twig' %}#}
-
-        {#{% include 'frontend/components/global/_bottom_bar.html.twig' %}#}
 
     </main>
 

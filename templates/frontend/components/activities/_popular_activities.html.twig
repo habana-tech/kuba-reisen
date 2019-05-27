@@ -1,22 +1,13 @@
 <section id="activities" class="section activities">
 
-    {% if is_granted('ROLE_EDITOR') %}
-        <div id="grapes-editable" style="max-height: 10em; overflow: hidden">
-    {% endif %}
-
-
-        <div class="section__title ">
-            <div class="section__title__highlight">
-                <h2 data-grape_id="contact_t1">{{ page.ElementContent('contact_t1',"Popular activities") | raw }}</h2>
-            </div>
-            <div class="section__title__description">
-                <p data-grape_id="contact_p1">{{ page.ElementContent('contact_p1',"We have some many that is hard to choose") | raw }}</p>
-            </div>
+    <div class="section__title ">
+        <div class="section__title__highlight">
+            <h2 data-grape_id="contact_t1">{{ page.ElementContent('contact_t1',"Popular activities") | raw }}</h2>
         </div>
-
-    {% if is_granted('ROLE_EDITOR') %}
+        <div class="section__title__description">
+            <p data-grape_id="contact_p1">{{ page.ElementContent('contact_p1',"We have some many that is hard to choose") | raw }}</p>
         </div>
-    {% endif %}
+    </div>
 
     <div class="activities__selectors">
         <div class="activities__selectors__filters">
@@ -43,16 +34,49 @@
     </div>
 
     <div class="activities__list">
+
         <div class="activities__list__title">
             <h3>We have found {{ activities | length }} activities</h3>
         </div>
 
-        {% for activity in activities %}
-            {% include 'frontend/components/global/_activity.html.twig'
-                with {'activity':activity} only %}
+
+        <div class="activities__list__item-prototype">
+            <div class="activity">
+                <a href="">
+                    <div class="activity__image">
+                        <img src="" alt="">
+                    </div>
+                    <div class="activity__content">
+                        <div class="activity__content__title">
+                            <h4></h4>
+                        </div>
+                        <div class="activity__content__description">
+                            <p></p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="activities__list__container">
+
+            {% for activity in activities %}
+                {% include 'frontend/components/global/_activity.html.twig'
+                    with {'activity':activity} only %}
             {% else %}
-            <p>something</p>
-        {% endfor %}
+                <p>something</p>
+            {% endfor %}
+
+            <div class="loading_element">
+
+            </div>
+        </div>
+
+        {% if loadMore %}
+            <div class="activities__list__more">
+                <a href="#" class="btn">Load more</a>
+            </div>
+        {% endif %}
 
     </div>
 

@@ -1,19 +1,27 @@
 .float_button{
-    &__container{
-        position: relative;
-    }
+    position: absolute;
+    height: 100%;
+
 
     &__button {
         position: sticky;
-        //left: 3em;
-        top: 0px;
+        left: 0;
+        top: 4em;
+        margin: 4em 0;
+        width: 2.5em;
+        height: 2.5em;
+        border-radius: 50%;
         padding: .5em;
         background: linear-gradient(45deg, $light-green, $dark-green);
         z-index: 1000;
         color: white;
+        transform: scale(1) translateX(-200%);
+        transform-origin: 50% 50%;
+        transition: transform .3s ease-in-out;
 
-        &--sticky{
-
+        &:hover{
+            transform: scale(1.4) translateX(-175%);
+            transform-origin: 50% 50%;
         }
     }
 }

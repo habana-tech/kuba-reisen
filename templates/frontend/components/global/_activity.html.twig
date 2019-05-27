@@ -1,18 +1,16 @@
 {#expect a activity variable#}
 <div class="activity">
-    <div class="activity__image">
-        <a href="{{ path('activity', {'id':activity.id, 'name':activity.machineName}) }}">
+    <a href="{{ path('activity', {'id':activity.id, 'name':activity.machineName}) }}">
+        <div class="activity__image">
             <img src="{{ asset(activity.imagePath ) }}" alt="">
-        </a>
-    </div>
-    <div class="activity__content">
-        <div class="activity__content__title">
-            <a href="{{ path('activity', {'id':activity.id, 'name':activity.machineName}) }}">
+        </div>
+        <div class="activity__content">
+            <div class="activity__content__title">
                 <h4>{{ activity.name }}</h4>
-            </a>
+            </div>
+            <div class="activity__content__description">
+                <p>{{ activity.description }}</p>
+            </div>
         </div>
-        <div class="activity__content__description">
-            <p>{{ activity.description }}</p>
-        </div>
-    </div>
+    </a>
 </div>

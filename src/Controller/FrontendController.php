@@ -2,20 +2,16 @@
 
 namespace App\Controller;
 
-use App\Entity\ContactPlaning;
 use App\Entity\Destination;
 use App\Entity\Activity;
-use App\Form\ContactPlaningType;
 use App\Repository\ActivityRepository;
 use App\Repository\DestinationRepository;
 use App\Repository\DynamicPageRepository;
 use App\Repository\FilterTagRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Response;
 use App\PageManager\DynamicPageManager;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -26,7 +22,8 @@ class FrontendController extends AbstractController
      *     requirements={"_locale": "en|es|de"}, name="frontend")
      */
     public function index(Request $request, DynamicPageRepository $pageRepository,
-                          DynamicPageManager $pm, DestinationRepository $destinationRepository)
+                          DynamicPageManager $pm,
+                          DestinationRepository $destinationRepository, FilterTagRepository $filterTagRepository)
     {
         $pageinfo = [
             'pageName'=>'index',
@@ -46,6 +43,8 @@ class FrontendController extends AbstractController
             'controller_name' => 'FrontendController',
             'dynamic_page_id' => $page->getId(),
             'page' => $page,
+            'destinations'=>$destinationRepository->findByLang($request->getLocale()),
+            'filterTags'=>$filterTagRepository->findByPinned($request->getLocale()),
         ]);
 
     }
@@ -77,45 +76,6 @@ class FrontendController extends AbstractController
             'page' => $page,
         ]);
 
-    }
-
-
-    /**
-     * @Route("/{_locale}/contact", defaults={"_locale": "de"},
-     *     requirements={"_locale": "en|es|de"}, name="contact")
-     * @Route("/contact",  defaults={"_locale": "de"},
-     *     requirements={"_locale": "en|es|de"})
-     */
-    public function contact(Request $request, DynamicPageRepository $pageRepository)
-    {
-        if(!$dymanicPage = $pageRepository->findOneBy([
-            'pageName'=>'contact',
-            'language'=>$request->getLocale()
-        ]))
-
-            throw new NotFoundHttpException();
-
-
-        $contact = new ContactPlaning();
-        $form = $this->createForm(ContactPlaningType::class, $contact, ['locale' => $request->getLocale()]);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($contact);
-            $entityManager->flush();
-
-            //TODO: show a sended form page
-
-            //return $this->redirectToRoute('post_index');
-        }
-
-        return $this->render('frontend/contact.html.twig', [
-            'contact' => $contact,
-            'form' => $form->createView(),
-            'dynamic_page_id' => $dymanicPage->getId(),
-            'page' => $dymanicPage,
-        ]);
     }
 
     /**
@@ -218,11 +178,14 @@ class FrontendController extends AbstractController
                 }
             }
         }
-
+        
         return $this->render('frontend/activity.html.twig', [
             'dynamic_page_id' => $page->getId(),
             'page' => $page,
             'activity' => $activity,
+            'addLink'=>$this->generateUrl('addActivity',
+                                            ['id'=>$activity->getId(),
+                                            '_locale'=>$request->getLocale()]),
             'related_activities'=>$related_activities,
         ]);
     }

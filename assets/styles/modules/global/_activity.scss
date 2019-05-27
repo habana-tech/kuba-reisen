@@ -2,8 +2,19 @@
     width: 30%;
     margin: .5em 0;
     cursor: pointer;
-
     position: relative;
+
+    & a:hover{
+        text-decoration: none;
+
+        & img{
+            transform: scale(1.1);
+        }
+
+        & h4{
+            text-decoration: underline;
+        }
+    }
 
 
     &__image{
@@ -18,12 +29,6 @@
             transition: transform .3s ease-in-out;
         }
 
-        &:hover{
-            & img{
-                transform: scale(1.1);
-            }
-
-        }
     }
 
     &__content{

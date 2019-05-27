@@ -467,6 +467,13 @@ Descr: Custom radio toggle
   margin: .5em 0;
   cursor: pointer;
   position: relative; }
+.activity a:hover {
+    text-decoration: none; }
+.activity a:hover img {
+      -webkit-transform: scale(1.1);
+              transform: scale(1.1); }
+.activity a:hover h4 {
+      text-decoration: underline; }
 .activity__image {
     height: 35vh;
     overflow: hidden;
@@ -478,9 +485,6 @@ Descr: Custom radio toggle
       transition: -webkit-transform .3s ease-in-out;
       transition: transform .3s ease-in-out;
       transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out; }
-.activity__image:hover img {
-      -webkit-transform: scale(1.1);
-              transform: scale(1.1); }
 .activity__content {
     position: relative;
     top: -1em;
@@ -494,7 +498,7 @@ Descr: Custom radio toggle
       text-align: center; }
 .activity__content__description {
       text-align: center; }
-.bottom_bar {
+.cart_bar {
   position: fixed;
   bottom: 0;
   width: 99vw;
@@ -505,16 +509,24 @@ Descr: Custom radio toggle
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1em 0; }
-.bottom_bar__icon {
+  padding: 1em 0;
+  -webkit-transform: translateY(100%);
+          transform: translateY(100%);
+  transition: -webkit-transform .3s ease-in-out;
+  transition: transform .3s ease-in-out;
+  transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out; }
+.cart_bar--visible {
+    -webkit-transform: translateY(0);
+            transform: translateY(0); }
+.cart_bar__icon {
     width: 10%;
     color: white; }
-.bottom_bar__text {
+.cart_bar__text {
     width: 60%;
     color: white; }
-.bottom_bar__text p {
+.cart_bar__text p {
       margin: 0; }
-.bottom_bar__button {
+.cart_bar__button {
     width: 20%; }
 .footer {
   display: flex;

@@ -2103,7 +2103,8 @@ pre code {
 .btn {
   background-image:linear-gradient(to right, rgba(53, 207, 212, 0.9), rgba(20, 161, 230, 0.9));
   background-size: 200%;
-  border: 1px white solid;
+  border: 2px white solid;
+  border-radius: 1px;
   color: white;
   font-size: 1em;
   font-weight: 700;
@@ -2112,7 +2113,7 @@ pre code {
   white-space: normal;
   transition: .5s;
   box-shadow:0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08); }
-.btn:hover {
+.btn:hover, .btn:active {
     background-position: right center;
     text-decoration: none;
     color: white; }
@@ -3301,6 +3302,23 @@ body > textarea {
   max-width: 90vw !important; }
 #tie-btn-draw, #tie-btn-shape, #tie-btn-icon, #tie-btn-text {
   display: none; }
+.admin_bar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 2em;
+  background-image:linear-gradient(rgba(0, 0, 0, 0.8), #000);
+  border: solid 2px #272727;
+  z-index: 100; }
+.admin_bar ul {
+    display: flex;
+    list-style: none; }
+.admin_bar ul li {
+    margin: auto; }
+.admin_bar a {
+    color: #fff; }
+body.admin-logged {
+  margin-top: 2em; }
 /* --------------------------------
 
 Title: Radio Switch
@@ -3770,6 +3788,13 @@ Descr: Custom radio toggle
   margin: .5em 0;
   cursor: pointer;
   position: relative; }
+.activity a:hover {
+    text-decoration: none; }
+.activity a:hover img {
+      -webkit-transform: scale(1.1);
+              transform: scale(1.1); }
+.activity a:hover h4 {
+      text-decoration: underline; }
 .activity__image {
     height: 35vh;
     overflow: hidden;
@@ -3781,9 +3806,6 @@ Descr: Custom radio toggle
       transition: -webkit-transform .3s ease-in-out;
       transition: transform .3s ease-in-out;
       transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out; }
-.activity__image:hover img {
-      -webkit-transform: scale(1.1);
-              transform: scale(1.1); }
 .activity__content {
     position: relative;
     top: -1em;
@@ -3797,7 +3819,7 @@ Descr: Custom radio toggle
       text-align: center; }
 .activity__content__description {
       text-align: center; }
-.bottom_bar {
+.cart_bar {
   position: fixed;
   bottom: 0;
   width: 99vw;
@@ -3808,16 +3830,24 @@ Descr: Custom radio toggle
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1em 0; }
-.bottom_bar__icon {
+  padding: 1em 0;
+  -webkit-transform: translateY(100%);
+          transform: translateY(100%);
+  transition: -webkit-transform .3s ease-in-out;
+  transition: transform .3s ease-in-out;
+  transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out; }
+.cart_bar--visible {
+    -webkit-transform: translateY(0);
+            transform: translateY(0); }
+.cart_bar__icon {
     width: 10%;
     color: white; }
-.bottom_bar__text {
+.cart_bar__text {
     width: 60%;
     color: white; }
-.bottom_bar__text p {
+.cart_bar__text p {
       margin: 0; }
-.bottom_bar__button {
+.cart_bar__button {
     width: 20%; }
 .footer {
   display: flex;
@@ -4028,13 +4058,14 @@ Descr: Custom radio toggle
       width: 45%;
       text-align: center; }
 .travel-options {
-  margin-bottom: 2em; }
+  margin-bottom: 2em;
+  position: relative; }
 .travel-options__grid {
     display: grid;
-    grid-template-areas: "img1 img5 img8 img8" "img2 img5 img9 img9" "img3 img3 img3 img3" "img4 img6 img6 img10" "img4 img7 img7 img10";
+    grid-template-areas: "img1 img6 img9 img9" "img2 img6 img10 img10" "img3 img3 img3 img3" "img4 img4 img11 img11" "img5 img7 img12 img14" "img5 img8 img13 img14";
     grid-template-rows: 40vh 40vh 40vh 40vh;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: .25em; }
+    grid-gap: .15em; }
 .travel-options__grid__item {
       height: 100%;
       width: 100%;
@@ -4044,6 +4075,32 @@ Descr: Custom radio toggle
         height: 100%;
         max-height: 100%;
         max-width: 100%; }
+.travel-options__grid_overlay {
+    display: grid;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    grid-template-areas: "section1 section1 section2 section2" "section1 section1 section2 section2" "section3 section3 section3 section3" "section3 section3 section3 section3" "section4 section4 section5 section5" "section4 section4 section5 section5";
+    grid-template-rows: 40vh 40vh 40vh 40vh;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: .15em; }
+.travel-options__grid_overlay a {
+      text-decoration: none;
+      color: white;
+      font-size: 3em;
+      text-shadow:2px 2px 10px rgba(0, 0, 0, 0.25); }
+.travel-options__grid_overlay a:hover div {
+        opacity: 1; }
+.travel-options__grid_overlay a div {
+        height: 100%;
+        width: 100%;
+        opacity: 0;
+        background-color:rgba(102, 102, 102, 0.45);
+        transition: opacity .3s ease-in-out;
+        display: flex;
+        justify-content: center;
+        align-items: center; }
 .introduction {
   width: 100%;
   position: relative;

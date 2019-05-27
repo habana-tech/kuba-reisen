@@ -22,7 +22,6 @@ class FilterTagType extends AbstractType
 //                ]])
 //            ->add('interests')
 //            ->add('activities')
-//            ->add('destinations')
 //            ->add('translation_from')
 //            ->add('modified_by')
         ;

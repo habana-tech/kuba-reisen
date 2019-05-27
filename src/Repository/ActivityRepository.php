@@ -21,35 +21,6 @@ class ActivityRepository extends ServiceEntityRepository
         parent::__construct($registry, Activity::class);
     }
 
-    // /**
-    //  * @return Activity[] Returns an array of Activity objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Activity
-    {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
-
 
     /**
      * @return Activity[] Returns an array of Activity objects
@@ -69,17 +40,20 @@ class ActivityRepository extends ServiceEntityRepository
     /**
     * @return Activity[] Returns an array of Activity objects
     */
-    public function findByFilter($filters, FilterTagRepository $filterTagRepository,
-                    $pos, $amount) {
+    public function findByFilter($filters, $lang,
+                                 FilterTagRepository $filterTagRepository,
+                                 $pos, $amount) {
 
         $filter_objs = $filterTagRepository->findBy(['title'=>$filters]);
 
-        $filter_ids = array_map( function (FilterTag $filterTag) {return $filterTag->getId();},
+        $filter_ids = array_map(function (FilterTag $filterTag) {return $filterTag->getId();},
                                 $filter_objs);
 
         return $this->createQueryBuilder('activity')
             ->join('activity.filterTags', 'filter_tags')
-            ->where('filter_tags.id in (:ids)')
+            ->where('activity.language = :lang')
+            ->andWhere('filter_tags.id in (:ids)')
+            ->setParameter('lang', $lang)
             ->setParameter('ids', $filter_ids)
             ->setFirstResult($pos)
             ->setMaxResults($amount)
@@ -87,13 +61,16 @@ class ActivityRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+
     /**
      * @return Activity[] Returns an array of Activity objects
      */
-    public function findBySearch($search, $pos, $amount){
+    public function findBySearch($search, $lang, $pos, $amount){
 
         return $this->createQueryBuilder('activity')
-            ->where('activity.name like :search')
+            ->where('activity.language = :lang')
+            ->andWhere('activity.name like :search')
+            ->setParameter('lang', $lang)
             ->setParameter('search',"%$search%")
             ->setFirstResult($pos)
             ->setMaxResults($amount)

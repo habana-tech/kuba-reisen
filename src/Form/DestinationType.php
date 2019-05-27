@@ -21,7 +21,6 @@ class DestinationType extends AbstractType
 //                'es' => 'es',
 //            ]])
 //            ->add('activities')
-            ->add('filterTags')
 //            ->add('modified_by')
 
             ->add('imageFile', VichImageType::class, ['required'=> false])

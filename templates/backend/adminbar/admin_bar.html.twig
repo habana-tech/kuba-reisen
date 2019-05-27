@@ -1,9 +1,11 @@
 <nav class="admin_bar">
     <ul>
         <li class="admin_bar_action"> <a href="{{ path('backend_activity_new') }}">Add Activity</a></li>
-        <li>  <a href="{{ path('backend_destination_new') }}">Add Destination</a></li>
-        <li> <a href="{{ path('backend_interest_new') }}">Add Interest</a></li>
-        <li> <a href="{{ path('backend_filter_tag_index') }}">View Tags</a></li>
+        <li class="admin_bar_action"> <a href="{{ path('backend_activity_index') }}">See Activities</a></li>
+        <li><a href="{{ path('backend_destination_new') }}">Add Destinations</a></li>
+        <li><a href="{{ path('backend_destination_index') }}">See Destinations</a></li>
+        <li><a href="{{ path('backend_interest_new') }}">Add Interest</a></li>
+        <li><a href="{{ path('backend_filter_tag_index') }}">View Tags</a></li>
         <li><a href="{{ path('backend') }}">Go to Admin</a> </li>
         <li><a href="{{ path('fos_user_security_logout') }}">Logout</a> </li>
     </ul>

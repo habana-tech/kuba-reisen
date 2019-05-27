@@ -1,20 +1,20 @@
-<section class="section other_activities">
-    <div class="section__title ">
-        <div class="section__title__highlight">
-            <h2 data-grape_id="section__title__highlight" data-grape_format="txt">
-                {% if activity.getElement('section__title__highlight') is null %}
-                    You might like...
-                {% else %}
-                    {{ activity.getElement('section__title__highlight') }}
-                {% endif %}
-            </h2>
+{% if related_activities | length > 0 %}
+    <section class="section other_activities">
+        <div class="section__title ">
+            <div class="section__title__highlight">
+                <h2 data-grape_id="section__title__highlight" data-grape_format="txt">
+                    {% if activity.getElement('section__title__highlight') is null %}
+                        You might like...
+                    {% else %}
+                        {{ activity.getElement('section__title__highlight') }}
+                    {% endif %}
+                </h2>
+            </div>
         </div>
-    </div>
 
-    {% for activity in related_activities %}
-        {% include 'frontend/components/global/_activity.html.twig'
-            with {'activity':activity} only %}
-    {% else %}
-        <h3>We have found activities with similar tags</h3>
-    {% endfor %}
-</section>
+        {% for activity in related_activities %}
+            {% include 'frontend/components/global/_activity.html.twig'
+                with {'activity':activity} only %}
+        {% endfor %}
+    </section>
+{% endif %}

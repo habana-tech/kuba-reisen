@@ -38,6 +38,10 @@
 
             {% block body %}{% endblock %}
 
+            {% if not is_granted('ROLE_EDITOR') %}
+                {{  include('frontend/components/global/_cart_bar.html.twig') }}
+            {% endif %}
+                
             {{ render(controller('App\\Controller\\RegionsController::regionFooter')) }}
 
         {% if is_granted('ROLE_EDITOR') %}
