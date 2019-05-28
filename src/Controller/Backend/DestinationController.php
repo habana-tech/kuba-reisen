@@ -5,11 +5,13 @@ namespace App\Controller\Backend;
 use App\Entity\Destination;
 use App\Form\DestinationType;
 use App\Repository\DestinationRepository;
+use App\PageManager\DynamicPageManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\DynamicPage;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 /**
  * @Route("/admin/destination")
@@ -38,7 +40,6 @@ class DestinationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $dynamicPage = new DynamicPage();
-
             $dynamicPage->setPageName($destination->getMachineName());
             $destination->setDynamicPage($dynamicPage);
 
@@ -47,6 +48,14 @@ class DestinationController extends AbstractController
             $entityManager->persist($dynamicPage);
 
             $entityManager->flush();
+
+            if($form->get('saveAndEdit')->isClicked())
+                return $this->redirectToRoute('destination',[
+                   // '_locale'=>$request->getLocale(),
+                    '_locale'=>'de',
+                    'id'=>$destination->getId(),
+                    'name'=>$destination->getMachineName()
+                    ]);
 
             return $this->redirectToRoute('backend_destination_index');
         }
