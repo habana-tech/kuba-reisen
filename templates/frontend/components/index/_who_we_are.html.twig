@@ -8,11 +8,23 @@
 
         <div class="section__title">
             <div class="section__title__highlight section__title__highlight--no-decorator">
-                <h2 data-grape_id="who_we_are__title">{{ page.ElementContent('who_we_are__title',"Who we are!") | raw }}</h2>
+                <h2 data-grape_id="who_we_are__title" data-grape_format="txt">
+                    {% if page.getElement('who_we_are__title') is null %}
+                        Who we are!
+                    {% else %}
+                        {{ page.getElement('who_we_are__title') }}
+                    {% endif %}
+                </h2>
             </div>
         </div>
 
-        <p data-grape_id="who_we_are__text">{{ page.ElementContent('who_we_are__text',"While putting custom properties on the :root is great for things that you need to be available throughout your site, there are times when it makes more sense to scope your custom properties locally.") | raw }}</p>
+        <div data-grape_id="who_we_are__text">
+            {% if page.getElement('who_we_are__text') is null %}
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet asperiores cumque deserunt, distinctio est id impedit libero modi nobis perferendis possimus provident, quae qui, quis sint vel velit vitae.</p>
+            {% else %}
+                {{ page.getElement('who_we_are__text') | raw }}
+            {% endif %}
+        </div>
     </div>
 
 </section>

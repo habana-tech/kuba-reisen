@@ -18,7 +18,8 @@ class RegionsController extends AbstractController
     {
         $pageinfo = [
             'pageName'=>'_top_destinations',
-            'language'=>$request->getLocale()
+            'language'=>'de'
+//            'language'=>$request->getLocale()
         ];
 
         $page = $pm->findByOrCreateIfDoesNotExist($pageinfo, 'components/global/_top_destination.html.twig');
@@ -34,7 +35,8 @@ class RegionsController extends AbstractController
     {
         $pageinfo = [
             'pageName'=>'_travel_options',
-            'language'=>$request->getLocale()
+            'language'=>'de'
+//            'language'=>$request->getLocale()
         ];
 
         $page = $pm->findByOrCreateIfDoesNotExist($pageinfo, 'components/index/_travel_options.html.twig');
@@ -52,7 +54,8 @@ class RegionsController extends AbstractController
     {
         $pageinfo = [
             'pageName'=>'_footer',
-            'language'=>$request->getLocale()
+            'language'=>'de'
+//            'language'=>$request->getLocale()
         ];
 
         $page = $pm->findByOrCreateIfDoesNotExist($pageinfo, 'components/global/_footer.html.twig');
@@ -70,8 +73,10 @@ class RegionsController extends AbstractController
                                 FilterTagRepository $filterTagRepository)
     {
         return $this->render('frontend/components/global/_header.html.twig', [
-            'destinations'=>$destinationRepository->findByLang($request->getLocale()),
-            'filterTags'=>$filterTagRepository->findByPinned($request->getLocale()),
+            'destinations'=>$destinationRepository->findByLang('de'),
+//            'destinations'=>$destinationRepository->findByLang($request->getLocale()),
+            'filterTags'=>$filterTagRepository->findByPinned('de'),
+//            'filterTags'=>$filterTagRepository->findByPinned($request->getLocale()),
         ]);
     }
 }

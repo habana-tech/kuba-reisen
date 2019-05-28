@@ -5,13 +5,24 @@
 
             <div class="section__title">
                 <div class="section__title__highlight section__title__highlight--no-decorator">
-                    <h2 data-grape_id="overview_section__title">{{ page.ElementContent('overview_section__title',"You don't need to choose!") | raw }}</h2>
+                    <h2 data-grape_id="overview_section__title" data-grape_format="txt">
+                        {% if page.getElement('overview_section__title') is null %}
+                            You don't need to choose!
+                        {% else %}
+                            {{ page.getElement('overview_section__title') }}
+                        {% endif %}
+                    </h2>
                 </div>
             </div>
 
-            <p data-grape_id="overview_p1">{{ page.ElementContent('overview_p1',"Lorem ipsum dolor sit amet, consectetur adipisicing elit.") | raw }}</p>
-            <p data-grape_id="overview_p2">{{ page.ElementContent('overview_p2',"Lorem ipsum dolor sit amet, consectetur adipisicing elit.") | raw }}</p>
-        </div>
+            <div data-grape_id="overview_text">
+                {% if page.getElement('overview_text') is null %}
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet asperiores cumque deserunt, distinctio est id impedit libero modi nobis perferendis possimus provident, quae qui, quis sint vel velit vitae.</p>
+                {% else %}
+                    {{ page.getElement('overview_text') | raw }}
+                {% endif %}
+            </div>
+       </div>
     </div>
 
     <div class="overview__item">

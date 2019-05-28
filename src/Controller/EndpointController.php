@@ -48,22 +48,23 @@ class EndpointController extends AbstractController
 
             if($grapePage->getPageElements())
                 $dymanicPage->setPageContent($grapePage->getPageElements());
+//                dump($dymanicPage->setPageContent($grapePage->getPageElements()));
+
+                $entityManager->persist($dymanicPage);
 
             if($grapePage->getExternalPagesContent())
+                dump($grapePage->getExternalPagesContent());
                 foreach ($grapePage->getExternalPagesContent() as $pagename => $elements)
                 {
-                    if($elements)
+                    if($elements and $page = $pm->findOneBy(['pageName'=>$pagename, 'language'=>'de']))
                     {
-                        if($page = $pm->findOneBy(['pageName'=>$pagename, 'language'=>$request->getLocale()]))
-                        {
-                            $page->setPageContent($elements);
-                            $entityManager->persist($page);
-                        }
+                        $page->setPageContent($elements);
+                        $entityManager->persist($page);
                     }
                 }
 
 
-            $entityManager->persist($dymanicPage);
+
             $entityManager->flush();
 
             return $this->json(['status'=>'OK']);

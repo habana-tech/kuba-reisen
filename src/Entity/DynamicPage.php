@@ -134,9 +134,11 @@ class DynamicPage
 
 
     public function getElementAttr($grape_id, $attr, $default = null)
-    {//todo: delete  method
-
-        return null;
+    {
+        if(isset($this->getPageContent()[$grape_id][$attr]))
+            return $this->getPageContent()[$grape_id][$attr];
+        return $default;
+            ;
     }
 
     public function __toString()

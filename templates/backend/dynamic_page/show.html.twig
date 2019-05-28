@@ -20,10 +20,10 @@
                 <th>PageTemplate</th>
                 <td>{{ dynamic_page.pageTemplate }}</td>
             </tr>
-{#            <tr>#}
-{#                <th>PageContent</th>#}
-{#                <td>{{ dynamic_page.pageContent ? dynamic_page.pageContent|join(', ') : '' }}</td>#}
-{#            </tr>#}
+            <tr>
+                <th>PageContent</th>
+                <td>{{ dump(dynamic_page.pageContent) }}</td>
+            </tr>
 
             <tr>
                 <th>UploadedImages</th>
