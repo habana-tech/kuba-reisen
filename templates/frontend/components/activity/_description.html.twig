@@ -7,13 +7,7 @@
 
     <div class="section__title ">
         <div class="section__title__highlight">
-            <h2 data-grape_id="activity_Description_title" data-grape_format="txt">
-                {% if activity.getElement('activity_Description_title') is null %}
-                    Activity name
-                {% else %}
-                    {{ activity.getElement('activity_Description_title') }}
-                {% endif %}
-            </h2>
+            <h2>{{ activity.name }}</h2>
         </div>
     </div>
 
@@ -28,31 +22,54 @@
         </div>
 
         <div class="description__text__times">
-            <div class="description__text__times__init">
-                <h3>Start Time</h3>
+            <div class="description__text__times__init" data-grape_id="description__text__times__init">
+                {% if activity.getElement('description__text__times__init') is null %}
 
-                <p>May 15 at 9:00 hours</p>
+                    <h3>Start Time</h3>
 
-                <p>May 15 at 9:00 hours</p>
+                    <p>May 15 at 9:00 hours</p>
+
+                    <p>May 15 at 9:00 hours</p>
+
+                {% else %}
+                    {{ activity.getElement('description__text__times__init') | raw }}
+                {% endif %}
             </div>
-            <div class="description__text__times__duration">
-                <h3>Duration</h3>
+            <div class="description__text__times__duration" data-grape_id="description__text__times__duration">
 
-                <p>5 hours</p>
-                <p>5 hours</p>
+                {% if activity.getElement('description__text__times__duration') is null %}
+
+                    <h3>Duration</h3>
+
+                    <p>5 hours</p>
+                    <p>5 hours</p>
+
+                {% else %}
+                    {{ activity.getElement('description__text__times__duration') | raw }}
+                {% endif %}
             </div>
-            <div class="description__text__times__finish">
-                <h3>Finish time</h3>
+            <div class="description__text__times__finish"  data-grape_id="description__text__times__finish">
+                {% if activity.getElement('description__text__times__finish') is null %}
 
-                <p>May 15 at 15 hours</p>
-                <p>May 15 at 15 hours</p>
+                    <h3>Finish time</h3>
+
+                    <p>May 15 at 15 hours</p>
+                    <p>May 15 at 15 hours</p>
+                {% else %}
+                    {{ activity.getElement('description__text__times__finish') | raw }}
+                {% endif %}
+
             </div>
 
-            <div class="description__text__times__comments">
-                <h3>Comments</h3>
+            <div class="description__text__times__comments"  data-grape_id="description__text__times__comments">
+                {% if activity.getElement('description__text__times__comments') is null %}
+                    <h3>Comments</h3>
 
-                <p>Lorem ipsum dolor sit amet, adipisicing</p>
-                <p>Lorem ipsum dolor sit amet, adipisicing</p>
+                    <p>Lorem ipsum dolor sit amet, adipisicing</p>
+                    <p>Lorem ipsum dolor sit amet, adipisicing</p>
+                {% else %}
+                    {{ activity.getElement('description__text__times__comments') | raw }}
+                {% endif %}
             </div>
         </div>
 

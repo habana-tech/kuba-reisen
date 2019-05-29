@@ -51,7 +51,6 @@ class DestinationController extends AbstractController
 
             if($form->get('saveAndEdit')->isClicked())
                 return $this->redirectToRoute('destination',[
-                   // '_locale'=>$request->getLocale(),
                     '_locale'=>'de',
                     'id'=>$destination->getId(),
                     'name'=>$destination->getMachineName()

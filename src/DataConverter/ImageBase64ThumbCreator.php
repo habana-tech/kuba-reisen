@@ -21,9 +21,9 @@ class ImageBase64ThumbCreator extends AbstractController
         if(!preg_match("|^static/|", $path))
             $path = "static/".$path;
 
-        dump($temp);
+//        dump($temp);
         $path = __DIR__.'/../../public/'. trim($path,'/\\');
-        dump($path);
+//        dump($path);
         if(file_exists($path))
         {
            if($image = @imagecreatefromjpeg($path) or $image = @imagecreatefrompng($path))
@@ -33,7 +33,7 @@ class ImageBase64ThumbCreator extends AbstractController
             $height = imagesy($image);
             $original_aspect = $height / $width;
 
-            $thumb_width = 10; //px
+            $thumb_width = 30; //px
 
             $thumb_height = $original_aspect*$thumb_width;
 
@@ -54,7 +54,7 @@ class ImageBase64ThumbCreator extends AbstractController
 
             ob_end_clean ();
 
-            $this->base64data = base64_encode($image_data);
+            $this->base64data = "data:image/jpeg;base64,".base64_encode($image_data);
 
         }
         return false;

@@ -46,12 +46,12 @@ var editor = grapesjs.init({
     [tUIImageEditor]: {
         upload: true,
         icons: {
-      'menu.normalIcon.path': `../static/svg/icon-d.svg`,
-      'menu.activeIcon.path': `../static/svg/icon-b.svg`,
-      'menu.disabledIcon.path': `../static/svg/icon-a.svg`,
-      'menu.hoverIcon.path': `../static/svg/icon-c.svg`,
-      'submenu.normalIcon.path': `../static/svg/icon-d.svg`,
-      'submenu.activeIcon.path': `../static/svg/icon-c.svg`,
+      'menu.normalIcon.path': '/static/svg/icon-d.svg',
+      'menu.activeIcon.path': '/static/svg/icon-b.svg',
+      'menu.disabledIcon.path': '/static/svg/icon-a.svg',
+      'menu.hoverIcon.path': '/static/svg/icon-c.svg',
+      'submenu.normalIcon.path': '/static/svg/icon-d.svg',
+      'submenu.activeIcon.path': '/static/svg/icon-c.svg',
         },
          script: [
             '/static/scripts/vendors/fabric.min.js',

@@ -1,11 +1,40 @@
 <section class="section hero">
 
-    <div class="hero__image">
-        <img src="{{ asset('img/hero/campo.jpg') }}" alt="wonnderfull img">
-    </div>
+    {% if hero__image is defined %}
+        <div class="hero__image">
+            <img src="{{ asset(hero__image) }}" alt="wonnderfull img">
+        </div>
+    {% else %}
+        <div class="hero__image" >
+            <img data-grape_id="hero_image"
+{#                 data-src="{{ page.ElementAttr('hero_image', 'src', asset('img/header_pic.jpg') )}}"#}
+{#                 src="{{ page.ElementAttr('hero_image', 'srcb64')}}" #}
+
+                 src="{{ page.ElementAttr('hero_image', 'src', asset('img/header_pic.jpg')) }}"
+                 alt="">
+
+        </div>
+    {% endif %}
+
 
     <div class="hero__content">
-        <h1 class="hero__content__text">hero__text</h1>
+        {% if hero__content__text is defined and hero__content__text is not null %}
+        <h1 class="hero__content__text">
+            {{ hero__content__text }}
+        </h1>
+        {% else %}
+
+            {% if page.getElement('hero__content__text') is null %}
+                {{ 'global.__banner_sky_subtitle__' | trans }}
+            {% else %}
+                <h1 class="hero__content__text" data-grape_id="hero__content__text" data-grape_format="txt">
+                    {{ page.getElement('hero__content__text')}}
+                </h1>
+            {% endif %}
+
+        {% endif %}
+
+
     </div>
 
 </section>

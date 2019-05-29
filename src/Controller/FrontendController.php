@@ -18,16 +18,14 @@ use Doctrine\Common\Collections\ArrayCollection;
 class FrontendController extends AbstractController
 {
     /**
-     * @Route("/{_locale}", defaults={"_locale": "de"},
-     *     requirements={"_locale": "en|es|de"}, name="frontend")
+     * @Route("/", name="frontend")
      */
-    public function index(Request $request, DynamicPageRepository $pageRepository,
-                          DynamicPageManager $pm,
+    public function index(DynamicPageManager $pm,
                           DestinationRepository $destinationRepository, FilterTagRepository $filterTagRepository)
     {
         $pageinfo = [
             'pageName'=>'index',
-            'language'=>$request->getLocale()
+            'language'=>'de'
         ];
 
         if($this->isGranted('ROLE_ADMIN'))
@@ -43,83 +41,38 @@ class FrontendController extends AbstractController
             'controller_name' => 'FrontendController',
             'dynamic_page_id' => $page->getId(),
             'page' => $page,
-            'destinations'=>$destinationRepository->findByLang($request->getLocale()),
-            'filterTags'=>$filterTagRepository->findByPinned($request->getLocale()),
+            'destinations'=>$destinationRepository->findByLang('de'),
+            'filterTags'=>$filterTagRepository->findByPinned('de'),
         ]);
 
     }
 
-    /**
-     * @Route("/{_locale}/page/{page_name}", defaults={"_locale": "de"},
-     *     requirements={"_locale": "en|es|de"}, name="page_show")
-     * @Route("/page/{page_name}")
-     */
-    public function pageShow(Request $request, DynamicPageManager $pm, $page_name)
-    {
-        $pageinfo = [
-            'pageName'=>$page_name,
-            'language'=>$request->getLocale()
-        ];
-
-        if($this->isGranted('ROLE_ADMIN'))
-            $page = $pm->findByOrCreateIfDoesNotExist($pageinfo);
-        else {
-            $page = $pm->findOneBy($pageinfo);
-        }
-
-        if(!$page)
-            throw new NotFoundHttpException();
-
-        return $this->render('frontend/'.$page->getPageTemplate(), [
-            'controller_name' => 'FrontendController',
-            'dynamic_page_id' => $page->getId(),
-            'page' => $page,
-        ]);
-
-    }
 
     /**
-     * @Route("/{_locale}/destination/{id}/{name}", defaults={"_locale": "de"},
-     *     requirements={"_locale": "en|es|de"}, name="destination")
-     * @Route("/destination/{id}/{name}")
+     * @Route("/destination/{id}/{name}" , name="destination")
      */
-    public function destination(Request $request, Destination $destination, DynamicPageRepository $pageRepository, DynamicPageManager $pm)
+    public function destination(Destination $destination)
     {
         if(!$destination)
             throw new NotFoundHttpException();
 
-        $pageinfo = [
-            'pageName'=>$destination->getName(),
-            'language'=>$request->getLocale()
-        ];
-
-        if($this->isGranted('ROLE_ADMIN'))
-            $page = $pm->findByOrCreateIfDoesNotExist($pageinfo);
-        else {
-            $page = $pm->findOneBy($pageinfo);
-        }
-
-        if(!$page)
-            throw new NotFoundHttpException();
 
         return $this->render('frontend/destination.html.twig', [
-            'dynamic_page_id' => $page->getId(),
-            'page' => $page,
+            'dynamic_page_id' => $destination->getDynamicPage()->getId(),
+            'page' => $destination->getDynamicPage(),
             'destination' => $destination,
         ]);
     }
 
     /**
-     * @Route("/{_locale}/faq", defaults={"_locale": "de"},
-     *     requirements={"_locale": "en|es|de"}, name="faq")
-     * @Route("/faq")
+     * @Route("/faq", name="faq")
      */
-    public function faq(Request $request, DynamicPageRepository $pageRepository, DynamicPageManager $pm)
+    public function faq(DynamicPageManager $pm)
     {
 
         $pageinfo = [
             'pageName'=> 'faq',
-            'language' => $request->getLocale()
+            'language' => 'de'
         ];
 
         if($this->isGranted('ROLE_ADMIN'))
@@ -141,30 +94,17 @@ class FrontendController extends AbstractController
     }
 
     /**
-     * @Route("/{_locale}/activity/{id}/{name}", defaults={"_locale": "de"},
-     *     requirements={"_locale": "en|es|de"}, name="activity")
-     * @Route("/activity/{id}/{name}")
+     * @Route("/activity/{id}/{name}", name="activity")
      */
-    public function activity(Request $request, Activity $activity, DynamicPageRepository $pageRepository,
-                             DynamicPageManager $pm, ActivityRepository $activityRepository,
-                             FilterTagRepository $filterTagRepository)
+    public function activity(Activity $activity)
     {
         if(!$activity)
             throw new NotFoundHttpException();
 
         $pageinfo = [
             'pageName'=>$activity->getName(),
-            'language'=>$request->getLocale()
+            'language'=>'de'
         ];
-
-        if($this->isGranted('ROLE_ADMIN'))
-            $page = $pm->findByOrCreateIfDoesNotExist($pageinfo);
-        else {
-            $page = $pm->findOneBy($pageinfo);
-        }
-
-        if(!$page)
-            throw new NotFoundHttpException();
 
         $tags = $activity->getFilterTags();
         $related_activities = new ArrayCollection();
@@ -180,12 +120,11 @@ class FrontendController extends AbstractController
         }
         
         return $this->render('frontend/activity.html.twig', [
-            'dynamic_page_id' => $page->getId(),
-            'page' => $page,
+            'dynamic_page_id' => $activity->getDynamicPage()->getId(),
+            'page' => $activity->getDynamicPage(),
             'activity' => $activity,
             'addLink'=>$this->generateUrl('addActivity',
-                                            ['id'=>$activity->getId(),
-                                            '_locale'=>$request->getLocale()]),
+                                            ['id'=>$activity->getId()]),
             'related_activities'=>$related_activities,
         ]);
     }

@@ -22,5 +22,8 @@
 
 
 {% block javascripts %}
+    <script>
+        var _activities_activitiesApiPos = '{{ url('activitiesApiPos') }}';
+    </script>
     <script src="{{ asset('scripts/activities.js') }}"></script>
 {% endblock %}

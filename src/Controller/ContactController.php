@@ -17,23 +17,20 @@ class ContactController extends AbstractController
     private $selectedActivities = array();
 
     /**
-     * @Route("/{_locale}/contact", defaults={"_locale": "de"},
-     *     requirements={"_locale": "en|es|de"}, name="contact")
-     * @Route("/contact",  defaults={"_locale": "de"},
-     *     requirements={"_locale": "en|es|de"})
+     * @Route("/contact",  name="contact")
      */
     public function contact(Request $request, DynamicPageRepository $pageRepository)
     {
         if(!$dymanicPage = $pageRepository->findOneBy([
             'pageName'=>'contact',
-            'language'=>$request->getLocale()
+            'language'=>'de'
         ]))
 
             throw new NotFoundHttpException();
 
 
         $contact = new ContactPlaning();
-        $form = $this->createForm(ContactPlaningType::class, $contact, ['locale' => $request->getLocale()]);
+        $form = $this->createForm(ContactPlaningType::class, $contact, ['locale' => 'de']);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -55,8 +52,7 @@ class ContactController extends AbstractController
     }
 
     /**
-     * @Route("/{_locale}/addActivity/{id}", defaults={"_locale": "de"},
-     *     requirements={"_locale": "en|es|de"}, name="addActivity")
+     * @Route("/addActivity/{id}", name="addActivity")
      */
     public function addActivity(Request $request, Activity $activity){
 
@@ -65,8 +61,7 @@ class ContactController extends AbstractController
     }
 
     /**
-     * @Route("/{_locale}/getActivitiesApi", defaults={"_locale": "de"},
-     *     requirements={"_locale": "en|es|de"}, name="getActivities")
+     * @Route("/getActivitiesApi", name="getActivities")
      */
     public function getActivitiesApi(){
         $data = array();

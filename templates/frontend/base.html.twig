@@ -61,6 +61,10 @@
         {% else %}
                 {% block javascripts_vendors %}{% endblock %}
                 {% block javascripts %}{% endblock %}
+
+                <script>
+                    var _url_activitiesApi = '{{ url('getActivities') }}';
+                </script>
                 <script src="{{ asset('scripts/app.js') }}"></script>
         {% endif %}
 

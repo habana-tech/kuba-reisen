@@ -7,6 +7,7 @@ use App\Entity\DynamicPage;
 use App\Form\ActivityType;
 use App\PageManager\DynamicPageManager;
 use App\Repository\ActivityRepository;
+use Doctrine\ORM\EntityNotFoundException;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -53,7 +54,7 @@ class ActivityController extends AbstractController
             $entityManager->flush();
             if($form->get('saveAndEdit')->isClicked())
                 return $this->redirectToRoute('activity',[
-          //          '_locale'=>$request->getLocale(),
+          //          '_locale'=>'de',
                     '_locale'=>'de',
                     'id'=>$activity->getId(),
                     'name'=>$activity->getMachineName()
@@ -81,19 +82,28 @@ class ActivityController extends AbstractController
     /**
      * @Route("/{id}/edit", name="backend_activity_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Activity $activity): Response
+    public function edit(Request $request, Activity $activity, DynamicPageManager $pm): Response
     {
 
         $form = $this->createForm(ActivityType::class, $activity);
 
-        if($activity->getDynamicPage())
-        foreach ($activity->getDynamicPage()->getPageContent() as $key => $element)
+
+        try
         {
+            foreach ($activity->getDynamicPage()->getPageContent() as $key => $element)
+            {
                 if(isset($element['txt']))
                     $form->add($key, null, ['label'=>'Content of '.$key, 'required' => false]);
                 else
                     $form->add($key, CKEditorType::class, ['label'=>'Content of '.$key, 'required' => false]);
+            }
         }
+        catch (EntityNotFoundException $exception)
+        {
+            $activity->setDynamicPage($pm->findByOrCreateIfDoesNotExist(['pageName'=> $activity->getMachineName()]));
+            $this->addFlash('notice', 'The page content was not found and was created a new one');
+        }
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -102,7 +112,6 @@ class ActivityController extends AbstractController
 
             if($form->get('saveAndEdit')->isClicked())
                 return $this->redirectToRoute('activity',[
-                    '_locale'=>$request->getLocale(),
                     'id'=>$activity->getId(),
                     'name'=>$activity->getMachineName()
                 ]);

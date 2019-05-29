@@ -3,7 +3,7 @@ import axios from '../../vendors/axios.min';
 class CartBar{
     constructor(){
         this.cartBar = document.querySelector('.cart_bar');
-        this.url = 'http://kuba.test/de/getActivitiesApi';
+        this.url = _url_activitiesApi;
         this.check();
     }
 

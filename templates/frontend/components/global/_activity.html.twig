@@ -9,7 +9,7 @@
                 <h4>{{ activity.name }}</h4>
             </div>
             <div class="activity__content__description">
-                <p>{{ activity.description }}</p>
+                {{ activity.description | raw }}
             </div>
         </div>
     </a>

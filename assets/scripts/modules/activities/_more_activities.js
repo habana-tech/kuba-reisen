@@ -5,7 +5,7 @@ class LoadActivities {
         this.amount = 6;
         this.pos = 0;
         // this.url = document.URL;
-        this.url = 'http://kuba.test/de/activitiesApiPos';
+        this.url = _activities_activitiesApiPos;
 
         this.activitiesList = document.querySelector('.activities__list__container');
         this.btnLoad = document.querySelector('.activities__list__more a');

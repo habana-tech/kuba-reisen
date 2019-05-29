@@ -23,10 +23,7 @@ use Symfony\Component\HttpFoundation\FileBag;
 class EndpointController extends AbstractController
 {
     /**
-     * @Route("/endpoint/{_locale}", defaults={"_locale": "de"},
-     *     requirements={"_locale": "en|es|de"})
-     * @Route("/endpoint", defaults={"_locale": "de"},
-     *     requirements={"_locale": "en|es|de"}, name="endpoint")
+     * @Route("/endpoint", name="endpoint")
      */
     public function index(Request $request, DynamicPageRepository $pageRepository, DynamicPageManager $pm)
     {
@@ -151,17 +148,4 @@ class EndpointController extends AbstractController
             ]
         );
     }
-
-
-    /**
-     * @Route("/endpoint/search/activities", name="endpoint_search_activities")
-     */
-    public function searchActivities(Request $request, ActivityRepository $activityRepository   )
-    {
-
-
-        return $this->json([]);
-    }
-
-
 }

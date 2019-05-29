@@ -21,3 +21,21 @@
 body.admin-logged{
   margin-top: 2em;
 }
+
+[data-grape_id]:hover, [data-grape_id]:active, [data-grape_id]:focus{
+  border: dashed #62ab03 4px;
+  //border: dashed $color-green-light 3px;
+  border-radius: 20px;
+  transition: border ease .5s;
+}
+
+.editor__imagen_list {
+
+  width: 80%;
+  min-height: 600px;
+  margin: auto;
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+}

@@ -28,8 +28,10 @@ class DynamicPageManager
         $this->dynamicPage = $this->repository->findOneBy($findOneBy);
         if(!$this->dynamicPage){
             $page = new DynamicPage($template);
-            $page->setPageName($findOneBy['pageName'])
-                ->setLanguage($findOneBy['language']);
+            $page->setPageName($findOneBy['pageName']);
+
+            if(isset($findOneBy['language']))
+                $page->setLanguage($findOneBy['language']);
 
             $this->entitymanager->persist($page);
             $this->entitymanager->flush();

@@ -10,6 +10,7 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="{{ asset('styles/kraken.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('styles/kraken_backend.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('styles/styles.css') }}" type="text/css">
     <style>a:hover, a:active{color: #6a6a6a}
 
@@ -30,8 +31,9 @@
 
 </head>
 <body class="">
+{{ include('backend/adminbar/admin_bar.html.twig') }}
 
-<div class="container" style=" min-height: calc(100vh - 12em);">
+<div class="container margin-top " style=" min-height: calc(100vh - 12em);">
     {% block body %}{% endblock %}
     {% block javascripts %}
 

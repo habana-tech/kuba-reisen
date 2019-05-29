@@ -14,12 +14,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class RegionsController extends AbstractController
 {
 
-    public function regionTopDestinations(Request $request, DynamicPageManager $pm)
+    public function regionTopDestinations(DynamicPageManager $pm)
     {
         $pageinfo = [
             'pageName'=>'_top_destinations',
             'language'=>'de'
-//            'language'=>$request->getLocale()
         ];
 
         $page = $pm->findByOrCreateIfDoesNotExist($pageinfo, 'components/global/_top_destination.html.twig');
@@ -31,12 +30,11 @@ class RegionsController extends AbstractController
         ]);
     }
 
-    public function regionTravelOptions(Request $request, DynamicPageManager $pm)
+    public function regionTravelOptions(DynamicPageManager $pm)
     {
         $pageinfo = [
             'pageName'=>'_travel_options',
             'language'=>'de'
-//            'language'=>$request->getLocale()
         ];
 
         $page = $pm->findByOrCreateIfDoesNotExist($pageinfo, 'components/index/_travel_options.html.twig');
@@ -48,14 +46,13 @@ class RegionsController extends AbstractController
         ]);
     }
 
-    public function regionFooter(Request $request, DynamicPageManager $pm,
+    public function regionFooter(DynamicPageManager $pm,
                                 FilterTagRepository $filterTagRepository,
                                 DestinationRepository $destinationRepository)
     {
         $pageinfo = [
             'pageName'=>'_footer',
             'language'=>'de'
-//            'language'=>$request->getLocale()
         ];
 
         $page = $pm->findByOrCreateIfDoesNotExist($pageinfo, 'components/global/_footer.html.twig');
@@ -64,19 +61,17 @@ class RegionsController extends AbstractController
 
         return $this->render('frontend/components/global/_footer.html.twig', [
             'page' => $page,
-            'destinations'=>$destinationRepository->findByLang($request->getLocale()),
-            'filterTags'=>$filterTagRepository->findByPinned($request->getLocale()),
+            'destinations'=>$destinationRepository->findByLang('de'),
+            'filterTags'=>$filterTagRepository->findByPinned('de'),
         ]);
     }
 
-    public function regionHeader(Request $request, DestinationRepository $destinationRepository,
+    public function regionHeader(DestinationRepository $destinationRepository,
                                 FilterTagRepository $filterTagRepository)
     {
         return $this->render('frontend/components/global/_header.html.twig', [
             'destinations'=>$destinationRepository->findByLang('de'),
-//            'destinations'=>$destinationRepository->findByLang($request->getLocale()),
             'filterTags'=>$filterTagRepository->findByPinned('de'),
-//            'filterTags'=>$filterTagRepository->findByPinned($request->getLocale()),
         ]);
     }
 }
