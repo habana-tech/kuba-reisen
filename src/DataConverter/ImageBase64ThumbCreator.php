@@ -54,7 +54,7 @@ class ImageBase64ThumbCreator extends AbstractController
 
             ob_end_clean ();
 
-            $this->base64data = base64_encode($image_data);
+            $this->base64data = "data:image/jpeg;base64,".base64_encode($image_data);
 
         }
         return false;
