@@ -40,6 +40,7 @@
   },
   "dependencies": {
     "Kraken": "github:cferdinandi/kraken",
+    "axios": "^0.18.0",
     "d3-ease": "^1.0.5",
     "grapesjs": "^0.14.61",
     "grapesjs-tui-image-editor": "^0.1.2",
