@@ -10,7 +10,7 @@
 
     <!-- Stylesheet -->
 
-    {% if is_granted('ROLE_EDITOR') %}
+    {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null %}
         <link rel="stylesheet" href="{{ asset('styles/kraken_backend.css') }}" type="text/css">
         {#<link rel="stylesheet" href="{{ asset('styles/all_backend_css.css') }}" type="text/css">#}
     {% else %}
@@ -22,15 +22,15 @@
 
     </head>
 
-    <body {% if is_granted('ROLE_EDITOR') %}class="admin-logged"{% endif %}>
+    <body {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null  %}class="admin-logged"{% endif %}>
 
         {{ include('frontend/components/global/_icons.html.twig') }}
 
-        {% if is_granted('ROLE_EDITOR') %}
+        {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null %}
             {{ include('backend/adminbar/admin_bar.html.twig') }}
         {% endif %}
 
-        {% if is_granted('ROLE_EDITOR') %}
+        {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null  %}
             <div id="grapes-editable">
         {% endif %}
 
@@ -38,17 +38,17 @@
 
             {% block body %}{% endblock %}
 
-            {% if not is_granted('ROLE_EDITOR') %}
+            {% if not is_granted('ROLE_EDITOR') or app.request.get('preview') is not null %}
                 {{  include('frontend/components/global/_cart_bar.html.twig') }}
             {% endif %}
                 
             {{ render(controller('App\\Controller\\RegionsController::regionFooter')) }}
 
-        {% if is_granted('ROLE_EDITOR') %}
+        {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null %}
             </div>
         {% endif %}
 
-        {% if is_granted('ROLE_EDITOR') %}
+        {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null %}
             <script>
                 //APP_ROUTES & PARAMS
                 var app_js_param__csrf_token = "{{ csrf_token('_grapejs_editor_token') }}"
