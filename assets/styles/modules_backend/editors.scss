@@ -9,12 +9,16 @@
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 1fr;
 }
-
+.grid__item-img__editor{
+    width: 100%;
+    min-height: 30vh;
+}
 .top_destinations__places__place{
-    &__image__editor{
+    &__image__editor, grid__item-img__editor{
         display: flex;
         justify-content: space-between;
         width: 100%;
+        min-height: 30vh;
 
         & img{
             z-index: 2;
@@ -22,6 +26,8 @@
             position: relative;
             min-width: 45%;
             max-width: 45%;
+            min-height: 100%;
+            margin: auto;
 
         }
     }
