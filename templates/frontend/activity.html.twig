@@ -6,7 +6,7 @@
 
 {% block body %}
 
-    <main class="main" {% if is_granted('ROLE_EDITOR') %} id="grapes-editable" {% endif %} >
+    <main class="main" {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null %} id="grapes-editable" {% endif %} >
 
         {{ include('frontend/components/activity/_images.html.twig') }}
 

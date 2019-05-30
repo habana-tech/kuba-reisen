@@ -1,6 +1,6 @@
 <section class="section images">
 
-    {% if not is_granted('ROLE_EDITOR') %}
+    {% if not is_granted('ROLE_EDITOR') or app.request.get('preview') is not null %}
         <div class="activities__container">
 
         <div class="slideshow">
