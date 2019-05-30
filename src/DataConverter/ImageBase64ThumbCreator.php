@@ -68,6 +68,4 @@ class ImageBase64ThumbCreator extends AbstractController
         return $this->base64data;
     }
 
-
-
 }

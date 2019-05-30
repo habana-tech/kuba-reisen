@@ -1,0 +1,29 @@
+
+.editor__imagen_list {
+
+    width: 80%;
+    min-height: 600px;
+    margin: auto;
+    position: relative;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+}
+
+.top_destinations__places__place{
+    &__image__editor{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+
+        & img{
+            z-index: 2;
+            width: 45%;
+            position: relative;
+            min-width: 45%;
+            max-width: 45%;
+
+        }
+    }
+
+}

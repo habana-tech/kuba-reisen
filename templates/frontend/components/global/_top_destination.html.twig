@@ -9,332 +9,109 @@
         </div>
     </div>
 
-{#    {% if not is_granted('ROLE_EDITOR') %}#}
-{#    <div class="top_destinations__places">#}
 
-{#        <div class="top_destinations__places__place">#}
-{#            <a href="">#}
-{#                <div class="top_destinations__places__place__image">#}
+    <div class="top_destinations__places">
 
-{#                    #}{# TODO: cambiar visualidad de estas regiones de imagenes en la vista adminisyrativa, con una imagen pequena para que ambas puedan editarse#}
-{#                    <div class="grid__item-img" data-grape_section="_top_destinations" data-displacement="{{ asset('/static/img/dmaps/7.jpg') }}" data-intensity="-0.8">#}
-{#                        <img data-grape_section="_top_destinations" data-grape_id="_top_destination_img1_1"#}
-{#                                {% if page.ElementAttr('_top_destination_img1_1', 'srcb64') %}#}
-{#                                    src="{{ page.ElementAttr('_top_destination_img1_1', 'srcb64')  }}"#}
-{#                                    data-src="{{ page.ElementAttr('_top_destination_img1_1', 'src', '/static/img/destination/Img20.jpg')  }}"#}
-{#                                {% else %}#}
-{#                                    src="{{ page.ElementAttr('_top_destination_img1_1', 'src', '/static/img/destination/Img20.jpg')  }}"#}
-{#                                {% endif %}#}
+        {% set classes = ['top_destinations__places__place--blue', 'top_destinations__places__place--orange',
+                        'top_destinations__places__place--green', 'top_destinations__places__place--blue'] %}
 
-{#                             #}{#srcset="#}
-{#                                #}{#{{ page.ElementAttr('_top_destination_img1_1', 'src', '/static/img/dmaps/7.jpg')  | imagine_filter('min_width_900') }} 900w,#}
-{#                                #}{#{{ page.ElementAttr('_top_destination_img1_1', 'src', '/static/img/dmaps/7.jpg') | imagine_filter('min_width_800') }} 800w"#}
+        {% for i in 0..3 %}
 
-{#                             alt="Image"/>#}
-{#                        <img data-grape_section="_top_destinations" data-grape_id="_top_destination_img1_2"#}
-{#                                {% if page.ElementAttr('_top_destination_img1_2', 'srcb64') %}#}
-{#                                    src="{{ page.ElementAttr('_top_destination_img1_2', 'srcb64')  }}"#}
-{#                                    data-src="{{ page.ElementAttr('_top_destination_img1_2', 'src', '/static/img/destination/Img20.jpg')  }}"#}
-{#                                {% else %}#}
-{#                                    src="{{ page.ElementAttr('_top_destination_img1_2', 'src', '/static/img/destination/Img20.jpg')  }}"#}
-{#                                {% endif %}#}
+            {% set grape_img_id_a = '_top_destination_img_'~i~'a' %}
+            {% set grape_img_id_b = '_top_destination_img_'~i~'b' %}
 
-{#                             #}{#srcset="#}
-{#                                #}{#{{ page.ElementAttr('top_destination_img1_2', 'src', '/static/img/dmaps/7.jpg')  | imagine_filter('min_width_900') }} 900w,#}
-{#                                #}{#{{ page.ElementAttr('top_destination_img1_2', 'src', '/static/img/dmaps/7.jpg') | imagine_filter('min_width_800') }} 800w"#}
+            {% set grape_text_title = '_top_destination_text_title_'~i %}
+            {% set grape_text_description = '_top_destination_description_'~i %}
 
-{#                             alt="Image"/>#}
-{#                    </div>#}
 
-{#                </div>#}
-{#                <div class="top_destinations__places__place__text">#}
-{#                <span data-grape_section="top_destinations" data-grape_id="top_destination_t1">{{ page.ElementContent('top_destination_t1',"Trinidad") | raw }}</span>#}
-{#                <p data-grape_section="top_destinations" data-grape_id="top_destination_p1">{{ page.ElementContent('top_destination_p1',"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet enim ") | raw }}</p>#}
-{#            </div>#}
-{#            </a>#}
-{#        </div>#}
+            <div class="top_destinations__places__place {{ classes[i] }}">
 
-{#        <div class="top_destinations__places__place top_destinations__places__place--orange">#}
-{#            <a href="#">#}
-{#                <div class="top_destinations__places__place__image">#}
-{#                    <div class="grid__item-img" data-grape_section="top_destinations" data-displacement="{{ asset('/static/img/dmaps/7.jpg') }}" data-intensity="-0.8">#}
-{#                        <img data-grape_section="top_destinations" data-grape_id="top_destination_img2_1"#}
-{#                             {% if page.ElementAttr('top_destination_img2_1', 'srcb64') %}#}
-{#                                src="{{ page.ElementAttr('top_destination_img2_1', 'srcb64')  }}"#}
-{#                                 data-src="{{ page.ElementAttr('top_destination_img2_1', 'src', asset('/static/img/destination/Img20.jpg'))  }}"#}
-{#                             {% else %}#}
-{#                                src="{{ page.ElementAttr('top_destination_img2_1', 'src', asset('/static/img/destination/Img20.jpg'))  }}"#}
-{#                             {% endif %}#}
-{#                                #}
-{#                             srcset="#}
-{#                                {{ page.ElementAttr('top_destination_img2_1', 'src', '/static/img/dmaps/7.jpg')  | imagine_filter('min_width_900') }} 900w,#}
-{#                                {{ page.ElementAttr('top_destination_img2_1', 'src', '/static/img/dmaps/7.jpg') | imagine_filter('min_width_800') }} 800w"#}
-{#                             #}
-{#                             alt="Image"/>#}
-{#                        <img data-grape_section="top_destinations" data-grape_id="top_destination_img2_2"#}
-{#                                {% if page.ElementAttr('top_destination_img2_2', 'srcb64') %}#}
-{#                                    src="{{ page.ElementAttr('top_destination_img2_2', 'srcb64')  }}"#}
-{#                                    data-src="{{ page.ElementAttr('top_destination_img2_2', 'src', asset('/static/img/destination/Img20.jpg'))  }}"#}
-{#                                {% else %}#}
-{#                                    src="{{ page.ElementAttr('top_destination_img2_2', 'src', asset('/static/img/destination/Img20.jpg'))  }}"#}
-{#                                {% endif %}#}
+                {% if not is_granted('ROLE_EDITOR') %}
+                    <a href="">
+                        <div class="top_destinations__places__place__image">
 
-{#                             srcset="#}
-{#                                {{ page.ElementAttr('top_destination_img2_2', 'src', '/static/img/dmaps/7.jpg')  | imagine_filter('min_width_900') }} 900w,#}
-{#                                {{ page.ElementAttr('top_destination_img2_2', 'src', '/static/img/dmaps/7.jpg') | imagine_filter('min_width_800') }} 800w"#}
+                             {#TODO: cambiar visualidad de estas regiones de imagenes en la vista adminisyrativa, con una imagen pequena para que ambas puedan editarse#}
+                            <div class="grid__item-img" data-grape_section="_top_destinations" data-displacement="{{ asset('/img/dmaps/7.jpg') }}" data-intensity="-0.8">
+                                <img data-grape_section="_top_destinations" data-grape_id="{{ grape_img_id_a }}"
+                                        {#{% if page.ElementAttr('_top_destination_img1_1', 'srcb64') %}#}
+                                            {#src="{{ page.ElementAttr('_top_destination_img1_1', 'srcb64')  }}"#}
+                                            {#data-src="{{ page.ElementAttr('_top_destination_img1_1', 'src', '/img/destination/Img20.jpg')  }}"#}
+                                        {#{% else %}#}
+                                            src="{{ page.ElementAttr(grape_img_id_a, 'src', '/img/destination/Img20.jpg')  | imagine_filter('squared_thumbnail')  }}"
+                                        {#{% endif %}#}
 
-{#                             alt="Image"/>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="top_destinations__places__place__text">#}
-{#                    <span data-grape_section="top_destinations" data-grape_id="top_destination_t2">{{ page.ElementContent('top_destination_t2',"Trinidad") | raw }}</span>#}
-{#                    <p data-grape_section="top_destinations" data-grape_id="top_destination_p2">{{ page.ElementContent('top_destination_p2',"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet enim ") | raw }}</p>#}
-{#                </div>#}
-{#            </a>#}
-{#        </div>#}
+                                     {#srcset="#}
+                                        {#{{ page.ElementAttr('_top_destination_img1_1', 'src', '/img/dmaps/7.jpg')  | imagine_filter('min_width_900') }} 900w,#}
+                                        {#{{ page.ElementAttr('_top_destination_img1_1', 'src', '/img/dmaps/7.jpg') | imagine_filter('min_width_800') }} 800w"#}
 
-{#        <div class="top_destinations__places__place top_destinations__places__place--green">#}
-{#            <a href="#">#}
-{#                <div class="top_destinations__places__place__image">#}
-{#                    <div class="grid__item-img" data-grape_section="top_destinations" data-displacement="{{ asset('/static/img/dmaps/7.jpg') }}" data-intensity="-0.8">#}
-{#                        <img data-grape_section="top_destinations" data-grape_id="top_destination_img3_1"#}
-{#                                {% if page.ElementAttr('top_destination_img3_1', 'srcb64') %}#}
-{#                                    src="{{ page.ElementAttr('top_destination_img3_1', 'srcb64')  }}"#}
-{#                                    data-src="{{ page.ElementAttr('top_destination_img3_1', 'src', asset('/static/img/destination/Img20.jpg'))  }}"#}
-{#                                {% else %}#}
-{#                                    src="{{ page.ElementAttr('top_destination_img3_1', 'src', asset('/static/img/destination/Img20.jpg'))  }}"#}
-{#                                {% endif %}#}
+                                     alt="Image"/>
+                                <img data-grape_section="_top_destinations" data-grape_id="{{ grape_img_id_b }}"
+                                        {#{% if page.ElementAttr('_top_destination_img1_2', 'srcb64') %}#}
+                                            {#src="{{ page.ElementAttr('_top_destination_img1_2', 'srcb64')  }}"#}
+                                            {#data-src="{{ page.ElementAttr('_top_destination_img1_2', 'src', '/img/destination/Img20.jpg')  }}"#}
+                                        {#{% else %}#}
+                                            src="{{ page.ElementAttr(grape_img_id_b, 'src', '/img/destination/Img20.jpg')   | imagine_filter('squared_thumbnail')  }}"
+                                        {#{% endif %}#}
 
-{#                             srcset="#}
-{#                                {{ page.ElementAttr('top_destination_img3_1', 'src', '/static/img/dmaps/7.jpg')  | imagine_filter('min_width_900') }} 900w,#}
-{#                                {{ page.ElementAttr('top_destination_img3_1', 'src', '/static/img/dmaps/7.jpg') | imagine_filter('min_width_800') }} 800w"#}
+                                     {#srcset="#}
+                                        {#{{ page.ElementAttr('top_destination_img1_2', 'src', '/img/dmaps/7.jpg')  | imagine_filter('min_width_900') }} 900w,#}
+                                        {#{{ page.ElementAttr('top_destination_img1_2', 'src', '/img/dmaps/7.jpg') | imagine_filter('min_width_800') }} 800w"#}
 
-{#                             alt="Image"/>#}
-{#                        <img data-grape_section="top_destinations" data-grape_id="top_destination_img2_2"#}
-{#                                {% if page.ElementAttr('top_destination_img2_2', 'srcb64') %}#}
-{#                                    src="{{ page.ElementAttr('top_destination_img2_2', 'srcb64')  }}"#}
-{#                                    data-src="{{ page.ElementAttr('top_destination_img2_2', 'src', asset('/static/img/destination/Img20.jpg'))  }}"#}
-{#                                {% else %}#}
-{#                                    src="{{ page.ElementAttr('top_destination_img2_2', 'src', asset('/static/img/destination/Img20.jpg'))  }}"#}
-{#                                {% endif %}#}
+                                     alt="Image"/>
+                            </div>
 
-{#                             srcset="#}
-{#                                {{ page.ElementAttr('top_destination_img2_2', 'src', '/static/img/dmaps/7.jpg')  | imagine_filter('min_width_900') }} 900w,#}
-{#                                {{ page.ElementAttr('top_destination_img2_2', 'src', '/static/img/dmaps/7.jpg') | imagine_filter('min_width_800') }} 800w"#}
-
-{#                             alt="Image"/>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="top_destinations__places__place__text">#}
-{#                    <span data-grape_section="top_destinations" data-grape_id="top_destination_t3">{{ page.ElementContent('top_destination_t3',"Trinidad") | raw }}</span>#}
-{#                    <p data-grape_section="top_destinations" data-grape_id="top_destination_t3">{{ page.ElementContent('top_destination_p3',"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet enim ") | raw }}</p>#}
-{#                </div>#}
-{#            </a>#}
-{#        </div>#}
-
-{#        <div class="top_destinations__places__place">#}
-{#            <a href="#">#}
-{#                <div class="top_destinations__places__place__image">#}
-{#                    <div class="grid__item-img" data-grape_section="top_destinations" data-displacement="{{ asset('/static/img/dmaps/7.jpg') }}" data-intensity="-0.8">#}
-{#                        <img data-grape_section="top_destinations" data-grape_id="top_destination_img4_1"#}
-{#                                {% if page.ElementAttr('top_destination_img4_1', 'srcb64') %}#}
-{#                                    src="{{ page.ElementAttr('top_destination_img4_1', 'srcb64')  }}"#}
-{#                                    data-src="{{ page.ElementAttr('top_destination_img4_1', 'src', asset('/static/img/destination/Img20.jpg'))  }}"#}
-{#                                {% else %}#}
-{#                                    src="{{ page.ElementAttr('top_destination_img4_1', 'src', asset('/static/img/destination/Img20.jpg'))  }}"#}
-{#                                {% endif %}#}
-
-{#                             srcset="#}
-{#                                {{ page.ElementAttr('top_destination_img4_1', 'src', '/static/img/dmaps/7.jpg')  | imagine_filter('min_width_900') }} 900w,#}
-{#                                {{ page.ElementAttr('top_destination_img4_1', 'src', '/static/img/dmaps/7.jpg') | imagine_filter('min_width_800') }} 800w"#}
-
-{#                             alt="Image"/>#}
-{#                        <img data-grape_section="top_destinations" data-grape_id="top_destination_img4_2"#}
-{#                                {% if page.ElementAttr('top_destination_img4_2', 'srcb64') %}#}
-{#                                    src="{{ page.ElementAttr('top_destination_img4_2', 'srcb64')  }}"#}
-{#                                    data-src="{{ page.ElementAttr('top_destination_img4_2', 'src', asset('img/destination/Img20.jpg'))  }}"#}
-{#                                {% else %}#}
-{#                                    src="{{ page.ElementAttr('top_destination_img4_2', 'src', asset('img/destination/Img20.jpg'))  }}"#}
-{#                                {% endif %}#}
-
-{#                             srcset="#}
-{#                                {{ page.ElementAttr('top_destination_img4_2', 'src', '/static/img/dmaps/7.jpg')  | imagine_filter('min_width_900') }} 900w,#}
-{#                                {{ page.ElementAttr('top_destination_img4_2', 'src', '/static/img/dmaps/7.jpg') | imagine_filter('min_width_800') }} 800w"#}
-
-{#                             alt="Image"/>#}
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="top_destinations__places__place__text">#}
-{#                    <span data-grape_section="top_destinations" data-grape_id="top_destination_t4">{{ page.ElementContent('top_destination_t4',"Trinidad") | raw }}</span>#}
-{#                    <p data-grape_section="top_destinations" data-grape_id="top_destination_p4">{{ page.ElementContent('top_destination_p4',"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet enim ") | raw }}</p>#}
-{#                </div>#}
-{#            </a>#}
-{#        </div>#}
-
-{#    </div>#}
-{#    {% else %}#}
-        <div class="top_destinations__places">
-
-            <div class="top_destinations__places__place">
-                <a href="">
-                    <div class="top_destinations__places__place__image__editor">
-
-                        {# TODO: cambiar visualidad de estas regiones de imagenes en la vista adminisyrativa, con una imagen pequena para que ambas puedan editarse#}
-                        <div class="grid__item-img__editor">
-                            <img data-grape_section="_top_destinations" data-grape_id="_top_destination_img1_1"
-                                    {% if page.ElementAttr('_top_destination_img1_1', 'srcb64') %}
-                                        src="{{ page.ElementAttr('_top_destination_img1_1', 'srcb64')  }}"
-                                        data-src="{{ page.ElementAttr('_top_destination_img1_1', 'src', '/static/img/destination/Img20.jpg')  }}"
-                                    {% else %}
-                                        src="{{ page.ElementAttr('_top_destination_img1_1', 'src', '/static/img/destination/Img20.jpg')  }}"
-                                    {% endif %}
-
-                                    {#srcset="#}
-                                    {#{{ page.ElementAttr('_top_destination_img1_1', 'src', '/static/img/dmaps/7.jpg')  | imagine_filter('min_width_900') }} 900w,#}
-                                    {#{{ page.ElementAttr('_top_destination_img1_1', 'src', '/static/img/dmaps/7.jpg') | imagine_filter('min_width_800') }} 800w"#}
-
-                                 alt="Image"/>
-                            <img data-grape_section="_top_destinations" data-grape_id="_top_destination_img1_2"
-                                    {% if page.ElementAttr('_top_destination_img1_2', 'srcb64') %}
-                                        src="{{ page.ElementAttr('_top_destination_img1_2', 'srcb64')  }}"
-                                        data-src="{{ page.ElementAttr('_top_destination_img1_2', 'src', '/static/img/destination/Img20.jpg')  }}"
-                                    {% else %}
-                                        src="{{ page.ElementAttr('_top_destination_img1_2', 'src', '/static/img/destination/Img20.jpg')  }}"
-                                    {% endif %}
-
-                                    {#srcset="#}
-                                    {#{{ page.ElementAttr('top_destination_img1_2', 'src', '/static/img/dmaps/7.jpg')  | imagine_filter('min_width_900') }} 900w,#}
-                                    {#{{ page.ElementAttr('top_destination_img1_2', 'src', '/static/img/dmaps/7.jpg') | imagine_filter('min_width_800') }} 800w"#}
-
-                                 alt="Image"/>
                         </div>
-
-                    </div>
-                    <div class="top_destinations__places__place__text">
-                        <span data-grape_section="top_destinations" data-grape_id="top_destination_t1">{{ page.ElementContent('top_destination_t1',"Trinidad") | raw }}</span>
-                        <p data-grape_section="top_destinations" data-grape_id="top_destination_p1">{{ page.ElementContent('top_destination_p1',"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet enim ") | raw }}</p>
-                    </div>
-                </a>
-            </div>
-
-            <div class="top_destinations__places__place top_destinations__places__place--orange">
-                <a href="#">
-                    <div class="top_destinations__places__place__image__editor">
-                        <div class="grid__item-img__editor" data-grape_section="top_destinations">
-                            <img data-grape_section="top_destinations" data-grape_id="top_destination_img2_1"
-                                    {% if page.ElementAttr('top_destination_img2_1', 'srcb64') %}
-                                        src="{{ page.ElementAttr('top_destination_img2_1', 'srcb64')  }}"
-                                        data-src="{{ page.ElementAttr('top_destination_img2_1', 'src', asset('/static/img/destination/Img20.jpg'))  }}"
-                                    {% else %}
-                                        src="{{ page.ElementAttr('top_destination_img2_1', 'src', asset('/static/img/destination/Img20.jpg'))  }}"
-                                    {% endif %}
-
-                                 srcset="
-                                {{ page.ElementAttr('top_destination_img2_1', 'src', '/static/img/dmaps/7.jpg')  | imagine_filter('min_width_900') }} 900w,
-                                {{ page.ElementAttr('top_destination_img2_1', 'src', '/static/img/dmaps/7.jpg') | imagine_filter('min_width_800') }} 800w"
-
-                                 alt="Image"/>
-                            <img data-grape_section="top_destinations" data-grape_id="top_destination_img2_2"
-                                    {% if page.ElementAttr('top_destination_img2_2', 'srcb64') %}
-                                        src="{{ page.ElementAttr('top_destination_img2_2', 'srcb64')  }}"
-                                        data-src="{{ page.ElementAttr('top_destination_img2_2', 'src', asset('/static/img/destination/Img20.jpg'))  }}"
-                                    {% else %}
-                                        src="{{ page.ElementAttr('top_destination_img2_2', 'src', asset('/static/img/destination/Img20.jpg'))  }}"
-                                    {% endif %}
-
-                                 srcset="
-                                {{ page.ElementAttr('top_destination_img2_2', 'src', '/static/img/dmaps/7.jpg')  | imagine_filter('min_width_900') }} 900w,
-                                {{ page.ElementAttr('top_destination_img2_2', 'src', '/static/img/dmaps/7.jpg') | imagine_filter('min_width_800') }} 800w"
-
-                                 alt="Image"/>
+                        <div class="top_destinations__places__place__text">
+                            <span data-grape_section="_top_destinations" data-grape_id="{{ grape_text_title }}">{{ page.ElementContent(grape_text_title,"Trinidad") | raw }}</span>
+                            <p data-grape_section="_top_destinations" data-grape_id="{{ grape_text_description }}">{{ page.ElementContent(grape_text_description,"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet enim ") | raw }}</p>
                         </div>
-                    </div>
-                    <div class="top_destinations__places__place__text">
-                        <span data-grape_section="top_destinations" data-grape_id="top_destination_t2">{{ page.ElementContent('top_destination_t2',"Trinidad") | raw }}</span>
-                        <p data-grape_section="top_destinations" data-grape_id="top_destination_p2">{{ page.ElementContent('top_destination_p2',"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet enim ") | raw }}</p>
-                    </div>
-                </a>
-            </div>
+                    </a>
+                {% else %}
+                    <a href="">
+                        <div class="top_destinations__places__place__image__editor">
 
-            <div class="top_destinations__places__place top_destinations__places__place--green">
-                <a href="#">
-                    <div class="top_destinations__places__place__image__editor">
-                        <div class="grid__item-img__editor">
-                            <img data-grape_section="top_destinations" data-grape_id="top_destination_img3_1"
-                                    {% if page.ElementAttr('top_destination_img3_1', 'srcb64') %}
-                                        src="{{ page.ElementAttr('top_destination_img3_1', 'srcb64')  }}"
-                                        data-src="{{ page.ElementAttr('top_destination_img3_1', 'src', asset('/static/img/destination/Img20.jpg'))  }}"
-                                    {% else %}
-                                        src="{{ page.ElementAttr('top_destination_img3_1', 'src', asset('/static/img/destination/Img20.jpg'))  }}"
-                                    {% endif %}
+                            {# TODO: cambiar visualidad de estas regiones de imagenes en la vista adminisyrativa, con una imagen pequena para que ambas puedan editarse#}
+                            <div class="grid__item-img__editor">
+                                <img data-grape_section="_top_destinations" data-grape_id="{{ grape_img_id_a }}"
+                                        {% if page.ElementAttr(grape_img_id_a, 'srcb64') %}
+                                            src="{{ page.ElementAttr(grape_img_id_a, 'srcb64')  }}"
+                                            data-src="{{ page.ElementAttr(grape_img_id_a, 'src', '/img/destination/Img20.jpg')  }}"
+                                        {% else %}
+                                            src="{{ page.ElementAttr(grape_img_id_a, 'src', '/img/destination/Img20.jpg')  }}"
+                                        {% endif %}
 
-                                 srcset="
-                                {{ page.ElementAttr('top_destination_img3_1', 'src', '/static/img/dmaps/7.jpg')  | imagine_filter('min_width_900') }} 900w,
-                                {{ page.ElementAttr('top_destination_img3_1', 'src', '/static/img/dmaps/7.jpg') | imagine_filter('min_width_800') }} 800w"
+                                        {#srcset="#}
+                                        {#{{ page.ElementAttr('_top_destination_img1_1', 'src', '/img/dmaps/7.jpg')  | imagine_filter('min_width_900') }} 900w,#}
+                                        {#{{ page.ElementAttr('_top_destination_img1_1', 'src', '/img/dmaps/7.jpg') | imagine_filter('min_width_800') }} 800w"#}
 
-                                 alt="Image"/>
-                            <img data-grape_section="top_destinations" data-grape_id="top_destination_img2_2"
-                                    {% if page.ElementAttr('top_destination_img2_2', 'srcb64') %}
-                                        src="{{ page.ElementAttr('top_destination_img2_2', 'srcb64')  }}"
-                                        data-src="{{ page.ElementAttr('top_destination_img2_2', 'src', asset('/static/img/destination/Img20.jpg'))  }}"
-                                    {% else %}
-                                        src="{{ page.ElementAttr('top_destination_img2_2', 'src', asset('/static/img/destination/Img20.jpg'))  }}"
-                                    {% endif %}
+                                     alt="Image"/>
+                                <img data-grape_section="_top_destinations" data-grape_id="{{ grape_img_id_b }}"
+                                        {% if page.ElementAttr(grape_img_id_b, 'srcb64') %}
+                                            src="{{ page.ElementAttr(grape_img_id_b, 'srcb64')  }}"
+                                            data-src="{{ page.ElementAttr(grape_img_id_b, 'src', '/img/destination/Img20.jpg')  }}"
+                                        {% else %}
+                                            src="{{ page.ElementAttr(grape_img_id_b, 'src', '/img/destination/Img20.jpg')  }}"
+                                        {% endif %}
 
-                                 srcset="
-                                {{ page.ElementAttr('top_destination_img2_2', 'src', '/static/img/dmaps/7.jpg')  | imagine_filter('min_width_900') }} 900w,
-                                {{ page.ElementAttr('top_destination_img2_2', 'src', '/static/img/dmaps/7.jpg') | imagine_filter('min_width_800') }} 800w"
+                                        {#srcset="#}
+                                        {#{{ page.ElementAttr('top_destination_img1_2', 'src', '/img/dmaps/7.jpg')  | imagine_filter('min_width_900') }} 900w,#}
+                                        {#{{ page.ElementAttr('top_destination_img1_2', 'src', '/img/dmaps/7.jpg') | imagine_filter('min_width_800') }} 800w"#}
 
-                                 alt="Image"/>
+                                     alt="Image"/>
+                            </div>
+
                         </div>
-                    </div>
-                    <div class="top_destinations__places__place__text">
-                        <span data-grape_section="top_destinations" data-grape_id="top_destination_t3">{{ page.ElementContent('top_destination_t3',"Trinidad") | raw }}</span>
-                        <p data-grape_section="top_destinations" data-grape_id="top_destination_t3">{{ page.ElementContent('top_destination_p3',"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet enim ") | raw }}</p>
-                    </div>
-                </a>
-            </div>
-
-            <div class="top_destinations__places__place">
-                <a href="#">
-                    <div class="top_destinations__places__place__image__editor">
-                        <div class="grid__item-img__editor">
-                            <img data-grape_section="top_destinations" data-grape_id="top_destination_img4_1"
-                                    {% if page.ElementAttr('top_destination_img4_1', 'srcb64') %}
-                                        src="{{ page.ElementAttr('top_destination_img4_1', 'srcb64')  }}"
-                                        data-src="{{ page.ElementAttr('top_destination_img4_1', 'src', asset('/static/img/destination/Img20.jpg'))  }}"
-                                    {% else %}
-                                        src="{{ page.ElementAttr('top_destination_img4_1', 'src', asset('/static/img/destination/Img20.jpg'))  }}"
-                                    {% endif %}
-
-                                 srcset="
-                                {{ page.ElementAttr('top_destination_img4_1', 'src', '/static/img/dmaps/7.jpg')  | imagine_filter('min_width_900') }} 900w,
-                                {{ page.ElementAttr('top_destination_img4_1', 'src', '/static/img/dmaps/7.jpg') | imagine_filter('min_width_800') }} 800w"
-
-                                 alt="Image"/>
-                            <img data-grape_section="top_destinations" data-grape_id="top_destination_img4_2"
-                                    {% if page.ElementAttr('top_destination_img4_2', 'srcb64') %}
-                                        src="{{ page.ElementAttr('top_destination_img4_2', 'srcb64')  }}"
-                                        data-src="{{ page.ElementAttr('top_destination_img4_2', 'src', asset('img/destination/Img20.jpg'))  }}"
-                                    {% else %}
-                                        src="{{ page.ElementAttr('top_destination_img4_2', 'src', asset('img/destination/Img20.jpg'))  }}"
-                                    {% endif %}
-
-                                 srcset="
-                                {{ page.ElementAttr('top_destination_img4_2', 'src', '/static/img/dmaps/7.jpg')  | imagine_filter('min_width_900') }} 900w,
-                                {{ page.ElementAttr('top_destination_img4_2', 'src', '/static/img/dmaps/7.jpg') | imagine_filter('min_width_800') }} 800w"
-
-                                 alt="Image"/>
+                        <div class="top_destinations__places__place__text">
+                            <span data-grape_section="_top_destinations" data-grape_id="{{ grape_text_title }}">{{ page.ElementContent(grape_text_title,"Trinidad") | raw }}</span>
+                            <p data-grape_section="_top_destinations" data-grape_id="{{ grape_text_description }}">{{ page.ElementContent(grape_text_description,"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet enim ") | raw }}</p>
                         </div>
-                    </div>
-                    <div class="top_destinations__places__place__text">
-                        <span data-grape_section="top_destinations" data-grape_id="top_destination_t4">{{ page.ElementContent('top_destination_t4',"Trinidad") | raw }}</span>
-                        <p data-grape_section="top_destinations" data-grape_id="top_destination_p4">{{ page.ElementContent('top_destination_p4',"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet enim ") | raw }}</p>
-                    </div>
-                </a>
-            </div>
+                    </a>
+                {% endif %}
 
-        </div>
-{#    {% endif %}#}
+            </div>
+        {% endfor %}
+
+    </div>
+
 
 </section>

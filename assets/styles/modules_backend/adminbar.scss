@@ -28,14 +28,3 @@ body.admin-logged{
   border-radius: 20px;
   transition: border ease .5s;
 }
-
-.editor__imagen_list {
-
-  width: 80%;
-  min-height: 600px;
-  margin: auto;
-  position: relative;
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  grid-template-columns: 1fr 1fr;
-}
