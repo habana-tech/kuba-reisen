@@ -37,11 +37,11 @@ class RegionsController extends AbstractController
             'language'=>'de'
         ];
 
-        $page = $pm->findByOrCreateIfDoesNotExist($pageinfo, 'components/index/_travel_options.html.twig');
+        $page = $pm->findByOrCreateIfDoesNotExist($pageinfo, 'components/global/_travel_options.html.twig');
         if(!$page)
             throw new NotFoundHttpException();
 
-        return $this->render('frontend/components/index/_travel_options.html.twig', [
+        return $this->render('frontend/components/global/_travel_options.html.twig', [
             'page' => $page,
         ]);
     }

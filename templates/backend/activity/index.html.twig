@@ -13,20 +13,20 @@
     {% for activity in activities %}
         <div class="activity">
             <div class="activity__image">
-                <a href="{{ path('activity', {'_locale':'de', 'id':activity.id, 'name':activity.machineName} ) }}">
-                    <img src="{{ asset(activity.staticImagePath | imagine_filter('squared_thumbnail')) }}" alt="">
+                <a href="{{ path('activity', { 'id':activity.id, 'name':activity.machineName} ) }}">
+                    <img src="{{ asset(activity.dynamicPage.elementAttr('activity_images_img1', 'src', 'static/img/destination/Img19.jpg' ) | imagine_filter('squared_thumbnail')) }}" alt="">
                 </a>
             </div>
             <div class="activity__content">
                 <div class="activity__content__title">
-                    <a href="{{ path('activity', {'_locale':'de', 'id':activity.id, 'name':activity.machineName} ) }}">
+                    <a href="{{ path('activity', {'id':activity.id, 'name':activity.machineName} ) }}">
                         <h4>{{ activity.name }}</h4>
                     </a>
                 </div>
                 <div class="activity__content__description">
                     <div>{{ activity.description | raw}}</div>
                     <hr>
-                    <a href="{{ path('activity', {'_locale':'de', 'id':activity.id, 'name':activity.machineName} ) }}" class="btn">show and edit on website</a>
+                    <a href="{{ path('activity', { 'id':activity.id, 'name':activity.machineName} ) }}" class="btn">show and edit on website</a>
                     <a href="{{ path('backend_activity_edit', {'id': activity.id}) }}" class="btn">edit on admin</a>
                 </div>
             </div>

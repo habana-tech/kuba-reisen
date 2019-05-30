@@ -4,7 +4,7 @@ watch = require('gulp-watch');
 
 
 gulp.task('watch', function(){
-     
+    gulp.start('styles');
     // browserSync.init({
     //     notify: false,
     //     server: {

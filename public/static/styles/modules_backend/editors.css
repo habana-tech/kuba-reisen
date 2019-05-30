@@ -1,0 +1,41 @@
+.hero-home {
+  display: flex;
+  background-color: grey;
+  height: 100vh; }
+  .hero-home .slide-wrapper {
+    order: 2;
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 50%; }
+  .hero-home .slide-wrapper .slide-item {
+      width: 50%; }
+  .editor__imagen_list {
+  width: 80%;
+  min-height: 600px;
+  margin: auto;
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr; }
+  .grid__item-img__editor {
+  width: 100%;
+  min-height: 30vh; }
+  .top_destinations__places__place__image__editor, .top_destinations__places__place .grid__item-img__editor {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 30vh; }
+  .top_destinations__places__place__image__editor img, .top_destinations__places__place .grid__item-img__editor img {
+    z-index: 2;
+    width: 45%;
+    position: relative;
+    min-width: 45%;
+    max-width: 45%;
+    min-height: 100%;
+    margin: auto; }
+  .options__grid_editor__list ul {
+  list-style: none; }
+  .options__grid_editor__list ul li {
+    display: inline;
+    margin: 20px; }

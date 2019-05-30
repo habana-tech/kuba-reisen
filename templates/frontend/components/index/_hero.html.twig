@@ -1,24 +1,38 @@
-<section class="section hero">
+<section class="section hero hero-home">
 
     <div class="slide-wrapper">
         <div class="slide-item">
-            <img src="{{ asset('img/hero/4.jpg') }}" class="slide-item__image">
+            <img data-grape_id="home_hero_img1"
+                 src="{{ page.ElementAttr('home_hero_img1', 'src', asset('img/hero/4.jpg') ) }}"
+                 class="slide-item__image">
         </div>
         <div class="slide-item">
-            <img src="{{ asset('img/hero/2.jpg') }}" class="slide-item__image">
+            <img data-grape_id="home_hero_img2"
+                src="{{ page.ElementAttr('home_hero_img2', 'src', asset('img/hero/2.jpg') ) }}"
+                class="slide-item__image">
         </div>
         <div class="slide-item">
-            <img src="{{ asset('img/hero/3.jpg') }}" class="slide-item__image">
+            <img data-grape_id="home_hero_img3"
+                 src="{{ page.ElementAttr('home_hero_img3', 'src', asset('img/hero/3.jpg') ) }}"
+                 class="slide-item__image">
         </div>
         <div class="slide-item">
-            <img src="{{ asset('img/hero/1.jpg') }}" class="slide-item__image">
+            <img data-grape_id="home_hero_img4"
+                 src="{{ page.ElementAttr('home_hero_img4', 'src', asset('img/hero/1.jpg') ) }}"
+                 class="slide-item__image">
         </div>
     </div>
 
     <div class="hero__content">
-        <h1 class="hero__content__text">Kuba bewusst erleben.
-            <br>
-            Für mutige Entdecker und gesellige Abenteurer.
+        <h1 class="hero__content__text" data-grape_id="hero__content__text">
+            {% if page.getElement('hero__content__text') is null %}
+                Kuba bewusst erleben.
+                <br>
+                Für mutige Entdecker und gesellige Abenteurer.
+            {% else %}
+                {{ page.getElement('hero__content__text') | raw}}
+            {% endif %}
+
         </h1>
 
         <a href="{{ path("contact") }}"

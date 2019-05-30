@@ -1,7 +1,7 @@
 <section class="section who_we_are">
 
     <div class="who_we_are__image">
-        <img src="{{ asset('img/whoweare.jpg') }}">
+        <img data-grape_id="who_we_are__img" src="{{ page.ElementAttr('who_we_are__img', 'src', asset('img/whoweare.jpg') ) }}">
     </div>
 
     <div class="who_we_are__text">

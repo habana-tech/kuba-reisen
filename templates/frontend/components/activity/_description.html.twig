@@ -18,59 +18,6 @@
                 {{ activity.getElement('activity_description') | raw }}
             {% endif %}
         </div>
-
-        <div class="description__text__times">
-            <div class="description__text__times__init" data-grape_id="description__text__times__init">
-                {% if activity.getElement('description__text__times__init') is null %}
-
-                    <h3>Start Time</h3>
-
-                    <p>May 15 at 9:00 hours</p>
-
-                    <p>May 15 at 9:00 hours</p>
-
-                {% else %}
-                    {{ activity.getElement('description__text__times__init') | raw }}
-                {% endif %}
-            </div>
-            <div class="description__text__times__duration" data-grape_id="description__text__times__duration">
-
-                {% if activity.getElement('description__text__times__duration') is null %}
-
-                    <h3>Duration</h3>
-
-                    <p>5 hours</p>
-                    <p>5 hours</p>
-
-                {% else %}
-                    {{ activity.getElement('description__text__times__duration') | raw }}
-                {% endif %}
-            </div>
-            <div class="description__text__times__finish"  data-grape_id="description__text__times__finish">
-                {% if activity.getElement('description__text__times__finish') is null %}
-
-                    <h3>Finish time</h3>
-
-                    <p>May 15 at 15 hours</p>
-                    <p>May 15 at 15 hours</p>
-                {% else %}
-                    {{ activity.getElement('description__text__times__finish') | raw }}
-                {% endif %}
-
-            </div>
-
-            <div class="description__text__times__comments"  data-grape_id="description__text__times__comments">
-                {% if activity.getElement('description__text__times__comments') is null %}
-                    <h3>Comments</h3>
-
-                    <p>Lorem ipsum dolor sit amet, adipisicing</p>
-                    <p>Lorem ipsum dolor sit amet, adipisicing</p>
-                {% else %}
-                    {{ activity.getElement('description__text__times__comments') | raw }}
-                {% endif %}
-            </div>
-        </div>
-
         <div class="description__text__included-details">
             <div class="description__text__included-details__included">
 

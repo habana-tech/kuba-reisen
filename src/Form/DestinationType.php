@@ -17,6 +17,9 @@ class DestinationType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('featuresCount', null, [
+                'label' => 'How many features blocks do you want to show'
+            ])
 //            ->add('language',  ChoiceType::class, ['choices' => [
 //                'de' => 'de',
 //                'en' => 'en',

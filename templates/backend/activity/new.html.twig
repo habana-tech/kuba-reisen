@@ -12,6 +12,12 @@
        </div>
 
     </div>
+
+    <div class="row">
+        <div class="grid grid-third">
+            {{ form_row(form.featuresImagesCount) }}
+        </div>
+    </div>
     <div class="row">
         <div class="grid offset-three-fourths">
             {{ form_widget(form.saveAndEdit) }}
@@ -35,15 +41,6 @@
 
 
     <hr class=" margin-top margin-bottom-large">
-
-    <div class="row">
-        <div class="grid grid-half">
-            {{ form_row(form.imageFile) }}
-        </div>
-        <div class="grid grid-fourth">
-            {{ form_row(form.alternativeText) }}
-        </div>
-    </div>
 
 
     {{ form_widget(form) }}

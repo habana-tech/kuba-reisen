@@ -5,4 +5,4 @@ import CartBar from './modules/global/_cartBar';
 
 new Menu();
 new HeaderHeadroom();
-// new CartBar();
+new CartBar();

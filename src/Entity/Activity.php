@@ -32,6 +32,12 @@ class Activity
      */
     private $name;
 
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $featuresImagesCount;
+
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\FilterTag", inversedBy="activities")
      */
@@ -65,6 +71,7 @@ class Activity
         $this->image = new EmbeddedFile();
         $this->language = 'de';
         $this->description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam beatae blanditiis cumque dicta distinctio ea explicabo iste maxime nihil, perferendis recusandae rem reprehenderit velit voluptas. Magnam natus odit placeat?";
+        $this->featuresImagesCount = 4;
         // your own logic
     }
 
@@ -189,4 +196,22 @@ class Activity
     {
         return $this->getDynamicPage()->getElement($name);
     }
+
+    /**
+     * @return mixed
+     */
+    public function getFeaturesImagesCount()
+    {
+        return $this->featuresImagesCount;
+    }
+
+    /**
+     * @param mixed $featuresImagesCount
+     */
+    public function setFeaturesImagesCount($featuresImagesCount): void
+    {
+        $this->featuresImagesCount = $featuresImagesCount;
+    }
+
+
 }

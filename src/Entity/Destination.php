@@ -32,6 +32,11 @@ class Destination
     private $name;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    private $featuresCount;
+
+    /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Activity", mappedBy="destinations")
      */
     private $activities;
@@ -51,6 +56,8 @@ class Destination
         $this->image = new EmbeddedFile();
 
         $this->language = 'de';
+
+        $this->featuresCount = 4;
     }
 
     public function getId(): ?int
@@ -116,4 +123,22 @@ class Destination
     {
         return $this->name. " (". $this->language . ")";
     }
+
+    /**
+     * @return mixed
+     */
+    public function getFeaturesCount()
+    {
+        return $this->featuresCount;
+    }
+
+    /**
+     * @param mixed $featuresCount
+     */
+    public function setFeaturesCount($featuresCount): void
+    {
+        $this->featuresCount = $featuresCount;
+    }
+
+
 }

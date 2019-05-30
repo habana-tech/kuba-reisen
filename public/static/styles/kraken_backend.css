@@ -3302,6 +3302,8 @@ body > textarea {
   max-width: 90vw !important; }
 #tie-btn-draw, #tie-btn-shape, #tie-btn-icon, #tie-btn-text {
   display: none; }
+.gjs-rte-action[title="Link"] {
+  display: none; }
 .admin_bar {
   position: fixed;
   top: 0;
@@ -3319,3 +3321,7 @@ body > textarea {
     color: #fff; }
 body.admin-logged {
   margin-top: 2em; }
+[data-grape_id]:hover, [data-grape_id]:active, [data-grape_id]:focus {
+  border: dashed #62ab03 4px;
+  border-radius: 20px;
+  transition: border ease .5s; }

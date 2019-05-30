@@ -257,8 +257,6 @@ class ActivitiesController extends AbstractController
             'dynamic_page_id' => $activity->getDynamicPage()->getId(),
             'page' => $activity->getDynamicPage(),
             'activity' => $activity,
-            'addLink'=>$this->generateUrl('addActivity',
-                                            ['id'=>$activity->getId()]),
             'related_activities'=>$related_activities,
         ]);
     }

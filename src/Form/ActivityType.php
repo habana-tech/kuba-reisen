@@ -21,6 +21,9 @@ class ActivityType extends AbstractType
         $builder
             ->add('name', null, ['label'=>'Name of the activity, it will be used on the template'])
             ->add('description', CKEditorType::class, ['label'=>'Short description, it will be show in the activities page'])
+            ->add('featuresImagesCount', null, [
+                'label' => 'How many images do you want to show for this activity?'
+            ])
 //            ->add('language',  ChoiceType::class, ['choices' => [
 //                'de' => 'de',
 //                'en' => 'en',
@@ -44,8 +47,8 @@ class ActivityType extends AbstractType
 //            ->add('dynamicPage')
 //            ->add('modified_by')
 
-            ->add('imageFile', VichImageType::class, ['required'=> false, 'label'=>'Primary Image'])
-            ->add('alternativeText', null,  ['label'=>'Describe image'])
+//            ->add('imageFile', VichImageType::class, ['required'=> false, 'label'=>'Primary Image'])
+//            ->add('alternativeText', null,  ['label'=>'Describe image'])
             ->add('saveAndEdit', SubmitType::class, array('label' => 'Save and start editing', 'attr'=>['class' => 'btn']))
         ;
     }

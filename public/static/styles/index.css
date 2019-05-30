@@ -1,6 +1,6 @@
 .hero {
-  height: 100vh;
   overflow: hidden;
+  height: 100vh;
   position: relative;
   display: flex;
   align-items: center; }
@@ -117,47 +117,3 @@
   .why_with_us__reasons__reason {
       width: 45%;
       text-align: center; }
-  .travel-options {
-  margin-bottom: 2em;
-  position: relative; }
-  .travel-options__grid {
-    display: grid;
-    grid-template-areas: "img1 img6 img9 img9" "img2 img6 img10 img10" "img3 img3 img3 img3" "img4 img4 img11 img11" "img5 img7 img12 img14" "img5 img8 img13 img14";
-    grid-template-rows: 40vh 40vh 40vh 40vh;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: .15em; }
-  .travel-options__grid__item {
-      height: 100%;
-      width: 100%;
-      overflow: hidden; }
-  .travel-options__grid__item img {
-        width: 100%;
-        height: 100%;
-        max-height: 100%;
-        max-width: 100%; }
-  .travel-options__grid_overlay {
-    display: grid;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    grid-template-areas: "section1 section1 section2 section2" "section1 section1 section2 section2" "section3 section3 section3 section3" "section3 section3 section3 section3" "section4 section4 section5 section5" "section4 section4 section5 section5";
-    grid-template-rows: 40vh 40vh 40vh 40vh;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: .15em; }
-  .travel-options__grid_overlay a {
-      text-decoration: none;
-      color: white;
-      font-size: 3em;
-      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25); }
-  .travel-options__grid_overlay a:hover div {
-        opacity: 1; }
-  .travel-options__grid_overlay a div {
-        height: 100%;
-        width: 100%;
-        opacity: 0;
-        background-color: rgba(102, 102, 102, 0.45);
-        transition: opacity .3s ease-in-out;
-        display: flex;
-        justify-content: center;
-        align-items: center; }

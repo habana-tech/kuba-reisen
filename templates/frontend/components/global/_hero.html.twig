@@ -24,13 +24,10 @@
         </h1>
         {% else %}
 
-            {% if page.getElement('hero__content__text') is null %}
-                {{ 'global.__banner_sky_subtitle__' | trans }}
-            {% else %}
+
                 <h1 class="hero__content__text" data-grape_id="hero__content__text" data-grape_format="txt">
-                    {{ page.getElement('hero__content__text')}}
+                    {{ page.getElementContent('hero__content__text', 'Lorem imsu&iacute;p') | striptags}}
                 </h1>
-            {% endif %}
 
         {% endif %}
 

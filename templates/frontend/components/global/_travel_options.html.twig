@@ -1,0 +1,57 @@
+<section class="section top_destinations">
+
+    <div class="section__title ">
+        <div class="section__title__highlight">
+            <h2 data-grape_section="_travel_options" data-grape_id="travel_opts_title">{{ page.ElementContent('travel_opts_title',"A variety of travel options") | raw }}</h2>
+        </div>
+        <div class="section__title__description">
+            <p data-grape_section="_travel_options" data-grape_id="travel_opts_text">{{ page.ElementContent('travel_opts_text',"Lorem ipsum dolor sit amet, consectetur adipisicing elit") | raw }}</p>
+        </div>
+    </div>
+
+
+        <section class="travel-options">
+        <div class="travel-options__grid">
+            {% for i in 1..14 %}
+
+                <div class="travel-options__grid__item" style="grid-area: img{{ i }}">
+                    <img
+                            data-grape_section="_travel_options"
+                            data-grape_id="travelgrid__item{{ i }}"
+                            src="{{ page.ElementAttr('travelgrid__item'~i , 'src', asset('img/grid/wide.jpg') ) }}"
+                            >
+
+                </div>
+
+            {% endfor %}
+        </div>
+
+        {% if not is_granted('ROLE_EDITOR') or app.request.get('preview') %}
+           <div class="travel-options__grid_overlay">
+
+            {% for i in 1..5 %}
+                <a href="#" style="grid-area: section{{ i }}">
+                    <div>
+                        <h3>{{ page.ElementContent('options__grid_title_'~ i ,"Title "~ i ) | raw }}</h3>
+                    </div>
+                </a>
+            {% endfor %}
+
+        </div>
+        {% else %}
+            <div class="travel-options__grid_editor">
+
+                <ul class="options__grid_editor__list">
+                {% for i in 1..5 %}
+                    <li data-grape_section="_travel_options"
+                        data-grape_id="options__grid_title_{{ i }}" data-grape_format="txt">
+                        {{ page.ElementContent('options__grid_title_'~ i ,"Title "~ i ) | raw }}
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </section>
+
+
+</section>

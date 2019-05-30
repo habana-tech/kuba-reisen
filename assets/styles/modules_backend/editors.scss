@@ -1,3 +1,20 @@
+.hero-home{
+    display: flex;
+    background-color: grey;
+    height: 100vh;
+
+    & .slide-wrapper{
+        order: 2;
+        display: flex !important;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 50%;
+
+        & .slide-item{
+            width: 50%;
+        }
+    }
+}
 
 .editor__imagen_list {
 
@@ -9,12 +26,14 @@
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 1fr;
 }
+
 .grid__item-img__editor{
     width: 100%;
     min-height: 30vh;
 }
+
 .top_destinations__places__place{
-    &__image__editor, grid__item-img__editor{
+    &__image__editor, .grid__item-img__editor{
         display: flex;
         justify-content: space-between;
         width: 100%;
@@ -33,3 +52,16 @@
     }
 
 }
+
+.options__grid_editor__list{
+    & ul{
+        list-style: none;
+
+        & li{
+            display: inline;
+            margin: 20px;
+        }
+    }
+
+}
+

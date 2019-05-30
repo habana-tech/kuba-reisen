@@ -54,8 +54,6 @@ class ActivityController extends AbstractController
             $entityManager->flush();
             if($form->get('saveAndEdit')->isClicked())
                 return $this->redirectToRoute('activity',[
-          //          '_locale'=>'de',
-                    '_locale'=>'de',
                     'id'=>$activity->getId(),
                     'name'=>$activity->getMachineName()
                     ]);

@@ -51,7 +51,6 @@ class DestinationController extends AbstractController
 
             if($form->get('saveAndEdit')->isClicked())
                 return $this->redirectToRoute('destination',[
-                    '_locale'=>'de',
                     'id'=>$destination->getId(),
                     'name'=>$destination->getMachineName()
                     ]);
@@ -85,6 +84,14 @@ class DestinationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+
+
+            if($form->get('saveAndEdit')->isClicked())
+                return $this->redirectToRoute('destination',[
+                    'id'=>$destination->getId(),
+                    'name'=>$destination->getMachineName()
+                ]);
+
 
             return $this->redirectToRoute('backend_destination_index', [
                 'id' => $destination->getId(),

@@ -15,3 +15,7 @@
     color: #fff; }
   body.admin-logged {
   margin-top: 2em; }
+  [data-grape_id]:hover, [data-grape_id]:active, [data-grape_id]:focus {
+  border: dashed #62ab03 4px;
+  border-radius: 20px;
+  transition: border ease .5s; }

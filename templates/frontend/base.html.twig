@@ -10,7 +10,7 @@
 
     <!-- Stylesheet -->
 
-    {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null %}
+    {% if is_granted('ROLE_EDITOR') and not app.request.get('preview') %}
         <link rel="stylesheet" href="{{ asset('styles/kraken_backend.css') }}" type="text/css">
         {#<link rel="stylesheet" href="{{ asset('styles/all_backend_css.css') }}" type="text/css">#}
     {% else %}
@@ -22,33 +22,33 @@
 
     </head>
 
-    <body {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null  %}class="admin-logged"{% endif %}>
+    <body {% if is_granted('ROLE_EDITOR') and not app.request.get('preview') %}class="admin-logged"{% endif %}>
 
         {{ include('frontend/components/global/_icons.html.twig') }}
 
-        {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null %}
+        {% if is_granted('ROLE_EDITOR') and not app.request.get('preview') %}
             {{ include('backend/adminbar/admin_bar.html.twig') }}
         {% endif %}
 
-        {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null  %}
+        {% if is_granted('ROLE_EDITOR') and not app.request.get('preview')  %}
             <div id="grapes-editable">
         {% endif %}
 
-            {{ render(controller('App\\Controller\\RegionsController::regionHeader')) }}
+            {{ render(controller('App\\Controller\\RegionsController::regionHeader'), {'preview':app.request.get('preview')} ) }}
 
             {% block body %}{% endblock %}
 
-            {% if not is_granted('ROLE_EDITOR') or app.request.get('preview') is not null %}
+            {% if not is_granted('ROLE_EDITOR') or app.request.get('preview') %}
                 {{  include('frontend/components/global/_cart_bar.html.twig') }}
             {% endif %}
                 
             {{ render(controller('App\\Controller\\RegionsController::regionFooter')) }}
 
-        {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null %}
+        {% if is_granted('ROLE_EDITOR') and not app.request.get('preview') %}
             </div>
         {% endif %}
 
-        {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null %}
+        {% if is_granted('ROLE_EDITOR') and not app.request.get('preview') %}
             <script>
                 //APP_ROUTES & PARAMS
                 var app_js_param__csrf_token = "{{ csrf_token('_grapejs_editor_token') }}"
