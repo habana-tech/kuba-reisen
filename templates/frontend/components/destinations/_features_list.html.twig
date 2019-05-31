@@ -10,13 +10,13 @@
         <div class="feature {{ inverseClass }}">
             <div class="feature__text">
                 <div class="feature__text__title">
-                    <h2 data-grape_id="feature_lists_h{{ i }}" data-grape_format="txt">
-                        {{ page.ElementContent('feature_lists_h'~i,"Havana Vieja") | raw }}
+                    <h2 data-grape_id="feature_lists_headline{{ i }}" data-grape_format="txt">
+                        {{ page.ElementContent('feature_lists_headline'~i,"Havana Vieja") | raw }}
                     </h2>
                 </div>
 
-            <p data-grape_id="feature_lists_t{{ i }}">
-                {{ page.ElementContent('feature_lists_t'~i,"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut consectetur debitis distinctio dolor eum illo maxime molestiae mollitia optio pariatur porro praesentium quidem quos rem, rerum sequi sint voluptatem voluptatum.
+            <p data-grape_id="feature_lists_text{{ i }}">
+                {{ page.ElementContent('feature_lists_text'~i,"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut consectetur debitis distinctio dolor eum illo maxime molestiae mollitia optio pariatur porro praesentium quidem quos rem, rerum sequi sint voluptatem voluptatum.
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus laboriosam perspiciatis quidem! Fuga nam placeat similique. Amet assumenda debitis, incidunt maiores omnis rem similique? Accusamus autem cupiditate numquam pariatur rerum!") | raw }}</p>
             </div>
             <div class="feature__image">
