@@ -4559,6 +4559,12 @@ body {
   --color-close: #fff;
   --color-details-hover: #858585; }
 /* Icons */
+.icon {
+  display: block;
+  width: 1.5em;
+  height: 1.5em;
+  margin: 0 auto;
+  fill: currentColor; }
 .slideshow {
   position: relative;
   width: 100%;
@@ -4673,7 +4679,7 @@ body {
   .slideshow {
     overflow: hidden;
     margin: 0;
-    height: 80%; }
+    height: 85%; }
   .slide {
     height: 100%; }
     .slide__title {
