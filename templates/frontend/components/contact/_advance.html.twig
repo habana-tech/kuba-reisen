@@ -12,46 +12,21 @@
     <div class="travel-interest">
         <div class="travel-interest__options">
 
-            <div class="travel-interest__options__item" style="grid-area: img1">
-                <img src="{{ asset('img/grid/square1.jpg') }}">
-            </div>
-
-            <div class="travel-interest__options__item" style="grid-area: img2">
-                <img src="{{ asset('img/grid/portraid1.jpg') }}">
-            </div>
-
-            <div class="travel-interest__options__item" style="grid-area: img3">
-                <img src="{{ asset('img/grid/wide1.jpg') }}" style="height: auto;max-height: none;">
-            </div>
-
-            <div class="travel-interest__options__item" style="grid-area: img4">
-                <img src="{{ asset('img/grid/portraid2.jpg') }}" style="width: auto;max-width: none;">
-            </div>
-
-            <div class="travel-interest__options__item" style="grid-area: img5">
-                <img src="{{ asset('img/grid/square2.jpg') }}">
-            </div>
-
-            <div class="travel-interest__options__item" style="grid-area: img6">
-                <img src="{{ asset('img/grid/wide.jpg') }}">
-            </div>
-
-            <div class="travel-interest__options__item" style="grid-area: img7">
-                <img src="{{ asset('img/grid/portraid3.jpg') }}">
-            </div>
-
-            <div class="travel-interest__options__item" style="grid-area: img8">
-                <img src="{{ asset('img/grid/portraid4.jpg') }}">
-            </div>
-
+            {% for i in 1..16 %}
+                {{ include('frontend/components/contact/_interest.html.twig') }}
+            {% endfor %}
 
         </div>
     </div>
 
 
     <div class="form__item">
-        <div class="form__item__label">
-            {{ form_label(form.flyTicket) }}
+        <div class="form__item__label" data-grape_id="form__item__label_flyTicket">
+            {% if page.ElementContent('form__item__label_flyTicket') %}
+                {{ page.ElementContent('form__item__label_flyTicket') | raw }}
+            {% else %}
+                {{ form_label(form.flyTicket) }}
+            {% endif %}
         </div>
         <div class="form__item__input">
             {{ form_widget(form.flyTicket) }}
@@ -60,8 +35,12 @@
 
     <div class="form__item">
 
-        <div class="form__item__label">
-            {{ form_label(form.selfConsider) }}
+        <div class="form__item__label" data-grape_id="form__item__label_selfConsider">
+            {% if page.ElementContent('form__item__label_selfConsider') %}
+                {{ page.ElementContent('form__item__label_selfConsider') | raw }}
+            {% else %}
+                {{ form_label(form.selfConsider) }}
+            {% endif %}
         </div>
         <div class="form__item__input select-control">
             {{ form_widget(form.selfConsider, {}) }}
@@ -77,21 +56,32 @@
             </div>
 
         </div>
-        <ul class="visually-hidden" id="{{ form.selfConsider.vars.id }}_labels">
-            <li>Text A</li>
-            <li>Text B</li>
-            <li>Text C</li>
-            <li>Text D</li>
-            <li>Text E</li>
+        <ul class="visually-hidden admin_visible_list"
+            id="{{ form.selfConsider.vars.id }}_labels"
+            data-grape_id="form__item__label_selfConsider_options">
+
+            {% if page.ElementContent('form__item__label_selfConsider_options') %}
+                {{ page.ElementContent('form__item__label_selfConsider_options') | raw }}
+            {% else %}
+                <li>Text A</li>
+                <li>Text B</li>
+                <li>Text C</li>
+                <li>Text D</li>
+                <li>Text E</li>
+            {% endif %}
         </ul>
     </div>
 
     <div class="form__item">
-        <div class="form__item__label">
-            {{ form_label(form.selfCharacter) }}
 
-
+        <div class="form__item__label" data-grape_id="form__item__label_selfCharacter">
+            {% if page.ElementContent('form__item__label_selfCharacter') %}
+                {{ page.ElementContent('form__item__label_selfCharacter') | raw }}
+            {% else %}
+                {{ form_label(form.selfCharacter) }}
+            {% endif %}
         </div>
+
         <div class="form__item__input select-control">
             {{ form_widget(form.selfCharacter, {}) }}
             {{ form_errors(form.selfCharacter) }}
@@ -107,21 +97,29 @@
             </div>
 
         </div>
-        <ul class="visually-hidden" id="{{ form.selfCharacter.vars.id }}_labels">
-            <li>Text 0</li>
-            <li>Text 1</li>
-            <li>Text 2</li>
-            <li>Text 3</li>
-            <li>Text 4</li>
-            <li>Text 5</li>
-            <li>Text 6</li>
-            <li>Text 7</li>
+        <ul class="visually-hidden admin_visible_list"
+            id="{{ form.selfCharacter.vars.id }}_labels"
+            data-grape_id="form__item__label_selfCharacter_options">
+
+            {% if page.ElementContent('form__item__label_selfCharacter_options') %}
+                {{ page.ElementContent('form__item__label_selfCharacter_options') | raw }}
+            {% else %}
+                <li>Text A</li>
+                <li>Text B</li>
+                <li>Text C</li>
+                <li>Text D</li>
+                <li>Text E</li>
+            {% endif %}
         </ul>
     </div>
 
     <div class="form__item">
-        <div class="form__item__label">
-            {{ form_label(form.selfLuxury) }}
+        <div class="form__item__label" data-grape_id="form__item__label_selfLuxury">
+            {% if page.ElementContent('form__item__label_selfLuxury') %}
+                {{ page.ElementContent('form__item__label_selfLuxury') | raw }}
+            {% else %}
+                {{ form_label(form.selfLuxury) }}
+            {% endif %}
         </div>
 
         <div class="form__item__input select-control">
@@ -138,12 +136,19 @@
             </div>
 
         </div>
-        <ul class="visually-hidden" id="{{ form.selfLuxury.vars.id }}_labels">
-            <li>Text A</li>
-            <li>Text B</li>
-            <li>Text C</li>
-            <li>Text D</li>
-            <li>Text E</li>
+        <ul class="visually-hidden admin_visible_list"
+            id="{{ form.selfLuxury.vars.id }}_labels"
+            data-grape_id="form__item__label_selfLuxury_options">
+
+            {% if page.ElementContent('form__item__label_selfLuxury_options') %}
+                {{ page.ElementContent('form__item__label_selfLuxury_options') | raw }}
+            {% else %}
+                <li>Text A</li>
+                <li>Text B</li>
+                <li>Text C</li>
+                <li>Text D</li>
+                <li>Text E</li>
+            {% endif %}
         </ul>
     </div>
 

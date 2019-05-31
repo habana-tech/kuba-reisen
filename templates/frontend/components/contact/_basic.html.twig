@@ -4,8 +4,15 @@
         <div class="section__title__highlight section__title__highlight--orange">
             <h2 data-grape_id="contact_t1">{{ page.ElementContent('contact_t1',"Let's start with the basic") | raw }}</h2>
         </div>
-        <div class="section__title__description">
-            <p data-grape_id="contact_p1">{{ page.ElementContent('contact_p1',"Lorem ipsum dolor sit amet, consectetur adipisicing elit.") | raw }}</p>
+        <div class="section__title__description" data-grape_id="contact_p1">
+            {% if page.ElementContent('contact_p1') %}
+                {{ page.ElementContent('contact_p1') | raw }}
+            {% else %}
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                </p>
+            {% endif %}
         </div>
     </div>
 
@@ -13,8 +20,12 @@
     {% form_theme form 'form/fields.html.twig' %}
 
     <div class="form__item">
-        <div class="form__item__label">
-            {{ form_label(form.travelDate) }}
+        <div class="form__item__label" data-grape_id="form__item__label_travelDate">
+            {% if page.ElementContent('form__item__label_travelDate') %}
+                {{ page.ElementContent('form__item__label_travelDate') | raw }}
+            {% else %}
+                {{ form_label(form.travelDate) }}
+            {% endif %}
         </div>
         <div class="form__item__input">
             {{ form_widget(form.travelDate) }}
@@ -23,8 +34,12 @@
     </div>
 
     <div class="form__item">
-        <div class="form__item__label">
-            {{ form_label(form.travelDuration) }}
+        <div class="form__item__label" data-grape_id="form__item__label_travelDuration">
+            {% if page.ElementContent('form__item__label_travelDuration') %}
+                {{ page.ElementContent('form__item__label_travelDuration') | raw }}
+            {% else %}
+                {{ form_label(form.travelDuration) }}
+            {% endif %}
         </div>
         <div class="form__item__input">
             {{ form_widget(form.travelDuration) }}
@@ -32,8 +47,12 @@
     </div>
 
     <div class="form__item">
-        <div class="form__item__label">
-            {{ form_label(form.peopleAmount) }}
+        <div class="form__item__label" data-grape_id="form__item__label_peopleAmount">
+            {% if page.ElementContent('form__item__label_peopleAmount') %}
+                {{ page.ElementContent('form__item__label_peopleAmount') | raw }}
+            {% else %}
+                {{ form_label(form.peopleAmount) }}
+            {% endif %}
         </div>
         <div class="form__item__input">
             {{ form_widget(form.peopleAmount) }}
@@ -41,8 +60,12 @@
     </div>
 
     <div class="form__item">
-        <div class="form__item__label">
-            {{ form_label(form.travelBudget) }}
+        <div class="form__item__label" data-grape_id="form__item__label_travelBudget">
+            {% if page.ElementContent('form__item__label_travelBudget') %}
+                {{ page.ElementContent('form__item__label_travelBudget') | raw }}
+            {% else %}
+                {{ form_label(form.travelBudget) }}
+            {% endif %}
         </div>
         <div class="form__item__input">
             {{ form_widget(form.travelBudget) }}

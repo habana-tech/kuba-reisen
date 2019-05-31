@@ -9,17 +9,43 @@
         </div>
     </div>
 
-    <div class="description__text">
+    <div class="description__content">
 
-        <div class="description__text__content" data-grape_id="activity_description">
+        <div class="description__content__text" data-grape_id="activity_description">
             {% if activity.getElement('activity_description') is null %}
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet asperiores cumque deserunt, distinctio est id impedit libero modi nobis perferendis possimus provident, quae qui, quis sint vel velit vitae.</p>
             {% else %}
                 {{ activity.getElement('activity_description') | raw }}
             {% endif %}
         </div>
-        <div class="description__text__included-details">
-            <div class="description__text__included-details__included">
+
+        <div class="description__content__timetable" data-grape_id="timetable" >
+            {% if activity.getElement('timetable') is null %}
+                <table >
+                    <thead>
+                        <tr>
+                            <td><span>Init time</span></td>
+                            <td><span>Duration</span></td>
+                            <td><span>Finish time</span></td>
+                            <td><span>Comments</span></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span>8:00 hours</span></td>
+                            <td><span>3:15 hours</span></td>
+                            <td><span>18:00 hours</span></td>
+                            <td><span>bring little clothes</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            {% else %}
+                {{ activity.getElement('timetable') | raw }}
+            {% endif %}
+        </div>
+
+        <div class="description__content__included-details">
+            <div class="description__content__included-details__included">
 
                 <h3 data-grape_id="activity_included_title">
                     {% if activity.getElement('activity_included_title') is null %}
@@ -39,7 +65,7 @@
                 </div>
             </div>
 
-            <div class="description__text__included-details__not-included">
+            <div class="description__content__included-details__not-included">
                 <h3 data-grape_id="activity_not_included_title">
                     {% if activity.getElement('activity_not_included_title') is null %}
                         <u>Not</u> include in the tour

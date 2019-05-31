@@ -1,0 +1,12 @@
+<div class="interest" style="grid-area: img{{ i }}">
+    <label for="interest{{ i }}">
+        <img
+            data-grape_id="contact_interest_image_{{ i }}"
+            src="{{ page.ElementAttr('contact_interest_image_'~i, 'src', asset('img/grid/square1.jpg')) }}"
+            alt="">
+        <span data-grape_id="contact_interest_text_{{ i }}" >
+            {{ page.ElementContent('contact_interest_text_'~i, 'interest '~i) | raw }}
+        </span>
+    </label>
+    <input id="interest{{ i }}" name="interest{{ i }}" type="checkbox">
+</div>

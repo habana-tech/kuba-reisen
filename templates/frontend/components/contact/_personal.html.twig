@@ -10,8 +10,12 @@
     </div>
 
     <div class="form__item">
-        <div class="form__item__label">
-            {{ form_label(form.name) }}
+        <div class="form__item__label" data-grape_id="form__item__label_name">
+            {% if page.ElementContent('form__item__label_name') %}
+                {{ page.ElementContent('form__item__label_name') | raw }}
+            {% else %}
+                {{ form_label(form.name) }}
+            {% endif %}
         </div>
         <div class="form__item__input">
             {{ form_widget(form.name) }}
@@ -19,17 +23,24 @@
     </div>
 
     <div class="form__item">
-        <div class="form__item__label">
-            {{ form_label(form.email) }}
+        <div class="form__item__label" data-grape_id="form__item__label_email">
+            {% if page.ElementContent('form__item__label_email') %}
+                {{ page.ElementContent('form__item__label_email') | raw }}
+            {% else %}
+                {{ form_label(form.email) }}
+            {% endif %}
         </div>
         <div class="form__item__input">
             {{ form_widget(form.email) }}
         </div>
     </div>
 
-
-    <div class="row row-center float-center padding-top">
-        {{ form_label(form.message) }}
+    <div class="row row-center float-center padding-top"  data-grape_id="form__item__label_message">
+        {% if page.ElementContent('form__item__label_message') %}
+            {{ page.ElementContent('form__item__label_message') | raw }}
+        {% else %}
+            {{ form_label(form.message) }}
+        {% endif %}
     </div>
     <div class="row row-center float-center padding-top">
         <div class="grid-half select-control">
