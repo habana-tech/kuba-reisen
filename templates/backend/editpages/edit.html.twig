@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit content of {{ page.pageName }}{% endblock %}
+
+{% block body %}
+    <h1>Editing content of <i><u>{{ page.pageName }}</u></i></h1>
+
+    {% if form.children | length < 2 %}
+    You shuld go to site and see the page before editing...
+    {% endif %}
+
+    {{ include('backend/editpages/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('backend') }}" class="btn">back to admin</a>
+
+{% endblock %}
