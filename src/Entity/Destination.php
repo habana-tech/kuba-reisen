@@ -32,7 +32,7 @@ class Destination
     private $name;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer",  options={"default"=4})
      */
     private $featuresCount;
 
@@ -140,5 +140,16 @@ class Destination
         $this->featuresCount = $featuresCount;
     }
 
+
+    public function __get($name){
+        if (array_key_exists($name, $this->getDynamicPage()->getPageContent()))
+            return trim($this->getDynamicPage()->getElement($name));
+    }
+
+
+    public function __set($name, $value){
+        $this->getDynamicPage()->setElementContent($name, $value);
+
+    }
 
 }

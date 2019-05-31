@@ -92,7 +92,7 @@ class ActivityController extends AbstractController
             {
                 if(isset($element['txt']))
                     $form->add($key, null, ['label'=>'Content of '.$key, 'required' => false]);
-                else
+                if(isset($element['html']) and !isset($element['src']))
                     $form->add($key, CKEditorType::class, ['label'=>'Content of '.$key, 'required' => false]);
             }
         }
