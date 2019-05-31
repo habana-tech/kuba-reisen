@@ -3739,7 +3739,7 @@ body > textarea {
   background-color:rgba(53, 207, 212, 0.3); }
 *::selection {
   background-color:rgba(53, 207, 212, 0.3); }
-.body {
+body {
   width: 100vw;
   overflow: hidden; }
 .icon {
