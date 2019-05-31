@@ -99,6 +99,8 @@ class ActivityController extends AbstractController
         catch (EntityNotFoundException $exception)
         {
             $activity->setDynamicPage($pm->findByOrCreateIfDoesNotExist(['pageName'=> $activity->getMachineName()]));
+            $this->getDoctrine()->getManager()->persist($activity);
+            $this->getDoctrine()->getManager()->flush();
             $this->addFlash('notice', 'The page content was not found and was created a new one');
         }
 

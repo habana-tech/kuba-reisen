@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\DynamicPage;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
-
+use Doctrine\ORM\EntityNotFoundException;
 /**
  * @Route("/admin/destination")
  */
@@ -78,7 +78,7 @@ class DestinationController extends AbstractController
     /**
      * @Route("/{id}/edit", name="backend_destination_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Destination $destination): Response
+    public function edit(Request $request, Destination $destination, DynamicPageManager $pm): Response
     {
         $form = $this->createForm(DestinationType::class, $destination);
 
@@ -95,6 +95,8 @@ class DestinationController extends AbstractController
         catch (EntityNotFoundException $exception)
         {
             $destination->setDynamicPage($pm->findByOrCreateIfDoesNotExist(['pageName'=> $destination->getMachineName()]));
+            $this->getDoctrine()->getManager()->persist($destination);
+            $this->getDoctrine()->getManager()->flush();
             $this->addFlash('notice', 'The page content was not found and was created a new one');
         }
 
@@ -123,12 +125,16 @@ class DestinationController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="backend_destination_delete", methods={"DELETE"})
+     * @Route("/{id}", name="backend_destination_delete", methods={"DELETE"}))
      */
     public function delete(Request $request, Destination $destination): Response
     {
         if ($this->isCsrfTokenValid('delete'.$destination->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
+            foreach ($destination->getDynamicPage()->getUploadedImages() as $value) {
+                $destination->getDynamicPage()->removeUploadedImage($value);
+            }
+            $entityManager->remove($destination->getDynamicPage());
             $entityManager->remove($destination);
             $entityManager->flush();
         }
