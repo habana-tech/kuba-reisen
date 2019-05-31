@@ -180,4 +180,18 @@ class DynamicPage
     public function getHtmlTextElement($name){
         return $this->getPageContent()[$name];
     }
+
+
+     public function __get($name){
+        if (array_key_exists($name, $this->getPageContent()))
+            return trim($this->getElement($name));
+    }
+
+
+    public function __set($name, $value){
+        if (array_key_exists($name, $this->getPageContent()))
+            $this->setElementContent($name, $value);
+
+    }
+
 }

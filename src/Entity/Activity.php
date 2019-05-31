@@ -34,7 +34,7 @@ class Activity
 
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", options={"default"=4})
      */
     private $featuresImagesCount;
 
@@ -182,7 +182,7 @@ class Activity
 
     public function __get($name){
         if (array_key_exists($name, $this->getDynamicPage()->getPageContent()))
-            return $this->getDynamicPage()->getElement($name);
+            return trim($this->getDynamicPage()->getElement($name));
     }
 
 

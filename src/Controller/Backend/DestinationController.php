@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\DynamicPage;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 /**
  * @Route("/admin/destination")
@@ -80,6 +81,23 @@ class DestinationController extends AbstractController
     public function edit(Request $request, Destination $destination): Response
     {
         $form = $this->createForm(DestinationType::class, $destination);
+
+        try
+        {
+            foreach ($destination->getDynamicPage()->getPageContent() as $key => $element)
+            {
+                if(isset($element['txt']))
+                    $form->add($key, null, ['label'=>'Content of '.$key, 'required' => false]);
+                if(isset($element['html']) and !isset($element['src']))
+                    $form->add($key, CKEditorType::class, ['label'=>'Content of '.$key, 'required' => false]);
+            }
+        }
+        catch (EntityNotFoundException $exception)
+        {
+            $destination->setDynamicPage($pm->findByOrCreateIfDoesNotExist(['pageName'=> $destination->getMachineName()]));
+            $this->addFlash('notice', 'The page content was not found and was created a new one');
+        }
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

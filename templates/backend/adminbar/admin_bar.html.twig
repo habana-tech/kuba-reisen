@@ -1,15 +1,46 @@
 <nav class="admin_bar">
     <ul>
-        <li class="admin_bar_action"> <a href="{{ path('frontend') }}">Go to home</a></li>
+        
+        {% if in_string(app.request.get('_route'), 'backend_') %}
+            <li class="admin_bar_action"> <a href="{{ path('frontend') }}">Go to homepage</a></li>
+        {% endif %}
+        {% if app.request.get('_route') != 'backend' %}
+            <li class="admin_bar_action"><a href="{{ path('backend') }}">Go to Admin</a> </li>
+        {% endif %}
         <li class="admin_bar_action"> <a href="{{ path('backend_activity_new') }}">Add Activity</a></li>
         <li class="admin_bar_action"> <a href="{{ path('backend_activity_index') }}">See Activities</a></li>
         <li><a href="{{ path('backend_destination_new') }}">Add Destinations</a></li>
         <li><a href="{{ path('backend_destination_index') }}">See Destinations</a></li>
         {#<li><a href="{{ path('backend_interest_new') }}">Add Interest</a></li>#}
         <li><a href="{{ path('backend_filter_tag_index') }}">View Tags</a></li>
-        <li><a href="{{ path('backend') }}">Go to Admin</a> </li>
-        <li><a href="?preview=true" target="_blank">Preview</a> </li>
-        <li><a href="{{ path('fos_user_security_logout') }}">Logout</a> </li>
+        
+        <li style="float: right;"><a href="{{ path('fos_user_security_logout') }}">Logout</a> </li>
     </ul>
-    <div class="admin_bar_fields"></div>
+    <ul>
+        
+        <li class="admin_bar_action">
+        {% if app.request.get('_route') == 'activity' %}
+             <a href="{{ path('backend_activity_edit', {'id': activity.id}) }}">Edit Activity on Admin</a>
+        {% endif %}
+        {% if app.request.get('_route') == 'destination' %}
+             <a href="{{ path('backend_destination_edit', {'id': destination.id}) }}">Edit Destination on Admin</a>
+        {% endif %}
+        </li>
+
+        <li class="admin_bar_action">
+        {% if in_string(app.request.get('_route'), 'backend_activity_edit')%}
+             <a href="{{ path('activity', {'id': activity.id, 'name': activity.machineName}) }}">Discard changes and see this Activity</a>
+        {% endif %}
+        {% if in_string(app.request.get('_route'), 'backend_destination_edit')%}
+             <a href="{{ path('destination', {'id': destination.id, 'name': destination.machineName}) }}">Discard changes and see this Destination</a>
+        {% endif %}
+        </li>
+
+        {% if not in_string(app.request.get('_route'), 'backend') %}
+            <li><a href="?preview=true" target="_blank">Preview</a> </li>
+        {% endif %}
+        
+        
+    </ul>
+    
 </nav>
