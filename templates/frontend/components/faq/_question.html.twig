@@ -9,14 +9,19 @@
                 <h2 data-grape_id="faq_topic_title_{{ i }}">{{ page.ElementContent('faq_index_title_'~i,"Title of section") | raw }}</h2>
             </div>
 
-            {% set amount_question =     amount[loop.index0] %}
+            {% set amount_question = amount[loop.index0] %}
             {% for j in 1..amount_question %}
                 <div class="question">
                     <div class="question__title">
                         <h3 data-grape_id="faq_topic_question_title_{{ i }}_{{ j }}">
                             {{ page.ElementContent('faq_topic_question_title_'~i~'_'~j,"Question title") | raw }}</h3>
                     </div>
-                    <div class="question__answer">
+
+                    {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null %}
+                        <div class="question__answer question__answer--active">
+                    {% else %}
+                        <div class="question__answer ">
+                    {% endif %}
                         <p  data-grape_id="faq_topic_question_answer_{{ i }}_{{ j }}">
                             {{ page.ElementContent('faq_topic_question_answer_'~i~'_'~j,"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,") | raw }}
                         </p>

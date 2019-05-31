@@ -1,5 +1,5 @@
 .admin_bar{
-  position:fixed;
+  position: static;
   top: 0;
   width: 100%;
   height: auto;
@@ -18,9 +18,6 @@
   & a{
     color: #fff;
   }
-}
-body.admin-logged{
-  margin-top: 2em;
 }
 
 [data-grape_id]:hover, [data-grape_id]:active, [data-grape_id]:focus{
