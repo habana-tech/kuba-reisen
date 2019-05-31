@@ -3741,7 +3741,7 @@ body > textarea {
   background-color:rgba(53, 207, 212, 0.3); }
 body {
   width: 100vw;
-  overflow: hidden; }
+  overflow-x: hidden; }
 .icon {
   display: block;
   width: 1.5em;
