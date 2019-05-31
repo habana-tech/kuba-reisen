@@ -1,4 +1,4 @@
 import './modules/activity/_image';
-import Cart from './modules/activity/_cart';
+import AddtoCart from './modules/activity/_addToCart';
 
-new Cart();
+new AddtoCart();

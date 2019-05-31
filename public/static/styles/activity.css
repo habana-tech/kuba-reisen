@@ -2,33 +2,25 @@
   width: 75%;
   margin: auto;
   position: relative; }
-  .description__text {
+  .description__content {
     width: 100%;
     display: flex;
     flex-wrap: wrap; }
-  .description__text__content {
+  .description__content__text {
       width: 100%; }
-  .description__text__times {
-      display: flex;
-      width: 100%;
-      margin: auto;
-      position: relative;
-      justify-content: center;
-      text-align: center; }
-  .description__text__times__init {
-        width: 20%; }
-  .description__text__times__duration {
-        width: 20%; }
-  .description__text__times__finish {
-        width: 20%; }
-  .description__text__times__comments {
-        width: 40%; }
-  .description__text__included-details {
+  .description__content__timetable {
+      width: 100%; }
+  .description__content__timetable table {
+        width: 100%; }
+  .description__content__timetable table thead {
+          font-weight: bold;
+          text-transform: uppercase; }
+  .description__content__included-details {
       width: 100%;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-around; }
-  .description__text__included-details__included, .description__text__included-details__not-included {
+  .description__content__included-details__included, .description__content__included-details__not-included {
         width: 47%; }
   body {
   --color-text: #000;
@@ -164,7 +156,7 @@
   .slideshow {
     overflow: hidden;
     margin: 0;
-    height: 80%; }
+    height: 85%; }
   .slide {
     height: 100%; }
     .slide__title {

@@ -1,0 +1,16 @@
+*::selection{
+    background-color: rgba($light-blue, .3);
+}
+
+body{
+    position: relative;
+    overflow-x: hidden;;
+}
+
+.icon {
+    display: block;
+    width: 1.5em;
+    height: 1.5em;
+    margin: 0 auto;
+    fill: currentColor;
+}

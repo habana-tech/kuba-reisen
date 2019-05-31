@@ -4,7 +4,6 @@ class AdminBar {
         this.fields = document.querySelector('.admin_bar_fields');
 
         this.events();
-        console.log("constructor");
     }
 
 

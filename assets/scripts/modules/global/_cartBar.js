@@ -1,32 +1,29 @@
-import axios from '../../vendors/axios.min';
+function getCookie(name) {
+    let cArr = document.cookie.split(';');
+    for(let i=0;i < cArr.length;i++) {
+        let cookie = cArr[i].split("=",2);
+        cookie[0] = cookie[0].replace(/^\s+/,"");
+        if (cookie[0] === name)
+            return cookie;
+    }
+    return false;
+}
 
 class CartBar{
     constructor(){
         this.cartBar = document.querySelector('.cart_bar');
-        this.url = _url_activitiesApi;
+        this.cartBarText = document.querySelector('.cart_bar .cart_bar__text span');
         this.check();
     }
 
-    showBar(amountActivities){
-        this.cartBar.classList.add('cart_bar--visible');
-        this.cartBar.querySelector('span').innerHTML = amountActivities;
-    }
-
     check(){
-        let that = this;
-        axios.get(this.url)
-            .then(function (response) {
-                let amountActivities = response.data.length;
-                console.log(amountActivities);
-                if (amountActivities > 0) {
-                    that.showBar(amountActivities);
-                }
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        let currentValue = getCookie('ids');
+        let activitiesAmount = currentValue[1].split(',').length;
 
-        console.log('checking activities')
+        if (!this.cartBar.classList.contains('cart_bar--visible'))
+            this.cartBar.classList.add('cart_bar--visible');
+
+        this.cartBarText.innerHTML = activitiesAmount;
     }
 }
 

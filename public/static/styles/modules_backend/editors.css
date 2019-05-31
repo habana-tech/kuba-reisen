@@ -39,3 +39,47 @@
   .options__grid_editor__list ul li {
     display: inline;
     margin: 20px; }
+  .travel-interest__options {
+  grid-template-rows: 60vh 60vh 60vh 60vh;
+  grid-gap: .5em; }
+  .interest label {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap; }
+  .interest label::after {
+    display: none; }
+  .interest label:hover img {
+    -webkit-transform: scale(1);
+            transform: scale(1); }
+  .interest label span {
+    order: 1;
+    top: 1em;
+    margin: 2em 0;
+    position: relative;
+    width: 100%;
+    color: grey;
+    font-size: 1em;
+    text-shadow: none; }
+  .interest label img {
+    order: 2;
+    width: 100%; }
+  .interest input {
+  display: none; }
+  .admin_visible_list {
+  border: solid 1px;
+  clip: inherit;
+  height: auto;
+  margin: auto;
+  overflow: auto;
+  padding: revert;
+  position: relative;
+  white-space: inherit;
+  width: 85%;
+  display: flex; }
+  .admin_visible_list:before {
+    content: "options:"; }
+  .admin_visible_list li {
+    border: grey 1px solid;
+    display: flex;
+    margin: auto; }

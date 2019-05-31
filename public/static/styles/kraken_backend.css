@@ -3305,22 +3305,21 @@ body > textarea {
 .gjs-rte-action[title="Link"] {
   display: none; }
 .admin_bar {
-  position: fixed;
+  position: static;
   top: 0;
   width: 100%;
-  height: 2em;
+  height: auto;
   background-image:linear-gradient(rgba(0, 0, 0, 0.8), #000);
   border: solid 2px #272727;
   z-index: 100; }
 .admin_bar ul {
     display: flex;
-    list-style: none; }
+    list-style: none;
+    margin-bottom: 5px; }
 .admin_bar ul li {
     margin: auto; }
 .admin_bar a {
     color: #fff; }
-body.admin-logged {
-  margin-top: 2em; }
 [data-grape_id]:hover, [data-grape_id]:active, [data-grape_id]:focus {
   border: dashed #62ab03 4px;
   border-radius: 20px;

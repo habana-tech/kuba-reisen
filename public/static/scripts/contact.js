@@ -94,7 +94,19 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _slider = __webpack_require__(/*! ./modules/contact/_slider */ \"./assets/scripts/modules/contact/_slider.js\");\n\nvar _slider2 = _interopRequireDefault(_slider);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nnew _slider2.default('contact_planing_selfCharacter');\nnew _slider2.default('contact_planing_selfLuxury');\nnew _slider2.default('contact_planing_selfConsider');\n\n//# sourceURL=webpack:///./assets/scripts/contact.js?");
+eval("\n\nvar _slider = __webpack_require__(/*! ./modules/contact/_slider */ \"./assets/scripts/modules/contact/_slider.js\");\n\nvar _slider2 = _interopRequireDefault(_slider);\n\nvar _interest = __webpack_require__(/*! ./modules/contact/_interest */ \"./assets/scripts/modules/contact/_interest.js\");\n\nvar _interest2 = _interopRequireDefault(_interest);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nnew _slider2.default('contact_planing_selfCharacter');\nnew _slider2.default('contact_planing_selfLuxury');\nnew _slider2.default('contact_planing_selfConsider');\n\nnew _interest2.default();\n\n//# sourceURL=webpack:///./assets/scripts/contact.js?");
+
+/***/ }),
+
+/***/ "./assets/scripts/modules/contact/_interest.js":
+/*!*****************************************************!*\
+  !*** ./assets/scripts/modules/contact/_interest.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nvar Interest = function () {\n    function Interest() {\n        _classCallCheck(this, Interest);\n\n        this.interest = document.querySelectorAll('.interest');\n        this.events();\n    }\n\n    _createClass(Interest, [{\n        key: 'events',\n        value: function events() {\n            var _this = this;\n\n            this.interest.forEach(function (x) {\n                return x.addEventListener('click', _this.toggleCheck.bind(_this));\n            });\n        }\n    }, {\n        key: 'toggleCheck',\n        value: function toggleCheck(e) {\n            e.preventDefault();\n            var interest = e.target.parentNode;\n            console.log(interest);\n            interest.classList.toggle('interest--checked');\n        }\n    }]);\n\n    return Interest;\n}();\n\nexports.default = Interest;\n\n//# sourceURL=webpack:///./assets/scripts/modules/contact/_interest.js?");
 
 /***/ }),
 
