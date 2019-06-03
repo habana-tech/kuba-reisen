@@ -40,7 +40,7 @@ class DynamicPage
     private $elementsList;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\UploadedImage", mappedBy="dynamic_page")
+     * @ORM\OneToMany(targetEntity="App\Entity\UploadedImage", mappedBy="dynamic_page", cascade={"persist", "remove"})
      */
     private $uploadedImages;
 

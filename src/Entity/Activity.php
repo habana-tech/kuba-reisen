@@ -34,7 +34,7 @@ class Activity
 
 
     /**
-     * @ORM\Column(type="integer", options={"default"=4})
+     * @ORM\Column(type="integer")
      */
     private $featuresImagesCount;
 
