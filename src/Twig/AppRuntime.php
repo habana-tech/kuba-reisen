@@ -35,10 +35,26 @@ class AppRuntime implements RuntimeExtensionInterface
     		$html .= ' '.$resolvedPath.' '.$value.'w, ';
     	}
     	$html = trim($html, ", ");
-    	dump($html);
 
         return $html;
     }
 
+    /**
+     * @param string $imagesPath, the relative path to image, ex: static/uploads/image/pic.jpg
+     * @param string $alt the Alternative text
+     * @param string $sizes, for the html img tag
+     * @param string $class, for the html img tag
+     * @return string|FilterTag[]
+     */
+    public function imgTagContent($imagePath, $alt = null, $sizes = '100vw', $class = 'lazyload blur-up')
+    {   
+
+        $html ="<img class=\"$class\" sizes=\"$sizes\" 
+                        src=\"$imagePath\"
+                         srcset=\"".$this->filterSrcset($imagePath)."\"
+                         alt=\"$alt\">";
+
+        return $html;
+    }
     
 }
