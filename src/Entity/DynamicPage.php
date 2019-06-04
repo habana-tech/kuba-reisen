@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\DataConverter\ImageBase64ThumbCreator;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\DynamicPageRepository")
@@ -135,10 +136,17 @@ class DynamicPage
 
     public function getElementAttr($grape_id, $attr, $default = null)
     {
+
+        $data = '';
+
         if(isset($this->getPageContent()[$grape_id][$attr]))
-            return $this->getPageContent()[$grape_id][$attr];
-        return $default;
-            ;
+            $data = $this->getPageContent()[$grape_id][$attr];
+        $data = $default;
+            
+        if($attr == 'src')
+            $data = ImageBase64ThumbCreator::getStaticRelativePath($data);
+        
+        return $data;
     }
 
     public function __toString()

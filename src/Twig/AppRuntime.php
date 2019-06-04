@@ -46,12 +46,18 @@ class AppRuntime implements RuntimeExtensionInterface
      * @param string $class, for the html img tag
      * @return string|FilterTag[]
      */
-    public function imgTagContent($imagePath, $alt = null, $sizes = '100vw', $class = 'lazyload blur-up')
+    public function imgTagContent($imagePath, $database64 = null,  $alt = null, $sizes = '100vw', $class = 'lazyload blur-up', $attr = null)
     {   
 
-        $html ="<img class=\"$class\" sizes=\"$sizes\" 
-                        src=\"$imagePath\"
-                         srcset=\"".$this->filterSrcset($imagePath)."\"
+        $html ="<img class=\"$class\" sizes=\"$sizes\" ";
+        if($attr)
+            $html .= $attr;
+        if($database64)
+            $html .= "src=\"$database64\" ";
+        else
+            $html .= "src=\"$imagePath\" ";
+
+        $html .= "srcset=\"".$this->filterSrcset($imagePath)."\"
                          alt=\"$alt\">";
 
         return $html;

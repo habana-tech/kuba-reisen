@@ -8,6 +8,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ImageBase64ThumbCreator extends AbstractController
 {
 
+    static function getStaticRelativePath($path){
+
+        $temp = explode('/static/',$path);
+        if(count($temp))
+            $path = $temp[count($temp)-1];
+        if(!preg_match("|^static/|", $path))
+            $path = "static/".$path;
+
+        return trim($path,'/\\');
+    }
 
     private $base64data;
     /**
@@ -15,14 +25,10 @@ class ImageBase64ThumbCreator extends AbstractController
      */
     public function __construct(string $path = 'folder')
     {
-        $temp = explode('/static/',$path);
-        if(count($temp))
-            $path = $temp[count($temp)-1];
-        if(!preg_match("|^static/|", $path))
-            $path = "static/".$path;
+        $path = $this::getStaticRelativePath($path);
 
 //        dump($temp);
-        $path = __DIR__.'/../../public/'. trim($path,'/\\');
+        $path = __DIR__.'/../../public/'. $path;
 //        dump($path);
         if(file_exists($path))
         {

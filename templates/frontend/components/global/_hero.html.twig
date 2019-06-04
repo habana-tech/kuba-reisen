@@ -2,16 +2,23 @@
 
     {% if hero__image is defined %}
         <div class="hero__image">
+            
             <img src="{{ asset(hero__image) }}" alt="wonnderfull img">
         </div>
     {% else %}
         <div class="hero__image" >
-            <img data-grape_id="hero_image"
+            {{ imgTagContent(destination.staticImagePath, 
+                            page.ElementAttr('hero_image', 'srcb64'), 
+                            null,
+                            '(min-width: 1200px) 50vw', 
+                            null, 
+                            'data-grape_id="hero_image"') | raw }}
+  {#          <img #}
 {#                 data-src="{{ page.ElementAttr('hero_image', 'src', asset('img/header_pic.jpg') )}}"#}
 {#                 src="{{ page.ElementAttr('hero_image', 'srcb64')}}" #}
 
-                 src="{{ page.ElementAttr('hero_image', 'src', asset('img/header_pic.jpg')) }}"
-                 alt="">
+ {#                src="{{ page.ElementAttr('hero_image', 'src', asset('img/header_pic.jpg')) }}"
+                 alt="">#}
 
         </div>
     {% endif %}
