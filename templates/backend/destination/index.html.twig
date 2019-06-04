@@ -20,7 +20,9 @@
                         <div class="activity__content__title">
 
                             <a href="{{ path('destination', {'id':destination.id, 'name':destination.machineName}) }}">
-                                <img src="{{ destination.staticImagePath | imagine_filter('squared_thumbnail') }}" alt="">
+                                <img 
+                                src="{{ destination.staticImagePath | imagine_filter('squared_thumbnail') }}" 
+                                src-set="{{ destination.staticImagePath | filterSrcset }}" alt="">
 
                                 <h4>{{ destination.name }}</h4>
                             </a>

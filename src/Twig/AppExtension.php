@@ -5,13 +5,16 @@ namespace App\Twig;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
+use App\Twig\AppRuntime;
+
 
 class AppExtension extends AbstractExtension
 {
     public function getFilters()
     {
         return [
-            new TwigFilter('price', [$this, 'formatPrice']),
+            new TwigFilter('price', [AppRuntime::class, 'formatPrice']),
+            new TwigFilter('filterSrcset', [AppRuntime::class, 'filterSrcset']),
         ];
     }
 
@@ -26,16 +29,9 @@ class AppExtension extends AbstractExtension
 
     public function in_string(string $haystack, string $needle)
     {
-    	if(stripos($haystack, $needle) === false)
+        if(stripos($haystack, $needle) === false)
         	return false;
         return true;
     }
 
-    public function formatPrice($number, $decimals = 0, $decPoint = '.', $thousandsSep = ',')
-    {
-        $price = number_format($number, $decimals, $decPoint, $thousandsSep);
-        $price = '$'.$price;
-
-        return $price;
-    }
 } 
