@@ -134,6 +134,7 @@ class DestinationController extends AbstractController
             foreach ($destination->getDynamicPage()->getUploadedImages() as $value) {
                 $destination->getDynamicPage()->removeUploadedImage($value);
             }
+            $entityManager->persist($destination->getDynamicPage());
             $entityManager->remove($destination->getDynamicPage());
             $entityManager->remove($destination);
             $entityManager->flush();

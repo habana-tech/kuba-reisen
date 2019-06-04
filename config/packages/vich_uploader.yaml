@@ -5,7 +5,7 @@ vich_uploader:
         images:
             uri_prefix: '%env(MEDIA_STATIC_HOST_URL)%/uploads/images'
             upload_destination: '%kernel.project_dir%/%env(MEDIA_STATIC_PATH_DIRECTORY)%/uploads/images'
-            namer: Vich\UploaderBundle\Naming\OrignameNamer
+            namer: Vich\UploaderBundle\Naming\UniqidNamer
             inject_on_load: false
             delete_on_update: true
             delete_on_remove: true
