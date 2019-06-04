@@ -22,6 +22,11 @@ class AppRuntime implements RuntimeExtensionInterface
         return $price;
     }
 
+    /**
+     * @param string $imagesPath, the relative path to image, ex: static/uploads/image/pic.jpg
+     * @param array $sizes, the sizes, depends on the filters 'min_width_XXX' defined on liip_image config file
+     * @return string|FilterTag[]
+     */
     public function filterSrcset($imagePath, $sizes = [1920, 1200, 1000, 900, 800, 600])
     {	
     	$html = '';
