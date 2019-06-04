@@ -1,7 +1,15 @@
 <section class="section who_we_are">
 
     <div class="who_we_are__image">
-        <img data-grape_id="who_we_are__img" src="{{ page.ElementAttr('who_we_are__img', 'src', asset('img/whoweare.jpg') ) }}">
+        {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null %}
+            <img data-grape_id="who_we_are__img" src="{{ page.ElementAttr('who_we_are__img', 'src', asset('img/whoweare.jpg') ) }}">
+        {% else %}
+            {{ imgTagContent(page.ElementAttr('who_we_are__img', 'src', asset('img/whoweare.jpg')),
+                page.ElementAttr('who_we_are__img', 'srcb64', asset('img/whoweare.jpg')),
+                '75vw',
+                'data-grape_id="who_we_are__img"') | raw }}
+        {% endif %}
+
     </div>
 
     <div class="who_we_are__text">

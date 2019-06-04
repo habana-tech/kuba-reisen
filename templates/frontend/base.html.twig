@@ -42,7 +42,7 @@
                 {{  include('frontend/components/global/_cart_bar.html.twig') }}
             {% endif %}
                 
-            {{ render(controller('App\\Controller\\RegionsController::regionFooter')) }}
+            {{ render(controller('App\\Controller\\RegionsController::regionFooter', {'preview':app.request.get('preview')})) }}
 
         {% if is_granted('ROLE_EDITOR') and not app.request.get('preview') %}
             </div>

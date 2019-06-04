@@ -12,18 +12,36 @@
 
         <section class="travel-options">
         <div class="travel-options__grid">
-            {% for i in 1..14 %}
+            {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null %}
 
-                <div class="travel-options__grid__item" style="grid-area: img{{ i }}">
-                    <img
-                        data-grape_section="_travel_options"
-                        data-grape_id="travelgrid__item{{ i }}"
-                        src="{{ page.ElementAttr('travelgrid__item'~i , 'src', asset('img/grid/wide.jpg') ) }}"
-                        >
+                {% for i in 1..14 %}
+                    <div class="travel-options__grid__item" style="grid-area: img{{ i }}">
+                        <img
+                            data-grape_section="_travel_options"
+                            data-grape_id="travelgrid__item{{ i }}"
+                            src="{{ page.ElementAttr('travelgrid__item'~i , 'src', asset('img/grid/wide.jpg') ) }}"
+                            >
+                    </div>
+                {% endfor %}
 
-                </div>
+            {% else %}
 
-            {% endfor %}
+                {% for i in 1..14 %}
+
+                    <div class="travel-options__grid__item" style="grid-area: img{{ i }}">
+
+                        {{ imgTagContent(
+                            page.ElementAttr('travelgrid__item'~i, 'src', asset('img/grid/wide.jpg')),
+                            page.ElementAttr('travelgrid__item'~i, 'srcb64', asset('img/grid/wide.jpg')),
+                            '',
+                            '25vw',
+                            'data-grape_id="travelgrid__item'~i~'" data-grape_section="_travel_options"') | raw }}
+
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
         </div>
 
         {% if not is_granted('ROLE_EDITOR') or app.request.get('preview') %}

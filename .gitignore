@@ -23,3 +23,5 @@
 .idea
 node_modules/
 public/static/uploads/
+public/static/squared_thumbnail/
+public/static/min_*/

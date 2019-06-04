@@ -1,26 +1,16 @@
 <section class="section hero hero-home">
 
     <div class="slide-wrapper">
-        <div class="slide-item">
-            <img data-grape_id="home_hero_img1"
-                 src="{{ page.ElementAttr('home_hero_img1', 'src', asset('img/hero/4.jpg') ) }}"
-                 class="slide-item__image">
-        </div>
-        <div class="slide-item">
-            <img data-grape_id="home_hero_img2"
-                src="{{ page.ElementAttr('home_hero_img2', 'src', asset('img/hero/2.jpg') ) }}"
-                class="slide-item__image">
-        </div>
-        <div class="slide-item">
-            <img data-grape_id="home_hero_img3"
-                 src="{{ page.ElementAttr('home_hero_img3', 'src', asset('img/hero/3.jpg') ) }}"
-                 class="slide-item__image">
-        </div>
-        <div class="slide-item">
-            <img data-grape_id="home_hero_img4"
-                 src="{{ page.ElementAttr('home_hero_img4', 'src', asset('img/hero/1.jpg') ) }}"
-                 class="slide-item__image">
-        </div>
+
+
+        {% for i in 1..4 %}
+            <div class="slide-item">
+                <img data-grape_id="home_hero_img{{ i }}"
+                     src="{{ page.ElementAttr('home_hero_img'~i, 'src', asset('img/hero/'~i~'.jpg') ) }}"
+                     class="slide-item__image">
+            </div>
+        {% endfor %}
+
     </div>
 
     <div class="hero__content">

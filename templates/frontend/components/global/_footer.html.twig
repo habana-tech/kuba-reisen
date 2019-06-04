@@ -3,7 +3,16 @@
     <div class="footer__banner">
 
         <div class="footer__banner__image">
-            <img data-grape_section="_footer" data-grape_id="footer_img1" src="{{ page.ElementAttr('footer_img1', 'src', asset('img/banner/footer.png')) | raw }}" alt="">
+
+            {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null %}
+                <img data-grape_section="_footer" data-grape_id="footer_img1" src="{{ page.ElementAttr('footer_img1', 'src', asset('img/banner/footer.png')) | raw }}" alt="">
+            {% else %}
+                {{ imgTagContent(page.ElementAttr('footer_img1', 'src', asset('img/banner/footer.png')),
+                    page.ElementAttr('footer_img1', 'srcb64', asset('img/banner/footer.png')),
+                    '',
+                    '100vw',
+                    'data-grape_section="_footer" data-grape_id="footer_img1"') | raw }}
+            {% endif %}
         </div>
 
         <div class="footer__banner__content">

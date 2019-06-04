@@ -1,9 +1,19 @@
 <section class="section banner_sky">
 
     <div class="banner_sky__image">
-        <img data-grape_id="banner_sky__image"
-             src="{{ page.ElementAttr('banner_sky__image', 'src', asset('img/banner/sky.png') ) }}"
-             alt="{{ page.getElementContent('__banner_sky_headline__') }}">
+        {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null %}
+            <img data-grape_id="banner_sky__image"
+            src="{{ page.ElementAttr('banner_sky__image', 'src', asset('img/banner/sky.png') ) }}"
+            alt="{{ page.getElementContent('__banner_sky_headline__') }}">
+        {% else %}
+            {{  imgTagContent(
+                page.ElementAttr('banner_sky__image', 'src', asset('img/banner/sky.png')),
+                page.ElementAttr('banner_sky__image', 'srcb64', asset('img/banner/sky.png')),
+                page.getElementContent('__banner_sky_headline__'),
+                '100vw',
+                'data-grape_id="banner_sky__image"') | raw }}
+        {% endif %}
+
     </div>
 
     <div class="banner_sky__content">
