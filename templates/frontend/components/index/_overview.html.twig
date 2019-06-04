@@ -25,17 +25,25 @@
        </div>
     </div>
 
-    <div class="overview__item">
-        <img data-grape_id="index_overview_img1" class="overview_grid_item_img" src="{{ page.ElementAttr('index_overview_img1', 'src', asset('img/DSC_4137.jpg') ) | raw }}" alt="">
 
-    </div>
-
-    <div class="overview__item">
-        <img data-grape_id="index_overview_img2" class="overview_grid_item_img" src="{{ page.ElementAttr('index_overview_img2', 'src', asset('img/DSC_4144.jpg') ) | raw }}" alt="">
-    </div>
-
-    <div class="overview__item">
-        <img data-grape_id="index_overview_img3" class="overview_grid_item_img" src="{{ page.ElementAttr('index_overview_img3', 'src', asset('img/DSC_4272.jpg') ) | raw }}" alt="">
-    </div>
+    {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null %}
+        {% for i in 1..3 %}
+            <div class="overview__item">
+                <img data-grape_id="index_overview_img{{ i }}"
+                class="overview_grid_item_img"
+                src="{{ page.ElementAttr('index_overview_img'~i, 'src', asset('img/DSC_4137.jpg') ) | raw }}" alt="">
+            </div>
+        {% endfor %}
+    {% else %}
+        {% for i in 1..3 %}
+            <div class="overview__item">
+                {{ imgTagContent(page.ElementAttr('index_overview_img'~i, 'src', asset('img/DSC_4137.jpg')),
+                    page.ElementAttr('index_overview_img'~i, 'srcb64', asset('img/DSC_4137.jpg')),
+                    null,
+                    '(min-width: 1200): 50vw, 33vw',
+                    'data-grape_id="index_overview_img'~i~'"') | raw }}
+            </div>
+        {% endfor %}
+    {% endif %}
 
 </section>

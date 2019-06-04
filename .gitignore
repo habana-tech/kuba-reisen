@@ -22,3 +22,4 @@
 ###< liip/imagine-bundle ###
 .idea
 node_modules/
+public/static/uploads/
