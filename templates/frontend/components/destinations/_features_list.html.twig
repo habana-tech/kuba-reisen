@@ -1,5 +1,4 @@
 <section class="section feature_lists">
-
     {% for i in 1..destination.featuresCount %}
 
         {% set inverseClass = '' %}
@@ -21,7 +20,7 @@
             </div>
             <div class="feature__image">
                 <img data-grape_id="feature_lists_img{{ i }}"
-                     src="{{ page.ElementAttr('feature_lists_img'~i,'src', asset('img/feature/havana1.png')) | raw }}" alt="">
+                     src="{{ page.ElementAttr('feature_lists_img'~i, 'src', asset('img/feature/havana1.png')) | raw }}" alt="">
             </div>
 
         </div>

@@ -1,67 +1,63 @@
 <section class="section images">
-
     {% if not is_granted('ROLE_EDITOR') or app.request.get('preview') is not null %}
         <div class="activities__container">
+            <div class="slideshow">
+                {% for i in 1..activity.featuresImagesCount %}
+                    <div class="slide">
+                        <div class="slide__wrap">
+                        <div class="slide__img">
+                            {{ imgTagContent(page.ElementAttr('activity_images_img'~i, 'src', asset('img/header_pic.jpg')),
+                                page.ElementAttr('activity_images_img'~i, 'srcb64', asset('img/header_pic.jpg')),
+                                null,
+                                '100vw',
+                                null,
+                                'data-grape_id="activity_images_img'~i~'"') | raw }}
 
-        <div class="slideshow">
+                       {#
 
-            {% for i in 1..4 %}
-                <div class="slide">
-                <div class="slide__wrap">
-                    <div class="slide__img">
+                            <img data-grape_id="activity_images_img{{ i }}"
+                                    src="{{ page.ElementAttr('activity_images_img'~i, 'src', asset('img/header_pic.jpg')) }}"
+                                    alt="">
 
-                        {{ imgTagContent(page.ElementAttr('activity_images_img'~i, 'src', asset('img/header_pic.jpg')), 
-                            page.ElementAttr('activity_images_img'~i, 'srcb64', asset('img/header_pic.jpg')), 
-                            null,
-                            '(min-width: 1200px) 50vw', 
-                            null, 
-                            'data-grape_id="activity_images_img'~i~'"') | raw }}
+                                    #}
+                        </div>
+                        <div class="slide__title-wrap" data-grape_id="activity_images_img{{ i }}_desc">
+                            {% if activity.getElement('activity_images_img'~i~'_desc') is null %}
+                                <h4 class="slide__subtitle">
+                                    Lorem imsup
+                                </h4>
+                            {% else %}
+                                {{ activity.getElement('activity_images_img'~i~'_desc')  | raw}}
+                            {% endif %}
 
-                   {#
-
-                        <img data-grape_id="activity_images_img{{ i }}"
-                                src="{{ page.ElementAttr('activity_images_img'~i, 'src', asset('img/header_pic.jpg')) }}"
-                                alt="">
-
-                                #}
+                        </div>
                     </div>
-                    <div class="slide__title-wrap" data-grape_id="activity_images_img{{ i }}_desc">
-                        {% if activity.getElement('activity_images_img'~i~'_desc') is null %}
-                            <h4 class="slide__subtitle">
-                                Lorem imsup
-                            </h4>
-                        {% else %}
-                            {{ activity.getElement('activity_images_img'~i~'_desc')  | raw}}
-                        {% endif %}
-
                     </div>
+                {% endfor %}
+            </div><!-- /slideshow -->
+
+            <nav class="boxnav">
+                <button class="boxnav__item boxnav__item--prev">
+                    <svg class="icon icon--caret">
+                        <use xlink:href="#icon-caret"></use>
+                    </svg>
+                </button>
+                <div class="boxnav__item boxnav__item--label">
+                    <span class="boxnav__label boxnav__label--current">1</span>
+                    <span class="boxnav__label boxnav__label--total"></span>
                 </div>
-            </div>
-            {% endfor %}
-        </div><!-- /slideshow -->
+                <button class="boxnav__item boxnav__item--next">
+                    <svg class="icon icon--caret-rot">
+                        <use xlink:href="#icon-caret"></use>
+                    </svg>
+                </button>
+            </nav>
 
-        <nav class="boxnav">
-            <button class="boxnav__item boxnav__item--prev">
-                <svg class="icon icon--caret">
-                    <use xlink:href="#icon-caret"></use>
-                </svg>
-            </button>
-            <div class="boxnav__item boxnav__item--label">
-                <span class="boxnav__label boxnav__label--current">1</span>
-                <span class="boxnav__label boxnav__label--total"></span>
-            </div>
-            <button class="boxnav__item boxnav__item--next">
-                <svg class="icon icon--caret-rot">
-                    <use xlink:href="#icon-caret"></use>
-                </svg>
-            </button>
-        </nav>
-
-    </div>
+        </div>
     {% else %}
         <div class="editor__imagen_list">
 
-            {% for i in 1..5 %}
+            {% for i in 1..activity.featuresImagesCount %}
                 <div class="editor__imagen_list__item">
                 <img data-grape_id="activity_images_img{{ i }}"
                      src="{{ page.ElementAttr('activity_images_img'~i, 'src', asset('img/header_pic.jpg')) }}"
@@ -81,3 +77,4 @@
         </div>
     {% endif %}
 </section>
+

@@ -23,5 +23,9 @@
             transform: scale(1.4) translateX(-175%);
             transform-origin: 50% 50%;
         }
+
+        &--disable{
+            background: linear-gradient(45deg, rgba($grey, .6), rgba($grey, .9));
+        }
     }
 }

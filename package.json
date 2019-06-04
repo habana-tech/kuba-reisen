@@ -44,6 +44,7 @@
     "d3-ease": "^1.0.5",
     "grapesjs": "^0.14.61",
     "grapesjs-tui-image-editor": "^0.1.2",
+    "lazysizes": "^5.1.0",
     "normalize.css": "^8.0.1",
     "nouislider": "^13.1.5",
     "npm": "^6.9.0",

@@ -18,6 +18,9 @@ class CartBar{
 
     check(){
         let currentValue = getCookie('ids');
+        if (!currentValue)
+            return;
+
         let activitiesAmount = currentValue[1].split(',').length;
 
         if (!this.cartBar.classList.contains('cart_bar--visible'))

@@ -251,6 +251,17 @@ Descr: Custom radio toggle
   position: fixed;
   z-index: 100; }
 
+.blur-up {
+  -webkit-filter: blur(8px);
+          filter: blur(8px);
+  transition: -webkit-filter 600ms;
+  transition: filter 600ms;
+  transition: filter 600ms, -webkit-filter 600ms; }
+
+.blur-up.lazyloaded {
+    -webkit-filter: blur(0);
+            filter: blur(0); }
+
 .form {
   width: 80%;
   margin: auto;

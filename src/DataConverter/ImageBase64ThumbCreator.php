@@ -14,9 +14,10 @@ class ImageBase64ThumbCreator extends AbstractController
         if(count($temp))
             $path = $temp[count($temp)-1];
         if(!preg_match("|^static/|", $path))
-            $path = "static/".$path;
+            $path = "/static/".$path;
 
-        return trim($path,'/\\');
+//        return trim($path,'/\\');
+        return $path;
     }
 
     private $base64data;

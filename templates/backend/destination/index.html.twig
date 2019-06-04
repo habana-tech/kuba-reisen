@@ -21,10 +21,6 @@
 
                             <a href="{{ path('destination', {'id':destination.id, 'name':destination.machineName}) }}">
                                 {{ imgTagContent(destination.staticImagePath, null, 'image text', '(min-width: 1200px) 50vw') | raw }}
-                                <img 
-                                src="{{ destination.staticImagePath | imagine_filter('squared_thumbnail') }}" 
-                                src-set="{{ destination.staticImagePath | filterSrcset }}" alt="">
-
                                 <h4>{{ destination.name }}</h4>
                             </a>
                         </div>

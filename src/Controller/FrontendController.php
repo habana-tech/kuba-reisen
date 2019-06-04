@@ -56,7 +56,6 @@ class FrontendController extends AbstractController
         if(!$destination)
             throw new NotFoundHttpException();
 
-
         return $this->render('frontend/destination.html.twig', [
             'dynamic_page_id' => $destination->getDynamicPage()->getId(),
             'page' => $destination->getDynamicPage(),
@@ -101,11 +100,6 @@ class FrontendController extends AbstractController
         if(!$activity)
             throw new NotFoundHttpException();
 
-        $pageinfo = [
-            'pageName'=>$activity->getName(),
-            'language'=>'de'
-        ];
-
         $tags = $activity->getFilterTags();
         $related_activities = new ArrayCollection();
         foreach ($tags as $tag)
@@ -118,15 +112,12 @@ class FrontendController extends AbstractController
                 }
             }
         }
-        
+
         return $this->render('frontend/activity.html.twig', [
             'dynamic_page_id' => $activity->getDynamicPage()->getId(),
             'page' => $activity->getDynamicPage(),
             'activity' => $activity,
-            'addLink'=>$this->generateUrl('addActivity',
-                                            ['id'=>$activity->getId()]),
             'related_activities'=>$related_activities,
         ]);
     }
-
 }

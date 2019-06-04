@@ -231,34 +231,4 @@ class ActivitiesController extends AbstractController
         return $this->json($data);
     }
 
-
-    /**
-     * @Route("/activity/{id}/{name}", name="activity")
-     */
-    public function activity(Activity $activity)
-    {
-        if(!$activity)
-            throw new NotFoundHttpException();
-
-        $tags = $activity->getFilterTags();
-        $related_activities = new ArrayCollection();
-        foreach ($tags as $tag)
-        {
-            $current_tag_activities = $tag->getActivities();
-            foreach ($current_tag_activities as $_activity)
-            {
-                if($_activity != $activity and !$related_activities->contains($_activity)) {
-                    $related_activities[] = $_activity;
-                }
-            }
-        }
-        
-        return $this->render('frontend/activity.html.twig', [
-            'dynamic_page_id' => $activity->getDynamicPage()->getId(),
-            'page' => $activity->getDynamicPage(),
-            'activity' => $activity,
-            'related_activities'=>$related_activities,
-        ]);
-    }
-
 }

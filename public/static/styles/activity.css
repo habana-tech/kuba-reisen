@@ -212,3 +212,5 @@
               transform: scale(1.4) translateX(-175%);
       -webkit-transform-origin: 50% 50%;
               transform-origin: 50% 50%; }
+  .float_button__button--disable {
+      background: linear-gradient(45deg, rgba(102, 102, 102, 0.6), rgba(102, 102, 102, 0.9)); }

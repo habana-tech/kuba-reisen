@@ -138,14 +138,15 @@ class DynamicPage
     {
 
         $data = '';
-
         if(isset($this->getPageContent()[$grape_id][$attr]))
             $data = $this->getPageContent()[$grape_id][$attr];
-        $data = $default;
+        else
+            $data = $default;
             
         if($attr == 'src')
             $data = ImageBase64ThumbCreator::getStaticRelativePath($data);
-        
+
+
         return $data;
     }
 

@@ -49,7 +49,7 @@ class AppRuntime implements RuntimeExtensionInterface
     public function imgTagContent($imagePath, $database64 = null,  $alt = null, $sizes = '100vw', $class = 'lazyload blur-up', $attr = null)
     {   
 
-        $html ="<img class=\"$class\" sizes=\"$sizes\" ";
+        $html ="<img class=\"lazyload blur-up\" sizes=\"$sizes\" ";
         if($attr)
             $html .= $attr;
         if($database64)
@@ -57,7 +57,7 @@ class AppRuntime implements RuntimeExtensionInterface
         else
             $html .= "src=\"$imagePath\" ";
 
-        $html .= "srcset=\"".$this->filterSrcset($imagePath)."\"
+        $html .= "data-srcset=\"".$this->filterSrcset($imagePath)."\"
                          alt=\"$alt\">";
 
         return $html;
