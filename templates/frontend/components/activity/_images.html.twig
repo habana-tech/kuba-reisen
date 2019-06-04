@@ -8,18 +8,8 @@
                         <div class="slide__img">
                             {{ imgTagContent(page.ElementAttr('activity_images_img'~i, 'src', asset('img/header_pic.jpg')),
                                 page.ElementAttr('activity_images_img'~i, 'srcb64', asset('img/header_pic.jpg')),
-                                null,
                                 '100vw',
-                                null,
                                 'data-grape_id="activity_images_img'~i~'"') | raw }}
-
-                       {#
-
-                            <img data-grape_id="activity_images_img{{ i }}"
-                                    src="{{ page.ElementAttr('activity_images_img'~i, 'src', asset('img/header_pic.jpg')) }}"
-                                    alt="">
-
-                                    #}
                         </div>
                         <div class="slide__title-wrap" data-grape_id="activity_images_img{{ i }}_desc">
                             {% if activity.getElement('activity_images_img'~i~'_desc') is null %}
