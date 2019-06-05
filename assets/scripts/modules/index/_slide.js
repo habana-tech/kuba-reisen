@@ -495,7 +495,7 @@ import './../../vendors/TweenMax.min'
 let spriteImages = document.querySelectorAll('.hero .slide-item img');
 let spriteImagesSrc = [];
 
-let imageTrigger = document.querySelector('.hero .slide-item:last-child img');
+let imageTrigger = document.querySelector('.hero .slide-item:first-child img');
 imageTrigger.addEventListener('lazyloaded', ()=> {
 
     for (let i = 0; i < spriteImages.length; i++) {
