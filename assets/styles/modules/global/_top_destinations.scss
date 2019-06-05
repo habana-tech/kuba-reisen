@@ -4,13 +4,13 @@
     justify-content: center;
 
     &__places{
-        width: 80%;
+        width: 90%;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
 
         &__place{
-            width: 45%;
+            width: 48%;
             margin: 3em 0;
             max-height: 75vh;
             position: relative;
@@ -50,6 +50,9 @@
                     }
                 }
 
+                & canvas{
+                    fill: blue;
+                }
             }
 
             &__text{

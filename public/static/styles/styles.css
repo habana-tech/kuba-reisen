@@ -524,13 +524,13 @@ Descr: Custom radio toggle
   justify-content: center; }
 
 .top_destinations__places {
-    width: 80%;
+    width: 90%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between; }
 
 .top_destinations__places__place {
-      width: 45%;
+      width: 48%;
       margin: 3em 0;
       max-height: 75vh;
       position: relative; }
@@ -564,6 +564,9 @@ Descr: Custom radio toggle
             position: absolute;
             top: 0;
             left: 0; }
+
+.top_destinations__places__place__image canvas {
+          fill: blue; }
 
 .top_destinations__places__place__text {
         position: absolute;

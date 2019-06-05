@@ -4,6 +4,7 @@ module.exports = {
     entry: {
         app: "./assets/scripts/app.js",
         app_backend: "./assets/scripts/app_backend.js",
+        admin: "./assets/scripts/admin.js",
         index: "./assets/scripts/index.js",
         destination: "./assets/scripts/destination.js",
         faq: "./assets/scripts/faq.js",
@@ -29,5 +30,5 @@ module.exports = {
         ]
     },
     mode: 'development',
-//     mode: 'production',
+    // mode: 'production',
 };

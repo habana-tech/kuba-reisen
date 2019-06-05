@@ -2,27 +2,32 @@
 
     {% if hero__image is defined %}
         <div class="hero__image">
-            
-            <img src="{{ asset(hero__image) }}" alt="wonnderfull img">
+            {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null %}
+                <img src="{{ hero__image }}" alt="">
+            {% else %}
+                {{ imgTagContent(
+                    hero__image,
+                    null,
+                    null,
+                    '100vw',
+                    null) | raw }}
+            {% endif %}
         </div>
     {% else %}
         <div class="hero__image" >
-            {{ imgTagContent(destination.staticImagePath, 
-                            page.ElementAttr('hero_image', 'srcb64'), 
-                            null,
-                            '(min-width: 1200px) 50vw', 
-                            null, 
-                            'data-grape_id="hero_image"') | raw }}
-  {#          <img #}
-{#                 data-src="{{ page.ElementAttr('hero_image', 'src', asset('img/header_pic.jpg') )}}"#}
-{#                 src="{{ page.ElementAttr('hero_image', 'srcb64')}}" #}
-
- {#                src="{{ page.ElementAttr('hero_image', 'src', asset('img/header_pic.jpg')) }}"
-                 alt="">#}
+            {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null %}
+                <img data-grape_id="hero_image" src="{{ page.ElementAttr('hero_image', 'src', asset('img/header_pic.jpg') ) }}" alt="">
+            {% else %}
+                {{ imgTagContent(
+                    page.ElementAttr('hero_image', 'src', asset('img/header_pic.jpg')),
+                    page.ElementAttr('hero_image', 'srcb64', asset('img/header_pic.jpg')),
+                    null,
+                    '100vw',
+                    'data-grape_id="hero_image"') | raw }}
+            {% endif %}
 
         </div>
     {% endif %}
-
 
     <div class="hero__content">
         {% if hero__content__text is defined and hero__content__text is not null %}
@@ -30,15 +35,10 @@
             {{ hero__content__text }}
         </h1>
         {% else %}
-
-
-                <h1 class="hero__content__text" data-grape_id="hero__content__text" data-grape_format="txt">
-                    {{ page.getElementContent('hero__content__text', 'Lorem imsu&iacute;p') | striptags}}
-                </h1>
-
+            <h1 class="hero__content__text" data-grape_id="hero__content__text" data-grape_format="txt">
+                {{ page.getElementContent('hero__content__text', 'Lorem imsu&iacute;p') | striptags}}
+            </h1>
         {% endif %}
-
-
     </div>
 
 </section>

@@ -40,7 +40,7 @@ class ImageBase64ThumbCreator extends AbstractController
             $height = imagesy($image);
             $original_aspect = $height / $width;
 
-            $thumb_width = 30; //px
+            $thumb_width = 15; //px
 
             $thumb_height = $original_aspect*$thumb_width;
 

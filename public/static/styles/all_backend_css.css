@@ -3689,25 +3689,28 @@ body > textarea {
 .overview {
   display: flex;
   background: white;
-  z-index: 1; }
+  z-index: 1;
+  padding-top: 2px; }
 .overview__item {
     width: 25%;
     overflow: hidden;
     display: flex;
     align-items: center;
-    max-height: 80vh; }
+    max-height: 80vh;
+    padding-left: 2px; }
 .overview__item img {
       width: auto;
       height: 100%; }
 .overview__item__text {
       padding: 1em 1.5em; }
 .overview__item:first-child {
-      flex-wrap: wrap; }
+      flex-wrap: wrap;
+      padding-left: 0; }
 .overview__item:first-child .section__title {
         padding: 0 1.5em; }
 .who_we_are {
   display: flex;
-  margin: 1px 0; }
+  padding-top: 2px; }
 .who_we_are__image {
     width: 75%;
     overflow: hidden; }
@@ -3724,7 +3727,8 @@ body > textarea {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  padding-bottom: 2em; }
+  padding-bottom: 2em;
+  padding-top: 2px; }
 .why_with_us__reasons {
     display: flex;
     flex-wrap: wrap;
@@ -4167,12 +4171,12 @@ Descr: Custom radio toggle
   flex-wrap: wrap;
   justify-content: center; }
 .top_destinations__places {
-    width: 80%;
+    width: 90%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between; }
 .top_destinations__places__place {
-      width: 45%;
+      width: 48%;
       margin: 3em 0;
       max-height: 75vh;
       position: relative; }
@@ -4200,6 +4204,8 @@ Descr: Custom radio toggle
             position: absolute;
             top: 0;
             left: 0; }
+.top_destinations__places__place__image canvas {
+          fill: blue; }
 .top_destinations__places__place__text {
         position: absolute;
         -webkit-transform: translate(-50%, -100%);

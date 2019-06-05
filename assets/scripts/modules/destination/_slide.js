@@ -1,8 +1,7 @@
 import './../../vendors/TweenMax.min'
 
 
-    // The Slide (Product) class.
-    class Slide {
+class Slide {
         constructor(el, settings) {
             this.DOM = {el: el};
 

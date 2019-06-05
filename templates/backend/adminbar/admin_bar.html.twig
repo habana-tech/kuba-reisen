@@ -1,7 +1,7 @@
 <nav class="admin_bar">
     <ul>
         
-        {% if in_string(app.request.get('_route'), 'backend_') %}
+        {% if in_string(app.request.get('_route'), 'backend') %}
             <li class="admin_bar_action"> <a href="{{ path('frontend') }}">Go to homepage</a></li>
         {% endif %}
         {% if app.request.get('_route') != 'backend' %}

@@ -94,19 +94,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\n__webpack_require__(/*! ./modules_backend/_grapes */ \"./assets/scripts/modules_backend/_grapes.js\");\n\nvar _adminbar = __webpack_require__(/*! ./modules_backend/_adminbar */ \"./assets/scripts/modules_backend/_adminbar.js\");\n\nvar _adminbar2 = _interopRequireDefault(_adminbar);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nnew _adminbar2.default();\n\n//# sourceURL=webpack:///./assets/scripts/app_backend.js?");
-
-/***/ }),
-
-/***/ "./assets/scripts/modules_backend/_adminbar.js":
-/*!*****************************************************!*\
-  !*** ./assets/scripts/modules_backend/_adminbar.js ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nvar AdminBar = function () {\n    function AdminBar() {\n        _classCallCheck(this, AdminBar);\n\n        this.links = document.querySelector('.admin_bar_action');\n        this.fields = document.querySelector('.admin_bar_fields');\n\n        this.events();\n    }\n\n    _createClass(AdminBar, [{\n        key: 'events',\n        value: function events() {\n            this.links.addEventListener('click', this.click.bind(this));\n        }\n    }, {\n        key: 'click',\n        value: function click() {\n\n            console.log(this);\n        }\n    }]);\n\n    return AdminBar;\n}();\n\nexports.default = AdminBar;\n\n//# sourceURL=webpack:///./assets/scripts/modules_backend/_adminbar.js?");
+eval("\n\n__webpack_require__(/*! ./modules_backend/_grapes */ \"./assets/scripts/modules_backend/_grapes.js\");\n\n//# sourceURL=webpack:///./assets/scripts/app_backend.js?");
 
 /***/ }),
 

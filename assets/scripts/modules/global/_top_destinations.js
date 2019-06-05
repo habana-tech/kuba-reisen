@@ -185,17 +185,37 @@ var hoverEffect = function(opts) {
     animate();
 };
 
-Array.from(document.querySelectorAll('.grid__item-img')).forEach((el) => {
-    const imgs = Array.from(el.querySelectorAll('img'));
-    new hoverEffect({
-        parent: el,
-        intensity: el.dataset.intensity || undefined,
-        speedIn: el.dataset.speedin || undefined,
-        speedOut: el.dataset.speedout || undefined,
-        easing: el.dataset.easing || undefined,
-        hover: el.dataset.hover || undefined,
-        image1: imgs[0].getAttribute('src'),
-        image2: imgs[1].getAttribute('src'),
-        displacementImage: el.dataset.displacement
-    });
-});
+let images = document.querySelectorAll('.grid__item-img img');
+images.forEach((img)=>img.addEventListener('lazyloaded',
+    function(e){
+        let el = e.target.parentNode;
+        let imgs = Array.from(el.querySelectorAll('img'));
+        console.log(imgs[0].currentSrc);
+        console.log(imgs[1].currentSrc);
+        new hoverEffect({
+            parent: el,
+            intensity: el.dataset.intensity || undefined,
+            speedIn: el.dataset.speedin || undefined,
+            speedOut: el.dataset.speedout || undefined,
+            easing: el.dataset.easing || undefined,
+            hover: el.dataset.hover || undefined,
+            image1: imgs[0].currentSrc,
+            image2: imgs[1].currentSrc,
+            displacementImage: el.dataset.displacement
+        });
+    }));
+
+// Array.from(document.querySelectorAll('.grid__item-img')).forEach((el) => {
+//     const imgs = Array.from(el.querySelectorAll('img'));
+//     new hoverEffect({
+//         parent: el,
+//         intensity: el.dataset.intensity || undefined,
+//         speedIn: el.dataset.speedin || undefined,
+//         speedOut: el.dataset.speedout || undefined,
+//         easing: el.dataset.easing || undefined,
+//         hover: el.dataset.hover || undefined,
+//         image1: imgs[0].getAttribute('src'),
+//         image2: imgs[1].getAttribute('src'),
+//         displacementImage: el.dataset.displacement
+//     });
+// });

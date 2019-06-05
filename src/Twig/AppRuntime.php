@@ -59,7 +59,7 @@ class AppRuntime implements RuntimeExtensionInterface
         if($database64)
             $html .= "src=\"$database64\" ";
         else
-            $html .= "src=\"$imagePath\" ";
+            $html .= "src=\"".$this->imagineCacheManager->getBrowserPath($imagePath, 'min_width_15')."\"";
 
         $html .= "data-srcset=\"".$this->filterSrcset($imagePath)."\"
                          alt=\"$alt\">";
