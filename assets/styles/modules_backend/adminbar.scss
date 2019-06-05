@@ -1,22 +1,37 @@
+@import "../base/config";
+
 .admin_bar{
-  position: static;
-  top: 0;
-  width: 100%;
-  height: auto;
-  background-image: linear-gradient(rgba(0,0,0,.8), #000);
-  border: solid 2px #272727;
-  z-index: 100;
+    position: static;
+    background: linear-gradient(45deg, rgba($light-green, .7) 5%, $dark-green);
+    border: solid 1px white;
+    z-index: 5;
+    top: 0;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
 
   & ul{
     display: flex;
     list-style: none;
-    margin-bottom: 5px;
-  }
-  & ul li{
-    margin: auto
-  }
-  & a{
-    color: #fff;
+    margin: .5em auto;
+
+     & li{
+          margin: 0 .75em;
+          border: 1px solid white;
+          border-radius: 3px;
+          padding: 1px 5px;
+         display: flex;
+         align-items: center;
+
+         & a{
+             color: #fff;
+         }
+
+         &.preview{
+             background: linear-gradient(45deg, rgba($light-blue, .7), rgba($dark-blue, .9));
+             padding: .25em 1em;
+         }
+      }
   }
 }
 

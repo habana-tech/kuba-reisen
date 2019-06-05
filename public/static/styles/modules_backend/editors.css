@@ -1,6 +1,6 @@
 .hero-home {
   display: flex;
-  background-color: grey;
+  background: grey;
   height: 100vh; }
   .hero-home .slide-wrapper {
     order: 2;

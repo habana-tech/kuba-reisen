@@ -1,0 +1,10 @@
+.travel-options__grid_editor{
+    ul{
+        list-style: none;
+
+        & li{
+            display: inline;
+            margin: 1em 2em;
+        }
+    }
+}

@@ -20,7 +20,9 @@ class ActivityType extends AbstractType
     {
         $builder
             ->add('name', null, ['label'=>'Name of the activity, it will be used on the template'])
-            ->add('description', CKEditorType::class, ['label'=>'Short description, it will be show in the activities page'])
+            ->add('description', CKEditorType::class,
+                ['label'=>'Short description (you can paste from word), it will be show in the activities page'])
+
             ->add('featuresImagesCount', null, [
                 'label' => 'How many images do you want to show for this activity?'
             ])
@@ -41,7 +43,9 @@ class ActivityType extends AbstractType
                 'expanded'=>true, 'multiple'=>true])
 
 
-            ->add('destinations',EntityType::class, ['label'=>'Destinations to do the activity',  'class'=> Destination::class,
+            ->add('destinations',EntityType::class,
+                ['label'=>'Destinations to do the activity',
+                'class'=> Destination::class,
                 'expanded'=>true, 'multiple'=>true])
 //            ->add('translation_from')
 //            ->add('dynamicPage')

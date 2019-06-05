@@ -1,19 +1,28 @@
 .admin_bar {
   position: static;
+  background: linear-gradient(45deg, rgba(98, 171, 3, 0.7) 5%, #004d00);
+  border: solid 1px white;
+  z-index: 5;
   top: 0;
   width: 100%;
-  height: auto;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.8), #000);
-  border: solid 2px #272727;
-  z-index: 100; }
+  display: flex;
+  flex-wrap: wrap; }
   .admin_bar ul {
     display: flex;
     list-style: none;
-    margin-bottom: 5px; }
+    margin: .5em auto; }
   .admin_bar ul li {
-    margin: auto; }
-  .admin_bar a {
-    color: #fff; }
+      margin: 0 .75em;
+      border: 1px solid white;
+      border-radius: 3px;
+      padding: 1px 5px;
+      display: flex;
+      align-items: center; }
+  .admin_bar ul li a {
+        color: #fff; }
+  .admin_bar ul li.preview {
+        background: linear-gradient(45deg, rgba(53, 207, 212, 0.7), rgba(20, 161, 230, 0.9));
+        padding: .25em 1em; }
   [data-grape_id]:hover, [data-grape_id]:active, [data-grape_id]:focus {
   border: dashed #62ab03 4px;
   border-radius: 20px;

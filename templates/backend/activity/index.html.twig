@@ -25,9 +25,12 @@
                 </div>
                 <div class="activity__content__description">
                     <div>{{ activity.description | raw}}</div>
-                    <hr>
-                    <a href="{{ path('activity', { 'id':activity.id, 'name':activity.machineName} ) }}" class="btn">show and edit on website</a>
-                    <a href="{{ path('backend_activity_edit', {'id': activity.id}) }}" class="btn">edit on admin</a>
+
+                    <div class="activity__content__description__buttons">
+                        <a target="_blank" href="{{ path('activity', { 'id':activity.id, 'name':activity.machineName} ) }}?preview" class="btn">Preview</a>
+                        <a href="{{ path('activity', { 'id':activity.id, 'name':activity.machineName} ) }}" class="btn">Edit on website</a>
+                        <a href="{{ path('backend_activity_edit', {'id': activity.id}) }}" class="btn">Edit on admin</a>
+                    </div>
                 </div>
             </div>
         </div>
