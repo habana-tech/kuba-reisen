@@ -1,4 +1,4 @@
-function setCookie(name, value, days=5) {
+function setCookie(name, value, days=3) {
     let date = new Date();
     date.setTime(date.getTime()+(days*24*60*60*1000));
     let expires = "; expires="+date.toGMTString ();

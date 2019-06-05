@@ -4,6 +4,8 @@
     <link rel="stylesheet" href="{{ asset('styles/activity.css') }}" type="text/css">
 {% endblock %}
 
+{% block title %}{{ activity.name }}{% endblock %}
+
 {% block body %}
 
     <main class="main" {% if is_granted('ROLE_EDITOR') and not app.request.get('preview') %} id="grapes-editable" {% endif %} >
