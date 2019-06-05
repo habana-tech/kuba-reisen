@@ -1,6 +1,6 @@
 import './../../vendors/TweenMax.min'
 
-var hoverEffect = function(opts) {
+let hoverEffect = function(opts) {
     var vertex = `
         varying vec2 vUv;
         void main() {
@@ -185,37 +185,21 @@ var hoverEffect = function(opts) {
     animate();
 };
 
-let images = document.querySelectorAll('.grid__item-img img');
-images.forEach((img)=>img.addEventListener('lazyloaded',
+let imagesTrigger = document.querySelectorAll('.grid__item-img img:last-child');
+
+imagesTrigger.forEach((img)=>img.addEventListener('lazyloaded',
     function(e){
-        let el = e.target.parentNode;
-        let imgs = Array.from(el.querySelectorAll('img'));
-        console.log(imgs[0].currentSrc);
-        console.log(imgs[1].currentSrc);
+        let container = e.target.parentNode;
+        let imgs = Array.from(container.querySelectorAll('img'));
         new hoverEffect({
-            parent: el,
-            intensity: el.dataset.intensity || undefined,
-            speedIn: el.dataset.speedin || undefined,
-            speedOut: el.dataset.speedout || undefined,
-            easing: el.dataset.easing || undefined,
-            hover: el.dataset.hover || undefined,
+            parent: container,
+            intensity: container.dataset.intensity || undefined,
+            speedIn: container.dataset.speedin || undefined,
+            speedOut: container.dataset.speedout || undefined,
+            easing: container.dataset.easing || undefined,
+            hover: container.dataset.hover || undefined,
             image1: imgs[0].currentSrc,
             image2: imgs[1].currentSrc,
-            displacementImage: el.dataset.displacement
+            displacementImage: container.dataset.displacement
         });
     }));
-
-// Array.from(document.querySelectorAll('.grid__item-img')).forEach((el) => {
-//     const imgs = Array.from(el.querySelectorAll('img'));
-//     new hoverEffect({
-//         parent: el,
-//         intensity: el.dataset.intensity || undefined,
-//         speedIn: el.dataset.speedin || undefined,
-//         speedOut: el.dataset.speedout || undefined,
-//         easing: el.dataset.easing || undefined,
-//         hover: el.dataset.hover || undefined,
-//         image1: imgs[0].getAttribute('src'),
-//         image2: imgs[1].getAttribute('src'),
-//         displacementImage: el.dataset.displacement
-//     });
-// });

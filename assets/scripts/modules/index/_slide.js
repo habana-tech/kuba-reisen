@@ -1,3 +1,4 @@
+import 'lazysizes/plugins/unveilhooks/ls.unveilhooks.min';
 import './../../vendors/pixi.min'
 import './../../vendors/TweenMax.min'
 
@@ -266,7 +267,6 @@ import './../../vendors/TweenMax.min'
                 // if ( this.getAttribute('data-nav') === 'next' ) {
 
                 let sliderId = event.target.dataset['slide'];
-                console.log(sliderId);
                 that.moveSlider(sliderId);
 
                     // if ( that.currentIndex >= 0 && that.currentIndex < slideImages.length - 1 ) {
@@ -491,20 +491,36 @@ import './../../vendors/TweenMax.min'
 
 })();
 
-var spriteImages = document.querySelectorAll( '.slide-item__image' );
-var spriteImagesSrc = [];
 
-for ( var i = 0; i < spriteImages.length; i++ ) {
+let spriteImages = document.querySelectorAll('.hero .slide-item img');
+let spriteImagesSrc = [];
 
-    var img = spriteImages[i];
-    spriteImagesSrc.push( img.getAttribute('src' ) );
+let imageTrigger = document.querySelector('.hero .slide-item:last-child img');
+imageTrigger.addEventListener('lazyloaded', ()=> {
 
-}
+    for (let i = 0; i < spriteImages.length; i++) {
+        let img = spriteImages[i];
+        spriteImagesSrc.push(img.currentSrc);
+    }
 
-var initCanvasSlideshow = new CanvasSlideshow({
-    sprites: spriteImagesSrc,
-    displacementImage: 'static/img/dmaps/clouds.jpg',
-    autoPlay: true,
-    autoPlaySpeed: [3, 3],
-    displaceScale: [200, 70]
+    console.log(spriteImagesSrc);
+
+    new CanvasSlideshow({
+        sprites: spriteImagesSrc,
+        displacementImage: 'static/img/dmaps/clouds.jpg',
+        autoPlay: true,
+        autoPlaySpeed: [3, 3],
+        displaceScale: [200, 70]
+    });
+
+    document.querySelector('body').classList.remove('loading');
+    document.querySelector('body').classList.add('render');
+
+    document.querySelector('.overlay-loading').addEventListener('webkitAnimationEnd', (e)=>{
+        console.log(e);
+    });
+
+    document.querySelector('.overlay-loading').addEventListener('animationend', (e)=>{
+        e.target.style.zIndex = -10;
+    });
 });

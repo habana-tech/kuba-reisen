@@ -258,6 +258,10 @@ Descr: Custom radio toggle
   transition: filter 600ms;
   transition: filter 600ms, -webkit-filter 600ms; }
 
+.blur-up.lazyloading {
+    -webkit-filter: blur(5px);
+            filter: blur(5px); }
+
 .blur-up.lazyloaded {
     -webkit-filter: blur(0);
             filter: blur(0); }
@@ -798,7 +802,9 @@ Descr: Custom radio toggle
         width: 100%;
         height: 100%;
         max-height: 100%;
-        max-width: 100%; }
+        max-width: 100%;
+        -o-object-fit: cover;
+           object-fit: cover; }
 
 .travel-options__grid_overlay {
     display: grid;

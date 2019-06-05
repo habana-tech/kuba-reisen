@@ -91,7 +91,9 @@
 }
 
 .slide-wrapper {
-    display: none;
+    position: absolute;
 }
 
-
+.slide-wrapper-editor{
+    position: relative;
+}

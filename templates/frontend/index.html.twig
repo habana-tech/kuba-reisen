@@ -6,9 +6,52 @@
     <link rel="stylesheet" href="{{ asset('styles/index.css') }}" type="text/css">
 {% endblock %}
 
+{% if not is_granted('ROLE_EDITOR') or app.request.get('preview') %}
+    {% block inline_stylesheets %}
+        <style>
+
+            body.loading{
+                overflow: hidden;
+            }
+
+            @keyframes pageLoading {
+                0%{
+                    opacity: 1;
+                }
+                50%{
+                    opacity: .5;
+                }
+                100%{
+                    opacity: 0;
+                }
+            }
+
+            .overlay-loading{
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                background-color: black;
+                z-index: 10;
+                transition: all;
+            }
+
+            body.loading .overlay-loading{
+                opacity: 1;
+            }
+
+            body.render .overlay-loading{
+                opacity: 0;
+                animation: pageLoading .5s ease-in-out 1;
+            }
+
+        </style>
+    {% endblock %}
+{% endif %}
 
 {% block body %}
     <main class="main {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null  %}grapes-editable{% endif %}">
+
+        {{ include('frontend/components/index/_loading.html.twig') }}
 
         {{ include('frontend/components/index/_hero.html.twig') }}
 

@@ -20,9 +20,23 @@
 
     {% block stylesheets %}{% endblock %}
 
+    {% block inline_stylesheets %}{% endblock %}
+
     </head>
 
-    <body {% if is_granted('ROLE_EDITOR') and not app.request.get('preview') %}class="admin-logged"{% endif %}>
+    {% set class = '' %}
+
+    {% if is_granted('ROLE_EDITOR') and not app.request.get('preview') %}
+        {% set class = class~' admin-logged' %}
+    {% else %}
+        {% if app.request.get('_route') == 'frontend' %}
+            {% set class = class~' loading' %}
+        {% endif %}
+    {% endif %}
+
+
+
+    <body class="{{ class }}">
 
         {{ include('frontend/components/global/_icons.html.twig') }}
 

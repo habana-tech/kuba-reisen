@@ -67,7 +67,9 @@
   -o-object-fit: cover;
      object-fit: cover; }
   .slide-wrapper {
-  display: none; }
+  position: absolute; }
+  .slide-wrapper-editor {
+  position: relative; }
   .overview {
   display: flex;
   background: white;

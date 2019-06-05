@@ -1,0 +1,4 @@
+{% if not is_granted('ROLE_EDITOR') or app.request.get('preview') %}
+    <div class="overlay-loading">
+    </div>
+{% endif %}
