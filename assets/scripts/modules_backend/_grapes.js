@@ -66,7 +66,7 @@ var editor = grapesjs.init({
 
         ],
 
-        height: '90vh', width: '90vw' /* options */
+        height: '90vh' //, width: '90vw' /* options */
     }
     },
     canvas: {

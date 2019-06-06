@@ -30,6 +30,7 @@ framework:
 
 parameters:
     env(MEDIA_STATIC_HOST_URL): http://static.kuba-reisen.test
+    env(MEDIA_STATIC_PATH_DIRECTORY): public/static
     env(EMAIL_ADDRESS): no-reply@kuba-reisen.de
     env(EMAIL_SENDER_NAME): Kuba-reisen
 
