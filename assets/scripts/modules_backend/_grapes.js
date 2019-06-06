@@ -117,3 +117,53 @@ editor.Commands.add
 editor.on('storage:load', function(e) { console.log('Loaded ', e);});
 editor.on('storage:store', function(e) { console.log('Stored ', e);});
 */
+
+// The upload is started
+editor.on('asset:upload:start', () => {
+    console.log("start upload")
+    startAssetsAnimation();
+});
+
+// The upload is ended (completed or not)
+editor.on('asset:upload:end', () => {
+    console.log("end upload")
+    stopAssetsAnimation();
+    //endAnimation();
+});
+
+// Error handling
+editor.on('asset:upload:error', (err) => {
+    console.log("error on upload")
+    //notifyError(err);
+    stopAssetsAnimation();
+    alert(err.error)
+});
+
+// Do something on response
+editor.on('asset:upload:response', (response) => {
+    console.log("done")
+    stopAssetsAnimation();
+});
+
+
+function startAssetsAnimation()
+{
+    let uploader_container = document.querySelector('.gjs-am-file-uploader > form > #gjs-am-title');
+    uploader_container.dataset['initial'] = uploader_container.innerHTML;
+
+    uploader_container.classList.add('uploading');
+    uploader_container.innerHTML = '<div class="uploading-animation-container">\n' +
+        '  <div class="box1"></div>\n' +
+        '  <div class="box2"></div>\n' +
+        '  <div class="box3"></div>\n' +
+        '</div>';
+}
+
+
+function stopAssetsAnimation()
+{
+    let uploader_container = document.querySelector('.gjs-am-file-uploader > form > #gjs-am-title');
+
+    uploader_container.classList.remove('uploading');
+    uploader_container.innerHTML = uploader_container.dataset['initial'];
+}
