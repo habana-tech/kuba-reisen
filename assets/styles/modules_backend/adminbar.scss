@@ -42,3 +42,17 @@
   border-radius: 20px;
   transition: border ease .5s;
 }
+
+/**tags in activities page**/
+#activity_filterTags {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+}
+#activity_filterTags > input {
+  width: 20%;
+}
+
+#activity_filterTags > label {
+  width: 80%;
+}
