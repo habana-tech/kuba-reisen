@@ -8,6 +8,7 @@ use App\PageManager\DynamicPageManager;
 use App\Repository\ActivityRepository;
 use App\Repository\DynamicPageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\UploadException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,6 +18,7 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use App\DataConverter\RequestJsonDataConverter;
 use App\Entity\DynamicPage;
 use Symfony\Component\HttpFoundation\FileBag;
+use Symfony\Component\HttpFoundation\File\Exception\FileNotFoundException;
 
 
 
@@ -111,8 +113,9 @@ class EndpointController extends AbstractController
 
                     $image = new UploadedImage();
 
-//                    if($file->getClientMimeType("application/octet-stream"))
+//                    if(!$file->getError() && $file->getClientMimeType("application/octet-stream"))
 //                    {
+//                        //$file->
 //                        $output_file = tmpfile();
 //                        $ifp = fopen( $output_file, 'wb' );
 //                        $data = explode( ',', $request->get('image') );
@@ -120,12 +123,25 @@ class EndpointController extends AbstractController
 //                        fclose( $ifp );
 //                    }
 
-                    $image->setImageFile($file);
-                    //dump($image);
-                    $em->persist($image);
-                    $page->addUploadedImage($image);
-                    $images[] = $image;
-                    $em->persist($page);
+                  try{
+                      $image->setImageFile($file);
+                      //  if(!$image->getExtension())
+                      //      $image->set
+                      $em->persist($image);
+                      $page->addUploadedImage($image);
+                      $images[] = $image;
+                      $em->persist($page);
+                  }
+                  catch (FileNotFoundException  $e)
+                  {
+                     // if($file->getError())
+                          return $this->json(['error'=>'Error uploading file, try againg or use other file'], 400);
+
+                  }
+
+
+
+
                 }
             }
 
