@@ -1,4 +1,6 @@
-
+{% if not is_granted('ROLE_EDITOR') or app.request.get('preview') %}
+    <!doctype html>
+{% endif %}
 <html lang="de">
     <head>
         <title>{% block title %}{% endblock %} | Kuba Reisen </title>

@@ -6,8 +6,10 @@
                     <div class="slide">
                         <div class="slide__wrap">
                         <div class="slide__img">
-                            {{ imgTagContent(page.ElementAttr('activity_images_img'~i, 'src', asset('img/header_pic.jpg')),
+                            {{ imgTagContent(
+                                page.ElementAttr('activity_images_img'~i, 'src', asset('img/header_pic.jpg')),
                                 page.ElementAttr('activity_images_img'~i, 'srcb64', asset('img/header_pic.jpg')),
+                                '',
                                 '100vw',
                                 'data-grape_id="activity_images_img'~i~'"') | raw }}
                         </div>
