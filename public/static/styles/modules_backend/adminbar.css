@@ -19,7 +19,8 @@
       display: flex;
       align-items: center; }
   .admin_bar ul li a {
-        color: #fff; }
+        color: #fff;
+        font-size: 9em; }
   .admin_bar ul li.preview {
         background: linear-gradient(45deg, rgba(53, 207, 212, 0.7), rgba(20, 161, 230, 0.9));
         padding: .25em 1em; }

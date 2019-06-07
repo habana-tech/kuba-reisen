@@ -1,57 +1,101 @@
 import {easeElasticOut, easeElasticIn, easeBounceOut} from "d3-ease";
 import Segment from "segment-js";
+import Headroom from './../../vendors/headroom.min'
 
-class Menu {
+class NavBar{
+
     constructor(){
+        this.header = document.querySelector('header');
+        this.navegationMenu = document.querySelector('.header__nav');
+
         this.pathA = document.querySelector('#burger_pathA');
         this.pathB = document.querySelector('#burger_pathB');
         this.pathC = document.querySelector('#burger_pathC');
         this.wrapper = document.querySelector('#menu-icon-wrapper');
-        this.trigger = document.querySelector('#menu-icon-trigger');
-        this.toCloseIcon = true;
-        this.dummy = document.querySelector('.navigation_menu');
+        this.button = document.querySelector('#menu-icon-trigger');
 
         this.beginAC = 80;
         this.endAC = 320;
         this.beginB = 80;
         this.endB = 320;
+        this.isOpen = false;
 
         this.segmentA = new Segment(this.pathA, this.beginAC, this.endAC);
         this.segmentB = new Segment(this.pathB, this.beginB, this.endB);
         this.segmentC = new Segment(this.pathC, this.beginAC, this.endAC);
 
         this.events();
-        this.wrapper.style.visibility = 'visible';
+        this.headroomInit();
     }
 
+    headroomInit()
+    {
+        Headroom.options.onUnpin = this.hideMenuUnPin.bind(this);
+
+        Headroom.options.tolerance = {
+            up: 10,
+            down: 8
+        };
+
+        let headroom = new Headroom(this.header);
+        headroom.init();
+    }
 
     events(){
-        this.trigger.addEventListener('click', this.click.bind(this));
+        this.button.addEventListener('click', this.showOrHideMenu.bind(this));
     }
 
-    click(){
-        this.modifyScale(this.wrapper);
+    showOrHideMenu(){
+        if (this.isOpen)
+            this.hideMenu();
+        else
+            this.showMenu();
+    }
 
-        if (this.toCloseIcon) {
-            this.inAC(this.segmentA, this);
-            this.inB(this.segmentB, this);
-            this.inAC(this.segmentC, this);
+    showMenu(){
+        if (this.header.classList.contains('headroom--top')){
+            this.header.classList.add('header--pinned');
+        }
 
-            /*****Active menu container **/
-            this.dummy.classList.toggle('navigation_menu--active');
-            this.dummy.classList.toggle('swing-in-right-bck');
-            this.dummy.classList.toggle('swing-in-right-bck-reverse');
-        } else {
+        this.inAC(this.segmentA, this);
+        this.inB(this.segmentB, this);
+        this.inAC(this.segmentC, this);
+
+        /*****Active menu container **/
+        this.navegationMenu.classList.add('swing-in-top-bck');
+        this.navegationMenu.classList.remove('swing-out-top-bck');
+
+        this.isOpen = true;
+    }
+
+    hideMenuUnPin(){
+        if (this.isOpen){
             this.outAC(this.segmentA, this);
             this.outB(this.segmentB, this);
             this.outAC(this.segmentC, this);
-
-            this.dummy.classList.toggle('navigation_menu--active');
-            this.dummy.classList.toggle('swing-in-right-bck');
-            this.dummy.classList.toggle('swing-in-right-bck-reverse');
         }
-        this.toCloseIcon = !this.toCloseIcon;
+
+        this.navegationMenu.classList.remove('swing-in-top-bck');
+        this.navegationMenu.classList.add('swing-out-top-bck');
+
+        this.isOpen = false;
     }
+
+    hideMenu(){
+        if (this.header.classList.contains('headroom--top')){
+            this.header.classList.remove('header--pinned');
+        }
+
+        this.outAC(this.segmentA, this);
+        this.outB(this.segmentB, this);
+        this.outAC(this.segmentC, this);
+
+        this.navegationMenu.classList.remove('swing-in-top-bck');
+        this.navegationMenu.classList.add('swing-out-top-bck');
+
+        this.isOpen = false;
+    }
+
 
     inAC(s, that) {
         s.draw('80% - 240', '80%', 0.3, {
@@ -114,12 +158,7 @@ class Menu {
         });
     }
 
-    /* Scale function */
-
-    modifyScale(m) {
-        m.classList.toggle('scaled');
-    }
-
 }
 
-export default Menu;
+export default NavBar;
+
