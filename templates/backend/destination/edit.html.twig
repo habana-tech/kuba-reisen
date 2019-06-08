@@ -3,7 +3,7 @@
 {% block title %}Edit Destination{% endblock %}
 
 {% block body %}
-    <h1>Edit Destination</h1>
+    <h1>Editing Destination <i><u>{{ destination.name }}</u></i></h1>
 
     {{ include('backend/destination/_form.html.twig', {'button_label': 'Update'}) }}
 

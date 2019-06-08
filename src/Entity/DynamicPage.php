@@ -109,7 +109,7 @@ class DynamicPage
 
 
 
-    public function getElement($grape_id, $format = 'html')
+    public function getElement($grape_id, $format = 'txt')
     {
         if(!isset($this->pageContent[$grape_id][$format]))
             $format == 'html' ? $format = 'txt' :  $format = 'html';
