@@ -87,9 +87,15 @@ class DestinationController extends AbstractController
             foreach ($destination->getDynamicPage()->getPageContent() as $key => $element)
             {
                 if(isset($element['txt']))
-                    $form->add($key, null, ['label'=>'Content of '.$key, 'required' => false]);
+                    $form->add($key, null, [
+                        'label'=>'Content of '.str_replace('_',' ', $key),
+                        'required' => false]
+                    );
                 if(isset($element['html']) and !isset($element['src']))
-                    $form->add($key, CKEditorType::class, ['label'=>'Content of '.$key, 'required' => false]);
+                    $form->add($key, CKEditorType::class, [
+                        'label'=>'Content of '.str_replace('_',' ', $key),
+                        'required' => false]
+                    );
             }
         }
         catch (EntityNotFoundException $exception)

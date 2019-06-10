@@ -148,22 +148,47 @@ editor.on('asset:upload:response', (response) => {
 
 function startAssetsAnimation()
 {
-    let uploader_container = document.querySelector('.gjs-am-file-uploader > form > #gjs-am-title');
-    uploader_container.dataset['initial'] = uploader_container.innerHTML;
-
-    uploader_container.classList.add('uploading');
-    uploader_container.innerHTML = '<div class="uploading-animation-container">\n' +
+    var uploader_container = null;
+    var editor_container = null;
+    let htmlCode =  '<div class="uploading-animation-container">\n' +
         '  <div class="box1"></div>\n' +
         '  <div class="box2"></div>\n' +
         '  <div class="box3"></div>\n' +
         '</div>';
+    if(uploader_container = document.querySelector('.gjs-am-file-uploader > form > #gjs-am-title'))
+    {
+        uploader_container.dataset['initial'] = uploader_container.innerHTML;
+
+        uploader_container.classList.add('uploading');
+        uploader_container.innerHTML = htmlCode;
+        return;
+    }
+    if(editor_container = document.querySelector('.tui-image-editor-main-container'))
+    {
+        var elem = document.createElement('div');
+        elem.innerHTML = htmlCode;
+        editor_container.appendChild(elem);
+        editor_container.classList.add('uploading');
+        return;
+    }
 }
 
 
 function stopAssetsAnimation()
 {
-    let uploader_container = document.querySelector('.gjs-am-file-uploader > form > #gjs-am-title');
+    var uploader_container = null;
 
-    uploader_container.classList.remove('uploading');
-    uploader_container.innerHTML = uploader_container.dataset['initial'];
+    if(uploader_container = document.querySelector('.gjs-am-file-uploader > form > #gjs-am-title'))
+    {
+        uploader_container.classList.remove('uploading');
+        uploader_container.innerHTML = uploader_container.dataset['initial'];
+        return;
+    }
+    if(uploader_container = document.querySelector('.tui-image-editor-main-container'))
+    {
+        uploader_container.classList.remove('uploading');
+        return;
+    }
+
+
 }

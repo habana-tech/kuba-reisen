@@ -49,7 +49,23 @@ display: none;
   display: none;
 }
 
-#gjs-am-title.uploading{
+.tui-image-editor-main-container.uploading .uploading-animation-container
+  {
+  position: relative;
+
+  margin: auto auto;
+
+  transform: none !important;
+  height: 100% !important;
+
+  width: 100%;
+
+  padding: 20% 50%;
+
+  background: #000c;
+}
+#gjs-am-title.uploading,
+.tui-image-editor-main-container.uploading{
 
   & .uploading-animation-container {
     width: 112px;

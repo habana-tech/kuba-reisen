@@ -19,8 +19,13 @@
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus laboriosam perspiciatis quidem! Fuga nam placeat similique. Amet assumenda debitis, incidunt maiores omnis rem similique? Accusamus autem cupiditate numquam pariatur rerum!") | raw }}</p>
             </div>
             <div class="feature__image">
-                <img data-grape_id="feature_lists_img{{ i }}"
-                     src="{{ page.ElementAttr('feature_lists_img'~i, 'src', asset('img/feature/havana1.png')) | raw }}" alt="">
+
+                {{ imgTagContent(
+                                page.ElementAttr('feature_lists_img'~i, 'src', asset('img/header_pic.jpg')),
+                                page.ElementAttr('feature_lists_img'~i, 'srcb64', asset('img/header_pic.jpg')),
+                                '',
+                                '100vw',
+                                'data-grape_id="feature_lists_img'~i~'"') | raw }}
             </div>
 
         </div>
