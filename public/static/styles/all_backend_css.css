@@ -4448,7 +4448,8 @@ Descr: Custom radio toggle
     margin: .25em 1em;
     z-index: 3; }
 .header__logo img {
-      height: 3em; }
+      height: 3em;
+      width: auto; }
 .header__nav {
     display: flex;
     flex-wrap: wrap;
@@ -5267,7 +5268,7 @@ body {
   .slideshow {
     overflow: hidden;
     margin: 0;
-    height: 85%; }
+    height: 85vh; }
   .slide {
     height: 100%; }
     .slide__title {
