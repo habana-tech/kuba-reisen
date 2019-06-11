@@ -30,17 +30,16 @@
           border: 2px solid rgba(102, 102, 102, 0.7); }
   .activities__selectors__filters ul li.selected::after {
             content: 'x';
+            font-size: .75em;
             position: absolute;
             right: -.75em;
             top: -.75em;
             background: linear-gradient(45deg, rgba(53, 207, 212, 0.95), rgba(20, 161, 230, 0.95));
             color: white;
             border-radius: 50%;
-            border: 1px white solid;
-            width: 1.25em;
-            height: 1.25em;
-            font-weight: 700;
-            line-height: 1em; }
+            width: 1em;
+            height: 1em;
+            line-height: .75em; }
   .activities__selectors__search {
     width: 40%; }
   .activities__selectors__search h3 {

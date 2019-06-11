@@ -9,7 +9,9 @@
 
 {% block inline_stylesheets %}
     {% if not is_granted('ROLE_EDITOR') or app.request.get('preview') %}
-        <style></style>
+        <style>
+            {{ source('@public/static/styles/loading.css') }}
+        </style>
     {% endif %}
 {% endblock %}
 

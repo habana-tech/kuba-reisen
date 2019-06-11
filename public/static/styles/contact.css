@@ -325,7 +325,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
       transition: transform .5s ease-in-out, -webkit-transform .5s ease-in-out; }
 .interest label span {
       font-family: 'Baloo Bhaina';
-      font-size: 1.25em;
+      font-size: 1.1em;
       font-weight: 700;
       position: absolute;
       bottom: 1em;
@@ -348,11 +348,29 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 .interest--checked img {
     -webkit-transform: scale(1.1) !important;
             transform: scale(1.1) !important; }
+.selected-activities {
+  width: 120%;
+  left: -10%;
+  position: relative; }
+.selected-activities__title {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center; }
+.selected-activities__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; }
 .travel-interest {
   margin: 2em 0;
   width: 120%;
   left: -10%;
   position: relative; }
+.travel-interest__title {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center; }
 .travel-interest__options {
     display: grid;
     grid-template-areas: "img1 img5 img9 img13" "img2 img6 img10 img14" "img3 img7 img11 img15" "img4 img8 img12 img16";

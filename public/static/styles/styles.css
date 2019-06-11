@@ -125,9 +125,6 @@ Descr: Custom radio toggle
 .form__item__input {
       width: 40%; }
 
-.icon {
-  display: none; }
-
 .header {
   position: fixed;
   width: 98%;

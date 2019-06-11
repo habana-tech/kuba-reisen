@@ -3,15 +3,12 @@ import axios from '../../vendors/axios.min';
 class LoadActivities {
     constructor(){
         this.amount = 6;
-        this.pos = 0;
-        // this.url = document.URL;
-        this.url = _activities_activitiesApiPos;
+        this.url = '/activitiesApiPos';
 
         this.activitiesList = document.querySelector('.activities__list__container');
         this.btnLoad = document.querySelector('.activities__list__more a');
         this.prototype = document.querySelector('.activities__list__item-prototype div');
         this.events();
-
     }
 
     events(){
@@ -33,16 +30,19 @@ class LoadActivities {
     }
 
     getData(){
-        let url = this.url+'/'+this.pos+'/'+this.amount;
-        console.log(url);
+        let pos = this.activitiesList.querySelectorAll('.activity').length;
+
+        let url = this.url+'/'+pos+'/'+this.amount;
         let that = this;
         axios.get(url)
             .then(function (response) {
                 let activities = response.data.activities;
                 let loadMore = response.data.loadMore;
-                console.log(loadMore);
+
+                if (loadMore === false)
+                    that.btnLoad.classList.add('hidden');
+
                 if (activities.length > 0) {
-                    console.log(activities);
                     activities.forEach(function (activity) {
                         let newActivity = that.makeActivity(activity.image, activity.imageAlt,
                             activity.name, activity.description, activity.link);

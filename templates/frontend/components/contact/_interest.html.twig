@@ -6,6 +6,10 @@
             alt="">
         <span data-grape_id="contact_interest_text_{{ i }}" >
             {{ page.ElementContent('contact_interest_text_'~i, 'interest '~i) | raw }}
+
+            <svg class="icon icon--cart">
+                <use xlink:href="#heart"></use>
+            </svg>
         </span>
     </label>
     <input id="interest{{ i }}" name="interest{{ i }}" type="checkbox">

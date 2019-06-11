@@ -514,13 +514,11 @@ imageTrigger.addEventListener('lazyloaded', ()=> {
     document.querySelector('body').classList.remove('loading');
     document.querySelector('body').classList.add('render');
 
-    document.querySelector('.overlay-loading').addEventListener('webkitAnimationEnd', (e)=>{
-        e.target.style.zIndex = -10;
-        e.target.style.display = 'none';
-    });
+    // document.querySelector('.overlay-loading').addEventListener('webkitAnimationEnd', (e)=>{
+    //     e.target.style.display = 'none';
+    // });
 
     document.querySelector('.overlay-loading').addEventListener('animationend', (e)=>{
-        e.target.style.zIndex = -10;
         e.target.style.display = 'none';
     });
 });

@@ -47,9 +47,8 @@ class AddtoCart {
         }
 
         this.showBar();
-
-        this.buttonAdd.classList.add('.float_button--disable');
-        this.buttonAdd.removeEventListener('click');
+        this.buttonAdd.children[0].classList.add('float_button__button--disable');
+        this.buttonAdd.removeEventListener('click', this.addActivity);
     }
 
     showBar(){

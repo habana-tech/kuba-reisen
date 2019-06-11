@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\DynamicPageRepository;
+use App\Repository\ActivityRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use App\Entity\ContactPlaning;
@@ -19,14 +20,15 @@ class ContactController extends AbstractController
     /**
      * @Route("/contact",  name="contact")
      */
-    public function contact(Request $request, DynamicPageRepository $pageRepository)
+    public function contact(Request $request, DynamicPageRepository $pageRepository, ActivityRepository $activityRepository)
     {
+
         if(!$dymanicPage = $pageRepository->findOneBy([
             'pageName'=>'contact',
             'language'=>'de'
         ]))
 
-            throw new NotFoundHttpException();
+        throw new NotFoundHttpException();
 
 
         $contact = new ContactPlaning();
@@ -43,8 +45,23 @@ class ContactController extends AbstractController
             //return $this->redirectToRoute('post_index');
         }
 
+        //obtaining activities from cookies
+        $activities = [];
+        if (isset($request->cookies->all()['ids']))
+        {
+            $ids = $request->cookies->all()['ids'];
+            $ids = explode(',', $ids);
+
+
+            foreach(array_unique($ids) as $id){
+                $activity = $activityRepository->find($id);
+                $activities[] = $activity;
+            }
+        }
+
         return $this->render('frontend/contact.html.twig', [
             'contact' => $contact,
+            'activities'=>$activities,
             'form' => $form->createView(),
             'dynamic_page_id' => $dymanicPage->getId(),
             'page' => $dymanicPage,

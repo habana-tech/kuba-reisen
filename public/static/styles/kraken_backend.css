@@ -3314,7 +3314,17 @@ body > textarea {
   display: none; }
 .gjs-rte-action[title="Link"] {
   display: none; }
-#gjs-am-title.uploading .uploading-animation-container {
+.tui-image-editor-main-container.uploading .uploading-animation-container {
+  position: relative;
+  margin: auto auto;
+  -webkit-transform: none !important;
+          transform: none !important;
+  height: 100% !important;
+  width: 100%;
+  padding: 20% 50%;
+  background: #000c; }
+#gjs-am-title.uploading .uploading-animation-container,
+.tui-image-editor-main-container.uploading .uploading-animation-container {
   width: 112px;
   height: 112px;
   margin: auto auto;
@@ -3322,26 +3332,32 @@ body > textarea {
           transform: translateY(-25%); }
 #gjs-am-title.uploading .uploading-animation-container .box1,
   #gjs-am-title.uploading .uploading-animation-container .box2,
-  #gjs-am-title.uploading .uploading-animation-container .box3 {
+  #gjs-am-title.uploading .uploading-animation-container .box3,
+  .tui-image-editor-main-container.uploading .uploading-animation-container .box1,
+  .tui-image-editor-main-container.uploading .uploading-animation-container .box2,
+  .tui-image-editor-main-container.uploading .uploading-animation-container .box3 {
     border: 16px solid #7a7a7a;
     box-sizing: border-box;
     position: absolute;
     display: block; }
-#gjs-am-title.uploading .uploading-animation-container .box1 {
+#gjs-am-title.uploading .uploading-animation-container .box1,
+  .tui-image-editor-main-container.uploading .uploading-animation-container .box1 {
     width: 112px;
     height: 48px;
     margin-top: 64px;
     margin-left: 0px;
     -webkit-animation: anime1 4s 0s forwards ease-in-out infinite;
     animation: anime1 4s 0s forwards ease-in-out infinite; }
-#gjs-am-title.uploading .uploading-animation-container .box2 {
+#gjs-am-title.uploading .uploading-animation-container .box2,
+  .tui-image-editor-main-container.uploading .uploading-animation-container .box2 {
     width: 48px;
     height: 48px;
     margin-top: 0px;
     margin-left: 0px;
     -webkit-animation: anime2 4s 0s forwards ease-in-out infinite;
     animation: anime2 4s 0s forwards ease-in-out infinite; }
-#gjs-am-title.uploading .uploading-animation-container .box3 {
+#gjs-am-title.uploading .uploading-animation-container .box3,
+  .tui-image-editor-main-container.uploading .uploading-animation-container .box3 {
     width: 48px;
     height: 48px;
     margin-top: 0px;

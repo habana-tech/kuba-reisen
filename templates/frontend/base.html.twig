@@ -54,7 +54,9 @@
         {% block body %}{% endblock %}
 
         {% if not is_granted('ROLE_EDITOR') or app.request.get('preview') %}
-            {{  include('frontend/components/global/_cart_bar.html.twig') }}
+            {% if app.request.attributes.get('_route') != 'contact' %}
+                {{  include('frontend/components/global/_cart_bar.html.twig') }}
+            {% endif %}
         {% endif %}
                 
         {{ render(controller('App\\Controller\\RegionsController::regionFooter', {'preview':app.request.get('preview')})) }}

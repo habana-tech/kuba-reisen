@@ -161,7 +161,7 @@ class ActivitiesController extends AbstractController
 
         $filters = explode(',', $filters);
 
-        $_activities = $activityRepository->findByFilter($filters, 'de',
+        $_activities = $activityRepository->findByFilter($filters,
                                                         $filterTagRepository,
                                                         $pos, $amount+1);
         $loadMore = count($_activities) > $amount;
@@ -177,8 +177,7 @@ class ActivitiesController extends AbstractController
                 'description'=>$activity->getDescription(),
                 'link'=>  $this->generateUrl('activity',
                     ['id'=>$activity->getId(),
-                    'name'=>$activity->getMachineName(),
-                    '_locale'=>'de']),
+                    'name'=>$activity->getMachineName()]),
             ));
         }
 

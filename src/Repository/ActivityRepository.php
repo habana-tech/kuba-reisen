@@ -40,7 +40,7 @@ class ActivityRepository extends ServiceEntityRepository
     /**
     * @return Activity[] Returns an array of Activity objects
     */
-    public function findByFilter($filters, $lang,
+    public function findByFilter($filters,
                                  FilterTagRepository $filterTagRepository,
                                  $pos, $amount) {
 
@@ -51,9 +51,7 @@ class ActivityRepository extends ServiceEntityRepository
 
         return $this->createQueryBuilder('activity')
             ->join('activity.filterTags', 'filter_tags')
-            ->where('activity.language = :lang')
             ->andWhere('filter_tags.id in (:ids)')
-            ->setParameter('lang', $lang)
             ->setParameter('ids', $filter_ids)
             ->setFirstResult($pos)
             ->setMaxResults($amount)
