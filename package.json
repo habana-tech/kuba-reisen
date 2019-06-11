@@ -45,6 +45,7 @@
     "grapesjs": "^0.14.62",
     "grapesjs-tui-image-editor": "^0.1.2",
     "lazysizes": "^5.1.0",
+    "leaflet": "^1.5.1",
     "normalize.css": "^8.0.1",
     "nouislider": "^13.1.5",
     "npm": "^6.9.0",

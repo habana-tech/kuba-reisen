@@ -124,7 +124,7 @@ class ActivitiesController extends AbstractController
 
 
         $filters = explode(',', $filters);
-        $_activities = $activityRepository->findByFilter($filters, 'de',
+        $_activities = $activityRepository->findByFilter($filters,
                                                         $filterTagRepository,
                                                         0, $this->amountActivitiesDefault+1);
 
@@ -173,7 +173,7 @@ class ActivitiesController extends AbstractController
         foreach ($activities as $activity){
             array_push($activities_data, array(
                 'name'=>$activity->getName(),
-                'image'=>$activity->getImagePath(),
+                'image'=>$activity->getStaticImagePath(),
                 'description'=>$activity->getDescription(),
                 'link'=>  $this->generateUrl('activity',
                     ['id'=>$activity->getId(),
@@ -214,7 +214,7 @@ class ActivitiesController extends AbstractController
         foreach ($activities as $activity){
             array_push($activities_data, array(
                 'name'=>$activity->getName(),
-                'image'=>$activity->getImagePath(),
+                'image'=>$activity->getStaticImagePath(),
                 'description'=>$activity->getDescription(),
                 'link'=>  $this->generateUrl('activity',
                     ['id'=>$activity->getId(),
