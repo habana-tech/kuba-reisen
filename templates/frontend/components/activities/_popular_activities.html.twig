@@ -17,7 +17,8 @@
                 {% for filterTag in filterTags %}
                     {% set class = '' %}
 
-                    {% if filterTag.title in selectedFilters %}
+
+                    {% if selectedFilters is defined and filterTag.title in selectedFilters %}
                         {% set class='selected' %}
                     {% endif %}
 

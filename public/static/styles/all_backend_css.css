@@ -5411,7 +5411,7 @@ Descr: Custom radio toggle
         box-shadow:2px 2px 10px rgba(0, 0, 0, 0.25); }
 .activities__selectors__filters ul li.selected {
           background-position: right center;
-          border:2px solid rgba(0, 77, 0, 0.5); }
+          border: 2px solid #004d00; }
 .activities__selectors__search {
     width: 40%; }
 .activities__selectors__search h3 {
