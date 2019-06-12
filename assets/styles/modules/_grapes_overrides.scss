@@ -446,3 +446,9 @@ display: none;
     margin-left: 0px;
   }
 }
+
+
+/** Hiding meno on editing mode*/
+body.admin-logged .menu-icon-wrapper{
+    display: none;
+}

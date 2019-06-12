@@ -4515,6 +4515,9 @@ body > textarea {
     height: 48px;
     margin-top: 64px;
     margin-left: 0px; } }
+/** Hiding meno on editing mode*/
+body.admin-logged .menu-icon-wrapper {
+  display: none; }
 .admin_bar {
   position: static;
   background:linear-gradient(45deg, rgba(98, 171, 3, 0.7) 5%, #004d00);
@@ -4864,9 +4867,6 @@ Descr: Custom radio toggle
             transform: translateY(-100%); }
 .header--pinned, .headroom--not-top.headroom--pinned {
   background-position: 100% 0; }
-/** Hiding meno on editing mode*/
-body.admin-logged .menu-icon-wrapper {
-  display: none; }
 /* Menu icon styles */
 .menu-icon-wrapper {
   position: relative;
