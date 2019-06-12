@@ -5,7 +5,6 @@
         </a>
     </div>
 
-    {% if not is_granted('ROLE_EDITOR') or app.request.get('preview') %}
         <div class="header__menu-icon">
 
             <div id="menu-icon-wrapper" class="menu-icon-wrapper float-right">
@@ -18,7 +17,6 @@
             </div><!-- menu-icon-wrapper -->
 
         </div>
-    {% endif %}
 
 
     <nav class="header__nav navigation_menu swing-out-top-bck">

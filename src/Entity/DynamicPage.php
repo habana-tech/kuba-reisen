@@ -145,7 +145,7 @@ class DynamicPage
 
         if($attr == 'src') {
             if (!isset($this->getPageContent()[$grape_id][$attr]))
-                $data = '/static/img/hero/campoCopy.jpg';
+                $data = '/static/img/header_pic.jpg';
             $data = ImageBase64ThumbCreator::getStaticRelativePath($data);
         }
 
