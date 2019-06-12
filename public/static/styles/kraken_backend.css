@@ -3641,6 +3641,9 @@ body > textarea {
     height: 48px;
     margin-top: 64px;
     margin-left: 0px; } }
+/** Hiding meno on editing mode*/
+body.admin-logged .menu-icon-wrapper {
+  display: none; }
 .admin_bar {
   position: static;
   background:linear-gradient(45deg, rgba(98, 171, 3, 0.7) 5%, #004d00);
