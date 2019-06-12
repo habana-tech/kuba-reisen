@@ -3674,6 +3674,8 @@ body.admin-logged .menu-icon-wrapper {
   border: dashed #62ab03 4px;
   border-radius: 20px;
   transition: border ease .5s; }
+.header__menu-icon[data-gjs-type="default"] {
+  display: none; }
 .travel-options__grid_editor ul {
   list-style: none; }
 .travel-options__grid_editor ul li {
