@@ -2,7 +2,7 @@
 <div class="activity">
     <a href="{{ path('activity', {'id':activity.id, 'name':activity.machineName}) }}">
         <div class="activity__image">
-            <img src="{{ asset(activity.imagePath ) }}" alt="">
+            <img src="{{ asset(activity.dynamicPage.elementAttr('activity_images_img1', 'src', asset('img/header_pic.jpg')) ) }}" alt="">
         </div>
         <div class="activity__content">
             <div class="activity__content__title">
