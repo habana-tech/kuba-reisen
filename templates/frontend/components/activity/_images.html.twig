@@ -2,6 +2,22 @@
     {% if not is_granted('ROLE_EDITOR') or app.request.get('preview') is not null %}
         <div class="activities__container">
             <div class="slideshow">
+                <div class="slide">
+                    <div class="slide__wrap">
+                        <div class="slide__img">
+                            {{ imgTagContent(
+                                activity.staticImagePath,
+                                null,
+                                '',
+                                null) | raw }}
+                        </div>
+                        <div class="slide__title-wrap" >
+                            <h4 class="slide__subtitle">
+                                {{ activity.name }}
+                            </h4>
+                        </div>
+                    </div>
+                </div>
                 {% for i in 1..activity.featuresImagesCount %}
                     <div class="slide">
                         <div class="slide__wrap">
