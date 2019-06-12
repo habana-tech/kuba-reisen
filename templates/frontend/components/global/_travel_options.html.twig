@@ -26,6 +26,10 @@
 
             {% else %}
 
+                {% set sizes = [25, 25, 100, 50, 25,
+                                25, 25, 25, 50, 50, 50,
+                                25, 25, 25 ] %}
+
                 {% for i in 1..14 %}
 
                     <div class="travel-options__grid__item" style="grid-area: img{{ i }}">
@@ -34,7 +38,7 @@
                             page.ElementAttr('travelgrid__item'~i, 'src', asset('img/grid/wide.jpg')),
                             page.ElementAttr('travelgrid__item'~i, 'srcb64', asset('img/grid/wide.jpg')),
                             '',
-                            '25vw',
+                            sizes[loop.index0]~'vw',
                             'data-grape_id="travelgrid__item'~i~'" data-grape_section="_travel_options"') | raw }}
 
                     </div>
