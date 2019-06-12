@@ -4864,6 +4864,9 @@ Descr: Custom radio toggle
             transform: translateY(-100%); }
 .header--pinned, .headroom--not-top.headroom--pinned {
   background-position: 100% 0; }
+/** Hiding meno on editing mode*/
+body.admin-logged .menu-icon-wrapper {
+  display: none; }
 /* Menu icon styles */
 .menu-icon-wrapper {
   position: relative;
