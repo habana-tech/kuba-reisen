@@ -4,4 +4,4 @@ import ActivityDescription from './modules/activities/_activity_description';
 
 new FilterStyle();
 new LoadActivities();
-new ActivityDescription();
+// new ActivityDescription();
