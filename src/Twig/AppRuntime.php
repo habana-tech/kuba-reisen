@@ -28,7 +28,10 @@ class AppRuntime implements RuntimeExtensionInterface
      * @return string|FilterTag[]
      */
     public function filterSrcset($imagePath, $sizes = [1920, 1200, 1000, 900, 800, 600])
-    {	
+    {
+        if(strpos($imagePath, ';base64,'))
+            return;
+        
     	$html = '';
     	foreach ($sizes as $value) {
     		$resolvedPath = $this->imagineCacheManager->getBrowserPath($imagePath, 'min_width_'.$value);
