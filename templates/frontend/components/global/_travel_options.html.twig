@@ -10,7 +10,7 @@
     </div>
 
 
-        <section class="travel-options">
+    <section class="travel-options">
         <div class="travel-options__grid">
             {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null %}
 
@@ -50,14 +50,16 @@
 
         {% if not is_granted('ROLE_EDITOR') or app.request.get('preview') %}
            <div class="travel-options__grid_overlay">
-
-            {% for i in 1..5 %}
-                <a href="#" style="grid-area: section{{ i }}">
-                    <div>
-                        <h3>{{ page.ElementContent('options__grid_title_'~ i ,"Title "~ i ) | raw }}</h3>
-                    </div>
-                </a>
-            {% endfor %}
+                {{ dump(fil) }}
+               {% for filter in filterTags %}
+                   <a href="{{ path('activitiesFilter', {'filters':filter.title }) }}#activities" style="grid-area: section{{ loop.index }}">
+                       <div>
+                           <h3>
+                               {{ filter.title }}
+                           </h3>
+                       </div>
+                   </a>
+               {% endfor %}
 
         </div>
         {% else %}

@@ -30,7 +30,8 @@ class RegionsController extends AbstractController
         ]);
     }
 
-    public function regionTravelOptions(DynamicPageManager $pm)
+    public function regionTravelOptions(DynamicPageManager $pm,
+                                        FilterTagRepository $filterTagRepository)
     {
         $pageinfo = [
             'pageName'=>'_travel_options',
@@ -43,6 +44,7 @@ class RegionsController extends AbstractController
 
         return $this->render('frontend/components/global/_travel_options.html.twig', [
             'page' => $page,
+            'filterTags'=>$filterTagRepository->findByPinned('de'),
         ]);
     }
 
