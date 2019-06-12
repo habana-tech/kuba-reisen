@@ -9,47 +9,54 @@
         </div>
     </div>
 
-    <div class="form__item">
-        <div class="form__item__label" data-grape_id="form__item__label_name">
-            {% if page.ElementContent('form__item__label_name') %}
-                {{ page.ElementContent('form__item__label_name') | raw }}
-            {% else %}
-                {{ form_label(form.name) }}
-            {% endif %}
+    <div class="contact__personal">
+
+        <div class="contact__personal__name_mail">
+            <div class="form__item">
+                <div class="form__item__label" data-grape_id="form__item__label_name">
+                    {% if page.ElementContent('form__item__label_name') %}
+                        {{ page.ElementContent('form__item__label_name') | raw }}
+                    {% else %}
+                        {{ form_label(form.name) }}
+                    {% endif %}
+                </div>
+                <div class="form__item__input">
+                    {{ form_widget(form.name) }}
+                </div>
+            </div>
+
+            <div class="form__item">
+                <div class="form__item__label" data-grape_id="form__item__label_email">
+                    {% if page.ElementContent('form__item__label_email') %}
+                        {{ page.ElementContent('form__item__label_email') | raw }}
+                    {% else %}
+                        {{ form_label(form.email) }}
+                    {% endif %}
+                </div>
+                <div class="form__item__input">
+                    {{ form_widget(form.email) }}
+                </div>
+            </div>
         </div>
-        <div class="form__item__input">
-            {{ form_widget(form.name) }}
+        <div class="contact__personal__message">
+            <div class="form__item">
+                <div class="form__item__label" data-grape_id="form__item__label_message">
+                    {% if page.ElementContent('form__item__label_message') %}
+                        {{ page.ElementContent('form__item__label_message') | raw }}
+                    {% else %}
+                        {{ form_label(form.message) }}
+                    {% endif %}
+                </div>
+                <div class="form__item__textarea">
+                    {{ form_widget(form.message) }}
+                </div>
+            </div>
         </div>
+
     </div>
 
     <div class="form__item">
-        <div class="form__item__label" data-grape_id="form__item__label_email">
-            {% if page.ElementContent('form__item__label_email') %}
-                {{ page.ElementContent('form__item__label_email') | raw }}
-            {% else %}
-                {{ form_label(form.email) }}
-            {% endif %}
-        </div>
-        <div class="form__item__input">
-            {{ form_widget(form.email) }}
-        </div>
-    </div>
-
-    <div class="row row-center float-center padding-top"  data-grape_id="form__item__label_message">
-        {% if page.ElementContent('form__item__label_message') %}
-            {{ page.ElementContent('form__item__label_message') | raw }}
-        {% else %}
-            {{ form_label(form.message) }}
-        {% endif %}
-    </div>
-    <div class="row row-center float-center padding-top">
-        <div class="grid-half select-control">
-            {{ form_widget(form.message) }}
-        </div>
-    </div>
-
-    <div class="row  row-center row-middle header_headline no-lat-margins">
-        <a class="btn header_headline_btn">{{ button_label|default('Send form') }}</a>
+        <a class="btn" href="#">{{ button_label|default('Send form') }}</a>
     </div>
 
     {{ form_widget(form.interests) }}

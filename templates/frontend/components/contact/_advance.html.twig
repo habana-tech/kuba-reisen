@@ -16,7 +16,7 @@
             </div>
             <div class="selected-activities__list">
                 {% for activity in activities %}
-                    {% include 'frontend/components/global/_activity.html.twig' with {'activity':activity} %}
+                    {% include 'frontend/components/global/_activity_small.html.twig' with {'activity':activity} %}
                 {% endfor %}
             </div>
         </div>
@@ -28,7 +28,7 @@
         </div>
 
         <div class="travel-interest__options">
-            {% for i in 1..16 %}
+            {% for i in 1..9 %}
                 {{ include('frontend/components/contact/_interest.html.twig') }}
             {% endfor %}
 

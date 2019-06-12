@@ -2993,6 +2993,7 @@ pre code {
   text-decoration: none;
   white-space: normal;
   transition: .5s;
+  cursor: pointer;
   box-shadow:0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08); }
 .btn:hover, .btn:active {
     background-position: right center;
@@ -5186,34 +5187,59 @@ Descr: Custom radio toggle
       text-align: center; }
 .cart_bar {
   position: fixed;
-  bottom: 0;
-  width: 99vw;
+  bottom: 2em;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  right: 0;
   margin: auto;
-  z-index: 1000;
+  z-index: 5;
+  padding: 1em 0;
   background:linear-gradient(45deg, rgba(53, 207, 212, 0.9), rgba(20, 161, 230, 0.9));
+  color: white;
   border:1px solid rgba(255, 255, 255, 0.9);
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: .75em 0;
-  -webkit-transform: translateY(100%);
-          transform: translateY(100%);
+  justify-content: space-between;
+  cursor: pointer;
+  -webkit-transform: translateX(80%);
+          transform: translateX(80%);
   transition: -webkit-transform .3s ease-in-out;
   transition: transform .3s ease-in-out;
   transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out; }
-.cart_bar--visible {
+.cart_bar__title {
+    -webkit-transform: rotate(-90deg);
+            transform: rotate(-90deg);
+    margin: 1em .5em;
+    text-align: center;
+    border-bottom: 1px solid white; }
+.cart_bar__title h4 {
+      margin: 0;
+      padding: 0; }
+.cart_bar__content {
+    padding: 1em;
+    width: 100%; }
+.cart_bar__content__text {
+      text-align: center;
+      width: 100%;
+      margin: .5em 0;
+      color: white; }
+.cart_bar__content__text p {
+        margin: 0; }
+.cart_bar__content__button {
+      width: 100%;
+      display: flex;
+      justify-content: space-around; }
+.cart_bar__content__button a {
+        margin: 0 .25em; }
+.cart_bar:hover {
     -webkit-transform: translateY(0);
             transform: translateY(0); }
-.cart_bar__icon {
-    width: 10%;
-    color: white; }
-.cart_bar__text {
-    width: 60%;
-    color: white; }
-.cart_bar__text p {
-      margin: 0; }
-.cart_bar__button {
-    width: 20%; }
+.cart_bar [data-show='empty'] {
+    display: none; }
+.cart_bar--initial [data-show='no-empty'] {
+    display: none; }
+.cart_bar--initial [data-show='empty'] {
+    display: block; }
 .footer {
   display: flex;
   flex-wrap: wrap;
@@ -5356,10 +5382,14 @@ Descr: Custom radio toggle
   flex-wrap: wrap;
   justify-content: center; }
 .activities__selectors__filters {
-    width: 60%; }
+    width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; }
 .activities__selectors__filters h3 {
       text-align: center; }
 .activities__selectors__filters ul {
+      width: 100%;
       list-style: none;
       display: flex;
       flex-wrap: wrap;
@@ -5367,36 +5397,41 @@ Descr: Custom radio toggle
 .activities__selectors__filters ul li {
         display: inline-block;
         min-width: 16.666%;
-        background:linear-gradient(45deg, rgba(53, 207, 212, 0.95), rgba(20, 161, 230, 0.95));
-        border-radius: 5px;
+        background-image:linear-gradient(to right, rgba(98, 171, 3, 0.75), rgba(0, 77, 0, 0.75));
+        background-size: 200%;
+        border-radius: 4px;
         border: 2px solid white;
-        padding: .2em .4em;
+        padding: .25em .75em;
         text-align: center;
         margin: .5em 0;
         position: relative;
         transition: all .3s ease-in-out;
         cursor: pointer;
-        color: white; }
+        color: white;
+        box-shadow:2px 2px 10px rgba(0, 0, 0, 0.25); }
 .activities__selectors__filters ul li.selected {
-          border:2px solid rgba(102, 102, 102, 0.7); }
-.activities__selectors__filters ul li.selected::after {
-            content: 'x';
-            font-size: .75em;
-            position: absolute;
-            right: -.75em;
-            top: -.75em;
-            background:linear-gradient(45deg, rgba(53, 207, 212, 0.95), rgba(20, 161, 230, 0.95));
-            color: white;
-            border-radius: 50%;
-            width: 1em;
-            height: 1em;
-            line-height: .75em; }
+          background-position: right center;
+          border:2px solid rgba(0, 77, 0, 0.5); }
 .activities__selectors__search {
     width: 40%; }
 .activities__selectors__search h3 {
       text-align: center; }
+.activities__selectors__search .form__item {
+      display: flex; }
+.activities__selectors__search .form__item__label {
+        margin: 0 .5em;
+        width: 20%; }
 .activities__selectors__search .form__item__input {
-      width: 80%; }
+        width: 70%; }
+.activities__selectors__search .form__item__input input {
+          margin: .5em;
+          padding: .25em .75em;
+          border: 2px solid #62ab03;
+          border-radius: 4px;
+          box-shadow:2px 2px 10px rgba(0, 0, 0, 0.25);
+          transition: all .3s ease-in-out; }
+.activities__selectors__search .form__item__input input:focus {
+            border:2px solid rgba(98, 171, 3, 0.85); }
 .activities__list {
   width: 90%;
   margin: auto;
@@ -6008,8 +6043,7 @@ body {
     justify-content: center; }
 .travel-interest {
   margin: 2em 0;
-  width: 120%;
-  left: -10%;
+  width: 100%;
   position: relative; }
 .travel-interest__title {
     width: 100%;
@@ -6018,10 +6052,22 @@ body {
     justify-content: center; }
 .travel-interest__options {
     display: grid;
-    grid-template-areas: "img1 img5 img9 img13" "img2 img6 img10 img14" "img3 img7 img11 img15" "img4 img8 img12 img16";
-    grid-template-rows: 40vh 40vh 40vh 40vh;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas: "img1 img2 img3" "img4 img5 img6" "img7 img8 img9";
+    grid-template-rows: 40vh 40vh 40vh;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-gap: .25em; }
+.contact__personal {
+  display: flex;
+  justify-content: space-between; }
+.contact__personal__name_mail {
+    width: 45%; }
+.contact__personal__message {
+    width: 45%; }
+.contact__personal .form__item__label, .contact__personal .form__item__input, .contact__personal .form__item__textarea {
+    width: 100%; }
+.contact__personal .form__item__label {
+    text-align: left;
+    margin: 0; }
 .select-control,
 .radio-switch {
   margin-bottom: 2em; }

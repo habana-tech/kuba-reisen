@@ -11,6 +11,7 @@ module.exports = {
         contact: "./assets/scripts/contact.js",
         activities: "./assets/scripts/activities.js",
         activity: "./assets/scripts/activity.js",
+        bucket_list: "./assets/scripts/bucket_list.js",
 
     },
     output: {

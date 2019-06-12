@@ -140,6 +140,7 @@ class ActivitiesController extends AbstractController
             'page' => $page,
             'activities'=>$activities,
             'filterTags'=>$filterTags,
+            'selectedFilters'=>$filters,
             'loadMore'=>$loadMore,
         ]);
     }

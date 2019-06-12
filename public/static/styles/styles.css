@@ -616,39 +616,70 @@ Descr: Custom radio toggle
 
 .cart_bar {
   position: fixed;
-  bottom: 0;
-  width: 99vw;
+  bottom: 2em;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  right: 0;
   margin: auto;
-  z-index: 1000;
+  z-index: 5;
+  padding: 1em 0;
   background: linear-gradient(45deg, rgba(53, 207, 212, 0.9), rgba(20, 161, 230, 0.9));
+  color: white;
   border: 1px solid rgba(255, 255, 255, 0.9);
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: .75em 0;
-  -webkit-transform: translateY(100%);
-          transform: translateY(100%);
+  justify-content: space-between;
+  cursor: pointer;
+  -webkit-transform: translateX(80%);
+          transform: translateX(80%);
   transition: -webkit-transform .3s ease-in-out;
   transition: transform .3s ease-in-out;
   transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out; }
 
-.cart_bar--visible {
+.cart_bar__title {
+    -webkit-transform: rotate(-90deg);
+            transform: rotate(-90deg);
+    margin: 1em .5em;
+    text-align: center;
+    border-bottom: 1px solid white; }
+
+.cart_bar__title h4 {
+      margin: 0;
+      padding: 0; }
+
+.cart_bar__content {
+    padding: 1em;
+    width: 100%; }
+
+.cart_bar__content__text {
+      text-align: center;
+      width: 100%;
+      margin: .5em 0;
+      color: white; }
+
+.cart_bar__content__text p {
+        margin: 0; }
+
+.cart_bar__content__button {
+      width: 100%;
+      display: flex;
+      justify-content: space-around; }
+
+.cart_bar__content__button a {
+        margin: 0 .25em; }
+
+.cart_bar:hover {
     -webkit-transform: translateY(0);
             transform: translateY(0); }
 
-.cart_bar__icon {
-    width: 10%;
-    color: white; }
+.cart_bar [data-show='empty'] {
+    display: none; }
 
-.cart_bar__text {
-    width: 60%;
-    color: white; }
+.cart_bar--initial [data-show='no-empty'] {
+    display: none; }
 
-.cart_bar__text p {
-      margin: 0; }
-
-.cart_bar__button {
-    width: 20%; }
+.cart_bar--initial [data-show='empty'] {
+    display: block; }
 
 .footer {
   display: flex;

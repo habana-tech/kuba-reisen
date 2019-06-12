@@ -15,7 +15,13 @@
             
             <ul class="activities__selectors__filters__lists">
                 {% for filterTag in filterTags %}
-                    <li>{{ filterTag.title }}</li>
+                    {% set class = '' %}
+
+                    {% if filterTag.title in selectedFilters %}
+                        {% set class='selected' %}
+                    {% endif %}
+
+                    <li class="{{ class }}">{{ filterTag.title }}</li>
                 {% endfor %}
             </ul>
         </div>
@@ -23,12 +29,12 @@
             <h3 data-grape_id="search_text">{{ page.ElementContent('search_text','Type your search criteria') | raw }}</h3>
             
             <div class="form__item">
-                <div class="form__item__label">
-                    
-                </div>
                 <div class="form__item__input">
-                    <input type="text" >
+                    <input id="search_ext" type="text" placeholder="beach">
                 </div>
+                {#<div class="form__item__label">#}
+                    {#<label for="#search_ext">criteria</label>#}
+                {#</div>#}
             </div>
         </div>
     </div>

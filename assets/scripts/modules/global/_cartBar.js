@@ -12,7 +12,7 @@ function getCookie(name) {
 class CartBar{
     constructor(){
         this.cartBar = document.querySelector('.cart_bar');
-        this.cartBarText = document.querySelector('.cart_bar .cart_bar__text span');
+        this.cartBarText = document.querySelector('.cart_bar .cart_bar__content__text span');
         this.check();
     }
 
@@ -23,9 +23,7 @@ class CartBar{
 
         let activitiesAmount = currentValue[1].split(',').length;
 
-        if (!this.cartBar.classList.contains('cart_bar--visible'))
-            this.cartBar.classList.add('cart_bar--visible');
-
+        this.cartBar.classList.remove('cart_bar--initial');
         this.cartBarText.innerHTML = activitiesAmount;
     }
 }

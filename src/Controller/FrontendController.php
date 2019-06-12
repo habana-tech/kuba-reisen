@@ -120,4 +120,29 @@ class FrontendController extends AbstractController
             'related_activities'=>$related_activities,
         ]);
     }
+
+    /**
+     * @Route("/bucket_list", name="bucket_list")
+     */
+    public function bucket_list(DynamicPageManager $pm)
+    {
+        $pageinfo = [
+            'pageName'=> 'bucket_list',
+            'language' => 'de'
+        ];
+
+        if($this->isGranted('ROLE_ADMIN'))
+            $page = $pm->findByOrCreateIfDoesNotExist($pageinfo);
+        else {
+            $page = $pm->findOneBy($pageinfo);
+        }
+
+        if(!$page)
+            throw new NotFoundHttpException();
+
+        return $this->render('frontend/bucket_list.html.twig', [
+            'dynamic_page_id' => $page->getId(),
+            'page' => $page,
+        ]);
+    }
 }

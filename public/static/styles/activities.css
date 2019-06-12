@@ -736,12 +736,16 @@ svg.leaflet-image-layer.leaflet-interactive path {
   justify-content: center; }
 
 .activities__selectors__filters {
-    width: 60%; }
+    width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; }
 
 .activities__selectors__filters h3 {
       text-align: center; }
 
 .activities__selectors__filters ul {
+      width: 100%;
       list-style: none;
       display: flex;
       flex-wrap: wrap;
@@ -750,32 +754,22 @@ svg.leaflet-image-layer.leaflet-interactive path {
 .activities__selectors__filters ul li {
         display: inline-block;
         min-width: 16.666%;
-        background: linear-gradient(45deg, rgba(53, 207, 212, 0.95), rgba(20, 161, 230, 0.95));
-        border-radius: 5px;
+        background-image: linear-gradient(to right, rgba(98, 171, 3, 0.75), rgba(0, 77, 0, 0.75));
+        background-size: 200%;
+        border-radius: 4px;
         border: 2px solid white;
-        padding: .2em .4em;
+        padding: .25em .75em;
         text-align: center;
         margin: .5em 0;
         position: relative;
         transition: all .3s ease-in-out;
         cursor: pointer;
-        color: white; }
+        color: white;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25); }
 
 .activities__selectors__filters ul li.selected {
-          border: 2px solid rgba(102, 102, 102, 0.7); }
-
-.activities__selectors__filters ul li.selected::after {
-            content: 'x';
-            font-size: .75em;
-            position: absolute;
-            right: -.75em;
-            top: -.75em;
-            background: linear-gradient(45deg, rgba(53, 207, 212, 0.95), rgba(20, 161, 230, 0.95));
-            color: white;
-            border-radius: 50%;
-            width: 1em;
-            height: 1em;
-            line-height: .75em; }
+          background-position: right center;
+          border: 2px solid rgba(0, 77, 0, 0.5); }
 
 .activities__selectors__search {
     width: 40%; }
@@ -783,8 +777,26 @@ svg.leaflet-image-layer.leaflet-interactive path {
 .activities__selectors__search h3 {
       text-align: center; }
 
+.activities__selectors__search .form__item {
+      display: flex; }
+
+.activities__selectors__search .form__item__label {
+        margin: 0 .5em;
+        width: 20%; }
+
 .activities__selectors__search .form__item__input {
-      width: 80%; }
+        width: 70%; }
+
+.activities__selectors__search .form__item__input input {
+          margin: .5em;
+          padding: .25em .75em;
+          border: 2px solid #62ab03;
+          border-radius: 4px;
+          box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
+          transition: all .3s ease-in-out; }
+
+.activities__selectors__search .form__item__input input:focus {
+            border: 2px solid rgba(98, 171, 3, 0.85); }
 
 .activities__list {
   width: 90%;

@@ -1,12 +1,24 @@
-<div class="cart_bar">
+<div class="cart_bar cart_bar--initial">
 
-    <div class="cart_bar__icon">
-        <svg class="icon icon--cart"><use xlink:href="#icon-cart"></use></svg>
+    <div class="cart_bar__title">
+        <h4>Activity Bag</h4>
     </div>
-    <div class="cart_bar__text">
-        <p>You have selected <span></span> activities</p>
+
+    <div class="cart_bar__content">
+        <div class="cart_bar__content__text">
+            <svg class="icon icon--heart">
+                <use xlink:href="#heart"></use>
+            </svg>
+            <p data-show="empty">You don't have selected any activity yet</p>
+            <p data-show="no-empty">You have selected <span></span> activities</p>
+        </div>
+        <div class="cart_bar__content__button">
+            <a data-show="empty" href="{{ path('activities') }}" class="btn btn--small-circle">See activities</a>
+
+            <a data-show="no-empty" href="{{ path('contact') }}" class="btn btn--small-circle">View all</a>
+            <a data-show="no-empty" href="{{ path('contact') }}" class="btn btn--small-circle">Go to contact</a>
+        </div>
     </div>
-    <div class="cart_bar__button">
-        <a href="{{ path('contact') }}" class="btn btn--small-circle">Go to contact page</a>
-    </div>
+
+
 </div>

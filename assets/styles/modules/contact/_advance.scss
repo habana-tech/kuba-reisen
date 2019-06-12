@@ -19,8 +19,7 @@
 
 .travel-interest{
     margin: 2em 0;
-    width: 120%;
-    left: -10%;
+    width: 100%;
     position: relative;
 
     &__title{
@@ -32,13 +31,12 @@
 
     &__options{
         display: grid;
-        grid-template-areas: "img1 img5 img9 img13"
-                             "img2 img6 img10 img14"
-                             "img3 img7 img11 img15"
-                             "img4 img8 img12 img16";
+        grid-template-areas: "img1 img2 img3"
+                             "img4 img5 img6"
+                             "img7 img8 img9";
 
-        grid-template-rows: 40vh 40vh 40vh 40vh;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 40vh 40vh 40vh;
+        grid-template-columns: 1fr 1fr 1fr;
         grid-gap: .25em;
 
     }
