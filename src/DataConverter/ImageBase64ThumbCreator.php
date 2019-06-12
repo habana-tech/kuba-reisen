@@ -27,10 +27,8 @@ class ImageBase64ThumbCreator extends AbstractController
     public function __construct(string $path = 'folder')
     {
         $path = $this::getStaticRelativePath($path);
-
-//        dump($temp);
         $path = __DIR__.'/../../public/'. $path;
-//        dump($path);
+
         if(file_exists($path))
         {
            if($image = @imagecreatefromjpeg($path) or $image = @imagecreatefrompng($path))

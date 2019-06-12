@@ -121,6 +121,10 @@
 }
 
 
+/** Hiding meno on editing mode*/
+body.admin-logged .menu-icon-wrapper{
+    display: none;
+}
 /* Menu icon styles */
 
 .menu-icon-wrapper {
