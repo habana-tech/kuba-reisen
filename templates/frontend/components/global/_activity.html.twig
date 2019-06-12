@@ -9,7 +9,7 @@
                 <h4>{{ activity.name }}</h4>
             </div>
             <div class="activity__content__description">
-                {{ activity.description | raw }}
+                {{ activity.description | truncate(50, true) | raw }}
             </div>
         </div>
     </a>
