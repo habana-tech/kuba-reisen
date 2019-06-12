@@ -12,7 +12,8 @@ class LoadActivities {
     }
 
     events(){
-        this.btnLoad.addEventListener('click', this.loadMore.bind(this));
+        if (this.btnLoad != null)
+            this.btnLoad.addEventListener('click', this.loadMore.bind(this));
     }
 
     makeActivity(image, imageAlt, name, description, link){

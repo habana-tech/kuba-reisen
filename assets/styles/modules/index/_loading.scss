@@ -20,7 +20,7 @@ body.loading{
     display: flex;
     justify-content: center;
     align-items: center;
-    background: black;
+    background: linear-gradient(-45deg, $light-blue, $dark-blue);
     z-index: 10;
     opacity: 1;
     transition: all;

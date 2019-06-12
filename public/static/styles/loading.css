@@ -22,7 +22,7 @@ body.loading {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: black;
+  background: linear-gradient(-45deg, #35cfd4, #14a1e6);
   z-index: 10;
   opacity: 1;
   transition: all; }
