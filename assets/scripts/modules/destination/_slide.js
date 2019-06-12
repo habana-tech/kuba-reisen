@@ -277,14 +277,18 @@ class Slide {
                     this.closeDetailsBoxes().then(() => this.isAnimating = false);
                 }
             })));
+
             // The total number of slides.
             this.slidesTotal = this.slides.length;
             // Set the total number of slides in the navigation box.
             this.navigation.setTotal(this.slidesTotal);
             // At least 2 slides to continue...
+
             if ( this.slidesTotal < 2 ) {
-                return false;
+
             }
+
+
             // Current slide position.
             this.current = 0;
             // Initialize the slideshow.

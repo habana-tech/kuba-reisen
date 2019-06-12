@@ -6007,7 +6007,7 @@ body {
       transition: -webkit-transform .5s ease-in-out;
       transition: transform .5s ease-in-out;
       transition: transform .5s ease-in-out, -webkit-transform .5s ease-in-out; }
-.interest label span {
+.interest label > span {
       font-family: 'Baloo Bhaina';
       font-size: 1.1em;
       font-weight: 700;

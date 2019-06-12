@@ -2,14 +2,14 @@
 <div class="activity">
     <a href="{{ path('activity', {'id':activity.id, 'name':activity.machineName}) }}">
         <div class="activity__image">
-            <img src="{{ asset(activity.imagePath ) }}" alt="">
+            <img src="{{ activity.dynamicPage.elementAttr('activity_images_img1', 'src', asset('img/header_pic.jpg')) }}" alt="">
         </div>
         <div class="activity__content">
             <div class="activity__content__title">
                 <h4>{{ activity.name }}</h4>
             </div>
             <div class="activity__content__description">
-                {{ activity.description | raw }}
+                {{ activity.description | truncate(50, true) | raw }}
             </div>
         </div>
     </a>

@@ -4,12 +4,13 @@
             data-grape_id="contact_interest_image_{{ i }}"
             src="{{ page.ElementAttr('contact_interest_image_'~i, 'src', asset('img/grid/square1.jpg')) }}"
             alt="">
-        <span data-grape_id="contact_interest_text_{{ i }}" >
+        <span>
             <svg class="icon icon--cart">
                 <use xlink:href="#heart"></use>
             </svg>
-
-            {{ page.ElementContent('contact_interest_text_'~i, 'interest '~i) | raw }}
+            <span data-grape_id="contact_interest_text_{{ i }}">
+                {{ page.ElementContent('contact_interest_text_'~i, 'interest '~i) | raw }}
+            </span>
         </span>
     </label>
     <input id="interest{{ i }}" name="interest{{ i }}" type="checkbox">
