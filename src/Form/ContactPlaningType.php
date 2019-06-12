@@ -51,10 +51,10 @@ class ContactPlaningType extends AbstractType
                 'expanded'=>false])
 
             ->add('flyTicket',ChoiceType::class,[
-                'label'=>"Have you a fly ticket already?",
+                'label'=>"Hast du schon ein Flugticket?",
                 'choices'=>[
-                    'Yes'=>'true',
-                    'Not yet'=>'false',
+                    'Ja'=>'true',
+                    'Noch nicht'=>'false',
                 ],
                 'expanded'=>true,
                 'attr'=>['class'=>'radio-switch'],
