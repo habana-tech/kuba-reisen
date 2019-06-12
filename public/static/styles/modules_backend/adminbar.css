@@ -28,3 +28,5 @@
   border: dashed #62ab03 4px;
   border-radius: 20px;
   transition: border ease .5s; }
+  .header__menu-icon[data-gjs-type="default"] {
+  display: none; }
