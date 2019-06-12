@@ -4185,7 +4185,7 @@ body > textarea {
   width: inherit !important;
   max-width: 90vw !important;
   min-width: 90vw; }
-#tie-btn-draw, #tie-btn-shape, #tie-btn-icon, #tie-btn-text {
+#tie-btn-draw, #tie-btn-shape, #tie-btn-icon, #tie-btn-text, #tie-btn-flip {
   display: none; }
 .gjs-rte-action[title="Link"] {
   display: none; }
@@ -4684,7 +4684,7 @@ body > textarea {
   background-color:rgba(53, 207, 212, 0.3); }
 body {
   position: relative;
-  overflow-x: hidden; }
+  /* overflow-x: hidden;*/ }
 .icon {
   display: block;
   width: 1.5em;
@@ -4864,6 +4864,9 @@ Descr: Custom radio toggle
             transform: translateY(-100%); }
 .header--pinned, .headroom--not-top.headroom--pinned {
   background-position: 100% 0; }
+/** Hiding meno on editing mode*/
+body.admin-logged .menu-icon-wrapper {
+  display: none; }
 /* Menu icon styles */
 .menu-icon-wrapper {
   position: relative;

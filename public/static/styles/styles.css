@@ -6,7 +6,7 @@
 
 body {
   position: relative;
-  overflow-x: hidden; }
+  /* overflow-x: hidden;*/ }
 
 .icon {
   display: block;
@@ -224,6 +224,11 @@ Descr: Custom radio toggle
 
 .header--pinned, .headroom--not-top.headroom--pinned {
   background-position: 100% 0; }
+
+/** Hiding meno on editing mode*/
+
+body.admin-logged .menu-icon-wrapper {
+  display: none; }
 
 /* Menu icon styles */
 
