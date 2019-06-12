@@ -617,15 +617,15 @@ Descr: Custom radio toggle
 .cart_bar {
   position: fixed;
   bottom: 2em;
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
   right: 0;
   margin: auto;
   z-index: 5;
   padding: 1em 0;
   background: linear-gradient(45deg, rgba(53, 207, 212, 0.9), rgba(20, 161, 230, 0.9));
   color: white;
-  border: 1px solid rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(255, 255, 255, 0.9);
   display: flex;
   align-items: center;
   justify-content: space-between;
