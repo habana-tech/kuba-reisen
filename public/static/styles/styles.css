@@ -832,7 +832,7 @@ Descr: Custom radio toggle
         height: 100%;
         width: 100%;
         opacity: 0;
-        background-color: rgba(102, 102, 102, 0.45);
+        background-color: rgba(53, 207, 212, 0.25);
         transition: opacity .3s ease-in-out;
         display: flex;
         justify-content: center;
