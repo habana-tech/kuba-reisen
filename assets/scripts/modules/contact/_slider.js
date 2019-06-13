@@ -5,7 +5,7 @@ class MakeSlider {
         this.input = document.querySelector('#'+prefix);
         this.slider = document.querySelector('#'+prefix+'_container');
         this.span = document.querySelector('#'+prefix+'_value');
-        this.labels = document.querySelector('#'+prefix+'_labels');
+        this.labels = document.querySelector('#'+prefix+'_labels ul');
 
         this.labelsLength = this.labels.childElementCount;
 
