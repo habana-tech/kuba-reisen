@@ -610,7 +610,7 @@ Descr: Custom radio toggle
 
 .activity__content {
     position: relative;
-    top: -1em;
+    top: -.75em;
     background-color: white;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
     padding: 1em;

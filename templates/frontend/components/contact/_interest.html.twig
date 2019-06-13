@@ -1,9 +1,20 @@
 <div class="interest" style="grid-area: img{{ i }}">
     <label for="interest{{ i }}">
-        <img
-            data-grape_id="contact_interest_image_{{ i }}"
-            src="{{ page.ElementAttr('contact_interest_image_'~i, 'src', asset('img/grid/square1.jpg')) }}"
-            alt="">
+
+        {% if is_granted('ROLE_EDITOR') and not app.request.get('preview') %}
+            <img
+                data-grape_id="contact_interest_image_{{ i }}"
+                src="{{ page.ElementAttr('contact_interest_image_'~i, 'src', asset('img/grid/square1.jpg')) }}"
+                alt="">
+        {% else %}
+            {{ imgTagContent(
+                page.ElementAttr('contact_interest_image_'~i, 'src', asset('img/grid/square1.jpg')),
+                page.ElementAttr('contact_interest_image_'~i, 'srcb64', asset('img/grid/square1.jpg')),
+                '',
+                '(min-width:1000px) 25vw, 50vw',
+                '') | raw }}
+        {% endif %}
+
         <span>
             <svg class="icon icon--heart ">
                 <symbol display="block" id="heart2" x="0px" y="0px" viewBox="-25 0 560 560"  xml:space="preserve">
@@ -17,7 +28,7 @@
                         c13.148,0,26.597,3.781,40.343,11.352s25.302,15.936,34.665,25.1c9.363,9.164,18.627,19.722,27.791,31.676
                         s15.141,20.321,17.93,25.102c2.789,4.781,4.98,8.566,6.574,11.355l6.571-10.758c3.984-7.172,10.16-15.838,18.527-25.998
                         c8.367-10.16,17.631-20.42,27.791-30.779c10.16-10.359,22.113-19.125,35.859-26.297c13.747-7.172,27.194-10.758,40.343-10.758
-                        c35.461,0,65.246,12.451,89.35,37.354C498.457,101.159,510.51,131.54,510.51,167.399z"/>
+                        c35.461,0,65.246,12.451,89.35,37.354C498.457,101.159,510.51,131.54,510.51,167.399z"></path>
                 </symbol>
             </svg>
             <span data-grape_id="contact_interest_text_{{ i }}" data-grape_format="txt">
