@@ -1,28 +1,4 @@
-.description {
-  width: 75%;
-  margin: auto;
-  position: relative; }
-  .description__content {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap; }
-  .description__content__text {
-      width: 100%; }
-  .description__content__timetable {
-      width: 100%; }
-  .description__content__timetable table {
-        width: 100%; }
-  .description__content__timetable table thead {
-          font-weight: bold;
-          text-transform: uppercase; }
-  .description__content__included-details {
-      width: 100%;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around; }
-  .description__content__included-details__included, .description__content__included-details__not-included {
-        width: 47%; }
-  body {
+body {
   --color-text: #000;
   --color-bg: #fff;
   --color-link: #000;
@@ -35,18 +11,22 @@
   --color-close-bg: #6a6a6a;
   --color-close: #fff;
   --color-details-hover: #858585; }
-  /* Icons */
-  .icon {
+
+/* Icons */
+
+.icon {
   display: block;
   width: 1.5em;
   height: 1.5em;
   margin: 0 auto;
   fill: currentColor; }
-  .slideshow {
+
+.slideshow {
   position: relative;
   width: 100%;
   margin-top: 1rem; }
-  .slideshow::after {
+
+.slideshow::after {
     content: '';
     position: absolute;
     top: 0;
@@ -56,9 +36,11 @@
     background: rgba(0, 0, 0, 0.4);
     opacity: 0;
     transition: opacity 0.4s; }
-  .slideshow--details::after {
+
+.slideshow--details::after {
   opacity: 1; }
-  .slide {
+
+.slide {
   width: 100%;
   height: 50vh;
   top: 0;
@@ -67,17 +49,20 @@
   overflow-x: hidden;
   pointer-events: none;
   opacity: 0; }
-  .slide--current {
+
+.slide--current {
     opacity: 1;
     z-index: 1;
     pointer-events: auto;
     position: relative; }
-  .slide__wrap {
+
+.slide__wrap {
     width: 100%;
     height: 50vh;
     overflow: hidden;
     position: relative; }
-  .slide__img {
+
+.slide__img {
     width: 100%;
     height: 100%;
     left: 0;
@@ -87,7 +72,8 @@
     background-position: 50% 50%;
     position: absolute;
     pointer-events: none; }
-  .slide__title-wrap {
+
+.slide__title-wrap {
     position: absolute;
     width: 50%;
     top: 50%;
@@ -95,17 +81,21 @@
             transform: translateY(-50%);
     left: 4em;
     color: white; }
-  .slide__title {
+
+.slide__title {
     margin: 0;
     font-size: 1.5rem;
     line-height: 0.9;
     white-space: pre; }
-  .slide__title span {
+
+.slide__title span {
       display: inline-block; }
-  .slide__subtitle {
+
+.slide__subtitle {
     font-size: 1.15rem;
     font-weight: normal; }
-  .boxnav {
+
+.boxnav {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -113,7 +103,8 @@
   z-index: 2;
   width: 100%;
   background-color: white; }
-  .boxnav__item {
+
+.boxnav__item {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -121,16 +112,20 @@
     border: 0;
     height: 4rem;
     flex: 1; }
-  .boxnav__item--prev:hover,
+
+.boxnav__item--prev:hover,
 .boxnav__item--next:hover {
   color: var(--color-nav-hover); }
-  .boxnav__item:focus {
+
+.boxnav__item:focus {
   outline: none; }
-  .boxnav__label {
+
+.boxnav__label {
   padding: 0 0.5rem;
   font-size: 1.15rem;
   position: relative; }
-  .boxnav__label--total::before {
+
+.boxnav__label--total::before {
   content: '';
   position: absolute;
   right: 100%;
@@ -140,19 +135,24 @@
   background: #000;
   -webkit-transform: rotate(22.5deg);
           transform: rotate(22.5deg); }
-  .icon--caret-rot {
+
+.icon--caret-rot {
   -webkit-transform: rotate(180deg);
           transform: rotate(180deg); }
-  .category {
+
+.category {
   font-weight: normal; }
-  .action--addtocart {
+
+.action--addtocart {
   background: var(--color-cart-bg);
   color: var(--color-cart); }
-  .action--close {
+
+.action--close {
   background: var(--color-close-bg);
   color: var(--color-close);
   text-transform: lowercase; }
-  @media screen and (min-width: 53em) {
+
+@media screen and (min-width: 53em) {
   .slideshow {
     overflow: hidden;
     margin: 0;
@@ -178,16 +178,80 @@
     width: 5em;
     height: 4em;
     flex: none; } }
-  .other_activities {
+
+.description-text {
+  width: 75%;
+  margin: auto;
+  position: relative; }
+
+.description-text__content {
+    width: 100%; }
+
+.description-map {
+  width: 85%;
+  margin: auto;
+  position: relative; }
+
+.description-map__content {
+    position: relative;
+    overflow: hidden; }
+
+.description-map__content #mapid {
+      height: 50vh; }
+
+.description-itinerary {
+  width: 75%;
+  margin: auto;
+  position: relative;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center; }
+
+.description-itinerary__content h3 {
+    border-bottom: 1px solid #f9c90d; }
+
+.description-itinerary__content ul {
+    width: 100%; }
+
+.description-timetable {
+  width: 75%;
+  margin: auto;
+  position: relative; }
+
+.description-timetable__content {
+    width: 100%; }
+
+.description-timetable__content table {
+      width: 100%;
+      border-radius: 2px; }
+
+.description-timetable__content table thead {
+        font-weight: bold;
+        text-transform: uppercase;
+        background: linear-gradient(15deg, #004d00, #62ab03);
+        color: white; }
+
+.description-include__included-details {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; }
+
+.description-include__included-details__included, .description-include__included-details__not-included {
+    width: 47%; }
+
+.other_activities {
   width: 90%;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around; }
-  .float_button {
+
+.float_button {
   position: absolute;
   height: 100%; }
-  .float_button__button {
+
+.float_button__button {
     position: -webkit-sticky;
     position: sticky;
     left: 0;
@@ -207,5 +271,6 @@
     transition: -webkit-transform .3s ease-in-out;
     transition: transform .3s ease-in-out;
     transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out; }
-  .float_button__button--disable {
+
+.float_button__button--disable {
       background: linear-gradient(45deg, rgba(102, 102, 102, 0.6), rgba(102, 102, 102, 0.9)); }

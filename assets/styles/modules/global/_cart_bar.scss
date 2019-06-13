@@ -62,16 +62,24 @@
     }
 
     & [data-show='empty']{
-        display: none;
+        visibility: hidden;
+        position: relative;
+        height: 0;
+        width: 0;
     }
 
     &--initial{
         & [data-show='no-empty']{
-            display: none;
+            visibility: hidden;
+            position: relative;
+            height: 0;
+            width: 0;
         }
 
         & [data-show='empty']{
-            display: block;
+            visibility: visible;
+            height: auto;
+            width: auto;
         }
     }
 

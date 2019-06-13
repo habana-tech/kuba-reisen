@@ -1,0 +1,22 @@
+.description-timetable{
+    width: 75%;
+    margin: auto;
+    position: relative;
+
+    &__content{
+        width: 100%;
+
+        & table{
+            width: 100%;
+            border-radius: 2px;
+
+            & thead{
+                font-weight: bold;
+                text-transform: uppercase;
+                background: linear-gradient(15deg, $dark-green, $light-green);
+                color: white;
+            }
+        }
+
+    }
+}

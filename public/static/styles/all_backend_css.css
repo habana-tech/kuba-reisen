@@ -5241,11 +5241,19 @@ Descr: Custom radio toggle
     -webkit-transform: translateY(0);
             transform: translateY(0); }
 .cart_bar [data-show='empty'] {
-    display: none; }
+    visibility: hidden;
+    position: relative;
+    height: 0;
+    width: 0; }
 .cart_bar--initial [data-show='no-empty'] {
-    display: none; }
+    visibility: hidden;
+    position: relative;
+    height: 0;
+    width: 0; }
 .cart_bar--initial [data-show='empty'] {
-    display: block; }
+    visibility: visible;
+    height: auto;
+    width: auto; }
 .footer {
   display: flex;
   flex-wrap: wrap;
@@ -5499,30 +5507,6 @@ Descr: Custom radio toggle
     width: 100%;
     display: flex;
     justify-content: center; }
-.description {
-  width: 75%;
-  margin: auto;
-  position: relative; }
-.description__content {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap; }
-.description__content__text {
-      width: 100%; }
-.description__content__timetable {
-      width: 100%; }
-.description__content__timetable table {
-        width: 100%; }
-.description__content__timetable table thead {
-          font-weight: bold;
-          text-transform: uppercase; }
-.description__content__included-details {
-      width: 100%;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around; }
-.description__content__included-details__included, .description__content__included-details__not-included {
-        width: 47%; }
 body {
   --color-text: #000;
   --color-bg: #fff;
@@ -5679,6 +5663,53 @@ body {
     width: 5em;
     height: 4em;
     flex: none; } }
+.description-text {
+  width: 75%;
+  margin: auto;
+  position: relative; }
+.description-text__content {
+    width: 100%; }
+.description-map {
+  width: 85%;
+  margin: auto;
+  position: relative; }
+.description-map__content {
+    position: relative;
+    overflow: hidden; }
+.description-map__content #mapid {
+      height: 50vh; }
+.description-itinerary {
+  width: 75%;
+  margin: auto;
+  position: relative;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center; }
+.description-itinerary__content h3 {
+    border-bottom: 1px solid #f9c90d; }
+.description-itinerary__content ul {
+    width: 100%; }
+.description-timetable {
+  width: 75%;
+  margin: auto;
+  position: relative; }
+.description-timetable__content {
+    width: 100%; }
+.description-timetable__content table {
+      width: 100%;
+      border-radius: 2px; }
+.description-timetable__content table thead {
+        font-weight: bold;
+        text-transform: uppercase;
+        background: linear-gradient(15deg, #004d00, #62ab03);
+        color: white; }
+.description-include__included-details {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; }
+.description-include__included-details__included, .description-include__included-details__not-included {
+    width: 47%; }
 .other_activities {
   width: 90%;
   margin: auto;

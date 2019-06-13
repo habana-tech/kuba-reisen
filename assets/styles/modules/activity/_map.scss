@@ -1,0 +1,14 @@
+.description-map{
+    width: 85%;
+    margin: auto;
+    position: relative;
+
+    &__content{
+        position: relative;
+        overflow: hidden;
+
+        #mapid {
+            height: 50vh;
+        }
+    }
+}

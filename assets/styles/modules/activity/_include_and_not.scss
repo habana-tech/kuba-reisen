@@ -1,0 +1,14 @@
+.description-include{
+
+    &__included-details{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+
+        &__included, &__not-included{
+            width: 47%;
+        }
+    }
+
+}

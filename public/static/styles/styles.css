@@ -674,13 +674,21 @@ Descr: Custom radio toggle
             transform: translateY(0); }
 
 .cart_bar [data-show='empty'] {
-    display: none; }
+    visibility: hidden;
+    position: relative;
+    height: 0;
+    width: 0; }
 
 .cart_bar--initial [data-show='no-empty'] {
-    display: none; }
+    visibility: hidden;
+    position: relative;
+    height: 0;
+    width: 0; }
 
 .cart_bar--initial [data-show='empty'] {
-    display: block; }
+    visibility: visible;
+    height: auto;
+    width: auto; }
 
 .footer {
   display: flex;

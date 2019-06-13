@@ -35,6 +35,8 @@ class AddtoCart {
     }
 
     setActivity(){
+        this.cartBar.classList.remove('cart_bar--initial');
+
         let id = this.buttonAdd.getAttribute('data-id');
         let currentValue = getCookie('ids');
 

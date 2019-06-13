@@ -1,0 +1,19 @@
+.description-itinerary{
+    width: 75%;
+    margin: auto;
+    position: relative;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+
+    &__content{
+
+        & h3{
+            border-bottom: 1px solid $light-orange;
+        }
+
+        & ul{
+            width: 100%;
+        }
+    }
+}
