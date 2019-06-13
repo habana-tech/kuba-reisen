@@ -3,10 +3,10 @@
     <div class="section__title ">
         <div class="section__title__highlight section__title__highlight--orange">
             <h2 data-grape_id="contact_t2" data-grape_format="txt">
-            {{ page.ElementContent('contact_t2',"More info, means better options...") | raw }}</h2>
+            {{ page.ElementContent('contact_t2',"Mehr Info bedeutet bessere Optionen") | raw }}</h2>
         </div>
         <div class="section__title__description">
-            <p data-grape_id="contact_p2">{{ page.ElementContent('contact_p2',"Lorem ipsum dolor sit amet, consectetur adipisicing elit.") | raw }}</p>
+            <p data-grape_id="contact_p2">{{ page.ElementContent('contact_p2',"Wählen Sie so viele wie") | raw }}</p>
         </div>
     </div>
 
@@ -25,7 +25,7 @@
 
     <div class="travel-interest">
         <div class="travel-interest__title">
-            <h3>Travel interest</h3>
+            <h3>Wählen Sie aus, was Sie interessiert</h3>
         </div>
 
         <div class="travel-interest__options">
@@ -64,27 +64,24 @@
             <div id="{{ form.selfConsider.vars.id }}_container"></div>
             <div class="slider-labels">
                 <div class="selfCharacter slider-labels_label first">
-                    {{ 'contact.selfConsider.min'|trans }}
+                    Nichts
                 </div>
                 <div class="selfCharacter slider-labels_label value" id="{{ form.selfConsider.vars.id }}_value">{{ form.selfConsider.vars.id }}</div>
                 <div class="selfCharacter slider-labels_label last">
-                    {{ 'contact.selfConsider.max'|trans }}
+                    vollständig
                 </div>
             </div>
 
         </div>
-        <div class="visually-hidden admin_visible_list" data-grape_id="form__item__label_selfConsider_options">
+        <div class="visually-hidden admin_visible_list" data-grape_id="form__item__label_selfConsider_options" id="{{ form.selfConsider.vars.id }}_labels">
             {% if page.ElementContent('form__item__label_selfConsider_options') %}
                 {{ page.ElementContent('form__item__label_selfConsider_options') | raw }}
             {% else %}
-            <ul class="visually-hidden admin_visible_list"
-            id="{{ form.selfConsider.vars.id }}_labels">
-            
-                <li>Text A</li>
-                <li>Text B</li>
-                <li>Text C</li>
-                <li>Text D</li>
-                <li>Text E</li>
+            <ul class="visually-hidden admin_visible_list">
+                <li>kaum</li>
+                <li>ein bisschen</li>
+                <li>hübsch</li>
+                <li>viel</li>
             </ul>   
             {% endif %}
         
@@ -108,28 +105,24 @@
             <div id="{{ form.selfCharacter.vars.id }}_container"></div>
             <div class="slider-labels">
                 <div class="selfCharacter slider-labels_label first">
-                    {{ 'contact.selfCharacter.min'|trans }}
+                    Nichts
                 </div>
                 <div class="selfCharacter slider-labels_label value" id="{{ form.selfCharacter.vars.id }}_value">{{ form.selfCharacter.vars.id }}</div>
                 <div class="selfCharacter slider-labels_label last">
-                    {{ 'contact.selfCharacter.max'|trans }}
+                    vollständig
                 </div>
             </div>
 
         </div>
-        <div class="visually-hidden admin_visible_list" data-grape_id="form__item__label_selfCharacter_options">
+        <div class="visually-hidden admin_visible_list" data-grape_id="form__item__label_selfCharacter_options" id="{{ form.selfCharacter.vars.id }}_labels">
             {% if page.ElementContent('form__item__label_selfCharacter_options') %}
                 {{ page.ElementContent('form__item__label_selfCharacter_options') | raw }}
             {% else %}
-            <ul class="visually-hidden admin_visible_list"
-                id="{{ form.selfCharacter.vars.id }}_labels">
-
-                
-                <li>Text A</li>
-                <li>Text B</li>
-                <li>Text C</li>
-                <li>Text D</li>
-                <li>Text E</li>
+            <ul class="visually-hidden admin_visible_list">
+                <li>kaum</li>
+                <li>ein bisschen</li>
+                <li>hübsch</li>
+                <li>viel</li>
             </ul>   
             {% endif %}
             
@@ -150,29 +143,25 @@
             <div id="{{ form.selfLuxury.vars.id }}_container"></div>
             <div class="slider-labels">
                 <div class="selfCharacter slider-labels_label first">
-                    {{ 'contact.selfLuxury.min'|trans }}
+                    Nichts
                 </div>
                 <div class="selfCharacter slider-labels_label value" id="{{ form.selfLuxury.vars.id }}_value">{{ form.selfLuxury.vars.id }}</div>
                 <div class="selfCharacter slider-labels_label last">
-                    {{ 'contact.selfLuxury.max'|trans }}
+                    vollständig
                 </div>
             </div>
 
         </div>
-        <div class="visually-hidden admin_visible_list" data-grape_id="form__item__label_selfLuxury_options">
+        <div class="visually-hidden admin_visible_list" data-grape_id="form__item__label_selfLuxury_options" id="{{ form.selfLuxury.vars.id }}_labels">
             {% if page.ElementContent('form__item__label_selfLuxury_options') %}
                 {{ page.ElementContent('form__item__label_selfLuxury_options') | raw }}
             {% else %}
 
-            <ul class="visually-hidden admin_visible_list"
-            id="{{ form.selfLuxury.vars.id }}_labels">
-
-            
-                <li>Text A</li>
-                <li>Text B</li>
-                <li>Text C</li>
-                <li>Text D</li>
-                <li>Text E</li>
+            <ul class="visually-hidden admin_visible_list">
+                <li>kaum</li>
+                <li>ein bisschen</li>
+                <li>hübsch</li>
+                <li>viel</li>
             </ul>   
             {% endif %}
         

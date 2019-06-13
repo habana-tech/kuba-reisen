@@ -62,20 +62,21 @@ class ContactPlaningType extends AbstractType
             ])
 
             ->add('selfConsider',HiddenType::class,[
-                'label'=>"contactForm.selfConsider"
+                'label'=>"Wie abenteuerlich bist du?"
             ])
 
             ->add('selfCharacter', HiddenType::class ,[
-                'label'=>"contactForm.selfCharacter"
+                'label'=>"Wie sehr genießt du die Natur?"
             ] )
 
-            ->add('selfLuxury', HiddenType::class )
+            ->add('selfLuxury', HiddenType::class,[
+             'label'=>"Wie viel bevorzugen Sie Luxus?"] )
 
-            ->add('name')
+            ->add('name', null, ['label'=>'Name'])
             ->add('email', EmailType::class ,[
-                'label'=>'field.email'
+                'label'=>'E-Mail'
             ])
-            ->add('message')
+            ->add('message', null, ['label'=>'Nachricht'])
 
             ->add('locale', HiddenType::class, ['attr'=>['value' => $options['locale']]])
             ->add('requestId', HiddenType::class)

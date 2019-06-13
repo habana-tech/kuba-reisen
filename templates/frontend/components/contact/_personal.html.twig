@@ -3,10 +3,10 @@
     <div class="section__title ">
         <div class="section__title__highlight section__title__highlight--orange">
             <h2 data-grape_id="contact_t3" data-grape_format="txt">
-            {{ page.ElementContent('contact_t3',"How we can contact to you") | raw }}</h2>
+            {{ page.ElementContent('contact_t3',"Wie können wir Sie kontacktieren?") | raw }}</h2>
         </div>
         <div class="section__title__description">
-            <p data-grape_id="contact_p3">{{ page.ElementContent('contact_p3',"Lorem ipsum dolor sit amet, consectetur adipisicing elit.") | raw }}</p>
+            <p data-grape_id="contact_p3">{{ page.ElementContent('contact_p3',"Lassen Sie uns mehr über die Dinge wissen, die Sie mögen") | raw }}</p>
         </div>
     </div>
 
@@ -57,7 +57,7 @@
     </div>
 
     <div class="form__item">
-        <a class="btn" href="#">{{ button_label|default('Send form') }}</a>
+        <a class="btn" href="#">{{ button_label|default('Sende Formular') }}</a>
     </div>
 
     {{ form_widget(form.interests) }}
