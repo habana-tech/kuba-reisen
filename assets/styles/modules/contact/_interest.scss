@@ -66,7 +66,7 @@
 
     &:hover{
         & label::after{
-            background: linear-gradient(-45deg, rgba($light-blue, .8), transparent, rgba($dark-blue, .8));
+            background: linear-gradient(-45deg, rgba($light-blue, .8), rgb(black, .3), rgba($dark-blue, .8));
         }
 
         & img{
@@ -89,7 +89,7 @@
             }
 
             &::after{
-                background: linear-gradient(-45deg, rgba($light-blue, .6), transparent, rgba($dark-blue, .6));
+                background: linear-gradient(-45deg, rgba($light-blue, .6), rgb(black, .3), rgba($dark-blue, .6));
             }
         }
 

@@ -21,7 +21,7 @@
 
             {% if is_granted('ROLE_EDITOR') and not app.request.get('preview') %}
                 <div class="feature__image">
-                    <img src="{{ page.ElementAttr('feature_lists_img'~i, 'src', asset('img/header_pic.jpg')) }}">
+                    <img data-grape_id="feature_lists_img{{ i }}" src="{{ page.ElementAttr('feature_lists_img'~i, 'src', asset('img/header_pic.jpg')) }}">
                 </div>
             {% else %}
                 <div class="feature__image">
