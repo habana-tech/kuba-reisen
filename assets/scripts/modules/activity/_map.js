@@ -12,6 +12,8 @@ class ActivityMap {
         new mapboxgl.Marker()
             .setLngLat([-82.329, 23.094])
             .addTo(this.map);
+
+        this.map.scrollZoom.disable();
     }
 }
 
