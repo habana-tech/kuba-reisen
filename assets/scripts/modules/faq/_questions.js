@@ -12,7 +12,7 @@ class Questions{
     }
 
     expand(e){
-        console.log(e);
+        console.log(e);;
         let answer = e.target.parentNode.parentNode.children[1];
         answer.classList.toggle('question__answer--active');
     }
