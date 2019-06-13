@@ -580,7 +580,7 @@ Descr: Custom radio toggle
   min-height: 75vh; }
 
 .activity {
-  width: 30%;
+  width: 32%;
   margin: .5em 0;
   cursor: pointer;
   position: relative; }
@@ -596,7 +596,7 @@ Descr: Custom radio toggle
       text-decoration: underline; }
 
 .activity__image {
-    height: 35vh;
+    height: 40vh;
     overflow: hidden;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
     border-radius: 2px;

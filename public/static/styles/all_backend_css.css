@@ -5165,7 +5165,7 @@ Descr: Custom radio toggle
   z-index: 2;
   min-height: 75vh; }
 .activity {
-  width: 30%;
+  width: 32%;
   margin: .5em 0;
   cursor: pointer;
   position: relative; }
@@ -5177,7 +5177,7 @@ Descr: Custom radio toggle
 .activity a:hover h4 {
       text-decoration: underline; }
 .activity__image {
-    height: 35vh;
+    height: 40vh;
     overflow: hidden;
     box-shadow:2px 2px 10px rgba(0, 0, 0, 0.2);
     border-radius: 2px;
@@ -5896,7 +5896,7 @@ body {
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
   bottom: 0;
-  z-index: 3;
+  z-index: 2;
   height: 2em;
   background-color: white;
   width: 15em;

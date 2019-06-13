@@ -2,7 +2,12 @@
 <div class="activity">
     <a href="{{ path('activity', {'id':activity.id, 'name':activity.machineName}) }}">
         <div class="activity__image">
-            <img src="{{ activity.dynamicPage.elementAttr('activity_images_img1', 'src', asset('img/header_pic.jpg')) }}" alt="">
+            {{ imgTagContent(
+                activity.dynamicPage.elementAttr('activity_images_img1', 'src', asset('img/header_pic.jpg')),
+                activity.dynamicPage.elementAttr('activity_images_img1', 'srcb64', asset('img/header_pic.jpg'))
+                '',
+                '(min-width:1000px) 33vw, 90vw',
+                '') | raw }}
         </div>
         <div class="activity__content">
             <div class="activity__content__title">
