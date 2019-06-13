@@ -6,7 +6,7 @@
         <div class="questions__topic">
 
             <div class="questions__topic__title">
-                <h2 data-grape_id="faq_topic_title_{{ i }}">{{ page.ElementContent('faq_index_title_'~i,"Title of section") | raw }}</h2>
+                <h2 data-grape_id="faq_topic_title_{{ i }}" data-grape_format="txt">{{ page.ElementContent('faq_index_title_'~i,"Title of section") | raw }}</h2>
             </div>
 
             {% set amount_question = amount[loop.index0] %}
