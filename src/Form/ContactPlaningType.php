@@ -35,7 +35,7 @@ class ContactPlaningType extends AbstractType
             ->add('peopleAmount',ChoiceType::class,[
                 'label'=>"Mit wie vielen Personen reisen Sie?",
                 'choices'=>[
-                    'Just one'=>'Nur ich',
+                    'Nur ich'=>'Just one',
                     'Weniger als fünf'=>'Less than five',
                     'fünf oder mehr'=>'Five or more'
                     ],
