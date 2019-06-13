@@ -4689,7 +4689,7 @@ body.admin-logged .menu-icon-wrapper {
   background-color:rgba(53, 207, 212, 0.3); }
 body {
   position: relative;
-  /* overflow-x: hidden;*/ }
+  overflow-x: hidden; }
 .icon {
   display: block;
   width: 1.5em;

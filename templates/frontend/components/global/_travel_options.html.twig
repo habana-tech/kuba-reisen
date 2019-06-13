@@ -50,8 +50,18 @@
 
         {% if not is_granted('ROLE_EDITOR') or app.request.get('preview') %}
            <div class="travel-options__grid_overlay">
+
+               <a href="{{ path('contact') }}" style="grid-area: section1">
+                   <div>
+                       <h3>
+                           Individualreise
+                       </h3>
+                   </div>
+               </a>
+
                {% for filter in filterTags %}
-                   <a href="{{ path('activitiesFilter', {'filters':filter.title }) }}#activities" style="grid-area: section{{ loop.index }}">
+                   {% set pos = loop.index + 1 %}
+                   <a href="{{ path('activitiesFilter', {'filters':filter.title }) }}#activities" style="grid-area: section{{ pos }}">
                        <div>
                            <h3>
                                {{ filter.title }}

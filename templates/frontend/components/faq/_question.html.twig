@@ -3,10 +3,10 @@
     {% set amount = [12,3,8,1] %}
 
     {% for i in 1..4 %}
-        <div class="questions__topic">
+        <div id="section_question__{{ i }}" class="questions__topic">
 
             <div class="questions__topic__title">
-                <h2 data-grape_id="faq_topic_title_{{ i }}" data-grape_format="txt">{{ page.ElementContent('faq_index_title_'~i,"Title of section") | raw }}</h2>
+                <h2 data-grape_id="faq_topic_title_{{ i }}" data-grape_format="txt">{{ page.ElementContent('faq_topic_title_'~i,"Title of section") | raw }}</h2>
             </div>
 
             {% set amount_question = amount[loop.index0] %}
