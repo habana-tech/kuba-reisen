@@ -352,7 +352,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 .interest input[type='checkbox'] {
     display: none; }
 .interest:hover label::after {
-    background: linear-gradient(-45deg, rgba(53, 207, 212, 0.8), transparent, rgba(20, 161, 230, 0.8)); }
+    background: linear-gradient(-45deg, rgba(53, 207, 212, 0.8), rgba(0, 0, 0, 0.3), rgba(20, 161, 230, 0.8)); }
 .interest:hover img {
     -webkit-transform: scale(1.1);
             transform: scale(1.1); }
@@ -364,7 +364,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 .interest--checked label .icon--heart path {
       fill: #f96e10; }
 .interest--checked label::after {
-    background: linear-gradient(-45deg, rgba(53, 207, 212, 0.6), transparent, rgba(20, 161, 230, 0.6)); }
+    background: linear-gradient(-45deg, rgba(53, 207, 212, 0.6), rgba(0, 0, 0, 0.3), rgba(20, 161, 230, 0.6)); }
 .interest--checked img {
     -webkit-transform: scale(1.1) !important;
             transform: scale(1.1) !important; }

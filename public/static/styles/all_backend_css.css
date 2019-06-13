@@ -5815,7 +5815,7 @@ body {
     width: 100%;
     height: 100%;
     background:rgba(0, 0, 0, 0.4);
-    z-index: 1000;
+    z-index: 1;
     opacity: 0;
     transition: opacity 0.4s; }
 .slideshow--details::after {
@@ -5831,7 +5831,7 @@ body {
   opacity: 0; }
 .slide--current {
     opacity: 1;
-    z-index: 999;
+    z-index: 1;
     pointer-events: auto;
     position: relative; }
 .slide__wrap {
@@ -6083,7 +6083,7 @@ body {
 .interest input[type='checkbox'] {
     display: none; }
 .interest:hover label::after {
-    background:linear-gradient(-45deg, rgba(53, 207, 212, 0.8), transparent, rgba(20, 161, 230, 0.8)); }
+    background:linear-gradient(-45deg, rgba(53, 207, 212, 0.8), rgba(0, 0, 0, 0.3), rgba(20, 161, 230, 0.8)); }
 .interest:hover img {
     -webkit-transform: scale(1.1);
             transform: scale(1.1); }
@@ -6095,7 +6095,7 @@ body {
 .interest--checked label .icon--heart path {
       fill: #f96e10; }
 .interest--checked label::after {
-    background:linear-gradient(-45deg, rgba(53, 207, 212, 0.6), transparent, rgba(20, 161, 230, 0.6)); }
+    background:linear-gradient(-45deg, rgba(53, 207, 212, 0.6), rgba(0, 0, 0, 0.3), rgba(20, 161, 230, 0.6)); }
 .interest--checked img {
     -webkit-transform: scale(1.1) !important;
             transform: scale(1.1) !important; }

@@ -41,7 +41,7 @@ class Slide {
         }
         // Show the slide.
         show(direction) {
-            this.DOM.el.style.zIndex = 1000;
+            this.DOM.el.style.zIndex = 2;
             return this.toggle('show', direction);
         }
         // Show/Hide the slide.
@@ -75,7 +75,7 @@ class Slide {
                         this.DOM.el.style.opacity = 1;
                     },
                     onComplete: () => {
-                        this.DOM.el.style.zIndex = 999;
+                        this.DOM.el.style.zIndex = 1;
                         this.DOM.el.style.opacity = action === 'hide' ? 0 : 1;
                         resolve();
                     }
