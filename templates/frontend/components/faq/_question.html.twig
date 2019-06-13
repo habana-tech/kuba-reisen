@@ -13,22 +13,17 @@
             {% for j in 1..amount_question %}
                 <div class="question">
                     <div class="question__title">
-                        <h3 data-grape_id="faq_topic_question_title_{{ i }}_{{ j }}">
+                        <h3 data-grape_id="faq_topic_question_title_{{ i }}_{{ j }}" data-grape_format="txt">
                             {{ page.ElementContent('faq_topic_question_title_'~i~'_'~j,"Question title") | raw }}
                         </h3>
                     </div>
 
                     {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null %}
-                        <div class="question__answer question__answer--active">
+                        <div class="question__answer question__answer--active" data-grape_id="faq_topic_question_answer_{{ i }}_{{ j }}">
                     {% else %}
-                        <div class="question__answer ">
+                        <div class="question__answer" data-grape_id="faq_topic_question_answer_{{ i }}_{{ j }}">
                     {% endif %}
-                        <p  data-grape_id="faq_topic_question_answer_{{ i }}_{{ j }}">
-                            {{ page.ElementContent('faq_topic_question_answer_'~i~'_'~j,"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,") | raw }}
-                        </p>
-                        {#<p data-grape_id="faq_topic_question_p12">#}
-                            {#{{ page.ElementContent('faq_topic_question_p12',"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur eaque eius expedita in incidunt ipsa maiores modi mollitia natus optio praesentium quod reiciendis repellat, soluta totam veniam voluptatum. Aliquam, ex.") | raw }}#}
-                        {#</p>#}
+                        {{ page.ElementContent('faq_topic_question_answer_'~i~'_'~j,"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,") | raw }}
                     </div>
                 </div>
             {% endfor %}
