@@ -5701,7 +5701,7 @@ body {
 .description-timetable__content table thead {
         font-weight: bold;
         text-transform: uppercase;
-        background: linear-gradient(15deg, #004d00, #62ab03);
+        background: linear-gradient(45deg, #62ab03, #004d00);
         color: white; }
 .description-include__included-details {
   width: 100%;
