@@ -362,7 +362,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     -webkit-transform: scale(1.1);
             transform: scale(1.1); }
 .interest--checked label .icon--heart path {
-      fill: #35cfd4; }
+      fill: #f96e10; }
 .interest--checked label::after {
     background: linear-gradient(-45deg, rgba(53, 207, 212, 0.6), transparent, rgba(20, 161, 230, 0.6)); }
 .interest--checked img {
