@@ -4698,6 +4698,13 @@ body {
   height: 1.5em;
   margin: 0 auto;
   fill: currentColor; }
+.icon--heart {
+    width: 2em;
+    height: 2em; }
+.icon--heart path {
+      fill: transparent;
+      stroke: white;
+      stroke-width: 15px; }
 /* --------------------------------
 
 Title: Radio Switch
@@ -5173,7 +5180,7 @@ Descr: Custom radio toggle
     height: 35vh;
     overflow: hidden;
     box-shadow:2px 2px 10px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
+    border-radius: 2px;
     position: relative; }
 .activity__image img {
       width: 100%;
@@ -5188,7 +5195,7 @@ Descr: Custom radio toggle
     padding: 1em;
     width: 90%;
     margin: auto;
-    border-radius: 5px; }
+    border-radius: 2px; }
 .activity__content__title {
       text-align: center; }
 .activity__content__description {
@@ -6038,6 +6045,19 @@ body {
       left: 0;
       background: transparent;
       transition: all .3s ease-in-out; }
+.interest label .icon--heart {
+      width: 2em;
+      height: 2em;
+      -webkit-transform: scale(1);
+              transform: scale(1);
+      transition: -webkit-transform .3s ease-in-out;
+      transition: transform .3s ease-in-out;
+      transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out; }
+.interest label .icon--heart path {
+        stroke: white;
+        stroke-width: 15px;
+        fill: transparent;
+        transition: fill .3s ease-in-out; }
 .interest label img {
       width: 100%;
       min-height: 100%;
@@ -6067,6 +6087,13 @@ body {
 .interest:hover img {
     -webkit-transform: scale(1.1);
             transform: scale(1.1); }
+.interest--checked label .icon--heart {
+    width: 2em;
+    height: 2em;
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1); }
+.interest--checked label .icon--heart path {
+      fill: #35cfd4; }
 .interest--checked label::after {
     background:linear-gradient(-45deg, rgba(53, 207, 212, 0.6), transparent, rgba(20, 161, 230, 0.6)); }
 .interest--checked img {

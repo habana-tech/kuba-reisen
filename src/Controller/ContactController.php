@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\DynamicPageRepository;
+use App\PageManager\DynamicPageManager;
 use App\Repository\ActivityRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -20,15 +21,24 @@ class ContactController extends AbstractController
     /**
      * @Route("/contact",  name="contact")
      */
-    public function contact(Request $request, DynamicPageRepository $pageRepository, ActivityRepository $activityRepository)
+    public function contact(Request $request,
+                            DynamicPageManager $pm,
+                            ActivityRepository $activityRepository)
     {
 
-        if(!$dymanicPage = $pageRepository->findOneBy([
+        $pageinfo = [
             'pageName'=>'contact',
             'language'=>'de'
-        ]))
+        ];
 
-        throw new NotFoundHttpException();
+        if($this->isGranted('ROLE_ADMIN'))
+            $page = $pm->findByOrCreateIfDoesNotExist($pageinfo);
+        else {
+            $page = $pm->findOneBy($pageinfo);
+        }
+
+        if(!$page)
+            throw new NotFoundHttpException();
 
 
         $contact = new ContactPlaning();
@@ -63,8 +73,8 @@ class ContactController extends AbstractController
             'contact' => $contact,
             'activities'=>$activities,
             'form' => $form->createView(),
-            'dynamic_page_id' => $dymanicPage->getId(),
-            'page' => $dymanicPage,
+            'dynamic_page_id' => $page->getId(),
+            'page' => $page,
         ]);
     }
 

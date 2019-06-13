@@ -15,6 +15,15 @@ body {
   margin: 0 auto;
   fill: currentColor; }
 
+.icon--heart {
+    width: 2em;
+    height: 2em; }
+
+.icon--heart path {
+      fill: transparent;
+      stroke: white;
+      stroke-width: 15px; }
+
 /* --------------------------------
 
 Title: Radio Switch
@@ -590,7 +599,7 @@ Descr: Custom radio toggle
     height: 35vh;
     overflow: hidden;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
+    border-radius: 2px;
     position: relative; }
 
 .activity__image img {
@@ -607,7 +616,7 @@ Descr: Custom radio toggle
     padding: 1em;
     width: 90%;
     margin: auto;
-    border-radius: 5px; }
+    border-radius: 2px; }
 
 .activity__content__title {
       text-align: center; }

@@ -21,7 +21,8 @@ class FrontendController extends AbstractController
      * @Route("/", name="frontend")
      */
     public function index(DynamicPageManager $pm,
-                          DestinationRepository $destinationRepository, FilterTagRepository $filterTagRepository)
+                          DestinationRepository $destinationRepository,
+                          FilterTagRepository $filterTagRepository)
     {
         $pageinfo = [
             'pageName'=>'index',

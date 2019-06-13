@@ -314,6 +314,19 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
       left: 0;
       background: transparent;
       transition: all .3s ease-in-out; }
+.interest label .icon--heart {
+      width: 2em;
+      height: 2em;
+      -webkit-transform: scale(1);
+              transform: scale(1);
+      transition: -webkit-transform .3s ease-in-out;
+      transition: transform .3s ease-in-out;
+      transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out; }
+.interest label .icon--heart path {
+        stroke: white;
+        stroke-width: 15px;
+        fill: transparent;
+        transition: fill .3s ease-in-out; }
 .interest label img {
       width: 100%;
       min-height: 100%;
@@ -343,6 +356,13 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 .interest:hover img {
     -webkit-transform: scale(1.1);
             transform: scale(1.1); }
+.interest--checked label .icon--heart {
+    width: 2em;
+    height: 2em;
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1); }
+.interest--checked label .icon--heart path {
+      fill: #35cfd4; }
 .interest--checked label::after {
     background: linear-gradient(-45deg, rgba(53, 207, 212, 0.6), transparent, rgba(20, 161, 230, 0.6)); }
 .interest--checked img {

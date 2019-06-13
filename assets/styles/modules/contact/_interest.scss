@@ -20,6 +20,20 @@
             transition: all .3s ease-in-out;
         }
 
+        & .icon--heart {
+            width: 2em;
+            height: 2em;
+            transform: scale(1);
+            transition: transform .3s ease-in-out;
+
+            & path {
+                stroke: white;
+                stroke-width: 15px;
+                fill: transparent;
+                transition: fill .3s ease-in-out;
+            }
+        }
+
         & img {
             width: 100%;
             min-height: 100%;
@@ -62,13 +76,28 @@
 
     &--checked{
 
-        & label::after{
-            background: linear-gradient(-45deg, rgba($light-blue, .6), transparent, rgba($dark-blue, .6));
+        & label{
+
+            & .icon--heart{
+                width: 2em;
+                height: 2em;
+                transform: scale(1.1);
+
+                path {
+                    fill: $light-blue;
+                }
+            }
+
+            &::after{
+                background: linear-gradient(-45deg, rgba($light-blue, .6), transparent, rgba($dark-blue, .6));
+            }
         }
 
         & img{
             transform: scale(1.1) !important;
         }
+
+
     }
 
 }

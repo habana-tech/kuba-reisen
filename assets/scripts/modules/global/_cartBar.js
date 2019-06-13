@@ -12,6 +12,10 @@ function getCookie(name) {
 class CartBar{
     constructor(){
         this.cartBar = document.querySelector('.cart_bar');
+
+        if (this.cartBar == null)
+            return;
+
         this.cartBarText = document.querySelector('.cart_bar .cart_bar__content__text span');
         this.check();
     }
