@@ -399,7 +399,8 @@ Descr: Custom radio toggle
 
 .banner_sky__content__titles {
       text-align: center;
-      width: 100%; }
+      width: 100%;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25); }
 
 .banner_sky__content__titles h2, .banner_sky__content__titles h3 {
         color: white;

@@ -14,7 +14,8 @@
                 <div class="question">
                     <div class="question__title">
                         <h3 data-grape_id="faq_topic_question_title_{{ i }}_{{ j }}">
-                            {{ page.ElementContent('faq_topic_question_title_'~i~'_'~j,"Question title") | raw }}</h3>
+                            {{ page.ElementContent('faq_topic_question_title_'~i~'_'~j,"Question title") | raw }}
+                        </h3>
                     </div>
 
                     {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null %}
