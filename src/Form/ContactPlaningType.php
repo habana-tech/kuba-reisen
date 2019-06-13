@@ -20,33 +20,34 @@ class ContactPlaningType extends AbstractType
     {
         $builder
             ->add('travelDate', DateType::class,[
-                'label'=>"When do you plan to travel to Cuba?",
+                'label'=>"Wann planen Sie nach Kuba zu reisen?",
                 'widget'=>'single_text',
                 'attr'=>['min'=>date('Y-m-d')]
             ])
             ->add('travelDuration', ChoiceType::class,[
-                'label'=>"How long do you plan to stay in there?",
+                'label'=>"Wie lange wollen Sie dort bleiben?",
                 'choices'=>[
-                    'One Week'=>'one_week',
-                    'Week and a Half'=>'week_and_a_half',
-                    'Two weeks or more '=>'two_weeks_or_more'
+                    'Eine Woche'=>'one_week',
+                    'Eineinhalb Wochen'=>'week_and_a_half',
+                    'Zwei Wochen oder länger'=>'two_weeks_or_more'
                 ],'expanded'=>false])
 
             ->add('peopleAmount',ChoiceType::class,[
-                'label'=>"How many people will you travel with?",
+                'label'=>"Mit wie vielen Personen reisen Sie?",
                 'choices'=>[
-                    'Just one'=>'Just One',
-                    'Less than five'=>'Less than five',
-                    'Five or more'=>'Five or more'
+                    'Just one'=>'Nur ich',
+                    'Weniger als fünf'=>'Less than five',
+                    'fünf oder mehr'=>'Five or more'
                     ],
                 'expanded'=>false])
 
             ->add('travelBudget',ChoiceType::class,[
-                'label'=>"What is your budget for this trip?",
+                'label'=>"Was ist Ihr Budget für diese Reise?",
                 'choices'=>[
-                    'All my money'=>'All my money',
-                    '1/2 year of work'=>'1/2 year of work',
-                    'Money is not a problem'=>'Money is not a problem'
+                    'Mein ganzes Geld'=>'All my money',
+                    '1000 EUR'=>'1000 EUR',
+                    '2000 EUR'=>'2000 EUR',
+                    'Geld ist kein Problem'=>'Money is not a problem'
                 ],
                 'expanded'=>false])
 
@@ -88,7 +89,7 @@ class ContactPlaningType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => ContactPlaning::class,
-            'locale' => 'en',
+            'locale' => 'de',
         ]);
     }
 }
