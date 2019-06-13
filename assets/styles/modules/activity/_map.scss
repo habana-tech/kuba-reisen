@@ -7,8 +7,14 @@
         position: relative;
         overflow: hidden;
 
-        #mapid {
-            height: 50vh;
+        #map {
+            height: 75vh;
         }
     }
+}
+
+.leaflet-pane,
+.leaflet-top,
+.leaflet-bottom{
+    z-index: 2;
 }

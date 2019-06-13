@@ -2,8 +2,8 @@
 @import "modules/activity/page";
 @import "modules/activity/images";
 @import "modules/activity/description";
-@import "leaflet/dist/leaflet.css";
-@import "modules/activity/map";
+@import "https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.css";
+@import "modules/activity/map";;
 @import "modules/activity/itinerary";
 @import "modules/activity/timetable";
 @import "modules/activity/include_and_not";

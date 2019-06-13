@@ -1,3 +1,5 @@
+
+@import "https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.css";
 /**
  * @section Normalize.css
  * Normalize.css base with custom code.
@@ -5676,8 +5678,12 @@ body {
 .description-map__content {
     position: relative;
     overflow: hidden; }
-.description-map__content #mapid {
-      height: 50vh; }
+.description-map__content #map {
+      height: 75vh; }
+.leaflet-pane,
+.leaflet-top,
+.leaflet-bottom {
+  z-index: 2; }
 .description-itinerary {
   width: 75%;
   margin: auto;
