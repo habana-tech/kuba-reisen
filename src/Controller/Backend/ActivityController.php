@@ -95,7 +95,7 @@ class ActivityController extends AbstractController
                         'label'=>'Content of '.str_replace('_',' ', $key),
                         'required' => false]
                     );
-                if(isset($element['html']) and !isset($element['src']))
+                elseif(isset($element['html']) and !isset($element['src']))
                     $form->add($key, CKEditorType::class, [
                         'label'=>'Content of '.str_replace('_',' ', $key),
                         'required' => false]
