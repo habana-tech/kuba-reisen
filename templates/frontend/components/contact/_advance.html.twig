@@ -10,7 +10,8 @@
         </div>
     </div>
 
-    {% if activities|length > 0 %}
+    {% if not is_granted('ROLE_EDITOR') or app.request.get('preview') %}
+        {% if activities|length > 0 %}
         <div class="selected-activities">
             <div class="selected-activities__title">
                 <h3>Activities selected for you</h3>
@@ -21,6 +22,7 @@
                 {% endfor %}
             </div>
         </div>
+    {% endif %}
     {% endif %}
 
     <div class="travel-interest">
