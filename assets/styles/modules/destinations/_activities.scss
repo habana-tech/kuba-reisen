@@ -128,7 +128,7 @@ body {
     bottom: 2em;
     left: 0;
     display: flex;
-    z-index: 1000;
+    z-index: 3;
     width: 100%;
     background-color: white;
 
@@ -157,7 +157,7 @@ body {
     left: 50%;
     transform: translateX(-50%);
     bottom: 0;
-    z-index: 1000;
+    z-index: 3;
     height: 2em;
     background-color: white;
     width: 15em;
@@ -207,7 +207,7 @@ body {
     position: relative;
     pointer-events: none;
     width: 100%;
-    z-index: 10000;
+    z-index: 4;
 }
 
 .details {
@@ -301,11 +301,11 @@ body {
     .slideshow {
         overflow: hidden;
         margin: 0;
-        height: 90vh;
+        height: 75vh;
     }
 
     .slide {
-        height: 90vh;
+        height: 75vh;
 
         &__title {
             font-size: 2em;

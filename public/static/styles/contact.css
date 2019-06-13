@@ -359,8 +359,8 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 .interest--checked label .icon--heart {
     width: 2em;
     height: 2em;
-    -webkit-transform: scale(1.1);
-            transform: scale(1.1); }
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2); }
 .interest--checked label .icon--heart path {
       fill: #f96e10; }
 .interest--checked label::after {

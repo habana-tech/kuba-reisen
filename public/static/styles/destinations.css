@@ -116,7 +116,7 @@
   bottom: 2em;
   left: 0;
   display: flex;
-  z-index: 1000;
+  z-index: 3;
   width: 100%;
   background-color: white; }
   .boxnav__item {
@@ -140,7 +140,7 @@
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
   bottom: 0;
-  z-index: 1000;
+  z-index: 3;
   height: 2em;
   background-color: white;
   width: 15em;
@@ -176,7 +176,7 @@
   position: relative;
   pointer-events: none;
   width: 100%;
-  z-index: 10000; }
+  z-index: 4; }
   .details {
   position: absolute;
   top: 0;
@@ -236,9 +236,9 @@
   .slideshow {
     overflow: hidden;
     margin: 0;
-    height: 90vh; }
+    height: 75vh; }
   .slide {
-    height: 90vh; }
+    height: 75vh; }
     .slide__title {
       font-size: 2em; }
       .slide__title__title-wrap {
