@@ -113,9 +113,10 @@ class DynamicPage
     {
         if(!isset($this->pageContent[$grape_id][$format]))
             $format == 'html' ? $format = 'txt' :  $format = 'html';
-        if(isset($this->pageContent[$grape_id][$format]))
+        if(isset($this->pageContent[$grape_id][$format]) and ($this->pageContent[$grape_id][$format]))
             return $this->pageContent[$grape_id][$format];
-        return;
+
+        return $this->pageContent[$grape_id]['html'];
     }
     public function setElementContent($grape_id, $value, $format = 'html')
     {
