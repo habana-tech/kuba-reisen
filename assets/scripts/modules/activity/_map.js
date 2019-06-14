@@ -6,7 +6,7 @@ class ActivityMap {
         this.map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/outdoors-v11',
-            zoom: 13,
+            zoom: 11,
             center: [-81.1739857, 23.191922],
         });
 
