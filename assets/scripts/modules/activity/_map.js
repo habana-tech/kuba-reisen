@@ -6,12 +6,12 @@ class ActivityMap {
         this.map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/outdoors-v11',
-            zoom: 9,
-            center: [-82.329, 23.094],
+            zoom: 17,
+            center: [-81.1739857, 23.191922],
         });
 
         new mapboxgl.Marker()
-            .setLngLat([-82.329, 23.094])
+            .setLngLat([-81.1739857, 23.191922])
             .addTo(this.map);
 
         this.map.scrollZoom.disable();
