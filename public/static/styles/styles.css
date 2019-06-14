@@ -632,8 +632,8 @@ Descr: Custom radio toggle
   right: 0;
   margin: auto;
   z-index: 5;
-  padding: 1em 0;
-  background: linear-gradient(45deg, rgba(53, 207, 212, 0.9), rgba(20, 161, 230, 0.9));
+  padding: .25em 0;
+  background: linear-gradient(45deg, rgba(53, 207, 212, 0.95), rgba(20, 161, 230, 0.95));
   color: white;
   border: 2px solid rgba(255, 255, 255, 0.9);
   display: flex;
@@ -646,15 +646,46 @@ Descr: Custom radio toggle
   transition: transform .3s ease-in-out;
   transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out; }
 
+.cart_bar:hover {
+    -webkit-transform: translateX(0);
+            transform: translateX(0); }
+
+@-webkit-keyframes showBar {
+  0% {
+    -webkit-transform: translateX(80%);
+            transform: translateX(80%); }
+  50% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%); }
+  100% {
+    -webkit-transform: translateX(80%);
+            transform: translateX(80%); } }
+
+@keyframes showBar {
+  0% {
+    -webkit-transform: translateX(80%);
+            transform: translateX(80%); }
+  50% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%); }
+  100% {
+    -webkit-transform: translateX(80%);
+            transform: translateX(80%); } }
+
+.cart_bar--visible {
+    -webkit-animation: showBar 3s ease-in-out 1;
+            animation: showBar 3s ease-in-out 1; }
+
 .cart_bar__title {
     -webkit-transform: rotate(-90deg);
             transform: rotate(-90deg);
     margin: 1em .5em;
     text-align: center;
-    border-bottom: 1px solid white; }
+    border-bottom: 1px solid white;
+    width: 30%; }
 
 .cart_bar__title h4 {
-      margin: 0;
+      margin-top: .5em;
       padding: 0; }
 
 .cart_bar__content {
@@ -678,26 +709,25 @@ Descr: Custom radio toggle
 .cart_bar__content__button a {
         margin: 0 .25em; }
 
-.cart_bar:hover {
-    -webkit-transform: translateY(0);
-            transform: translateY(0); }
-
 .cart_bar [data-show='empty'] {
     visibility: hidden;
     position: relative;
     height: 0;
-    width: 0; }
+    width: 0;
+    z-index: -1; }
 
 .cart_bar--initial [data-show='no-empty'] {
     visibility: hidden;
     position: relative;
     height: 0;
-    width: 0; }
+    width: 0;
+    z-index: -1; }
 
 .cart_bar--initial [data-show='empty'] {
     visibility: visible;
     height: auto;
-    width: auto; }
+    width: auto;
+    z-index: auto; }
 
 .footer {
   display: flex;

@@ -2987,7 +2987,7 @@ pre code {
   background-image:linear-gradient(to right, rgba(53, 207, 212, 0.9), rgba(20, 161, 230, 0.9));
   background-size: 200%;
   border: 2px white solid;
-  border-radius: 1px;
+  border-radius: 2px;
   color: white;
   font-size: 1em;
   font-weight: 700;
@@ -2996,7 +2996,7 @@ pre code {
   white-space: normal;
   transition: .5s;
   cursor: pointer;
-  box-shadow:0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08); }
+  box-shadow:2px 2px 8px rgba(0, 0, 0, 0.2); }
 .btn:hover, .btn:active {
     background-position: right center;
     text-decoration: none;
@@ -3008,11 +3008,10 @@ pre code {
     background-image:linear-gradient(to right, transparent 50%, rgba(53, 207, 212, 0.9), rgba(20, 161, 230, 0.9)); }
 .btn--transparent:hover {
       background-position: right center; }
-.btn--small-circle {
+.btn--small {
     padding: .25em .5em;
-    border-radius: 5px;
-    border: 1px white solid;
-    font-weight: 500; }
+    font-weight: 500;
+    border: 1px white solid; }
 /**
  * @section Forms
  * Styling for form elements.
@@ -5208,8 +5207,8 @@ Descr: Custom radio toggle
   right: 0;
   margin: auto;
   z-index: 5;
-  padding: 1em 0;
-  background:linear-gradient(45deg, rgba(53, 207, 212, 0.9), rgba(20, 161, 230, 0.9));
+  padding: .25em 0;
+  background:linear-gradient(45deg, rgba(53, 207, 212, 0.95), rgba(20, 161, 230, 0.95));
   color: white;
   border:2px solid rgba(255, 255, 255, 0.9);
   display: flex;
@@ -5221,14 +5220,41 @@ Descr: Custom radio toggle
   transition: -webkit-transform .3s ease-in-out;
   transition: transform .3s ease-in-out;
   transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out; }
+.cart_bar:hover {
+    -webkit-transform: translateX(0);
+            transform: translateX(0); }
+@-webkit-keyframes showBar {
+  0% {
+    -webkit-transform: translateX(80%);
+            transform: translateX(80%); }
+  50% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%); }
+  100% {
+    -webkit-transform: translateX(80%);
+            transform: translateX(80%); } }
+@keyframes showBar {
+  0% {
+    -webkit-transform: translateX(80%);
+            transform: translateX(80%); }
+  50% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%); }
+  100% {
+    -webkit-transform: translateX(80%);
+            transform: translateX(80%); } }
+.cart_bar--visible {
+    -webkit-animation: showBar 3s ease-in-out 1;
+            animation: showBar 3s ease-in-out 1; }
 .cart_bar__title {
     -webkit-transform: rotate(-90deg);
             transform: rotate(-90deg);
     margin: 1em .5em;
     text-align: center;
-    border-bottom: 1px solid white; }
+    border-bottom: 1px solid white;
+    width: 30%; }
 .cart_bar__title h4 {
-      margin: 0;
+      margin-top: .5em;
       padding: 0; }
 .cart_bar__content {
     padding: 1em;
@@ -5246,23 +5272,23 @@ Descr: Custom radio toggle
       justify-content: space-around; }
 .cart_bar__content__button a {
         margin: 0 .25em; }
-.cart_bar:hover {
-    -webkit-transform: translateY(0);
-            transform: translateY(0); }
 .cart_bar [data-show='empty'] {
     visibility: hidden;
     position: relative;
     height: 0;
-    width: 0; }
+    width: 0;
+    z-index: -1; }
 .cart_bar--initial [data-show='no-empty'] {
     visibility: hidden;
     position: relative;
     height: 0;
-    width: 0; }
+    width: 0;
+    z-index: -1; }
 .cart_bar--initial [data-show='empty'] {
     visibility: visible;
     height: auto;
-    width: auto; }
+    width: auto;
+    z-index: auto; }
 .footer {
   display: flex;
   flex-wrap: wrap;
@@ -5581,6 +5607,10 @@ body {
     background-position: 50% 50%;
     position: absolute;
     pointer-events: none; }
+.slide__img img {
+      min-height: 100%;
+      min-width: 100%;
+      width: auto; }
 .slide__title-wrap {
     position: absolute;
     width: 50%;
@@ -5596,9 +5626,6 @@ body {
     white-space: pre; }
 .slide__title span {
       display: inline-block; }
-.slide__subtitle {
-    font-size: 1.15rem;
-    font-weight: normal; }
 .boxnav {
   position: absolute;
   bottom: 0;
@@ -5703,6 +5730,9 @@ body {
               transform: scale(1.3); }
 .float_button__button--disable {
       background:linear-gradient(45deg, rgba(102, 102, 102, 0.6), rgba(102, 102, 102, 0.9)); }
+.float_button__button--disable:hover {
+        -webkit-transform: scale(1);
+                transform: scale(1); }
 .description-text {
   width: 75%;
   margin: auto;
@@ -5866,9 +5896,6 @@ body {
     white-space: pre; }
 .slide__title span {
       display: inline-block; }
-.slide__subtitle {
-    font-size: 1.15rem;
-    font-weight: normal; }
 .boxnav {
   position: absolute;
   bottom: 2em;

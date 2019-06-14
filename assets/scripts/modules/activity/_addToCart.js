@@ -21,8 +21,28 @@ class AddtoCart {
     constructor(){
         this.buttonAdd = document.querySelector('.float_button a');
         this.cartBar = document.querySelector('.cart_bar');
-        this.cartBarText = document.querySelector('.cart_bar .cart_bar__text span');
-        this.events();
+        this.cartBarText = document.querySelector('.cart_bar .cart_bar__content__text span');
+        this.id = this.buttonAdd.getAttribute('data-id');
+        this.init();
+    }
+
+    init(){
+        if (this.previouslyAdded()) {
+            this.enableOrDisableButton();
+            this.buttonAdd.addEventListener('click', (e) => {
+                e.preventDefault()
+            });
+        }
+        else
+            this.events();
+    }
+
+    previouslyAdded(){
+        let currentValue = getCookie('ids');
+        if (!currentValue)
+            return false;
+
+        return currentValue[1].split(',').includes(this.id);
     }
 
     events(){
@@ -34,26 +54,32 @@ class AddtoCart {
         this.setActivity();
     }
 
-    setActivity(){
-        this.cartBar.classList.remove('cart_bar--initial');
-
-        let id = this.buttonAdd.getAttribute('data-id');
-        let currentValue = getCookie('ids');
-
-        if (currentValue!==false) {
-            let newValue = currentValue[1] + ','+id;
-            setCookie('ids', newValue);
-        }
-        else{
-            setCookie('ids', id);
-        }
-
-        this.showBar();
-        this.buttonAdd.children[0].classList.add('float_button__button--disable');
+    removeEvents(){
         this.buttonAdd.removeEventListener('click', this.addActivity);
     }
 
-    showBar(){
+    setActivity(){
+        this.cartBar.classList.remove('cart_bar--initial');
+        let currentValue = getCookie('ids');
+
+        if (currentValue!==false) {
+            let newValue = currentValue[1] + ','+this.id;
+            setCookie('ids', newValue);
+        }
+        else{
+            setCookie('ids', this.id);
+        }
+
+        this.showBarAndDisableButton();
+        this.removeEvents();
+    }
+
+    enableOrDisableButton(){
+        this.buttonAdd.children[0].classList.toggle('float_button__button--disable');
+    }
+
+    showBarAndDisableButton(){
+        this.enableOrDisableButton();
         let currentValue = getCookie('ids');
         let activitiesAmount = currentValue[1].split(',').length;
 

@@ -14,15 +14,10 @@
                                     '100vw',
                                     'data-grape_id="activity_images_img'~i~'"') | raw }}
                             </div>
-                            <div class="slide__title-wrap" data-grape_id="activity_images_img{{ i }}_desc" data-grape_format="txt">
-                                {% if activity.getElement('activity_images_img'~i~'_desc') is null %}
-                                    <h4 class="slide__subtitle">
-                                        Lorem imsup
-                                    </h4>
-                                {% else %}
-                                    {{ activity.getElement('activity_images_img'~i~'_desc')  | raw}}
-                                {% endif %}
-
+                            <div class="slide__title-wrap">
+                                <h1>
+                                    {{ activity.getElement('activity_images_img'~i~'_desc') | striptags }}
+                                </h1>
                             </div>
                         </div>
                     </div>
@@ -55,13 +50,16 @@
                 <img data-grape_id="activity_images_img{{ i }}"
                      src="{{ page.ElementAttr('activity_images_img'~i, 'src', asset('img/header_pic.jpg')) }}"
                      alt="">
-                <div class="slide__title-wrap" data-grape_id="activity_images_img{{ i }}_desc" data-grape_format="txt">
+                <div class="slide__title-wrap">
+                    {#{{ dump(activity.getElement('activity_images_img'~i~'_desc'))  }}#}
                     {% if activity.getElement('activity_images_img'~i~'_desc') is null %}
-                        <h4 class="slide__subtitle">
-                            Lorem imsup
-                        </h4>
+                        <h1 class="slide__subtitle" data-grape_id="activity_images_img{{ i }}_desc" data-grape_format="txt">
+                            Lorem ipsum dolor sit amet, consectetur
+                        </h1>
                     {% else %}
-                        {{ activity.getElement('activity_images_img'~i~'_desc') | raw }}
+                        <h1>
+                            {{ activity.getElement('activity_images_img'~i~'_desc') | striptags }}
+                        </h1>
                     {% endif %}
                 </div>
             </div>
