@@ -640,8 +640,8 @@ Descr: Custom radio toggle
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-  -webkit-transform: translateX(80%);
-          transform: translateX(80%);
+  -webkit-transform: translateX(75%);
+          transform: translateX(75%);
   transition: -webkit-transform .3s ease-in-out;
   transition: transform .3s ease-in-out;
   transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out; }
@@ -652,8 +652,8 @@ Descr: Custom radio toggle
 
 @-webkit-keyframes showBar {
   0% {
-    -webkit-transform: translateX(80%);
-            transform: translateX(80%); }
+    -webkit-transform: translateX(75%);
+            transform: translateX(75%); }
   40% {
     -webkit-transform: translateX(0%);
             transform: translateX(0%); }
@@ -661,13 +661,13 @@ Descr: Custom radio toggle
     -webkit-transform: translateX(0%);
             transform: translateX(0%); }
   100% {
-    -webkit-transform: translateX(80%);
-            transform: translateX(80%); } }
+    -webkit-transform: translateX(75%);
+            transform: translateX(75%); } }
 
 @keyframes showBar {
   0% {
-    -webkit-transform: translateX(80%);
-            transform: translateX(80%); }
+    -webkit-transform: translateX(75%);
+            transform: translateX(75%); }
   40% {
     -webkit-transform: translateX(0%);
             transform: translateX(0%); }
@@ -675,8 +675,8 @@ Descr: Custom radio toggle
     -webkit-transform: translateX(0%);
             transform: translateX(0%); }
   100% {
-    -webkit-transform: translateX(80%);
-            transform: translateX(80%); } }
+    -webkit-transform: translateX(75%);
+            transform: translateX(75%); } }
 
 .cart_bar--visible {
     -webkit-animation: showBar 3.5s ease-in-out 1;

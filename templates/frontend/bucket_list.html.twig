@@ -1,6 +1,6 @@
 {% extends 'frontend/base.html.twig' %}
 
-{% block title %}bucket list{% endblock %}
+{% block title %}Unsere Geheimtipps für Kuba{% endblock %}
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('styles/bucket_list.css') }}" type="text/css">
@@ -15,9 +15,14 @@
 
         {{ include('frontend/components/bucket_list/_items.html.twig') }}
 
+        {{ render(controller('App\\Controller\\RegionsController::regionTopDestinations', {'preview':app.request.get('preview')} )) }}
     </main>
 {% endblock %}
 
+
+{% block javascripts_vendors %}
+    <script src="{{ asset('scripts/vendors/three.min.js') }}"></script>
+{% endblock %}
 
 {% block javascripts %}
     <script src="{{ asset('scripts/bucket_list.js') }}"></script>

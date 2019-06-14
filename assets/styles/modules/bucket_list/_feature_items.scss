@@ -6,17 +6,18 @@
 
     &__map {
         position: sticky;
-        top: 0;
+        top: 5vh;
         width: 50%;
 
         & #map{
             margin: auto;
-            min-height: 100vh;
+            min-height: 90vh;
         }
     }
 
     &__features {
         width: 40%;
+        padding-top: 3em;
 
         & ol {
 

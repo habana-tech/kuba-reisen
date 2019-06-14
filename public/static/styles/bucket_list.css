@@ -13,13 +13,14 @@
 .bucket-list__items__map {
     position: -webkit-sticky;
     position: sticky;
-    top: 0;
+    top: 5vh;
     width: 50%; }
 .bucket-list__items__map #map {
       margin: auto;
-      min-height: 100vh; }
+      min-height: 90vh; }
 .bucket-list__items__features {
-    width: 40%; }
+    width: 40%;
+    padding-top: 3em; }
 .bucket-list__items__features ol li.item {
       padding: 25px 50px;
       line-height: 25px;
