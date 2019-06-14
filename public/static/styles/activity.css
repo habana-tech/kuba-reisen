@@ -155,6 +155,37 @@ body {
     width: 5em;
     height: 4em;
     flex: none; } }
+.float_button__container {
+  position: relative; }
+.float_button {
+  position: absolute;
+  height: 100%;
+  left: 4em;
+  top: 5em; }
+.float_button__button {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 5em;
+    width: 2.5em;
+    height: 2.5em;
+    border-radius: 50%;
+    padding: .5em;
+    background: linear-gradient(45deg, #62ab03, #004d00);
+    z-index: 1000;
+    color: white;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+    transition: -webkit-transform .3s ease-in-out;
+    transition: transform .3s ease-in-out;
+    transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25); }
+.float_button__button:hover {
+      -webkit-transform: scale(1.3);
+              transform: scale(1.3); }
+.float_button__button--disable {
+      background: linear-gradient(45deg, rgba(102, 102, 102, 0.6), rgba(102, 102, 102, 0.9)); }
 .description-text {
   width: 75%;
   margin: auto;
@@ -162,7 +193,7 @@ body {
 .description-text__content {
     width: 100%; }
 .description-map {
-  width: 85%;
+  width: 80%;
   margin: auto;
   position: relative; }
 .description-map__content {
@@ -170,10 +201,6 @@ body {
     overflow: hidden; }
 .description-map__content #map {
       height: 75vh; }
-.leaflet-pane,
-.leaflet-top,
-.leaflet-bottom {
-  z-index: 2; }
 .description-itinerary {
   width: 75%;
   margin: auto;
@@ -212,28 +239,3 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around; }
-.float_button {
-  position: absolute;
-  height: 100%; }
-.float_button__button {
-    position: -webkit-sticky;
-    position: sticky;
-    left: 0;
-    top: 4em;
-    margin: 4em 0;
-    width: 2.5em;
-    height: 2.5em;
-    border-radius: 50%;
-    padding: .5em;
-    background: linear-gradient(45deg, #62ab03, #004d00);
-    z-index: 1000;
-    color: white;
-    -webkit-transform: scale(1) translateX(-200%);
-            transform: scale(1) translateX(-200%);
-    -webkit-transform-origin: 50% 50%;
-            transform-origin: 50% 50%;
-    transition: -webkit-transform .3s ease-in-out;
-    transition: transform .3s ease-in-out;
-    transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out; }
-.float_button__button--disable {
-      background: linear-gradient(45deg, rgba(102, 102, 102, 0.6), rgba(102, 102, 102, 0.9)); }

@@ -12,13 +12,18 @@
 
         {{ include('frontend/components/activity/_images.html.twig') }}
 
-        {{ include('frontend/components/activity/_description.html.twig') }}
+        <div class="float_button__container">
 
-        {{ include('frontend/components/activity/_map.html.twig') }}
+            {{ include ('frontend/components/activity/_float_button.html.twig') }}
 
-        {{ include('frontend/components/activity/_itinerary.html.twig') }}
+            {{ include('frontend/components/activity/_description.html.twig') }}
 
-        {{ include('frontend/components/activity/_timetable.html.twig') }}
+            {{ include('frontend/components/activity/_map.html.twig') }}
+
+            {{ include('frontend/components/activity/_itinerary.html.twig') }}
+
+            {{ include('frontend/components/activity/_timetable.html.twig') }}
+        </div>
 
         {% include 'frontend/components/activity/_related_activities.html.twig' %}
 

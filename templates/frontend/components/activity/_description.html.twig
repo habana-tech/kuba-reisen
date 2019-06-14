@@ -1,7 +1,5 @@
 <section class="section description-text">
 
-    {{ include ('frontend/components/activity/_float_button.html.twig') }}
-
     <div class="section__title ">
         <div class="section__title__highlight">
             <h2>{{ activity.name }}</h2>
@@ -10,11 +8,11 @@
 
     <div class="description-text__content" data-grape_id="activity_description">
 
-            {% if activity.getElement('activity_description') is null %}
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet asperiores cumque deserunt, distinctio est id impedit libero modi nobis perferendis possimus provident, quae qui, quis sint vel velit vitae.</p>
-            {% else %}
-                {{ activity.getElement('activity_description') | raw }}
-            {% endif %}
+        {% if activity.getElement('activity_description') is null %}
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet asperiores cumque deserunt, distinctio est id impedit libero modi nobis perferendis possimus provident, quae qui, quis sint vel velit vitae.</p>
+        {% else %}
+            {{ activity.getElement('activity_description') | raw }}
+        {% endif %}
 
     </div>
 
