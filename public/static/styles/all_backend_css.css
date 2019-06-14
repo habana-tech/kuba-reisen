@@ -4690,8 +4690,7 @@ body.admin-logged .menu-icon-wrapper {
 *::selection {
   background-color:rgba(53, 207, 212, 0.3); }
 body {
-  position: relative;
-  overflow-x: hidden; }
+  position: relative; }
 .icon {
   display: block;
   width: 1.5em;

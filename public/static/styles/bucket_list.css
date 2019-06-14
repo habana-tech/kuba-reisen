@@ -1,0 +1,52 @@
+@import "https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.css";
+.bucket-list__intro {
+  position: relative;
+  width: 100%; }
+.bucket-list__intro__content {
+    width: 50%;
+    margin: auto; }
+.bucket-list__items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: flex-start; }
+.bucket-list__items__map {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    width: 50%; }
+.bucket-list__items__map #map {
+      margin: auto;
+      min-height: 100vh; }
+.bucket-list__items__features {
+    width: 40%; }
+.bucket-list__items__features ol li.item {
+      padding: 25px 50px;
+      line-height: 25px;
+      font-size: 13px;
+      -webkit-transform: scale(0.9);
+              transform: scale(0.9);
+      transition: -webkit-transform .3s ease-in-out;
+      transition: transform .3s ease-in-out;
+      transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out;
+      display: flex;
+      flex-wrap: wrap; }
+.bucket-list__items__features ol li.item h3 {
+        position: relative; }
+.bucket-list__items__features ol li.item h3:after {
+          content: '';
+          position: absolute;
+          background: linear-gradient(45deg, #f96e10, #f9c90d);
+          height: 2px;
+          border-radius: 2px;
+          width: 100%;
+          bottom: -.25em;
+          left: 0; }
+.bucket-list__items__features ol li.item p {
+        width: 100%; }
+.bucket-list__items__features ol li.item.active {
+        -webkit-transform: scale(1.15);
+                transform: scale(1.15); }
+.bucket-list__items__features ol li.item:last-child {
+        border-bottom: none;
+        margin-bottom: 200px; }

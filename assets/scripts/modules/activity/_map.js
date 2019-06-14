@@ -9,6 +9,7 @@ class ActivityMap {
             zoom: 9,
             center: [-82.329, 23.094],
         });
+
         new mapboxgl.Marker()
             .setLngLat([-82.329, 23.094])
             .addTo(this.map);
