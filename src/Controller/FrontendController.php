@@ -123,7 +123,7 @@ class FrontendController extends AbstractController
     }
 
     /**
-     * @Route("/bucketlist", name="bucket_list")
+     * @Route("/bucket_list", name="bucket_list")
      */
     public function bucket_list(DynamicPageManager $pm)
     {
