@@ -82,12 +82,17 @@
     display: flex;
     align-items: center;
     max-height: 80vh;
-    padding-left: 2px; }
+    margin-left: 2px; }
+  .overview__item:hover img {
+      -webkit-transform: scale(1.1);
+              transform: scale(1.1); }
   .overview__item img {
+      position: relative;
       width: auto;
       height: 100%;
       -o-object-fit: cover;
-         object-fit: cover; }
+         object-fit: cover;
+      transition: all .3s ease-in-out; }
   .overview__item__text {
       padding: 1em 1.5em; }
   .overview__item:first-child {

@@ -632,7 +632,7 @@ Descr: Custom radio toggle
   right: 0;
   margin: auto;
   z-index: 5;
-  padding: .25em 0;
+  padding: .25em;
   background: linear-gradient(45deg, rgba(53, 207, 212, 0.95), rgba(20, 161, 230, 0.95));
   color: white;
   border: 2px solid rgba(255, 255, 255, 0.9);
