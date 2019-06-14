@@ -5187,7 +5187,9 @@ Descr: Custom radio toggle
     position: relative; }
 .activity__image img {
       width: 100%;
-      min-height: 100%;
+      height: 100%;
+      -o-object-fit: cover;
+         object-fit: cover;
       transition: -webkit-transform .3s ease-in-out;
       transition: transform .3s ease-in-out;
       transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out; }
