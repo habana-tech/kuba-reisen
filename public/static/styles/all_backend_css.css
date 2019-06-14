@@ -5688,7 +5688,7 @@ body {
     border-radius: 50%;
     padding: .5em;
     background: linear-gradient(45deg, #62ab03, #004d00);
-    z-index: 1000;
+    z-index: 2;
     color: white;
     -webkit-transform: scale(1);
             transform: scale(1);
