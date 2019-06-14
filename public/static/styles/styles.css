@@ -654,7 +654,10 @@ Descr: Custom radio toggle
   0% {
     -webkit-transform: translateX(80%);
             transform: translateX(80%); }
-  50% {
+  40% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%); }
+  60% {
     -webkit-transform: translateX(0%);
             transform: translateX(0%); }
   100% {
@@ -665,7 +668,10 @@ Descr: Custom radio toggle
   0% {
     -webkit-transform: translateX(80%);
             transform: translateX(80%); }
-  50% {
+  40% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%); }
+  60% {
     -webkit-transform: translateX(0%);
             transform: translateX(0%); }
   100% {
@@ -673,8 +679,8 @@ Descr: Custom radio toggle
             transform: translateX(80%); } }
 
 .cart_bar--visible {
-    -webkit-animation: showBar 3s ease-in-out 1;
-            animation: showBar 3s ease-in-out 1; }
+    -webkit-animation: showBar 3.5s ease-in-out 1;
+            animation: showBar 3.5s ease-in-out 1; }
 
 .cart_bar__title {
     -webkit-transform: rotate(-90deg);
