@@ -603,6 +603,7 @@ Descr: Custom radio toggle
 
 .activity__image img {
       width: 100%;
+      min-height: 100%;
       transition: -webkit-transform .3s ease-in-out;
       transition: transform .3s ease-in-out;
       transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out; }

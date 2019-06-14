@@ -70,7 +70,7 @@ import './../../vendors/TweenMax.min'
 
             // Add canvas to the HTML
             renderer.view.setAttribute('id','canvas_hero');
-            document.body.appendChild( renderer.view );
+            document.querySelector('section.hero-home').appendChild(renderer.view);
 
 
             // Add child container to the main container

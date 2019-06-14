@@ -29,7 +29,7 @@
                     min-width: 16.666%;
                     background-image: linear-gradient(to right, rgba($light-green, .75), rgba($dark-green, .75));
                     background-size: 200%;
-                    border-radius: 4px;
+                    border-radius: 2px;
                     border: 2px solid white;
                     padding: .25em .75em;
                     text-align: center;
@@ -71,8 +71,8 @@
                         margin: .5em;
                         padding: .25em .75em;
                         border: 2px solid rgba($light-green, 1);;
-                        border-radius: 4px;
-                        box-shadow: 2px 2px 10px rgba(black, .25);
+                        border-radius: 2px;
+                        box-shadow: 2px 2px 5px rgba(black, .25);
                         transition: all .3s ease-in-out;
 
                         &:focus{
