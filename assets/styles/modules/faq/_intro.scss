@@ -1,9 +1,10 @@
 .intro{
+    width: 75%;
+    margin: auto;
     position: relative;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-
 
     &__content{
         width: 70%;
