@@ -7,31 +7,40 @@
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 80%; font: 18px/1.5 sans-serif; }
 </style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ app.user }}! ✅</h1>
+<div class="">
+    <div class="row">
+        <div class="grid-three-fourts">
+            <h1>Hello {{ app.user }}! ✅</h1>
+        </div>
+    </div>
+    
 
     <hr>
-    You can see, edit or add one of the following entities:
-<div class="container margin-top">
-    <ul class="list-inline" style="display: inline-flex; align-content: space-evenly; list-style: none">
-        <li> <a href="{{ path('backend_activity_index') }}"  class="btn">Activities</a></li>
-        <li>  <a href="{{ path('backend_destination_index') }}" class="btn">Destinations</a></li>
-        {#<li> <a href="{{ path('backend_interest_index') }}" class="btn">Interest</a></li>#}
-        <li> <a href="{{ path('backend_filter_tag_index') }}" class="btn">Tags</a></li>
-    </ul>
-</div>
+    <div class="row  margin-top">
+        <div class="grid-half">
+            <h3>You can see, edit or add one of the following entities...</h3>
+            <ul class="list-inline" style="display: inline-flex; align-content: space-evenly; list-style: none">
+                <li> <a href="{{ path('backend_activity_index') }}"  class="btn">Activities</a></li>
+                <li>  <a href="{{ path('backend_destination_index') }}" class="btn">Destinations</a></li>
+                {#<li> <a href="{{ path('backend_interest_index') }}" class="btn">Interest</a></li>#}
+                <li> <a href="{{ path('backend_filter_tag_index') }}" class="btn">Tags</a></li>
+            </ul>   
+        </div>
 
- <hr>
-    You can edit the details of the following pages:
-<div class="container margin-top">
-    <ul class="list-inline" style="display: inline-flex; align-content: space-evenly; list-style: none">
+        <div class="grid-half">
+            <h3>or edit the details of the following pages:</h3>
+            <ul class="list-inline" style="display: inline-flex; align-content: space-evenly; list-style: none">
 
         <li> <a href="{{ path('backend_page_edit', {'pageName': 'index'}) }}"  class="btn">Homepage</a></li>
         <li> <a href="{{ path('backend_page_edit', {'pageName': 'faq'}) }}"  class="btn">FAQ</a></li>
         <li>  <a href="{{ path('backend_page_edit', {'pageName': 'contact'}) }}" class="btn">Contact</a></li>
        
     </ul>
-</div>
+        </div>
+    </div>
+
+    
+
 
 
 

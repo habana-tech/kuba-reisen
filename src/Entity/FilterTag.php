@@ -100,7 +100,8 @@ class FilterTag
 
     public function __toString()
     {
-        return $this->title. " (".$this->language.")";
+        //return $this->title. " (".$this->language.")";
+        return $this->title;
     }
 
     /**
