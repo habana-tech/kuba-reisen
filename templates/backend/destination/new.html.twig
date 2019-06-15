@@ -3,9 +3,52 @@
 {% block title %}New Destination{% endblock %}
 
 {% block body %}
-    <h1>Create new Destination</h1>
+<div class="row">
+    <div class="grid-three-fourths">
+        <h1>Add a new Destination</h1>
+    </div>
+</div>
+	
 
-    {{ include('backend/destination/_form.html.twig') }}
+        {{ form_start(form) }}
+        <div class="row margin-top margin-bottom-large padding-top-large padding-bottom-large">
+           <div class="grid-half">
+               <h2>Write the name of the destination</h2>
+               {{ form_widget(form.name) }}
+           </div>
 
-    <a href="{{ path('backend_destination_index') }}" class="btn">back to list</a>
+        </div>
+
+        <div class="row ">
+            <div class="grid-fourth">
+                {{ form_row(form.featuresCount) }}
+            </div>
+        </div>
+        <div class="row ">
+            <div class="grid-fourth">
+                {{ form_row(form.imageFile) }}
+            </div>
+            
+        </div>
+
+        <div class="row margin-top">
+	        
+	        <div class="grid-auto" style="position: relative;">
+                <div style="position: absolute;bottom: 0;">
+                    {{ form_widget(form.saveAndEdit) }}
+                </div>
+            </div>
+
+            <div class="grid-auto text-center">
+	            {{ include('backend/destination/_form.html.twig') }}
+	        </div>
+        
+	        <div class="grid-auto text-center" style="padding: 10px;">
+	            <a href="{{ path('backend_destination_index') }}" class="btn">Go back to list</a>
+	        </div>
+	        
+	    </div>
+
+    
+
 {% endblock %}

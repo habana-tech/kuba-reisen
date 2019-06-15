@@ -3,9 +3,15 @@
 {% block title %}FilterTag index{% endblock %}
 
 {% block body %}
-    <h1>Tags for filter content</h1>
-    <a href="{{ path('backend_filter_tag_new') }}" class="btn">Create new</a>
-    <hr>
+<div class="row">
+    <div class="grid-three-fourths">
+        <h1>Tags for filter content</h1>
+    </div>
+    <div class="grid-fourth">
+        <a href="{{ path('backend_filter_tag_new') }}" class="btn float-right">Create new</a>
+    </div>
+</div>
+    
 
     <section class="section other_activities">
         <div class="section__title ">

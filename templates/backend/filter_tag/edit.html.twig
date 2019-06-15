@@ -3,11 +3,39 @@
 {% block title %}Edit FilterTag{% endblock %}
 
 {% block body %}
-    <h1>Edit FilterTag</h1>
+   <div class="row">
+    <div class="grid-three-fourths">
+        <h1>Editing tag <u><i>{{filter_tag.title}}</i></u></h1>
+    </div>
+</div>
+{{ form_start(form) }}
+<div class="row">
+    <div class="grid-half">
+        {{ form_row(form.title) }}
+    </div>
+    <div class="grid-auto">
+    	{{ form_row(form.pinned) }}
+    </div>
+</div>
 
-    {{ include('backend/filter_tag/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('backend_filter_tag_index') }}">back to list</a>
+<div class="row margin-top">
+	
+	
 
-    {{ include('backend/filter_tag/_delete_form.html.twig') }}
+    <div class="grid-auto text-center">
+       {{ include('backend/filter_tag/_form.html.twig', {'button_label': 'Update'}) }}
+    </div>
+
+    <div class="grid-auto text-center" style="padding: 10px;">
+        <a href="{{ path('backend_filter_tag_index') }}" class="btn">Go back to list</a>
+    </div>
+
+    <div class="grid-auto text-center">
+   		{{ include('backend/filter_tag/_delete_form.html.twig') }}	
+    </div>
+    
+</div>
+    
+
 {% endblock %}

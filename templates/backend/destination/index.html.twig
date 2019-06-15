@@ -3,12 +3,15 @@
 {% block title %}Destination index{% endblock %}
 
 {% block body %}
-    <h1>Destination index</h1>
-
-
-    <a href="{{ path('backend_destination_new') }}" class="btn">Create new</a>
-
- <hr>
+<div class="row">
+    <div class="grid-three-fourths">
+        <h1>All the destinations</h1>
+    </div>
+    <div class="grid-fourth">
+        <a href="{{ path('backend_destination_new') }}" class="btn float-right">Create new</a>
+    </div>
+</div>
+    
 
 
     <section class="section other_activities">
@@ -36,8 +39,11 @@
 
         </div>
     </section>
-    <hr>
+    
+    <div class="row margin-top">
+        <div class="grid-full">
+            <a href="{{ path('backend_destination_new') }}" class="btn">Create new</a>
+        </div>
+    </div>
 
-
-    <a href="{{ path('backend_destination_new') }}" class="btn">Create new</a>
 {% endblock %}
