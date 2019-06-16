@@ -5,22 +5,3 @@
 body{
     position: relative;
 }
-
-.icon {
-    display: block;
-    width: 1.5em;
-    height: 1.5em;
-    margin: 0 auto;
-    fill: currentColor;
-
-    &--heart{
-        width: 2em;
-        height: 2em;
-
-        path {
-            fill: transparent;
-            stroke: white;
-            stroke-width: 15px;
-        }
-    }
-}

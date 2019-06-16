@@ -813,7 +813,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 .activities__list__container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
     position: relative; }
 
 .activities__list__container div.activity {

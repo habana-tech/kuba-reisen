@@ -1,7 +1,7 @@
 import './../../vendors/TweenMax.min'
 
 let hoverEffect = function(opts) {
-    var vertex = `
+    let vertex = `
         varying vec2 vUv;
         void main() {
           vUv = uv;
@@ -9,7 +9,7 @@ let hoverEffect = function(opts) {
         }
     `;
 
-    var fragment = `
+    let fragment = `
         varying vec2 vUv;
 
         uniform sampler2D texture;
@@ -51,24 +51,24 @@ let hoverEffect = function(opts) {
         }
     `;
 
-    var parent = opts.parent || console.warn("no parent");
-    var dispImage = opts.displacementImage || console.warn("displacement image missing");
-    var image1 = opts.image1 || console.warn("first image missing");
-    var image2 = opts.image2 || console.warn("second image missing");
-    var intensity = opts.intensity || 1;
-    var speedIn = opts.speedIn || 1.6;
-    var speedOut = opts.speedOut || 1.2;
-    var userHover = (opts.hover === undefined) ? true : opts.hover;
-    var easing = opts.easing || Expo.easeOut;
+    let parent = opts.parent || console.warn("no parent");
+    let dispImage = opts.displacementImage || console.warn("displacement image missing");
+    let image1 = opts.image1 || console.warn("first image missing");
+    let image2 = opts.image2 || console.warn("second image missing");
+    let intensity = opts.intensity || 1;
+    let speedIn = opts.speedIn || 1.6;
+    let speedOut = opts.speedOut || 1.2;
+    let userHover = (opts.hover === undefined) ? true : opts.hover;
+    let easing = opts.easing || Expo.easeOut;
 
-    var mobileAndTabletcheck = function() {
+    let mobileAndTabletcheck = function() {
         var check = false;
         (function(a){if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0,4))) check = true;})(navigator.userAgent||navigator.vendor||window.opera);
         return check;
     };
 
-    var scene = new THREE.Scene();
-    var camera = new THREE.OrthographicCamera(
+    let scene = new THREE.Scene();
+    let camera = new THREE.OrthographicCamera(
         parent.offsetWidth / -2,
         parent.offsetWidth / 2,
         parent.offsetHeight / 2,
@@ -79,15 +79,16 @@ let hoverEffect = function(opts) {
 
     camera.position.z = 1;
 
-    var renderer = new THREE.WebGLRenderer({
+    let renderer = new THREE.WebGLRenderer({
         antialias: false,
-        // alpha: true
+        alpha: true
     });
 
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setClearColor(0xffffff, 0.0);
     renderer.setSize(parent.offsetWidth, parent.offsetHeight);
-    renderer.domElement.setAttribute('id', 'canvas_destinations');
+    renderer.domElement.setAttribute('id', 'canvas_destinations_'+opts.index);
+    renderer.domElement.classList.add('canvas_destinations');
     parent.appendChild(renderer.domElement);
 
 
@@ -95,12 +96,12 @@ let hoverEffect = function(opts) {
     //     renderer.setTexture2D(t, 0);
     // };
 
-    var loader = new THREE.TextureLoader();
+    let loader = new THREE.TextureLoader();
     loader.crossOrigin = "";
-    var texture1 = loader.load(image1);
-    var texture2 = loader.load(image2);
+    let texture1 = loader.load(image1);
+    let texture2 = loader.load(image2);
 
-    var disp = loader.load(dispImage);
+    let disp = loader.load(dispImage);
     disp.wrapS = disp.wrapT = THREE.RepeatWrapping;
 
     texture1.magFilter = texture2.magFilter = THREE.LinearFilter;
@@ -109,7 +110,7 @@ let hoverEffect = function(opts) {
     texture1.anisotropy = renderer.getMaxAnisotropy();
     texture2.anisotropy = renderer.getMaxAnisotropy();
 
-    var mat = new THREE.ShaderMaterial({
+    let mat = new THREE.ShaderMaterial({
         uniforms: {
             effectFactor: { type: "f", value: intensity },
             dispFactor: { type: "f", value: 0.0 },
@@ -124,15 +125,15 @@ let hoverEffect = function(opts) {
         opacity: 1.0
     });
 
-    var geometry = new THREE.PlaneBufferGeometry(
+    let geometry = new THREE.PlaneBufferGeometry(
         parent.offsetWidth,
         parent.offsetHeight,
         1
     );
-    var object = new THREE.Mesh(geometry, mat);
+    let object = new THREE.Mesh(geometry, mat);
     scene.add(object);
 
-    var addEvents = function(){
+    let addEvents = function(){
         var evtIn = "mouseenter";
         var evtOut = "mouseleave";
         if (mobileAndTabletcheck()) {
@@ -168,7 +169,7 @@ let hoverEffect = function(opts) {
             value: 1,
             ease: easing
         });
-    }
+    };
 
     this.previous = function(){
         TweenMax.to(mat.uniforms.dispFactor, speedOut, {
@@ -177,7 +178,7 @@ let hoverEffect = function(opts) {
         });
     };
 
-    var animate = function() {
+    let animate = function() {
         requestAnimationFrame(animate);
 
         renderer.render(scene, camera);
@@ -187,7 +188,7 @@ let hoverEffect = function(opts) {
 
 let imagesTrigger = document.querySelectorAll('.grid__item-img img:last-child');
 
-imagesTrigger.forEach((img)=>img.addEventListener('lazyloaded',
+imagesTrigger.forEach((img, index)=>img.addEventListener('lazyloaded',
     function(e){
         let container = e.target.parentNode;
         let imgs = Array.from(container.querySelectorAll('img'));
@@ -200,6 +201,8 @@ imagesTrigger.forEach((img)=>img.addEventListener('lazyloaded',
             hover: container.dataset.hover || undefined,
             image1: imgs[0].currentSrc,
             image2: imgs[1].currentSrc,
-            displacementImage: container.dataset.displacement
+            displacementImage: container.dataset.displacement,
+            index: index
         });
+        document.querySelector('#canvas_destinations_'+index).classList.add('canvas_destinations--ready');
     }));

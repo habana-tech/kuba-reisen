@@ -66,9 +66,19 @@
   -webkit-transform: scale(1.2);
           transform: scale(1.2);
   -o-object-fit: cover;
-     object-fit: cover; }
+     object-fit: cover;
+  z-index: -1; }
+  #canvas_hero.canvas_hero--ready {
+    z-index: 0; }
   .slide-wrapper {
-  position: absolute; }
+  position: absolute;
+  height: 100%;
+  width: 100%; }
+  .slide-wrapper .slide-item {
+    position: absolute; }
+  .slide-wrapper .slide-item:nth-child(1) {
+      position: relative;
+      z-index: 0; }
   .slide-wrapper-editor {
   position: relative; }
   .overview {

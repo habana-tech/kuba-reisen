@@ -40,8 +40,6 @@
 
     <body class="{{ class }}">
 
-        {{ include('frontend/components/global/_icons.html.twig') }}
-
         {% if is_granted('ROLE_EDITOR') and not app.request.get('preview') %}
             {{ include('backend/adminbar/admin_bar.html.twig') }}
         {% endif %}

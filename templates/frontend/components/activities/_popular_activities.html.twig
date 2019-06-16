@@ -41,7 +41,6 @@
     </div>
 
     <div class="activities__list">
-
         <div class="activities__list__title">
             <h3>We have found <span>{{ activities | length }}</span> activities</h3>
         </div>
@@ -66,7 +65,6 @@
         </div>
 
         <div class="activities__list__container">
-
             {% for activity in activities %}
                 {% include 'frontend/components/global/_activity.html.twig'
                     with {'activity':activity} only %}
@@ -75,7 +73,6 @@
             {% endfor %}
 
             <div class="loading_element">
-
             </div>
         </div>
 

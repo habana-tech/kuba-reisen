@@ -52,13 +52,6 @@ a {
 	&:hover {
 		outline: 0;
 	}
-
-	&:active,
-	&:focus,
-	&:hover {
-		color: darken($grey, 15%);
-		text-decoration: underline;
-	}
 }
 
 

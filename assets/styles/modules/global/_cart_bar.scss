@@ -1,3 +1,18 @@
+@keyframes showBar {
+    0%{
+        transform: translateX(75%);
+    }
+    40%{
+        transform: translateX(0%);
+    }
+    60%{
+        transform: translateX(0%);
+    }
+    100%{
+        transform: translateX(75%);
+    }
+}
+
 .cart_bar{
     position: fixed;
     bottom: 2em;
@@ -13,27 +28,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    cursor: pointer;
     transform: translateX(75%);
     transition: transform .3s ease-in-out;
 
     &:hover{
         transform: translateX(0);
-    }
-
-    @keyframes showBar {
-        0%{
-            transform: translateX(75%);
-        }
-        40%{
-            transform: translateX(0%);
-        }
-        60%{
-            transform: translateX(0%);
-        }
-        100%{
-            transform: translateX(75%);
-        }
     }
 
     &--visible{
@@ -46,6 +45,14 @@
         text-align: center;
         border-bottom: 1px solid white;
         width: 30%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        &__icon{
+            width: 2em;
+            height: 2em;
+        }
 
         & h4{
             margin-top: .5em;
@@ -75,6 +82,7 @@
 
             & a{
                 margin: 0 .25em;
+                color: white;
             }
         }
     }

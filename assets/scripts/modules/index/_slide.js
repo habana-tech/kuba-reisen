@@ -511,6 +511,7 @@ imageTrigger.addEventListener('lazyloaded', ()=> {
         displaceScale: [200, 70]
     });
 
+    document.querySelector('#canvas_hero').classList.add('canvas_hero--ready');
     document.querySelector('body').classList.remove('loading');
     document.querySelector('body').classList.add('render');
 

@@ -593,9 +593,6 @@ a {
 	 */ }
 a:active, a:hover {
     outline: 0; }
-a:active, a:focus, a:hover {
-    color: #404040;
-    text-decoration: underline; }
 /**
  * List styling
  */

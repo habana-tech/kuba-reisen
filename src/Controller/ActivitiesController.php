@@ -42,7 +42,6 @@ class ActivitiesController extends AbstractController
                                         0, $this->amountActivitiesDefault+1);
 
         $loadMore = count($_activities) > $this->amountActivitiesDefault;
-        $loadMore = true;
         $activities = array();
         for ($i = 0; $i < min($this->amountActivitiesDefault, count($_activities)); $i++)
             array_push($activities, $_activities[$i]);

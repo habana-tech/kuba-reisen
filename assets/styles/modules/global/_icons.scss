@@ -1,0 +1,61 @@
+.icon {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transition: all .3s ease-in-out;
+
+    & symbol {
+        display: block;
+    }
+
+    & path {
+        fill: white;
+        stroke: transparent;
+    }
+
+
+    &-heart{
+        & path {
+            fill: transparent;
+            stroke: white;
+            stroke-width: 30px;
+        }
+
+        &--green{
+            & path {
+                fill: transparent;
+                stroke: $light-green;
+                stroke-width: 30px;
+            }
+
+        }
+
+        &--fill-green{
+
+            & path {
+                fill: $light-green;
+                stroke: rgba($grey, .5);
+                stroke-width: 30px;
+            }
+        }
+    }
+
+    &-arrow{
+        & path {
+            fill: rgba($grey, .8);
+            stroke: rgba($grey, .8);
+            transition: all .3s ease-in-out;
+        }
+
+        &:hover{
+            & path {
+                fill: $grey;
+                stroke: $grey;
+            }
+        }
+
+        &--rot{
+            transform: rotate(180deg);
+        }
+    }
+}

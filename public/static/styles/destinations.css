@@ -113,7 +113,7 @@
   bottom: 2em;
   left: 0;
   display: flex;
-  z-index: 3;
+  z-index: 2;
   width: 100%;
   background-color: white; }
   .boxnav__item {
@@ -161,7 +161,7 @@
   top: 0;
   width: 2px;
   height: 1.45rem;
-  background: #000;
+  background: #666;
   -webkit-transform: rotate(22.5deg);
           transform: rotate(22.5deg); }
   .icon--caret-rot {

@@ -9,19 +9,44 @@ body {
 
 .icon {
   display: block;
-  width: 1.5em;
-  height: 1.5em;
-  margin: 0 auto;
-  fill: currentColor; }
+  width: 100%;
+  height: 100%;
+  transition: all .3s ease-in-out; }
 
-.icon--heart {
-    width: 2em;
-    height: 2em; }
+.icon symbol {
+    display: block; }
 
-.icon--heart path {
-      fill: transparent;
-      stroke: white;
-      stroke-width: 15px; }
+.icon path {
+    fill: white;
+    stroke: transparent; }
+
+.icon-heart path {
+    fill: transparent;
+    stroke: white;
+    stroke-width: 30px; }
+
+.icon-heart--green path {
+    fill: transparent;
+    stroke: #62ab03;
+    stroke-width: 30px; }
+
+.icon-heart--fill-green path {
+    fill: #62ab03;
+    stroke: rgba(102, 102, 102, 0.5);
+    stroke-width: 30px; }
+
+.icon-arrow path {
+    fill: rgba(102, 102, 102, 0.8);
+    stroke: rgba(102, 102, 102, 0.8);
+    transition: all .3s ease-in-out; }
+
+.icon-arrow:hover path {
+    fill: #666;
+    stroke: #666; }
+
+.icon-arrow--rot {
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg); }
 
 /* --------------------------------
 
@@ -540,16 +565,23 @@ Descr: Custom radio toggle
         height: 100%; }
 
 .top_destinations__places__place__image img {
-          height: 100%;
-          z-index: -2; }
+          height: 100%; }
 
 .top_destinations__places__place__image img:nth-child(2) {
             position: absolute;
             top: 0;
-            left: 0; }
+            left: 0;
+            z-index: -1; }
 
-.top_destinations__places__place__image canvas {
-          fill: blue; }
+.top_destinations__places__place__image .canvas_destinations {
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: -1;
+          min-height: 75vh; }
+
+.top_destinations__places__place__image .canvas_destinations--ready {
+            z-index: 1; }
 
 .top_destinations__places__place__text {
         position: absolute;
@@ -571,28 +603,18 @@ Descr: Custom radio toggle
 .top_destinations__places__place__text p {
           color: white; }
 
-#canvas_destinations {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  min-height: 75vh; }
-
 .activity {
   width: 32%;
-  margin: .5em 0;
+  margin: .5em 1em;
   cursor: pointer;
   position: relative; }
 
-.activity a:hover {
+.activity:hover {
     text-decoration: none; }
 
-.activity a:hover img {
+.activity:hover img {
       -webkit-transform: scale(1.1);
               transform: scale(1.1); }
-
-.activity a:hover h4 {
-      text-decoration: underline; }
 
 .activity__image {
     height: 40vh;
@@ -620,37 +642,29 @@ Descr: Custom radio toggle
     margin: auto;
     border-radius: 2px; }
 
+.activity__content__actions {
+      position: absolute;
+      width: auto;
+      z-index: 1; }
+
+.activity__content__actions__add {
+        width: 2em;
+        height: 2em; }
+
+.activity__content__actions__add a {
+          height: 100%;
+          width: 100%;
+          position: absolute;
+          top: 0;
+          left: 0; }
+
 .activity__content__title {
-      text-align: center; }
+      text-align: center;
+      width: 80%;
+      margin: auto; }
 
 .activity__content__description {
       text-align: center; }
-
-.cart_bar {
-  position: fixed;
-  bottom: 2em;
-  border-top-left-radius: 2px;
-  border-bottom-left-radius: 2px;
-  right: 0;
-  margin: auto;
-  z-index: 5;
-  padding: .25em;
-  background: linear-gradient(45deg, rgba(53, 207, 212, 0.95), rgba(20, 161, 230, 0.95));
-  color: white;
-  border: 2px solid rgba(255, 255, 255, 0.9);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-  -webkit-transform: translateX(75%);
-          transform: translateX(75%);
-  transition: -webkit-transform .3s ease-in-out;
-  transition: transform .3s ease-in-out;
-  transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out; }
-
-.cart_bar:hover {
-    -webkit-transform: translateX(0);
-            transform: translateX(0); }
 
 @-webkit-keyframes showBar {
   0% {
@@ -680,6 +694,31 @@ Descr: Custom radio toggle
     -webkit-transform: translateX(75%);
             transform: translateX(75%); } }
 
+.cart_bar {
+  position: fixed;
+  bottom: 2em;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  right: 0;
+  margin: auto;
+  z-index: 5;
+  padding: .25em;
+  background: linear-gradient(45deg, rgba(53, 207, 212, 0.95), rgba(20, 161, 230, 0.95));
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  -webkit-transform: translateX(75%);
+          transform: translateX(75%);
+  transition: -webkit-transform .3s ease-in-out;
+  transition: transform .3s ease-in-out;
+  transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out; }
+
+.cart_bar:hover {
+    -webkit-transform: translateX(0);
+            transform: translateX(0); }
+
 .cart_bar--visible {
     -webkit-animation: showBar 3.5s ease-in-out 1;
             animation: showBar 3.5s ease-in-out 1; }
@@ -690,7 +729,14 @@ Descr: Custom radio toggle
     margin: 1em .5em;
     text-align: center;
     border-bottom: 1px solid white;
-    width: 30%; }
+    width: 30%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; }
+
+.cart_bar__title__icon {
+      width: 2em;
+      height: 2em; }
 
 .cart_bar__title h4 {
       margin-top: .5em;
@@ -715,7 +761,8 @@ Descr: Custom radio toggle
       justify-content: space-around; }
 
 .cart_bar__content__button a {
-        margin: 0 .25em; }
+        margin: 0 .25em;
+        color: white; }
 
 .cart_bar [data-show='empty'] {
     visibility: hidden;
@@ -823,7 +870,8 @@ Descr: Custom radio toggle
       width: 40%; }
 
 .footer__content__social-networks {
-      width: auto; }
+      width: auto;
+      margin: auto 2em; }
 
 .footer__content__social-networks ul {
         margin: 0; }
@@ -833,8 +881,10 @@ Descr: Custom radio toggle
           display: inline-block;
           list-style: none; }
 
-.footer__content__social-networks ul li img {
-            height: 2em; }
+.footer__content__social-networks ul li a {
+            width: 2em;
+            height: 2em;
+            display: inline-block; }
 
 .footer__background-image {
     position: absolute;
