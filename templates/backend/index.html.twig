@@ -30,19 +30,13 @@
         <div class="grid-half">
             <h3>or edit the details of the following pages:</h3>
             <ul class="list-inline" style="display: inline-flex; align-content: space-evenly; list-style: none">
-
-        <li> <a href="{{ path('backend_page_edit', {'pageName': 'index'}) }}"  class="btn">Homepage</a></li>
-        <li> <a href="{{ path('backend_page_edit', {'pageName': 'faq'}) }}"  class="btn">FAQ</a></li>
-        <li>  <a href="{{ path('backend_page_edit', {'pageName': 'contact'}) }}" class="btn">Contact</a></li>
-       
-    </ul>
+                <li><a href="{{ path('backend_page_edit', {'pageName': 'index'}) }}"  class="btn">Homepage</a></li>
+                <li><a href="{{ path('backend_page_edit', {'pageName': 'faq'}) }}"  class="btn">FAQ</a></li>
+                <li><a href="{{ path('backend_page_edit', {'pageName': 'contact'}) }}" class="btn">Contact</a></li>
+                <li><a href="{{ path('backend_page_edit', {'pageName': 'bucket_list'}) }}" class="btn">Bucket List</a></li>
+            </ul>
         </div>
     </div>
-
-    
-
-
-
 
 </div>
 {% endblock %}

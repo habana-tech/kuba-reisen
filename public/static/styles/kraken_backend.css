@@ -1395,7 +1395,9 @@ img,
 video {
   width: 100%;
   max-width: 100%;
-  height: auto; }
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover; }
 /**
  * Prevent iframe, object, and embed elements from spilling outside of the page on smaller screens.
  * height: auto causes iframes to smush, so it's omitted here.
@@ -2188,7 +2190,7 @@ select {
   line-height: 1.5;
   margin-bottom: 1.1875em;
   width: 100%;
-  padding: .5em .75em;
+  padding: .25em .5em;
   background: white;
   border: 2px solid #35cfd4; }
 @media (min-width: 40em) {

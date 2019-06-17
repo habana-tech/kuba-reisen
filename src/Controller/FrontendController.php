@@ -14,6 +14,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use App\PageManager\DynamicPageManager;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Intl\Tests\Data\Provider\Json;
 
 class FrontendController extends AbstractController
 {
@@ -141,9 +142,13 @@ class FrontendController extends AbstractController
         if(!$page)
             throw new NotFoundHttpException();
 
+
+        $contents = [];
+
         return $this->render('frontend/bucket_list.html.twig', [
             'dynamic_page_id' => $page->getId(),
             'page' => $page,
+            'contents'=>$contents,
         ]);
     }
 }

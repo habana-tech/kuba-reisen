@@ -300,6 +300,11 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   height: 100%;
   width: 100%;
   overflow: hidden; }
+.interest:hover label::after {
+    background: linear-gradient(45deg, rgba(98, 171, 3, 0.5), rgba(255, 255, 255, 0.3), rgba(0, 77, 0, 0.5)); }
+.interest:hover img {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1); }
 .interest label {
     position: relative;
     width: 100%;
@@ -314,29 +319,15 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
       left: 0;
       background: transparent;
       transition: all .3s ease-in-out; }
-.interest label .icon--heart {
-      width: 2em;
-      height: 2em;
-      -webkit-transform: scale(1);
-              transform: scale(1);
-      transition: -webkit-transform .3s ease-in-out;
-      transition: transform .3s ease-in-out;
-      transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out; }
-.interest label .icon--heart path {
-        stroke: white;
-        stroke-width: 15px;
-        fill: transparent;
-        transition: fill .3s ease-in-out; }
 .interest label img {
       width: 100%;
-      min-height: 100%;
-      max-width: 100%;
+      height: 100%;
       -webkit-transform: scale(1);
               transform: scale(1);
       transition: -webkit-transform .5s ease-in-out;
       transition: transform .5s ease-in-out;
       transition: transform .5s ease-in-out, -webkit-transform .5s ease-in-out; }
-.interest label > span {
+.interest label .interest__title {
       font-family: 'Baloo Bhaina';
       font-size: 1.1em;
       font-weight: 700;
@@ -348,23 +339,24 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
       text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
       color: white;
       z-index: 1;
-      text-align: center; }
+      text-align: center;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center; }
+.interest label .interest__title__icon {
+        width: 100%;
+        height: 2em;
+        -webkit-transform: scale(1);
+                transform: scale(1);
+        transition: -webkit-transform .3s ease-in-out;
+        transition: transform .3s ease-in-out;
+        transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out; }
+.interest label .interest__title__text {
+        width: 100%; }
 .interest input[type='checkbox'] {
     display: none; }
-.interest:hover label::after {
-    background: linear-gradient(-45deg, rgba(53, 207, 212, 0.8), rgba(0, 0, 0, 0.3), rgba(20, 161, 230, 0.8)); }
-.interest:hover img {
-    -webkit-transform: scale(1.1);
-            transform: scale(1.1); }
-.interest--checked label .icon--heart {
-    width: 2em;
-    height: 2em;
-    -webkit-transform: scale(1.2);
-            transform: scale(1.2); }
-.interest--checked label .icon--heart path {
-      fill: #f96e10; }
 .interest--checked label::after {
-    background: linear-gradient(-45deg, rgba(53, 207, 212, 0.6), rgba(0, 0, 0, 0.3), rgba(20, 161, 230, 0.6)); }
+    background: linear-gradient(45deg, rgba(98, 171, 3, 0.5), rgba(255, 255, 255, 0.3), rgba(0, 77, 0, 0.5)); }
 .interest--checked img {
     -webkit-transform: scale(1.1) !important;
             transform: scale(1.1) !important; }

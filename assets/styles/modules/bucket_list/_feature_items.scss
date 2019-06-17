@@ -17,48 +17,53 @@
 
     &__features {
         width: 40%;
+        margin-left: 1em;
         padding-top: 3em;
 
-        & ol {
+        & h3 {
+            position: relative;
+            transition: transform .3s ease-in-out;
 
-            & li.item {
-                padding: 25px 50px;
-                line-height: 25px;
-                font-size: 13px;
-                transform: scale(.9);
-                transition: transform .3s ease-in-out;
-                display: flex;
-                flex-wrap: wrap;
+            &:after {
+                content: '';
+                position: absolute;
+                background: linear-gradient(45deg, rgba($dark-orange, .25), rgba($light-orange, .25));
+                height: 2px;
+                border-radius: 2px;
+                width: 100%;
+                bottom: -.25em;
+                left: 0;
+            }
 
-                & h3 {
-                    position: relative;
+            &.active{
+                transform: scale(1.1);
 
-                    &:after {
-                        content: '';
-                        position: absolute;
-                        background: linear-gradient(45deg, $dark-orange, $light-orange);
-                        height: 2px;
-                        border-radius: 2px;
-                        width: 100%;
-                        bottom: -.25em;
-                        left: 0;
-                    }
-                }
-
-                & p{
-                    width: 100%;
-                }
-
-                &.active {
-                    transform: scale(1.15)
-                }
-
-                &:last-child {
-                    border-bottom: none;
-                    margin-bottom: 200px;
+                &:after {
+                    background: linear-gradient(45deg, $dark-orange, $light-orange);
                 }
             }
         }
+
+        span[data-map]{
+            position: absolute;
+            visibility: hidden;
+            height: 0;
+            width: 0;
+        }
+
+        & p{
+            width: 100%;
+        }
+
+        &.active {
+            transform: scale(1.15)
+        }
+
+        &:last-child {
+                    border-bottom: none;
+                    margin-bottom: 200px;
+                }
+
     }
 
 }

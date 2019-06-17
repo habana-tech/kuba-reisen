@@ -3,6 +3,16 @@
     width: 100%;
     overflow: hidden;
 
+    &:hover{
+        & label::after{
+            background: linear-gradient(45deg, rgba($light-green, .5), rgba(white, .3), rgba($dark-green, .5));
+        }
+
+        & img{
+            transform: scale(1.1);
+        }
+    }
+
     & label {
         position: relative;
         width: 100%;
@@ -20,30 +30,15 @@
             transition: all .3s ease-in-out;
         }
 
-        & .icon--heart {
-            width: 2em;
-            height: 2em;
-            transform: scale(1);
-            transition: transform .3s ease-in-out;
-
-            & path {
-                stroke: white;
-                stroke-width: 15px;
-                fill: transparent;
-                transition: fill .3s ease-in-out;
-            }
-        }
-
         & img {
             width: 100%;
-            min-height: 100%;
-            max-width: 100%;
+            height: 100%;
             transform: scale(1);
             transition: transform .5s ease-in-out;
 
         }
 
-        & > span{
+        & .interest__title{
             font-family: 'Baloo Bhaina';
             font-size: 1.1em;
             font-weight: 700;
@@ -56,6 +51,20 @@
             color: white;
             z-index: 1;
             text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+
+            &__icon {
+                width: 100%;
+                height: 2em;
+                transform: scale(1);
+                transition: transform .3s ease-in-out;
+            }
+
+            &__text{
+                width: 100%;
+            }
         }
 
     }
@@ -64,32 +73,13 @@
         display: none;
     }
 
-    &:hover{
-        & label::after{
-            background: linear-gradient(-45deg, rgba($light-blue, .8), rgba(black, .3), rgba($dark-blue, .8));
-        }
 
-        & img{
-            transform: scale(1.1);
-        }
-    }
 
     &--checked{
 
         & label{
-
-            & .icon--heart{
-                width: 2em;
-                height: 2em;
-                transform: scale(1.2);
-
-                path {
-                    fill: $dark-orange;
-                }
-            }
-
             &::after{
-                background: linear-gradient(-45deg, rgba($light-blue, .6), rgba(black, .3), rgba($dark-blue, .6));
+                background: linear-gradient(45deg, rgba($light-green, .5), rgba(white, .3), rgba($dark-green, .5));
             }
         }
 

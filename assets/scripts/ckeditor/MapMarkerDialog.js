@@ -11,7 +11,7 @@ CKEDITOR.dialog.add( 'MapMarkerDialog', function( editor ) {
                     {
                         type: 'text',
                         id: 'center',
-                        label: 'Map Center Coordinates',
+                        label: 'Map Center Coordinates <br/><small>example: -83.5334399, 22.8793054</small>',
                         validate: CKEDITOR.dialog.validate.notEmpty( "Name field cannot be empty." )
                     },
                     {
@@ -32,15 +32,19 @@ CKEDITOR.dialog.add( 'MapMarkerDialog', function( editor ) {
         onOk: function() {
             var dialog = this;
 
-
             var elm = editor.document.createElement( 'span' );
-            elm.setAttribute( 'data-map_center',dialog.getValueOf( 'tab-basic', 'center' ) );
-            elm.setAttribute( 'data-map_zoom',dialog.getValueOf( 'tab-basic', 'zoom' ) );
-            
-            elm.setAttribute( 'class','MapMarker');
-            elm.setText( "[MAP_MARKER]" );
 
+            let center = "\"center\":["+dialog.getValueOf('tab-basic', 'center')+']';
+            let zoom = "\"zoom\":"+dialog.getValueOf( 'tab-basic', 'zoom' );
+            let bearing = "\"bearing\":"+dialog.getValueOf('tab-basic', 'bearing');
+            let data_map = [center, zoom, bearing];
+            data_map = '{'+data_map.toString()+'}';
+
+            elm.setAttribute('data-map', data_map);
+            elm.setAttribute( 'class','MapMarker');
+            elm.setText( "[MAP_MARKER]");
+            console.log(elm);
             editor.insertElement( elm );
         }
-    };;
+    };
 });

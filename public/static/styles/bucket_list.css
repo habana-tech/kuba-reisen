@@ -20,34 +20,37 @@
       min-height: 90vh; }
 .bucket-list__items__features {
     width: 40%;
+    margin-left: 1em;
     padding-top: 3em; }
-.bucket-list__items__features ol li.item {
-      padding: 25px 50px;
-      line-height: 25px;
-      font-size: 13px;
-      -webkit-transform: scale(0.9);
-              transform: scale(0.9);
+.bucket-list__items__features h3 {
+      position: relative;
       transition: -webkit-transform .3s ease-in-out;
       transition: transform .3s ease-in-out;
-      transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out;
-      display: flex;
-      flex-wrap: wrap; }
-.bucket-list__items__features ol li.item h3 {
-        position: relative; }
-.bucket-list__items__features ol li.item h3:after {
-          content: '';
-          position: absolute;
-          background: linear-gradient(45deg, #f96e10, #f9c90d);
-          height: 2px;
-          border-radius: 2px;
-          width: 100%;
-          bottom: -.25em;
-          left: 0; }
-.bucket-list__items__features ol li.item p {
-        width: 100%; }
-.bucket-list__items__features ol li.item.active {
-        -webkit-transform: scale(1.15);
-                transform: scale(1.15); }
-.bucket-list__items__features ol li.item:last-child {
-        border-bottom: none;
-        margin-bottom: 200px; }
+      transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out; }
+.bucket-list__items__features h3:after {
+        content: '';
+        position: absolute;
+        background: linear-gradient(45deg, rgba(249, 110, 16, 0.25), rgba(249, 201, 13, 0.25));
+        height: 2px;
+        border-radius: 2px;
+        width: 100%;
+        bottom: -.25em;
+        left: 0; }
+.bucket-list__items__features h3.active {
+        -webkit-transform: scale(1.1);
+                transform: scale(1.1); }
+.bucket-list__items__features h3.active:after {
+          background: linear-gradient(45deg, #f96e10, #f9c90d); }
+.bucket-list__items__features span[data-map] {
+      position: absolute;
+      visibility: hidden;
+      height: 0;
+      width: 0; }
+.bucket-list__items__features p {
+      width: 100%; }
+.bucket-list__items__features.active {
+      -webkit-transform: scale(1.15);
+              transform: scale(1.15); }
+.bucket-list__items__features:last-child {
+      border-bottom: none;
+      margin-bottom: 200px; }

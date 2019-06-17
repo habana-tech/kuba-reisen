@@ -100,8 +100,6 @@
       position: relative;
       width: auto;
       height: 100%;
-      -o-object-fit: cover;
-         object-fit: cover;
       transition: all .3s ease-in-out; }
   .overview__item__text {
       padding: 1em 1.5em; }
