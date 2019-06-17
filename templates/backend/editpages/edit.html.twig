@@ -3,14 +3,33 @@
 {% block title %}Edit content of {{ page.pageName }}{% endblock %}
 
 {% block body %}
+    <style>
+        div#form > div{
+            margin-top: 2em;
+        }
+        div#form label{
+            font-weight: 600;
+        }
+    </style>
     <h1>Editing content of <i><u>{{ page.pageName }}</u></i></h1>
 
     {% if form.children | length < 2 %}
     You shuld go to site and see the page before editing...
     {% endif %}
 
-    {{ include('backend/editpages/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
 
-    <a href="{{ path('backend') }}" class="btn">back to admin</a>
+
+    <div class="row margin-top">
+        <div class="grid-auto text-center">
+            <button class="btn">{{ button_label|default('Save and go back') }}</button>
+        </div>
+        <div class="grid-auto text-center" style="padding: 10px;">
+            <a href="{{ path('backend') }}" class="btn">Back to list</a>
+        </div>
+        {{ form_end(form) }}
+    </div>
+
 
 {% endblock %}
