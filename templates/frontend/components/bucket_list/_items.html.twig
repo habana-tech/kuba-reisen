@@ -3,15 +3,16 @@
     <div class="bucket-list__items__map">
         <div id="map"></div>
     </div>
-    <div class="bucket-list__items__features" id='features'>
-        {% for content in contents %}
+    <div class="bucket-list__items__features" id='features' data-grape_id="bucket-list__items__features">
 
-            {{ content.title | raw}}
-            <span data-map="{{ content.map }}"></span>
-            {{ content.content | raw }}
-            {{ content.content | raw }}
+        {% if page.element('bucket-list__items__features') %}
+            {{ page.element('bucket-list__items__features') | raw }}
+        {% else %}
+            <h3>sample</h3>
+            <p><span></span></p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        {% endif %}
 
-        {% endfor %}
     </div>
 
 </section>

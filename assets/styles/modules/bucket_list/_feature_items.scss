@@ -17,6 +17,7 @@
 
     &__features {
         width: 40%;
+        margin-left: 1em;
         padding-top: 3em;
 
         & h3 {
@@ -41,6 +42,13 @@
                     background: linear-gradient(45deg, $dark-orange, $light-orange);
                 }
             }
+        }
+
+        span[data-map]{
+            position: absolute;
+            visibility: hidden;
+            height: 0;
+            width: 0;
         }
 
         & p{

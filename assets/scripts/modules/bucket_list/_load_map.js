@@ -8,14 +8,12 @@ class BucketList{
             style: 'mapbox://styles/mapbox/outdoors-v11/?optimize=true',
             center: [-83.5334399, 22.8793054],
             zoom: 10,
-            minZoom:10,
+            minZoom:4,
             maxZoom:16,
-            pitch: 45,
+            pitch: 0,
         });
 
         this.map.scrollZoom.disable();
-        // this.map.setLayoutProperty('country-label', 'text-field', ['get', 'name_de']);
-
         this.points = document.querySelectorAll('.bucket-list__items__features h3');
         this.pointsData = document.querySelectorAll('.bucket-list__items__features span');
 
@@ -39,7 +37,8 @@ class BucketList{
                 let element = this.points[i];
                 if (this.isElementOnScreen(element)) {
                     let props = this.pointsData[i].getAttribute('data-map');
-                    props = JSON.parse(props.toString());
+                    props = JSON.parse(props);
+                    console.log(props);
                     this.setActiveChapter(i, props);
                     break;
                 }

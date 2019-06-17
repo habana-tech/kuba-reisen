@@ -20,6 +20,7 @@
       min-height: 90vh; }
 .bucket-list__items__features {
     width: 40%;
+    margin-left: 1em;
     padding-top: 3em; }
 .bucket-list__items__features h3 {
       position: relative;
@@ -40,6 +41,11 @@
                 transform: scale(1.1); }
 .bucket-list__items__features h3.active:after {
           background: linear-gradient(45deg, #f96e10, #f9c90d); }
+.bucket-list__items__features span[data-map] {
+      position: absolute;
+      visibility: hidden;
+      height: 0;
+      width: 0; }
 .bucket-list__items__features p {
       width: 100%; }
 .bucket-list__items__features.active {
