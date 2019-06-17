@@ -31,10 +31,10 @@
         }
 
         &--fill-green{
-
+            transform: scale(1.1);
             & path {
                 fill: $light-green;
-                stroke: rgba($grey, .5);
+                stroke: white;
                 stroke-width: 30px;
             }
         }

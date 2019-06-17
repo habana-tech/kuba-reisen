@@ -4,72 +4,14 @@
         <div id="map"></div>
     </div>
     <div class="bucket-list__items__features" id='features'>
-        <ol>
-            <li id='baker' class='item active'>
-                <h3>Erkunden Sie mit dem Stand-Up-Paddel die Playas del Este. </h3>
+        {% for content in contents %}
 
-                <p>
-                    Faul am Strand herumhängen war gestern. Erkunden Sie die Strände Havannas,
-                    die Playas del Este, doch besser beim Stand-up-Paddling.
-                    "Cruisen" Sie mit dem Brett übers Meer und genießen Sie dabei die
-                    wunderschöne Naturkulisse.
-                </p>
-            </li>
-            <li id='aldgate' class='item'>
-                <h3>Rauchen Sie eine Cohiba-Zigarre im Garten des Hotel Nacional.</h3>
-                <p>
-                    Schon Mafia-Boss Meyer Lansky oder Sänger Frank Sinatra waren hier:
-                    im geschichtsträchtigen Hotel National. Geniessen Sie eine kubanische
-                    Zigarre und einen Cocktail im wunderbaren Hotelgarten mit Meerblick.
-                </p>
-            </li>
-            <li id='london-bridge' class='item'>
-                <h3>Suchen Sie nach dem Nationalvogel Tocororo in der Ciénaga de Zapata.</h3>
-                <p>
-                    Der Nationalpark "Ciénaga de Zapata" ist ein Paradies für Vogelbeobachter.
-                    Mit etwas Glück - und am besten mit Hilfe eines Ornithologen - werden Sie
-                    den kubanischen Nationalvogel Tocororo erspähen. Und wenn nicht, gibt’s noch
-                    über 180 andere Vogelarten, die darauf warten, gefunden zu werden.
-                </p>
-            </li>
-            <li id='woolwich' class='item'>
-                <h3>4.	Tanzen Sie Salsa in der "Casa de la Trova" in Baracoa und lassen Sie sich vom Dorfanimateur bespaßen.</h3>
-                <p>
-                    Schwingen Sie das Tanzbein zu Live-Musik in der kleinsten aber
-                    authentischsten Casa de la Trova Kubas. Für gute Stimmung
-                    sorgen nicht nur die Musiker und die Gäste. Auch Baracoas
-                    selbst ernannter "Dorfanimateur" sorgt mit seinen Sprüchen
-                    regelmäßig für Lacher.
-                </p>
-                <p>
-                    <img src="{{ asset('img/grid/portraid2.jpg') }}" alt="">
-                </p>
-            </li>
-            <li id='gloucester' class='item'>
-                <h3>Gloucester Road</h3>
-                <p>Mycroft responds to Sherlock's telegram and mentions several spies. Hugo Oberstein of 13 Caulfield Gardens catches Sherlock's eye. He heads to the nearby Gloucester Road station to investigate and learns that the windows of Caulfield Gardens open over rail tracks where trains stop frequently.</p>
-            </li>
-            <li id='caulfield-gardens' class='item'>
-                <h3>13 Caulfield Gardens</h3>
-                <p>Holmes deduces that the murderer placed West atop a stopped train at Caulfield Gardens. The train traveled to Aldgate Station before West's body finally toppled off. Backtracking to the criminal's apartment, Holmes finds a series of classified ads from <em>The Daily Telegraph</em> stashed away. All are under the name Pierrot: "Monday night after nine. Two taps. Only ourselves. Do not be so suspicious. Payment in hard cash when goods delivered."</p>
-            </li>
-            <li id='telegraph' class='item'>
-                <h3>The Daily Telegraph</h3 >
-                <p>Holmes and Watson head to The Daily Telegraph and place an ad to draw out the criminal. It reads: "To-night. Same hour. Same place. Two taps. Most vitally important. Your own safety at stake. Pierrot." The trap works and Holmes catches the criminal: Colonel Valentine Walter, the brother of Woolwich Arsenal's chief. He confesses to working for Hugo Oberstein to obtain the submarine plans in order to pay off his debts.</p>
-                <p>
-                    <img src="{{ asset('img/grid/portraid1.jpg') }}" alt="">
-                </p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi assumenda aut commodi deserunt, esse in necessitatibus obcaecati optio quidem sit ut velit. Ad at esse in nihil nulla, quaerat quibusdam.</p>
-            </li>
-            <li id='charing-cross' class='item'>
-                <h3>Charing Cross Hotel</h3>
-                <p>Walter writes to Oberstein and convinces him to meet in the smoking room of the Charing Cross Hotel where he promises additional plans for the submarine in exchange for money. The plan works and Holmes and Watson catch both criminals.</p>
-                <small id="citation">
-                    Adapted from <a href='http://www.gutenberg.org/files/2346/2346-h/2346-h.htm'>Project Gutenberg</a>
-                </small>
-            </li>
-        </ol>
+            {{ content.title | raw}}
+            <span data-map="{{ content.map }}"></span>
+            {{ content.content | raw }}
+            {{ content.content | raw }}
 
+        {% endfor %}
     </div>
 
 </section>

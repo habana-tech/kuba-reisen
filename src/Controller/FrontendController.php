@@ -14,6 +14,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use App\PageManager\DynamicPageManager;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Intl\Tests\Data\Provider\Json;
 
 class FrontendController extends AbstractController
 {
@@ -141,9 +142,27 @@ class FrontendController extends AbstractController
         if(!$page)
             throw new NotFoundHttpException();
 
+
+        $contents = [];
+
+            for($i = 0;$i<10;$i++){
+               $contents[] = [
+                   'title'=>'<h3>Erkunden Sie mit dem Stand-Up-Paddel die Playas del Este. </h3>',
+                    'map'=>json_encode([
+                            'bearing' => 27,
+                            'center'=> [-rand(820, 840)/10.0, rand(210, 230)/10.0],
+                            'zoom'=> rand(70,150)/10.0,
+                            'pitch'=> 20
+                        ]),
+                    'content'=>"<p> Faul am Strand herumhängen war gestern. Erkunden Sie die Strände Havannas,</p>",
+                ];
+            }
+
+
         return $this->render('frontend/bucket_list.html.twig', [
             'dynamic_page_id' => $page->getId(),
             'page' => $page,
+            'contents'=>$contents,
         ]);
     }
 }

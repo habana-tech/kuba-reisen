@@ -25,15 +25,6 @@ body {
     --color-details-hover: #858585;
 }
 
-/* Icons */
-.icon {
-    display: block;
-    width: 1.5em;
-    height: 1.5em;
-    margin: 0 auto;
-    fill: currentColor;
-}
-
 
 .slideshow {
     position: relative;
@@ -100,7 +91,7 @@ body {
         width: 50%;
         top: 50%;
         transform: translateY(-50%);
-
+        z-index: 2;
         left: 4em;
         color: white;
     }
@@ -110,10 +101,7 @@ body {
         font-size: 1.5rem;
         line-height: 0.9;
         white-space: pre;
-
-        & span {
-            display: inline-block;
-        }
+        color: white;
     }
 
 }
@@ -137,6 +125,13 @@ body {
         height: 4rem;
         flex: 1;
         margin-bottom: 1em;
+
+        & svg{
+            display: block;
+            width: 1.5em;
+            height: 1.5em;
+            margin: 0 auto;
+        }
     }
 
     &__details {
@@ -160,9 +155,7 @@ body {
     display: flex;
     justify-content: space-around;
 
-    & .action:hover{
-        color: $grey;
-    }
+
 }
 
 .boxnav__item--prev:hover,
@@ -191,9 +184,6 @@ body {
     transform: rotate(22.5deg);
 }
 
-.icon--caret-rot {
-    transform: rotate(180deg);
-}
 
 .category {
     font-weight: normal;
@@ -213,6 +203,20 @@ body {
     width: 100%;
     display: grid;
     overflow: hidden;
+
+    &__save{
+        width: 2em;
+        height: 2em;
+
+        & a{
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+
+        }
+    }
 }
 
 .details-wrap--open .details--current {
@@ -223,9 +227,7 @@ body {
     overflow: hidden;
 }
 
-.details__item--addtocart {
-    grid-row: 4;
-}
+
 
 .details__inner {
     width: 100%;
@@ -244,31 +246,14 @@ body {
     display: none;
 }
 
-.details__inner--sizes {
-    background: #d4d4d4;
-}
-
-.details__size {
-    position: relative;
-    cursor: pointer;
-}
-
-.details__size--selected::before {
-    content: '';
-    position: absolute;
-    width: 2rem;
-    height: 2rem;
-    top: 50%;
-    left: 50%;
-    margin: -1rem 0 0 -1rem;
-    border: 2px solid #333;
-    border-radius: 50%;
-}
 
 .details__inner--price {
     background: linear-gradient(45deg, rgba($light-blue, .9), rgba($dark-blue, .9));
-    color: #fff;
     padding: 2em 1.5em;
+
+    & a{
+        color: #fff;
+    }
 }
 
 

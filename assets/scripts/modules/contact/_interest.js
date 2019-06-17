@@ -11,8 +11,9 @@ class Interest{
     toggleCheck(e){
         e.preventDefault();
         let interest = e.target.parentNode;
-        console.log(interest);
         interest.classList.toggle('interest--checked');
+        interest.querySelector('svg').classList.toggle('icon-heart--fill-green');
+
     }
 }
 
