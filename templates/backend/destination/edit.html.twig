@@ -25,10 +25,16 @@
     </div>
 </div>
 
+    <div class="row">
+        <div class="grid-two-thirds">
+
+            {{ form_widget(form) }}
+        </div>
+    </div>
 <div class="row margin-top">
 	
 	<div class="grid-auto" style="position: relative;">
-         {{ form_widget(form.saveAndEdit) }}
+        <input type="submit" name="saveAndEdit" value="Save and edit" class="btn">
        
     </div>
 

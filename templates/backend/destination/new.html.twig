@@ -11,24 +11,26 @@
 	
 
         {{ form_start(form) }}
-        <div class="row margin-top margin-bottom-large padding-top-large padding-bottom-large">
+        <div class="row margin-top margin-bottom-larg padding-bottom-large">
            <div class="grid-half">
                <h2>Write the name of the destination</h2>
                {{ form_widget(form.name) }}
            </div>
 
+
+
         </div>
 
-        <div class="row ">
-            <div class="grid-fourth">
-                {{ form_row(form.featuresCount) }}
+        <div class="row">
+            <div class="grid-full">
+                <div class="grid-fourth">
+                    {{ form_row(form.imageFile) }}
+                </div>
+                <div class="grid-fourth">
+                    {{ form_row(form.featuresCount) }}
+                </div>
+
             </div>
-        </div>
-        <div class="row ">
-            <div class="grid-fourth">
-                {{ form_row(form.imageFile) }}
-            </div>
-            
         </div>
 
         <div class="row margin-top">

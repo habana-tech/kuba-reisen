@@ -4,6 +4,8 @@ namespace App\Controller\Backend;
 
 use App\Entity\Destination;
 use App\Form\DestinationType;
+use App\Form\NewActivityType;
+use App\Form\NewDestinationType;
 use App\Repository\DestinationRepository;
 use App\PageManager\DynamicPageManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,6 +16,7 @@ use App\Entity\DynamicPage;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Doctrine\ORM\EntityNotFoundException;
+use App\DataConverter\GrapesjsHtmlConverter;
 /**
  * @Route("/admin/destination")
  */
@@ -35,28 +38,35 @@ class DestinationController extends AbstractController
     public function new(Request $request): Response
     {
         $destination = new Destination();
-        $form = $this->createForm(DestinationType::class, $destination);
+        $form = $this->createForm(NewDestinationType::class, $destination);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $dynamicPage = new DynamicPage();
-            $dynamicPage->setPageName($destination->getMachineName());
-            $destination->setDynamicPage($dynamicPage);
+            if ($form->get('saveAndEdit')->isClicked()) {
+                $dynamicPage = new DynamicPage();
+                $dynamicPage->setPageName($destination->getMachineName());
+                $destination->setDynamicPage($dynamicPage);
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($destination);
-            $entityManager->persist($dynamicPage);
+                $htmlContent = new GrapesjsHtmlConverter($this->renderView('frontend/destination.html.twig',
+                    [
+                        'page' => $dynamicPage,
+                        'destination' => $destination,
+                    ]));
+                $dynamicPage->setPageContent($htmlContent->getPageElements());
 
-            $entityManager->flush();
 
-            if($form->get('saveAndEdit')->isClicked())
-                return $this->redirectToRoute('destination',[
-                    'id'=>$destination->getId(),
-                    'name'=>$destination->getMachineName()
-                    ]);
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($destination);
+                $entityManager->persist($dynamicPage);
+                $entityManager->flush();
 
-            return $this->redirectToRoute('backend_destination_index');
+                return $this->redirectToRoute('backend_destination_edit', [
+                    'id' => $destination->getId()
+                ]);
+
+
+            }
         }
 
         return $this->render('backend/destination/new.html.twig', [
@@ -64,6 +74,7 @@ class DestinationController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
 
     /**
      * @Route("/{id}", name="backend_destination_show", methods={"GET"})
@@ -112,7 +123,7 @@ class DestinationController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
 
 
-            if($form->get('saveAndEdit')->isClicked())
+            if($request->get('saveAndEdit'))
                 return $this->redirectToRoute('destination',[
                     'id'=>$destination->getId(),
                     'name'=>$destination->getMachineName()

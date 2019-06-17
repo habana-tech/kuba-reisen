@@ -11,7 +11,7 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
 
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class DestinationType extends AbstractType
+class NewDestinationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -29,7 +29,7 @@ class DestinationType extends AbstractType
 //            ->add('modified_by')
 
             ->add('imageFile', VichImageType::class, ['required'=> false])
-         //   ->add('saveAndEdit', SubmitType::class, array('label' => 'Save and start editing', 'attr'=>['class' => 'btn']))
+            ->add('saveAndEdit', SubmitType::class, array('label' => 'Save and start editing', 'attr'=>['class' => 'btn']))
         ;
     }
 
