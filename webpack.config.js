@@ -12,6 +12,8 @@ module.exports = {
         activities: "./assets/scripts/activities.js",
         activity: "./assets/scripts/activity.js",
         bucket_list: "./assets/scripts/bucket_list.js",
+        MapMarker: "./assets/scripts/ckeditor/MapMarker.js",
+        MapMarkerDialog: "./assets/scripts/ckeditor/MapMarkerDialog.js",
 
     },
     output: {

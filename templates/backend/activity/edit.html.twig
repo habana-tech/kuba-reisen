@@ -29,19 +29,28 @@
                 <div class="grid-full margin-top activity-admin__advance__destinations-tags__tags">
                     {{ form_row(form.filterTags) }}
                 </div>
-            </div>
         </div>
     </div>
 
+    <div class="row margin-top">
+
+        <div class="grid-three-fourths">
+            {{ form_widget(form) }}
+        </div>
+    </div>
 
     <div class="row margin-top">
-        <div class="grid-auto text-center">{{ form_row(form.saveAndEdit) }}</div>
         <div class="grid-auto text-center">
-             {{ include('backend/activity/_form.html.twig', {'button_label': 'Update'}) }}
+            <input type="submit" name="saveAndEdit" value="Save and edit" class="btn">
+            {#{{ form_row(form.saveAndEdit) }}#}
+        </div>
+        <div class="grid-auto text-center">
+            <button class="btn">{{ button_label|default('Save and go back') }}</button>
         </div>
         <div class="grid-auto text-center" style="padding: 10px;">
             <a href="{{ path('backend_activity_index') }}" class="btn">Back to list</a>
         </div>
+        {{ form_end(form) }}
         <div class="grid-auto text-center">
             {{ include('backend/activity/_delete_form.html.twig') }}
         </div>

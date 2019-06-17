@@ -2,9 +2,11 @@
 
 namespace App\Controller\Backend;
 
+use App\DataConverter\GrapesjsHtmlConverter;
 use App\Entity\Activity;
 use App\Entity\DynamicPage;
 use App\Form\ActivityType;
+use App\Form\NewActivityType;
 use App\PageManager\DynamicPageManager;
 use App\Repository\ActivityRepository;
 use Doctrine\ORM\EntityNotFoundException;
@@ -38,29 +40,35 @@ class ActivityController extends AbstractController
         $activity = new Activity();
 
 
-        $form = $this->createForm(ActivityType::class, $activity);
+        $form = $this->createForm(NewActivityType::class, $activity);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $dynamicPage = new DynamicPage();
 
-            $dynamicPage->setPageName($activity->getMachineName());
-            $activity->setDynamicPage($dynamicPage);
+            if($form->get('saveAndEdit')->isClicked()){
+                $dynamicPage = new DynamicPage();
 
+                $dynamicPage->setPageName($activity->getMachineName());
+                $activity->setDynamicPage($dynamicPage);
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($activity);
-            $entityManager->persist($dynamicPage);
-            $entityManager->flush();
-            if($form->get('saveAndEdit')->isClicked())
-                return $this->redirectToRoute('activity',[
-                    'id'=>$activity->getId(),
-                    'name'=>$activity->getMachineName()
-                    ]);
+                $htmlContent = new GrapesjsHtmlConverter($this->renderView('frontend/activity.html.twig',
+                    [
+                        'page' => $dynamicPage,
+                        'activity'=>$activity,
+                        'related_activities'=>null
+                    ]));
+                $dynamicPage->setPageContent($htmlContent->getPageElements());
 
-            return $this->redirectToRoute('backend_activity_index');
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($activity);
+                $entityManager->persist($dynamicPage);
+                $entityManager->flush();
+
+                return $this->redirectToRoute('backend_activity_edit', ['id'=>$activity->getId()]);
+
+            }
+
         }
-
         return $this->render('backend/activity/new.html.twig', [
             'activity' => $activity,
             'form' => $form->createView(),
@@ -116,7 +124,7 @@ class ActivityController extends AbstractController
             //$this->getDoctrine()->getManager()->persist($activity->getDynamicPage());
             $this->getDoctrine()->getManager()->flush();
 
-            if($form->get('saveAndEdit')->isClicked())
+            if($request->get('saveAndEdit'))
                 return $this->redirectToRoute('activity',[
                     'id'=>$activity->getId(),
                     'name'=>$activity->getMachineName()

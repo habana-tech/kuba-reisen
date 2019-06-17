@@ -53,7 +53,7 @@ class ActivityType extends AbstractType
 
 //            ->add('imageFile', VichImageType::class, ['required'=> false, 'label'=>'Primary Image'])
 //            ->add('alternativeText', null,  ['label'=>'Describe image'])
-            ->add('saveAndEdit', SubmitType::class, array('label' => 'Save and start editing', 'attr'=>['class' => 'btn']))
+           // ->add('saveAndEdit', SubmitType::class, array('label' => 'Save and start editing', 'attr'=>['class' => 'btn']))
         ;
     }
 

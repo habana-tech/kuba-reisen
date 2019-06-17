@@ -21,47 +21,23 @@
             </div>
             <div class="grid-fourth offset-half" style="position: relative;">
                 <div style="position: absolute;bottom: 0;">
-                    {{ form_widget(form.saveAndEdit) }}
+
                 </div>
             </div>
         </div>
 
 
-        <hr class=" margin-top margin-bottom-large">
-        <h2>Additionally, you can set some of the following values...</h2>
-
-        <div class="row activity-admin__advance">
-
-            <div class="activity-admin__advance__description">
-                {{ form_row(form.description) }}
+        <div class="row margin-top">
+            <div class="grid-auto text-center">
+                {{ form_widget(form.saveAndEdit) }}
             </div>
-
-            <div class="activity-admin__advance__destinations-tags">
-                <div class="activity-admin__advance__destinations-tags__destinations">
-                    {{ form_row(form.destinations) }}
-                </div>
-                <div class="activity-admin__advance__destinations-tags__tags">
-                    {{ form_row(form.filterTags) }}
-                </div>
+            <div class="grid-auto text-center" style="padding: 10px;">
+                <a href="{{ path('backend_activity_index') }}" class="btn">Back to list</a>
             </div>
 
         </div>
+                {{ form_widget(form) }}
 
-
-
-
-        {{ form_widget(form) }}
-
-    <div class="row margin-top">
-        <div class="grid-auto text-center">
-            <button class="btn">{{ button_label|default('Save') }}</button>
-            </div>
-        
-        <div class="grid-auto text-center" style="padding: 10px;">
-            <a href="{{ path('backend_activity_index') }}" class="btn">Go back to list</a>
-        </div>
-        
-    </div>
 
 
         {{ form_end(form) }}
