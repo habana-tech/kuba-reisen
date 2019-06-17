@@ -43,7 +43,7 @@
         {% endif %}
         {% if in_string(app.request.get('_route'), 'backend_destination_edit')%}
             <li class="admin_bar_action">
-                <a href="{{ path('destination', {'id': destination.id, 'name': destination.machineName}) }}">Discard changes and see this Destination</a>
+                <a href="{{ path('destination', {'id': destination.id, 'name': destination.machineName}) }}">Discard and see</a>
             </li>
         {% endif %}
 
