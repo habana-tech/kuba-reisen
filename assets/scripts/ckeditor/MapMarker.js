@@ -19,7 +19,9 @@
 CKEDITOR.plugins.add( 'MapMarker', {
     icons: 'MapMarker',
     init: function( editor ) {
-        editor.addCommand( 'MapMarker', new CKEDITOR.dialogCommand( 'MapMarkerDialog' ) );
+        editor.addCommand( 'MapMarker', new CKEDITOR.dialogCommand( 'MapMarkerDialog', {
+            allowedContent: 'span[!data-map,!class]'
+        } ) );
         editor.ui.addButton( 'MapMarker', {
             label: 'Insert MapMarker',
             command: 'MapMarker',
@@ -27,5 +29,25 @@ CKEDITOR.plugins.add( 'MapMarker', {
         });
 
         CKEDITOR.dialog.add( 'MapMarkerDialog', this.path + 'MapMarkerDialog.js' );
+        CKEDITOR.addCss('.MapMarker{background: #f2f8ff; border: 2px dashed #888; display: block; width:100px; height: 25px;}');
+
+    },
+
+    afterInit: function( editor ) {
+        var dataProcessor = editor.dataProcessor;
+        var dataFilter = dataProcessor && dataProcessor.dataFilter;
+
+        dataFilter.addRules({
+            elements: {
+                'span': function(element) {
+                    console.log(element);
+                    if (element.attributes.class == 'MapMarker') {
+                        var fakeElement = editor.createFakeParserElement(element, 'MapMarker', 'div', false);
+                        return fakeElement;
+                    }
+                }
+            }
+        })
+
     }
 });

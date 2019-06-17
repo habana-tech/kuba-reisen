@@ -36,7 +36,8 @@ CKEDITOR.dialog.add( 'MapMarkerDialog', function( editor ) {
             var elm = editor.document.createElement( 'span' );
             elm.setAttribute( 'data-map_center',dialog.getValueOf( 'tab-basic', 'center' ) );
             elm.setAttribute( 'data-map_zoom',dialog.getValueOf( 'tab-basic', 'zoom' ) );
-            elm.setAttribute( 'data-map_bearing',dialog.getValueOf( 'tab-basic', 'bearing' ) );
+            
+            elm.setAttribute( 'class','MapMarker');
             elm.setText( "[MAP_MARKER]" );
 
             editor.insertElement( elm );
