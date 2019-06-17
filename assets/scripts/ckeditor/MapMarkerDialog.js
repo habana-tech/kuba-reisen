@@ -41,6 +41,7 @@ CKEDITOR.dialog.add( 'MapMarkerDialog', function( editor ) {
             data_map = '{'+data_map.toString()+'}';
 
             elm.setAttribute('data-map', data_map);
+            elm.setAttribute( 'class','MapMarker');
             elm.setText( "[MAP_MARKER]");
             console.log(elm);
             editor.insertElement( elm );
