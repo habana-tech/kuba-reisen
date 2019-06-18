@@ -8,10 +8,10 @@ fos_ck_editor:
         my_config:
             toolbar: my_toolbar_1
             extraPlugins: "MapMarker"
-            allowedContent: true
+            allowedContent: true # 'span[data-map,class]'
     toolbars:
         configs:
-            my_toolbar_1: [['Bold', 'Italic', 'Strike',  'Styles', 'Format','-', 'RemoveFormat'],['PasteText', 'PasteFromWord', '-'],['Link', 'Unlink', 'Anchor'],['NumberedList', 'BulletedList', 'Blockquote'],['Image', 'Table'], [ "Source", "MapMarker"]]
+            my_toolbar_1: [['PasteText', 'PasteFromWord', '-'],['Bold', 'Italic', 'Strike', 'Styles', 'Format','-', 'RemoveFormat'],['Link', 'Unlink', 'Anchor'],['NumberedList', 'BulletedList', 'Blockquote'],['Image', 'Table'], [ "Source", "MapMarker"]]
     plugins:
         MapMarker:
             path:     "/scripts/" # with trailing slash
