@@ -14,40 +14,41 @@ CKEDITOR.dialog.add( 'MapMarkerDialog', function( editor ) {
                         label: 'Map Center Coordinates <br/><small>example: -83.5334399, 22.8793054</small>',
                         validate: CKEDITOR.dialog.validate.notEmpty( "Name field cannot be empty." ),
                         // Called by the main setupContent method call on dialog initialization.
-                        // setup: function( element ) {
-                        //     //console.log("setup centeer");
-                        //     //console.log( element.getAttribute("data-map"));
-                        //     // this.setValue( element.getAttribute("data-map") );
-                        //     // console.log(element.getAttribute( "data-map" ));
-                        //     var prevValue = JSON.parse(element.getAttribute( "data-map" ));
-                        //
-                        //     this.setValue(prevValue.center);
-                        // },
-                        //
-                        // // Called by the main commitContent method call on dialog confirmation.
-                        // commit: function( element ) {
-                        //     var prevValue = JSON.parse(element.getAttribute( "data-map" ));
-                        //     prevValue.center = this.getValue();
-                        //     element.setAttribute( "data-map", JSON.stringify(prevValue) );
-                        //     console.log( element.getAttribute("data-map"));
-                        // }
+                        setup: function( element ) {
+                            var prevValue = JSON.parse(element.getAttribute("data-map"));
+                            if (prevValue.center.isArray)
+                                this.setValue(prevValue.center.join(', '));
+                            else this.setValue(prevValue.center);
+                        }
                     },
                     {
                         type: 'text',
                         id: 'name',
-                        label: 'Marker Label<br/><small>Optional. It will be shown in tooltips over the map.</small>'
+                        label: 'Marker Label<br/><small>Optional. It will be shown in tooltips over the map.</small>',
+                        setup: function( element ) {
+                            var prevValue = JSON.parse(element.getAttribute( "data-map" ));
+                            this.setValue(prevValue.name);
+                        }
                     },
                     {
                         type: 'text',
                         id: 'zoom',
                         label: 'Zoom Level (1-18)',
-                        validate: CKEDITOR.dialog.validate.number("It should be a number" )
+                        validate: CKEDITOR.dialog.validate.number("It should be a number" ),
+                        setup: function( element ) {
+                            var prevValue = JSON.parse(element.getAttribute( "data-map" ));
+                            this.setValue(prevValue.zoom);
+                        }
                     },
                     {
                         type: 'text',
                         id: 'bearing',
                         label: 'Perspective Angle',
-                        validate: CKEDITOR.dialog.validate.number("It should be a number" )
+                        validate: CKEDITOR.dialog.validate.number("It should be a number" ),
+                        setup: function( element ) {
+                            var prevValue = JSON.parse(element.getAttribute( "data-map" ));
+                            this.setValue(prevValue.bearing);
+                        }
                     }
                 ]
             }
@@ -68,59 +69,52 @@ CKEDITOR.dialog.add( 'MapMarkerDialog', function( editor ) {
 
             var elm = editor.document.createElement( 'span' );
 
+            let name = dialog.getValueOf('tab-basic', 'name');
+            let center = dialog.getValueOf('tab-basic', 'center').split("/\s*[,;]\s*/");
+            let zoom = dialog.getValueOf( 'tab-basic', 'zoom' );
+            let bearing = dialog.getValueOf('tab-basic', 'bearing');
 
-            let name = '"name":"'+dialog.getValueOf('tab-basic', 'name')+'"';
-            let center = "\"center\":["+dialog.getValueOf('tab-basic', 'center')+']';
-            let zoom = "\"zoom\":"+dialog.getValueOf( 'tab-basic', 'zoom' );
-            let bearing = "\"bearing\":"+dialog.getValueOf('tab-basic', 'bearing');
-            let data_map = [center, zoom, bearing, name];
-            data_map = '{'+data_map.toString()+'}';
+            let data_map = {'center': center, 'zoom': zoom, 'bearing': bearing, 'name': name};
+            data_map = JSON.stringify(data_map);
 
             elm.setAttribute('data-map', data_map);
             elm.setAttribute( 'class','MapMarker');
-            elm.setText( "[MAP_MARKER]");
-            console.log(elm);
+            elm.setText( "[MM]")
             editor.insertElement( elm );
         },
-        // // Invoked when the dialog is loaded.
-        // onShow: function() {
-        //
-        //     // Get the selection from the editor.
-        //     var selection = editor.getSelection();
-        //
-        //     // Get the element at the start of the selection.
-        //     var element = selection.getStartElement();
-        //
-        //     // Get the <abbr> element closest to the selection, if it exists.
-        //     if ( element ){
-        //         element = element.getAscendant( 'img', true )
-        //
-        //     }
-        //
-        //     console.log(element);
-        //
-        //     element = editor.restoreRealElement(element);
-        //     console.log('restoring')
-        //     console.log(element)
-        //
-        //     // Create a new <abbr> element if it does not exist.
-        //     if ( !element || element.getName() != 'span' ) {
-        //         element = editor.document.createElement( 'span' );
-        //
-        //         // Flag the insertion mode for later use.
-        //         this.insertMode = true;
-        //     }
-        //     else
-        //         this.insertMode = false;
-        //
-        //     // Store the reference to the <abbr> element in an internal property, for later use.
-        //     this.element = element;
-        //
-        //     console.log("insert mode" + this.insertMode);
-        //     console.log(element);
-        //     // Invoke the setup methods of all dialog window elements, so they can load the element attributes.
-        //     if ( !this.insertMode )
-        //         this.setupContent( this.element['$']);
-        // }
+        // Invoked when the dialog is loaded.
+        onShow: function() {
+
+            // Get the selection from the editor.
+            var selection = editor.getSelection();
+
+            // Get the element at the start of the selection.
+            var element = selection.getStartElement();
+
+            // Get the <abbr> element closest to the selection, if it exists.
+            if ( element ){
+                element = element.getAscendant( 'img', true )
+
+            }
+
+            element = editor.restoreRealElement(element);
+
+            // // Create a new <abbr> element if it does not exist.
+            // if ( !element || element.getName() != 'span' ) {
+            //     element = editor.document.createElement( 'span' );
+            //
+            //     // Flag the insertion mode for later use.
+            //     this.insertMode = true;
+            // }
+            // else
+            //     this.insertMode = false;
+
+            // Store the reference to the <abbr> element in an internal property, for later use.
+            this.element = element;
+
+            // Invoke the setup methods of all dialog window elements, so they can load the element attributes.
+            if ( !this.insertMode )
+                this.setupContent( this.element['$']);
+        }
     };
 });

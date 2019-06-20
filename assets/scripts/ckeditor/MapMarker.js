@@ -70,4 +70,5 @@ CKEDITOR.plugins.add( 'MapMarker', {
         }
 
     }
+
 });
