@@ -75,7 +75,8 @@
                     <div class="details__item details__item-price">
                         <div class="details__inner details__inner--price">
                             <a href="{{ path('activity', {'id':activity.id, 'name':activity.machineName}) }}">
-                                {{ activity.description | truncate_html(75) | raw }}
+                                {{ activity.description | striptags | truncate(75, true) }}
+                                {#{{ activity.description | striptags | truncate(75) | raw }}#}
                             </a>
 
                             <div class="details__save">
