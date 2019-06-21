@@ -47,8 +47,6 @@ class BackendController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             //$this->getDoctrine()->getManager()->persist($activity->getDynamicPage());
             $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('backend');
         }
 
         return $this->render('backend/editpages/edit.html.twig', [
