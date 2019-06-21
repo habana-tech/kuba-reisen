@@ -62,8 +62,6 @@ CKEDITOR.plugins.add( 'MapMarker', {
                         // if(element.classes !== undefined )
                         if (element.attributes.class == 'MapMarker')
                             return editor.createFakeParserElement(element, 'MapMarker', 'div', true);
-
-
                     }
                 }
             }, 10);

@@ -46,7 +46,7 @@ CKEDITOR.dialog.add( 'MapMarkerDialog', function( editor ) {
                         label: 'Perspective Angle',
                         validate: CKEDITOR.dialog.validate.number("It should be a number" ),
                         setup: function( element ) {
-                            var prevValue = JSON.parse(element.getAttribute( "data-map" ));
+                            let prevValue = JSON.parse(element.getAttribute( "data-map" ));
                             this.setValue(prevValue.bearing);
                         }
                     }
@@ -65,17 +65,28 @@ CKEDITOR.dialog.add( 'MapMarkerDialog', function( editor ) {
             // if ( this.insertMode )
             //     editor.insertElement( elm );
 
-            var dialog = this;
+            let dialog = this;
 
-            var elm = editor.document.createElement( 'span' );
+            let elm = editor.document.createElement('span');
 
-            let name = dialog.getValueOf('tab-basic', 'name');
-            let center = dialog.getValueOf('tab-basic', 'center').split("/\s*[,;]\s*/");
-            let zoom = dialog.getValueOf( 'tab-basic', 'zoom' );
-            let bearing = dialog.getValueOf('tab-basic', 'bearing');
+            let name = "\"name\":";
+            if (dialog.getValueOf('tab-basic', 'name')==='')
+                name+="\"\"";
+            else
+                name+=dialog.getValueOf('tab-basic', 'name');
 
-            let data_map = {'center': center, 'zoom': zoom, 'bearing': bearing, 'name': name};
-            data_map = JSON.stringify(data_map);
+            let bearing = "\"bearing\":";
+            if (dialog.getValueOf('tab-basic', 'bearing')==='')
+                bearing+=0;
+            else
+                bearing+=dialog.getValueOf('tab-basic', 'bearing');
+
+
+            let center = "\"center\":["+dialog.getValueOf('tab-basic', 'center')+']';
+            let zoom = "\"zoom\":"+dialog.getValueOf( 'tab-basic', 'zoom' );
+
+            let data_map = [center, zoom, bearing, name];
+            data_map = '{'+data_map.toString()+'}';
 
             elm.setAttribute('data-map', data_map);
             elm.setAttribute( 'class','MapMarker');
