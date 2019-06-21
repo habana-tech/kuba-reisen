@@ -47,7 +47,7 @@
         </div>
 
         <div class="activity__content__description">
-            {{ activity.description | truncate_html(50) | raw }}
+            {{ activity.description | striptags | truncate(75, true)}}
             {% if activity.description | length > 50 %}
                 <a href="{{ path('activity', {'id':activity.id, 'name':activity.machineName}) }}">
                     more
