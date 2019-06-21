@@ -81,6 +81,8 @@
       z-index: 0; }
   .slide-wrapper-editor {
   position: relative; }
+  .slide-wrapper-editor .slide-item {
+    position: relative; }
   .overview {
   display: flex;
   background: white;

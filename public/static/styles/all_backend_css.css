@@ -4636,6 +4636,8 @@ body.admin-logged .menu-icon-wrapper {
       z-index: 0; }
 .slide-wrapper-editor {
   position: relative; }
+.slide-wrapper-editor .slide-item {
+    position: relative; }
 .overview {
   display: flex;
   background: white;
@@ -6263,14 +6265,13 @@ body {
 .question__title {
     cursor: pointer; }
 .question__answer {
-    position: absolute;
     opacity: 0;
-    -webkit-transform: translateY(-20%);
-            transform: translateY(-20%);
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
     transition: all .3s ease-in-out;
-    height: 100%; }
+    max-height: 0;
+    overflow: hidden; }
 .question__answer--active {
-      position: relative;
       opacity: 1;
       -webkit-transform: translateY(0);
               transform: translateY(0); }

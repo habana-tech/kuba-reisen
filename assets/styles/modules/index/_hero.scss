@@ -116,4 +116,8 @@
 
 .slide-wrapper-editor{
     position: relative;
+
+    & .slide-item {
+        position: relative;
+    }
 }

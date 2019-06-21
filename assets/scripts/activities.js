@@ -5,5 +5,5 @@ import ActivityDescription from './modules/activities/_activity_description';
 
 new FilterStyle();
 new LoadActivities();
-new AddtoCart('.activity__content__actions__add a');
+new AddtoCart('.activity__content__actions__add a');;
 // new ActivityDescription();
