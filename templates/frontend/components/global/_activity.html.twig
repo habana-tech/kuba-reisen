@@ -47,12 +47,12 @@
         </div>
 
         <div class="activity__content__description">
-            {{ activity.description | striptags | truncate(75, true)}}
-            {% if activity.description | length > 50 %}
-                <a href="{{ path('activity', {'id':activity.id, 'name':activity.machineName}) }}">
-                    more
-                </a>
-            {% endif %}
+            {{ activity.description | truncate_html(75) | raw }}
+            {#{% if activity.description | length > 75 %}#}
+                {#<a href="{{ path('activity', {'id':activity.id, 'name':activity.machineName}) }}">#}
+                    {#more#}
+                {#</a>#}
+            {#{% endif %}#}
         </div>
     </div>
 </div>
