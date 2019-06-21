@@ -79,17 +79,17 @@ CKEDITOR.dialog.add( 'MapMarkerDialog', function( editor ) {
 
             elm.setAttribute('data-map', data_map);
             elm.setAttribute( 'class','MapMarker');
-            elm.setText( "[MM]")
+            elm.setText( "[MM]");
             editor.insertElement( elm );
         },
         // Invoked when the dialog is loaded.
         onShow: function() {
 
             // Get the selection from the editor.
-            var selection = editor.getSelection();
+            let selection = editor.getSelection();
 
             // Get the element at the start of the selection.
-            var element = selection.getStartElement();
+            let element = selection.getStartElement();
 
             // Get the <abbr> element closest to the selection, if it exists.
             if ( element ){

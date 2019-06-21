@@ -5482,7 +5482,10 @@ Descr: Custom radio toggle
     margin: 2em 0;
     position: relative; }
 .editor__imagen_list__item img {
-      width: 100%; }
+      width: 100%;
+      max-height: 70vh; }
+.editor__imagen_list__item .slide__title-wrap {
+      top: 10%; }
 .activities__selectors {
   width: 80%;
   margin: auto;
