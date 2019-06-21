@@ -38,7 +38,7 @@ class BucketList{
                 if (this.isElementOnScreen(element)) {
                     let props = this.pointsData[i].getAttribute('data-map');
                     props = JSON.parse(props);
-                    console.log(props);
+
                     this.setActiveChapter(i, props);
                     break;
                 }
