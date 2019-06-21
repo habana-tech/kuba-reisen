@@ -15,7 +15,7 @@ class BucketList{
 
         this.map.scrollZoom.disable();
         this.points = document.querySelectorAll('.bucket-list__items__features h3');
-        this.pointsData = document.querySelectorAll('.bucket-list__items__features span');
+        this.pointsData = document.querySelectorAll('.bucket-list__items__features span.MapMarker');
 
         this.activeMarker = new mapboxgl.Marker()
             .setLngLat([-83.5334399, 22.8793054])
