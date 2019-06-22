@@ -7,7 +7,7 @@ class BucketList{
             container: 'map',
             style: 'mapbox://styles/mapbox/outdoors-v11/?optimize=true',
             center: [-83.5334399, 22.8793054],
-            zoom: 10,
+            zoom: 8,
             minZoom:4,
             maxZoom:16,
             pitch: 0,
