@@ -11,7 +11,7 @@ fos_ck_editor:
             allowedContent: true # 'span[data-map,class]'
     toolbars:
         configs:
-            my_toolbar_1: [['PasteText', 'PasteFromWord', '-'],['Bold', 'Italic', 'Strike', 'Styles', 'Format','-', 'RemoveFormat'],['Link', 'Unlink', 'Anchor'],['NumberedList', 'BulletedList', 'Blockquote'],['Image', 'Table'], [ "Source", "MapMarker"]]
+            my_toolbar_1: [['PasteText', 'PasteFromWord', '-'],['Bold', 'Italic', 'Strike', 'Styles', 'Format','-', 'RemoveFormat'],['Link', 'Unlink', 'Anchor'],['NumberedList', 'BulletedList', 'Blockquote'],['Image', 'Table'], [ "Source", "MapMarker","Maximize"]]
     plugins:
         MapMarker:
             path:     "/scripts/" # with trailing slash
