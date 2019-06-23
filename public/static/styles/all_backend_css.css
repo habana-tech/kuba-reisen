@@ -4526,7 +4526,8 @@ body.admin-logged .menu-icon-wrapper {
   top: 0;
   width: 100%;
   display: flex;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  font-size: 16px; }
 .admin_bar ul {
     display: flex;
     list-style: none;
@@ -5485,7 +5486,7 @@ Descr: Custom radio toggle
       width: 100%;
       max-height: 70vh; }
 .editor__imagen_list__item .slide__title-wrap {
-      top: 10%; }
+      top: 25%; }
 .activities__selectors {
   width: 80%;
   margin: auto;

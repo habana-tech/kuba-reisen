@@ -1,0 +1,19 @@
+.backend_index {
+
+display: grid;
+grid-template-columns: 1fr 1fr 1fr 1fr;
+
+grid-template-rows: 20vh 10vh 10vh 10vh 10vh; 
+
+grid-column-gap: 0px;
+
+grid-row-gap: 2em;
+}
+
+.hello_user {
+    grid-area: 1 / 2 / 2 / 4; 
+    text-align: center;}
+
+.main_btns { grid-area:  2 / 1 / 4 / 3; }
+
+.secundary_btns { grid-area: 4 / 2 / 6 / 5; } 

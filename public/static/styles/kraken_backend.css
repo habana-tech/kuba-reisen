@@ -3650,7 +3650,8 @@ body.admin-logged .menu-icon-wrapper {
   top: 0;
   width: 100%;
   display: flex;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  font-size: 16px; }
 .admin_bar ul {
     display: flex;
     list-style: none;

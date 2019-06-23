@@ -1,4 +1,4 @@
-{#expect a activity variable#}
+{#expect an activity variable#}
 <div class="activity">
 
     <div class="activity__image">
@@ -19,6 +19,7 @@
     <div class="activity__content">
 
         <div class="activity__content__actions">
+            {% block activity__content__actions %}
             <div class="activity__content__actions__add">
                 <svg class="icon icon-heart icon-heart--green">
                         <symbol display="block" id="heart2" x="0px" y="0px" viewBox="-25 0 560 560"  xml:space="preserve">
@@ -38,6 +39,7 @@
                     </svg>
                 <a href="#" data-activity_id="{{ activity.id }}"></a>
             </div>
+            {% endblock %}
         </div>
 
         <div class="activity__content__title">

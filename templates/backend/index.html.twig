@@ -1,42 +1,38 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Hello {{ app.user }}{% endblock %}
-
+{% block body_class %}backend_index_wrap{% endblock %}
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 80%; font: 18px/1.5 sans-serif; }
-</style>
 
-<div class="">
-    <div class="row">
-        <div class="grid-three-fourts">
-            <h1>Hello {{ app.user }}! ✅</h1>
+<div class="header-illustration" style="z-index: -10">
+                <img src="{{ asset('img/svg/index-bg-right.svg') }}">
+            </div>
+<div class="backend_index">
+        <div class="hello_user">
+            <h3>Welcome back {{ app.user }}! 📌</h3>
         </div>
-    </div>
+    
     
 
-    <hr>
-    <div class="row  margin-top">
-        <div class="grid-half">
-            <h3>You can see, edit or add one of the following entities...</h3>
+        <div class="main_btns">
+            <p>You can see, edit or add one of the following entities...</p>
             <ul class="list-inline" style="display: inline-flex; align-content: space-evenly; list-style: none">
-                <li> <a href="{{ path('backend_activity_index') }}"  class="btn">Activities</a></li>
-                <li>  <a href="{{ path('backend_destination_index') }}" class="btn">Destinations</a></li>
-                {#<li> <a href="{{ path('backend_interest_index') }}" class="btn">Interest</a></li>#}
-                <li> <a href="{{ path('backend_filter_tag_index') }}" class="btn">Tags</a></li>
+                <li> <a href="{{ path('backend_activity_index') }}"  class="button button-primary button-shadow button-block">Activities</a></li>
+                <li>  <a href="{{ path('backend_destination_index') }}" class="button button-primary button-shadow button-block">Destinations</a></li>
+                <li> <a href="{{ path('backend_filter_tag_index') }}" class="button button-primary button-shadow button-block">Tags</a></li>
             </ul>   
         </div>
 
-        <div class="grid-half">
-            <h3>or edit the details of the following pages:</h3>
+        <div class="secundary_btns">
+            <p>or edit the details of the following pages:</p>
             <ul class="list-inline" style="display: inline-flex; align-content: space-evenly; list-style: none">
-                <li><a href="{{ path('backend_page_edit', {'pageName': 'index'}) }}"  class="btn">Homepage</a></li>
-                <li><a href="{{ path('backend_page_edit', {'pageName': 'faq'}) }}"  class="btn">FAQ</a></li>
-                <li><a href="{{ path('backend_page_edit', {'pageName': 'contact'}) }}" class="btn">Contact</a></li>
-                <li><a href="{{ path('backend_page_edit', {'pageName': 'bucket_list'}) }}" class="btn">Bucket List</a></li>
+                <li><a href="{{ path('backend_page_edit', {'pageName': 'index'}) }}"  class="button button-secondary button-shadow button-block">Homepage</a></li>
+                <li><a href="{{ path('backend_page_edit', {'pageName': 'faq'}) }}"  class="button button-secondary button-shadow button-block">FAQ</a></li>
+                <li><a href="{{ path('backend_page_edit', {'pageName': 'contact'}) }}" class="button button-secondary button-shadow button-block">Contact</a></li>
+                <li><a href="{{ path('backend_page_edit', {'pageName': 'bucket_list'}) }}" class="button button-secondary button-shadow button-block">Bucket List</a></li>
             </ul>
         </div>
-    </div>
+    
 
 </div>
 {% endblock %}

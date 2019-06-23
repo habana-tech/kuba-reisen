@@ -3,50 +3,40 @@
 {% block title %}Activity index{% endblock %}
 
 {% block body %}
-<div class="row">
-    <div class="grid-three-fourths">
-        <h1>All the activities</h1>
+<div class="activities_index">
+    <div class="activities_title">
+        <h3>All the activities ⛳</h3>
     </div>
-    <div class="grid-fourth">
-        <a href="{{ path('backend_activity_new') }}" class="btn float-right">Create new</a>
+    <div class="new_btn">
+        <a href="{{ path('backend_activity_new') }}" class="button button-primary button-shadow button-block">Create new</a>
     </div>
+
+
+<div class="activities__list__container">
+   
+            {% for activity in activities %}
+            
+
+             <div class="activity_wrap">
+                {% include 'frontend/components/global/_activity.html.twig'
+                    with {'activity':activity} only %}
+                <div class="activity__content__description__buttons">
+                    <a href="{{ path('backend_activity_edit', {'id': activity.id}) }}" class="btn1 button button-primary button-shadow button-block">Edit</a>
+                    
+                    <a target="_blank" href="{{ path('activity', { 'id':activity.id, 'name':activity.machineName} ) }}?preview" class="btn2 button button-secondary button-shadow button-block">Preview</a>
+                    
+                    <a href="{{ path('activity', { 'id':activity.id, 'name':activity.machineName} ) }}" class="btn3 button button-secondary button-shadow button-block">View and edit</a>
+                    
+                </div>
+            </div>
+            {% else %}
+                <p>nothing to show</p>
+            {% endfor %}
+            
 </div>
 
-<section class="section other_activities">
-    <div class="section__title " style="justify-content: space-between;">
-    {% for activity in activities %}
-        <div class="activity">
-            <div class="activity__image">
-                <a href="{{ path('activity', { 'id':activity.id, 'name':activity.machineName} ) }}">
-                    <img src="{{ asset(activity.dynamicPage.elementAttr('activity_images_img1', 'src', 'static/img/destination/Img19.jpg' ) | imagine_filter('squared_thumbnail')) }}" alt="">
-                </a>
-            </div>
-            <div class="activity__content">
-                <div class="activity__content__title">
-                    <a href="{{ path('activity', {'id':activity.id, 'name':activity.machineName} ) }}">
-                        <h4>{{ activity.name }}</h4>
-                    </a>
-                </div>
-                <div class="activity__content__description">
-                    <div>{{ activity.description | truncate_html(75) | raw  }}</div>
+</div>
 
-                    <div class="activity__content__description__buttons">
-                        <a target="_blank" href="{{ path('activity', { 'id':activity.id, 'name':activity.machineName} ) }}?preview" class="btn">Preview</a>
-                        <a href="{{ path('activity', { 'id':activity.id, 'name':activity.machineName} ) }}" class="btn">Edit on website</a>
-                        <a href="{{ path('backend_activity_edit', {'id': activity.id}) }}" class="btn">Edit on admin</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    {% endfor %}
-
-    </div>
-</section>
-    <div class="row margin-top">
-        <div class="grid-full">
-            <a href="{{ path('backend_activity_new') }}" class="btn">Create new</a>
-        </div>
-    </div>
 
     
 {% endblock %}

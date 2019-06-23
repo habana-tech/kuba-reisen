@@ -3,46 +3,40 @@
 {#{% block title %}New Activity{% endblock %}#}
 
 {% block body %}
-    <div class="activity-admin">
-        <h1>Add a new Activity</h1>
+{{ form_start(form) }}
+    <div class="activity-admin new_activity parent">
+        <h3 class="form_title">Add a new Activity</h3>
 
-        {{ form_start(form) }}
-        <div class="row margin-top margin-bottom-large padding-top-large padding-bottom-large">
-           <div class="grid-half">
-               <h2>Write the name of the activity</h2>
-               {{ form_widget(form.name) }}
-           </div>
-
+        
+        <h4 class="label_field_name">Write the name of the activity</h4>
+        <div class="field_name">
+             {{ form_widget(form.name) }}
         </div>
-
-        <div class="row ">
-            <div class="grid-fourth">
-                {{ form_row(form.featuresImagesCount) }}
-            </div>
-            <div class="grid-fourth offset-half" style="position: relative;">
-                <div style="position: absolute;bottom: 0;">
-
-                </div>
-            </div>
+              
+       <div class="label_field_images">
+           {{ form_label(form.featuresImagesCount) }}
+       </div>
+       <div class="field_images">
+        {{ form_widget(form.featuresImagesCount) }}
+       </div>
+                
+        <div class="btns">
+                {{ form_widget(form.saveAndEdit, {'attr':{'class': 'button button-primary button-shadow button-block'}}) }}
+        
+                <a href="{{ path('backend_activity_index') }}" class="button button-secondary button-shadow button-block">Back to list</a>
         </div>
-
-
-        <div class="row margin-top">
-            <div class="grid-auto text-center">
-                {{ form_widget(form.saveAndEdit) }}
-            </div>
-            <div class="grid-auto text-center" style="padding: 10px;">
-                <a href="{{ path('backend_activity_index') }}" class="btn">Back to list</a>
-            </div>
-
-        </div>
-                {{ form_widget(form) }}
+    </div>
+    <div class="secundary_grid">
+        {{ form_widget(form) }}
+    </div>
+        
 
 
 
         {{ form_end(form) }}
 
-{#    {{ include('backend/activity/_form.html.twig') }}#}
-    </div>
+{% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/modules_backend/activities.css') }}" type="text/css">
 {% endblock %}

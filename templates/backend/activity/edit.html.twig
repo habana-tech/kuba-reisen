@@ -3,52 +3,47 @@
 {% block title %}Edit Activity{% endblock %}
 
 {% block body %}
-    <h1>Editing Activity <i><u>{{ activity.name }}</u></i></h1>
+    <h3>Editing Activity <i><u>{{ activity.name }}</u></i></h3>
 
     {{ form_start(form) }}
 
-    <div class="row">
+    <div class="activity_edit">
         
-        <div class="grid-auto">
-            <div class="grid-half">
-                {{ form_row(form.name) }}
-            </div>
-            <div class="grid-half">
-                {{ form_row(form.featuresImagesCount) }}
-            </div>
-            <div class="grid-full">
-                {{ form_row(form.description) }}
-            </div>
-
-               
+        <div class="grid_name">
+            {{ form_row(form.name) }}
         </div>
-        <div class="grid-fourth">
-                <div class="grid-full activity-admin__advance__destinations-tags__destinations">
-                    {{ form_row(form.destinations) }}
-                </div>
-                <div class="grid-full margin-top activity-admin__advance__destinations-tags__tags">
-                    {{ form_row(form.filterTags) }}
-                </div>
+        <div class="grid_ImagesCount">
+            {{ form_row(form.featuresImagesCount) }}
         </div>
-    </div>
+        <div class="grid_description">
+            {{ form_row(form.description) }}
+        </div>
 
-    <div class="row margin-top">
+        <div class="grid_right">
+            <div class="grid-full activity-admin__advance__destinations-tags__destinations">
+                {{ form_row(form.destinations) }}
+            </div>
+            <div class="grid-full margin-top activity-admin__advance__destinations-tags__tags">
+                {{ form_row(form.filterTags) }}
+            </div>
+        </div>
 
-        <div class="grid-three-fourths">
+        <div class="grid_grape">
             {{ form_widget(form) }}
         </div>
+           
     </div>
 
     <div class="row margin-top">
         <div class="grid-auto text-center">
-            <input type="submit" name="saveAndEdit" value="Save and edit" class="btn">
+            <input type="submit" name="saveAndEdit" value="Save and edit" class="button button-primary button-shadow button-block">
             {#{{ form_row(form.saveAndEdit) }}#}
         </div>
         <div class="grid-auto text-center">
-            <button class="btn">{{ button_label|default('Save and go back') }}</button>
+            <button class="button button-primary button-shadow button-block">{{ button_label|default('Save and go back') }}</button>
         </div>
-        <div class="grid-auto text-center" style="padding: 10px;">
-            <a href="{{ path('backend_activity_index') }}" class="btn">Back to list</a>
+        <div class="grid-auto text-center">
+            <a href="{{ path('backend_activity_index') }}" class="button button-primary button-shadow button-block">Back to list</a>
         </div>
         {{ form_end(form) }}
         <div class="grid-auto text-center">

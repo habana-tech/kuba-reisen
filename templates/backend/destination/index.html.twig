@@ -12,9 +12,9 @@
     </div>
 </div>
     
+<div class="activities__list__container">
 
-
-    <section class="section other_activities">
+    <section class="section other_activities destinations_index">
         <div class="section__title ">
             {% for destination in destinations %}
                 <div class="activity">
@@ -29,9 +29,9 @@
                         </div>
                         <div class="activity__content__description">
 
-                            <a href="{{ path('destination', {'id':destination.id, 'name':destination.machineName}) }}" class="btn">show and edit on website</a>
+                            <a href="{{ path('destination', {'id':destination.id, 'name':destination.machineName}) }}" class="btn">View and edit</a>
 
-                            <a href="{{ path('backend_destination_edit', {'id': destination.id}) }}" class="btn">edit</a>
+                            <a href="{{ path('backend_destination_edit', {'id': destination.id}) }}" class="btn">Edit</a>
                         </div>
                     </div>
                 </div>
@@ -46,4 +46,7 @@
         </div>
     </div>
 
+{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/modules_backend/destinations.css') }}" type="text/css">
 {% endblock %}
