@@ -44,6 +44,7 @@ class ActivityMap {
             [lats[lats.length-1], logs[logs.length-1] ]];
 
         this.map.fitBounds(maxCoords);
+        this.map.setZoom(this.map.getZoom() + .5);
     }
 
 }
