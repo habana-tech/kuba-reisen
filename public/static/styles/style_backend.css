@@ -1198,9 +1198,8 @@ a {
 .container .new_activity.parent .btns {
     grid-area: 4 / 3 / 5 / 5; }
 .activity {
-  width: 32%;
-  margin: .5em 1em;
-  cursor: pointer;
+  width: 31%;
+  margin: .5em .5em;
   position: relative; }
 .activity:hover {
     text-decoration: none; }
