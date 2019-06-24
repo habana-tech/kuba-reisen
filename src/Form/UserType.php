@@ -16,13 +16,15 @@ class UserType extends AbstractType
     {
         $builder
             ->add('username')
-            ->add('imageFile', VichImageType::class, ['required'=>false])
-            ->add('email')
             ->add('enabled')
+            ->add('email')
             ->add('changepassword', PasswordType::class, ['label'=> 'Write a new password, only to change it',
                                         'required'=>false,
                                         'attr'=>['value'=>'']
                                 ])
+            ->add('imageFile', VichImageType::class, ['required'=>false])
+                        
+            
             ->add('roles')
         ;
     }

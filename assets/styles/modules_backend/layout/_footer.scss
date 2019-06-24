@@ -78,7 +78,7 @@ a {
 @include media( '>medium' ) {
 
 	.site-footer {
-		margin-top: 156px; /* Give more padding because of the footer bg */
+		margin-top: 56px; /* Give more padding because of the footer bg */
 
 		&::before {
 			bottom: -35px;
@@ -113,7 +113,7 @@ a {
 
     .footer-brand {
     	& img{
-    	height: 50px;
+    	height: 65px;
     	}
     	& a{
     		margin: 0;

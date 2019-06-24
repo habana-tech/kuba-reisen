@@ -1,0 +1,18 @@
+form div#user{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-column-gap: 5em;
+
+	grid-row-gap: 2em; 
+
+	& div#user_roles{
+		display: flex;
+		 & div{
+		 	margin-right: 1em;
+
+		 	&:nth-child(3){
+		 		margin-right: 0;
+		 	}
+		 }
+	}
+}

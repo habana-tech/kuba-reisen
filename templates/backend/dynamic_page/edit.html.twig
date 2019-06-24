@@ -3,11 +3,9 @@
 {% block title %}Edit DynamicPage{% endblock %}
 
 {% block body %}
-    <h1>Edit DynamicPage</h1>
+    <h3>Edit DynamicPage</h3>
 
     {{ include('backend/dynamic_page/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('backend_dynamic_page_index') }}" class="btn">back to list</a>
 
     {{ include('backend/dynamic_page/_delete_form.html.twig') }}
 {% endblock %}

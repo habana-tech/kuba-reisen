@@ -5,55 +5,42 @@
 {% block body %}
 <div class="row">
     <div class="grid-three-fourths">
-        <h1>Editing Destination <i><u>{{ destination.name }}</u></i></h1>
+        <h3>Editing Destination <i><u>{{ destination.name }}</u></i></h3>
     </div>
 </div>
 {{ form_start(form) }}
-<div class="row">
-	<div class="grid-half">
-		<div class="grid-full">
+<div class="editing_destination_first">
+	
+	<div class="grid_name">
 			{{ form_row(form.name) }}
-		</div>
-        <div class="grid-full">
+	</div>
+    <div class="grid_features">
 			{{ form_row(form.featuresCount) }}
-		</div>
+		
     </div>
-    <div class="grid-fourth offset-fourth">
-		<div class="grid-full">
-			{{ form_row(form.imageFile) }}
-		</div>
+    <div class="grid_image">
+			{{ form_row(form.imageFile) }}		
     </div>
-</div>
 
-    <div class="row">
-        <div class="grid-two-thirds">
+
+    <div class="grapes">
 
             {{ form_widget(form) }}
-        </div>
-    </div>
-<div class="row margin-top">
-	
-	<div class="grid-auto" style="position: relative;">
-        <input type="submit" name="saveAndEdit" value="Save and edit" class="btn">
-       
+        
     </div>
 
-    <div class="grid-auto text-center">
+    <div class="btns">
+    	
+        <input type="submit" name="saveAndEdit" value="Save and edit" class="button button-primary button-shadow button-block" style="width: 200px;">
+
         {{ include('backend/destination/_form.html.twig') }}
-    </div>
 
-    <div class="grid-auto text-center" style="padding: 10px;">
-        <a href="{{ path('backend_destination_index') }}" class="btn">Go back to list</a>
-    </div>
-
-    <div class="grid-auto text-center">
+        <a href="{{ path('backend_destination_index') }}" class="button button-secondary button-shadow button-block">Go back to list</a>
         {{ include('backend/destination/_delete_form.html.twig') }}
+
     </div>
     
-</div>
-    
-
-    
+</div>    
 
     
 {% endblock %}

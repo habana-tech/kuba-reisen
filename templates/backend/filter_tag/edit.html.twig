@@ -5,37 +5,32 @@
 {% block body %}
    <div class="row">
     <div class="grid-three-fourths">
-        <h1>Editing tag <u><i>{{filter_tag.title}}</i></u></h1>
+        <h3>Editing tag <u><i>{{filter_tag.title}}</i></u> 🔖</h3>
     </div>
 </div>
 {{ form_start(form) }}
-<div class="row">
+<div class="row" style="margin-bottom: 4em;">
     <div class="grid-half">
         {{ form_row(form.title) }}
     </div>
-    <div class="grid-auto">
-    	{{ form_row(form.pinned) }}
+</div>
+<div class="row" style="margin-bottom: 4em;">
+    <div class="grid-half tags">
+        {{ form_widget(form.pinned) }}
+    	{{ form_label(form.pinned) }}
     </div>
 </div>
 
 
-<div class="row margin-top">
+<div class="row margin-top" style="">
 	
 	
+            <button class="button button-primary button-shadow button-block">{{ button_label|default('Update') }}</button>
+{{ form_end(form) }}
 
-    <div class="grid-auto text-center">
-       {{ include('backend/filter_tag/_form.html.twig', {'button_label': 'Update'}) }}
-    </div>
-
-    <div class="grid-auto text-center" style="padding: 10px;">
-        <a href="{{ path('backend_filter_tag_index') }}" class="btn">Go back to list</a>
-    </div>
-
-    <div class="grid-auto text-center">
-   		{{ include('backend/filter_tag/_delete_form.html.twig') }}	
-    </div>
-    
+        <a href="{{ path('backend_filter_tag_index') }}" class="button button-primary button-shadow button-block">Go back to list</a>
+    	{{ include('backend/filter_tag/_delete_form.html.twig') }}	
 </div>
-    
+
 
 {% endblock %}

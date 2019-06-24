@@ -1,0 +1,24 @@
+.other_tags .section__title{
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+
+	& .activity {
+		width: 100%;
+	}
+}
+.row.tags_title{
+	&  h3{
+		margin: 0;
+	}
+	margin: 2em 0;
+}
+.grid-half.tags
+{
+	& label, & input {
+		display: inline-block;
+		margin-right: 1em;
+	}
+	& label::before {
+		content: ' 📌';
+	}
+}

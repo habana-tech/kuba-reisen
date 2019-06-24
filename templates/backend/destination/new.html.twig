@@ -5,52 +5,36 @@
 {% block body %}
 <div class="row">
     <div class="grid-three-fourths">
-        <h1>Add a new Destination</h1>
+        <h3>Add a new Destination</h3>
     </div>
 </div>
 	
 
         {{ form_start(form) }}
-        <div class="row margin-top margin-bottom-larg padding-bottom-large">
-           <div class="grid-half">
-               <h2>Write the name of the destination</h2>
+        <div class="destination_new">
+            <div class="grid_name">
+               <h4>Write the name of the destination</h4>
                {{ form_widget(form.name) }}
            </div>
 
 
-
-        </div>
-
-        <div class="row">
-            <div class="grid-full">
-                <div class="grid-fourth">
-                    {{ form_row(form.imageFile) }}
-                </div>
-                <div class="grid-fourth">
-                    {{ form_row(form.featuresCount) }}
-                </div>
-
+            <div class="grid_image">
+                {{ form_row(form.imageFile) }}
             </div>
-        </div>
-
-        <div class="row margin-top">
-	        
-	        <div class="grid-auto" style="position: relative;">
-                <div style="position: absolute;bottom: 0;">
-                    {{ form_widget(form.saveAndEdit) }}
-                </div>
+            <div class="grid_features">
+                {{ form_row(form.featuresCount) }}
             </div>
 
-            <div class="grid-auto text-center">
-	            {{ include('backend/destination/_form.html.twig') }}
-	        </div>
+
+            <div class="btns" style="position: relative;">
+                {{ form_widget(form.saveAndEdit, {'attr': {'class': 'button button-primary button-shadow button-block'}}) }}
+               
+                {{ include('backend/destination/_form.html.twig') }}
+            
+                <a href="{{ path('backend_destination_index') }}" class="button button-secondary button-shadow button-block">Go back to list</a>
+            </div>
+        </div>
         
-	        <div class="grid-auto text-center" style="padding: 10px;">
-	            <a href="{{ path('backend_destination_index') }}" class="btn">Go back to list</a>
-	        </div>
-	        
-	    </div>
-
-    
+           
 
 {% endblock %}

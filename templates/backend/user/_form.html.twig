@@ -1,4 +1,5 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <button class="button button-primary button-shadow button-block">{{ button_label|default('Save') }}</button>
+    <a href="{{ path('user_index') }}" class="button button-secondary button-shadow button-block">back to list</a>
 {{ form_end(form) }}
