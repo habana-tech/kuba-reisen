@@ -10,12 +10,43 @@ class ActivityMap {
             center: [-81.1739857, 23.191922],
         });
 
-        new mapboxgl.Marker()
-            .setLngLat([-81.1739857, 23.191922])
-            .addTo(this.map);
-
         this.map.scrollZoom.disable();
+
+        this.points = document.querySelectorAll('.description-itinerary__content span[data-map]');
+
+        this.setMarkersAndZoom();
     }
+
+    setMarkersAndZoom(){
+
+        if (this.points.length === 0)
+            return;
+
+        let lats = [];
+        let logs = [];
+
+        this.points.forEach((point)=>{
+            let props = point.getAttribute('data-map');
+            props = JSON.parse(props);
+
+            lats.push(props.center[0]);
+            logs.push(props.center[1]);
+
+            new mapboxgl.Marker()
+                .setLngLat(props.center)
+                .addTo(this.map);
+        });
+
+        lats.sort((a,b) => { return a <= b ? -1 : 1 } );
+        logs.sort((a,b) => { return a <= b ? -1 : 1 } );
+
+        let maxCoords = [[lats[0],logs[0]],
+            [lats[lats.length-1], logs[logs.length-1] ]];
+
+        this.map.fitBounds(maxCoords);
+    }
+
 }
 
 export default ActivityMap;
+

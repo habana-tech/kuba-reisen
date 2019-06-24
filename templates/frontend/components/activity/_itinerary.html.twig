@@ -6,57 +6,24 @@
         </div>
     </div>
 
-    <div class="description-itinerary__content" data-grape_id="itinerary__content">
-        <h3>Day 1 – Saturday: <strong>Hello Cuba, bienvenido a La Habana</strong></h3>
+    <div class="description-itinerary__content" data-grape_id="itinerary">
 
-        <ul>
-            <li>
-                Arrival at Havana's José Martí International Airport
-            </li>
-            <li>
-                Meet your tour guide and bus driver
-            </li>
-            <li>
-                Meet your tour guide and bus driver
-            </li>
-            <li>
-                Meet your tour guide and bus driver
-            </li>
-        </ul>
+        {% if activity.getElement('itinerary') is null %}
+            {% for i in 1..3 %}
+                <h3>Day {{ i }} – Saturday: <strong>Hello Cuba, bienvenido a La Habana</strong></h3>
 
-        <h3>Day 2 – Saturday: <strong>Hello Cuba, bienvenido a La Habana</strong></h3>
+                <ul>
+                    {% for j in 1..3 %}
+                        <li>
+                            Interest point {{ i }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        {% else %}
+            {{ activity.getElement('itinerary') | raw }}
+        {% endif %}
 
-        <ul>
-            <li>
-                Arrival at Havana's José Martí International Airport
-            </li>
-            <li>
-                Meet your tour guide and bus driver
-            </li>
-            <li>
-                Meet your tour guide and bus driver
-            </li>
-            <li>
-                Meet your tour guide and bus driver
-            </li>
-        </ul>
-
-        <h3>Day 5 – Saturday: <strong>Hello Cuba, bienvenido a La Habana</strong></h3>
-
-        <ul>
-            <li>
-                Arrival at Havana's José Martí International Airport
-            </li>
-            <li>
-                Meet your tour guide and bus driver
-            </li>
-            <li>
-                Meet your tour guide and bus driver
-            </li>
-            <li>
-                Meet your tour guide and bus driver
-            </li>
-        </ul>
     </div>
 
 </section>

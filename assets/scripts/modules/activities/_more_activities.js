@@ -1,4 +1,5 @@
-import axios from '../../vendors/axios.min';
+import axios from 'axios';
+import MakeActivity from './_make_activity';
 
 class LoadActivities {
     constructor(){
@@ -6,6 +7,7 @@ class LoadActivities {
         this.url = '/activitiesApiPos';
 
         this.activitiesList = document.querySelector('.activities__list__container');
+        this.activitiesListInitial = document.querySelector('.activities__list__container__initial');
         this.btnLoad = document.querySelector('.activities__list__more a');
         this.prototype = document.querySelector('.activities__list__item-prototype div');
         this.events();
@@ -16,22 +18,9 @@ class LoadActivities {
             this.btnLoad.addEventListener('click', this.loadMore.bind(this));
     }
 
-    makeActivity(image, imageAlt, name, description, link){
-        let newActivity = this.prototype.cloneNode(true);
-
-        newActivity.querySelector('img').setAttribute('src', image);
-        newActivity.querySelector('img').setAttribute('alt', imageAlt);
-        newActivity.querySelector('h4').innerHTML = name;
-        newActivity.querySelector('p').innerHTML = description;
-        newActivity.querySelectorAll('a').forEach(function (key) {
-            key.setAttribute('href', link);
-        });
-
-        return newActivity;
-    }
 
     getData(){
-        let pos = this.activitiesList.querySelectorAll('.activity').length;
+        let pos = this.activitiesListInitial.querySelectorAll('.activity').length;
 
         let url = this.url+'/'+pos+'/'+this.amount;
         let that = this;
@@ -45,9 +34,10 @@ class LoadActivities {
 
                 if (activities.length > 0) {
                     activities.forEach(function (activity) {
-                        let newActivity = that.makeActivity(activity.image, activity.imageAlt,
+                        let newActivity = new MakeActivity(that.prototype).make(activity.id, activity.image, activity.imageAlt,
                             activity.name, activity.description, activity.link);
-                        that.activitiesList.appendChild(newActivity);
+
+                        that.activitiesListInitial.appendChild(newActivity);
                     });
                 }
                 else {

@@ -24,13 +24,25 @@
   margin: auto;
   position: relative; }
   .questions__topic {
-    margin: 6em auto; }
+    margin: 4em auto;
+    position: relative; }
   .questions__topic__title::after {
       content: '';
       position: absolute;
       height: 2px;
       width: 100%;
       background: linear-gradient(to right, #35cfd4 10%, #14a1e6 20%, transparent); }
+  .questions__topic__image {
+      position: absolute;
+      height: 100%;
+      right: 0; }
+  .questions__topic__image img {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 50%;
+        opacity: .5;
+        height: 6em;
+        width: auto; }
   .questions__topic:first-child {
       margin: 0; }
   .question {

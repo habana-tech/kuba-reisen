@@ -1,3 +1,15 @@
+@keyframes Zoom {
+    0%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.25);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+
 .float_button__container{
     position: relative;
 }
@@ -23,6 +35,8 @@
         transform-origin: 50% 50%;
         transition: transform .3s ease-in-out;
         box-shadow: 2px 2px 8px rgba(black, .25);
+        animation: Zoom 2s ease-in-out 20;
+        animation-delay: 10s;
 
         &:hover{
             transform: scale(1.3);

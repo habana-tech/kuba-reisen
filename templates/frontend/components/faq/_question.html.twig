@@ -1,12 +1,22 @@
 <section class="section questions">
 
     {% set amount = [12,3,8,1] %}
-
+    
     {% for i in 1..4 %}
         <div id="section_question__{{ i }}" class="questions__topic">
 
             <div class="questions__topic__title">
                 <h2 data-grape_id="faq_topic_title_{{ i }}" data-grape_format="txt">{{ page.ElementContent('faq_topic_title_'~i,"Title of section") | raw }}</h2>
+            </div>
+
+            <div class="questions__topic__image">
+                {% if i == 1 %}
+                    <img src="{{ asset('svg/drink.svg') }}" alt="">
+                {% elseif i == 2%}
+                    <img src="{{ asset('svg/capitol-hill.svg') }}" alt="">
+                {% elseif i == 3%}
+                    <img src="{{ asset('svg/palm.svg') }}" alt="">
+                {% endif %}
             </div>
 
             {% set amount_question = amount[loop.index0] %}
@@ -18,11 +28,12 @@
                         </h3>
                     </div>
 
+                    {% set edit_class = '' %}
                     {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null %}
-                        <div class="question__answer question__answer--active" data-grape_id="faq_topic_question_answer_{{ i }}_{{ j }}">
-                    {% else %}
-                        <div class="question__answer" data-grape_id="faq_topic_question_answer_{{ i }}_{{ j }}">
+                        {%  set edit_class = 'question__answer--active' %}
                     {% endif %}
+
+                    <div class="question__answer {{ edit_class }}" data-grape_id="faq_topic_question_answer_{{ i }}_{{ j }}">
                         {{ page.ElementContent('faq_topic_question_answer_'~i~'_'~j,"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,") | raw }}
                     </div>
                 </div>

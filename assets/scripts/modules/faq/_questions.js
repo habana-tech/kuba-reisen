@@ -1,7 +1,6 @@
 class Questions{
     constructor(){
         this.questions_titles = document.querySelectorAll('.question__title');
-        this.questions_answer = document.querySelectorAll('.question__answer');
         this.events();
     }
 
@@ -12,6 +11,7 @@ class Questions{
     }
 
     expand(e){
+        console.log(e);
         let answer = e.target.parentNode.parentNode.children[1];
         answer.classList.toggle('question__answer--active');
         answer.style.maxHeight ? answer.style.maxHeight = null : answer.style.maxHeight = answer.scrollHeight + "px";
