@@ -43,10 +43,7 @@ class ActivityMap {
         let maxCoords = [[lats[0],logs[0]],
             [lats[lats.length-1], logs[logs.length-1] ]];
 
-        console.log(this.map.getZoom());
-        this.map.fitBounds(maxCoords);
-        console.log(this.map.getZoom());
-        this.map.setZoom(this.map.getZoom() + .5);
+        this.map.fitBounds(maxCoords, {padding: 100});
     }
 
 }

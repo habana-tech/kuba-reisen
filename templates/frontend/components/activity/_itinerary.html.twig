@@ -6,9 +6,9 @@
         </div>
     </div>
 
-    <div class="description-itinerary__content" data-grape_id="itinerary">
+    <div class="description-itinerary__content" data-grape_id="itinerary__content">
 
-        {% if activity.getElement('itinerary') is null %}
+        {% if activity.getElement('itinerary__content') is null %}
             {% for i in 1..3 %}
                 <h3>Day {{ i }} – Saturday: <strong>Hello Cuba, bienvenido a La Habana</strong></h3>
 
@@ -21,7 +21,7 @@
                 </ul>
             {% endfor %}
         {% else %}
-            {{ activity.getElement('itinerary') | raw }}
+            {{ activity.getElement('itinerary__content') | raw }}
         {% endif %}
 
     </div>
