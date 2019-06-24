@@ -15,7 +15,6 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Activity
 {
-
     use LanguageFieldTrait;
     use ImageFieldTrait;
     use UserControlFieldsTrait;

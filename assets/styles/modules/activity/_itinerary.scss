@@ -12,6 +12,13 @@
             border-bottom: 1px solid $light-orange;
         }
 
+        span[data-map]{
+            position: absolute;
+            visibility: hidden;
+            height: 0;
+            width: 0;
+        }
+
         & ul{
             width: 100%;
         }

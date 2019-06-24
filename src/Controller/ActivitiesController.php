@@ -16,7 +16,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 class ActivitiesController extends AbstractController
 {
 
-    private $amountActivitiesDefault = 6;
+    private $amountActivitiesDefault = 2;
 
     /**
      * @Route("/activities", name="activities")
@@ -79,8 +79,9 @@ class ActivitiesController extends AbstractController
         $activities_data = [];
         foreach ($activities as $activity){
             array_push($activities_data, array(
+                'id'=>$activity->getId(),
                 'name'=>$activity->getName(),
-                'image'=>$activity->getStaticImagePath(),
+                'image'=>$activity->getDynamicPage()->getElementAttr('activity_images_img1', 'src'),
                 'imageAlt'=>$activity->getAlternativeText(),
                 'description'=>$activity->getDescription(),
                 'link'=>  $this->generateUrl('activity',
@@ -172,8 +173,9 @@ class ActivitiesController extends AbstractController
         $activities_data = [];
         foreach ($activities as $activity){
             array_push($activities_data, array(
+                'id'=>$activity->getId(),
                 'name'=>$activity->getName(),
-                'image'=>$activity->getStaticImagePath(),
+                'image'=>$activity->getDynamicPage()->getElementAttr('activity_images_img1', 'src'),
                 'description'=>$activity->getDescription(),
                 'link'=>  $this->generateUrl('activity',
                     ['id'=>$activity->getId(),

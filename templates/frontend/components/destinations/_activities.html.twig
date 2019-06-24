@@ -24,8 +24,8 @@
                 {% else %}
                     <div class="slide">
                         <div class="slide__wrap">
-                            <div class="slide__img"
-                                 style="background-image: url('{{ activity.dynamicPage.elementAttr('activity_images_img1', 'src', asset('img/header_pic.jpg')) }}');">
+                            <div class="slide__img">
+                                <img src="{{ activity.dynamicPage.elementAttr('activity_images_img1', 'src', asset('img/header_pic.jpg')) }}" alt="">
                             </div>
                             <div class="slide__title-wrap">
                                 <a href="{{ path('activity', {'id':activity.id, 'name':activity.machineName}) }}">

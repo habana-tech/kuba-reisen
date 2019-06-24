@@ -13,6 +13,7 @@ body.loading{
     }
 }
 
+
 .overlay-loading{
     width: 100%;
     height: 100%;
@@ -20,7 +21,7 @@ body.loading{
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(-45deg, $light-blue, $dark-blue);
+    background: linear-gradient(45deg, darken($light-blue, 15%), darken($dark-blue, 25%));
     z-index: 10;
     opacity: 1;
     transition: all;

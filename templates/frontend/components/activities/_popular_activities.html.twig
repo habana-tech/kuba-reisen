@@ -47,30 +47,23 @@
 
 
         <div class="activities__list__item-prototype">
-            <div class="activity">
-                <a href="">
-                    <div class="activity__image">
-                        <img src="" alt="">
-                    </div>
-                    <div class="activity__content">
-                        <div class="activity__content__title">
-                            <h4></h4>
-                        </div>
-                        <div class="activity__content__description">
-                            <p></p>
-                        </div>
-                    </div>
-                </a>
-            </div>
+            {{ include('frontend/components/global/_activity_prototype.html.twig') }}
         </div>
 
         <div class="activities__list__container">
-            {% for activity in activities %}
-                {% include 'frontend/components/global/_activity.html.twig'
-                    with {'activity':activity} only %}
-            {% else %}
-                <p>something</p>
-            {% endfor %}
+
+            <div class="activities__list__container__initial">
+                {% for activity in activities %}
+                    {% include 'frontend/components/global/_activity.html.twig'
+                        with {'activity':activity} only %}
+                {% else %}
+                    <p>something</p>
+                {% endfor %}
+            </div>
+
+            <div class="activities__list__container__filter_search activities__list__container__filter_search--hide">
+
+            </div>
 
             <div class="loading_element"></div>
         </div>

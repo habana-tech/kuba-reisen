@@ -810,21 +810,21 @@ svg.leaflet-image-layer.leaflet-interactive path {
 .activities__list__item-prototype {
     display: none; }
 
-.activities__list__container {
+.activities__list__container__initial, .activities__list__container__filter_search {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    position: relative; }
+    position: relative;
+    transition: all .3s ease-in-out; }
 
-.activities__list__container div.activity {
+.activities__list__container__initial div.activity, .activities__list__container__filter_search div.activity {
       opacity: 1;
       transition: opacity .3s ease-in-out; }
 
-.activities__list__container--loading div.activity {
+.activities__list__container__initial--hide, .activities__list__container__filter_search--hide {
+      position: absolute;
+      z-index: -1;
       opacity: 0; }
-
-.activities__list__container--loading div.loading_element {
-      opacity: 1; }
 
 @-webkit-keyframes spinning {
   0% {
@@ -848,21 +848,27 @@ svg.leaflet-image-layer.leaflet-interactive path {
     -webkit-transform: translate(-50%, -50%) rotate(360deg);
             transform: translate(-50%, -50%) rotate(360deg); } }
 
+.activities__list__container--loading div.activity {
+    opacity: 0; }
+
+.activities__list__container--loading div.loading_element {
+    opacity: 1; }
+
 .activities__list__container .loading_element {
-      height: 3em;
-      width: 3em;
-      top: 50%;
-      left: 50%;
-      -webkit-transform: translate(-50%, -50%);
-              transform: translate(-50%, -50%);
-      border-radius: 50%;
-      position: absolute;
-      background: radial-gradient(at 0, #35cfd4 20%, #14a1e6);
-      border: 1px white solid;
-      -webkit-animation: spinning 3.5s ease-in-out infinite;
-              animation: spinning 3.5s ease-in-out infinite;
-      opacity: 0;
-      transition: opacity .3s ease-in-out; }
+    height: 3em;
+    width: 3em;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    border-radius: 50%;
+    position: absolute;
+    background: radial-gradient(at 0, #35cfd4 20%, #14a1e6);
+    border: 1px white solid;
+    -webkit-animation: spinning 3.5s ease-in-out infinite;
+            animation: spinning 3.5s ease-in-out infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out; }
 
 .activities__list__more {
     width: 100%;

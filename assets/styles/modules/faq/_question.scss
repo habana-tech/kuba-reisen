@@ -4,7 +4,8 @@
     position: relative;
 
     &__topic{
-        margin: 6em auto;
+        margin: 4em auto;
+        position: relative;
 
         &__title{
             &::after{
@@ -13,6 +14,20 @@
                 height: 2px;
                 width: 100%;
                 background: linear-gradient(to right, $light-blue 10%, $dark-blue 20%, transparent);
+            }
+        }
+
+        &__image{
+            position: absolute;
+            height: 100%;
+            right: 0;
+
+            & img{
+                position: sticky;
+                top: 50%;
+                opacity: .5;
+                height: 6em;
+                width: auto;
             }
         }
 
