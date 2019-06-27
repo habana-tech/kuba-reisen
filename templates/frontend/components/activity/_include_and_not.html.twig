@@ -8,13 +8,19 @@
     <div class="description-include__included-details">
         <div class="description-include__included-details__included">
 
-            <h3 data-grape_id="activity_included_title" data-grape_format="txt">
-                {% if activity.getElement('activity_included_title') is null %}
-                    Included in the tour
-                {% else %}
-                    {{ activity.getElement('activity_included_title') | raw }}
-                {% endif %}
+            {#TODO#}
+            {#<h3 data-grape_id="activity_included_title" data-grape_format="txt">#}
+                {#{% if activity.getElement('activity_included_title') is null %}#}
+                    {#Included in the tour#}
+                {#{% else %}#}
+                    {#{{ activity.getElement('activity_included_title') | raw }}#}
+                {#{% endif %}#}
+            {#</h3>#}
+
+            <h3 >
+                Included in the tour
             </h3>
+
             <div data-grape_id="activity_included_text">
                 {% if activity.getElement('activity_included_text') is null %}
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet asperiores cumque deserunt, distinctio est id impedit libero modi nobis perferendis possimus provident, quae qui, quis sint vel velit vitae.</p>
@@ -28,12 +34,16 @@
 
         <div class="description-include__included-details__not-included">
 
-        <h3 data-grape_id="activity_not_included_title" data-grape_format="txt">
-            {% if activity.getElement('activity_not_included_title') is null %}
-                <u>Not</u> include in the tour
-            {% else %}
-                {{ activity.getElement('activity_not_included_title') | raw}}
-            {% endif %}
+        {#<h3 data-grape_id="activity_not_included_title" data-grape_format="txt">#}
+            {#{% if activity.getElement('activity_not_included_title') is null %}#}
+                {#Not include in the tour#}
+            {#{% else %}#}
+                {#{{ activity.getElement('activity_not_included_title') | raw}}#}
+            {#{% endif %}#}
+        {#</h3>#}
+
+        <h3>
+            <u>Not</u> include in the tour
         </h3>
 
         <div data-grape_id="activity_not_included_text">
