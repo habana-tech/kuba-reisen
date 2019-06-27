@@ -21,8 +21,8 @@
                                     'data-grape_id="activity_images_img'~i~'"') | raw }}
                             </div>
                             <div class="slide__title-wrap">
-                                <h1>
-                                    {{ activity.getElement('activity_images_img'~i~'_desc') | striptags }}
+                                <h1 data-grape_id="activity_images_img{{i}}_desc" data-grape_format="txt">
+                                    {{ page.ElementContent('activity_images_img'~i~'_desc') | striptags }}
                                 </h1>
                             </div>
                         </div>
