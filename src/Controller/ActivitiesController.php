@@ -16,7 +16,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 class ActivitiesController extends AbstractController
 {
 
-    private $amountActivitiesDefault = 2;
+    private $amountActivitiesDefault = 9;
 
     /**
      * @Route("/activities", name="activities")
