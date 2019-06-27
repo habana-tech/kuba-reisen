@@ -266,7 +266,8 @@ body {
         background: linear-gradient(45deg, #62ab03, #004d00);
         color: white; }
 .description-include__included-details {
-  width: 100%;
+  width: 80%;
+  margin: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around; }

@@ -5349,7 +5349,8 @@ body {
         background: linear-gradient(45deg, #62ab03, #004d00);
         color: white; }
 .description-include__included-details {
-  width: 100%;
+  width: 80%;
+  margin: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around; }
@@ -5810,7 +5811,8 @@ body {
     display: flex !important;
     flex-wrap: wrap;
     justify-content: space-between;
-    width: 50%; }
+    width: 50%;
+    right: 0; }
 .hero-home .slide-wrapper .slide-item {
       width: 50%; }
 .editor__imagen_list {
