@@ -33,37 +33,56 @@
 
         &__menu{
             display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
             width: 100%;
             padding: 0 5%;
-            justify-content: space-between;
+
 
             &__column {
-                width: 24%;
+                width: 100%;
                 position: relative;
+                text-align: center;
 
-                &::after {
-                    content: '';
-                    position: absolute;
-                    background-color: white;
-                    height: 50%;
-                    width: 1px;
-                    right: 0;
-                    top: 25%;
+                @include atLarge {
+                    width: 24%;
+                    text-align: left;
                 }
 
-                &:last-child::after {
-                    display: none;
+                @include atLarge {
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        background-color: white;
+                        height: 50%;
+                        width: 1px;
+                        right: 0;
+                        top: 25%;
+                    }
+
+                    &:last-child::after {
+                        display: none;
+                    }
                 }
 
                 &__title{
                     & a{
                         color: white;
+                        margin: 0;
+
+                        @include atLarge{
+                            margin: 0 0 1em;
+                        }
                     }
                 }
 
                 &__list{
                     list-style: none;
-                    margin-left: 1em;
+                    margin: 0 0 0 1em;
+
+                    @mixin atLarge{
+                        margin-left: 1em;
+                    }
 
                     &__link{
                         margin: .5em auto;

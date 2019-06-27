@@ -195,32 +195,44 @@ Descr: Custom radio toggle
 
 .header__nav__menu {
       display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
       width: 100%;
-      padding: 0 5%;
-      justify-content: space-between; }
+      padding: 0 5%; }
 
 .header__nav__menu__column {
-        width: 24%;
-        position: relative; }
+        width: 100%;
+        position: relative;
+        text-align: center; }
 
-.header__nav__menu__column::after {
-          content: '';
-          position: absolute;
-          background-color: white;
-          height: 50%;
-          width: 1px;
-          right: 0;
-          top: 25%; }
+@media (min-width: 1200px) {
+          .header__nav__menu__column {
+            width: 24%;
+            text-align: left; } }
 
-.header__nav__menu__column:last-child::after {
-          display: none; }
+@media (min-width: 1200px) {
+          .header__nav__menu__column::after {
+            content: '';
+            position: absolute;
+            background-color: white;
+            height: 50%;
+            width: 1px;
+            right: 0;
+            top: 25%; }
+          .header__nav__menu__column:last-child::after {
+            display: none; } }
 
 .header__nav__menu__column__title a {
-          color: white; }
+          color: white;
+          margin: 0; }
+
+@media (min-width: 1200px) {
+            .header__nav__menu__column__title a {
+              margin: 0 0 1em; } }
 
 .header__nav__menu__column__list {
           list-style: none;
-          margin-left: 1em; }
+          margin: 0 0 0 1em; }
 
 .header__nav__menu__column__list__link {
             margin: .5em auto; }
@@ -407,15 +419,22 @@ Descr: Custom radio toggle
       width: 100%; }
 
 .hero__content {
-    width: 50%;
+    width: 90%;
     margin: 2em;
     z-index: 1;
     position: relative;
     color: #ffffff; }
 
+@media (min-width: 1200px) {
+      .hero__content {
+        width: 50%; } }
+
 .hero__content__text {
-      font-size: 2em;
       text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2); }
+
+@media (min-width: 1200px) {
+        .hero__content__text {
+          font-size: 2em; } }
 
 .banner_sky {
   height: 75vh;

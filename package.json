@@ -41,6 +41,7 @@
   "dependencies": {
     "Kraken": "github:cferdinandi/kraken",
     "axios": "^0.18.1",
+    "cubic-spline": "^2.0.0",
     "d3-ease": "^1.0.5",
     "grapesjs": "^0.14.62",
     "grapesjs-tui-image-editor": "^0.1.2",
@@ -52,6 +53,8 @@
     "normalize.css": "^8.0.1",
     "nouislider": "^13.1.5",
     "npm": "^6.9.0",
+    "postcss-nesting": "^7.0.0",
+    "postcss-scss": "^2.0.0",
     "segment-js": "^1.1.2",
     "tui-image-editor": "^3.5.2"
   }

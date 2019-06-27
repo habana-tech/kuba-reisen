@@ -1,4 +1,5 @@
 import mapboxgl from 'mapbox-gl';
+import Spline from 'cubic-spline';
 
 class ActivityDescription{
 
@@ -7,100 +8,412 @@ class ActivityDescription{
         this.map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/outdoors-v11',
-            center: [-0.15591514, 51.51830379],
-            zoom: 15.5,
-            bearing: 27,
-            pitch: 45
+            center: [ -81.11051559448242,22.50890956520524],
+            zoom: 6
         });
-        this.map.scrollZoom.disable();
 
-        this.chapters = {
-            'baker': {
-                bearing: 27,
-                center: [-0.15591514, 51.51830379],
-                zoom: 15.5,
-                pitch: 20
-            },
-            'aldgate': {
-                duration: 6000,
-                center: [-0.07571203, 51.51424049],
-                bearing: 150,
-                zoom: 15,
-                pitch: 0
-            },
-            'london-bridge': {
-                bearing: 90,
-                center: [-0.08533793, 51.50438536],
-                zoom: 13,
-                speed: 0.6,
-                pitch: 40
-            },
-            'woolwich': {
-                bearing: 90,
-                center: [0.05991101, 51.48752939],
-                zoom: 12.3
-            },
-            'gloucester': {
-                bearing: 45,
-                center: [-0.18335806, 51.49439521],
-                zoom: 15.3,
-                pitch: 20,
-                speed: 0.5
-            },
-            'caulfield-gardens': {
-                bearing: 180,
-                center: [-0.19684993, 51.5033856],
-                zoom: 12.3
-            },
-            'telegraph': {
-                bearing: 90,
-                center: [-0.10669358, 51.51433123],
-                zoom: 17.3,
-                pitch: 40
-            },
-            'charing-cross': {
-                bearing: 90,
-                center: [-0.12416858, 51.50779757],
-                zoom: 14.3,
-                pitch: 20
-            }
+        this.geojson = {
+            "type": "FeatureCollection",
+            "features": [{
+                "type": "Feature",
+                "geometry": {
+                    "type": "LineString",
+                    "coordinates": []
+                }
+            }]
         };
+        this.frames = 15; // number of frames per longitude degree
+        this._frames = 0;
+        this.animation; // to store and cancel the animation
+        this.startTime = 0;
+        this.progress = 0; // progress = timestamp - startTime
+        this.resetTime = false; // indicator of whether time reset is needed for the animation
 
-        this.activeChapterName = 'baker';
-
+        this.values = [
+            [
+                -84.825439453125,
+                21.861498734372567
+            ],
+            [
+                -84.649658203125,
+                21.963424936844223
+            ],
+            [
+                -84.26513671875,
+                21.9328547363353
+            ],
+            [
+                -84.13330078125,
+                22.11617714721062
+            ],
+            [
+                -84.078369140625,
+                22.329752304376473
+            ],
+            [
+                -83.8916015625,
+                22.49225722008518
+            ],
+            [
+                -83.748779296875,
+                22.6038688428957
+            ],
+            [
+                -83.551025390625,
+                22.735656852206496
+            ],
+            [
+                -83.353271484375,
+                22.836945920943855
+            ],
+            [
+                -83.199462890625,
+                22.907803451058392
+            ],
+            [
+                -83.08959960937499,
+                22.948276856880895
+            ],
+            [
+                -82.9248046875,
+                22.958393318086348
+            ],
+            [
+                -82.705078125,
+                22.998851594142913
+            ],
+            [
+                -82.44140625,
+                23.039297747769726
+            ],
+            [
+                -82.298583984375,
+                23.120153621695614
+            ],
+            [
+                -82.12280273437499,
+                23.140359987886118
+            ],
+            [
+                -81.990966796875,
+                23.140359987886118
+            ],
+            [
+                -81.88110351562499,
+                23.120153621695614
+            ],
+            [
+                -81.7822265625,
+                23.02918734674459
+            ],
+            [
+                -81.73828125,
+                22.948276856880895
+            ],
+            [
+                -81.67236328125,
+                22.857194700969636
+            ],
+            [
+                -81.6064453125,
+                22.735656852206496
+            ],
+            [
+                -81.58447265624999,
+                22.553147478403194
+            ],
+            [
+                -81.573486328125,
+                22.411028521558706
+            ],
+            [
+                -81.4306640625,
+                22.30942584120019
+            ],
+            [
+                -81.309814453125,
+                22.28909641872304
+            ],
+            [
+                -81.0791015625,
+                22.350075806124867
+            ],
+            [
+                -80.947265625,
+                22.350075806124867
+            ],
+            [
+                -80.870361328125,
+                22.339914425562032
+            ],
+            [
+                -80.8154296875,
+                22.31958944283391
+            ],
+            [
+                -80.70556640625,
+                22.28909641872304
+            ],
+            [
+                -80.595703125,
+                22.25859674097572
+            ],
+            [
+                -80.48583984375,
+                22.19757745335104
+            ],
+            [
+                -80.2880859375,
+                22.09581971780769
+            ],
+            [
+                -80.22216796875,
+                22.075459351546858
+            ],
+            [
+                -80.1123046875,
+                22.04491330024569
+            ],
+            [
+                -79.95849609375,
+                22.085639901650328
+            ],
+            [
+                -79.7607421875,
+                22.268764039073968
+            ],
+            [
+                -79.530029296875,
+                22.411028521558706
+            ],
+            [
+                -79.376220703125,
+                22.421184710331858
+            ],
+            [
+                -79.12353515625,
+                22.329752304376473
+            ],
+            [
+                -78.94775390625,
+                22.370396344320053
+            ],
+            [
+                -78.75,
+                22.49225722008518
+            ],
+            [
+                -78.651123046875,
+                22.553147478403194
+            ],
+            [
+                -78.55224609374999,
+                22.51255695405145
+            ],
+            [
+                -78.3984375,
+                22.50240745949775
+            ],
+            [
+                -78.25561523437499,
+                22.43134015636061
+            ],
+            [
+                -78.145751953125,
+                22.36023644579937
+            ],
+            [
+                -78.02490234375,
+                22.27893059841188
+            ],
+            [
+                -77.882080078125,
+                22.156883186860703
+            ],
+            [
+                -77.80517578125,
+                22.06527806776582
+            ],
+            [
+                -77.607421875,
+                21.90227796666864
+            ],
+            [
+                -77.49755859375,
+                21.841104749065032
+            ],
+            [
+                -77.376708984375,
+                21.739091217718574
+            ],
+            [
+                -77.255859375,
+                21.647217065387817
+            ],
+            [
+                -77.10205078124999,
+                21.565502029745332
+            ],
+            [
+                -77.01416015625,
+                21.422389905231366
+            ],
+            [
+                -76.9482421875,
+                21.289374355860424
+            ],
+            [
+                -76.80541992187499,
+                21.22794190505815
+            ],
+            [
+                -76.70654296875,
+                20.899871347076424
+            ],
+            [
+                -76.673583984375,
+                20.622502259344817
+            ],
+            [
+                -76.541748046875,
+                20.49906428341304
+            ],
+            [
+                -76.4208984375,
+                20.354927584117682
+            ],
+            [
+                -76.190185546875,
+                20.29311344754411
+            ],
+            [
+                -75.9814453125,
+                20.2209657795223
+            ],
+            [
+                -75.860595703125,
+                20.117839630491634
+            ],
+            [
+                -75.6298828125,
+                20.066251024326302
+            ],
+            [
+                -75.3662109375,
+                20.066251024326302
+            ],
+            [
+                -75.05859375,
+                20.117839630491634
+            ],
+            [
+                -74.81689453125,
+                20.179723502765153
+            ],
+            [
+                -74.46533203125,
+                20.24158281954221
+            ],
+            [
+                -74.20166015624999,
+                20.262197124246534
+            ]
+        ];
+        this.spline = null;
+        this.min = 0;
+        this.max = 0;
+        this.pos = 0;
+        this._pos = 0;
+        this.step = 0;
+        this.map.scrollZoom.disable();
+        this.interpolatePoints();
         this.events();
     }
 
     events(){
-        // On every scroll event, check which element is on screen
-        window.onscroll = () => {
-            let chapterNames = Object.keys(this.chapters);
-            for (let i = 0; i < chapterNames.length; i++) {
-                let chapterName = chapterNames[i];
-                if (this.isElementOnScreen(chapterName)) {
-                    this.setActiveChapter(chapterName);
-                    break;
-                }
+        this.map.on('load', this.addLineLayer.bind(this));
+        document.addEventListener('visibilitychange', ()=> { this.resetTime = true });
+    }
+
+    interpolatePoints(){
+        let valuesSorted = this.values.sort((x,y)=>{return x[0]<y[0]?-1:1});
+        let xs = valuesSorted.map((x)=>x[0]);
+        let ys = valuesSorted.map((x)=>x[1]);
+        this.spline = new Spline(xs, ys);
+
+        this.min = xs[0];
+        this.max = xs[xs.length-1];
+
+        this.step = Math.abs(this.max - this.min)/100;
+    }
+
+    addLineLayer() {
+
+        // add the line which will be modified in the animation
+        this.map.addLayer({
+            'id': 'line-animation',
+            'type': 'line',
+            'source': {
+                'type': 'geojson',
+                'data': this.geojson
+            },
+            'layout': {
+                'line-cap': 'round',
+                'line-join': 'round'
+            },
+            'paint': {
+                'line-color': '#ed6498',
+                'line-width': 5,
+                'line-opacity': .8
             }
-        };
+        });
+        this.startTime = performance.now();
+
+        this.map.setCenter(this.values[0]);
+        this.map.setZoom(6);
+        this.animateLine.bind(this)();
     }
 
-    setActiveChapter(chapterName) {
-        if (chapterName === this.activeChapterName) return;
+    animateLine(timestamp) {
+        if (this.resetTime) {
+            // resume previous progress
+            this.startTime = performance.now() - this.progress;
+            this.resetTime = false;
+            }
+        else {
+            this.progress = timestamp - this.startTime;
+        }
 
-        this.map.flyTo(this.chapters[chapterName]);
 
-        document.querySelector('#'+chapterName).classList.add('active');
-        document.querySelector('#'+this.activeChapterName).classList.remove('active');
+        if (this._frames===this.frames) {
+            // append new coordinates to the lineString
 
-        this.activeChapterName = chapterName;
-    }
+            let x = this.max - this.pos*this.step;
+            let y = this.spline.at(x);
 
-    isElementOnScreen(id) {
-        let element = document.querySelector('#'+id);
-        let bounds = element.getBoundingClientRect();
-        // return bounds.top - 300 < window.innerHeight && bounds.bottom > 0;
-        return bounds.bottom - window.innerHeight / 2   > 0;
+            this.geojson.features[0].geometry.coordinates.push([x,y]);
+
+            if (this._pos===5) {
+            this.map.flyTo({center:[x,y], zoom:6});
+                this._pos = 0;
+            }
+            this._pos++;
+
+
+            this.pos++;
+
+            if (x < this.min)
+                return;
+
+            // then update the map
+            this.map.getSource('line-animation').setData(this.geojson);
+            this._frames = 0;
+        }
+        else
+            this._frames++;
+        // Request the next frame of the animation.
+        this.animation = requestAnimationFrame(this.animateLine.bind(this));
+
     }
 }
 
