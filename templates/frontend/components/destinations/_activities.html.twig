@@ -4,8 +4,8 @@
 
     <div class="section__title">
         <div class="section__title__highlight">
-            <h2 data-grape_id="activities_title">
-                {{ page.ElementContent('activities_title',"What you can do in "~ destination.name ~" with us!") | raw }}
+            <h2 data-grape_id="activities_title" data-grape_format="txt">
+                {{ page.ElementContent('activities_title',"What you can do in "~ destination.name ~" with us!") | striptags | raw }}
             </h2>
         </div>
         <div class="section__title__description"  data-grape_id="activities_description">
