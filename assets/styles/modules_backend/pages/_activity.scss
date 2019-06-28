@@ -92,15 +92,11 @@ width: 100%;
 		& #activity{
 
 			display: grid;
-			grid-template-columns: 1fr 1fr 1fr;
+			grid-template-columns: 1fr 1fr;
 			grid-auto-rows: minmax(15vh,auto);
 			grid-column-gap: 0px;
 			grid-row-gap: 0px;
 			grid-gap: 2em;
-
-			& > div:nth-child(5), & > div:nth-child(6), {
-				grid-column: 1/4;
-			}
 		 }
 	}
 
