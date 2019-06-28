@@ -55,6 +55,7 @@ class DynamicPageController extends AbstractController
     {
         return $this->render('backend/dynamic_page/show.html.twig', [
             'dynamic_page' => $dynamicPage,
+            'pageContent' => json_encode($dynamicPage->getPageContent())
         ]);
     }
 

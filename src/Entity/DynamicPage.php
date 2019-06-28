@@ -127,7 +127,7 @@ class DynamicPage
 
     public function getElementContent($grape_id, $default = null)
     {
-        if($res = $this->getElement($grape_id))
+        if($res = $this->getElement($grape_id) and $res != '')
             return $res;
         return $default;
     }
