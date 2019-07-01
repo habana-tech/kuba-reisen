@@ -9,7 +9,8 @@
     text-align: center; }
   .feature {
   display: flex;
-  width: 100%; }
+  width: 100%;
+  position: relative; }
   .feature__text {
     order: 1;
     width: 50%;
@@ -20,7 +21,12 @@
         font-size: 2em; }
   .feature__image {
     order: 2;
-    width: 50%; }
+    width: 50%;
+    position: relative; }
+  .feature__image img {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0; }
   .feature--inverse .feature__text {
     order: 2; }
   .feature--inverse .feature__image {

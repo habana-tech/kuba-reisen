@@ -1,6 +1,7 @@
 .feature{
     display: flex;
     width: 100%;
+    position: relative;
 
     &__text{
         order: 1;
@@ -19,6 +20,12 @@
     &__image{
         order: 2;
         width: 50%;
+        position: relative;
+
+        & img{
+            position: sticky;
+            top: 0;
+        }
     }
 
     &--inverse{
