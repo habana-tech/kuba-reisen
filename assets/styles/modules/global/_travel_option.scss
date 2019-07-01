@@ -11,7 +11,9 @@
                                 "img5 img7 img12 img14"
                                 "img5 img8 img13 img14";
         grid-template-rows: 40vh 40vh 40vh 40vh;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 25vw 25vw 25vw 25vw;
+        width: 100vw;
+        min-width: 100vw;
         grid-gap: .15em;
 
         &__item{
