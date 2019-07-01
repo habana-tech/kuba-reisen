@@ -2,16 +2,16 @@
 
     <div class="section__title ">
         <div class="section__title__highlight section__title__highlight--green">
-            <h2 data-grape_id="activities_t1">{{ page.ElementContent('activities_t1','Popular activities') | raw }}</h2>
+            <h2 data-grape_id="activities_t1"  data-grape_format="txt">{{ page.ElementContent('activities_t1','Popular activities') | raw }}</h2>
         </div>
         <div class="section__title__description">
-            <p data-grape_id="activities_p1">{{ page.ElementContent('activities_p1',"We have some many that is hard to choose") | raw }}</p>
+            <p data-grape_id="activities_p1"  data-grape_format="txt">{{ page.ElementContent('activities_p1',"We have some many that is hard to choose") | raw }}</p>
         </div>
     </div>
 
     <div class="activities__selectors">
         <div class="activities__selectors__filters">
-            <h3 data-grape_id="filter_text">{{ page.ElementContent('filter_text','Select the filters') | raw }}</h3>
+            <h3 data-grape_id="filter_text"  data-grape_format="txt">{{ page.ElementContent('filter_text','Select the filters') | raw }}</h3>
             
             <ul class="activities__selectors__filters__lists">
                 {% for filterTag in filterTags %}
@@ -27,7 +27,7 @@
             </ul>
         </div>
         <div class="activities__selectors__search">
-            <h3 data-grape_id="search_text">{{ page.ElementContent('search_text','Type your search criteria') | raw }}</h3>
+            <h3 data-grape_id="search_text"  data-grape_format="txt">{{ page.ElementContent('search_text','Type your search criteria') | raw }}</h3>
             
             <div class="form__item">
                 <div class="form__item__input">
