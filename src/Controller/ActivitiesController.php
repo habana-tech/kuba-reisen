@@ -18,7 +18,7 @@ use \App\Twig\AppExtension;
 class ActivitiesController extends AbstractController
 {
 
-    private $amountActivitiesDefault = 2;
+    private $amountActivitiesDefault = 12;
 
     /**
      * @Route("/activities", name="activities")
