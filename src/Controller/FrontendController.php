@@ -151,4 +151,82 @@ class FrontendController extends AbstractController
             'contents'=>$contents,
         ]);
     }
+
+    /**
+     * @Route("/landesinfos", name="landesinfos")
+     */
+    public function landesinfos(DynamicPageManager $pm)
+    {
+
+        $pageinfo = [
+            'pageName'=> 'landesinfos',
+            'language' => 'de'
+        ];
+
+        if($this->isGranted('ROLE_ADMIN'))
+            $page = $pm->findByOrCreateIfDoesNotExist($pageinfo);
+        else {
+            $page = $pm->findOneBy($pageinfo);
+        }
+
+        if(!$page)
+            throw new NotFoundHttpException();
+
+        return $this->render('frontend/landesinfos.html.twig', [
+            'dynamic_page_id' => $page->getId(),
+            'page' => $page,
+        ]);
+    }
+
+    /**
+     * @Route("/gut_zu_wissen", name="gut_zu_wissen")
+     */
+    public function gut_zu_wissen(DynamicPageManager $pm)
+    {
+
+        $pageinfo = [
+            'pageName'=> 'gut_zu_wissen',
+            'language' => 'de'
+        ];
+
+        if($this->isGranted('ROLE_ADMIN'))
+            $page = $pm->findByOrCreateIfDoesNotExist($pageinfo);
+        else {
+            $page = $pm->findOneBy($pageinfo);
+        }
+
+        if(!$page)
+            throw new NotFoundHttpException();
+
+        return $this->render('frontend/gut_zu_wissen.html.twig', [
+            'dynamic_page_id' => $page->getId(),
+            'page' => $page,
+        ]);
+    }
+
+    /**
+     * @Route("/uber_uns", name="uber_uns")
+     */
+    public function uber_uns(DynamicPageManager $pm)
+    {
+
+        $pageinfo = [
+            'pageName'=> 'uber_uns',
+            'language' => 'de'
+        ];
+
+        if($this->isGranted('ROLE_ADMIN'))
+            $page = $pm->findByOrCreateIfDoesNotExist($pageinfo);
+        else {
+            $page = $pm->findOneBy($pageinfo);
+        }
+
+        if(!$page)
+            throw new NotFoundHttpException();
+
+        return $this->render('frontend/uber_uns.html.twig', [
+            'dynamic_page_id' => $page->getId(),
+            'page' => $page,
+        ]);
+    }
 }

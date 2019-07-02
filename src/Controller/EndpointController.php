@@ -19,7 +19,7 @@ use App\DataConverter\RequestJsonDataConverter;
 use App\Entity\DynamicPage;
 use Symfony\Component\HttpFoundation\FileBag;
 use Symfony\Component\HttpFoundation\File\Exception\FileNotFoundException;
-
+use Psr\Log\LoggerInterface;
 
 
 class EndpointController extends AbstractController
@@ -87,8 +87,10 @@ class EndpointController extends AbstractController
     /**
      * @Route("/endpoint/upload/assets", name="endpoint_upload_assets", methods={"POST"})
      */
-    public function fileUpload(Request $request, DynamicPageManager $pm)
+    public function fileUpload(Request $request, DynamicPageManager $pm, LoggerInterface $logger)
     {
+        $pageId = $request->get('_page_id');
+        $logger->info('init upload image from grape for synamic page'.$pageId.'!');
         $this->denyAccessUnlessGranted('ROLE_EDITOR', null, 'Unable to access this page!');
 
         $token = $request->get('_grapejs_editor_token');
@@ -100,13 +102,17 @@ class EndpointController extends AbstractController
 
 
         $images = [];
-        if($page = $pm->find($request->get('_page_id')))
+        if($page = $pm->find($pageId))
         {
+
+            $logger->info('dynamic page found!');
 
             $files = $request->files->get('files');
             //dump($files);
             if($files)
             {
+                $logger->info('files found');
+
                 //dump($files);
                 foreach ($files as $file) {
 
@@ -138,10 +144,6 @@ class EndpointController extends AbstractController
                           return $this->json(['error'=>'Error uploading file, try againg or use other file'], 400);
 
                   }
-
-
-
-
                 }
             }
 
