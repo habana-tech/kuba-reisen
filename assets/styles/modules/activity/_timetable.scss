@@ -10,11 +10,18 @@
             width: 100%;
             border-radius: 2px;
 
-            & thead{
+             & thead, & tr:first-child{
                 font-weight: bold;
                 text-transform: uppercase;
                 background: linear-gradient(45deg, $light-green, $dark-green);
                 color: white;
+            }
+
+            & thead + tbody tr:first-child{
+                font-weight: normal;
+                text-transform: none;
+                background: none;
+                color: $grey;
             }
         }
 
