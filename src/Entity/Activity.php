@@ -15,6 +15,8 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Activity
 {
+    const LENGTH_OF_DESCRIPTION = 75;
+
     use LanguageFieldTrait;
     use ImageFieldTrait;
     use UserControlFieldsTrait;

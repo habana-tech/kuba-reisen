@@ -4,6 +4,7 @@ namespace App\Controller;
 
 
 use App\Entity\Activity;
+use App\Repository\UploadedImageRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,11 +13,12 @@ use App\PageManager\DynamicPageManager;
 use App\Repository\ActivityRepository;
 use App\Repository\FilterTagRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use \App\Twig\AppExtension;
 
 class ActivitiesController extends AbstractController
 {
 
-    private $amountActivitiesDefault = 9;
+    private $amountActivitiesDefault = 2;
 
     /**
      * @Route("/activities", name="activities")
@@ -61,6 +63,7 @@ class ActivitiesController extends AbstractController
      *     defaults={"pos": null, "amount":null })
      */
     public function activitiesApiPos(ActivityRepository $activityRepository,
+                                     UploadedImageRepository $uploadedImageRepository,
                                      $pos, $amount){
 
         if($pos==null)
@@ -77,13 +80,22 @@ class ActivitiesController extends AbstractController
             array_push($activities, $_activities[$i]);
 
         $activities_data = [];
+
+        $twig_filter = new AppExtension();
+
         foreach ($activities as $activity){
+
+            $img_src = $activity->getDynamicPage()->getElementAttr('activity_images_img1', 'src');
+            $img = $uploadedImageRepository->findOneBy(['image.name'=>\basename($img_src)]);
+            $img_width = $img ? $img->getImage()->getDimensions()[0] : null;
+
             array_push($activities_data, array(
                 'id'=>$activity->getId(),
                 'name'=>$activity->getName(),
-                'image'=>$activity->getDynamicPage()->getElementAttr('activity_images_img1', 'src'),
+                'image'=>$img_src,
+                'image_max_width' => $img_width,
                 'imageAlt'=>$activity->getAlternativeText(),
-                'description'=>$activity->getDescription(),
+                'description'=> $twig_filter->truncate_html($activity->getDescription(),$activity::LENGTH_OF_DESCRIPTION),
                 'link'=>  $this->generateUrl('activity',
                     ['id'=>$activity->getId(),
                     'name'=>$activity->getMachineName(),
