@@ -153,9 +153,9 @@ class FrontendController extends AbstractController
     }
 
     /**
-     * @Route("/landesinfos", name="landesinfos")
+     * @Route("/travel_info", name="travel_info")
      */
-    public function landesinfos(DynamicPageManager $pm)
+    public function travel_info(DynamicPageManager $pm)
     {
 
         $pageinfo = [
@@ -179,35 +179,9 @@ class FrontendController extends AbstractController
     }
 
     /**
-     * @Route("/gut_zu_wissen", name="gut_zu_wissen")
+     * @Route("/about_us", name="about_us")
      */
-    public function gut_zu_wissen(DynamicPageManager $pm)
-    {
-
-        $pageinfo = [
-            'pageName'=> 'gut_zu_wissen',
-            'language' => 'de'
-        ];
-
-        if($this->isGranted('ROLE_ADMIN'))
-            $page = $pm->findByOrCreateIfDoesNotExist($pageinfo);
-        else {
-            $page = $pm->findOneBy($pageinfo);
-        }
-
-        if(!$page)
-            throw new NotFoundHttpException();
-
-        return $this->render('frontend/gut_zu_wissen.html.twig', [
-            'dynamic_page_id' => $page->getId(),
-            'page' => $page,
-        ]);
-    }
-
-    /**
-     * @Route("/uber_uns", name="uber_uns")
-     */
-    public function uber_uns(DynamicPageManager $pm)
+    public function about_us(DynamicPageManager $pm)
     {
 
         $pageinfo = [
