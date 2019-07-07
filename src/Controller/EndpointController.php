@@ -52,7 +52,7 @@ class EndpointController extends AbstractController
                 $entityManager->persist($dymanicPage);
 
             if($grapePage->getExternalPagesContent())
-                dump($grapePage->getExternalPagesContent());
+                //dump($grapePage->getExternalPagesContent());
                 foreach ($grapePage->getExternalPagesContent() as $pagename => $elements)
                 {
                     if($elements and $page = $pm->findOneBy(['pageName'=>$pagename, 'language'=>'de']))
