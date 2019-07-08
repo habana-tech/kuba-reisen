@@ -2,29 +2,33 @@ import mapboxgl from 'mapbox-gl';
 
 class SelectPointMap{
     constructor(selector){
-        this.coordinates = document.getElementById('coordinates');
+
         mapboxgl.accessToken = 'pk.eyJ1IjoibDRuZHkiLCJhIjoiY2p3czlqd3JxMDFsZzRhcGVta3V2ZTF5ZCJ9.LtTjS75OzU1QOxcyYgLXTA';
         this.map = new mapboxgl.Map({
             container: selector,
             style: 'mapbox://styles/mapbox/outdoors-v11/?optimize=true',
-            center: [-83.5334399, 22.8793054],
-            zoom: 8,
+            center: [-79.756514, 22.028145],
+            zoom: 5,
             minZoom:2,
             maxZoom:16,
             pitch: 0,
         });
-        this.canvas = this.map.getCanvasContainer();
 
+        this.canvas = this.map.getCanvasContainer();
+        this.coordinates = document.querySelector('tbody input[type="text"]');
         this.geojson = {
             "type": "FeatureCollection",
             "features": [{
                 "type": "Feature",
                 "geometry": {
                     "type": "Point",
-                    "coordinates": [-83.5334399, 22.8793054]
+                    "coordinates": [-79.756514, 22.028145]
                 }
             }]
         };
+
+        this.mouseMoveHandler = ()=>{};
+        this.touchMoveHandler = ()=>{};
 
         this.events();
     }
@@ -37,13 +41,12 @@ class SelectPointMap{
         let coords = e.lngLat;
 
         // Set a UI indicator for dragging.
-        this.canvas.style.cursor = 'grabbing';
+        this.canvas.style.setProperty('cursor', 'grabbing', 'important');
 
         // Update the Point feature in `geojson` coordinates
         // and call setData to the source layer `point` on it.
         this.geojson.features[0].geometry.coordinates = [coords.lng, coords.lat];
         this.map.getSource('point').setData(this.geojson);
-        console.log('set coord');
     }
 
     onUp(e) {
@@ -51,13 +54,13 @@ class SelectPointMap{
 
         // Print the coordinates of where the point had
         // finished being dragged to on the map.
-        this.coordinates.style.display = 'block';
-        this.coordinates.innerHTML = 'Longitude: ' + coords.lng + '<br />Latitude: ' + coords.lat;
-        this.canvas.style.cursor = '';
+        this.coordinates.value = coords.lng + ',' + coords.lat;
+
+        this.canvas.style.setProperty('cursor', 'default', 'important');
 
         // Unbind mouse/touch events
-        this.map.off('mousemove', this.onMove.bind(this));
-        this.map.off('touchmove', this.onMove.bind(this));
+        this.map.off('mousemove', this.mouseMoveHandler);
+        this.map.off('touchmove', this.touchMoveHandler);
     }
 
     prepareAndMovePoint() {
@@ -80,20 +83,22 @@ class SelectPointMap{
         // When the cursor enters a feature in the point layer, prepare for dragging.
         this.map.on('mouseenter', 'point', () => {
             this.map.setPaintProperty('point', 'circle-color', '#d05b6f');
-            this.canvas.style.cursor = 'move';
+            this.canvas.style.setProperty('cursor', 'move', 'important');
         });
 
         this.map.on('mouseleave', 'point', () => {
             this.map.setPaintProperty('point', 'circle-color', '#3887be');
-            this.canvas.style.cursor = '';
+            this.canvas.style.setProperty('cursor', '', 'important');
         });
 
         this.map.on('mousedown', 'point', (e) => {
             // Prevent the default map drag behavior.
             e.preventDefault();
 
-            this.canvas.style.cursor = 'grab';
-            this.map.on('mousemove', this.onMove.bind(this));
+            this.mouseMoveHandler = this.onMove.bind(this);
+
+            this.canvas.style.setProperty('cursor', 'grab', 'important');
+            this.map.on('mousemove', this.mouseMoveHandler);
             this.map.once('mouseup', this.onUp.bind(this));
         });
 
@@ -103,7 +108,8 @@ class SelectPointMap{
             // Prevent the default map drag behavior.
             e.preventDefault();
 
-            this.map.on('touchmove', this.onMove.bind(this));
+            this.touchMoveHandler = this.onMove.bind(this);
+            this.map.on('touchmove', this.touchMoveHandler);
             this.map.once('touchend', this.onUp.bind(this));
         });
     }
@@ -112,8 +118,7 @@ class SelectPointMap{
 CKEDITOR.dialog.add( 'MapMarkerDialog', function( editor ) {
     return {
         title: 'MapMarker Properties',
-        minWidth: 400,
-        minHeight: 200,
+        minHeight: 20,
         contents: [
             {
                 id: 'tab-basic',
@@ -122,26 +127,32 @@ CKEDITOR.dialog.add( 'MapMarkerDialog', function( editor ) {
                     {
                         type: 'text',
                         id: 'center',
-                        label: 'Map Center Coordinates <br/><small>example: -83.5334399, 22.8793054</small>',
-                        validate: CKEDITOR.dialog.validate.notEmpty( "Name field cannot be empty." ),
+                        label: 'Point Coordinates',
+                        validate: CKEDITOR.dialog.validate.notEmpty( "Pointer coordinates cannot be empty." ),
                         // Called by the main setupContent method call on dialog initialization.
                         setup: function( element ) {
-                            let container = document.querySelector('.cke_dialog_contents');
-                            //container.childNodes.forEach((x)=>{x.remove()});
+                            let container = document.querySelector('.cke_dialog_contents tbody');
                             let newMap = document.createElement('div');
                             newMap.setAttribute('id', 'selectMap');
-                            newMap.setAttribute('style', 'height: 50vh; width:50vw');
+                            newMap.setAttribute('style', 'height: 50vh; width:100%');
                             newMap.setAttribute('id', 'selectMap');
-                            let pre = document.createElement('pre');
-                            pre.setAttribute('id', 'coordinates');
-                            pre.setAttribute('class', 'coordinates');
-                            container.appendChild(newMap);
-                            container.appendChild(pre);
+                            container.insertBefore(newMap, container.firstChild);
                             new SelectPointMap('selectMap');
+
                             // var prevValue = JSON.parse(element.getAttribute("data-map"));
                             // if (prevValue.center.isArray)
                             //     this.setValue(prevValue.center.join(', '));
                             // else this.setValue(prevValue.center);
+                        }
+                    },
+                    {
+                        type: 'text',
+                        id: 'zoom',
+                        label: 'Zoom Level (1-18)',
+                        validate: CKEDITOR.dialog.validate.number("It should be a number" ),
+                        setup: function( element ) {
+                            // var prevValue = JSON.parse(element.getAttribute( "data-map" ));
+                            // this.setValue(prevValue.zoom);
                         }
                     },
                 ]
