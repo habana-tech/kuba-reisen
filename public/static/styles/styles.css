@@ -445,7 +445,8 @@ Descr: Custom radio toggle
 
 .banner_sky__image {
     position: absolute;
-    width: 100%; }
+    width: 100%;
+    height: 100%; }
 
 .banner_sky__content {
     position: relative;
@@ -627,9 +628,13 @@ Descr: Custom radio toggle
           color: white; }
 
 .activity {
-  width: 31%;
+  width: 100%;
   margin: .5em .5em;
   position: relative; }
+
+@media (min-width: 1200px) {
+    .activity {
+      width: 31%; } }
 
 .activity:hover {
     text-decoration: none; }
@@ -824,8 +829,7 @@ Descr: Custom radio toggle
 .footer__banner__image {
       position: absolute;
       width: 100%;
-      top: 0;
-      left: 0; }
+      height: 100%; }
 
 .footer__banner__content {
       position: relative;

@@ -1,7 +1,11 @@
 .activity {
-    width: 31%;
+    width: 100%;
     margin: .5em .5em;
     position: relative;
+
+    @include atLarge{
+        width: 31%;
+    }
 
     &:hover{
         text-decoration: none;

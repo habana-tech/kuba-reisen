@@ -68,6 +68,7 @@ class ActivityRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('activity')
             ->where('activity.language = :lang')
             ->andWhere('activity.name like :search')
+            ->orWhere('activity.description like :search')
             ->setParameter('lang', $lang)
             ->setParameter('search',"%$search%")
             ->setFirstResult($pos)

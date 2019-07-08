@@ -46,17 +46,33 @@
 
         &__map{
             position: sticky;
-            top: 5vh;
-            width: 40%;
+            top: 0;
+            border: 1px green solid;
+            width: 100%;
+            z-index: 1;
+
+            @include atLarge{
+                width: 40%;
+                top: 5vh;
+            }
 
             & #map{
                 margin: auto;
-                min-height: 90vh;
+                min-height: 40vh;
+
+                @include atLarge{
+                    min-height: 90vh;
+                }
             }
         }
 
         &__features {
-            width: 40%;
+            width: 95%;
+            margin: auto;
+
+            @include atLarge{
+                width: 40%;
+            }
         }
 
         &__skip{
@@ -69,17 +85,25 @@
     }
 
     &__selectors{
-        width: 80%;
+        width: 95%;
         margin: auto;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
 
+        @include atLarge{
+            width: 80%;
+        }
+
         &__filters{
-            width: 60%;
+            width: 100%;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
+
+            @include atLarge{
+                width: 60%;
+            }
 
             & h3{
               text-align: center;
@@ -90,7 +114,12 @@
                 list-style: none;
                 display: flex;
                 flex-wrap: wrap;
-                justify-content: space-between;
+                justify-content: center;
+                margin: 0;
+
+                @include atLarge{
+                    margin: 0 0 1.5625em 2em;
+                }
 
                 & li{
                     display: inline-block;
@@ -101,7 +130,7 @@
                     border: 2px solid white;
                     padding: .25em .75em;
                     text-align: center;
-                    margin: .5em 0;
+                    margin: .5em .5em 0 0;
                     position: relative;
                     transition: all .3s ease-in-out;
                     cursor: pointer;
@@ -118,7 +147,11 @@
         }
 
         &__search{
-            width: 40%;
+            width: 100%;
+
+            @include atLarge{
+                width: 40%;
+            }
 
             & h3{
                 text-align: center;
@@ -134,19 +167,31 @@
 
                 &__input {
                     width: 70%;
+                    position: relative;
 
-                    & input {
+                    & input[type="text"] {
                         margin: .5em;
                         padding: .25em .75em;
                         border: 2px solid rgba($light-green, 1);;
                         border-radius: 2px;
                         box-shadow: 2px 2px 5px rgba(black, .25);
                         transition: all .3s ease-in-out;
+                        position: relative;
 
                         &:focus{
                             border: 2px solid rgba($light-green, .85);
                         }
+
+                        &::after{
+                            content: 'x';
+                            position: absolute;
+                            width: 2em;
+                            height: 100%;
+                            border-radius: 50%;
+                            background-color: red;
+                        }
                     }
+
                 }
             }
 
@@ -154,9 +199,13 @@
     }
 
     &__list {
-        width: 90%;
+        width: 95%;
         margin: auto;
         margin-bottom: 2em;
+
+        @include atLarge{
+            width: 90%;
+        }
 
         &__title{
             width: 100%;

@@ -95,7 +95,7 @@ img,
 video {
   width: 100%;
   max-width: 100%;
-  height: auto;
+  height: 100%;
   -o-object-fit: cover;
      object-fit: cover; }
 /**
@@ -831,10 +831,13 @@ pre code {
     background-image: linear-gradient(to right, transparent 50%, rgba(53, 207, 212, 0.9), rgba(20, 161, 230, 0.9)); }
 .btn--transparent:hover {
       background-position: right center; }
+.btn--green {
+    background-image: linear-gradient(to right, #62ab03 50%, rgba(98, 171, 3, 0.9), rgba(0, 77, 0, 0.9)); }
+.btn--green:hover {
+      background-position: right center; }
 .btn--small {
     padding: .25em .5em;
-    font-weight: 500;
-    border: 1px white solid; }
+    font-weight: 500; }
 /**
  * @section Forms
  * Styling for form elements.
@@ -898,6 +901,9 @@ select {
     textarea,
     select {
       line-height: 1.5625; } }
+input[type="submit"] {
+  width: auto;
+  margin: auto; }
 /**
  * Don't inherit the `font-weight` (applied by a rule above).
  * NOTE: the default cannot safely be changed in Chrome and Safari on OS X.

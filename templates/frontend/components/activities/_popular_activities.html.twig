@@ -28,15 +28,23 @@
         </div>
         <div class="activities__selectors__search">
             <h3 data-grape_id="search_text"  data-grape_format="txt">{{ page.ElementContent('search_text','Type your search criteria') | raw }}</h3>
-            
-            <div class="form__item">
-                <div class="form__item__input">
-                    <input id="search_ext" type="text" placeholder="beach">
+
+            <form action="">
+                <div class="form__item">
+                    {#<div class="form__item__label">#}
+                        {#<label for="#search_text">criteria</label>#}
+                    {#</div>#}
+                    <div class="form__item__input">
+                        <input id="search_text" type="text" minlength="3" placeholder="sun & music" required>
+                    </div>
                 </div>
-                {#<div class="form__item__label">#}
-                    {#<label for="#search_ext">criteria</label>#}
-                {#</div>#}
-            </div>
+
+                <div class="form__item">
+                    <div class="form__item__input">
+                        <input class="btn btn--green btn--small" type="submit" value="send">
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 
