@@ -1,16 +1,24 @@
 .overview{
     display: flex;
+    flex-wrap: wrap;
     background: white;
     z-index: 1;
     padding-top: 2px;
 
     &__item{
-        width: 25%;
+        width: 100%;
         overflow: hidden;
         display: flex;
         align-items: center;
         max-height: 80vh;
-        margin-left: 2px;
+        margin-left: 0;
+        margin-bottom: 2px;
+
+        @include atLarge{
+            width: calc(25% - 2px);
+            margin-bottom: 0;
+            margin-left: 2px;
+        }
 
         &:hover img{
             transform: scale(1.1);
@@ -18,9 +26,8 @@
 
         & img{
             position: relative;
-            width: auto;
-            height: 100%;
             transition: all .3s ease-in-out;
+
         }
 
         &__text{

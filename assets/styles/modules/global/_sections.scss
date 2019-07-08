@@ -16,9 +16,19 @@
             justify-content: center;
             align-items: center;
             font-weight: 600;
+            flex-wrap: wrap;
+
+            @include atLarge{
+                flex-wrap: nowrap;
+            }
 
             & h2{
                 font-size: 2.5em;
+                margin: 0 0 .25em;
+
+                @include atLarge{
+                    margin: 0 0 1em;;
+                }
             }
 
             &::before, &::after {
@@ -26,17 +36,29 @@
                 position: relative;
                 height: 4px;
                 border-radius: 2px;
-                width: 8em;
+                width: 70%;
                 margin: 0 .5em;
+
+                @include atLarge{
+                    width: 8em;
+                }
             }
 
             &:before {
                 background: linear-gradient(45deg, $light-blue, $dark-blue);
+                display: none;
+                
+                @include atLarge{
+                    display: block;
+                }
             }
 
             &::after {
                 background: linear-gradient(-45deg, $light-blue, $dark-blue);
+
             }
+
+
 
             & p {
                 width: 50%;
@@ -72,9 +94,13 @@
 
         &__description{
             position: relative;
-            top: -2em;
+            top: 1em;
             width: 50%;
             text-align: center;
+
+            @include atLarge{
+                top: -2em;
+            }
         }
     }
 

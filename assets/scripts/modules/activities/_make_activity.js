@@ -1,3 +1,5 @@
+import clipHtml from 'text-clipper';
+
 class MakeActivity {
     constructor(prototype){
         this.prototype = prototype;
@@ -26,7 +28,7 @@ class MakeActivity {
         newActivity.querySelector('img').classList.add('blur-up');
         newActivity.querySelector('img').classList.add('lazyload');
         newActivity.querySelector('h4').innerHTML = name;
-        newActivity.querySelector('activity__content__description').innerHTML = description;
+        newActivity.querySelector('.activity__content__description').innerHTML = clipHtml(description, this.descriptionLenght);
         newActivity.querySelector('.activity__content__title a').setAttribute('href', link);
 
         return newActivity;

@@ -37,6 +37,10 @@ class SelectPointMap{
         this.map.on('load', this.prepareAndMovePoint.bind(this));
     }
 
+    setFiredOnLoad(callbackFn){
+        this.map.on('load', callbackFn);
+    }
+
     onMove(e) {
         let coords = e.lngLat;
 
@@ -82,7 +86,7 @@ class SelectPointMap{
 
         // When the cursor enters a feature in the point layer, prepare for dragging.
         this.map.on('mouseenter', 'point', () => {
-            this.map.setPaintProperty('point', 'circle-color', '#d05b6f');
+            this.map.setPaintProperty('point', 'circle-color', '#0fb5d0');
             this.canvas.style.setProperty('cursor', 'move', 'important');
         });
 
@@ -114,11 +118,13 @@ class SelectPointMap{
         });
     }
 
-    getMap(){
-        return this.map;
+    setCenterAndZoomMap(center, zoom){
+        this.map.setCenter(center).setZoom(zoom);
     }
-    getGeoJson(){
-        return this.geojson;
+
+    setGeoJson(center){
+        this.geojson.features[0].geometry.coordinates = center;
+        this.map.getSource('point').setData(this.geojson);
     }
 }
 
@@ -140,13 +146,14 @@ CKEDITOR.dialog.add( 'MapMarkerDialog', function( editor ) {
                         validate: CKEDITOR.dialog.validate.notEmpty( "Coordinates and Zoom cannot be empty." ),
                         // Called by the main setupContent method call on dialog initialization.
                         setup: function( element ) {
-                            let container = document.querySelector('.cke_dialog_contents tbody');
                             console.log(element);
+                            let container = document.querySelector('.cke_dialog_contents tbody');
+
                             let prevValue = JSON.parse(element.getAttribute("data-map"));
                             if (prevValue.center.isArray)
-                                this.setValue(prevValue.center.join(', '));
+                                this.setValue(prevValue.center.join(', ')+";"+prevValue.zoom);
                             else
-                                this.setValue(prevValue.center);
+                                this.setValue(prevValue.center+";"+prevValue.zoom);
 
                             if (container.querySelectorAll('#selectMap').length===0) {
                                 let newMap = document.createElement('div');
@@ -156,15 +163,17 @@ CKEDITOR.dialog.add( 'MapMarkerDialog', function( editor ) {
                                 container.insertBefore(newMap, container.firstChild);
                                 map = new SelectPointMap('selectMap');
                             }
-                            map.getMap().setCenter(prevValue.center).setZoom(prevValue.zoom);
-                            map.getGeoJson().features[0].geometry.coordinates = [prevValue.center];
-                            map.getMap().getSource('point').setData(map.getGeoJson());
+
+                            map.setFiredOnLoad(()=>{
+                                map.setGeoJson(prevValue.center);
+                                map.setCenterAndZoomMap(prevValue.center, prevValue.zoom);
+                            });
                         }
                     },
                     {
                         type: 'text',
                         id: 'name',
-                        label: 'Name of this point',
+                        label: 'Name of this point (optional)',
                         setup: function( element ) {
                             let prevValue = JSON.parse(element.getAttribute( "data-map" ));
                             this.setValue(prevValue.name);

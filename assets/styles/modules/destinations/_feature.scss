@@ -2,11 +2,17 @@
     display: flex;
     width: 100%;
     position: relative;
+    flex-wrap: wrap;
 
     &__text{
         order: 1;
-        width: 50%;
-        padding: 1em 5em;
+        width: 100%;
+        padding: 1em;
+
+        @include atLarge{
+            width: 50%;
+            padding: 1em 5em;
+        }
 
         &__title{
             width: 100%;
@@ -19,23 +25,37 @@
 
     &__image{
         order: 2;
-        width: 50%;
+        width: 100%;
         position: relative;
+
+        @include atLarge{
+            width: 50%;
+        }
 
         & img{
             position: sticky;
             top: 0;
-            min-height: 100vh;
+            max-height: 80vh;
+
+            @include atLarge{
+                min-height: 100vh;
+            }
         }
     }
 
-    &--inverse{
-        & .feature__text{
-            order: 2;
+
+    &--inverse {
+
+        & .feature__text {
+            @mixin atLarge {
+                order: 2;;
+            }
         }
 
-        & .feature__image{
-            order: 1;
+        & .feature__image {
+            @mixin atLarge {
+                order: 1;
+            }
         }
     }
 }

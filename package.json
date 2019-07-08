@@ -56,6 +56,7 @@
     "postcss-nesting": "^7.0.0",
     "postcss-scss": "^2.0.0",
     "segment-js": "^1.1.2",
+    "text-clipper": "^1.2.3",
     "tui-image-editor": "^3.5.2"
   }
 }
