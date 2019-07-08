@@ -2,7 +2,6 @@ import grapesjs from "grapesjs";
 import tUIImageEditor from 'grapesjs-tui-image-editor';
 //var tui = require('tui-image-editor');
 
-var images = [];
 /*
 grapesjs.plugins.add('no-devices-selector', function(editor, options) {
   // remove the devices switcher
@@ -15,6 +14,18 @@ grapesjs.plugins.add('no-devices-selector', function(editor, options) {
 })
 
 */
+
+var Assetsimages = null;
+
+fetch(app_js_routing__list_images)
+.then(res => res.json())
+.then((out) => {
+  console.log('Checkout this JSON! ', out);
+  Assetsimages = out;
+})
+.catch(err => { throw err });
+
+
 var editor = grapesjs.init({
     showOffsets: 1,
     noticeOnUnload: 0,
@@ -74,12 +85,13 @@ var editor = grapesjs.init({
         styles: [app_js_routing__styles_css]
     },
      assetManager: {
+        assets: Assetsimages,
     // Upload endpoint, set `false` to disable upload, default `false`
-    upload: app_js_routing__grape_endpoint_upload,
-    params: {
-                _grapejs_editor_token: app_js_param__csrf_token,
-                _page_id: app_js_param__page_id
-            },
+        upload: app_js_routing__grape_endpoint_upload,
+        params: {
+                    _grapejs_editor_token: app_js_param__csrf_token,
+                    _page_id: app_js_param__page_id
+                },
 
     
   }

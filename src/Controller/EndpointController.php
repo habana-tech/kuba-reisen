@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\DataConverter\GrapesjsHtmlConverter;
 use App\Entity\UploadedImage;
+use App\Repository\UploadedImageRepository;
 use App\PageManager\DynamicPageManager;
 use App\Repository\ActivityRepository;
 use App\Repository\DynamicPageRepository;
@@ -76,13 +77,29 @@ class EndpointController extends AbstractController
     /**
      * @Route("/endpoint/debug/{id}", name="endpoint_debug")
      */
-    public function debug(DynamicPage $page)
+    public function debug()
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
 
         return $this->json($page->getPageContent());
     }
 
+
+    /**
+     * @Route("/endpoint/list/images", name="endpoint_list_images", methods={"GET"})
+     */
+    public function ImageList(UploadedImageRepository $repository)
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
+
+        $images = $repository->findAll();
+        $paths = [];
+
+        foreach ($images as $image) {
+            $paths[] = $image->getStaticImagePath();
+        }
+        return $this->json($paths);
+    }
 
     /**
      * @Route("/endpoint/upload/assets", name="endpoint_upload_assets", methods={"POST"})
