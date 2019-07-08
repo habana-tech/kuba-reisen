@@ -2,6 +2,7 @@ class MakeActivity {
     constructor(prototype){
         this.prototype = prototype;
         this.imagesSizes = [1920, 1200, 1000, 900, 800, 600];
+        this.descriptionLenght = 75;
     }
 
     makeImageSrcSet(url){
@@ -25,7 +26,7 @@ class MakeActivity {
         newActivity.querySelector('img').classList.add('blur-up');
         newActivity.querySelector('img').classList.add('lazyload');
         newActivity.querySelector('h4').innerHTML = name;
-        newActivity.querySelector('p').innerHTML = description;
+        newActivity.querySelector('activity__content__description').innerHTML = description;
         newActivity.querySelector('.activity__content__title a').setAttribute('href', link);
 
         return newActivity;

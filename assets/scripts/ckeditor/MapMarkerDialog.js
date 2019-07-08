@@ -1,8 +1,8 @@
 import mapboxgl from 'mapbox-gl';
 
 class SelectPointMap{
-    constructor(selector){
 
+    constructor(selector){
         mapboxgl.accessToken = 'pk.eyJ1IjoibDRuZHkiLCJhIjoiY2p3czlqd3JxMDFsZzRhcGVta3V2ZTF5ZCJ9.LtTjS75OzU1QOxcyYgLXTA';
         this.map = new mapboxgl.Map({
             container: selector,
@@ -15,7 +15,7 @@ class SelectPointMap{
         });
 
         this.canvas = this.map.getCanvasContainer();
-        this.coordinates = document.querySelector('tbody input[type="text"]');
+        this.coordinatesAndZoom = document.querySelector('tbody input[type="text"]');
         this.geojson = {
             "type": "FeatureCollection",
             "features": [{
@@ -54,7 +54,7 @@ class SelectPointMap{
 
         // Print the coordinates of where the point had
         // finished being dragged to on the map.
-        this.coordinates.value = coords.lng + ',' + coords.lat;
+        this.coordinatesAndZoom.value = coords.lng + ',' + coords.lat+';'+this.map.getZoom();
 
         this.canvas.style.setProperty('cursor', 'default', 'important');
 
@@ -113,7 +113,16 @@ class SelectPointMap{
             this.map.once('touchend', this.onUp.bind(this));
         });
     }
+
+    getMap(){
+        return this.map;
+    }
+    getGeoJson(){
+        return this.geojson;
+    }
 }
+
+let map = null;
 
 CKEDITOR.dialog.add( 'MapMarkerDialog', function( editor ) {
     return {
@@ -126,33 +135,39 @@ CKEDITOR.dialog.add( 'MapMarkerDialog', function( editor ) {
                 elements: [
                     {
                         type: 'text',
-                        id: 'center',
-                        label: 'Point Coordinates',
-                        validate: CKEDITOR.dialog.validate.notEmpty( "Pointer coordinates cannot be empty." ),
+                        id: 'center_zoom',
+                        label: 'Point Coordinates & Zoom',
+                        validate: CKEDITOR.dialog.validate.notEmpty( "Coordinates and Zoom cannot be empty." ),
                         // Called by the main setupContent method call on dialog initialization.
                         setup: function( element ) {
                             let container = document.querySelector('.cke_dialog_contents tbody');
-                            let newMap = document.createElement('div');
-                            newMap.setAttribute('id', 'selectMap');
-                            newMap.setAttribute('style', 'height: 50vh; width:100%');
-                            newMap.setAttribute('id', 'selectMap');
-                            container.insertBefore(newMap, container.firstChild);
-                            new SelectPointMap('selectMap');
+                            console.log(element);
+                            let prevValue = JSON.parse(element.getAttribute("data-map"));
+                            if (prevValue.center.isArray)
+                                this.setValue(prevValue.center.join(', '));
+                            else
+                                this.setValue(prevValue.center);
 
-                            // var prevValue = JSON.parse(element.getAttribute("data-map"));
-                            // if (prevValue.center.isArray)
-                            //     this.setValue(prevValue.center.join(', '));
-                            // else this.setValue(prevValue.center);
+                            if (container.querySelectorAll('#selectMap').length===0) {
+                                let newMap = document.createElement('div');
+                                newMap.setAttribute('id', 'selectMap');
+                                newMap.setAttribute('style', 'height: 50vh; width:100%');
+                                newMap.setAttribute('id', 'selectMap');
+                                container.insertBefore(newMap, container.firstChild);
+                                map = new SelectPointMap('selectMap');
+                            }
+                            map.getMap().setCenter(prevValue.center).setZoom(prevValue.zoom);
+                            map.getGeoJson().features[0].geometry.coordinates = [prevValue.center];
+                            map.getMap().getSource('point').setData(map.getGeoJson());
                         }
                     },
                     {
                         type: 'text',
-                        id: 'zoom',
-                        label: 'Zoom Level (1-18)',
-                        validate: CKEDITOR.dialog.validate.number("It should be a number" ),
+                        id: 'name',
+                        label: 'Name of this point',
                         setup: function( element ) {
-                            // var prevValue = JSON.parse(element.getAttribute( "data-map" ));
-                            // this.setValue(prevValue.zoom);
+                            let prevValue = JSON.parse(element.getAttribute( "data-map" ));
+                            this.setValue(prevValue.name);
                         }
                     },
                 ]
@@ -178,19 +193,13 @@ CKEDITOR.dialog.add( 'MapMarkerDialog', function( editor ) {
             if (dialog.getValueOf('tab-basic', 'name')==='')
                 name+="\"\"";
             else
-                name+=dialog.getValueOf('tab-basic', 'name');
+                name+="\""+dialog.getValueOf('tab-basic', 'name')+"\"";
 
-            let bearing = "\"bearing\":";
-            if (dialog.getValueOf('tab-basic', 'bearing')==='')
-                bearing+=0;
-            else
-                bearing+=dialog.getValueOf('tab-basic', 'bearing');
+            let centerZoom = dialog.getValueOf('tab-basic', 'center_zoom').split(';');
+            let center = "\"center\":["+centerZoom[0]+']';
+            let zoom = "\"zoom\":"+centerZoom[1];
 
-
-            let center = "\"center\":["+dialog.getValueOf('tab-basic', 'center')+']';
-            let zoom = "\"zoom\":"+dialog.getValueOf( 'tab-basic', 'zoom' );
-
-            let data_map = [center, zoom, bearing, name];
+            let data_map = [center, zoom, name];
             data_map = '{'+data_map.toString()+'}';
 
             elm.setAttribute('data-map', data_map);
@@ -202,10 +211,10 @@ CKEDITOR.dialog.add( 'MapMarkerDialog', function( editor ) {
         onShow: function() {
 
             // Get the selection from the editor.
-         //   let selection = editor.getSelection();
+           let selection = editor.getSelection();
 
             // Get the element at the start of the selection.
-       //     let element = selection.getStartElement();
+           let element = selection.getStartElement();
 
             // Get the <abbr> element closest to the selection, if it exists.
             // if ( element ){
@@ -213,7 +222,7 @@ CKEDITOR.dialog.add( 'MapMarkerDialog', function( editor ) {
             //
             // }
 
-          //  element = editor.restoreRealElement(element);
+            element = editor.restoreRealElement(element);
 
             // // Create a new <abbr> element if it does not exist.
             // if ( !element || element.getName() != 'span' ) {
@@ -226,12 +235,11 @@ CKEDITOR.dialog.add( 'MapMarkerDialog', function( editor ) {
             //     this.insertMode = false;
 
             // Store the reference to the <abbr> element in an internal property, for later use.
-        //    this.element = element;
+           this.element = element;
 
             // Invoke the setup methods of all dialog window elements, so they can load the element attributes.
             // if ( !this.insertMode )
-            //     this.setupContent( this.element['$']);
-            this.setupContent( this.element);
+            this.setupContent( this.element['$']);
         }
     };
 });

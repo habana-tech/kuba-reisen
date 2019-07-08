@@ -22,6 +22,10 @@ body {
 	@media (min-width: $bp-medium) {
 		line-height: 1.5625;
 	}
+
+	@include atXLarge{
+		margin: 0 10%;
+	}
 }
 
 

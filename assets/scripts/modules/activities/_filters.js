@@ -2,7 +2,7 @@ import axios from 'axios';
 import MakeActivity from "./_make_activity";
 import AddtoCart from "../global/_addToCart";
 
-class FilterStyle {
+class FilterActivities {
     constructor(){
         this.urlFilters = '/activitiesApiPosFilter';
         this.urlSearch = '/activitiesApiPosSearch';
@@ -104,4 +104,4 @@ class FilterStyle {
     }
 }
 
-export default FilterStyle;
+export default FilterActivities;
