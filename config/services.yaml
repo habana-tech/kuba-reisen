@@ -38,3 +38,6 @@ services:
 
     App\Naming\FileNamer:
         public: true
+
+    App\SecurityAuths\CKFinderAuth:
+        arguments: ['@security.authorization_checker']

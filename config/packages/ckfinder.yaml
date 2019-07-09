@@ -3,4 +3,4 @@ imports:
 
 ckfinder:
     connector:
-        authenticationClass: App\CustomCKFinderAuth\CustomCKFinderAuth
+        authenticationClass: App\SecurityAuths\CKFinderAuth

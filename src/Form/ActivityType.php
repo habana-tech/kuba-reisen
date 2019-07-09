@@ -26,6 +26,8 @@ class ActivityType extends AbstractType
             ->add('featuresImagesCount', null, [
                 'label' => 'How many images do you want to show for this activity?'
             ])
+
+            ->add('priority', null, ['label'=>'Priority, the biggest appears first'])
 //            ->add('language',  ChoiceType::class, ['choices' => [
 //                'de' => 'de',
 //                'en' => 'en',
