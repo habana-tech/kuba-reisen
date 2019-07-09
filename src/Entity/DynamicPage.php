@@ -148,7 +148,6 @@ class DynamicPage
             $data = ImageBase64ThumbCreator::getStaticRelativePath($data);
         }
 
-
         return $data;
     }
 
