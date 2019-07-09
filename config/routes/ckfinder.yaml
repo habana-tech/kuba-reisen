@@ -1,3 +1,3 @@
 ckfinder_connector:
-    resource: "@CKSourceCKFinderBundle/Resources/config/routing.yml"
-    prefix:   /
+    path:     /ckfinder/connector
+    defaults: { _controller: CKSource\Bundle\CKFinderBundle\Controller\CKFinderController::requestAction }
