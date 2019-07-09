@@ -140,20 +140,20 @@ editor.on('storage:store', function(e) { console.log('Stored ', e);});
 
 // The upload is started
 editor.on('asset:upload:start', () => {
-    console.log("start upload")
+    //console.log("start upload")
     startAssetsAnimation();
 });
 
 // The upload is ended (completed or not)
 editor.on('asset:upload:end', () => {
-    console.log("end upload")
+    //console.log("end upload")
     stopAssetsAnimation();
     //endAnimation();
 });
 
 // Error handling
 editor.on('asset:upload:error', (err) => {
-    console.log("error on upload")
+    //console.log("error on upload")
     //notifyError(err);
     stopAssetsAnimation();
     alert(err.error)
@@ -161,7 +161,7 @@ editor.on('asset:upload:error', (err) => {
 
 // Do something on response
 editor.on('asset:upload:response', (response) => {
-    console.log("done")
+    //console.log("done")
     stopAssetsAnimation();
 });
 
@@ -199,7 +199,7 @@ editor.on('modal:open', function (editor) {
     });
 
     
-    console.log("modal open");
+    //console.log("modal open");
     }
 );
 
@@ -211,7 +211,7 @@ editor.on('load', function()  {
         return response.json();
     })
     .then(function(data){
-        console.log(data);
+        //console.log(data);
         am.add(data);
     });
 
