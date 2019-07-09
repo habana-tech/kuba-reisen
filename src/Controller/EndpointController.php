@@ -21,6 +21,7 @@ use App\Entity\DynamicPage;
 use Symfony\Component\HttpFoundation\FileBag;
 use Symfony\Component\HttpFoundation\File\Exception\FileNotFoundException;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 
 class EndpointController extends AbstractController
@@ -53,7 +54,7 @@ class EndpointController extends AbstractController
                 $entityManager->persist($dymanicPage);
 
             if($grapePage->getExternalPagesContent())
-                dump($grapePage->getExternalPagesContent());
+                //dump($grapePage->getExternalPagesContent());
                 foreach ($grapePage->getExternalPagesContent() as $pagename => $elements)
                 {
                     if($elements and $page = $pm->findOneBy(['pageName'=>$pagename, 'language'=>'de']))
@@ -88,15 +89,19 @@ class EndpointController extends AbstractController
     /**
      * @Route("/endpoint/list/images", name="endpoint_list_images", methods={"GET"})
      */
-    public function ImageList(UploadedImageRepository $repository)
+    public function ImageList(UploadedImageRepository $repository, ContainerInterface $container = null)
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
 
-        $images = $repository->findAll();
+        $imagineCacheManager = $container->get('liip_imagine.cache.manager');
+
+
+        $images = $repository->findLastImages(15);
         $paths = [];
 
         foreach ($images as $image) {
-            $paths[] = $image->getStaticImagePath();
+            $resolvedPath = $imagineCacheManager->getBrowserPath($image->getStaticImagePath(), 'min_width_600');
+            $paths[] = ['src' => $resolvedPath, 'type'=> 'image'];
         }
         return $this->json($paths);
     }
@@ -104,7 +109,7 @@ class EndpointController extends AbstractController
     /**
      * @Route("/endpoint/upload/assets", name="endpoint_upload_assets", methods={"POST"})
      */
-    public function fileUpload(Request $request, DynamicPageManager $pm, LoggerInterface $logger)
+    public function fileUpload(Request $request, DynamicPageManager $pm, LoggerInterface $logger, ContainerInterface $container = null)
     {
         $pageId = $request->get('_page_id');
         $logger->info('init upload image from grape for synamic page'.$pageId.'!');
@@ -168,10 +173,14 @@ class EndpointController extends AbstractController
         }
         $data = [];
 
+
+        $imagineCacheManager = $container->get('liip_imagine.cache.manager');
+
+
         foreach ($images as $image)
         {
             $data[] = [
-                'src' => $image->getStaticImagePath(),
+                'src' => $imagineCacheManager->getBrowserPath($image->getStaticImagePath(), 'min_width_600'),
                 'type' => 'image',
                 'height' => $image->getImage()->getDimensions()[0],
                 'width' => $image->getImage()->getDimensions()[1],

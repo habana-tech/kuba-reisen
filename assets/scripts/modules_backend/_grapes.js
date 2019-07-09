@@ -16,16 +16,23 @@ grapesjs.plugins.add('no-devices-selector', function(editor, options) {
 */
 
 var Assetsimages = null;
-
-fetch(app_js_routing__list_images)
-.then(res => res.json())
-.then((out) => {
-  console.log('Checkout this JSON! ', out);
-  Assetsimages = out;
-})
-.catch(err => { throw err });
+var am;
 
 
+
+/*
+var Assetsimages = function() {
+            console.log('geting json1')
+            fetch(app_js_routing__list_images)
+            .then(res => res.json())
+            .then((out) => {
+                console.log('geting json')
+              return out;
+            })
+            .catch(err => { return ['no-image']});
+        };
+
+*/
 var editor = grapesjs.init({
     showOffsets: 1,
     noticeOnUnload: 0,
@@ -86,6 +93,7 @@ var editor = grapesjs.init({
     },
      assetManager: {
         assets: Assetsimages,
+        autoAdd: 1,
     // Upload endpoint, set `false` to disable upload, default `false`
         upload: app_js_routing__grape_endpoint_upload,
         params: {
@@ -157,6 +165,71 @@ editor.on('asset:upload:response', (response) => {
     stopAssetsAnimation();
 });
 
+editor.on('modal:open', function (editor) {
+
+    let container = document.querySelector('form.gjs-am-add-asset');
+    let btn = document.querySelector('form.gjs-am-add-asset #ckf-popup');
+    if(!btn)
+    {
+        btn = document.createElement('button');
+        btn.classList.add('gjs-btn-prim');
+        btn.id = 'ckf-popup';
+        btn.innerHTML = 'Explore';
+        container.appendChild(btn);
+    }
+    
+    btn.addEventListener('click',  function() {
+        CKFinder.popup( {
+            chooseFiles: true,
+            width: 800,
+            height: 600,
+            onInit: function( finder ) {
+                finder.on( 'files:choose', function( evt ) {
+                    var file = evt.data.files.first();
+                    var output = document.querySelector( 'div.gjs-field.gjs-am-add-field input' );
+                    output.value = file.getUrl();
+                } );
+
+                finder.on( 'file:choose:resizedImage', function( evt ) {
+                    var output = document.querySelector( 'div.gjs-field.gjs-am-add-field input' );
+                    output.value = evt.data.resizedUrl;
+                } );
+            }
+        } );
+    });
+
+    
+    console.log("modal open");
+    }
+);
+
+editor.on('load', function()  {
+    am = this.attributes.AssetManager;
+
+    let resp = fetch(app_js_routing__list_images)
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(data){
+        console.log(data);
+        am.add(data);
+    });
+
+
+
+});
+/***Add media****/
+/*
+var am = editor.AssetManager;
+var resp = fetch(app_js_routing__list_images)
+    .then(function(response){
+        var images = response.json();
+        am.add(images);
+    })
+    .then(function(data){
+        console.log(data);
+    })
+*/
 
 function startAssetsAnimation()
 {

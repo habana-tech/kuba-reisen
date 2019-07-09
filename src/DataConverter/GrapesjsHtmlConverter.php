@@ -43,6 +43,7 @@ class GrapesjsHtmlConverter
 
             if($grape_image_src)
             {
+                $grape_image_src = ImageBase64ThumbCreator::getStaticRelativePath($grape_image_src);
                 $base64data = new ImageBase64ThumbCreator($grape_image_src);
                 $base64data = $base64data->getBase64data();
             }

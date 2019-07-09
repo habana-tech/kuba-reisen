@@ -47,4 +47,14 @@ class UploadedImageRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findLastImages($value)
+    {
+        return $this->createQueryBuilder('u')
+            ->orderBy('u.id', 'DESC')
+            ->setMaxResults($value)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }
