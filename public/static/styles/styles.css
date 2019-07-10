@@ -809,12 +809,18 @@ Descr: Custom radio toggle
   position: relative; }
 .travel-options__grid {
     display: grid;
-    grid-template-areas: "img1 img6 img9 img9" "img2 img6 img10 img10" "img3 img3 img3 img3" "img4 img4 img11 img11" "img5 img7 img12 img14" "img5 img8 img13 img14";
-    grid-template-rows: 40vh 40vh 40vh 40vh;
-    grid-template-columns: 25vw 25vw 25vw 25vw;
+    grid-template-areas: "img1 img6" "img2 img6" "img9 img9" "img10 img10" "img3 img3" "img4 img11" "img5 img7 " "img5 img8" "img12 img14" "img13 img14";
+    grid-template-rows: 33vh 33vh 33vh 33vh 33vh 33vh 33vh 33vh 33vh 33vh;
+    grid-template-columns: 50vw 50vw;
     width: 100vw;
     min-width: 100vw;
     grid-gap: .15em; }
+@media (min-width: 1200px) {
+      .travel-options__grid {
+        grid-template-areas: "img1 img6 img9 img9" "img2 img6 img10 img10" "img3 img3 img3 img3" "img4 img4 img11 img11" "img5 img7 img12 img14" "img5 img8 img13 img14";
+        grid-template-rows: 40vh 40vh 40vh 40vh;
+        grid-template-columns: 1fr 1fr;
+        width: 100vw; } }
 .travel-options__grid__item {
       height: 100%;
       width: 100%;
@@ -828,10 +834,15 @@ Descr: Custom radio toggle
     top: 0;
     width: 100%;
     height: 100%;
-    grid-template-areas: "section1 section1 section2 section2" "section1 section1 section2 section2" "section3 section3 section3 section3" "section3 section3 section3 section3" "section4 section4 section5 section5" "section4 section4 section5 section5";
-    grid-template-rows: 40vh 40vh 40vh 40vh;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas: "section1 section1" "section1 section1" "section2 section2" "section2 section2" "section3 section3" "section3 section3" "section4 section4" "section4 section4" "section5 section5" "section5 section5";
+    grid-template-rows: 33vh 33vh 33vh 33vh 33vh 33vh 33vh 33vh 33vh 33vh;
+    grid-template-columns: 1fr 1fr;
     grid-gap: .15em; }
+@media (min-width: 1200px) {
+      .travel-options__grid_overlay {
+        grid-template-areas: "section1 section1 section2 section2" "section1 section1 section2 section2" "section3 section3 section3 section3" "section3 section3 section3 section3" "section4 section4 section5 section5" "section4 section4 section5 section5";
+        grid-template-rows: 40vh 40vh 40vh 40vh;
+        grid-template-columns: 1fr 1fr 1fr 1fr; } }
 .travel-options__grid_overlay a {
       text-decoration: none;
       color: white;
