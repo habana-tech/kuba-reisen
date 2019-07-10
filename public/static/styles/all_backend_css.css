@@ -4663,9 +4663,9 @@ Descr: Custom radio toggle
             z-index: 1; }
 .top_destinations__places__place__text {
         position: absolute;
-        -webkit-transform: translate(-50%, -100%);
-                transform: translate(-50%, -100%);
-        left: 50%;
+        bottom: 1em;
+        width: 80%;
+        margin: 0 10%;
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
