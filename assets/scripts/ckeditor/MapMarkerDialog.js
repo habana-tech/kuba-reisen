@@ -10,7 +10,7 @@ class SelectPointMap{
             center: [-79.756514, 22.028145],
             zoom: 5,
             minZoom:2,
-            maxZoom:16,
+            maxZoom:18,
             pitch: 0,
         });
 

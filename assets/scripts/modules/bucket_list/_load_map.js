@@ -6,8 +6,8 @@ class BucketList{
         this.map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/outdoors-v11/?optimize=true',
-            center: [-83.5334399, 22.8793054],
-            zoom: 8,
+            center: [-79.756514, 22.028145],
+            zoom: 5,
             minZoom:4,
             maxZoom:16,
             pitch: 0,
@@ -16,10 +16,6 @@ class BucketList{
         this.map.scrollZoom.disable();
         this.points = document.querySelectorAll('.bucket-list__items__features h3');
         this.pointsData = document.querySelectorAll('.bucket-list__items__features span.MapMarker');
-
-        this.activeMarker = new mapboxgl.Marker()
-            .setLngLat([-83.5334399, 22.8793054])
-            .addTo(this.map);
 
         this.activePoint = 0;
         this.events();

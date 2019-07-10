@@ -5,11 +5,12 @@
     flex-wrap: wrap;
 
     &__text{
-        order: 1;
+        order: 2;
         width: 100%;
         padding: 1em;
 
         @include atLarge{
+            order: 1;
             width: 50%;
             padding: 1em 5em;
         }
@@ -24,11 +25,12 @@
     }
 
     &__image{
-        order: 2;
+        order: 1;
         width: 100%;
         position: relative;
 
         @include atLarge{
+            order: 2;
             width: 50%;
         }
 
@@ -47,15 +49,12 @@
     &--inverse {
 
         & .feature__text {
-            @mixin atLarge {
-                order: 2;;
-            }
+            order: 2;
+
         }
 
         & .feature__image {
-            @mixin atLarge {
-                order: 1;
-            }
+            order: 1;
         }
     }
 }
