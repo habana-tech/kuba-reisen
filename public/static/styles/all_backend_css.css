@@ -1,5 +1,13 @@
-
+@import url("httpps://fonts.googleapis.com/css?family=Baloo+Bhaina|Open+Sans:400,700&display=swap");
+@import url("httpps://fonts.googleapis.com/css?family=Baloo+Bhaina|Open+Sans:400,700&display=swap");
+@import url("httpps://fonts.googleapis.com/css?family=Baloo+Bhaina|Open+Sans:400,700&display=swap");
+@import url("httpps://fonts.googleapis.com/css?family=Baloo+Bhaina|Open+Sans:400,700&display=swap");
+@import url("httpps://fonts.googleapis.com/css?family=Baloo+Bhaina|Open+Sans:400,700&display=swap");
+@import url("httpps://fonts.googleapis.com/css?family=Baloo+Bhaina|Open+Sans:400,700&display=swap");
 @import "https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.css";
+@import url("httpps://fonts.googleapis.com/css?family=Baloo+Bhaina|Open+Sans:400,700&display=swap");
+@import url("httpps://fonts.googleapis.com/css?family=Baloo+Bhaina|Open+Sans:400,700&display=swap");
+@import url("httpps://fonts.googleapis.com/css?family=Baloo+Bhaina|Open+Sans:400,700&display=swap");
 /**
  * @section Normalize.css
  * Normalize.css base with custom code.
@@ -4625,10 +4633,13 @@ Descr: Custom radio toggle
     flex-wrap: wrap;
     justify-content: space-between; }
 .top_destinations__places__place {
-      width: 48%;
+      width: 100%;
       margin: 3em 0;
       max-height: 75vh;
       position: relative; }
+@media (min-width: 1200px) {
+        .top_destinations__places__place {
+          width: 48%; } }
 .top_destinations__places__place::before {
         content: '';
         width: 100%;
@@ -4674,7 +4685,7 @@ Descr: Custom radio toggle
 .top_destinations__places__place__text span {
           display: block;
           color: white;
-          font-family: "Gotham Black", cursive;
+          font-family: "Baloo Bhaina", cursive;
           font-size: 2em; }
 .top_destinations__places__place__text p {
           color: white; }

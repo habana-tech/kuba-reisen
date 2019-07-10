@@ -10,10 +10,14 @@
         justify-content: space-between;
 
         &__place{
-            width: 48%;
+            width: 100%;
             margin: 3em 0;
             max-height: 75vh;
             position: relative;
+
+            @include atLarge{
+                width: 48%;
+            }
 
             &::before{
                 content: '';
@@ -77,7 +81,7 @@
                 & span{
                     display: block;
                     color: white;
-                    font-family: $font-titles-secundary;
+                    font-family: $font-titles;
                     font-size: 2em;
                 }
 
