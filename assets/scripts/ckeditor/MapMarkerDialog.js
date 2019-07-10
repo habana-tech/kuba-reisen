@@ -233,22 +233,28 @@ CKEDITOR.dialog.add( 'MapMarkerDialog', function( editor ) {
 
             element = editor.restoreRealElement(element);
 
-            // // Create a new <abbr> element if it does not exist.
-            // if ( !element || element.getName() != 'span' ) {
-            //     element = editor.document.createElement( 'span' );
-            //
-            //     // Flag the insertion mode for later use.
-            //     this.insertMode = true;
-            // }
-            // else
-            //     this.insertMode = false;
+            // Create a new <abbr> element if it does not exist.
+            if ( !element || element.getName() != 'span' ) {
+
+                element = editor.document.createElement( 'span' );
+                let center = "\"center\":[-79.756514, 22.028145]";
+                let zoom = "\"zoom\":5";
+
+                let data_map = [center, zoom];
+                data_map = '{'+data_map.toString()+'}';
+
+                element.setAttribute('data-map', data_map);
+                // Flag the insertion mode for later use.
+                this.insertMode = true;
+            }
+            else
+                this.insertMode = false;
 
             // Store the reference to the <abbr> element in an internal property, for later use.
            this.element = element;
 
             // Invoke the setup methods of all dialog window elements, so they can load the element attributes.
-            // if ( !this.insertMode )
-            this.setupContent( this.element['$']);
+            this.setupContent(this.element['$']);
         }
     };
 });
