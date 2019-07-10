@@ -218,7 +218,7 @@ CKEDITOR.dialog.add( 'MapMarkerDialog', function( editor ) {
         },
         // Invoked when the dialog is loaded.
         onShow: function() {
-
+            this.move(this.getPosition().x, 0); // Top center
             // Get the selection from the editor.
            let selection = editor.getSelection();
 
