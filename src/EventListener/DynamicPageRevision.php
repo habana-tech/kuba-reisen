@@ -14,14 +14,11 @@ class DynamicPageRevision
     private $entityManager;
     private $dynamicPage;
 
-    public function postPersist(LifecycleEventArgs $args,  LoggerInterface $logger)
+    public function postUpdate(LifecycleEventArgs $args)
     {
 
         $this->dynamicPage = $args->getObject();
 
-
-        $logger->info('listener revisions, '.$this->dynamicPage instanceof DynamicPage);
-        // only act on some "DynamicPage" entity
         if (!$this->dynamicPage instanceof DynamicPage) {
             return;
         }
@@ -32,9 +29,13 @@ class DynamicPageRevision
         $rev->setDynamicPage($this->dynamicPage);
         $rev->setPageContent($this->dynamicPage->getPageContent());
 
-        dump($rev);
-        dump($this->entityManager->persist($rev));
+        $this->entityManager->persist($rev);
         $this->entityManager->flush();
+    }
+
+    public function postPersist(LifecycleEventArgs $args)
+    {
+        $this->postUpdate( $args);
     }
 
 }
