@@ -20,6 +20,7 @@ class DestinationType extends AbstractType
             ->add('featuresCount', null, [
                 'label' => 'How many features blocks do you want to show'
             ])
+            ->add('priority', null, ['label'=>'Priority, the biggest appears first'])
 //            ->add('language',  ChoiceType::class, ['choices' => [
 //                'de' => 'de',
 //                'en' => 'en',

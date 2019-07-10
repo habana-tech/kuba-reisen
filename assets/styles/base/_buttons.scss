@@ -42,11 +42,20 @@
         }
 	}
 
+	&--green{
+		background-image: linear-gradient(to right, rgba($light-green, 1) 50%, rgba($light-green, .9), rgba($dark-green, .9));
+
+		&:hover{
+			background-position: right center;
+		}
+	}
+
 	&--small{
 		padding: .25em .5em;
 		font-weight: 500;
-		border: 1px white solid;
 	}
+
+
 }
 //
 //

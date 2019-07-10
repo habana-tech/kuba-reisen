@@ -2,7 +2,6 @@ import grapesjs from "grapesjs";
 import tUIImageEditor from 'grapesjs-tui-image-editor';
 //var tui = require('tui-image-editor');
 
-var images = [];
 /*
 grapesjs.plugins.add('no-devices-selector', function(editor, options) {
   // remove the devices switcher
@@ -13,6 +12,25 @@ grapesjs.plugins.add('no-devices-selector', function(editor, options) {
 	codeButton.collection.remove(codeButton);
 
 })
+
+*/
+
+var Assetsimages = null;
+var am;
+
+
+
+/*
+var Assetsimages = function() {
+            console.log('geting json1')
+            fetch(app_js_routing__list_images)
+            .then(res => res.json())
+            .then((out) => {
+                console.log('geting json')
+              return out;
+            })
+            .catch(err => { return ['no-image']});
+        };
 
 */
 var editor = grapesjs.init({
@@ -74,12 +92,14 @@ var editor = grapesjs.init({
         styles: [app_js_routing__styles_css]
     },
      assetManager: {
+        assets: Assetsimages,
+        autoAdd: 1,
     // Upload endpoint, set `false` to disable upload, default `false`
-    upload: app_js_routing__grape_endpoint_upload,
-    params: {
-                _grapejs_editor_token: app_js_param__csrf_token,
-                _page_id: app_js_param__page_id
-            },
+        upload: app_js_routing__grape_endpoint_upload,
+        params: {
+                    _grapejs_editor_token: app_js_param__csrf_token,
+                    _page_id: app_js_param__page_id
+                },
 
     
   }
@@ -120,20 +140,20 @@ editor.on('storage:store', function(e) { console.log('Stored ', e);});
 
 // The upload is started
 editor.on('asset:upload:start', () => {
-    console.log("start upload")
+    //console.log("start upload")
     startAssetsAnimation();
 });
 
 // The upload is ended (completed or not)
 editor.on('asset:upload:end', () => {
-    console.log("end upload")
+    //console.log("end upload")
     stopAssetsAnimation();
     //endAnimation();
 });
 
 // Error handling
 editor.on('asset:upload:error', (err) => {
-    console.log("error on upload")
+    //console.log("error on upload")
     //notifyError(err);
     stopAssetsAnimation();
     alert(err.error)
@@ -141,10 +161,75 @@ editor.on('asset:upload:error', (err) => {
 
 // Do something on response
 editor.on('asset:upload:response', (response) => {
-    console.log("done")
+    //console.log("done")
     stopAssetsAnimation();
 });
 
+editor.on('modal:open', function (editor) {
+
+    let container = document.querySelector('form.gjs-am-add-asset');
+    let btn = document.querySelector('form.gjs-am-add-asset #ckf-popup');
+    if(!btn)
+    {
+        btn = document.createElement('button');
+        btn.classList.add('gjs-btn-prim');
+        btn.id = 'ckf-popup';
+        btn.innerHTML = 'Explore';
+        container.appendChild(btn);
+    }
+    
+    btn.addEventListener('click',  function() {
+        CKFinder.popup( {
+            chooseFiles: true,
+            width: 800,
+            height: 600,
+            onInit: function( finder ) {
+                finder.on( 'files:choose', function( evt ) {
+                    var file = evt.data.files.first();
+                    var output = document.querySelector( 'div.gjs-field.gjs-am-add-field input' );
+                    output.value = file.getUrl();
+                } );
+
+                finder.on( 'file:choose:resizedImage', function( evt ) {
+                    var output = document.querySelector( 'div.gjs-field.gjs-am-add-field input' );
+                    output.value = evt.data.resizedUrl;
+                } );
+            }
+        } );
+    });
+
+    
+    //console.log("modal open");
+    }
+);
+
+editor.on('load', function()  {
+    am = this.attributes.AssetManager;
+
+    let resp = fetch(app_js_routing__list_images)
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(data){
+        //console.log(data);
+        am.add(data);
+    });
+
+
+
+});
+/***Add media****/
+/*
+var am = editor.AssetManager;
+var resp = fetch(app_js_routing__list_images)
+    .then(function(response){
+        var images = response.json();
+        am.add(images);
+    })
+    .then(function(data){
+        console.log(data);
+    })
+*/
 
 function startAssetsAnimation()
 {

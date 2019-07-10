@@ -51,6 +51,7 @@ class DestinationRepository extends ServiceEntityRepository
     public function findByLang($lang){
         return $this->createQueryBuilder('destination')
             ->where('destination.language = :lang')
+            ->orderBy('destination.priority','DESC')
             ->setParameter('lang', $lang)
             ->getQuery()
             ->getResult();

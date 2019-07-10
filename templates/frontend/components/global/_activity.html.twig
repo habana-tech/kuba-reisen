@@ -49,12 +49,9 @@
         </div>
 
         <div class="activity__content__description">
-            {{ activity.description | truncate_html(constant('LENGTH_OF_DESCRIPTION', activity)) | raw }}
-            {% if activity.description | length > constant('LENGTH_OF_DESCRIPTION', activity) %}
-                <a href="{{ path('activity', {'id':activity.id, 'name':activity.machineName}) }}">
-                    Know more
-                </a>
-            {% endif %}
+            <a href="{{ path('activity', {'id':activity.id, 'name':activity.machineName}) }}">
+                {{ activity.description | truncate_html(constant('LENGTH_OF_DESCRIPTION', activity)) | raw }}
+            </a>
         </div>
     </div>
 </div>

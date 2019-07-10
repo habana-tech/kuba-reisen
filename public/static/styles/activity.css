@@ -71,9 +71,7 @@ body {
 .slide__title-wrap {
     position: absolute;
     width: 50%;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-            transform: translateY(-50%);
+    bottom: 0;
     left: 4em;
     color: white; }
 .slide__title {
@@ -91,6 +89,12 @@ body {
   z-index: 2;
   width: 100%;
   background-color: white; }
+@media (min-width: 1200px) {
+    .boxnav {
+      left: 75%;
+      -webkit-transform: translateX(-50%);
+              transform: translateX(-50%);
+      width: auto; } }
 .boxnav__item {
     display: flex;
     align-items: center;
@@ -147,11 +151,6 @@ body {
       position: absolute; }
     .slide__img {
       background-position: 50% 0; }
-  .boxnav {
-    left: 50%;
-    -webkit-transform: translateX(-50%);
-            transform: translateX(-50%);
-    width: auto; }
   .boxnav__item {
     width: 5em;
     height: 4em;

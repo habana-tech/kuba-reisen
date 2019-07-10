@@ -6,10 +6,14 @@
   align-items: center; }
   .hero__content {
     position: relative;
-    width: 50%;
-    margin: 2em;
+    width: 90%;
+    margin: 1em;
     color: #ffffff;
     z-index: 1; }
+  @media (min-width: 1200px) {
+      .hero__content {
+        width: 50%;
+        margin: 2em; } }
   .hero__content__text {
       font-size: 2.25em; }
   .hero__content__text::first-letter {
@@ -80,23 +84,28 @@
       z-index: 0; }
   .overview {
   display: flex;
+  flex-wrap: wrap;
   background: white;
   z-index: 1;
   padding-top: 2px; }
   .overview__item {
-    width: 25%;
+    width: 100%;
     overflow: hidden;
     display: flex;
     align-items: center;
     max-height: 80vh;
-    margin-left: 2px; }
+    margin-left: 0;
+    margin-bottom: 2px; }
+  @media (min-width: 1200px) {
+      .overview__item {
+        width: calc(25% - 2px);
+        margin-bottom: 0;
+        margin-left: 2px; } }
   .overview__item:hover img {
       -webkit-transform: scale(1.1);
               transform: scale(1.1); }
   .overview__item img {
       position: relative;
-      width: auto;
-      height: 100%;
       transition: all .3s ease-in-out; }
   .overview__item__text {
       padding: 1em 1.5em; }
@@ -107,16 +116,27 @@
         padding: 0 1.5em; }
   .who_we_are {
   display: flex;
+  flex-wrap: wrap;
   padding-top: 2px; }
   .who_we_are__image {
-    width: 75%;
-    overflow: hidden; }
+    width: 100%;
+    overflow: hidden;
+    order: 2; }
+  @media (min-width: 1200px) {
+      .who_we_are__image {
+        order: 1;
+        width: 75%; } }
   .who_we_are__image img {
       width: 100%;
       height: 100%; }
   .who_we_are__text {
-    width: 25%;
-    padding: 1em 1.5em; }
+    width: 100%;
+    padding: 1em 1.5em;
+    order: 1; }
+  @media (min-width: 1200px) {
+      .who_we_are__text {
+        width: 25%;
+        order: 2; } }
   .why_with_us {
   display: flex;
   flex-wrap: wrap;
@@ -131,7 +151,10 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    width: 80%; }
+    width: 95%; }
+  @media (min-width: 1200px) {
+      .why_with_us__reasons {
+        width: 80%; } }
   .why_with_us__reasons h5 {
       margin: 0; }
   .why_with_us__reasons__reason {

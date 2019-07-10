@@ -93,7 +93,7 @@ class ActivitiesController extends AbstractController
                 'id'=>$activity->getId(),
                 'name'=>$activity->getName(),
                 'image'=>$img_src,
-                'image_max_width' => $img_width,
+                'imageMaxWidth' => $img_width,
                 'imageAlt'=>$activity->getAlternativeText(),
                 'description'=> $twig_filter->truncate_html($activity->getDescription(),$activity::LENGTH_OF_DESCRIPTION),
                 'link'=>  $this->generateUrl('activity',
@@ -160,7 +160,7 @@ class ActivitiesController extends AbstractController
 
     /**
      * @Route("/activitiesApiPosFilter/{filters}/{pos}/{amount}",
-     *     defaults={"filters": null, "pos": null, "amount":null },
+     *     defaults={"pos": null, "amount":null },
      *     name="activitiesApiPosFilter")
      */
     public function activitiesApiPosFilter(FilterTagRepository $filterTagRepository,
@@ -204,8 +204,8 @@ class ActivitiesController extends AbstractController
     }
 
     /**
-     * @Route("/activitiesApiPosSearch/{filters}/{pos}/{amount}",
-     *     defaults={"filters": null, "pos": null, "amount":null },
+     * @Route("/activitiesApiPosSearch/{search}/{pos}/{amount}",
+     *     defaults={"pos": null, "amount":null },
      *     name="activitiesApiPosSearch")
      */
     public function activitiesApiPosSearch(ActivityRepository $activityRepository,
@@ -228,12 +228,11 @@ class ActivitiesController extends AbstractController
         foreach ($activities as $activity){
             array_push($activities_data, array(
                 'name'=>$activity->getName(),
-                'image'=>$activity->getStaticImagePath(),
+                'image'=>$activity->getDynamicPage()->getElementAttr('activity_images_img1', 'src'),
                 'description'=>$activity->getDescription(),
                 'link'=>  $this->generateUrl('activity',
                     ['id'=>$activity->getId(),
-                    'name'=>$activity->getMachineName(),
-                    '_locale'=>'de']),
+                    'name'=>$activity->getMachineName()]),
             ));
         }
 

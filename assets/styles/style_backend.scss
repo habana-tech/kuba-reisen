@@ -6,6 +6,8 @@
         "modules_backend/abstracts/mixins",
         'modules_backend/abstracts/include-media';
 
+@import "base/mixins";
+
 /*--------------------------------------------------------------
 1.0 Normalize
 	* normalize.css v7.0.0 | MIT License
@@ -76,4 +78,5 @@
 @import "modules_backend/pages/destinations";
 @import "modules_backend/pages/tags";
 @import "modules_backend/pages/users";
+@import "https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.css";
 

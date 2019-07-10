@@ -2,7 +2,13 @@
 
     <div class="section__title">
         <div class="section__title__highlight section__title__highlight--green">
-            <h2>Itinerary summary</h2>
+            <h2 data-grape_id="activity_itinerary_title" data-grape_format="txt">
+                {% if activity.getElement('activity_itinerary_title') is null %}
+                    Itinerary summary
+                {% else %}
+                    {{ activity.getElement('activity_included_title') | raw }}
+                {% endif %}
+            </h2>
         </div>
     </div>
 

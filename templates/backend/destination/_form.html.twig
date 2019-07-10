@@ -1,4 +1,8 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button class="button button-primary button-shadow button-block">{{ button_label|default('Save') }}</button>
+    <button class="button button-primary button-shadow button-block"
+    {% if  in_string(app.request.get('_route'), 'new')  %}
+            style="display: none"
+            {% endif %}
+    >{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

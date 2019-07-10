@@ -18,8 +18,7 @@
         &__image{
             position: absolute;
             width: 100%;
-            top: 0;
-            left: 0;
+            height: 100%;
         }
 
         &__content{
@@ -53,19 +52,28 @@
     &__content{
         position: relative;
         z-index: 1;
-        padding: 2em 2em .5em 2em;
+        padding: .5em;
         width: 90%;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
 
+        @include atLarge{
+            padding: 2em 2em .5em 2em;
+        }
+
         &__links{
             width: 100%;
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
 
             &__column{
-                width: 23%;
+                width: 50%;
+
+                @include atLarge{
+                    width: 23%;
+                }
 
                 &__title{
                     & a{
@@ -91,9 +99,22 @@
             width: 100%;
             display: flex;
             justify-content: space-between;
+            flex-wrap: wrap;
 
             &__column {
-                width: 25%;
+                width: 48%;
+
+                @include atLarge{
+                    width: 25%;
+                }
+
+                &:last-child{
+                    width: 100%;
+
+                    @include atLarge{
+                        width: 25%;
+                    }
+                }
             }
         }
 

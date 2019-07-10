@@ -27,14 +27,26 @@ class ActivityMap {
 
         this.points.forEach((point)=>{
             let props = point.getAttribute('data-map');
+            console.log(props);
             props = JSON.parse(props);
+            console.log(props);
 
             lats.push(props.center[0]);
             logs.push(props.center[1]);
 
-            new mapboxgl.Marker()
-                .setLngLat(props.center)
-                .addTo(this.map);
+            if(props.name===''){
+                new mapboxgl.Marker()
+                    .setLngLat(props.center)
+                    .addTo(this.map);
+            }
+            else {
+                new mapboxgl.Popup({closeOnClick: false})
+                    .setLngLat(props.center)
+                    .setHTML('<h3>'+props.name+'</h3>')
+                    .addTo(this.map);
+            }
+
+
         });
 
         lats.sort((a,b) => { return a <= b ? -1 : 1 } );

@@ -32,10 +32,10 @@
 
 
         &__text{
-            text-shadow: 2px 2px 10px rgba(black, .2);
+            text-shadow: 2px 2px 10px rgba(black, .4);
 
             @include atLarge{
-                font-size: 2em;
+                font-size: 3em;
             }
         }
     }

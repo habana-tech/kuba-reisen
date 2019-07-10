@@ -1,3 +1,5 @@
+
+@import "https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.css";
 @charset "UTF-8";
 /*--------------------------------------------------------------
 # Variables, functions and mixins
@@ -1198,9 +1200,12 @@ a {
 .container .new_activity.parent .btns {
     grid-area: 4 / 3 / 5 / 5; }
 .activity {
-  width: 31%;
+  width: 100%;
   margin: .5em .5em;
   position: relative; }
+@media (min-width: 1200px) {
+    .activity {
+      width: 31%; } }
 .activity:hover {
     text-decoration: none; }
 .activity:hover img {

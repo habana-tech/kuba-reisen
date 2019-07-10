@@ -49,6 +49,11 @@ class Destination
      */
     private $dynamic_page;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $priority;
+
     public function __construct()
     {
         $this->activities = new ArrayCollection();
@@ -151,6 +156,18 @@ class Destination
     public function __set($name, $value){
         $this->getDynamicPage()->setElementContent($name, $value);
 
+    }
+
+    public function getPriority(): ?int
+    {
+        return $this->priority;
+    }
+
+    public function setPriority(?int $priority): self
+    {
+        $this->priority = $priority;
+
+        return $this;
     }
 
 }
