@@ -19,8 +19,8 @@
   @media (min-width: 1200px) {
       .feature__text {
         order: 1;
-        width: 50%;
-        padding: 1em 5em; } }
+        width: 33%;
+        padding: 1em 1em; } }
   .feature__text__title {
       width: 100%; }
   .feature__text__title h2 {
@@ -32,7 +32,7 @@
   @media (min-width: 1200px) {
       .feature__image {
         order: 2;
-        width: 50%; } }
+        width: 65%; } }
   .feature__image img {
       position: -webkit-sticky;
       position: sticky;

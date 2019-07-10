@@ -11,8 +11,8 @@
 
         @include atLarge{
             order: 1;
-            width: 50%;
-            padding: 1em 5em;
+            width: 33%;
+            padding: 1em 1em;
         }
 
         &__title{
@@ -31,7 +31,7 @@
 
         @include atLarge{
             order: 2;
-            width: 50%;
+            width: 65%;
         }
 
         & img{
@@ -50,7 +50,6 @@
 
         & .feature__text {
             order: 2;
-
         }
 
         & .feature__image {

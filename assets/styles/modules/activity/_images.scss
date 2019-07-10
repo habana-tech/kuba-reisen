@@ -92,9 +92,7 @@ body {
     &__title-wrap {
         position: absolute;
         width: 50%;
-        top: 50%;
-        transform: translateY(-50%);
-
+        bottom: 0;
         left: 4em;
         color: white;
     }
@@ -120,6 +118,12 @@ body {
     z-index: 2;
     width: 100%;
     background-color: white;
+
+    @include atLarge{
+        left: 75%;
+        transform: translateX(-50%);
+        width: auto;
+    }
 
     &__item {
         display: flex;
@@ -212,12 +216,6 @@ body {
         }
     }
 
-
-    .boxnav {
-        left: 50%;
-        transform: translateX(-50%);
-        width: auto;
-    }
     .boxnav__item {
         width: 5em;
         height: 4em;

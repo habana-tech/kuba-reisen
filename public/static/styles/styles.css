@@ -434,11 +434,11 @@ Descr: Custom radio toggle
         width: 50%; } }
 
 .hero__content__text {
-      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2); }
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4); }
 
 @media (min-width: 1200px) {
         .hero__content__text {
-          font-size: 2em; } }
+          font-size: 3em; } }
 
 .banner_sky {
   height: 75vh;

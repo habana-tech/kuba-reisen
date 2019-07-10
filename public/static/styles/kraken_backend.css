@@ -1872,9 +1872,6 @@ body {
 @media (min-width: 40em) {
     body {
       line-height: 1.5625; } }
-@media (min-width: 1920px) {
-    body {
-      margin: 0 10%; } }
 p {
   margin: 0 0 1.5625em; }
 .underline {

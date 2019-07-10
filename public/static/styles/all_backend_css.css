@@ -2166,9 +2166,6 @@ body {
 @media (min-width: 40em) {
     body {
       line-height: 1.5625; } }
-@media (min-width: 1920px) {
-    body {
-      margin: 0 10%; } }
 p {
   margin: 0 0 1.5625em; }
 .underline {
@@ -4507,10 +4504,10 @@ Descr: Custom radio toggle
       .hero__content {
         width: 50%; } }
 .hero__content__text {
-      text-shadow:2px 2px 10px rgba(0, 0, 0, 0.2); }
+      text-shadow:2px 2px 10px rgba(0, 0, 0, 0.4); }
 @media (min-width: 1200px) {
         .hero__content__text {
-          font-size: 2em; } }
+          font-size: 3em; } }
 .banner_sky {
   height: 75vh;
   display: flex;
@@ -5267,9 +5264,7 @@ body {
 .slide__title-wrap {
     position: absolute;
     width: 50%;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-            transform: translateY(-50%);
+    bottom: 0;
     left: 4em;
     color: white; }
 .slide__title {
@@ -5287,6 +5282,12 @@ body {
   z-index: 2;
   width: 100%;
   background-color: white; }
+@media (min-width: 1200px) {
+    .boxnav {
+      left: 75%;
+      -webkit-transform: translateX(-50%);
+              transform: translateX(-50%);
+      width: auto; } }
 .boxnav__item {
     display: flex;
     align-items: center;
@@ -5343,11 +5344,6 @@ body {
       position: absolute; }
     .slide__img {
       background-position: 50% 0; }
-  .boxnav {
-    left: 50%;
-    -webkit-transform: translateX(-50%);
-            transform: translateX(-50%);
-    width: auto; }
   .boxnav__item {
     width: 5em;
     height: 4em;
@@ -5501,8 +5497,8 @@ body {
 @media (min-width: 1200px) {
       .feature__text {
         order: 1;
-        width: 50%;
-        padding: 1em 5em; } }
+        width: 33%;
+        padding: 1em 1em; } }
 .feature__text__title {
       width: 100%; }
 .feature__text__title h2 {
@@ -5514,7 +5510,7 @@ body {
 @media (min-width: 1200px) {
       .feature__image {
         order: 2;
-        width: 50%; } }
+        width: 65%; } }
 .feature__image img {
       position: -webkit-sticky;
       position: sticky;
