@@ -47,9 +47,20 @@
         &__map{
             position: sticky;
             top: 0;
-            border: 1px green solid;
             width: 100%;
             z-index: 1;
+            margin: 1.5em 0;
+
+            &:after{
+                content: '';
+                position: absolute;
+                width: 105%;
+                transform: translate(-2.5%, -50%);
+                height: 3em;
+                background: linear-gradient(to bottom, white, rgba(white, .75));
+                filter: blur(8px);
+                z-index: -1;
+            }
 
             @include atLarge{
                 width: 40%;

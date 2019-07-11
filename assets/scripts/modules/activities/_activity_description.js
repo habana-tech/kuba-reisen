@@ -333,7 +333,6 @@ class ActivityDescription{
     events(){
 
         this.map.on('load', () => {
-            console.log("load data");
             this.map.addLayer({
                 'id': 'line-animation',
                 'type': 'line',

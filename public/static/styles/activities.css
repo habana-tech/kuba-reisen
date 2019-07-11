@@ -31,9 +31,20 @@
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  border: 1px green solid;
   width: 100%;
-  z-index: 1; }
+  z-index: 1;
+  margin: 1.5em 0; }
+.activities__description__map:after {
+    content: '';
+    position: absolute;
+    width: 105%;
+    -webkit-transform: translate(-2.5%, -50%);
+            transform: translate(-2.5%, -50%);
+    height: 3em;
+    background: linear-gradient(to bottom, white, rgba(255, 255, 255, 0.75));
+    -webkit-filter: blur(8px);
+            filter: blur(8px);
+    z-index: -1; }
 @media (min-width: 1200px) {
     .activities__description__map {
       width: 40%;
