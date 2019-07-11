@@ -4,16 +4,25 @@
     justify-content: center;
 
     &__places{
-        width: 90%;
+        width: 95%;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
 
+        @include atLarge{
+            width: 90%;
+        }
+
         &__place{
-            width: 48%;
-            margin: 3em 0;
+            width: 100%;
+            margin: 1.5em 0;
             max-height: 75vh;
             position: relative;
+
+            @include atLarge{
+                margin: 3em 0;
+                width: 48%;
+            }
 
             &::before{
                 content: '';
@@ -21,9 +30,14 @@
                 height: 100%;
                 position: absolute;
                 z-index: 0;
-                left: -25px;
-                top: -25px;
+                left: -10px;
+                top: -10px;
                 background: linear-gradient(45deg, $light-blue, $dark-blue 20%, transparent);
+
+                @include atLarge{
+                    left: -25px;
+                    top: -25px;
+                }
             }
 
             &--orange::before{
@@ -55,7 +69,10 @@
                     top: 0;
                     left: 0;
                     z-index: -1;
-                    min-height: 75vh;
+
+                    @include atLarge{
+                        min-height: 75vh;
+                    }
 
                     &--ready{
                         z-index: 1;
@@ -65,18 +82,20 @@
 
             &__text{
                 position: absolute;
-                transform: translate(-50%, -100%);
-                left: 50%;
+                bottom: 1em;
+                width: 80%;
+                margin: 0 10%;
                 display: flex;
                 justify-content: center;
                 flex-wrap: wrap;
                 text-align: center;
                 z-index: 2;
+                text-shadow: 3px 3px 10px rgba(black, .5);
 
                 & span{
                     display: block;
                     color: white;
-                    font-family: $font-titles-secundary;
+                    font-family: $font-titles;
                     font-size: 2em;
                 }
 

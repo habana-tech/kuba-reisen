@@ -1,20 +1,18 @@
+@import url("httpps://fonts.googleapis.com/css?family=Baloo+Bhaina|Open+Sans:400,700&display=swap");
 body.loading {
   overflow: hidden;
   height: 100vh;
   box-sizing: border-box; }
-
 @-webkit-keyframes pageLoading {
   0% {
     opacity: 1; }
   100% {
     opacity: 0; } }
-
 @keyframes pageLoading {
   0% {
     opacity: 1; }
   100% {
     opacity: 0; } }
-
 .overlay-loading {
   width: 100%;
   height: 100%;
@@ -26,11 +24,9 @@ body.loading {
   z-index: 10;
   opacity: 1;
   transition: all; }
-
 body.render .overlay-loading {
   -webkit-animation: pageLoading 1s ease-in-out 1;
           animation: pageLoading 1s ease-in-out 1; }
-
 div.spinner {
   -webkit-animation: rotate 10s infinite linear;
   animation: rotate 10s infinite linear;
@@ -39,7 +35,6 @@ div.spinner {
   margin: auto;
   width: 142px;
   height: 142px; }
-
 div.spinner i {
   -webkit-animation: rotate 3s infinite cubic-bezier(0.09, 0.6, 0.8, 0.03);
   animation: rotate 3s infinite cubic-bezier(0.09, 0.6, 0.8, 0.03);
@@ -51,7 +46,6 @@ div.spinner i {
   left: 50%;
   border: solid 6px transparent;
   border-bottom: none; }
-
 div.spinner i:nth-child(1) {
   -webkit-animation-timing-function: cubic-bezier(0.09, 0.3, 0.12, 0.03);
           animation-timing-function: cubic-bezier(0.09, 0.3, 0.12, 0.03);
@@ -62,7 +56,6 @@ div.spinner i:nth-child(1) {
   border-color: #62ab03;
   border-top-left-radius: 36px;
   border-top-right-radius: 36px; }
-
 div.spinner i:nth-child(2) {
   -webkit-animation-timing-function: cubic-bezier(0.09, 0.6, 0.24, 0.03);
   animation-timing-function: cubic-bezier(0.09, 0.6, 0.24, 0.03);
@@ -73,7 +66,6 @@ div.spinner i:nth-child(2) {
   border-color: rgba(98, 171, 3, 0.75);
   border-top-left-radius: 42px;
   border-top-right-radius: 42px; }
-
 div.spinner i:nth-child(3) {
   -webkit-animation-timing-function: cubic-bezier(0.09, 0.9, 0.36, 0.03);
   animation-timing-function: cubic-bezier(0.09, 0.9, 0.36, 0.03);
@@ -84,7 +76,6 @@ div.spinner i:nth-child(3) {
   border-color: #35cfd4;
   border-top-left-radius: 48px;
   border-top-right-radius: 48px; }
-
 div.spinner i:nth-child(4) {
   -webkit-animation-timing-function: cubic-bezier(0.09, 1.2, 0.48, 0.03);
   animation-timing-function: cubic-bezier(0.09, 1.2, 0.48, 0.03);
@@ -95,7 +86,6 @@ div.spinner i:nth-child(4) {
   border-color: rgba(53, 207, 212, 0.75);
   border-top-left-radius: 54px;
   border-top-right-radius: 54px; }
-
 div.spinner i:nth-child(5) {
   -webkit-animation-timing-function: cubic-bezier(0.09, 1.5, 0.6, 0.03);
   animation-timing-function: cubic-bezier(0.09, 1.5, 0.6, 0.03);
@@ -106,7 +96,6 @@ div.spinner i:nth-child(5) {
   border-color: #f9c90d;
   border-top-left-radius: 60px;
   border-top-right-radius: 60px; }
-
 div.spinner i:nth-child(6) {
   -webkit-animation-timing-function: cubic-bezier(0.09, 1.8, 0.72, 0.03);
   animation-timing-function: cubic-bezier(0.09, 1.8, 0.72, 0.03);
@@ -117,7 +106,6 @@ div.spinner i:nth-child(6) {
   border-color: #f96e10;
   border-top-left-radius: 66px;
   border-top-right-radius: 66px; }
-
 div.spinner i:nth-child(7) {
   -webkit-animation-timing-function: cubic-bezier(0.09, 2.1, 0.84, 0.03);
   animation-timing-function: cubic-bezier(0.09, 2.1, 0.84, 0.03);
@@ -128,7 +116,6 @@ div.spinner i:nth-child(7) {
   border-color: #35cfd4;
   border-top-left-radius: 72px;
   border-top-right-radius: 72px; }
-
 div.spinner i:nth-child(8) {
   -webkit-animation-timing-function: cubic-bezier(0.09, 2.4, 0.96, 0.03);
   animation-timing-function: cubic-bezier(0.09, 2.4, 0.96, 0.03);
@@ -139,12 +126,10 @@ div.spinner i:nth-child(8) {
   border-color: #62ab03;
   border-top-left-radius: 78px;
   border-top-right-radius: 78px; }
-
 @-webkit-keyframes rotate {
   to {
     -webkit-transform: rotate(360deg);
             transform: rotate(360deg); } }
-
 @keyframes rotate {
   to {
     -webkit-transform: rotate(360deg);

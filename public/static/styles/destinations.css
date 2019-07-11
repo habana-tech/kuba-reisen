@@ -1,53 +1,54 @@
+@import url("httpps://fonts.googleapis.com/css?family=Baloo+Bhaina|Open+Sans:400,700&display=swap");
 .introduction {
   width: 100%;
   position: relative;
   display: flex;
   justify-content: center;
   padding: 2em 0; }
-  .introduction__content {
+.introduction__content {
     width: 50%;
     text-align: center; }
-  .feature {
+.feature {
   display: flex;
   width: 100%;
   position: relative;
   flex-wrap: wrap; }
-  .feature__text {
+.feature__text {
     order: 2;
     width: 100%;
     padding: 1em; }
-  @media (min-width: 1200px) {
+@media (min-width: 1200px) {
       .feature__text {
         order: 1;
         width: 33%;
         padding: 1em 1em; } }
-  .feature__text__title {
+.feature__text__title {
       width: 100%; }
-  .feature__text__title h2 {
+.feature__text__title h2 {
         font-size: 2em; }
-  .feature__image {
+.feature__image {
     order: 1;
     width: 100%;
     position: relative; }
-  @media (min-width: 1200px) {
+@media (min-width: 1200px) {
       .feature__image {
         order: 2;
         width: 65%; } }
-  .feature__image img {
+.feature__image img {
       position: -webkit-sticky;
       position: sticky;
       top: 0;
       max-height: 80vh; }
-  @media (min-width: 1200px) {
+@media (min-width: 1200px) {
         .feature__image img {
           min-height: 100vh; } }
-  .feature--inverse .feature__text {
+.feature--inverse .feature__text {
     order: 2; }
-  .feature--inverse .feature__image {
+.feature--inverse .feature__image {
     order: 1; }
-  .activities__container {
+.activities__container {
   position: relative; }
-  body {
+body {
   --color-text: #000;
   --color-bg: #fff;
   --color-link: #000;
@@ -60,11 +61,11 @@
   --color-close-bg: #6a6a6a;
   --color-close: #fff;
   --color-details-hover: #858585; }
-  .slideshow {
+.slideshow {
   position: relative;
   width: 100%;
   margin-top: 1rem; }
-  .slideshow::after {
+.slideshow::after {
     content: '';
     position: absolute;
     top: 0;
@@ -75,9 +76,9 @@
     z-index: 1;
     opacity: 0;
     transition: opacity 0.4s; }
-  .slideshow--details::after {
+.slideshow--details::after {
   opacity: 1; }
-  .slide {
+.slide {
   width: 100%;
   height: 50vh;
   top: 0;
@@ -86,17 +87,17 @@
   overflow-x: hidden;
   pointer-events: none;
   opacity: 0; }
-  .slide--current {
+.slide--current {
     opacity: 1;
     z-index: 1;
     pointer-events: auto;
     position: relative; }
-  .slide__wrap {
+.slide__wrap {
     width: 100%;
     height: 50vh;
     overflow: hidden;
     position: relative; }
-  .slide__img {
+.slide__img {
     width: 100%;
     height: 100%;
     left: 0;
@@ -106,7 +107,7 @@
     background-position: 50% 50%;
     position: absolute;
     pointer-events: none; }
-  .slide__title-wrap {
+.slide__title-wrap {
     position: absolute;
     width: 50%;
     top: 50%;
@@ -115,13 +116,13 @@
     z-index: 2;
     left: 4em;
     color: white; }
-  .slide__title {
+.slide__title {
     margin: 0;
     font-size: 1.5rem;
     line-height: 0.9;
     white-space: pre;
     color: white; }
-  .boxnav {
+.boxnav {
   position: absolute;
   bottom: 2em;
   left: 0;
@@ -129,7 +130,7 @@
   z-index: 2;
   width: 100%;
   background-color: white; }
-  .boxnav__item {
+.boxnav__item {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -138,18 +139,18 @@
     height: 4rem;
     flex: 1;
     margin-bottom: 1em; }
-  .boxnav__item svg {
+.boxnav__item svg {
       display: block;
       width: 1.5em;
       height: 1.5em;
       margin: 0 auto; }
-  .boxnav__details {
+.boxnav__details {
     position: absolute;
     font-weight: bold;
     width: 100%;
     bottom: 0;
     text-align: center; }
-  .controls {
+.controls {
   position: absolute;
   left: 50%;
   -webkit-transform: translateX(-50%);
@@ -161,16 +162,16 @@
   width: 15em;
   display: flex;
   justify-content: space-around; }
-  .boxnav__item--prev:hover,
+.boxnav__item--prev:hover,
 .boxnav__item--next:hover {
   color: var(--color-nav-hover); }
-  .boxnav__item:focus {
+.boxnav__item:focus {
   outline: none; }
-  .boxnav__label {
+.boxnav__label {
   padding: 0 0.5rem;
   font-size: 1.15rem;
   position: relative; }
-  .boxnav__label--total::before {
+.boxnav__label--total::before {
   content: '';
   position: absolute;
   right: 100%;
@@ -180,62 +181,62 @@
   background: #666;
   -webkit-transform: rotate(22.5deg);
           transform: rotate(22.5deg); }
-  .category {
+.category {
   font-weight: normal; }
-  .details-wrap {
+.details-wrap {
   position: relative;
   pointer-events: none;
   width: 100%;
   z-index: 4; }
-  .details {
+.details {
   position: absolute;
   top: 0;
   right: 0;
   width: 100%;
   display: grid;
   overflow: hidden; }
-  .details__save {
+.details__save {
     width: 2em;
     height: 2em; }
-  .details__save a {
+.details__save a {
       position: absolute;
       top: 0;
       left: 0;
       height: 100%;
       width: 100%; }
-  .details-wrap--open .details--current {
+.details-wrap--open .details--current {
   pointer-events: auto; }
-  .details__item {
+.details__item {
   overflow: hidden; }
-  .details__inner {
+.details__inner {
   width: 100%;
   height: 100%; }
-  .details__inner {
+.details__inner {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   justify-content: space-around;
   -webkit-transform: translate3d(100%, 0, 0);
           transform: translate3d(100%, 0, 0); }
-  .details__item-img {
+.details__item-img {
   display: none; }
-  .details__inner--price {
+.details__inner--price {
   background: linear-gradient(45deg, rgba(53, 207, 212, 0.9), rgba(20, 161, 230, 0.9));
   padding: 2em 1.5em; }
-  .details__inner--price a {
+.details__inner--price a {
     color: #fff; }
-  .details__inner--grid {
+.details__inner--grid {
   display: grid;
   padding: 1rem;
   grid-template-columns: repeat(6, 1fr); }
-  .action--addtocart {
+.action--addtocart {
   background: var(--color-cart-bg);
   color: var(--color-cart); }
-  .action--close {
+.action--close {
   background: var(--color-close-bg);
   color: var(--color-close);
   text-transform: lowercase; }
-  @media screen and (min-width: 53em) {
+@media screen and (min-width: 53em) {
   .slideshow {
     overflow: hidden;
     margin: 0;
