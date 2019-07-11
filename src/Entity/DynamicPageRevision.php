@@ -84,5 +84,14 @@ class DynamicPageRevision
         return $this;
     }
 
+    public function __toString()
+    {
+        $date = $this->getModificationDate()->format("Y-M-d H:i");
+        $page = $this->dynamicPage->getPageName();
+        $user = $this->modified_by ? $this->modified_by : 'anon';
+        return "[$date] on $page, by $user";
+    }
+
+
 
 }

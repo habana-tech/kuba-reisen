@@ -1,0 +1,5 @@
+{% for revision in revisions %}
+    <a href="{{ path('aply_page_revisions_by_page', {'id': revision.id}) }}">{{ revision }}</a>
+    {% else %}
+    <p>nothing here!</p>
+{% endfor %}
