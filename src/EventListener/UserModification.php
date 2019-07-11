@@ -53,11 +53,13 @@ class UserModification
         }
 
         if (null === $token = $this->tokenStorage->getToken()) {
+            dump($this->tokenStorage);
             return;
         }
 
         if (!is_object($user = $token->getUser())) {
             // e.g. anonymous authentication
+            dump($this->user);
             return;
         }
 
