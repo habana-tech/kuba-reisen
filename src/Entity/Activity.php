@@ -70,6 +70,11 @@ class Activity
      */
     private $priority;
 
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $initPrice;
+
     public function __construct()
     {
         $this->filterTags = new ArrayCollection();
@@ -227,6 +232,18 @@ class Activity
     public function setPriority(?int $priority): self
     {
         $this->priority = $priority;
+
+        return $this;
+    }
+
+    public function getInitPrice(): ?float
+    {
+        return $this->initPrice;
+    }
+
+    public function setInitPrice(?float $initPrice): self
+    {
+        $this->initPrice = $initPrice;
 
         return $this;
     }
