@@ -1,4 +1,9 @@
-<?php
+<?php 
+
+if ($_SERVER['HTTP_HOST'] == 'www.kuba-reisen.reisen'){
+header("Location: https://kuba-reisen.reisen".$_SERVER['REQUEST_URI']);
+}
+
 
 use App\Kernel;
 use Symfony\Component\Debug\Debug;
