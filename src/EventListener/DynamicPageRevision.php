@@ -27,6 +27,7 @@ class DynamicPageRevision
 
         $rev = new PageRevision();
         $rev->setDynamicPage($this->dynamicPage);
+        $rev->setModifiedBy($this->dynamicPage->getModifiedBy());
         $rev->setPageContent($this->dynamicPage->getPageContent());
 
         $this->entityManager->persist($rev);
