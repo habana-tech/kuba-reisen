@@ -38,7 +38,7 @@ class UserModification
 
         //$entityManager = $args->getObjectManager();
         // ... do something with the Product
-        if (null !== $currentUser = $this->getCurrentUser()) {
+        if ($currentUser = $this->getCurrentUser()) {
             if($currentUser instanceof App\Entity\User)
                 $entity->setModifiedBy($currentUser);
         } else {
