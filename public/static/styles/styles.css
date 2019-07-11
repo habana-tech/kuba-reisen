@@ -495,6 +495,10 @@ Descr: Custom radio toggle
         .top_destinations__places__place {
           margin: 3em 0;
           width: 48%; } }
+@media (min-width: 1600px) {
+        .top_destinations__places__place {
+          margin: 3em 0;
+          width: 23%; } }
 .top_destinations__places__place::before {
         content: '';
         width: 100%;
@@ -506,8 +510,8 @@ Descr: Custom radio toggle
         background: linear-gradient(45deg, #35cfd4, #14a1e6 20%, transparent); }
 @media (min-width: 1200px) {
           .top_destinations__places__place::before {
-            left: -25px;
-            top: -25px; } }
+            left: -15px;
+            top: -15px; } }
 .top_destinations__places__place--orange::before {
         background: linear-gradient(45deg, #f9c90d, #f96e10 20%, transparent); }
 .top_destinations__places__place--green::before {
@@ -516,6 +520,9 @@ Descr: Custom radio toggle
         overflow: hidden;
         position: relative;
         height: 100%; }
+@media (min-width: 1600px) {
+          .top_destinations__places__place__image {
+            min-height: 60vh; } }
 .top_destinations__places__place__image img {
           height: 100%; }
 .top_destinations__places__place__image img:nth-child(2) {
@@ -523,14 +530,19 @@ Descr: Custom radio toggle
             top: 0;
             left: 0;
             z-index: -1; }
+@media (min-width: 1600px) {
+            .top_destinations__places__place__image img {
+              width: auto; } }
 .top_destinations__places__place__image .canvas_destinations {
           position: absolute;
           top: 0;
           left: 0;
-          z-index: -1; }
+          z-index: -1;
+          -o-object-fit: cover;
+             object-fit: cover; }
 @media (min-width: 1200px) {
             .top_destinations__places__place__image .canvas_destinations {
-              min-height: 75vh; } }
+              min-height: 60vh; } }
 .top_destinations__places__place__image .canvas_destinations--ready {
             z-index: 1; }
 .top_destinations__places__place__text {
