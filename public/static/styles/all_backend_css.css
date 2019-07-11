@@ -3959,7 +3959,13 @@ body.admin-logged .menu-icon-wrapper {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  font-size: 16px; }
+  font-size: 16px;
+  /* The dropdown container */
+  /* Dropdown button */
+  /* Dropdown content (hidden by default) */
+  /* Links inside the dropdown */
+  /* Add a grey background color to dropdown links on hover */
+  /* Show the dropdown menu on hover */ }
 .admin_bar ul {
     display: flex;
     list-style: none;
@@ -3975,6 +3981,44 @@ body.admin-logged .menu-icon-wrapper {
 .admin_bar ul li.preview {
         background:linear-gradient(45deg, rgba(53, 207, 212, 0.7), rgba(20, 161, 230, 0.9));
         padding: .25em 1em; }
+.admin_bar .dropdown {
+    cursor: pointer;
+    float: left;
+    overflow: hidden; }
+.admin_bar .dropdown .dropbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    /* Important for vertical align on mobile phones */
+    margin: 0;
+    /* Important for vertical align on mobile phones */ }
+.admin_bar .navbar a:hover, .admin_bar .dropdown:hover .dropbtn {
+    background-color: red; }
+.admin_bar .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow:0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    top: 40px;
+    z-index: 100; }
+.admin_bar .dropdown span {
+    color: white; }
+.admin_bar .dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left; }
+.admin_bar .dropdown-content a:hover {
+    background-color: #ddd; }
+.admin_bar .dropdown:hover .dropdown-content {
+    display: block; }
 [data-grape_id]:hover, [data-grape_id]:active, [data-grape_id]:focus {
   border: dashed #62ab03 4px;
   border-radius: 20px;
@@ -4970,7 +5014,7 @@ Descr: Custom radio toggle
   position: relative; }
 .travel-options__grid {
     display: grid;
-    grid-template-areas: "img1 img6" "img2 img6" "img9 img9" "img10 img10" "img3 img3" "img4 img11" "img5 img7 " "img5 img8" "img12 img14" "img13 img14";
+    grid-template-areas: "img1 img6" "img2 img6" "img9 img9" "img10 img10" "img3 img3" "img4 img11" "img5 img7 " "img5 img8" "img12 img14" "img13 img14";
     grid-template-rows: 33vh 33vh 33vh 33vh 33vh 33vh 33vh 33vh 33vh 33vh;
     grid-template-columns: 50vw 50vw;
     width: 100vw;
@@ -4978,7 +5022,7 @@ Descr: Custom radio toggle
     grid-gap: .15em; }
 @media (min-width: 1200px) {
       .travel-options__grid {
-        grid-template-areas: "img1 img6 img9 img9" "img2 img6 img10 img10" "img3 img3 img3 img3" "img4 img4 img11 img11" "img5 img7 img12 img14" "img5 img8 img13 img14";
+        grid-template-areas: "img1 img6 img9 img9" "img2 img6 img10 img10" "img3 img3 img3 img3" "img4 img4 img11 img11" "img5 img7 img12 img14" "img5 img8 img13 img14";
         grid-template-rows: 40vh 40vh 40vh 40vh;
         grid-template-columns: 1fr 1fr;
         width: 100vw; } }
@@ -4995,13 +5039,13 @@ Descr: Custom radio toggle
     top: 0;
     width: 100%;
     height: 100%;
-    grid-template-areas: "section1 section1" "section1 section1" "section2 section2" "section2 section2" "section3 section3" "section3 section3" "section4 section4" "section4 section4" "section5 section5" "section5 section5";
+    grid-template-areas: "section1 section1" "section1 section1" "section2 section2" "section2 section2" "section3 section3" "section3 section3" "section4 section4" "section4 section4" "section5 section5" "section5 section5";
     grid-template-rows: 33vh 33vh 33vh 33vh 33vh 33vh 33vh 33vh 33vh 33vh;
     grid-template-columns: 1fr 1fr;
     grid-gap: .15em; }
 @media (min-width: 1200px) {
       .travel-options__grid_overlay {
-        grid-template-areas: "section1 section1 section2 section2" "section1 section1 section2 section2" "section3 section3 section3 section3" "section3 section3 section3 section3" "section4 section4 section5 section5" "section4 section4 section5 section5";
+        grid-template-areas: "section1 section1 section2 section2" "section1 section1 section2 section2" "section3 section3 section3 section3" "section3 section3 section3 section3" "section4 section4 section5 section5" "section4 section4 section5 section5";
         grid-template-rows: 40vh 40vh 40vh 40vh;
         grid-template-columns: 1fr 1fr 1fr 1fr; } }
 .travel-options__grid_overlay a {
@@ -5896,7 +5940,7 @@ body {
     justify-content: center; }
 .travel-interest__options {
     display: grid;
-    grid-template-areas: "img1 img2 img3" "img4 img5 img6" "img7 img8 img9";
+    grid-template-areas: "img1 img2 img3" "img4 img5 img6" "img7 img8 img9";
     grid-template-rows: 40vh 40vh 40vh;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: .25em; }

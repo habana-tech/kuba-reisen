@@ -3659,7 +3659,13 @@ body.admin-logged .menu-icon-wrapper {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  font-size: 16px; }
+  font-size: 16px;
+  /* The dropdown container */
+  /* Dropdown button */
+  /* Dropdown content (hidden by default) */
+  /* Links inside the dropdown */
+  /* Add a grey background color to dropdown links on hover */
+  /* Show the dropdown menu on hover */ }
 .admin_bar ul {
     display: flex;
     list-style: none;
@@ -3675,6 +3681,44 @@ body.admin-logged .menu-icon-wrapper {
 .admin_bar ul li.preview {
         background:linear-gradient(45deg, rgba(53, 207, 212, 0.7), rgba(20, 161, 230, 0.9));
         padding: .25em 1em; }
+.admin_bar .dropdown {
+    cursor: pointer;
+    float: left;
+    overflow: hidden; }
+.admin_bar .dropdown .dropbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    /* Important for vertical align on mobile phones */
+    margin: 0;
+    /* Important for vertical align on mobile phones */ }
+.admin_bar .navbar a:hover, .admin_bar .dropdown:hover .dropbtn {
+    background-color: red; }
+.admin_bar .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow:0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    top: 40px;
+    z-index: 100; }
+.admin_bar .dropdown span {
+    color: white; }
+.admin_bar .dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left; }
+.admin_bar .dropdown-content a:hover {
+    background-color: #ddd; }
+.admin_bar .dropdown:hover .dropdown-content {
+    display: block; }
 [data-grape_id]:hover, [data-grape_id]:active, [data-grape_id]:focus {
   border: dashed #62ab03 4px;
   border-radius: 20px;
