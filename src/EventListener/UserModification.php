@@ -4,7 +4,6 @@
 namespace App\EventListener;
 use App\Entity\Interest;
 use App\Entity\DynamicPage;
-use App\Entity\PageBlock;
 // for Doctrine < 2.4: use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;

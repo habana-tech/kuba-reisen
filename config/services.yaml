@@ -34,6 +34,11 @@ services:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: preUpdate }
 
+    App\EventListener\DynamicPageRevision:
+        tags:
+            - { name: doctrine.event_listener, event: postPersist }
+            - { name: doctrine.event_listener, event: postUpdate }
+
     App\DataConverter\ImageBase64ThumbCreator: '@app.controller'
 
     App\Naming\FileNamer:
