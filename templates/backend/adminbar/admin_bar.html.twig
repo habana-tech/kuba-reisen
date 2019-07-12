@@ -38,12 +38,13 @@
 
         {% if in_string(app.request.get('_route'), 'backend_activity_edit')%}
             <li class="admin_bar_action">
-                <a href="{{ path('activity', {'id': activity.id, 'name': activity.machineName}) }}">Discard changes and see this Activity</a>
+                <a href="{{ path('activity', {'id': activity.id, 'name': activity.machineName}) }}">
+                <img src="{{ asset('svg/delete.svg') }}" style="height: 40px; width: 40px;" title="Discard changes and see this Activity" alt="Discard changes and see this Activity"></a>
             </li>
         {% endif %}
         {% if in_string(app.request.get('_route'), 'backend_destination_edit')%}
             <li class="admin_bar_action">
-                <a href="{{ path('destination', {'id': destination.id, 'name': destination.machineName}) }}">Discard and see</a>
+                <a href="{{ path('destination', {'id': destination.id, 'name': destination.machineName}) }}"><img src="{{ asset('svg/delete.svg') }}" style="height: 40px; width: 40px;" title="Discard and see" alt="Discard and see"></a>
             </li>
         {% endif %}
 
