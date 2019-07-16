@@ -8,6 +8,7 @@ use App\Form\DynamicPageType;
 use App\Repository\ActivityRepository;
 use App\Repository\DestinationRepository;
 use App\Repository\DynamicPageRepository;
+use App\Repository\DynamicPageRevisionRepository;
 use App\Repository\UploadedImageRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -91,10 +92,16 @@ class DynamicPageController extends AbstractController
     /**
      * @Route("/{id}", name="backend_dynamic_page_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, DynamicPage $dynamicPage): Response
+    public function delete(Request $request, DynamicPage $dynamicPage,
+                           DynamicPageRevisionRepository $dynamicPageRevisionRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$dynamicPage->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
+
+            $revisions = $dynamicPageRevisionRepository->findBy(['dynamicPage'=>$dynamicPage]);
+            foreach ($revisions as $rev)
+                $entityManager->remove($rev);
+
             $entityManager->remove($dynamicPage);
             $entityManager->flush();
         }
