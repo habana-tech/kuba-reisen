@@ -104,13 +104,14 @@ class DynamicPageController extends AbstractController
 
 
     /**
-     * @Route("/images/clean", name="backend_clean_images", methods={"GET"})
+     * @Route("/images/clean/{action}", name="backend_clean_images", methods={"GET"})
      */
     public function cleanImages(Request $request, DynamicPageRepository $dynamicPageRepository,
                                 UploadedImageRepository $uploadedImageRepository,
                                 ActivityRepository $activityRepository,
                                 DestinationRepository $destinationRepository,
-                                ParameterBagInterface $params): Response
+                                ParameterBagInterface $params,
+                                $action = 'preview'): Response
     {
         $imgList = new ArrayCollection();
 
@@ -159,7 +160,8 @@ class DynamicPageController extends AbstractController
         foreach ($finder as $file) {
             if(!$imgList->contains($file->getFilename()))
             {
-                unlink($file->getRealPath());
+                if($action == 'delete')
+                    unlink($file->getRealPath());
                 $deletedImages[] = $file->getRealPath();
             }
         }
@@ -167,6 +169,7 @@ class DynamicPageController extends AbstractController
         return $this->render('backend/dynamic_page/cleanimages.html.twig', [
             'deleted' => $deletedImages,
             'imgList' => $imgList,
+            'action' => $action
         ]);
     }
 }

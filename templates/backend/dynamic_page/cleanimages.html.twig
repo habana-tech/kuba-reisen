@@ -6,10 +6,20 @@
     <h3>Clean images</h3>
 
     <p>
-        {{ deleted | length }} unused images deleted
+        {{ deleted | length }} unused images {% if action == 'preview' %} to be {% endif %} deleted
     </p>
+    <p><a href="{{ path('backend_clean_images', {'action':'delete'}) }}">Click here to do it!</a></p>
     <p>
-        {{ imgList | length }} images in use
+        {{ imgList | length }} images in use for the website
     </p>
+
+    {% if deleted %}
+    <h4>Images {% if action == 'preview' %} to be {% endif %} deleted</h4>
+    <ul>
+        {% for image in deleted %}
+            <li>{{ image }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
 
 {% endblock %}
