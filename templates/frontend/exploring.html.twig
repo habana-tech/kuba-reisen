@@ -1,29 +1,33 @@
 {% extends 'frontend/base.html.twig' %}
 
-{% block title %}Unsere Geheimtipps für Kuba{% endblock %}
+    {% block title %}Entdecken 👌 und entdecken Sie
+        {{ page.getElementContent('hero__content__text', 'Kuba erkunden') | striptags}}
+    {% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('styles/bucket_list.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('styles/destinations.css') }}" type="text/css">
 {% endblock %}
 
 {% block body %}
-    <main class="main {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null  %}grapes-editable{% endif %}">
+    <main class="main">
 
         {{ include('frontend/components/global/_hero.html.twig') }}
 
-        {{ include('frontend/components/bucket_list/_introduction.html.twig') }}
+        {{ include('frontend/components/destinations/_introduction.html.twig') }}
 
-        {{ include('frontend/components/bucket_list/_items.html.twig') }}
+        {{ include('frontend/components/destinations/_features_list.html.twig') }}
+
+        {#        {{ include('frontend/components/destinations/_activities.html.twig') }}#}
 
         {{ render(controller('App\\Controller\\RegionsController::regionTopDestinations', {'preview':app.request.get('preview')} )) }}
+
     </main>
 {% endblock %}
 
+{#{% block javascripts_vendors %}#}
+{#    <script src="{{ asset('scripts/vendors/three.min.js') }}"></script>#}
+{#{% endblock %}#}
 
-{% block javascripts_vendors %}
-    <script src="{{ asset('scripts/vendors/three.min.js') }}"></script>
-{% endblock %}
-
-{% block javascripts %}
-    <script src="{{ asset('scripts/bucket_list.js') }}"></script>
-{% endblock %}
+{#{% block javascripts %}#}
+{#    <script src="{{ asset('scripts/destination.js') }}"></script>#}
+{#{% endblock %}#}
