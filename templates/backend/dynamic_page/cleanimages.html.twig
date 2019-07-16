@@ -13,13 +13,31 @@
         {{ imgList | length }} images in use for the website
     </p>
 
-    {% if deleted %}
-    <h4>Images {% if action == 'preview' %} to be {% endif %} deleted</h4>
-    <ul>
-        {% for image in deleted %}
-            <li>{{ image }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
+    <div class="row">
+        {% if deleted %}
+            <div class="grid-half">
+                <h4>Images {% if action == 'preview' %} to be {% endif %} deleted</h4>
+                <ul>
+                    {% for image in deleted %}
+                        <li>{{ image }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        {% endif %}
+
+        {% if imgList %}
+            <div class="grid-half">
+                <h4>Images used</h4>
+                <ul>
+                    {% for image in imgList %}
+                        <li>{{ image }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+
+
 
 {% endblock %}

@@ -153,7 +153,8 @@ class DynamicPageController extends AbstractController
         $finder->files();
         $staticDirPath = $parameterValue = $params->get('kernel.project_dir') . '/public/static/';
 
-        $finder->in([
+
+        $imagesDirectories = [
             $staticDirPath.  'uploads/images/',
             $staticDirPath.  'min_width_15/static/uploads/images/',
             $staticDirPath.  'min_width_600/static/uploads/images/',
@@ -162,7 +163,14 @@ class DynamicPageController extends AbstractController
             $staticDirPath.  'min_width_1200/static/uploads/images/',
             $staticDirPath.  'min_width_1920/static/uploads/images/',
             $staticDirPath.  'squared_thumbnail/static/uploads/images/',
-                    ]);
+        ];
+
+        $scanDirectories = [];
+
+        foreach ($imagesDirectories as $dir)
+            if(file_exists($dir)) $scanDirectories[] = $dir;
+
+        $finder->in($scanDirectories);
         $deletedImages = [];
         foreach ($finder as $file) {
             if(!$imgList->contains($file->getFilename()))

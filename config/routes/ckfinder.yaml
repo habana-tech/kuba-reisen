@@ -2,6 +2,6 @@ ckfinder_connector:
     path:     /admin/ckfinder/connector
     defaults: { _controller: CKSource\Bundle\CKFinderBundle\Controller\CKFinderController::requestAction }
 
-ckfinder_examples:
-    path:     /admin/ckfinder/examples/{example}
-    defaults: { _controller: CKSource\Bundle\CKFinderBundle\Controller\CKFinderController::examplesAction, example: null }
+ckfinder_fullpage:
+    path:     /admin/ckfinder/explore/
+    defaults: { _controller: CKSource\Bundle\CKFinderBundle\Controller\CKFinderController::examplesAction, example: fullpage }
