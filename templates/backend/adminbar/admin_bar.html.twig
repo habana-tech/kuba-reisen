@@ -57,7 +57,7 @@
 
         {% if dynamic_page_id is defined %}
             <li class="dropdown" id="revisions-list">
-                <img src="{{ asset('svg/history-clock-button.svg') }}" style="height: 40px; width: 40px;">
+                <img src="{{ asset('svg/history-clock-button.svg') }}" style="height: 30px; width: 30px;">
                 <div class="dropdown-content" id="revisions-list-content">
                     {{ render(controller('App\\Controller\\Backend\\PageRevisionController::list', {'id' : dynamic_page_id} )) }}
                 </div>
@@ -65,7 +65,7 @@
         {% endif %}
 
         <li class="">
-            <a href="{{ path('fos_user_security_logout') }}"><img src="{{ asset('svg/arrow.svg') }}" style="height: 40px; width: 40px;"></a>
+            <a href="{{ path('fos_user_security_logout') }}"><img src="{{ asset('svg/arrow.svg') }}" style="height: 30px; width: 30px;"></a>
         </li>
 
     </ul>

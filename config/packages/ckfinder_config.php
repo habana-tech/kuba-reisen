@@ -89,7 +89,7 @@ $config['backends']['default'] = array(
 // http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_resourceTypes
 
 $config['defaultResourceTypes'] = '';
-
+/*
 $config['resourceTypes'][] = array(
     'name'              => 'Files', // Single quotes not allowed.
     'directory'         => 'files',
@@ -98,7 +98,7 @@ $config['resourceTypes'][] = array(
     'deniedExtensions'  => '',
     'backend'           => 'default'
 );
-
+*/
 $config['resourceTypes'][] = array(
     'name'              => 'Images',
     'directory'         => '',
@@ -121,11 +121,11 @@ $config['accessControl'][] = array(
 
     'FOLDER_VIEW'         => true,
     'FOLDER_CREATE'       => true,
-    'FOLDER_RENAME'       => true,
-    'FOLDER_DELETE'       => true,
+    'FOLDER_RENAME'       => false,
+    'FOLDER_DELETE'       => false,
 
     'FILE_VIEW'           => true,
-    'FILE_UPLOAD'         => true,
+    'FILE_UPLOAD'         => false,
     'FILE_RENAME'         => true,
     'FILE_DELETE'         => true,
 
@@ -149,7 +149,7 @@ $config['forceAscii'] = false;
 $config['xSendfile'] = false;
 
 // http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_debug
-$config['debug'] = true;//EDITED
+$config['debug'] = false;//EDITED
 
 /*==================================== Plugins ========================================*/
 // http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_plugins
