@@ -13,6 +13,7 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 /**
  * @Route("/admin/dynamic_page")
@@ -101,10 +102,10 @@ class DynamicPageController extends AbstractController
 
 
     /**
-     * @Route("/cleanImages", name="backend_clean_images", methods={"GET"})
+     * @Route("/images/clean", name="backend_clean_images", methods={"GET"})
      */
     public function cleanImages(Request $request, DynamicPageRepository $dynamicPageRepository,
-                                UploadedImageRepository $uploadedImageRepository): Response
+                                ParameterBagInterface $params): Response
     {
         $imgList = new ArrayCollection();
 
@@ -120,5 +121,31 @@ class DynamicPageController extends AbstractController
         }
 
         $finder = new Finder();
+        $finder->files();
+        $staticDirPath = $parameterValue = $params->get('kernel.project_dir') . '/public/static/';
+
+        $finder->in([
+            $staticDirPath.  'uploads/images/',
+            $staticDirPath.  'min_width_15/static/uploads/images/',
+            $staticDirPath.  'min_width_600/static/uploads/images/',
+            $staticDirPath.  'min_width_800/static/uploads/images/',
+            $staticDirPath.  'min_width_900/static/uploads/images/',
+            $staticDirPath.  'min_width_1200/static/uploads/images/',
+            $staticDirPath.  'min_width_1920/static/uploads/images/',
+            $staticDirPath.  'squared_thumbnail/static/uploads/images/',
+                    ]);
+        $deletedImages = [];
+        foreach ($finder as $file) {
+            if(!$imgList->contains($file->getFilename()))
+            {
+                unlink($file->getRealPath());
+                $deletedImages[] = $file->getRealPath();
+            }
+        }
+
+        return $this->render('backend/dynamic_page/cleanimages.html.twig', [
+            'deleted' => $deletedImages,
+            'imgList' => $imgList,
+        ]);
     }
 }

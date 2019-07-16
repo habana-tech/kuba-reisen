@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit DynamicPage{% endblock %}
+
+{% block body %}
+    <h3>Clean images</h3>
+
+    <p>
+        {{ deleted | length }} unused images deleted
+    </p>
+    <p>
+        {{ imgList | length }} images in use
+    </p>
+
+{% endblock %}
