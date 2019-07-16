@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use App\Repository\DynamicPageRevisionRepository;
 
 /**
  * @Route("/admin/activity")
@@ -144,12 +145,18 @@ class ActivityController extends AbstractController
     /**
      * @Route("/{id}", name="backend_activity_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, Activity $activity): Response
+    public function delete(Request $request, Activity $activity, DynamicPageRevisionRepository $revRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$activity->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($activity);
             $entityManager->flush();
+        }
+
+        $revisions = $revRepository->findBy(['dynamicPage'=>$activity->getDynamicPage()]);
+        foreach($revisions as $rev)
+        {
+            $entityManager->remove($rev);
         }
 
         return $this->redirectToRoute('backend_activity_index');

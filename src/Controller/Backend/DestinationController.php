@@ -17,6 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Doctrine\ORM\EntityNotFoundException;
 use App\DataConverter\GrapesjsHtmlConverter;
+use App\Repository\DynamicPageRevisionRepository;
 /**
  * @Route("/admin/destination")
  */
@@ -144,12 +145,17 @@ class DestinationController extends AbstractController
     /**
      * @Route("/{id}", name="backend_destination_delete", methods={"DELETE"}))
      */
-    public function delete(Request $request, Destination $destination): Response
+    public function delete(Request $request, Destination $destination, DynamicPageRevisionRepository $revRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$destination->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             foreach ($destination->getDynamicPage()->getUploadedImages() as $value) {
                 $destination->getDynamicPage()->removeUploadedImage($value);
+            }
+            $revisions = $revRepository->findBy(['dynamicPage'=>$destination->getDynamicPage()]);
+            foreach($revisions as $rev)
+            {
+                $entityManager->remove($rev);
             }
             $entityManager->persist($destination->getDynamicPage());
             $entityManager->remove($destination->getDynamicPage());
