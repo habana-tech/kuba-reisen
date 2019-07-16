@@ -5,6 +5,8 @@ namespace App\Controller\Backend;
 use App\Entity\DynamicPage;
 use App\Entity\UploadedImage;
 use App\Form\DynamicPageType;
+use App\Repository\ActivityRepository;
+use App\Repository\DestinationRepository;
 use App\Repository\DynamicPageRepository;
 use App\Repository\UploadedImageRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -105,6 +107,9 @@ class DynamicPageController extends AbstractController
      * @Route("/images/clean", name="backend_clean_images", methods={"GET"})
      */
     public function cleanImages(Request $request, DynamicPageRepository $dynamicPageRepository,
+                                UploadedImageRepository $uploadedImageRepository,
+                                ActivityRepository $activityRepository,
+                                DestinationRepository $destinationRepository,
                                 ParameterBagInterface $params): Response
     {
         $imgList = new ArrayCollection();
@@ -118,6 +123,22 @@ class DynamicPageController extends AbstractController
                 if(!$imgList->contains($img))
                     $imgList->add($img);
             }
+        }
+
+        $activities = $activityRepository->findAll();
+        foreach ($activities as $activity)
+        {
+            if($activity->getImageFile())
+            if(!$imgList->contains($activity->getImageFile()->getFilename()))
+                $imgList->add($activity->getImageFile()->getFilename());
+        }
+
+        $destinations = $destinationRepository->findAll();
+        foreach ($destinations as $destination)
+        {
+            if($destination->getImageFile())
+            if(!$imgList->contains($destination->getImageFile()->getFilename()))
+                $imgList->add($destination->getImageFile()->getFilename());
         }
 
         $finder = new Finder();
