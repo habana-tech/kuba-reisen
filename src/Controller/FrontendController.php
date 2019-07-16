@@ -66,6 +66,35 @@ class FrontendController extends AbstractController
     }
 
     /**
+     * @Route("/activity/{id}/{name}", name="activity")
+     */
+    public function activity(Activity $activity)
+    {
+        if(!$activity)
+            throw new NotFoundHttpException();
+
+        $tags = $activity->getFilterTags();
+        $related_activities = new ArrayCollection();
+        foreach ($tags as $tag)
+        {
+            $current_tag_activities = $tag->getActivities();
+            foreach ($current_tag_activities as $_activity)
+            {
+                if($_activity != $activity and !$related_activities->contains($_activity)) {
+                    $related_activities[] = $_activity;
+                }
+            }
+        }
+
+        return $this->render('frontend/activity.html.twig', [
+            'dynamic_page_id' => $activity->getDynamicPage()->getId(),
+            'page' => $activity->getDynamicPage(),
+            'activity' => $activity,
+            'related_activities'=>$related_activities,
+        ]);
+    }
+
+    /**
      * @Route("/faq", name="faq")
      */
     public function faq(DynamicPageManager $pm)
@@ -94,34 +123,6 @@ class FrontendController extends AbstractController
 
     }
 
-    /**
-     * @Route("/activity/{id}/{name}", name="activity")
-     */
-    public function activity(Activity $activity)
-    {
-        if(!$activity)
-            throw new NotFoundHttpException();
-
-        $tags = $activity->getFilterTags();
-        $related_activities = new ArrayCollection();
-        foreach ($tags as $tag)
-        {
-            $current_tag_activities = $tag->getActivities();
-            foreach ($current_tag_activities as $_activity)
-            {
-                if($_activity != $activity and !$related_activities->contains($_activity)) {
-                    $related_activities[] = $_activity;
-                }
-            }
-        }
-
-        return $this->render('frontend/activity.html.twig', [
-            'dynamic_page_id' => $activity->getDynamicPage()->getId(),
-            'page' => $activity->getDynamicPage(),
-            'activity' => $activity,
-            'related_activities'=>$related_activities,
-        ]);
-    }
 
     /**
      * @Route("/bucket_list", name="bucket_list")
@@ -198,7 +199,81 @@ class FrontendController extends AbstractController
         if(!$page)
             throw new NotFoundHttpException();
 
+        //TODO: esa plantilla o existe, acaso no hay un sobre nosotros definitivamente?
         return $this->render('frontend/uber_uns.html.twig', [
+            'dynamic_page_id' => $page->getId(),
+            'page' => $page,
+        ]);
+    }
+
+
+    /**
+     * @Route("/exploring", name="exploring")
+     */
+    public function exploring(DynamicPageManager $pm)
+    {
+
+        $pageinfo = [
+            'pageName'=> 'exploring',
+            'language' => 'de'
+        ];
+
+        if($this->isGranted('ROLE_ADMIN'))
+            $page = $pm->findByOrCreateIfDoesNotExist($pageinfo);
+        else $page = $pm->findOneBy($pageinfo);
+
+
+        if(!$page) throw new NotFoundHttpException();
+
+        return $this->render('frontend/exploring.html.twig', [
+            'dynamic_page_id' => $page->getId(),
+            'page' => $page,
+        ]);
+    }
+
+    /**
+     * @Route("/excursions", name="excursions")
+     */
+    public function excursions(DynamicPageManager $pm)
+    {
+
+        $pageinfo = [
+            'pageName'=> 'excursions',
+            'language' => 'de'
+        ];
+
+        if($this->isGranted('ROLE_ADMIN'))
+            $page = $pm->findByOrCreateIfDoesNotExist($pageinfo);
+        else $page = $pm->findOneBy($pageinfo);
+
+
+        if(!$page) throw new NotFoundHttpException();
+
+        return $this->render('frontend/excursions.html.twig', [
+            'dynamic_page_id' => $page->getId(),
+            'page' => $page,
+        ]);
+    }
+
+    /**
+     * @Route("/tours", name="tours")
+     */
+    public function tours(DynamicPageManager $pm)
+    {
+
+        $pageinfo = [
+            'pageName'=> 'tours',
+            'language' => 'de'
+        ];
+
+        if($this->isGranted('ROLE_ADMIN'))
+            $page = $pm->findByOrCreateIfDoesNotExist($pageinfo);
+        else $page = $pm->findOneBy($pageinfo);
+
+
+        if(!$page) throw new NotFoundHttpException();
+
+        return $this->render('frontend/tours.html.twig', [
             'dynamic_page_id' => $page->getId(),
             'page' => $page,
         ]);
