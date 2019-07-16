@@ -3,9 +3,13 @@
 namespace App\Controller\Backend;
 
 use App\Entity\DynamicPage;
+use App\Entity\UploadedImage;
 use App\Form\DynamicPageType;
 use App\Repository\DynamicPageRepository;
+use App\Repository\UploadedImageRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -93,5 +97,28 @@ class DynamicPageController extends AbstractController
         }
 
         return $this->redirectToRoute('backend_dynamic_page_index');
+    }
+
+
+    /**
+     * @Route("/cleanImages", name="backend_clean_images", methods={"GET"})
+     */
+    public function cleanImages(Request $request, DynamicPageRepository $dynamicPageRepository,
+                                UploadedImageRepository $uploadedImageRepository): Response
+    {
+        $imgList = new ArrayCollection();
+
+        $pages = $dynamicPageRepository->findAll();
+        foreach ($pages as $page)
+        {
+            $imgs = $page->usedImageList();
+            foreach ($imgs as $img)
+            {
+                if(!$imgList->contains($img))
+                    $imgList->add($img);
+            }
+        }
+
+        $finder = new Finder();
     }
 }

@@ -132,6 +132,11 @@ class DynamicPage
         return $default;
     }
 
+    public function getPageContentAsArrayText()
+    {
+        return print_r($this->getPageContent(), false);
+
+    }
 
     public function getElementAttr($grape_id, $attr, $default = null)
     {
@@ -204,4 +209,12 @@ class DynamicPage
 
     }
 
+    public function usedImageList(){
+        $list = new ArrayCollection();
+        foreach ($this->pageContent as $item){
+            if(isset($item['src']) and !$list->contains(basename($item['src'])))
+                $list->add(basename($item['src']));
+        }
+        return $list;
+    }
 }
