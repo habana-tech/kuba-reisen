@@ -1,0 +1,12 @@
+
+{% if is_granted('ROLE_EDITOR') and not app.request.get('preview') %}
+<h2>Features to show:
+    <span data-grape_id="page_features_Count" data-grape_format="txt">
+        {{ page.ElementContent('page_features_Count',5) | raw }}
+    </span>
+</h2>
+{% endif %}
+
+{% set destination = {'featuresCount' : page.ElementContent('page_features_Count',5)  } %}
+
+{% include 'frontend/components/destinations/_features_list.html.twig' %}
