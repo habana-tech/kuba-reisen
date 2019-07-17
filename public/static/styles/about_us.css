@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css?family=Baloo+Bhaina|Open+Sans:400,700&display=swap");
+.about_us__intro {
+  width: 95%;
+  margin: auto; }
+@media (min-width: 1200px) {
+    .about_us__intro {
+      width: 80%; } }
+.philosophy_benefits {
+  display: flex;
+  width: 95%;
+  margin: auto;
+  flex-wrap: wrap;
+  justify-content: space-between; }
+@media (min-width: 1200px) {
+    .philosophy_benefits {
+      width: 80%; } }
+.philosophy_benefits__philosophy {
+    width: 100%; }
+@media (min-width: 1200px) {
+      .philosophy_benefits__philosophy {
+        width: 48%; } }
+.philosophy_benefits__philosophy__title {
+      width: 100%;
+      text-align: center; }
+.philosophy_benefits__benefits {
+    width: 100%; }
+@media (min-width: 1200px) {
+      .philosophy_benefits__benefits {
+        width: 48%; } }
+.team {
+  display: flex;
+  width: 95%;
+  margin: auto;
+  flex-wrap: wrap;
+  justify-content: space-between; }
+@media (min-width: 1200px) {
+    .team {
+      width: 80%; } }
+.team__image {
+    width: 100%; }
+@media (min-width: 1200px) {
+      .team__image {
+        width: 40%; } }
+.team__content {
+    width: 100%; }
+@media (min-width: 1200px) {
+      .team__content {
+        width: 55%; } }
+.links {
+  width: 95%;
+  margin: auto; }
+@media (min-width: 1200px) {
+    .links {
+      width: 80%; } }
+.links__title {
+    width: 100%; }
+.links__content ul {
+    list-style: none; }
+.links__content ul li {
+      display: inline;
+      position: relative;
+      margin: 0 .5em; }
+.links__content ul li:after {
+        content: '';
+        position: absolute;
+        height: 100%;
+        width: 1px;
+        background-color: rgba(102, 102, 102, 0.9); }

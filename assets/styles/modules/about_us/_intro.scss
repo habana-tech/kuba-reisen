@@ -1,0 +1,8 @@
+.about_us__intro{
+  width: 95%;
+  margin: auto;
+
+  @include atLarge{
+    width: 80%;
+  }
+}

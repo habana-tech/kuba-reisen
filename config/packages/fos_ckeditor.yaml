@@ -7,13 +7,16 @@ fos_ck_editor:
     configs:
         my_config:
             toolbar: my_toolbar_1
-            extraPlugins: "MapMarker"
+            extraPlugins: ["MapMarker", "MapPath"]
             allowedContent: true # 'span[data-map,class]'
     toolbars:
         configs:
-            my_toolbar_1: [['PasteText', 'PasteFromWord', '-'],['Bold', 'Italic', 'Strike', 'Styles', 'Format','-', 'RemoveFormat'],['Link', 'Unlink', 'Anchor'],['NumberedList', 'BulletedList', 'Blockquote'],['Image', 'Table'], [ "Source", "MapMarker","Maximize"]]
+            my_toolbar_1: [['PasteText', 'PasteFromWord', '-'],['Bold', 'Italic', 'Strike', 'Styles', 'Format','-', 'RemoveFormat'],['Link', 'Unlink', 'Anchor'],['NumberedList', 'BulletedList', 'Blockquote'],['Image', 'Table'], [ "Source", "MapMarker", "MapPath","Maximize"]]
     plugins:
         MapMarker:
             path:     "/scripts/" # with trailing slash
             filename: "MapMarker.js"
+        MapPath:
+            path:     "/scripts/" # with trailing slash
+            filename: "MapPath.js"
 

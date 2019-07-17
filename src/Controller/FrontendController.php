@@ -154,13 +154,13 @@ class FrontendController extends AbstractController
     }
 
     /**
-     * @Route("/travel_info", name="travel_info")
+     * @Route("/landesinformationen", name="travel_info")
      */
     public function travel_info(DynamicPageManager $pm)
     {
 
         $pageinfo = [
-            'pageName'=> 'landesinfos',
+            'pageName'=> 'travel_info',
             'language' => 'de'
         ];
 
@@ -173,20 +173,20 @@ class FrontendController extends AbstractController
         if(!$page)
             throw new NotFoundHttpException();
 
-        return $this->render('frontend/landesinfos.html.twig', [
-            'dynamic_page_id' => $page->getId(),
+        return $this->render('frontend/travel_info.html.twig', [
+            'dynamic_page_ id' => $page->getId(),
             'page' => $page,
         ]);
     }
 
     /**
-     * @Route("/about_us", name="about_us")
+     * @Route("/Über_uns", name="about_us")
      */
-    public function about_us(DynamicPageManager $pm)
+    public function about_us(DynamicPageManager $pm, FilterTagRepository $filterTagRepository)
     {
 
         $pageinfo = [
-            'pageName'=> 'uber_uns',
+            'pageName'=> 'about_us',
             'language' => 'de'
         ];
 
@@ -199,10 +199,12 @@ class FrontendController extends AbstractController
         if(!$page)
             throw new NotFoundHttpException();
 
-        //TODO: esa plantilla o existe, acaso no hay un sobre nosotros definitivamente?
-        return $this->render('frontend/uber_uns.html.twig', [
+        $filterTags = $filterTagRepository->findBy(['language'=>'de']);
+
+        return $this->render('frontend/about_us.html.twig', [
             'dynamic_page_id' => $page->getId(),
             'page' => $page,
+            'filterTags'=>$filterTags,
         ]);
     }
 

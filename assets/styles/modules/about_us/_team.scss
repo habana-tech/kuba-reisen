@@ -9,5 +9,20 @@
     width: 80%;
   }
 
+  &__image{
+    width: 100%;
+
+    @include atLarge{
+      width: 40%;
+    }
+  }
+
+  &__content{
+    width: 100%;
+
+    @include atLarge {
+      width: 55%;
+    }
+  }
 
 }
