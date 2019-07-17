@@ -4379,7 +4379,9 @@ Descr: Custom radio toggle
             right: 0;
             top: 25%; }
           .header__nav__menu__column:last-child::after {
-            display: none; } }
+            display: none; }
+          .header__nav__menu__column:last-child {
+            margin-top: 2em; } }
 .header__nav__menu__column__title a {
           color: white;
           margin: 0; }

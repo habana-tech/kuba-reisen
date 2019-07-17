@@ -66,6 +66,10 @@
                     &:last-child::after {
                         display: none;
                     }
+
+                    &:last-child {
+                        margin-top: 2em; //para uso sin titulo de columna
+                    }
                 }
 
                 &__title{
