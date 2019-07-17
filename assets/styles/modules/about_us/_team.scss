@@ -1,0 +1,13 @@
+.team{
+  display: flex;
+  width: 95%;
+  margin: auto;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  @include atLarge{
+    width: 80%;
+  }
+
+
+}

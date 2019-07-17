@@ -17,6 +17,7 @@ class BucketList{
         this.points = document.querySelectorAll('.bucket-list__items__features h3');
         this.pointsData = document.querySelectorAll('.bucket-list__items__features span.MapMarker');
 
+        this.activeMarker = null;
         this.activePoint = 0;
         this.events();
     }
@@ -47,7 +48,8 @@ class BucketList{
         if (point === this.activePoint)
             return;
 
-        this.activeMarker.remove();
+        if (this.activeMarker !== null)
+            this.activeMarker.remove();
         this.activeMarker = new mapboxgl.Marker()
             .setLngLat(props.center)
             .addTo(this.map);

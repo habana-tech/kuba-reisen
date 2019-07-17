@@ -1,0 +1,32 @@
+.philosophy_benefits{
+  display: flex;
+  width: 95%;
+  margin: auto;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  @include atLarge{
+    width: 80%;
+  }
+
+  &__philosophy{
+    width: 100%;
+
+    @include atLarge{
+      width: 48%;
+    }
+
+    &__title{
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  &__benefits{
+    width: 100%;
+
+    @include atLarge{
+      width: 48%;
+    }
+  }
+}
