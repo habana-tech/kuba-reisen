@@ -54,15 +54,20 @@
       width: 80%; } }
 .links__title {
     width: 100%; }
+.links__content {
+    width: 90%; }
+@media (min-width: 1200px) {
+      .links__content {
+        width: 80%; } }
 .links__content ul {
-    list-style: none; }
+      list-style: none; }
 .links__content ul li {
-      display: inline;
-      position: relative;
-      margin: 0 .5em; }
+        display: inline;
+        position: relative;
+        margin: 0 .5em; }
 .links__content ul li:after {
-        content: '';
-        position: absolute;
-        height: 100%;
-        width: 1px;
-        background-color: rgba(102, 102, 102, 0.9); }
+          content: '';
+          position: absolute;
+          height: 100%;
+          width: 1px;
+          background-color: rgba(102, 102, 102, 0.9); }

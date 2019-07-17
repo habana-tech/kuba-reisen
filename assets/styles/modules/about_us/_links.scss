@@ -11,6 +11,12 @@
   }
 
   &__content{
+    width: 90%;
+
+    @include atLarge{
+      width: 80%;
+    }
+
     & ul{
       list-style: none;
       & li{
