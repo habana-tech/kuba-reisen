@@ -34,6 +34,8 @@ class ActivityType extends AbstractType
 //                'es' => 'es',
 //            ]])
 
+            ->add('initPrice', null, ['label'=>'Starter price of the activity, in EUROS'])
+
             ->add('filterTags',EntityType::class,[
                 'label'=>'Tags, select all you need for this activity',
 //                'choices'=>[
