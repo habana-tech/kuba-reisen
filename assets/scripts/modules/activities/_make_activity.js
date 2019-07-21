@@ -10,7 +10,8 @@ class MakeActivity {
     makeImageSrcSet(url){
         let srcSet = [];
         this.imagesSizes.forEach((dim)=>{
-            srcSet.push('/static/min_width_'+dim+url+' '+dim+'w');
+            //using the media resolver cqache url!!!
+            srcSet.push('/media/cache/resolve/min_width_'+dim+url+' '+dim+'w');
         });
         return srcSet.join(', ');
     }
