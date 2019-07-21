@@ -40,6 +40,24 @@
         margin: auto;
         border-radius: 2px;
 
+        &__price{
+            display: flex;
+            border-radius: 50%;
+            background: linear-gradient(45deg, $light-blue, $dark-blue);
+            transform: translate(50%, -50%);
+            top: -.5em;
+            position: absolute;
+            right: .5em;
+            width: 3em;
+            height: 3em;
+
+            & span{
+                margin: auto;
+                color: white;
+                font-weight: 700;
+            }
+        }
+
         &__actions{
             position: absolute;
             width: auto;

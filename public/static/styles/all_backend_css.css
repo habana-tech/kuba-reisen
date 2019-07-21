@@ -4790,6 +4790,21 @@ Descr: Custom radio toggle
     width: 90%;
     margin: auto;
     border-radius: 2px; }
+.activity__content__price {
+      display: flex;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #35cfd4, #14a1e6);
+      -webkit-transform: translate(50%, -50%);
+              transform: translate(50%, -50%);
+      top: -.5em;
+      position: absolute;
+      right: .5em;
+      width: 3em;
+      height: 3em; }
+.activity__content__price span {
+        margin: auto;
+        color: white;
+        font-weight: 700; }
 .activity__content__actions {
       position: absolute;
       width: auto;
