@@ -180,7 +180,7 @@ class FrontendController extends AbstractController
     }
 
     /**
-     * @Route("/Über_uns", name="about_us")
+     * @Route("/uber_uns", name="about_us")
      */
     public function about_us(DynamicPageManager $pm, FilterTagRepository $filterTagRepository)
     {

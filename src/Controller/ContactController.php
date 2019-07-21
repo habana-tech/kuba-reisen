@@ -19,7 +19,7 @@ class ContactController extends AbstractController
     private $selectedActivities = array();
 
     /**
-     * @Route("/contact",  name="contact")
+     * @Route("/kontaktieren",  name="contact")
      */
     public function contact(Request $request,
                             DynamicPageManager $pm,
