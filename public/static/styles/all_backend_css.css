@@ -3617,8 +3617,7 @@ body > textarea {
   width: inherit !important;
   max-width: 90vw !important;
   min-width: 90vw; }
-#tie-btn-draw, #tie-btn-shape, #tie-btn-icon, #tie-btn-text, #tie-btn-flip {
-  display: none; }
+#tie-btn-draw, #tie-btn-shape, #tie-btn-icon, #tie-btn-text, #tie-btn-flip, .fa-arrows.gjs-no-touch-action,
 .gjs-rte-action[title="Link"] {
   display: none; }
 .tui-image-editor-main-container.uploading .uploading-animation-container {
