@@ -6,19 +6,45 @@
 
     &__map {
         position: sticky;
-        top: 5vh;
-        width: 50%;
+        top: 0;
+        width: 100%;
+        z-index: 1;
+        margin: 1.5em 0;
+
+        &:after{
+            content: '';
+            position: absolute;
+            width: 105%;
+            transform: translate(-2.5%, -50%);
+            height: 3em;
+            background: linear-gradient(to bottom, white, rgba(white, .75));
+            filter: blur(8px);
+            z-index: -1;
+        }
+
+        @include atLarge{
+            width: 50%;
+            top: 5vh;
+        }
 
         & #map{
             margin: auto;
-            min-height: 90vh;
+            min-height: 40vh;
+
+            @include atLarge {
+                min-height: 90vh;
+            }
         }
     }
 
     &__features {
-        width: 40%;
+        width: 100%;
         margin-left: 1em;
         padding-top: 3em;
+
+        @include atLarge{
+            width: 40%;
+        }
 
         & h3 {
             position: relative;

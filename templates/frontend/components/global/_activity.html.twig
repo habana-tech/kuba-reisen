@@ -17,7 +17,12 @@
     </div>
 
     <div class="activity__content">
-
+{#        {% if activity.initPrice %}#}
+            <div class="activity__content__price">
+{#                <span>{{ activity.initPrice }}</span>#}
+                <span>45 €</span>
+            </div>
+{#        {% endif %}#}
         <div class="activity__content__actions">
             {% block activity__content__actions %}
             <div class="activity__content__actions__add">

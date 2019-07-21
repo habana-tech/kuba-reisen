@@ -1,0 +1,11 @@
+.cards{
+  width: 95%;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
+  @include atLarge{
+    width: 80%;
+  }
+}
