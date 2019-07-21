@@ -100,6 +100,7 @@ class ActivitiesController extends AbstractController
                     ['id'=>$activity->getId(),
                     'name'=>$activity->getMachineName(),
                     '_locale'=>'de']),
+                'price' => $activity->getInitPrice()
             ));
         }
 

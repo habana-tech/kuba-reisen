@@ -16,7 +16,7 @@ class MakeActivity {
         return srcSet.join(', ');
     }
 
-    make(id, image, imageAlt, name, description, link){
+    make(id, image, imageAlt, name, description, link, price){
         let newActivity = this.prototype.cloneNode(true);
         let imageSrcSet = this.makeImageSrcSet(image);
 
@@ -31,6 +31,11 @@ class MakeActivity {
         newActivity.querySelector('h4').innerHTML = name;
         newActivity.querySelector('.activity__content__description').innerHTML = clipHtml(description, this.descriptionLenght);
         newActivity.querySelector('.activity__content__title a').setAttribute('href', link);
+
+        if(price !== null)
+            newActivity.querySelector('.activity__content__price span').innerHTML = price + " €";
+        else
+            newActivity.querySelector('.activity__content__price').setAttribute('hidden', 'hidden');
 
         return newActivity;
     }
