@@ -48,7 +48,7 @@ class AddtoCart {
         this.buttonsAdd.forEach((x)=>{
            let activityId = x.getAttribute('data-activity_id');
             if (this.activities.includes(activityId)){
-               x.parentNode.querySelector('svg').classList.toggle('icon-heart--fill-green');
+               x.parentNode.querySelector('img.svg').classList.toggle('icon-heart--fill-green');
             }
         });
     }
@@ -102,7 +102,7 @@ class AddtoCart {
         }
 
         parent.classList.toggle('checked');
-        parent.querySelector('svg').classList.toggle('icon-heart--fill-green')
+        parent.querySelector('img.svg').classList.toggle('icon-heart--fill-green')
     }
 
 }
