@@ -32,7 +32,7 @@
     <div class="hero__content">
         {% if hero__content__text is defined and hero__content__text is not null %}
         <h1 class="hero__content__text">
-            {{ hero__content__text }}
+            {{ hero__content__text | raw }}
         </h1>
         {% else %}
             <h1 class="hero__content__text" data-grape_id="hero__content__text" data-grape_format="txt">
