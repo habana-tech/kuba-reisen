@@ -1,21 +1,52 @@
+{#{% extends 'frontend/base.html.twig' %}#}
+
+{#{% block title %}Landesinformationen{% endblock %}#}
+
+{#{% block stylesheets %}#}
+{#    <link rel="stylesheet" href="{{ asset('styles/travel_info.css') }}" type="text/css">#}
+{#{% endblock %}#}
+
+{#{% block body %}#}
+{#    <main class="main">#}
+
+{#        {{ include ('frontend/components/global/_hero.html.twig') }}#}
+{#        {{ include ('frontend/components/travel-info/_cards.html.twig') }}#}
+
+{#    </main>#}
+{#{% endblock %}#}
+
+
+{#{% block javascripts %}#}
+
+{#{% endblock %}#}
 {% extends 'frontend/base.html.twig' %}
 
-{% block title %}Landesinformationen{% endblock %}
+    {% block title %}Landesinformationen{% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('styles/travel_info.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('styles/destinations.css') }}" type="text/css">
 {% endblock %}
 
 {% block body %}
     <main class="main">
 
-        {{ include ('frontend/components/global/_hero.html.twig') }}
-        {{ include ('frontend/components/travel-info/_cards.html.twig') }}
+        {{ include('frontend/components/global/_hero.html.twig') }}
+
+        {{ include('frontend/components/destinations/_introduction.html.twig') }}
+
+        {{ include('frontend/components/destinations/_generic_place_features_list.html.twig') }}
+
+        {#        {{ include('frontend/components/destinations/_activities.html.twig') }}#}
+
+        {{ render(controller('App\\Controller\\RegionsController::regionTopDestinations', {'preview':app.request.get('preview')} )) }}
 
     </main>
 {% endblock %}
 
-
-{% block javascripts %}
-
+{% block javascripts_vendors %}
+    <script src="{{ asset('scripts/vendors/three.min.js') }}"></script>
 {% endblock %}
+
+{#{% block javascripts %}#}
+{#    <script src="{{ asset('scripts/destination.js') }}"></script>#}
+{#{% endblock %}#}
