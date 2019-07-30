@@ -3956,8 +3956,9 @@ body.admin-logged .menu-icon-wrapper {
   z-index: 5;
   top: 0;
   width: 100%;
-  display: flex;
   flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;
   font-size: 16px;
   /* The dropdown container */
   /* Dropdown button */
@@ -3965,10 +3966,22 @@ body.admin-logged .menu-icon-wrapper {
   /* Links inside the dropdown */
   /* Add a grey background color to dropdown links on hover */
   /* Show the dropdown menu on hover */ }
+@media (min-width: 800px) {
+    .admin_bar {
+      flex-direction: row; } }
 .admin_bar ul {
-    display: flex;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20%, 30%));
+    grid-gap: 10px;
     list-style: none;
     margin: .5em auto; }
+@media (min-width: 1200px) {
+      .admin_bar ul {
+        width: auto; } }
+@media (min-width: 800px) {
+      .admin_bar ul {
+        display: flex; } }
 .admin_bar ul li {
       margin: 0 .5em;
       padding: 1px 5px;

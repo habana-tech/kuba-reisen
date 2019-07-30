@@ -1,19 +1,42 @@
 .backend_index {
 
-display: grid;
-grid-template-columns: 1fr 1fr 1fr 1fr;
+    @include atMedium {
 
-grid-template-rows: 20vh 10vh 10vh 10vh 10vh; 
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
 
-grid-column-gap: 0px;
+        grid-template-rows: 20vh 10vh 10vh 10vh 10vh;
 
-grid-row-gap: 2em;
+        grid-column-gap: 0px;
+
+        grid-row-gap: 2em;
+    }
 }
 
 .hello_user {
-    grid-area: 1 / 2 / 2 / 4; 
+    @include atMedium {
+        grid-area: 1 / 2 / 2 / 4;
+    }
     text-align: center;}
 
-.main_btns { grid-area:  2 / 1 / 4 / 3; }
+.main_btns, .secundary_btns {
+    @include atMedium {
+        grid-area: 2 / 1 / 4 / 3;
+    }
+    & ul.list-inline{
+        @include atMedium {
+            display: inline-flex;
+        }
+        display: block !important;
+         & li{
+             margin: 5px auto;
+         }
 
-.secundary_btns { grid-area: 4 / 2 / 6 / 5; } 
+    }
+}
+
+.secundary_btns {
+    @include atMedium {
+        grid-area: 4 / 2 / 6 / 5;
+    }
+}

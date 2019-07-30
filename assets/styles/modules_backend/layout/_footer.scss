@@ -112,12 +112,14 @@ a {
     }
 
     .footer-brand {
-    	& img{
-    	height: 65px;
-    	width: 150px;
-    	}
+
     	& a{
     		margin: 0;
+          & img{
+            height: 65px;
+            width: 150px;
+            border: solid red 2px;
+          }
     	}
     }
     
