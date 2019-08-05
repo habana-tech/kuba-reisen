@@ -60,6 +60,7 @@ let hoverEffect = function(opts) {
     let speedOut = opts.speedOut || 1.2;
     let userHover = (opts.hover === undefined) ? true : opts.hover;
     let easing = opts.easing || Expo.easeOut;
+    let hoverElement = opts.hoverElement;
 
     let mobileAndTabletcheck = function() {
         var check = false;
@@ -140,14 +141,14 @@ let hoverEffect = function(opts) {
             evtIn = "touchstart";
             evtOut = "touchend";
         }
-        parent.addEventListener(evtIn, function(e) {
+        hoverElement.addEventListener(evtIn, function(e) {
             TweenMax.to(mat.uniforms.dispFactor, speedIn, {
                 value: 1,
                 ease: easing
             });
         });
 
-        parent.addEventListener(evtOut, function(e) {
+        hoverElement.addEventListener(evtOut, function(e) {
             TweenMax.to(mat.uniforms.dispFactor, speedOut, {
                 value: 0,
                 ease: easing
@@ -194,6 +195,7 @@ imagesTrigger.forEach((img, index)=>img.addEventListener('lazyloaded',
         let imgs = Array.from(container.querySelectorAll('img'));
         new hoverEffect({
             parent: container,
+            hoverElement: container.parentNode.parentNode,
             intensity: container.dataset.intensity || undefined,
             speedIn: container.dataset.speedin || undefined,
             speedOut: container.dataset.speedout || undefined,

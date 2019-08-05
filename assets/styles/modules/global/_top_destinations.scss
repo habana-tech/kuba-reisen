@@ -53,48 +53,60 @@
                 background: linear-gradient(45deg, $light-green, $dark-green 20%, transparent);
             }
 
-            &__image{
+            & a {
+                &:before {
+                    content: '';
+                    position: absolute;
+                    height: 100%;
+                    width: 100%;
+                    top: 0;
+                    left: 0;
+                    z-index: 2;
+                }
+            }
+
+            &__image {
                 overflow: hidden;
                 position: relative;
                 height: 100%;
 
-                @include atXLarge{
+                @include atXLarge {
                     min-height: 60vh;
                 }
 
-                & img{
+                & img {
                     height: 100%;
 
-                    &:nth-child(2){
+                    &:nth-child(2) {
                         position: absolute;
                         top: 0;
                         left: 0;
                         z-index: -1;
                     }
 
-                    @include atXLarge{
+                    @include atXLarge {
                         width: auto;
                     }
                 }
 
-                & .canvas_destinations{
+                & .canvas_destinations {
                     position: absolute;
                     top: 0;
                     left: 0;
                     z-index: -1;
                     object-fit: cover;
 
-                    @include atLarge{
+                    @include atLarge {
                         min-height: 60vh;
                     }
 
-                    &--ready{
+                    &--ready {
                         z-index: 1;
                     }
                 }
             }
 
-            &__text{
+            &__text {
                 position: absolute;
                 bottom: 1em;
                 width: 80%;
@@ -106,14 +118,14 @@
                 z-index: 2;
                 text-shadow: 3px 3px 10px rgba(black, .5);
 
-                & span{
+                & span {
                     display: block;
                     color: white;
                     font-family: $font-titles;
                     font-size: 2em;
                 }
 
-                & p{
+                & p {
                     color: white;
                 }
             }

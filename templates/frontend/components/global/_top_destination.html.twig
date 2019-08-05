@@ -24,52 +24,47 @@
 
 
             <div class="top_destinations__places__place {{ classes[i] }}">
-
                 {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null %}
-                    <a href="">
-                        <div class="top_destinations__places__place__image__editor">
+                    <div class="top_destinations__places__place__image__editor">
 
-                            {# TODO: cambiar visualidad de estas regiones de imagenes en la vista adminisyrativa, con una imagen pequena para que ambas puedan editarse#}
-                            <div class="grid__item-img__editor">
-                                <img data-grape_section="_top_destinations" data-grape_id="{{ grape_img_id_a }}"
-                                        {#{% if page.ElementAttr(grape_img_id_a, 'srcb64') %}#}
-                                        {#src="{{ page.ElementAttr(grape_img_id_a, 'srcb64')  }}"#}
-                                        {#data-src="{{ page.ElementAttr(grape_img_id_a, 'src', '/img/destination/Img20.jpg')  }}"#}
-                                        {#{% else %}#}
-                                     src="{{ page.ElementAttr(grape_img_id_a, 'src', '/img/destination/Img20.jpg')  }}"
-                                        {#{% endif %}#}
+                        {# TODO: cambiar visualidad de estas regiones de imagenes en la vista adminisyrativa, con una imagen pequena para que ambas puedan editarse#}
+                        <div class="grid__item-img__editor">
+                            <img data-grape_section="_top_destinations" data-grape_id="{{ grape_img_id_a }}"
+                                    {#{% if page.ElementAttr(grape_img_id_a, 'srcb64') %}#}
+                                    {#src="{{ page.ElementAttr(grape_img_id_a, 'srcb64')  }}"#}
+                                    {#data-src="{{ page.ElementAttr(grape_img_id_a, 'src', '/img/destination/Img20.jpg')  }}"#}
+                                    {#{% else %}#}
+                                 src="{{ page.ElementAttr(grape_img_id_a, 'src', '/img/destination/Img20.jpg')  }}"
+                                    {#{% endif %}#}
 
-                                        {#srcset="#}
-                                        {#{{ page.ElementAttr('_top_destination_img1_1', 'src', '/img/dmaps/7.jpg')  | imagine_filter('min_width_900') }} 900w,#}
-                                        {#{{ page.ElementAttr('_top_destination_img1_1', 'src', '/img/dmaps/7.jpg') | imagine_filter('min_width_800') }} 800w"#}
+                                    {#srcset="#}
+                                    {#{{ page.ElementAttr('_top_destination_img1_1', 'src', '/img/dmaps/7.jpg')  | imagine_filter('min_width_900') }} 900w,#}
+                                    {#{{ page.ElementAttr('_top_destination_img1_1', 'src', '/img/dmaps/7.jpg') | imagine_filter('min_width_800') }} 800w"#}
 
-                                     alt="Image"/>
-                                <img data-grape_section="_top_destinations" data-grape_id="{{ grape_img_id_b }}"
-                                        {#{% if page.ElementAttr(grape_img_id_b, 'srcb64') %}#}
-                                        {#src="{{ page.ElementAttr(grape_img_id_b, 'srcb64')  }}"#}
-                                        {#data-src="{{ page.ElementAttr(grape_img_id_b, 'src', '/img/destination/Img20.jpg')  }}"#}
-                                        {#{% else %}#}
-                                     src="{{ page.ElementAttr(grape_img_id_b, 'src', '/img/destination/Img20.jpg')  }}"
-                                        {#{% endif %}#}
+                                 alt="Image"/>
+                            <img data-grape_section="_top_destinations" data-grape_id="{{ grape_img_id_b }}"
+                                    {#{% if page.ElementAttr(grape_img_id_b, 'srcb64') %}#}
+                                    {#src="{{ page.ElementAttr(grape_img_id_b, 'srcb64')  }}"#}
+                                    {#data-src="{{ page.ElementAttr(grape_img_id_b, 'src', '/img/destination/Img20.jpg')  }}"#}
+                                    {#{% else %}#}
+                                 src="{{ page.ElementAttr(grape_img_id_b, 'src', '/img/destination/Img20.jpg')  }}"
+                                    {#{% endif %}#}
 
-                                        {#srcset="#}
-                                        {#{{ page.ElementAttr('top_destination_img1_2', 'src', '/img/dmaps/7.jpg')  | imagine_filter('min_width_900') }} 900w,#}
-                                        {#{{ page.ElementAttr('top_destination_img1_2', 'src', '/img/dmaps/7.jpg') | imagine_filter('min_width_800') }} 800w"#}
+                                    {#srcset="#}
+                                    {#{{ page.ElementAttr('top_destination_img1_2', 'src', '/img/dmaps/7.jpg')  | imagine_filter('min_width_900') }} 900w,#}
+                                    {#{{ page.ElementAttr('top_destination_img1_2', 'src', '/img/dmaps/7.jpg') | imagine_filter('min_width_800') }} 800w"#}
 
-                                     alt="Image"/>
-                            </div>
-
+                                 alt="Image"/>
                         </div>
-                        <div class="top_destinations__places__place__text">
-                            <span data-grape_section="_top_destinations" data-grape_id="{{ grape_text_title }}">{{ page.ElementContent(grape_text_title,"Trinidad") | raw }}</span>
-                            <p data-grape_section="_top_destinations" data-grape_id="{{ grape_text_description }}">{{ page.ElementContent(grape_text_description,"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet enim ") | raw }}</p>
-                        </div>
-                    </a>
+
+                    </div>
+                    <div class="top_destinations__places__place__text">
+                        <span data-grape_section="_top_destinations" data-grape_id="{{ grape_text_title }}">{{ page.ElementContent(grape_text_title,"Trinidad") | raw }}</span>
+                        <p data-grape_section="_top_destinations" data-grape_id="{{ grape_text_description }}">{{ page.ElementContent(grape_text_description,"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet enim ") | raw }}</p>
+                    </div>
                 {% else %}
-                    <a href="">
+                    <a href="#">
                         <div class="top_destinations__places__place__image">
-
-                            {#TODO: cambiar visualidad de estas regiones de imagenes en la vista adminisyrativa, con una imagen pequena para que ambas puedan editarse#}
                             <div class="grid__item-img" data-grape_section="_top_destinations" data-displacement="{{ asset('/img/dmaps/7.jpg') }}" data-intensity="-0.8">
 
                                 {{ imgTagContent(
@@ -86,12 +81,11 @@
                                     '(min-width: 1200px) 60vw, 100vw',
                                     'data-expand="500" data-grape_section="_top_destinations" data-grape_id="'~ grape_img_id_b~'"') | raw }}
                             </div>
-
                         </div>
                         <div class="top_destinations__places__place__text">
-                            <span data-grape_section="_top_destinations" data-grape_id="{{ grape_text_title }}">{{ page.ElementContent(grape_text_title,"Trinidad") | raw }}</span>
-                            <p data-grape_section="_top_destinations" data-grape_id="{{ grape_text_description }}">{{ page.ElementContent(grape_text_description,"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet enim ") | raw }}</p>
-                        </div>
+                                <span data-grape_section="_top_destinations" data-grape_id="{{ grape_text_title }}">{{ page.ElementContent(grape_text_title,"Trinidad") | raw }}</span>
+                                <p data-grape_section="_top_destinations" data-grape_id="{{ grape_text_description }}">{{ page.ElementContent(grape_text_description,"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet enim ") | raw }}</p>
+                            </div>
                     </a>
                 {% endif %}
 
