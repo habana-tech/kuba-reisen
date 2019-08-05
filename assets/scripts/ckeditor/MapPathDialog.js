@@ -12,8 +12,20 @@ CKEDITOR.dialog.add( 'MapPathDialog', function( editor ) {
                     {
                         type: 'textarea',
                         id: 'geojson',
-                        label: 'geoJson content',
-                        validate: CKEDITOR.dialog.validate.notEmpty( "geoJson cannot be empty." ),
+                        label: 'geoJson content for generate regions on Map',
+                        validate: CKEDITOR.dialog.validate.functions(
+                            function(dialog){
+                                try {
+                                    let tmp = JSON.parse(dialog.valueOf('tab-MapPath', 'geojson'));
+                                    return tmp.length > 0;
+                                }
+                                catch (e) {
+                                    return false;
+                                }
+
+                                },
+                            CKEDITOR.dialog.validate.notEmpty( "GoeJson cannot be empty." ),
+                            "geoJson contains errors" ),
                         // Called by the main setupContent method call on dialog initialization.
                         setup: function( element ) {
 
