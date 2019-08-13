@@ -3,16 +3,25 @@
     width: 100%;
     position: relative;
     flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 2em 0;
+
+    &:first-child{
+      margin-top: auto;
+    }
 
     &__text{
         order: 2;
         width: 100%;
         padding: 1em;
 
+
         @include atLarge{
             order: 1;
             width: 33%;
             padding: 1em 1em;
+            overflow-y: auto;
+            max-height: 80vh;
         }
 
         &__title{
@@ -31,16 +40,17 @@
 
         @include atLarge{
             order: 2;
-            width: 65%;
+            width: 60%;
         }
 
         & img{
-            position: sticky;
-            top: 0;
+            //position: sticky;
+            //top: 0;
             max-height: 80vh;
 
             @include atLarge{
-                min-height: 100vh;
+                //min-height: 100vh;
+                min-height: auto;
             }
         }
     }

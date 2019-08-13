@@ -18,18 +18,18 @@ body {
 .icon-heart path {
     fill: transparent;
     stroke: white;
-    stroke-width: 30px; }
+    stroke-width: 0; }
 .icon-heart--green path {
-    fill: transparent;
+    fill: white;
     stroke: #62ab03;
-    stroke-width: 30px; }
+    stroke-width: 0; }
 .icon-heart--fill-green {
     -webkit-transform: scale(1.1);
             transform: scale(1.1); }
 .icon-heart--fill-green path {
       fill: #62ab03;
       stroke: white;
-      stroke-width: 30px; }
+      stroke-width: 0; }
 .icon-arrow path {
     fill: rgba(102, 102, 102, 0.8);
     stroke: rgba(102, 102, 102, 0.8);

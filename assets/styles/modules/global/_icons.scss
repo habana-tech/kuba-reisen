@@ -18,14 +18,14 @@
         & path {
             fill: transparent;
             stroke: white;
-            stroke-width: 30px;
+            stroke-width: 0;
         }
 
         &--green{
             & path {
-                fill: transparent;
+                fill: white;
                 stroke: $light-green;
-                stroke-width: 30px;
+                stroke-width: 0;
             }
 
         }
@@ -35,7 +35,7 @@
             & path {
                 fill: $light-green;
                 stroke: white;
-                stroke-width: 30px;
+                stroke-width: 0;
             }
         }
     }

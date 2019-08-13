@@ -1,21 +1,3 @@
-// CKEDITOR.plugins.add( 'MapPath', {
-//     icons: 'MapPath',
-//     init: function( editor ) {
-//         editor.addCommand( 'insertMapPath', {
-//             exec: function( editor ) {
-//                 var now = new Date();
-//                 // Insert the timestamp into the document.
-//                 editor.insertHtml( 'The <span>current</span> marker <i data-coordenates="xxx,yyy">DATA</i>and time is: <em>' + now.toString() + '</em>' );
-//             }
-//         });
-//         editor.ui.addButton( 'MapPath', {
-//             label: 'Map Marker',
-//             command: 'insertMapPath',
-//             toolbar: 'insert'
-//         });
-//     }
-// });
-
 CKEDITOR.plugins.add( 'MapPath', {
     icons: 'MapPath',
     init: function( editor ) {
