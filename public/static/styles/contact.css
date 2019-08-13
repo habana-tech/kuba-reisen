@@ -385,7 +385,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     justify-content: center; }
 .travel-interest__options {
     display: grid;
-    grid-template-areas: "img1 img2 img3" "img4 img5 img6" "img7 img8 img9";
+    grid-template-areas: "img1 img2 img3" "img4 img5 img6" "img7 img8 img9";
     grid-template-rows: 40vh 40vh 40vh;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: .25em; }
