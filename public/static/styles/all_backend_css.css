@@ -4307,6 +4307,78 @@ Descr: Custom radio toggle
 .radio-switch__input:checked ~ .radio-switch__marker {
     -webkit-transform: translateX(100%);
             transform: translateX(100%); }
+.cookie {
+  position: fixed;
+  bottom: 2em;
+  left: 2em;
+  background: white;
+  border-radius: 2px;
+  box-shadow:2px 2px 8px rgba(0, 0, 0, 0.2);
+  width: 30%;
+  display: flex;
+  flex-wrap: wrap;
+  z-index: 4; }
+@-webkit-keyframes collapse {
+  0% {
+    z-index: 4;
+    opacity: 1; }
+  100% {
+    z-index: 4;
+    opacity: 0; } }
+@keyframes collapse {
+  0% {
+    z-index: 4;
+    opacity: 1; }
+  100% {
+    z-index: 4;
+    opacity: 0; } }
+.cookie--no-visible {
+    -webkit-animation: collapse .3s ease-in-out 1;
+            animation: collapse .3s ease-in-out 1;
+    z-index: -1; }
+.cookie__img {
+    position: absolute;
+    top: -2em;
+    left: -2em;
+    margin: auto;
+    width: 4em;
+    height: 4em; }
+.cookie__message {
+    width: 100%;
+    margin: 1em 2em .5em; }
+.cookie__message h1, .cookie__message p {
+      margin-bottom: .25em; }
+.cookie__btn {
+    width: 100%;
+    margin-bottom: .5em;
+    display: flex;
+    justify-content: center; }
+.cookie-overlay {
+  position: fixed;
+  z-index: 3;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color:rgba(0, 0, 0, 0.75); }
+@-webkit-keyframes hidden {
+  0% {
+    background-color:rgba(0, 0, 0, 0.75);
+    z-index: 3; }
+  100% {
+    background-color:rgba(0, 0, 0, 0);
+    z-index: 3; } }
+@keyframes hidden {
+  0% {
+    background-color:rgba(0, 0, 0, 0.75);
+    z-index: 3; }
+  100% {
+    background-color:rgba(0, 0, 0, 0);
+    z-index: 3; } }
+.cookie-overlay--no-visible {
+    -webkit-animation: hidden .3s ease-in-out 1;
+            animation: hidden .3s ease-in-out 1;
+    z-index: -1; }
 .blur-up {
   -webkit-filter: blur(8px);
           filter: blur(8px);
@@ -4878,7 +4950,7 @@ Descr: Custom radio toggle
   border-bottom-left-radius: 2px;
   right: 0;
   margin: auto;
-  z-index: 5;
+  z-index: 1;
   padding: .25em;
   background:linear-gradient(45deg, rgba(53, 207, 212, 0.95), rgba(20, 161, 230, 0.95));
   color: white;
@@ -5048,7 +5120,9 @@ Descr: Custom radio toggle
     z-index: 0; }
 .travel-options {
   margin-bottom: 2em;
-  position: relative; }
+  position: relative;
+  width: 100%;
+  overflow: hidden; }
 .travel-options__grid {
     display: grid;
     grid-template-areas: "img1 img6" "img2 img6" "img9 img9" "img10 img10" "img3 img3" "img4 img11" "img5 img7 " "img5 img8" "img12 img14" "img13 img14";
@@ -5631,6 +5705,8 @@ body {
   margin: 2em 0; }
 .feature:first-child {
     margin-top: auto; }
+.feature:last-child {
+    margin-bottom: 0; }
 .feature__text {
     order: 2;
     width: 100%;

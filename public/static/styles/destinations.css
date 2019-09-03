@@ -17,6 +17,8 @@
   margin: 2em 0; }
 .feature:first-child {
     margin-top: auto; }
+.feature:last-child {
+    margin-bottom: 0; }
 .feature__text {
     order: 2;
     width: 100%;

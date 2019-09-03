@@ -1,13 +1,4 @@
-function getCookie(name) {
-    let cArr = document.cookie.split(';');
-    for(let i=0;i < cArr.length;i++) {
-        let cookie = cArr[i].split("=",2);
-        cookie[0] = cookie[0].replace(/^\s+/,"");
-        if (cookie[0] === name)
-            return cookie;
-    }
-    return false;
-}
+import {getCookie} from './_utils';
 
 class CartBar{
     constructor(){
