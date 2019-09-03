@@ -244,7 +244,7 @@ body {
   justify-content: center; }
 .description-itinerary__content h3 {
     border-bottom: 1px solid #f9c90d; }
-.description-itinerary__content span[data-map] {
+.description-itinerary__content span[data-map], .description-itinerary__content span[data-path-map] {
     position: absolute;
     visibility: hidden;
     height: 0;

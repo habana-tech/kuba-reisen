@@ -13,8 +13,14 @@ class ActivityMap {
         this.map.scrollZoom.disable();
 
         this.points = document.querySelectorAll('.description-itinerary__content span[data-map]');
+        this.paths = document.querySelectorAll('.description-itinerary__content span[data-path-map]');
 
         this.setMarkersAndZoom();
+        this.events();
+    }
+
+    events(){
+        this.map.on('load', this.setPathAndZoom.bind(this));
     }
 
     setMarkersAndZoom(){
@@ -56,6 +62,57 @@ class ActivityMap {
             [lats[lats.length-1], logs[logs.length-1] ]];
 
         this.map.fitBounds(maxCoords, {padding: 100});
+    }
+
+    setPathAndZoom(){
+        if (this.paths.length === 0)
+            return;
+
+        this.paths.forEach((path)=>{
+            let props = path.getAttribute('data-path-map');
+            props = JSON.parse(props);
+            let geojson = props.geojson;
+            console.log(geojson);
+
+            let coordinates = geojson.features[0].geometry.coordinates;
+            console.log(coordinates);
+
+            let lats = [];
+            let logs = [];
+
+            coordinates.forEach((coordinate)=> {
+                lats.push(coordinate[0]);
+                logs.push(coordinate[1]);
+            });
+
+            lats.sort((a,b) => { return a <= b ? -1 : 1 } );
+            logs.sort((a,b) => { return a <= b ? -1 : 1 } );
+
+            let maxCoordsPath = [[lats[0],logs[0]],
+                [lats[lats.length-1], logs[logs.length-1] ]];
+
+
+            this.map.addLayer({
+                'id': 'layer-path',
+                'type': 'line',
+                'source': {
+                    'type': 'geojson',
+                    'data': geojson
+                },
+                'layout': {
+                    'line-cap': 'round',
+                    'line-join': 'round'
+                },
+                'paint': {
+                    'line-color': '#ed6498',
+                    'line-width': 5,
+                    'line-opacity': .8
+                }
+            });
+
+            this.map.fitBounds(maxCoordsPath, {padding: 100});
+
+        });
     }
 
 }

@@ -14,54 +14,60 @@ CKEDITOR.dialog.add( 'MapPathDialog', function( editor ) {
                         id: 'name',
                         label: 'Name of this Path',
                         setup: function( element ) {
-                            // let prevValue = JSON.parse(element.getAttribute( "data-map" ));
-                            // this.setValue(prevValue.name);
+                            let prevValue = '';
+                            try {
+                                prevValue = JSON.parse(element.getAttribute('data-path-map'));
+                            } catch (e) {}
 
-                            console.log('initializing name')
-
+                            this.setValue(prevValue.name);
                         }
                     },
                     {
                         type: 'textarea',
                         id: 'geojson',
                         label: 'GeoJson Content',
-                        validate: CKEDITOR.dialog.validate.notEmpty( "geoJson cannot be empty." ),
+                        validate: CKEDITOR.dialog.validate.notEmpty('geoJson cannot be empty'),
                         // Called by the main setupContent method call on dialog initialization.
                         setup: function( element ) {
-                            console.log('init the thing');;
+                            let prevValue = '';
+                            try {
+                                prevValue = JSON.parse(element.getAttribute('data-path-map'));
+                                prevValue = JSON.stringify(prevValue.geojson, undefined, 4);
+                            }catch (e) {}
+
+                            this.setValue(prevValue);
                         }
                     },
                 ]
             }
         ],
+        // onChange: function(){
+        //     console.log('i change the content');
+        // },
         onOk: function() {
-            //
-            // // Create a new <abbr> element.
-            // var elm = this.element;
-            //
-            // // Invoke the commit methods of all dialog window elements, so the <abbr> element gets modified.
-            // this.commitContent( elm );
-            //
-            // // Finally, if in insert mode, insert the element into the editor at the caret position.
-            // if ( this.insertMode )
-            //     editor.insertElement( elm );
+            // Create a new <span> element.
 
             let dialog = this;
-
             let elm = editor.document.createElement('span');
 
             let name = "\"name\":";
             if (dialog.getValueOf('tab-MapPath', 'name')==='')
-                name+="\"\"";
+                name += "\"\"";
             else
-                name+="\""+dialog.getValueOf('tab-MapPath', 'name')+"\"";
+                name += "\""+dialog.getValueOf('tab-MapPath', 'name')+"\"";
 
-            let pathGeoJson = dialog.getValueOf('tab-MapPath', 'geojson');
+            let pathGeoJson = "\"geojson\":";
+            if (dialog.getValueOf('tab-MapPath', 'geojson')==='')
+                pathGeoJson += "\"empty\"";
+            else
+                pathGeoJson += dialog.getValueOf('tab-MapPath', 'geojson');
 
-            let data_map = [name, pathGeoJson];
-            data_map = '{'+data_map.toString()+'}';
 
-            elm.setAttribute('data-path-map', data_map);
+            let data_path_map = [name, pathGeoJson];
+            data_path_map = '{'+data_path_map.toString()+'}';
+
+            elm.setAttribute('data-path-map', data_path_map);
+            console.info(data_path_map);
             elm.setAttribute( 'class','MapPath');
             elm.setText( "[MP]");
             editor.insertElement( elm );
@@ -69,43 +75,35 @@ CKEDITOR.dialog.add( 'MapPathDialog', function( editor ) {
         // Invoked when the dialog is loaded.
         onShow: function() {
            //  this.move(this.getPosition().x, 0); // Top center
-           //  // Get the selection from the editor.
-           // let selection = editor.getSelection();
+            // Get the selection from the editor.
+           let selection = editor.getSelection();
            //
-           //  // Get the element at the start of the selection.
-           // let element = selection.getStartElement();
-           //
-           //  // Get the <abbr> element closest to the selection, if it exists.
-           //  // if ( element ){
-           //  //     element = element.getAscendant( 'img', true )
-           //  //
-           //  // }
-           //
-           //  element = editor.restoreRealElement(element);
-           //
-           //  // Create a new <abbr> element if it does not exist.
-           //  if ( !element || element.getName() != 'span' ) {
-           //
-           //      element = editor.document.createElement( 'span' );
-           //      let center = "\"center\":[-79.756514, 22.028145]";
-           //      let zoom = "\"zoom\":5";
-           //
-           //      let data_map = [center, zoom];
-           //      data_map = '{'+data_map.toString()+'}';
-           //
-           //      element.setAttribute('data-map', data_map);
-           //      // Flag the insertion mode for later use.
-           //      this.insertMode = true;
-           //  }
-           //  else
-           //      this.insertMode = false;
-           //
-           //  // Store the reference to the <abbr> element in an internal property, for later use.
-           // this.element = element;
+            // Get the element at the start of the selection.
+           let element = selection.getStartElement();
+            element = editor.restoreRealElement(element);
 
-            // Invoke the setup methods of all dialog window elements, so they can load the element attributes.
-            // this.setupContent(this.element['$']);
-            this.setupContent(null);
+            // Create a new <span> element if it does not exist.
+            if ( !element || element.getName() != 'span' ) {
+
+                element = editor.document.createElement( 'span' );
+                let name = "\"name\":";
+                let pathGeoJson = "\"geojson\":";
+
+                let data_path_map = [name, pathGeoJson];
+                data_path_map = '{'+data_path_map.toString()+'}';
+
+                element.setAttribute('data-path-map', data_path_map);
+                // Flag the insertion mode for later use.
+                this.insertMode = true;
+            }
+            else
+                this.insertMode = false;
+
+            // Store the reference to the <span> element in an internal property, for later use.
+            this.element = element;
+
+            //Invoke the setup methods of all dialog window elements, so they can load the element attributes.
+            this.setupContent(this.element['$']);
         }
     };
 });

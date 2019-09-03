@@ -12,7 +12,7 @@
             border-bottom: 1px solid $light-orange;
         }
 
-        span[data-map]{
+        span[data-map], span[data-path-map]{
             position: absolute;
             visibility: hidden;
             height: 0;

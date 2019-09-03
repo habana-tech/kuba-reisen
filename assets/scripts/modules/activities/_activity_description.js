@@ -332,28 +332,28 @@ class ActivityDescription{
 
     events(){
 
-        this.map.on('load', () => {
-            this.map.addLayer({
-                'id': 'line-animation',
-                'type': 'line',
-                'source': {
-                    'type': 'geojson',
-                    'data': 'https://api.mapbox.com/datasets/v1/l4ndy/cjxxh6x810wpm2nmiz1azkfn9/features/6b9e5424a38dc16294214a28ab1518fd?access_token=pk.eyJ1IjoibDRuZHkiLCJhIjoiY2p3czlqd3JxMDFsZzRhcGVta3V2ZTF5ZCJ9.LtTjS75OzU1QOxcyYgLXTA'
-                },
-                'layout': {
-                    'line-cap': 'round',
-                    'line-join': 'round'
-                },
-                'paint': {
-                    'line-color': '#ed6498',
-                    'line-width': 5,
-                    'line-opacity': .8
-                }
-            });
+        // this.map.on('load', () => {
+        //     this.map.addLayer({
+        //         'id': 'line-animation',
+        //         'type': 'line',
+        //         'source': {
+        //             'type': 'geojson',
+        //             'data': 'https://api.mapbox.com/datasets/v1/l4ndy/cjxxh6x810wpm2nmiz1azkfn9/features/6b9e5424a38dc16294214a28ab1518fd?access_token=pk.eyJ1IjoibDRuZHkiLCJhIjoiY2p3czlqd3JxMDFsZzRhcGVta3V2ZTF5ZCJ9.LtTjS75OzU1QOxcyYgLXTA'
+        //         },
+        //         'layout': {
+        //             'line-cap': 'round',
+        //             'line-join': 'round'
+        //         },
+        //         'paint': {
+        //             'line-color': '#ed6498',
+        //             'line-width': 5,
+        //             'line-opacity': .8
+        //         }
+        //     });
+        //
+        // });
 
-        });
-
-        // this.map.on('load',this.addLineLayer.bind(this));
+        this.map.on('load',this.addLineLayer.bind(this));
 
         document.addEventListener('visibilitychange', ()=> { this.resetTime = true });
     }

@@ -183,19 +183,9 @@ CKEDITOR.dialog.add( 'MapMarkerDialog', function( editor ) {
             }
         ],
         onOk: function() {
-            //
-            // // Create a new <abbr> element.
-            // var elm = this.element;
-            //
-            // // Invoke the commit methods of all dialog window elements, so the <abbr> element gets modified.
-            // this.commitContent( elm );
-            //
-            // // Finally, if in insert mode, insert the element into the editor at the caret position.
-            // if ( this.insertMode )
-            //     editor.insertElement( elm );
+            // Create a new <span> element.
 
             let dialog = this;
-
             let elm = editor.document.createElement('span');
 
             let name = "\"name\":";
@@ -224,16 +214,9 @@ CKEDITOR.dialog.add( 'MapMarkerDialog', function( editor ) {
 
             // Get the element at the start of the selection.
            let element = selection.getStartElement();
-
-            // Get the <abbr> element closest to the selection, if it exists.
-            // if ( element ){
-            //     element = element.getAscendant( 'img', true )
-            //
-            // }
-
             element = editor.restoreRealElement(element);
 
-            // Create a new <abbr> element if it does not exist.
+            // Create a new <span> element if it does not exist.
             if ( !element || element.getName() != 'span' ) {
 
                 element = editor.document.createElement( 'span' );
