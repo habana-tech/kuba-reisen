@@ -130,31 +130,17 @@ class EndpointController extends AbstractController
             $logger->info('dynamic page found!');
 
             $files = $request->files->get('files');
-            //dump($files);
             if($files)
             {
                 $logger->info('files found');
 
-                //dump($files);
                 foreach ($files as $file) {
 
 
                     $image = new UploadedImage();
 
-//                    if(!$file->getError() && $file->getClientMimeType("application/octet-stream"))
-//                    {
-//                        //$file->
-//                        $output_file = tmpfile();
-//                        $ifp = fopen( $output_file, 'wb' );
-//                        $data = explode( ',', $request->get('image') );
-//                        fwrite( $ifp, base64_decode( $data[ 1 ] ) );
-//                        fclose( $ifp );
-//                    }
-
                   try{
                       $image->setImageFile($file);
-                      //  if(!$image->getExtension())
-                      //      $image->set
                       $em->persist($image);
                       $page->addUploadedImage($image);
                       $images[] = $image;
@@ -162,8 +148,7 @@ class EndpointController extends AbstractController
                   }
                   catch (FileNotFoundException  $e)
                   {
-                     // if($file->getError())
-                          return $this->json(['error'=>'Error uploading file, try againg or use other file'], 400);
+                        return $this->json(['error'=>'Error uploading file, try againg or use other file'], 400);
 
                   }
                 }

@@ -2,16 +2,19 @@ import { setCookie, getCookie } from './_utils';
 
 class Cookies{
     constructor(){
+        //If the cokie was set, the dialog doenst exist!! (twig didnt write it) and JS twrows an error
         this.allowBtn = document.querySelector('.cookie .cookie__btn button');
         this.message = document.querySelector('.cookie');
         this.overlay = document.querySelector('.cookie-overlay');
-
-        this.event();
+        
+        //Only if the btn exist.
+        if(this.allowBtn) 
+            this.event();
     }
 
     event(){
         this.dialog();
-        this.allowBtn.addEventListener('click', this.allowCookies.bind(this));
+        this.allowBtn.addEventListener('click', this.allowCookies.bind(this));      
     }
 
     allowCookies(){
@@ -21,7 +24,6 @@ class Cookies{
     }
 
     dialog(){
-        //TODO: this MUST be do in server side and render dialog if necessary
         if (getCookie('allow-cookies'))
             this.hide();
     }
