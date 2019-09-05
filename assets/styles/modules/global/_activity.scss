@@ -67,11 +67,13 @@
             &__add{
                 width: 2em;
                 height: 2em;
+                cursor: pointer;
 
-                & a{
+                &::before{
+                    position: absolute;
+                    content: '';
                     height: 100%;
                     width: 100%;
-                    position: absolute;
                     top: 0;
                     left: 0;
                 }

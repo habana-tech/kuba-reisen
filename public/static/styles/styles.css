@@ -10,34 +10,21 @@ body {
   width: 100%;
   height: 100%;
   transition: all .3s ease-in-out; }
-.icon symbol {
-    display: block; }
-.icon path {
-    fill: white;
-    stroke: transparent; }
-.icon-heart path {
-    fill: transparent;
-    stroke: white;
-    stroke-width: 0; }
-.icon-heart--green path {
-    fill: white;
-    stroke: #62ab03;
-    stroke-width: 0; }
-.icon-heart--fill-green {
-    -webkit-transform: scale(1.1);
-            transform: scale(1.1); }
-.icon-heart--fill-green path {
-      fill: #62ab03;
-      stroke: white;
-      stroke-width: 0; }
-.icon-arrow path {
-    fill: rgba(102, 102, 102, 0.8);
-    stroke: rgba(102, 102, 102, 0.8);
-    transition: all .3s ease-in-out; }
-.icon-arrow:hover path {
-    fill: #666;
-    stroke: #666; }
-.icon-arrow--rot {
+.heart #heart_border {
+  fill: white; }
+.heart #heart_inside {
+  fill: transparent; }
+.heart--fill-green #heart_inside {
+  fill: #004d00; }
+.heart--fill-white #heart_inside {
+  fill: white; }
+.heart--inverse #heart_border {
+  fill: #62ab03; }
+.heart--inverse.heart--fill-white #heart_inside {
+  fill: #62ab03; }
+.arrow {
+  cursor: pointer; }
+.arrow--rotate {
     -webkit-transform: rotate(180deg);
             transform: rotate(180deg); }
 /* --------------------------------
@@ -530,11 +517,12 @@ Descr: Custom radio toggle
 .section__title__description {
       position: relative;
       top: 1em;
-      width: 50%;
+      width: 95%;
       text-align: center; }
 @media (min-width: 1200px) {
         .section__title__description {
-          top: -2em; } }
+          top: -2em;
+          width: 50%; } }
 .divider {
   width: 100%;
   margin: 3em 0;
@@ -703,11 +691,13 @@ Descr: Custom radio toggle
       z-index: 1; }
 .activity__content__actions__add {
         width: 2em;
-        height: 2em; }
-.activity__content__actions__add a {
+        height: 2em;
+        cursor: pointer; }
+.activity__content__actions__add::before {
+          position: absolute;
+          content: '';
           height: 100%;
           width: 100%;
-          position: absolute;
           top: 0;
           left: 0; }
 .activity__content__title {
@@ -749,7 +739,7 @@ Descr: Custom radio toggle
   border-bottom-left-radius: 2px;
   right: 0;
   margin: auto;
-  z-index: 1;
+  z-index: 2;
   padding: .25em;
   background: linear-gradient(45deg, rgba(53, 207, 212, 0.95), rgba(20, 161, 230, 0.95));
   color: white;

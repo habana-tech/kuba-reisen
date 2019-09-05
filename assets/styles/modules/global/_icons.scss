@@ -4,58 +4,51 @@
     height: 100%;
     transition: all .3s ease-in-out;
 
-    & symbol {
-        display: block;
-    }
+}
 
-    & path {
+.heart{
+
+    & #heart_border{
         fill: white;
-        stroke: transparent;
     }
 
+    & #heart_inside{
+        fill: transparent;
+    }
 
-    &-heart{
-        & path {
-            fill: transparent;
-            stroke: white;
-            stroke-width: 0;
+    &--fill{
+
+        &-green {
+            & #heart_inside {
+                fill: $dark-green;
+            }
         }
 
-        &--green{
-            & path {
+        &-white{
+            & #heart_inside {
                 fill: white;
-                stroke: $light-green;
-                stroke-width: 0;
-            }
-
-        }
-
-        &--fill-green{
-            transform: scale(1.1);
-            & path {
-                fill: $light-green;
-                stroke: white;
-                stroke-width: 0;
             }
         }
     }
 
-    &-arrow{
-        & path {
-            fill: rgba($grey, .8);
-            stroke: rgba($grey, .8);
-            transition: all .3s ease-in-out;
+    &--inverse{
+        & #heart_border{
+            fill: $light-green;
         }
 
-        &:hover{
-            & path {
-                fill: $grey;
-                stroke: $grey;
+        &.heart--fill-white{
+
+            & #heart_inside {
+                fill: $light-green;
             }
         }
+    }
+}
 
-        &--rot{
-            transform: rotate(180deg);
-        }
+.arrow{
+    cursor: pointer;
+    
+    &--rotate{
+        transform: rotate(180deg);
     }
 }

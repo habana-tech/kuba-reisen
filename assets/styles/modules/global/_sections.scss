@@ -95,11 +95,12 @@
         &__description{
             position: relative;
             top: 1em;
-            width: 50%;
+            width: 95%;
             text-align: center;
 
             @include atLarge{
                 top: -2em;
+                width: 50%;
             }
         }
     }

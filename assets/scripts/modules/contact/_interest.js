@@ -12,7 +12,7 @@ class Interest{
         e.preventDefault();
         let interest = e.target.parentNode;
         interest.classList.toggle('interest--checked');
-        interest.querySelector('svg').classList.toggle('icon-heart--fill-green');
+        interest.querySelector('svg.heart').classList.toggle('heart--fill-green');
 
     }
 }
