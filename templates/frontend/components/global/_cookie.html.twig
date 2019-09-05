@@ -1,3 +1,4 @@
+{% if app.request.cookies.get('allow-cookies') !== 'allow' %}
 <div class="cookie-overlay"></div>
 <aside class="cookie">
     <div class="cookie__img">
@@ -90,4 +91,4 @@
         <button class="btn btn--green btn--small">Allow</button>
     </div>
 </aside>
-
+{% endif %}

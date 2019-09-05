@@ -22,6 +22,7 @@ class Cookies{
 
     dialog(){
         //TODO: this MUST be do in server side and render dialog if necessary
+        //If the cokie was set, the dialog doenst exist!! (twig didnt write it). Check if it work correctly
         if (getCookie('allow-cookies'))
             this.hide();
     }
