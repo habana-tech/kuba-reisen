@@ -8,7 +8,7 @@
         </div>
         <div class="activity__content__actions">
             <div class="activity__content__actions__add" data-activity_id="">
-                {{ include('frontend/components/_icons/_heart.html.twig') }}
+                {% include('frontend/components/_icons/_heart.html.twig') with {inverse:'heart--inverse'} only %}
             </div>
         </div>
         <div class="activity__content__title">
