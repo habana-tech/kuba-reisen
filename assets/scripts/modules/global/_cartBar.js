@@ -12,7 +12,7 @@ class CartBar{
     }
 
     check(){
-        let currentValue = getCookie('ids');
+        let currentValue = getCookie('products_cart');
         if (!currentValue)
             return;
 

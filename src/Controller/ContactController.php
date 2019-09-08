@@ -57,9 +57,9 @@ class ContactController extends AbstractController
 
         //obtaining activities from cookies
         $activities = [];
-        if (isset($request->cookies->all()['ids']))
+        if (isset($request->cookies->all()['products_cart']))
         {
-            $ids = $request->cookies->all()['ids'];
+            $ids = $request->cookies->all()['products_cart'];
             $ids = explode(',', $ids);
 
 

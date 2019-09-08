@@ -1,4 +1,4 @@
-export function setCookie(value, name='ids' , days=3) {
+export function setCookie(value, name='products_cart' , days=3) {
     let date = new Date();
     date.setTime(date.getTime()+(days*24*60*60*1000));
     let expires = "; expires="+date.toGMTString ();
