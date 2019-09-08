@@ -73,8 +73,8 @@ class ContactPlaningType extends AbstractType
             ->add('selfLuxury', HiddenType::class,[
              'label'=>"Wie viel bevorzugen Sie Luxus?"] )
 
-            ->add('name', null, ['label'=>'Name'])
-            ->add('email', EmailType::class ,[
+            ->add('clientName', null, ['label'=>'Name'])
+            ->add('clientEmail', EmailType::class ,[
                 'label'=>'E-Mail'
             ])
             ->add('message', null, ['label'=>'Nachricht'])

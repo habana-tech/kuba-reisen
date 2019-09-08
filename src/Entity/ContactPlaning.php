@@ -43,7 +43,7 @@ class ContactPlaning
     private $travelBudget;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Interest")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $interests;
 
@@ -100,20 +100,9 @@ class ContactPlaning
      */
     private $clientEmail;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $name;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $email;
-
     public function __construct()
     {
-        $this->interests = new ArrayCollection();
-        $this->requestId = "KR-".substr(uniqid(),6,13);
+        $this->requestId = "KR-".substr(uniqid(),8,13);
         $this->requestDateTime = new \DateTime();
     }
 
@@ -173,30 +162,20 @@ class ContactPlaning
     }
 
     /**
-     * @return Collection|Interest[]
+     * @return string
      */
-    public function getInterests(): Collection
+    public function getInterests(): ?string
     {
         return $this->interests;
     }
 
-    public function addInterest(Interest $interest): self
+    public function setInterests(string $interests): self
     {
-        if (!$this->interests->contains($interest)) {
-            $this->interests[] = $interest;
-        }
+        $this->interests = $interests;
 
         return $this;
     }
-
-    public function removeInterest(Interest $interest): self
-    {
-        if ($this->interests->contains($interest)) {
-            $this->interests->removeElement($interest);
-        }
-
-        return $this;
-    }
+    
 
     public function getFlyTicket(): ?bool
     {
@@ -323,30 +302,6 @@ class ContactPlaning
     public function setClientEmail(string $clientEmail): self
     {
         $this->clientEmail = $clientEmail;
-
-        return $this;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
 
         return $this;
     }
