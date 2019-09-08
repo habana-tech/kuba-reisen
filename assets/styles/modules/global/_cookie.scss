@@ -29,6 +29,11 @@
     &--no-visible{
         animation: collapse .3s ease-in-out 1 ;
         z-index: -1;
+
+        /**
+		* TODO: en páginas sin baacckground, como es el caso de kontacto, y similares, el dialogo de la cookie no se oculta correctmente.
+		* Sería conveniente en algun momento añadir un ´display none´ al final de la transición;
+        ***/
     }
 
     &__img{
