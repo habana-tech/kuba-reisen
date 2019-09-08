@@ -1,0 +1,42 @@
+=== Kuba-reisen kontaktieren - {{ contact.requestId }} ===
+    
+Hello, {{ contact.clientName }} sended a new request
+      
+
+                Email: {{ contact.clientEmail }}
+          
+                
+                travelDate: {{ contact.travelDate | date("Y/m/d") }}
+          
+                
+                travelDuration: {{ contact.travelDuration }}
+           
+                
+                peopleAmount: {{ contact.peopleAmount }}
+         
+                
+                travelBudget: {{ contact.travelBudget }}
+          
+                
+                interests: {{ contact.interests | raw }}
+           
+                
+                flyTicket: {% if contact.flyTicket %} Yes {%else%} No {% endif %}
+           
+                
+            {# TODO: show strings by ENUM on selfConsider,selfCharacter, etc #}
+            
+            
+                selfConsider: {{ contact.selfConsider }}
+           
+
+                selfCharacter: {{ contact.selfCharacter }}
+           
+                
+                selfLuxury: {{ contact.selfLuxury }}
+           
+                
+                Message: {{ contact.message }}
+----
+Request recorded at {{ contact.requestDateTime | date('Y/m/d H:i') }}, you can search it usind the ID {{contact.requestId}}.
+    

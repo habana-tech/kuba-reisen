@@ -80,4 +80,18 @@ class ActivityRepository extends ServiceEntityRepository
             ->getResult()
             ;
     }
+
+    /**
+     * @return Activity[] Returns an array of Activity objects
+     */
+    public function findNamesCollection(array $ids){
+
+        return $this->createQueryBuilder('activity')
+            ->select('activity.name')
+            ->where('activity.id in (:ids)')
+            ->setParameter('ids', $ids)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

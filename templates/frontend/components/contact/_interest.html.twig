@@ -33,9 +33,9 @@
                 </svg>
             </div>
             <div class="interest__title__text" data-grape_id="contact_interest_text_{{ i }}" data-grape_format="txt">
-                {{ page.ElementContent('contact_interest_text_'~i, 'interest '~i) | raw }}
+                {{ page.ElementContent('contact_interest_text_'~i, 'interest '~i) | raw}}
             </div>
         </div>
     </label>
-    <input id="interest{{ i }}" name="interest{{ i }}" type="checkbox">
+    <input id="interest{{ i }}" name="interest[{{ i }}]" type="checkbox" value="{{ page.ElementContent('contact_interest_text_'~i, 'interest '~i) | raw  | trim(' \n ')  }}">
 </div>
