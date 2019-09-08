@@ -1,3 +1,4 @@
+
 @import url("https://fonts.googleapis.com/css?family=Baloo+Bhaina|Open+Sans:400,700&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Baloo+Bhaina|Open+Sans:400,700&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Baloo+Bhaina|Open+Sans:400,700&display=swap");
@@ -8,6 +9,7 @@
 @import url("https://fonts.googleapis.com/css?family=Baloo+Bhaina|Open+Sans:400,700&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Baloo+Bhaina|Open+Sans:400,700&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Baloo+Bhaina|Open+Sans:400,700&display=swap");
+@charset "UTF-8";
 /**
  * @section Normalize.css
  * Normalize.css base with custom code.
@@ -4339,7 +4341,11 @@ Descr: Custom radio toggle
 .cookie--no-visible {
     -webkit-animation: collapse .3s ease-in-out 1;
             animation: collapse .3s ease-in-out 1;
-    z-index: -1; }
+    z-index: -1;
+    /**
+		* TODO: en páginas sin baacckground, como es el caso de kontacto, y similares, el dialogo de la cookie no se oculta correctmente.
+		* Sería conveniente en algun momento añadir un ´display none´ al final de la transición;
+        ***/ }
 .cookie__img {
     position: absolute;
     top: -2em;
@@ -6079,6 +6085,58 @@ body {
 .contact__personal .form__item__label {
       text-align: left;
       margin: 0; }
+.sendFormFlex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 8em; }
+.sendFormInfo.hidden, .sendFormBtn__spinner.invisible, .sendFormBtn.invisible {
+  display: none; }
+.sendFormBtn, .sendFormBtn__spinner {
+  transition: opacity 0.5s cubic-bezier(0.86, 0, 0.07, 1); }
+.sendFormBtn__spinner {
+  padding: 1em 0; }
+.sendFormBtn__spinner.invisible, .sendFormBtn.invisible {
+  opacity: 0; }
+.hollow-dots-spinner, .hollow-dots-spinner * {
+  box-sizing: border-box; }
+.hollow-dots-spinner {
+  height: 15px;
+  width: calc(30px * 3); }
+.hollow-dots-spinner .dot {
+  width: 15px;
+  height: 15px;
+  margin: 0 calc(15px / 2);
+  border: calc(15px / 5) solid #14a1e6;
+  border-radius: 50%;
+  float: left;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-animation: hollow-dots-spinner-animation 1000ms ease infinite 0ms;
+          animation: hollow-dots-spinner-animation 1000ms ease infinite 0ms; }
+.hollow-dots-spinner .dot:nth-child(1) {
+  -webkit-animation-delay: calc(300ms * 1);
+          animation-delay: calc(300ms * 1); }
+.hollow-dots-spinner .dot:nth-child(2) {
+  -webkit-animation-delay: calc(300ms * 2);
+          animation-delay: calc(300ms * 2); }
+.hollow-dots-spinner .dot:nth-child(3) {
+  -webkit-animation-delay: calc(300ms * 3);
+          animation-delay: calc(300ms * 3); }
+@-webkit-keyframes hollow-dots-spinner-animation {
+  50% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
+@keyframes hollow-dots-spinner-animation {
+  50% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
 .select-control,
 .radio-switch {
   margin-bottom: 2em; }
