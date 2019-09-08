@@ -75,7 +75,7 @@ class FilterActivities {
 
                     activities.forEach(function (activity) {
                         let newActivity = new MakeActivity(that.prototype).make(activity.id, activity.image, activity.imageAlt,
-                            activity.name, activity.description, activity.link);
+                            activity.name, activity.description, activity.link, activity.price);
 
                         that.activitiesListFilterSearch.appendChild(newActivity);
                     });

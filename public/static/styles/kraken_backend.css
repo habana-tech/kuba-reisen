@@ -1874,6 +1874,8 @@ body {
 @media (min-width: 40em) {
     body {
       line-height: 1.5625; } }
+main {
+  background: white; }
 p {
   margin: 0 0 1.5625em; }
 .underline {

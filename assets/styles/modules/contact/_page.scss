@@ -2,6 +2,11 @@
     width: 80%;
     margin: auto;
     margin-bottom: 3em;
+
+    &:last-child{
+        margin-bottom: 0;
+        padding-bottom: 3em;
+    }
 }
 
 #contact_planing_interests{

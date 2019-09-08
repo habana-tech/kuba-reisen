@@ -1,4 +1,5 @@
 class Interest{
+    
     constructor(){
         this.interest = document.querySelectorAll('.interest');
         this.events();
@@ -16,7 +17,7 @@ class Interest{
             if(input.checked)
             {
                 interest.classList.add('interest--checked');
-                interest.querySelector('svg').classList.add('icon-heart--fill-green');
+                interest.querySelector('svg.heart').classList.add('heart--fill-green');
             }
             
         })
@@ -26,10 +27,9 @@ class Interest{
         e.preventDefault();
         let interest = e.target.parentNode;
         interest.classList.toggle('interest--checked');
-        interest.querySelector('svg').classList.toggle('icon-heart--fill-green');
+        interest.querySelector('svg.heart').classList.toggle('heart--fill-green');
         let input = interest.querySelector('input[type=checkbox]');
         input.checked = !input.checked;
-
     }
 }
 

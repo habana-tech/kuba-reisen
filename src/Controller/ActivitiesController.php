@@ -98,8 +98,7 @@ class ActivitiesController extends AbstractController
                 'description'=> $twig_filter->truncate_html($activity->getDescription(),$activity::LENGTH_OF_DESCRIPTION),
                 'link'=>  $this->generateUrl('activity',
                     ['id'=>$activity->getId(),
-                    'name'=>$activity->getMachineName(),
-                    '_locale'=>'de']),
+                    'name'=>$activity->getMachineName()]),
                 'price' => $activity->getInitPrice()
             ));
         }
@@ -193,6 +192,7 @@ class ActivitiesController extends AbstractController
                 'link'=>  $this->generateUrl('activity',
                     ['id'=>$activity->getId(),
                     'name'=>$activity->getMachineName()]),
+                'price' => $activity->getInitPrice(),
             ));
         }
 
@@ -234,6 +234,7 @@ class ActivitiesController extends AbstractController
                 'link'=>  $this->generateUrl('activity',
                     ['id'=>$activity->getId(),
                     'name'=>$activity->getMachineName()]),
+                'price' => $activity->getInitPrice(),
             ));
         }
 

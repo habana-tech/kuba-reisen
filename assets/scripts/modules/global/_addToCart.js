@@ -21,16 +21,16 @@ class AddtoCart {
     }
 
     events(){
-        this.buttonsAdd.forEach((x)=>{
-            x.addEventListener('click', this.addOrRemoveActivity.bind(this)
-            )});
+        this.buttonsAdd.forEach((button)=>{
+            button.addEventListener('click', this.addOrRemoveActivity.bind(this)
+        )});
     }
 
     setStatus(){
-        this.buttonsAdd.forEach((x)=>{
-           let activityId = x.getAttribute('data-activity_id');
+        this.buttonsAdd.forEach((button)=>{
+           let activityId = button.getAttribute('data-activity_id');
             if (this.activities.includes(activityId)){
-               x.parentNode.querySelector('img.svg').classList.toggle('icon-heart--fill-green');
+               button.querySelector('svg.heart').classList.toggle('heart--fill-white');
             }
         });
     }
@@ -66,10 +66,8 @@ class AddtoCart {
     }
 
     addOrRemoveActivity(e){
-        e.preventDefault();
 
         let button = e.target;
-        let parent = e.target.parentNode;
 
         let activityId = button.getAttribute('data-activity_id');
 
@@ -83,8 +81,8 @@ class AddtoCart {
             this.showCart()
         }
 
-        parent.classList.toggle('checked');
-        parent.querySelector('img.svg').classList.toggle('icon-heart--fill-green')
+        button.classList.toggle('checked');
+        button.querySelector('svg.heart').classList.toggle('heart--fill-white');
     }
 
 }

@@ -33,7 +33,7 @@
             <nav class="boxnav">
 
                 <button class="boxnav__item boxnav__item--prev">
-                    <img src="{{ asset('svg/back.svg') }}">
+                    {% include('frontend/components/_icons/_arrow.html.twig') with {rotate : 'arrow--rotate'} only %}
                 </button>
 
                 <div class="boxnav__item boxnav__item--label">
@@ -42,7 +42,7 @@
                 </div>
 
                 <button class="boxnav__item boxnav__item--next">
-                    <img src="{{ asset('svg/forward.svg') }}">
+                    {{ include('frontend/components/_icons/_arrow.html.twig') }}
                 </button>
 
             </nav>
