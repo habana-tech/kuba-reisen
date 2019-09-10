@@ -150,8 +150,8 @@ class ContactController extends AbstractController
 
     private function sendContactEmailNotification(ContactPlaning $contact, \Swift_Mailer $mailer){
 
-        $adminEmail = "admin@localhost";
-        $from = ['noreply@kuba-reisen'=>'kuba-reisen.de'];
+        $adminEmail = "josmiguel92+kubareisen@gmail.com";
+        $from = ['kontaktieren@kuba-reisen.reisen'=>'kuba-reisen.de'];
         $bcc = ['josmiguel92+kubareisen@gmail.com', '14ndy15+kubareisen@gmail.com'];
 
         //Todo: translate the subject

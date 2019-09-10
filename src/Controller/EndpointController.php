@@ -177,20 +177,4 @@ class EndpointController extends AbstractController
             ]
         );
     }
-
-    /**
-     * @Route("/testmail")
-     */
-    public function sendEmail(\Swift_Mailer $mailer)
-    {
-        $message = (new \Swift_Message('Hello Email'))
-            ->setFrom('kontaktieren@kuba-reisen.reisen')
-            ->setTo('josmiguel92@gmail.com')
-            ->setBody('You should see me from the profiler!')
-        ;
-
-        $mailer->send($message);
-
-        return $this->json(['ok']);
-    }
 }
