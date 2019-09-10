@@ -179,7 +179,7 @@ class EndpointController extends AbstractController
     }
 
     /**
-     * @Route("/testmail/")
+     * @Route("/testmail")
      */
     public function sendEmail(\Swift_Mailer $mailer)
     {
