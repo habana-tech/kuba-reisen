@@ -156,7 +156,7 @@ class ContactController extends AbstractController
 
         //Todo: translate the subject
         $message = (new \Swift_Message('Kuba-reisen kontaktieren - '.$contact->getRequestId()))
-                ->setFrom($from)
+                //->setFrom($from)
                 //TODO: set email to send notifications
                 ->setTo($adminEmail)
                 ->setBcc($bcc)
@@ -179,7 +179,7 @@ class ContactController extends AbstractController
 
             //send message to client
             $client_message = (new \Swift_Message('Kuba-reisen kontaktieren - '.$contact->getRequestId()))
-            ->setFrom($from)
+            //->setFrom($from)
             //TODO: set email to send notifications
             ->setTo($contact->getClientEmail())
             ->setBcc($bcc)
