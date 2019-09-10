@@ -179,9 +179,9 @@ class EndpointController extends AbstractController
     }
 
     /**
-     * @Route("/testmail")
+     * @Route("/testmail/")
      */
-    public function sendEmail($name, \Swift_Mailer $mailer)
+    public function sendEmail(\Swift_Mailer $mailer)
     {
         $message = (new \Swift_Message('Hello Email'))
             ->setFrom('kontaktieren@kuba-reisen.reisen')
