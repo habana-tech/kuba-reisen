@@ -3,9 +3,10 @@
     <ul>
         <li class="admin_bar_action"> <a href="{{ path('backend_activity_new') }}">Add Activity</a></li>
         <li class="admin_bar_action"> <a href="{{ path('backend_activity_index') }}">See Activities</a></li>
+        <li class="admin_bar_action"> <a href="{{ path('backend_activity_story_index') }}">Stories</a></li>
+            
         <li><a href="{{ path('backend_destination_new') }}">Add Destinations</a></li>
         <li><a href="{{ path('backend_destination_index') }}">See Destinations</a></li>
-        {#<li><a href="{{ path('backend_interest_new') }}">Add Interest</a></li>#}
         <li><a href="{{ path('backend_filter_tag_index') }}">Manage Tags</a></li>
     </ul>
 
@@ -20,7 +21,7 @@
             <li>
                 <a href="{{ path('backend_destination_edit', {'id': destination.id}) }}">Edit Destination on Admin</a>
             </li>
-        {% endif %}
+        {% endif %}     
 
 
 

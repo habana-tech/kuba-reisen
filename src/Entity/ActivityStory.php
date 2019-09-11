@@ -11,7 +11,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @Vich\Uploadable
  * @ORM\HasLifecycleCallbacks
  */
-class ActivityStory
+class ActivityStory implements MachineNameInterface
 {
     use ImageFieldTrait;
     use LanguageFieldTrait;
@@ -49,6 +49,11 @@ class ActivityStory
      * @ORM\Column(type="json", nullable=true)
      */
     private $metadata = [];
+
+    public function __contructor()
+    {
+        $this->setLanguage();
+    }
 
     public function getId(): ?int
     {
@@ -101,6 +106,11 @@ class ActivityStory
         $this->metadata = $metadata;
 
         return $this;
+    }
+
+    
+    public function getMachineName(){
+        return urlencode($this->title);
     }
 
 }
