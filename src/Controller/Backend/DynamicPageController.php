@@ -229,7 +229,7 @@ class DynamicPageController extends AbstractController
         $finder->in($scanDirectories);
         $deletedImages = [];
         foreach ($finder as $file) {
-            if(!$imgList->contains($file->getFilename()))
+            if($imgList->contains($file->getFilename()))
             {
                 if($action == 'delete')
                     unlink($file->getRealPath());
@@ -239,8 +239,7 @@ class DynamicPageController extends AbstractController
 
         return $this->json([
             'list provided' => $imagesNamesList,
-            'all images' => $deletedImages,
-            'to delete' => $imgList,
+            'to delete' => $deletedImages,
             'action' => $action
         ]);
     }
