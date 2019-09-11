@@ -187,4 +187,60 @@ class DynamicPageController extends AbstractController
             'action' => $action
         ]);
     }
+
+    /**
+     * @Route("/images/delete/{files}/{action}", name="backend_delete_images", methods={"GET"})
+     */
+    public function deleteImages(Request $request, DynamicPageRepository $dynamicPageRepository,
+                                UploadedImageRepository $uploadedImageRepository,
+                                ActivityRepository $activityRepository,
+                                DestinationRepository $destinationRepository,
+                                ParameterBagInterface $params,
+                                $files, 
+                                $action = 'preview'): Response
+    {
+        $imagesNamesList = explode(';', $files);
+        $imgList = new ArrayCollection();
+
+        foreach($imagesNamesList as $img)
+            $imgList->add($img);
+
+        $finder = new Finder();
+        $finder->files();
+        $staticDirPath = $parameterValue = $params->get('kernel.project_dir') . '/public/static/';
+
+
+        $imagesDirectories = [
+            $staticDirPath.  'uploads/images/',
+            $staticDirPath.  'min_width_15/static/uploads/images/',
+            $staticDirPath.  'min_width_600/static/uploads/images/',
+            $staticDirPath.  'min_width_800/static/uploads/images/',
+            $staticDirPath.  'min_width_900/static/uploads/images/',
+            $staticDirPath.  'min_width_1200/static/uploads/images/',
+            $staticDirPath.  'min_width_1920/static/uploads/images/',
+            $staticDirPath.  'squared_thumbnail/static/uploads/images/',
+        ];
+
+        $scanDirectories = [];
+
+        foreach ($imagesDirectories as $dir)
+            if(file_exists($dir)) $scanDirectories[] = $dir;
+
+        $finder->in($scanDirectories);
+        $deletedImages = [];
+        foreach ($finder as $file) {
+            if($imgList->contains($file->getFilename()))
+            {
+                if($action == 'delete')
+                    unlink($file->getRealPath());
+                $deletedImages[] = $file->getRealPath();
+            }
+        }
+
+        return $this->json([
+            'list provided' => $imagesNamesList,
+            'to delete' => $deletedImages,
+            'action' => $action
+        ]);
+    }
 }

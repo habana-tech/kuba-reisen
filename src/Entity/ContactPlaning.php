@@ -21,7 +21,6 @@ class ContactPlaning
     private $id;
 
     /**
-     * @Assert\Date()
      * @ORM\Column(type="datetime")
      */
     private $travelDate;

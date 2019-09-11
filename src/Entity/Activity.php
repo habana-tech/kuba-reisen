@@ -13,7 +13,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @Vich\Uploadable
  * @ORM\HasLifecycleCallbacks
  */
-class Activity
+class Activity implements MachineNameInterface
 {
     const LENGTH_OF_DESCRIPTION = 75;
 

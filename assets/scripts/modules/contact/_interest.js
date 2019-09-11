@@ -31,7 +31,7 @@ class Interest{
         interest.classList.toggle('interest--checked');
         interest.querySelector('svg.heart').classList.toggle('heart--fill-green');
         let input = interest.querySelector('input[type=checkbox]');
-        input.checked = !input.checked;
+        input.checked = interest.classList.contains('interest--checked');
     }
 }
 
