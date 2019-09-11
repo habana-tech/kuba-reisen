@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Entity\Activity;
 use App\Repository\UploadedImageRepository;
+use App\Repository\ActivityStoryRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,7 +25,9 @@ class ActivitiesController extends AbstractController
      * @Route("/activities", name="activities")
      */
     public function activities(DynamicPageManager $pm,
-                               ActivityRepository $activityRepository, FilterTagRepository $filterTagRepository)
+                               ActivityRepository $activityRepository, 
+                               FilterTagRepository $filterTagRepository,
+                               ActivityStoryRepository $storiesRepository)
     {
         $pageinfo = [
             'pageName'=>'activities',
@@ -48,12 +51,16 @@ class ActivitiesController extends AbstractController
         for ($i = 0; $i < min($this->amountActivitiesDefault, count($_activities)); $i++)
             array_push($activities, $_activities[$i]);
 
+        $amountStories = 4;
+        $stories = $storiesRepository->findLastPublished($amountStories);
+
         return $this->render('frontend/activities.html.twig', [
             'dynamic_page_id' => $page->getId(),
             'page' => $page,
             'activities'=>$activities,
             'filterTags'=>$filterTags,
-            'loadMore'=> $loadMore
+            'loadMore'=> $loadMore,
+            'stories' => $stories
         ]);
     }
 

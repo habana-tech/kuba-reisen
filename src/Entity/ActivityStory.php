@@ -50,9 +50,27 @@ class ActivityStory implements MachineNameInterface
      */
     private $metadata = [];
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $priority;
+
     public function __contructor()
     {
         $this->setLanguage();
+    }
+
+    
+    public function getPriority(): ?int
+    {
+        return $this->priority;
+    }
+
+    public function setPriority(?int $priority): self
+    {
+        $this->priority = $priority;
+
+        return $this;
     }
 
     public function getId(): ?int

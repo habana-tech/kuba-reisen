@@ -19,6 +19,22 @@ class ActivityStoryRepository extends ServiceEntityRepository
         parent::__construct($registry, ActivityStory::class);
     }
 
+     /**
+      * @return ActivityStory[] Returns an array of ActivityStory objects
+      */
+    
+    public function findLastPublished($value)
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.published = true')
+            ->orderBy('a.priority', 'DESC')
+            ->setMaxResults($value)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    
+
     // /**
     //  * @return ActivityStory[] Returns an array of ActivityStory objects
     //  */

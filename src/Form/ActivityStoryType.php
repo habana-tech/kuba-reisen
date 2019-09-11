@@ -19,6 +19,8 @@ class ActivityStoryType extends AbstractType
             
             //->add('imageFile', VichImageType::class, ['required'=> false])
             ->add('published')
+            ->add('priority')
+
             //->add('translation_from')
         ;
     }
