@@ -3,18 +3,24 @@
     &__stories{
 
         &__items{
-            width: 80%;
             position: relative;
+            width: 98%;
             margin: auto;
+
+            @include atLarge{
+                width: 80%;
+            }
 
             & ul{
                 list-style: none;
                 display: flex;
+                flex-wrap: wrap;
                 justify-content: space-around;
+                margin: 0;
 
                 & li{
                     display: inline-block;
-                    margin: auto .1em;
+                    margin: .25em .1em;
                     font-weight: 500;
                     font-size: 1.1em;
                     position: relative;
@@ -45,6 +51,7 @@
             position: sticky;
             top: 0;
             width: 100%;
+            order: 0;
             z-index: 1;
             margin: 1.5em 0;
 
@@ -74,7 +81,28 @@
             }
         }
 
+
+        &__skip{
+            order: 1;
+            width: auto;
+            height: 100%;
+            position: sticky;
+            top: 41%;
+            z-index: 1;
+            left: 81%;
+            text-align: center;
+
+            @include atLarge{
+                order: 2;
+                width: 5%;
+                top: 4em;
+                left: auto;
+            }
+        }
+
+
         &__story__container{
+            order: 2;
             position: relative;
             width: 95%;
             overflow: hidden;
@@ -82,6 +110,7 @@
             @include atLarge{
                 width: 45%;
                 top: 2em;
+                order: 1;
             }
 
         }
@@ -93,13 +122,8 @@
             transition: transform .3s ease-in-out;
         }
 
-        &__skip{
-            width: 5%;
-            height: 100%;
-            position: sticky;
-            top: 4em;
-            text-align: center;
-        }
+
+
     }
 
     &__selectors{

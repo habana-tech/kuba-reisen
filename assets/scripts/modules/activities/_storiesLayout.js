@@ -14,7 +14,7 @@ class StoriesLayout {
     }
 
     init(){
-        console.log(this.storiesContainer);
+        this.storiesSelectors[0].classList.add('active');
 
         this.storiesContainer.setAttribute('style', 'height: '+document.querySelector('#story-0').clientHeight+'px;');
         for(let id = 0; id < this.storiesAmount; id++) {
@@ -26,6 +26,12 @@ class StoriesLayout {
 
     changeActiveStory(e){
         let storySelector = e.target;
+
+        this.storiesSelectors.forEach((_storySelector)=>{
+            _storySelector.classList.remove('active')
+        });
+        storySelector.classList.add('active');
+
         let storyId = storySelector.getAttribute('data-story');
         let newActiveStoryPos = parseInt(storyId.split('-')[1]);
         this.storiesContainer.height = document.querySelector(storyId).clientHeight;
