@@ -1,6 +1,6 @@
 .activities{
 
-    &__description{
+    &__stories{
 
         &__items{
             width: 80%;
@@ -17,27 +17,24 @@
                     margin: auto .1em;
                     font-weight: 500;
                     font-size: 1.1em;
+                    position: relative;
+                    cursor: pointer;
 
-
-                    & a {
-                        position: relative;
-
-
-                        &:after {
-                            position: absolute;
-                            content: '';
-                            width: 100%;
-                            height: 2px;
-                            background: linear-gradient(45deg, $light-blue, $dark-blue);
-                            bottom: 0;
-                            left: 0;
-                        }
+                    &::after {
+                        position: absolute;
+                        content: '';
+                        width: 100%;
+                        height: 2px;
+                        background: linear-gradient(45deg, $light-blue, $dark-blue);
+                        bottom: 0;
+                        left: 0;
                     }
                 }
             }
         }
 
         &__container {
+            position: relative;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-evenly;
@@ -63,8 +60,8 @@
             }
 
             @include atLarge{
-                width: 40%;
-                top: 5vh;
+                width: 45%;
+                top: 2em;
             }
 
             & #map{
@@ -77,17 +74,27 @@
             }
         }
 
-        &__features {
+        &__story__container{
+            position: relative;
             width: 95%;
-            margin: auto;
+            overflow: hidden;
 
             @include atLarge{
-                width: 40%;
+                width: 45%;
+                top: 2em;
             }
+
+        }
+
+        &__story {
+            top: 0;
+            width: 100%;
+            position: absolute;
+            transition: transform .3s ease-in-out;
         }
 
         &__skip{
-            width: 10%;
+            width: 5%;
             height: 100%;
             position: sticky;
             top: 4em;

@@ -327,7 +327,7 @@ class ActivityDescription{
         this.step = 0;
         this.map.scrollZoom.disable();
         this.interpolatePoints();
-        this.events();
+        // this.events();
     }
 
     events(){

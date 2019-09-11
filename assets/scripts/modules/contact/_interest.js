@@ -7,12 +7,14 @@ class Interest{
     }
 
     events(){
-        this.interest.forEach(x => x.addEventListener('click', this.toggleCheck.bind(this)))
+        this.interest.forEach((interest) => {
+            interest.addEventListener('click', this.toggleCheck.bind(this))
+            });
     }
 
     init(){
         let interests = document.querySelectorAll('.travel-interest__options > div.interest');
-        interests.forEach(function(interest){
+        interests.forEach((interest) => {
             let input = interest.querySelector('input[type=checkbox]');
             if(input.checked)
             {
@@ -25,7 +27,7 @@ class Interest{
 
     toggleCheck(e){
         e.preventDefault();
-        let interest = e.target.parentNode;
+        let interest = e.target;
         interest.classList.toggle('interest--checked');
         interest.querySelector('svg.heart').classList.toggle('heart--fill-green');
         let input = interest.querySelector('input[type=checkbox]');
