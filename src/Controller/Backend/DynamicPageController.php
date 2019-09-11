@@ -238,8 +238,9 @@ class DynamicPageController extends AbstractController
         }
 
         return $this->json([
-            'deleted' => $deletedImages,
-            'imgList' => $imgList,
+            'list provided' => $imagesNamesList,
+            'all images' => $deletedImages,
+            'to delete' => $imgList,
             'action' => $action
         ]);
     }
