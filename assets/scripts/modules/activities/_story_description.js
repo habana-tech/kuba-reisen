@@ -81,9 +81,9 @@ class StoryDescription{
                     'line-join': 'round'
                 },
                 'paint': {
-                    'line-color': '#14a1e6',
+                    'line-color': '#62ab03',
                     'line-width': 4,
-                    'line-opacity': .95
+                    'line-opacity': .85
                 }
             });
         });
