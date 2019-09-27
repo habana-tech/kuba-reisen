@@ -15,28 +15,44 @@ class StoryDescription{
         this.marker = new mapboxgl.Marker();
         this.pos = 0;
 
-        this.geojson = null;
         this.paths = document.querySelectorAll('.activities__stories__story span[data-path-map]');
+        this.geojsons = [];
+        this.layers = [];
+        this.maxViewCoords = [];
         this.previousTime = 0;
         this.events();
     }
 
     events(){
         this.map.on('load',this.readPaths.bind(this));
+
+        window.onscroll = () => {
+            this.paths.forEach((path, index)=>{
+                if (this.isElementOnScreen(path)) {
+                    this.setActivePath(index);
+                }
+            })
+        };
     }
 
     readPaths(){
         if (this.paths.length === 0)
             return;
 
-        this.paths.forEach((path)=>{
+        this.paths.forEach((path, index)=>{
+
             let props = path.getAttribute('data-path-map');
             props = JSON.parse(props);
-            this.geojson = props.geojson;
-            console.debug(this.geojson);
+            this.geojsons.push(props.geojson);
 
-            let coordinates = this.geojson.features[0].geometry.coordinates;
-            console.log(coordinates);
+            let coordinates = [];
+            props.geojson.features.forEach((feature)=>{
+                if (feature.geometry.type==='LineString'){
+                    feature.geometry.coordinates.forEach((coordinate)=>{
+                        coordinates.push(coordinate);
+                    })
+                }
+            })
 
             let lats = [];
             let logs = [];
@@ -49,56 +65,94 @@ class StoryDescription{
             lats.sort((a,b) => { return a <= b ? -1 : 1 } );
             logs.sort((a,b) => { return a <= b ? -1 : 1 } );
 
-            let maxCoordsPath = [[lats[0],logs[0]],
+            let maxCoords = [[lats[0],logs[0]],
                 [lats[lats.length-1], logs[logs.length-1] ]];
+            this.maxViewCoords.push(maxCoords);
 
-
-            this.map.addLayer({
-                'id': 'layer-path',
+            this.layers.push({
+                'id': 'layer-path_'+index,
                 'type': 'line',
                 'source': {
                     'type': 'geojson',
-                    'data': this.geojson
+                    'data': props.geojson
                 },
                 'layout': {
                     'line-cap': 'round',
                     'line-join': 'round'
                 },
                 'paint': {
-                    'line-color': '#ed6498',
-                    'line-width': 5,
-                    'line-opacity': .8
+                    'line-color': '#14a1e6',
+                    'line-width': 4,
+                    'line-opacity': .95
                 }
             });
-
-            this.map.fitBounds(maxCoordsPath, {padding: 100});
-
         });
 
-        requestAnimationFrame(this.animateMarker.bind(this));
     }
 
     animateMarker(timestamp) {
 
-        if (this.previousTime + 1000 > timestamp)
+        if (this.previousTime + 41 < timestamp){
             this.previousTime = timestamp;
 
-        // Update the data to a new position based on the animation timestamp. The
-        // divisor in the expression `timestamp / 1000` controls the animation speed.
-        this.marker.setLngLat(this.geojson.features[0].geometry.coordinates[this.pos]);
+            this.marker.setLngLat(this.geojson.features[0].geometry.coordinates[this.pos]);
 
-        // Ensure it's added to the map. This is safe to call if it's already added.
-        this.marker.addTo(this.map);
+            this.marker.addTo(this.map);
 
-        this.pos += 1;
+            this.pos += 1;
 
-        if (this.pos === this.geojson.features[0].geometry.coordinates.length)
-            this.pos = 0;
+            if (this.pos === this.geojson.features[0].geometry.coordinates.length)
+                this.pos = 0;
+        }
 
-        // Request the next frame of the animation.
         requestAnimationFrame(this.animateMarker.bind(this));
     }
 
+    setActivePath(index){
+
+        let previousLayersId = ['layer-path_'+(index-1), 'layer-path_'+(index+1)];
+        previousLayersId.forEach((previousLayerId)=>{
+            let previousMapLayer = this.map.getLayer(previousLayerId);
+            let previousMapSource = this.map.getSource(previousLayerId);
+            if(typeof previousMapLayer !== 'undefined')
+                this.map.removeLayer(previousLayerId);
+            if(typeof previousMapSource !== 'undefined')
+                this.map.removeSource(previousLayerId);
+        });
+
+        let currentLayerId = 'layer-path_'+index;
+        let currentMapLayer = this.map.getLayer(currentLayerId);
+
+        if(typeof currentMapLayer === 'undefined') {
+            this.map.addLayer(this.layers[index]);
+            this.map.fitBounds(this.maxViewCoords[index], {padding: 20});
+        }
+
+        // this.map.addLayer({
+        //     'id': 'layer-path',
+        //     'type': 'line',
+        //     'source': {
+        //         'type': 'geojson',
+        //         'data': this.geojson
+        //     },
+        //     'layout': {
+        //         'line-cap': 'round',
+        //         'line-join': 'round'
+        //     },
+        //     'paint': {
+        //         'line-color': '#ed6498',
+        //         'line-width': 5,
+        //         'line-opacity': .8
+        //     }
+        // });
+        // this.map.fitBounds(maxCoordsPath, {padding: 100});
+        // requestAnimationFrame(this.animateMarker.bind(this));
+    }
+
+    isElementOnScreen(element) {
+        let bounds = element.getBoundingClientRect();
+        return bounds.top > 0  && bounds.top < window.innerHeight / 2;
+    }
 }
 
 export default StoryDescription;
