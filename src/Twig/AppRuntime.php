@@ -34,7 +34,9 @@ class AppRuntime implements RuntimeExtensionInterface
 
     	$html = '';
     	foreach ($sizes as $value) {
-    		$resolvedPath = $this->imagineCacheManager->getBrowserPath($imagePath, 'min_width_'.$value);
+            //obtiene las rutas de las imagenes según el tamaño
+            $resolvedPath = $this->imagineCacheManager->getBrowserPath($imagePath, 'min_width_'.$value);
+            //completa la lista de "path tamaño" de las imagenes disponibles
     		$html .= ' '.$resolvedPath.' '.$value.'w, ';
     	}
     	$html = trim($html, ", ");
@@ -59,9 +61,9 @@ class AppRuntime implements RuntimeExtensionInterface
         $html ="<img class=\"lazyload blur-up\" sizes=\"$sizes\" ";
         if($attr)
             $html .= $attr." ";
-        if($database64)
+        if($database64) //se existe una miniatura en la db proveniente del grape
             $html .= "src=\"$database64\" ";
-        else
+        else //si no, se usa el path de la miniatura de imagen real
             $html .= "src=\"".$this->imagineCacheManager->getBrowserPath($imagePath, 'min_width_15')."\" ";
 
         $html .= "data-srcset=\"".$this->filterSrcset($imagePath)."\"
