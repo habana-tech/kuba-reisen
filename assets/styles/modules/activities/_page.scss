@@ -15,12 +15,12 @@
                 list-style: none;
                 display: flex;
                 flex-wrap: wrap;
-                justify-content: space-around;
+                justify-content: flex-start;
                 margin: 0;
 
                 & li{
                     display: inline-block;
-                    margin: .25em .1em;
+                    margin: .25em 1em;
                     font-weight: 500;
                     font-size: 1.1em;
                     position: relative;
@@ -120,6 +120,13 @@
             width: 100%;
             position: absolute;
             transition: transform .3s ease-in-out;
+
+            & span[data-map], & span[data-path-map]{
+                position: absolute;
+                visibility: hidden;
+                height: 0;
+                width: 0;
+            }
         }
 
 
