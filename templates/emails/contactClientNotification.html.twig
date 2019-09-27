@@ -1,13 +1,22 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>
-                Kuba-reisen kontaktieren - {{ contact.requestId }}
-        </title>
-    </head>
-    <body>
-        <h1>Hello {{ contact.clientName }}</h1>
-        <p>You have sended a request for contact. We'll contact you very soon.</p>
-        <p>Thank you.</p>
-    </body>
-</html>
+{% extends "emails/base.html.twig" %}
+
+{% block emailSubject %}
+    <p>Helfen Sie mit, Ihre Reise nach Kuba zu organisieren</p>
+{% endblock emailSubject %}
+
+{% block infoline %}
+    <p>Helfen Sie mit, Ihre Reise nach Kuba zu organisieren</p>
+{% endblock infoline %}
+
+{% block titleOfEmail %}
+    Kuba bewusst erleben.<br>
+    Für mutige Entdecker und gesellige Abenteurer
+{% endblock titleOfEmail %}
+
+{% block afterTitleText %}
+    <p>Hallo {{ contact.clientName }}, vielen Dank, dass Sie uns Ihre Anfrage gesendet haben. In naher Zukunft werden wir Sie über diese E-Mail mit weiteren Einzelheiten kontaktieren.<br></p>
+    <p>Ihre Bewerbungsnummer ist {{ contact.requestId }}</p>
+{% endblock afterTitleText %}
+
+{% block emailCTABtnLabel %}Länderinformationen{% endblock %}
+{% block emailCTABtnURL %}{{ absolute_url(path('travel_info')) }}{% endblock emailCTABtnURL %}

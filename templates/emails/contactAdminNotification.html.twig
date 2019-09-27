@@ -1,50 +1,60 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>
-                Kuba-reisen kontaktieren - {{ contact.requestId }}
-        </title>
-    </head>
-    <body>
-        <h1>Hello, {{ contact.clientName }} sended a new request</h1>
-        <ul>
-            <li>
-                Email: {{ contact.clientEmail }}
-            </li>
-            <li>
-                travelDate: {{ contact.travelDate | date("Y/m/d") }}
-            </li>
-            <li>
-                travelDuration: {{ contact.travelDuration }}
-            </li>
-            <li>
-                peopleAmount: {{ contact.peopleAmount }}
-            </li>
-            <li>
-                travelBudget: {{ contact.travelBudget }}
-            </li>
-            <li>
-                interests: {{ contact.interests | raw }}
-            </li>
-            <li>
-                flyTicket: {% if contact.flyTicket %} Yes {%else%} No {% endif %}
-            </li>
+{% extends "emails/base.html.twig" %}
 
-            {# TODO: show strings by ENUM on selfConsider,selfCharacter, etc #}
-            <li>
-                selfConsider: {{ contact.selfConsider }}
-            </li>
-            <li>
-                    selfCharacter: {{ contact.selfCharacter }}
-            </li>
-            <li>
-                    selfLuxury: {{ contact.selfLuxury }}
-            </li>
-            <li>
-                    Message: {{ contact.message }}
-            </li>
-        </ul>
-        <hr>
-        <p>request recorded at {{ contact.requestDateTime | date('Y/m/d H:i') }}, you can search it usind the ID {{contact.requestId}} </p>
-    </body>
-</html>
+{% block emailSubject %}
+    <p>New contact request on Kubareisen {{ contact.requestId }}</p>
+{% endblock emailSubject %}
+
+{% block infoline %}
+    <p>New contact request on Kubareisen {{ contact.requestId }}</p>
+{% endblock infoline %}
+
+{% block titleOfEmail %}
+Hello, {{ contact.clientName }} sended a new contact request
+{% endblock titleOfEmail %}
+
+{% block afterTitleText %}
+<ul>
+        <li>
+            Email: {{ contact.clientEmail }}
+        </li>
+        <li>
+            travelDate: {{ contact.travelDate | date("Y/m/d") }}
+        </li>
+        <li>
+            travelDuration: {{ contact.travelDuration }}
+        </li>
+        <li>
+            peopleAmount: {{ contact.peopleAmount }}
+        </li>
+        <li>
+            travelBudget: {{ contact.travelBudget }}
+        </li>
+        <li>
+            interests: {{ contact.interests | raw }}
+        </li>
+        <li>
+            flyTicket: {% if contact.flyTicket %} Yes {%else%} No {% endif %}
+        </li>
+
+        {# TODO: show strings by ENUM on selfConsider,selfCharacter, etc #}
+        <li>
+            selfConsider: {{ contact.selfConsider }}
+        </li>
+        <li>
+                selfCharacter: {{ contact.selfCharacter }}
+        </li>
+        <li>
+                selfLuxury: {{ contact.selfLuxury }}
+        </li>
+        <li>
+                Message: {{ contact.message }}
+        </li>
+    </ul>
+
+    <hr>
+    <p>request recorded at {{ contact.requestDateTime | date('Y/m/d H:i') }}, you can search it usind the ID {{contact.requestId}} </p>
+
+{% endblock afterTitleText %}
+
+{% block emailCTABtnLabel %}Länderinformationen{% endblock %}
+{% block emailCTABtnURL %}{{ absolute_url(path('travel_info')) }}{% endblock emailCTABtnURL %}
