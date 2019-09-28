@@ -15,39 +15,41 @@ Hello, {{ contact.clientName }} sended a new contact request
 {% block afterTitleText %}
 <ul>
         <li>
-            Email: {{ contact.clientEmail }}
+            Email: <b>{{ contact.clientEmail }}</b>
         </li>
         <li>
-            travelDate: {{ contact.travelDate | date("Y/m/d") }}
+            Travel Date: <b> {{ contact.travelDate | date("Y/m/d") }} </b>
         </li>
         <li>
-            travelDuration: {{ contact.travelDuration }}
+            Travel Duration: <b>{{ contact.travelDuration }}</b>
         </li>
         <li>
-            peopleAmount: {{ contact.peopleAmount }}
+            People: <b>{{ contact.peopleAmount }}</b>
         </li>
         <li>
-            travelBudget: {{ contact.travelBudget }}
+            Travel Budget: <b>{{ contact.travelBudget }}</b>
         </li>
         <li>
-            interests: {{ contact.interests | raw }}
+            Interests checked: <b>{{ contact.interests | raw }}</b> 
         </li>
         <li>
-            flyTicket: {% if contact.flyTicket %} Yes {%else%} No {% endif %}
+            Fly Ticket: <b> {% if contact.flyTicket %} Yes {%else%} No {% endif %}</b>
         </li>
 
         {# TODO: show strings by ENUM on selfConsider,selfCharacter, etc #}
         <li>
-            selfConsider: {{ contact.selfConsider }}
+            Wie abenteuerlich bist du?: <b>{{ contact.selfConsider }}</b>
         </li>
         <li>
-                selfCharacter: {{ contact.selfCharacter }}
+                Wie sehr genießt du die Natur?: <b> {{ contact.selfCharacter }}</b>
         </li>
         <li>
-                selfLuxury: {{ contact.selfLuxury }}
+                Wie viel bevorzugen Sie Luxus?: <b> {{ contact.selfLuxury }}</b>
         </li>
         <li>
-                Message: {{ contact.message }}
+                Message: 
+                <br>
+                {{ contact.message }}
         </li>
     </ul>
 
