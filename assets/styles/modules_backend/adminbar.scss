@@ -86,6 +86,8 @@
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     top: 40px;
     z-index: 100;
+    right: 1em;
+    max-width: 20vw;
   }
 
   .dropdown span{
@@ -111,6 +113,14 @@
   /* Show the dropdown menu on hover */
   .dropdown:hover .dropdown-content {
     display: block;
+  }
+
+  #revisions_description{
+    margin-bottom: 0px;
+    border-bottom: 1px
+    #bbb solid;
+    padding: 8px;
+    font-size: .8em;
   }
 }
 
