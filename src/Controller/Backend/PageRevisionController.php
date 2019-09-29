@@ -14,23 +14,28 @@ use App\Entity\DynamicPage;
 class PageRevisionController extends AbstractController
 {
     /**
-     * @Route("/admin/revisions", name="page_revisions")
-     */
-    public function index(DynamicPageRevisionRepository $repository)
-    {
-
-        $revisions = $repository->findAll();
-        dump($revisions);
-        return null;
-    }
-
-    /**
      * @Route("/admin/revisions/page/{id}", name="page_revisions_by_page")
      */
     public function list(DynamicPage $dynamicPage, DynamicPageRevisionRepository $repository)
     {
 
-        $revisions = $repository->findBy(['dynamicPage' => $dynamicPage], ['modificationDate'=>'DESC'], 6);
+        $revisions = $repository->findBy(['dynamicPage' => $dynamicPage], ['modificationDate'=>'DESC']);
+        
+        $max_revisions_stored = 6;
+        $current_revisions = count($revisions);
+
+        //if there are too many revisions, delete the first ones
+        if(count($revisions) > $max_revisions_stored)
+        {
+            $entityManager = $this->getDoctrine()->getManager();
+            for($i = $current_revisions; $i > $max_revisions_stored;  $i--)
+            {
+                $entityManager->remove($rev);
+            }
+            $entityManager->flush();
+        }
+            
+
 
         return $this->render('backend/page_revision/list.html.twig', [
             'revisions' => $revisions,
