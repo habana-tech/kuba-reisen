@@ -30,6 +30,7 @@ class PageRevisionController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             for($i = $current_revisions; $i > $max_revisions_stored;  $i--)
             {
+                $rev = array_pop($revisions);
                 $entityManager->remove($rev);
             }
             $entityManager->flush();
