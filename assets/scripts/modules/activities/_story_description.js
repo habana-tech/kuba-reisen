@@ -15,7 +15,9 @@ class StoryDescription{
         this.marker = new mapboxgl.Marker();
         this.pos = 0;
 
-        this.paths = document.querySelectorAll('.activities__stories__story span[data-path-map]');
+        this.storiesSelectors = document.querySelectorAll('.activities__stories__items li');
+        this.story = document.querySelector('.activities__stories__story');
+        this.paths = this.story.querySelectorAll('span[data-path-map]');
         this.geojsons = [];
         this.layers = [];
         this.maxViewCoords = [];
@@ -25,6 +27,10 @@ class StoryDescription{
 
     events(){
         this.map.on('load',this.readPaths.bind(this));
+
+        this.storiesSelectors.forEach((storySelector)=>{
+            storySelector.addEventListener('click', this.changeActiveStory.bind(this));
+        });
 
         window.onscroll = () => {
             this.paths.forEach((path, index)=>{
@@ -108,10 +114,19 @@ class StoryDescription{
         requestAnimationFrame(this.animateMarker.bind(this));
     }
 
-    setActivePath(index){
+    changeActiveStory(e) {
+        let storySelector = e.target;
 
-        let previousLayersId = ['layer-path_'+(index-1), 'layer-path_'+(index+1)];
-        previousLayersId.forEach((previousLayerId)=>{
+        let storyId = storySelector.getAttribute('data-story');
+        let associateStory = document.querySelector(storyId);
+        this.paths = associateStory.querySelectorAll('span[data-path-map]');
+        this.removeLayers([...Array(12).keys()]);
+        this.readPaths();
+    }
+
+    removeLayers(indexs){
+        indexs.forEach((index)=>{
+            let previousLayerId = 'layer-path_'+index;
             let previousMapLayer = this.map.getLayer(previousLayerId);
             let previousMapSource = this.map.getSource(previousLayerId);
             if(typeof previousMapLayer !== 'undefined')
@@ -119,6 +134,11 @@ class StoryDescription{
             if(typeof previousMapSource !== 'undefined')
                 this.map.removeSource(previousLayerId);
         });
+    }
+
+    setActivePath(index){
+
+        this.removeLayers([index-1, index+1]);
 
         let currentLayerId = 'layer-path_'+index;
         let currentMapLayer = this.map.getLayer(currentLayerId);

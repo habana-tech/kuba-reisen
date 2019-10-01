@@ -5291,6 +5291,8 @@ Descr: Custom radio toggle
     visibility: hidden;
     height: 0;
     width: 0; }
+.activities__stories__story:first-child {
+    position: relative; }
 .activities__selectors {
   width: 95%;
   margin: auto;

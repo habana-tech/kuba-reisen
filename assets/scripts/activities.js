@@ -7,5 +7,5 @@ import StoriesLayout from './modules/activities/_stories_layout';
 new FilterActivities();
 new LoadActivities();
 new AddtoCart('.activity__content__actions__add');
-new StoryDescription();
 new StoriesLayout();
+new StoryDescription();
