@@ -19,8 +19,8 @@ class DynamicPageRevision
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\DynamicPage", cascade={"remove"})
-     * @ORM\JoinColumn(nullable=false,  nullable=true,  onDelete="CASCADE")
+     * @ORM\ManyToOne(targetEntity="App\Entity\DynamicPage")
+     * @ORM\JoinColumn(nullable=false,  nullable=true)
      */
     private $dynamicPage;
 

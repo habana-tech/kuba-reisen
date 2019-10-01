@@ -67,7 +67,9 @@
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     top: 40px;
-    z-index: 100; }
+    z-index: 100;
+    right: 1em;
+    max-width: 20vw; }
 .admin_bar .dropdown span {
     color: white; }
 .admin_bar .dropdown-content a {
@@ -81,6 +83,11 @@
     background-color: #ddd; }
 .admin_bar .dropdown:hover .dropdown-content {
     display: block; }
+.admin_bar #revisions_description {
+    margin-bottom: 0px;
+    border-bottom: 1px #bbb solid;
+    padding: 8px;
+    font-size: .8em; }
 [data-grape_id]:hover, [data-grape_id]:active, [data-grape_id]:focus {
   border: dashed #62ab03 4px;
   border-radius: 20px;

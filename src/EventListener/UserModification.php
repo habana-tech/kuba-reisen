@@ -4,6 +4,7 @@
 namespace App\EventListener;
 use App\Entity\Interest;
 use App\Entity\DynamicPage;
+use App\Entity\User;
 // for Doctrine < 2.4: use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
@@ -25,25 +26,20 @@ class UserModification
 
     public function prePersist(LifecycleEventArgs $args)
     {
+        
         $entity = $args->getObject();
-
-        // only act on some "Product" entity
-      /*  if (!$entity instanceof Interest) {
+       
+        //no User modification for this entity
+        if(!isset($entity->hasUserModificationField))
             return;
-        }
-        */
-      if(!isset($entity->hasUserModificationField))
-          return;
-
 
         //$entityManager = $args->getObjectManager();
-        // ... do something with the Product
-        if ($currentUser = $this->getCurrentUser()) {
-            if($currentUser instanceof App\Entity\User)
-                $entity->setModifiedBy($currentUser);
-        } else {
+        // ... do something with the Entity
+        $currentUser = $this->getCurrentUser();
+        if ($currentUser && $currentUser instanceof User)
+            $entity->setModifiedBy($currentUser);
+        else 
             $entity->setModifiedBy(null);
-        }
     }
 
     public function getCurrentUser()
@@ -53,13 +49,11 @@ class UserModification
         }
 
         if (null === $token = $this->tokenStorage->getToken()) {
-            dump($this->tokenStorage);
             return;
         }
 
         if (!is_object($user = $token->getUser())) {
-            // e.g. anonymous authentication
-            dump($this->user);
+            // e.g. anonymous authenticatio
             return;
         }
 

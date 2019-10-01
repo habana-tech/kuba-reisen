@@ -1,5 +1,6 @@
+<p id="revisions_description">You can undo any change and restore the page content to a previous version. Click on one of the versions.</p>
 {% for revision in revisions %}
     <a href="{{ path('aply_page_revisions_by_page', {'id': revision.id}) }}">{{ revision }}</a>
-    {% else %}
-    <p>nothing here!</p>
+{% else %}
+    <p>nothing here yet!</p>
 {% endfor %}
