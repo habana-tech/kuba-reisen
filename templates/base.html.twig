@@ -38,13 +38,13 @@
 
         {{ include('backend/adminbar/admin_bar.html.twig') }}
 
-        <div class="container margin-top " style=" min-height: calc(100vh - 12em);">
+        <div class="container margin-top " style=" min-height: calc(100vh - 12em); z-index: 1; position: relative;">
             {% block body %}{% endblock %}
 
             {% block javascripts %}{% endblock %}
         </div>
 
-        <footer class="site-footer">
+        <footer class="site-footer" style="z-index: 0;">
 
             <div class="container">
                 <div class="site-footer-inner">
