@@ -177,4 +177,112 @@ class EndpointController extends AbstractController
             ]
         );
     }
+
+    /**
+     * @Route("/ckeditor_imageupload/")
+     */
+    public function ckeditor_imageupload(Request $request)
+
+    {
+
+
+
+
+            $file = $request->files->get('upload');
+
+            if($file)
+            {
+                $em = $this->getDoctrine()->getManager();
+
+                $image = new UploadedImage();
+
+                  try{
+                      $image->setImageFile($file);
+                      $em->persist($image);
+                  }
+                  catch (FileNotFoundException  $e)
+                  {
+                        return $this->json(['error'=>'Error uploading file, try againg or use other file'], 400);
+
+                  }
+              
+
+                $em->flush();
+
+        $funcNum = 'default';
+        $url = $image->getImagePath();
+            return new Response(
+                "<script>window.parent.CKEDITOR.tools.callFunction(".$funcNum.", \"".$url."\")</script>"
+                );
+            }
+exit();
+
+
+
+
+        // Parameters
+        $type = $_GET['type'];
+        $CKEditor = $_GET['CKEditor'];
+
+        // Image upload
+        if($type == 'image'){
+
+            $allowed_extension = array(
+              "png","jpg","jpeg"
+            );
+
+            // Get image file extension
+            $file_extension = pathinfo($_FILES["upload"]["name"], PATHINFO_EXTENSION);
+
+            if(in_array(strtolower($file_extension),$allowed_extension)){
+               
+               if(move_uploaded_file($_FILES['upload']['tmp_name'], "uploads/".$_FILES['upload']['name'])){
+                  // File path
+                  if(isset($_SERVER['HTTPS'])){
+                     $protocol = ($_SERVER['HTTPS'] && $_SERVER['HTTPS'] != "off") ? "https" : "http";
+                  }
+                  else{
+                     $protocol = 'http';
+                  }
+                  $url = $protocol."://".$_SERVER['SERVER_NAME'] ."/ckeditor_fileupload/uploads/".$_FILES['upload']['name'];
+               
+                  echo '<script>window.parent.CKEDITOR.tools.callFunction('.$funcNum.', "'.$url.'", "'.$message.'")</script>';
+               }
+
+            }
+
+            exit;
+        }
+
+        // File upload
+        if($type == 'file'){
+
+            $allowed_extension = array(
+               "doc","pdf","docx"
+            );
+
+            // Get image file extension
+            $file_extension = pathinfo($_FILES["upload"]["name"], PATHINFO_EXTENSION);
+
+            if(in_array(strtolower($file_extension),$allowed_extension)){
+
+               if(move_uploaded_file($_FILES['upload']['tmp_name'], "uploads/".$_FILES['upload']['name'])){
+                  // File path
+                  if(isset($_SERVER['HTTPS'])){
+                      $protocol = ($_SERVER['HTTPS'] && $_SERVER['HTTPS'] != "off") ? "https" : "http";
+                  }
+                  else{
+                      $protocol = 'http';
+                  }
+
+                  $url = $protocol."://".$_SERVER['SERVER_NAME'] ."/ckeditor_fileupload/uploads/".$_FILES['upload']['name'];
+                 
+                  echo '<script>window.parent.CKEDITOR.tools.callFunction('.$funcNum.', "'.$url.'", "'.$message.'")</script>';
+               }
+
+            }
+
+            exit;
+        }
+    }
 }

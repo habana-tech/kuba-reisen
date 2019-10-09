@@ -5,3 +5,7 @@ ckfinder_connector:
 ckfinder_fullpage:
     path:     /admin/ckfinder/explore
     defaults: { _controller: CKSource\Bundle\CKFinderBundle\Controller\CKFinderController::examplesAction, example: fullpage }
+
+ckfinder_modal:
+    path:     /admin/ckfinder/modal
+    defaults: { _controller: CKSource\Bundle\CKFinderBundle\Controller\CKFinderController::examplesAction, example: fullpage }
