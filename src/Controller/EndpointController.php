@@ -177,4 +177,5 @@ class EndpointController extends AbstractController
             ]
         );
     }
+
 }

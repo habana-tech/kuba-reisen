@@ -18,6 +18,7 @@ class UserType extends AbstractType
             ->add('username')
             ->add('enabled')
             ->add('email')
+            ->add('sendRequestEmail', null, ['label'=> 'This user recibes the contact request'])
             ->add('changepassword', PasswordType::class, ['label'=> 'Write a new password, only to change it',
                                         'required'=>false,
                                         'attr'=>['value'=>'']

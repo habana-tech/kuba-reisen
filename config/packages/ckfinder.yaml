@@ -4,3 +4,5 @@ imports:
 ckfinder:
     connector:
         authenticationClass: App\SecurityAuths\CKFinderAuth
+        licenseName: '%env(CKFINDER_LICENSENAME)%'
+        licenseKey: '%env(CKFINDER_LICENSEKEY)%'

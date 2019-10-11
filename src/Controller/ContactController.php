@@ -7,6 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\DynamicPageRepository;
 use App\PageManager\DynamicPageManager;
 use App\Repository\ActivityRepository;
+use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use App\Entity\ContactPlaning;
@@ -84,7 +85,7 @@ class ContactController extends AbstractController
     /**
      * @Route("/processContact", name="processContact", methods={"POST"})
      */
-    public function processContact(Request $request,  \Swift_Mailer $mailer, ActivityRepository $repository){
+    public function processContact(Request $request,  \Swift_Mailer $mailer, ActivityRepository $repository, UserRepository $userRepository){
 
         $contact = new ContactPlaning();
         $form = $this->createForm(ContactPlaningType::class, $contact);
@@ -114,7 +115,7 @@ class ContactController extends AbstractController
             $entityManager->persist($contact);
             $entityManager->flush();
 
-            $this->sendContactEmailNotification($contact, $mailer);
+            $this->sendContactEmailNotification($contact, $mailer, $userRepository);
             return $this->json(['status'=>'sucess', 'id'=>$contact->getId()]);
             //TODO: show a sended form page
 
@@ -148,9 +149,18 @@ class ContactController extends AbstractController
         return $this->json($data);
     }
 
-    private function sendContactEmailNotification(ContactPlaning $contact, \Swift_Mailer $mailer){
+    private function sendContactEmailNotification(ContactPlaning $contact, \Swift_Mailer $mailer, UserRepository $userRepository){
 
-        $adminEmail = "josmiguel92@gmail.com";
+        $users = $userRepository->findAll();
+        $adminEmail = [];
+
+        foreach ($users as $user) 
+            if($user->isAtEmailList())
+                $adminEmail[] = $user->getEmail();
+        
+        if(!$adminEmail)
+            throw new Exception("Error Processing Request, no adminEmail avalaible", 1);
+            
         $from = ['kontaktieren@kuba-reisen.reisen'=>'kontaktieren kuba-reisen'];
         $bcc = ['josmiguel92@gmail.com', '14ndy15@gmail.com'];
 

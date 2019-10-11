@@ -42,6 +42,11 @@ class User extends BaseUser
 
     private $changepassword;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $sendRequestEmail;
+
     public function __construct()
     {
         parent::__construct();
@@ -99,6 +104,23 @@ class User extends BaseUser
     public function setEnterprise(?string $enterprise): self
     {
         $this->enterprise = $enterprise;
+
+        return $this;
+    }
+
+    public function getSendRequestEmail(): ?bool
+    {
+        return $this->sendRequestEmail;
+    }
+
+    public function isAtEmailList(): ?bool
+    {
+        return $this->sendRequestEmail;
+    }
+
+    public function setSendRequestEmail(?bool $sendRequestEmail): self
+    {
+        $this->sendRequestEmail = $sendRequestEmail;
 
         return $this;
     }

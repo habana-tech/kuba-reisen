@@ -27,8 +27,8 @@ $config = array();
 /*============================ License Key ============================================*/
 // http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_licenseKey
 
-$config['licenseName'] = '21312312z1e1z';
-$config['licenseKey']  = 'adsada3qw12wq';
+//$config['licenseName'] = 'kuba-reisen.reisen'; 
+//$config['licenseKey']  = '*2?4-*1**-9**H-*9**-*C**-3*3*-4**K';
 
 /*============================ CKFinder Internal Directory ============================*/
 // http://docs.cksource.com/ckfinder3-php/configuration.html#configuration_options_privateDir
@@ -125,7 +125,7 @@ $config['accessControl'][] = array(
     'FOLDER_DELETE'       => false,
 
     'FILE_VIEW'           => true,
-    'FILE_UPLOAD'         => false,
+    'FILE_UPLOAD'         => true,
     'FILE_RENAME'         => true,
     'FILE_DELETE'         => true,
 
@@ -137,9 +137,9 @@ $config['accessControl'][] = array(
 /*================================ Other Settings =====================================*/
 // http://docs.cksource.com/ckfinder3-php/configuration.html
 
-$config['overwriteOnUpload'] = false;
+$config['overwriteOnUpload'] = true;
 $config['checkDoubleExtension'] = true;
-$config['disallowUnsafeCharacters'] = false;
+$config['disallowUnsafeCharacters'] = true;
 $config['secureImageUploads'] = true;
 $config['checkSizeAfterScaling'] = true;
 $config['htmlExtensions'] = array('html', 'htm', 'xml', 'js');

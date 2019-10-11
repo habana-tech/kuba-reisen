@@ -71,7 +71,8 @@ class ActivitiesController extends AbstractController
      */
     public function activitiesApiPos(ActivityRepository $activityRepository,
                                      UploadedImageRepository $uploadedImageRepository,
-                                     $pos, $amount){
+                                     $pos, $amount)
+    {
 
         if($pos==null)
             $pos=0;
@@ -153,6 +154,7 @@ class ActivitiesController extends AbstractController
             array_push($activities, $_activities[$i]);
 
         $filterTags = $filterTagRepository->findBy(['language'=>'de']);
+
 
         return $this->render('frontend/activities.html.twig', [
             'dynamic_page_id' => $page->getId(),

@@ -7,7 +7,6 @@
         "ext-gd": "*",
         "ext-iconv": "*",
         "ext-json": "*",
-        "alterphp/easyadmin-extension-bundle": "^2.1",
         "ckfinder/ckfinder-symfony-bundle": "^3.5",
         "easycorp/easyadmin-bundle": "^2.1",
         "friendsofsymfony/ckeditor-bundle": "^2.0",
@@ -47,7 +46,8 @@
         "preferred-install": {
             "*": "dist"
         },
-        "sort-packages": true
+        "sort-packages": true,
+        "component-dir": "public/static/assets"
     },
     "autoload": {
         "psr-4": {
@@ -84,7 +84,7 @@
     },
     "extra": {
         "symfony": {
-            "allow-contrib": true,
+            "allow-contrib": "true",
             "require": "4.3.*"
         }
     }
