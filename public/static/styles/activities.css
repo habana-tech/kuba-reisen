@@ -103,6 +103,14 @@
     width: 0; }
 .activities__stories__story:first-child {
     position: relative; }
+.activities__stories__story img {
+    min-width: 100%;
+    height: auto;
+    margin: 0; }
+@media (min-width: 1200px) {
+      .activities__stories__story img {
+        max-width: 90%;
+        margin: auto 5%; } }
 .activities__selectors {
   width: 95%;
   margin: auto;

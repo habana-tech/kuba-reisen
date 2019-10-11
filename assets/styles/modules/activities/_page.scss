@@ -131,6 +131,17 @@
             &:first-child{
                 position: relative;
             }
+
+            & img{
+                min-width: 100%;
+                height: auto;
+                margin: 0;
+
+                @include atLarge{
+                    max-width: 90%;
+                    margin: auto 5%;
+                }
+            }
         }
 
 
