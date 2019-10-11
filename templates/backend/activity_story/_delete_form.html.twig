@@ -1,4 +1,6 @@
 <form method="post" action="{{ path('backend_activity_story_delete', {'id': activity_story.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+	<a href="{{ path('backend_activity_story_index') }}"  class="button button-secondary button-shadow button-block">back to list</a>
+	
     <input type="hidden" name="_method" value="DELETE">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ activity_story.id) }}">
     <button class="button button-secondary button-shadow button-block">Delete</button>
