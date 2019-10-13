@@ -550,7 +550,7 @@ Descr: Custom radio toggle
   flex-wrap: wrap;
   justify-content: center; }
 .top_destinations__places {
-    width: 95%;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between; }
@@ -626,22 +626,26 @@ Descr: Custom radio toggle
             z-index: 1; }
 .top_destinations__places__place__text {
         position: absolute;
-        bottom: 1em;
-        width: 80%;
-        margin: 0 10%;
+        bottom: 0;
+        width: 90%;
+        margin: 0 5%;
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
         text-align: center;
         z-index: 2;
         text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5); }
+@media (min-width: 1200px) {
+          .top_destinations__places__place__text {
+            bottom: 1em; } }
 .top_destinations__places__place__text span {
           display: block;
           color: white;
           font-family: "Baloo Bhaina", cursive;
           font-size: 2em; }
 .top_destinations__places__place__text p {
-          color: white; }
+          color: white;
+          font-weight: bold; }
 .activity {
   width: 100%;
   margin: .5em .5em;

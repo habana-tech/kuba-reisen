@@ -4,7 +4,7 @@
     justify-content: center;
 
     &__places{
-        width: 95%;
+        width: 100%;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
@@ -108,15 +108,19 @@
 
             &__text {
                 position: absolute;
-                bottom: 1em;
-                width: 80%;
-                margin: 0 10%;
+                bottom: 0;
+                width: 90%;
+                margin: 0 5%;
                 display: flex;
                 justify-content: center;
                 flex-wrap: wrap;
                 text-align: center;
                 z-index: 2;
                 text-shadow: 3px 3px 10px rgba(black, .5);
+
+                @include atLarge{
+                    bottom: 1em;
+                }
 
                 & span {
                     display: block;
@@ -127,6 +131,7 @@
 
                 & p {
                     color: white;
+                    font-weight: bold;
                 }
             }
         }
