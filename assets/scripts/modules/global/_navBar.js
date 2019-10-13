@@ -13,6 +13,7 @@ class NavBar{
         this.pathC = document.querySelector('#burger_pathC');
         this.wrapper = document.querySelector('#menu-icon-wrapper');
         this.button = document.querySelector('#menu-icon-trigger');
+        this.main = document.querySelector('main');
 
         this.beginAC = 80;
         this.endAC = 320;
@@ -43,6 +44,11 @@ class NavBar{
 
     events(){
         this.button.addEventListener('click', this.showOrHideMenu.bind(this));
+
+        this.main.addEventListener('click', ()=>{
+            if (this.isOpen)
+                this.hideMenu();;
+        });
     }
 
     showOrHideMenu(){
