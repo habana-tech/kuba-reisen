@@ -688,13 +688,14 @@ Descr: Custom radio toggle
       top: -.5em;
       position: absolute;
       right: .5em;
-      width: 3.5em;
-      height: 3.5em; }
+      width: 3.75em;
+      height: 3.75em; }
 .activity__content__price span {
+        text-align: center;
         margin: auto;
         color: white;
         font-weight: 700;
-        font-size: .85em; }
+        font-size: .95em; }
 .activity__content__actions {
       position: absolute;
       width: auto;
