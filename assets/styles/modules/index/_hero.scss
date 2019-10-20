@@ -109,10 +109,12 @@
     width: 100%;
 
     & .slide-item{
-        position: relative;
+        position: absolute;
+        top: 0;
 
-        &:nth-child(1){
+        &:first-child{
             z-index: 0;
+
         }
     }
 }

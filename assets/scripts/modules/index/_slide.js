@@ -498,6 +498,8 @@ let spriteImagesSrc = [];
 let imageTrigger = document.querySelector('.hero .slide-item:first-child img');
 imageTrigger.addEventListener('lazyloaded', ()=> {
 
+    console.log('loading images');
+
     for (let i = 0; i < spriteImages.length; i++) {
         let img = spriteImages[i];
         spriteImagesSrc.push(img.currentSrc);
