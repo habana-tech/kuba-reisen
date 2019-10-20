@@ -80,8 +80,9 @@
   height: 100%;
   width: 100%; }
 .slide-wrapper .slide-item {
-    position: relative; }
-.slide-wrapper .slide-item:nth-child(1) {
+    position: absolute;
+    top: 0; }
+.slide-wrapper .slide-item:first-child {
       z-index: 0; }
 .overview {
   display: flex;

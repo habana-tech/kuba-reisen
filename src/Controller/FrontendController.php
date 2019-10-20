@@ -280,4 +280,30 @@ class FrontendController extends AbstractController
             'page' => $page,
         ]);
     }
+
+
+    /**
+     * @Route("/Gut_zu_wissen", name="good_to_know")
+     */
+    public function goodToKnow(DynamicPageManager $pm)
+    {
+
+        $pageinfo = [
+            'pageName'=> 'goodToKnow',
+            'language' => 'de'
+        ];
+
+        if($this->isGranted('ROLE_ADMIN'))
+            $page = $pm->findByOrCreateIfDoesNotExist($pageinfo);
+        else $page = $pm->findOneBy($pageinfo);
+
+
+        if(!$page) throw new NotFoundHttpException();
+
+        return $this->render('frontend/tours.html.twig', [
+            'dynamic_page_id' => $page->getId(),
+            'page' => $page,
+        ]);
+    }
+
 }

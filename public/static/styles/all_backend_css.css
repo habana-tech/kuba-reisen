@@ -1,4 +1,3 @@
-
 @import url("https://fonts.googleapis.com/css?family=Baloo+Bhaina|Open+Sans:400,700&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Baloo+Bhaina|Open+Sans:400,700&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Baloo+Bhaina|Open+Sans:400,700&display=swap");
@@ -10,7 +9,6 @@
 @import url("https://fonts.googleapis.com/css?family=Baloo+Bhaina|Open+Sans:400,700&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Baloo+Bhaina|Open+Sans:400,700&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Baloo+Bhaina|Open+Sans:400,700&display=swap");
-@charset "UTF-8";
 /**
  * @section Normalize.css
  * Normalize.css base with custom code.
@@ -4135,8 +4133,9 @@ body.admin-logged .menu-icon-wrapper {
   height: 100%;
   width: 100%; }
 .slide-wrapper .slide-item {
-    position: relative; }
-.slide-wrapper .slide-item:nth-child(1) {
+    position: absolute;
+    top: 0; }
+.slide-wrapper .slide-item:first-child {
       z-index: 0; }
 .overview {
   display: flex;
@@ -4323,26 +4322,66 @@ Descr: Custom radio toggle
       width: 30%; } }
 @-webkit-keyframes collapse {
   0% {
+    overflow: visible;
+    width: 80%;
+    height: auto;
     z-index: 4;
     opacity: 1; }
   100% {
+    overflow: visible;
+    width: 80%;
+    height: auto;
     z-index: 4;
     opacity: 0; } }
 @keyframes collapse {
   0% {
+    overflow: visible;
+    width: 80%;
+    height: auto;
     z-index: 4;
     opacity: 1; }
   100% {
+    overflow: visible;
+    width: 80%;
+    height: auto;
+    z-index: 4;
+    opacity: 0; } }
+@-webkit-keyframes collapseLarge {
+  0% {
+    overflow: visible;
+    width: 30%;
+    height: auto;
+    z-index: 4;
+    opacity: 1; }
+  100% {
+    overflow: visible;
+    width: 30%;
+    height: auto;
+    z-index: 4;
+    opacity: 0; } }
+@keyframes collapseLarge {
+  0% {
+    overflow: visible;
+    width: 30%;
+    height: auto;
+    z-index: 4;
+    opacity: 1; }
+  100% {
+    overflow: visible;
+    width: 30%;
+    height: auto;
     z-index: 4;
     opacity: 0; } }
 .cookie--no-visible {
     -webkit-animation: collapse .3s ease-in-out 1;
             animation: collapse .3s ease-in-out 1;
-    z-index: -1;
-    /**
-		* TODO: en páginas sin baacckground, como es el caso de kontacto, y similares, el dialogo de la cookie no se oculta correctmente.
-		* Sería conveniente en algun momento añadir un ´display none´ al final de la transición;
-        ***/ }
+    overflow: hidden;
+    width: 0;
+    height: 0; }
+@media (min-width: 1200px) {
+      .cookie--no-visible {
+        -webkit-animation: collapseLarge .3s ease-in-out 1;
+                animation: collapseLarge .3s ease-in-out 1; } }
 .cookie__img {
     position: absolute;
     top: -2em;
@@ -4370,22 +4409,32 @@ Descr: Custom radio toggle
   background-color:rgba(0, 0, 0, 0.75); }
 @-webkit-keyframes hidden {
   0% {
+    height: 100%;
+    width: 100%;
     background-color:rgba(0, 0, 0, 0.75);
     z-index: 3; }
   100% {
+    height: 100%;
+    width: 100%;
     background-color:rgba(0, 0, 0, 0);
     z-index: 3; } }
 @keyframes hidden {
   0% {
+    height: 100%;
+    width: 100%;
     background-color:rgba(0, 0, 0, 0.75);
     z-index: 3; }
   100% {
+    height: 100%;
+    width: 100%;
     background-color:rgba(0, 0, 0, 0);
     z-index: 3; } }
 .cookie-overlay--no-visible {
     -webkit-animation: hidden .3s ease-in-out 1;
             animation: hidden .3s ease-in-out 1;
-    z-index: -1; }
+    z-index: -1;
+    width: 0;
+    height: 0; }
 .blur-up {
   -webkit-filter: blur(8px);
           filter: blur(8px);
@@ -4765,7 +4814,7 @@ Descr: Custom radio toggle
   flex-wrap: wrap;
   justify-content: center; }
 .top_destinations__places {
-    width: 95%;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between; }
@@ -4841,22 +4890,26 @@ Descr: Custom radio toggle
             z-index: 1; }
 .top_destinations__places__place__text {
         position: absolute;
-        bottom: 1em;
-        width: 80%;
-        margin: 0 10%;
+        bottom: 0;
+        width: 90%;
+        margin: 0 5%;
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
         text-align: center;
         z-index: 2;
         text-shadow:3px 3px 10px rgba(0, 0, 0, 0.5); }
+@media (min-width: 1200px) {
+          .top_destinations__places__place__text {
+            bottom: 1em; } }
 .top_destinations__places__place__text span {
           display: block;
           color: white;
           font-family: "Baloo Bhaina", cursive;
           font-size: 2em; }
 .top_destinations__places__place__text p {
-          color: white; }
+          color: white;
+          font-weight: bold; }
 .activity {
   width: 100%;
   margin: .5em .5em;
@@ -4899,13 +4952,14 @@ Descr: Custom radio toggle
       top: -.5em;
       position: absolute;
       right: .5em;
-      width: 3.5em;
-      height: 3.5em; }
+      width: 3.75em;
+      height: 3.75em; }
 .activity__content__price span {
+        text-align: center;
         margin: auto;
         color: white;
         font-weight: 700;
-        font-size: .85em; }
+        font-size: .95em; }
 .activity__content__actions {
       position: absolute;
       width: auto;
@@ -5110,7 +5164,13 @@ Descr: Custom radio toggle
             .footer__content__infos__column:last-child {
               width: 25%; } }
 .footer__content__copyright {
-      width: 40%; }
+      width: auto; }
+.footer__content__made-by {
+      width: auto; }
+.footer__content__made-by a {
+        color: white;
+        text-decoration: underline;
+        font-weight: bold; }
 .footer__content__social-networks {
       width: auto;
       margin: auto 2em; }
@@ -5121,9 +5181,10 @@ Descr: Custom radio toggle
           display: inline-block;
           list-style: none; }
 .footer__content__social-networks ul li a {
-            width: 2em;
-            height: 2em;
             display: inline-block; }
+.footer__content__social-networks ul li a svg {
+              width: 2em;
+              height: 2em; }
 .footer__background-image {
     position: absolute;
     bottom: 0;
@@ -5300,6 +5361,14 @@ Descr: Custom radio toggle
     width: 0; }
 .activities__stories__story:first-child {
     position: relative; }
+.activities__stories__story img {
+    min-width: 100%;
+    height: auto !important;
+    margin: 0; }
+@media (min-width: 1200px) {
+      .activities__stories__story img {
+        max-width: 90%;
+        margin: auto 5%; } }
 .activities__selectors {
   width: 95%;
   margin: auto;
@@ -6011,7 +6080,7 @@ body {
   .details {
     width: 30%; } }
 .contact {
-  width: 80%;
+  width: 95%;
   margin: auto;
   margin-bottom: 3em; }
 .contact:last-child {

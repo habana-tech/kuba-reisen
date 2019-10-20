@@ -1,6 +1,4 @@
-
 @import url("https://fonts.googleapis.com/css?family=Baloo+Bhaina|Open+Sans:400,700&display=swap");
-@charset "UTF-8";
 *::-moz-selection {
   background-color: rgba(53, 207, 212, 0.3); }
 *::selection {
@@ -108,26 +106,66 @@ Descr: Custom radio toggle
       width: 30%; } }
 @-webkit-keyframes collapse {
   0% {
+    overflow: visible;
+    width: 80%;
+    height: auto;
     z-index: 4;
     opacity: 1; }
   100% {
+    overflow: visible;
+    width: 80%;
+    height: auto;
     z-index: 4;
     opacity: 0; } }
 @keyframes collapse {
   0% {
+    overflow: visible;
+    width: 80%;
+    height: auto;
     z-index: 4;
     opacity: 1; }
   100% {
+    overflow: visible;
+    width: 80%;
+    height: auto;
+    z-index: 4;
+    opacity: 0; } }
+@-webkit-keyframes collapseLarge {
+  0% {
+    overflow: visible;
+    width: 30%;
+    height: auto;
+    z-index: 4;
+    opacity: 1; }
+  100% {
+    overflow: visible;
+    width: 30%;
+    height: auto;
+    z-index: 4;
+    opacity: 0; } }
+@keyframes collapseLarge {
+  0% {
+    overflow: visible;
+    width: 30%;
+    height: auto;
+    z-index: 4;
+    opacity: 1; }
+  100% {
+    overflow: visible;
+    width: 30%;
+    height: auto;
     z-index: 4;
     opacity: 0; } }
 .cookie--no-visible {
     -webkit-animation: collapse .3s ease-in-out 1;
             animation: collapse .3s ease-in-out 1;
-    z-index: -1;
-    /**
-		* TODO: en páginas sin baacckground, como es el caso de kontacto, y similares, el dialogo de la cookie no se oculta correctmente.
-		* Sería conveniente en algun momento añadir un ´display none´ al final de la transición;
-        ***/ }
+    overflow: hidden;
+    width: 0;
+    height: 0; }
+@media (min-width: 1200px) {
+      .cookie--no-visible {
+        -webkit-animation: collapseLarge .3s ease-in-out 1;
+                animation: collapseLarge .3s ease-in-out 1; } }
 .cookie__img {
     position: absolute;
     top: -2em;
@@ -155,22 +193,32 @@ Descr: Custom radio toggle
   background-color: rgba(0, 0, 0, 0.75); }
 @-webkit-keyframes hidden {
   0% {
+    height: 100%;
+    width: 100%;
     background-color: rgba(0, 0, 0, 0.75);
     z-index: 3; }
   100% {
+    height: 100%;
+    width: 100%;
     background-color: rgba(0, 0, 0, 0);
     z-index: 3; } }
 @keyframes hidden {
   0% {
+    height: 100%;
+    width: 100%;
     background-color: rgba(0, 0, 0, 0.75);
     z-index: 3; }
   100% {
+    height: 100%;
+    width: 100%;
     background-color: rgba(0, 0, 0, 0);
     z-index: 3; } }
 .cookie-overlay--no-visible {
     -webkit-animation: hidden .3s ease-in-out 1;
             animation: hidden .3s ease-in-out 1;
-    z-index: -1; }
+    z-index: -1;
+    width: 0;
+    height: 0; }
 .blur-up {
   -webkit-filter: blur(8px);
           filter: blur(8px);
@@ -900,7 +948,13 @@ Descr: Custom radio toggle
             .footer__content__infos__column:last-child {
               width: 25%; } }
 .footer__content__copyright {
-      width: 40%; }
+      width: auto; }
+.footer__content__made-by {
+      width: auto; }
+.footer__content__made-by a {
+        color: white;
+        text-decoration: underline;
+        font-weight: bold; }
 .footer__content__social-networks {
       width: auto;
       margin: auto 2em; }
@@ -911,9 +965,10 @@ Descr: Custom radio toggle
           display: inline-block;
           list-style: none; }
 .footer__content__social-networks ul li a {
-            width: 2em;
-            height: 2em;
             display: inline-block; }
+.footer__content__social-networks ul li a svg {
+              width: 2em;
+              height: 2em; }
 .footer__background-image {
     position: absolute;
     bottom: 0;

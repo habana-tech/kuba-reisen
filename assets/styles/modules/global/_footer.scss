@@ -119,7 +119,18 @@
         }
 
         &__copyright{
-            width: 40%;
+            width: auto;
+        }
+
+        &__made-by{
+            width: auto;
+
+            & a{
+                color: white;
+                text-decoration: underline;
+                font-weight: bold;
+
+            }
         }
 
         &__social-networks{
@@ -135,9 +146,12 @@
                     list-style: none;
 
                     & a{
-                        width: 2em;
-                        height: 2em;
                         display: inline-block;
+
+                        & svg{
+                            width: 2em;
+                            height: 2em;
+                        }
                     }
                 }
             }
