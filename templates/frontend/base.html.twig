@@ -34,7 +34,9 @@
         {% set class = 'admin-logged' %}
     {% else %}
         {% if app.request.get('_route') == 'frontend' %}
-            {% set class = class~' loading' %}
+{#            {% set class = class~' loading' %}#}
+{#            TODO: recordar que va el loading#}
+            {% set class = class~' ' %}
         {% endif %}
     {% endif %}
 

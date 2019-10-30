@@ -72,7 +72,7 @@
           transform: scale(1.2);
   -o-object-fit: cover;
      object-fit: cover;
-  z-index: -1; }
+  z-index: 0; }
 #canvas_hero.canvas_hero--ready {
     z-index: 0; }
 .slide-wrapper {
