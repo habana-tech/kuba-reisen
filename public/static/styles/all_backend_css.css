@@ -4448,23 +4448,35 @@ Descr: Custom radio toggle
     -webkit-filter: blur(0);
             filter: blur(0); }
 .form {
-  width: 80%;
+  width: 95%;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center; }
+@media (min-width: 1200px) {
+    .form {
+      width: 80%; } }
 .form__item {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center; }
 .form__item__label {
-      width: 30%;
-      margin: 0 2em;
+      width: 100%;
+      margin: 0 1em;
       padding: .5em 0;
-      text-align: right; }
+      justify-content: center;
+      display: flex; }
+@media (min-width: 1200px) {
+        .form__item__label {
+          width: 30%;
+          margin: 0 2em;
+          justify-content: left; } }
 .form__item__input {
-      width: 40%; }
+      width: 90%; }
+@media (min-width: 1200px) {
+        .form__item__input {
+          width: 40%; } }
 .header {
   position: fixed;
   width: 98%;
@@ -6228,8 +6240,7 @@ body {
     -webkit-transform: scale(1.1) !important;
             transform: scale(1.1) !important; }
 .selected-activities {
-  width: 120%;
-  left: -10%;
+  width: 100%;
   position: relative; }
 .selected-activities__title {
     width: 100%;
@@ -6251,20 +6262,32 @@ body {
     justify-content: center; }
 .travel-interest__options {
     display: grid;
-    grid-template-areas: "img1 img2 img3" "img4 img5 img6" "img7 img8 img9";
-    grid-template-rows: 40vh 40vh 40vh;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: .25em; }
+    grid-template-areas: "img1" "img2" "img3" "img4" "img5" "img6" "img7" "img8" "img9";
+    grid-template-rows: 40vh;
+    grid-template-columns: 1fr;
+    grid-gap: .2em; }
+@media (min-width: 1200px) {
+      .travel-interest__options {
+        grid-template-areas: "img1 img2 img3" "img4 img5 img6" "img7 img8 img9";
+        grid-template-rows: 40vh 40vh 40vh;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: .25em; } }
 .contact__personal {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between; }
 .contact__personal__name_mail {
-    width: 40%; }
+    width: 100%; }
+@media (min-width: 1200px) {
+      .contact__personal__name_mail {
+        width: 40%; } }
 .contact__personal__message {
-    width: 55%; }
+    width: 100%; }
+@media (min-width: 1200px) {
+      .contact__personal__message {
+        width: 55%; } }
 .contact__personal .form__item {
-    display: grid;
-    grid-template-columns: 1fr 3fr; }
+    display: flex; }
 .contact__personal .form__item__label, .contact__personal .form__item__input, .contact__personal .form__item__textarea {
       width: 100%; }
 .contact__personal .form__item__label {

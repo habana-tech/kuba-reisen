@@ -440,8 +440,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     -webkit-transform: scale(1.1) !important;
             transform: scale(1.1) !important; }
 .selected-activities {
-  width: 120%;
-  left: -10%;
+  width: 100%;
   position: relative; }
 .selected-activities__title {
     width: 100%;
@@ -463,20 +462,32 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     justify-content: center; }
 .travel-interest__options {
     display: grid;
-    grid-template-areas: "img1 img2 img3" "img4 img5 img6" "img7 img8 img9";
-    grid-template-rows: 40vh 40vh 40vh;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: .25em; }
+    grid-template-areas: "img1" "img2" "img3" "img4" "img5" "img6" "img7" "img8" "img9";
+    grid-template-rows: 40vh;
+    grid-template-columns: 1fr;
+    grid-gap: .2em; }
+@media (min-width: 1200px) {
+      .travel-interest__options {
+        grid-template-areas: "img1 img2 img3" "img4 img5 img6" "img7 img8 img9";
+        grid-template-rows: 40vh 40vh 40vh;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: .25em; } }
 .contact__personal {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between; }
 .contact__personal__name_mail {
-    width: 40%; }
+    width: 100%; }
+@media (min-width: 1200px) {
+      .contact__personal__name_mail {
+        width: 40%; } }
 .contact__personal__message {
-    width: 55%; }
+    width: 100%; }
+@media (min-width: 1200px) {
+      .contact__personal__message {
+        width: 55%; } }
 .contact__personal .form__item {
-    display: grid;
-    grid-template-columns: 1fr 3fr; }
+    display: flex; }
 .contact__personal .form__item__label, .contact__personal .form__item__input, .contact__personal .form__item__textarea {
       width: 100%; }
 .contact__personal .form__item__label {

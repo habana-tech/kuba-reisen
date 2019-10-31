@@ -232,23 +232,35 @@ Descr: Custom radio toggle
     -webkit-filter: blur(0);
             filter: blur(0); }
 .form {
-  width: 80%;
+  width: 95%;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center; }
+@media (min-width: 1200px) {
+    .form {
+      width: 80%; } }
 .form__item {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center; }
 .form__item__label {
-      width: 30%;
-      margin: 0 2em;
+      width: 100%;
+      margin: 0 1em;
       padding: .5em 0;
-      text-align: right; }
+      justify-content: center;
+      display: flex; }
+@media (min-width: 1200px) {
+        .form__item__label {
+          width: 30%;
+          margin: 0 2em;
+          justify-content: left; } }
 .form__item__input {
-      width: 40%; }
+      width: 90%; }
+@media (min-width: 1200px) {
+        .form__item__input {
+          width: 40%; } }
 .header {
   position: fixed;
   width: 98%;

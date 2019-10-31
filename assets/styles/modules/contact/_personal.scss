@@ -1,18 +1,27 @@
 .contact__personal{
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
 
     &__name_mail{
-        width: 40%;
+        width: 100%;
+
+        @include atLarge{
+            width: 40%;
+        }
     }
 
     &__message{
-        width: 55%;
+        width: 100%;
+
+        @include atLarge{
+            width: 55%;
+        }
+
     }
 
     & .form__item{
-        display: grid;
-        grid-template-columns: 1fr 3fr;
+        display: flex;
 
         &__label, &__input, &__textarea{
             width: 100%;
@@ -24,6 +33,7 @@
         }
     }
 }
+
 .sendFormFlex{
     display: flex;
     flex-direction: column;
