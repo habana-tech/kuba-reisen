@@ -91,14 +91,14 @@ Descr: Custom radio toggle
             transform: translateX(100%); }
 .cookie {
   position: fixed;
+  display: flex;
+  flex-wrap: wrap;
   bottom: 1em;
   left: 2em;
   width: 80%;
   background: white;
   border-radius: 2px;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
-  display: flex;
-  flex-wrap: wrap;
   z-index: 4; }
 @media (min-width: 1200px) {
     .cookie {

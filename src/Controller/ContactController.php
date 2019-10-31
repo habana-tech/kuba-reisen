@@ -21,9 +21,13 @@ class ContactController extends AbstractController
     private $selectedActivities = array();
 
     /**
-     * @Route("/kontaktieren",  name="contact")
+     *
+     * @Route("/kontaktieren/{travel}",
+     *     defaults={"travel": null},
+     *       name="contact")
      */
     public function contact(Request $request,
+                            $travel,
                             DynamicPageManager $pm,
                             ActivityRepository $activityRepository)
     {
@@ -42,6 +46,9 @@ class ContactController extends AbstractController
         if(!$page)
             throw new NotFoundHttpException();
 
+        $fromTravel = false;
+        if ($travel == 'raise')
+            $fromTravel = 'true';
 
         $contact = new ContactPlaning();
         $form = $this->createForm(ContactPlaningType::class, $contact, [
@@ -79,6 +86,7 @@ class ContactController extends AbstractController
             'form' => $form->createView(),
             'dynamic_page_id' => $page->getId(),
             'page' => $page,
+            'from_travel' => $fromTravel
         ]);
     }
 

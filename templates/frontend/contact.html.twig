@@ -16,9 +16,11 @@
         {{ form_start(form, { 'attr': {'class': 'form'} } ) }}
         {% form_theme form 'form/fields.html.twig' %}
 
-            {{ include('frontend/components/contact/_basic.html.twig') }}
+            {{ include('frontend/components/contact/_fromTravel.html.twig') }}
 
             {{ include('frontend/components/contact/_advance.html.twig') }}
+
+            {{ include('frontend/components/contact/_basic.html.twig') }}
 
             {{ include('frontend/components/contact/_personal.html.twig') }}
 

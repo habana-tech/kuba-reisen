@@ -300,6 +300,73 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
     padding-bottom: 3em; }
 #contact_planing_interests {
   display: none; }
+.from_travel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 80%;
+  background: white;
+  border-radius: 2px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  padding: 1em; }
+@media (min-width: 1200px) {
+    .from_travel {
+      width: 50%;
+      padding: 1.5em 2em; } }
+.from_travel__title {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%; }
+.from_travel__content {
+    width: 100%; }
+.from_travel__action {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%; }
+.from_travel_overlay {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 4;
+  opacity: 1;
+  overflow: hidden; }
+@-webkit-keyframes collapseOverlay {
+  0% {
+    height: 100%;
+    width: 100%;
+    z-index: 4;
+    opacity: 1; }
+  100% {
+    height: 100%;
+    width: 100%;
+    z-index: 4;
+    opacity: 0; } }
+@keyframes collapseOverlay {
+  0% {
+    height: 100%;
+    width: 100%;
+    z-index: 4;
+    opacity: 1; }
+  100% {
+    height: 100%;
+    width: 100%;
+    z-index: 4;
+    opacity: 0; } }
+.from_travel_overlay--no-visible {
+    -webkit-animation: collapseOverlay .3s ease-in-out 1;
+            animation: collapseOverlay .3s ease-in-out 1;
+    width: 0;
+    height: 0;
+    z-index: -1;
+    opacity: 0; }
 .interest {
   height: 100%;
   width: 100%;
