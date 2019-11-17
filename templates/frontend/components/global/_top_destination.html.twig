@@ -8,7 +8,6 @@
         </div>
     </div>
 
-
     <div class="top_destinations__places">
 
         {% set classes = ['top_destinations__places__place--blue', 'top_destinations__places__place--orange',
@@ -29,12 +28,7 @@
 
                         <div class="grid__item-img__editor">
                             <img data-grape_section="_top_destinations" data-grape_id="{{ grape_img_id_a }}"
-                                    
                                  src="{{ page.ElementAttr(grape_img_id_a, 'src', '/img/destination/Img20.jpg')  }}"
-                                   
-                                 alt="Image"/>
-                            <img data-grape_section="_top_destinations" data-grape_id="{{ grape_img_id_b }}"
-                                 src="{{ page.ElementAttr(grape_img_id_b, 'src', '/img/destination/Img20.jpg')  }}"
                                  alt="Image"/>
                         </div>
 
@@ -46,34 +40,33 @@
                 {% else %}
                     <a href="#">
                         <div class="top_destinations__places__place__image">
-                            <div class="grid__item-img" data-grape_section="_top_destinations" data-displacement="{{ asset('/img/dmaps/7.jpg') }}" data-intensity="-0.8">
-
+                            <div class="grid__item-img" data-grape_section="_top_destinations">
                                 {{ imgTagContent(
                                     page.ElementAttr(grape_img_id_a, 'src', asset('/img/destination/Img20.jpg')),
                                     page.ElementAttr(grape_img_id_a, 'srcb64', asset('/img/destination/Img20.jpg')),
                                     '',
                                     '(min-width: 1200px) 50vw, 100vw',
                                     'data-expand="500" data-grape_section="_top_destinations" data-grape_id="'~ grape_img_id_a~'"') | raw }}
-
-                                {{ imgTagContent(
-                                    page.ElementAttr(grape_img_id_b, 'src', asset('/img/destination/Img20.jpg')),
-                                    page.ElementAttr(grape_img_id_b, 'srcb64', asset('/img/destination/Img20.jpg')),
-                                    '',
-                                    '(min-width: 1200px) 50vw, 100vw',
-                                    'data-expand="500" data-grape_section="_top_destinations" data-grape_id="'~ grape_img_id_b~'"') | raw }}
                             </div>
                         </div>
                         <div class="top_destinations__places__place__text">
-                                <span data-grape_section="_top_destinations" data-grape_id="{{ grape_text_title }}">{{ page.ElementContent(grape_text_title,"Trinidad") | raw }}</span>
-                                <p data-grape_section="_top_destinations" data-grape_id="{{ grape_text_description }}">{{ page.ElementContent(grape_text_description,"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet enim ") | raw }}</p>
-                            </div>
+                            <span data-grape_section="_top_destinations" data-grape_id="{{ grape_text_title }}">{{ page.ElementContent(grape_text_title,"Trinidad") | raw }}</span>
+                            <p data-grape_section="_top_destinations" data-grape_id="{{ grape_text_description }}">{{ page.ElementContent(grape_text_description,"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet enim ") | raw }}</p>
+                        </div>
                     </a>
                 {% endif %}
 
             </div>
         {% endfor %}
 
-    </div>
+        <svg class="filter">
+            <filter id="deformation" x="0" y="0" width="100%" height="100%">
+                <feTurbulence id="deformation-filter" numOctaves="3" seed="2" baseFrequency="0.02 0.05"></feTurbulence>
+                <feDisplacementMap scale="5" in="SourceGraphic"></feDisplacementMap>
+            </filter>
+            <animate xlink:href="#deformation-filter" attributeName="baseFrequency" dur="6s" keyTimes="0;0.5;1" values="0.02 0.06;0.04 0.08;0.02 0.06" repeatCount="indefinite"/>
+        </svg>
 
+    </div>
 
 </section>

@@ -5,6 +5,10 @@
   background-color: rgba(53, 207, 212, 0.3); }
 body {
   position: relative; }
+svg.filter {
+  position: absolute;
+  z-index: -1;
+  visibility: hidden; }
 .icon {
   display: block;
   width: 100%;
@@ -630,6 +634,11 @@ Descr: Custom radio toggle
         .top_destinations__places__place {
           margin: 3em 0;
           width: 23%; } }
+.top_destinations__places__place:hover img {
+        -webkit-transform: scale(1.1);
+                transform: scale(1.1);
+        -webkit-filter: url("#deformation");
+                filter: url("#deformation"); }
 .top_destinations__places__place::before {
         content: '';
         width: 100%;
@@ -647,14 +656,6 @@ Descr: Custom radio toggle
         background: linear-gradient(45deg, #f9c90d, #f96e10 20%, transparent); }
 .top_destinations__places__place--green::before {
         background: linear-gradient(45deg, #62ab03, #004d00 20%, transparent); }
-.top_destinations__places__place a:before {
-        content: '';
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        top: 0;
-        left: 0;
-        z-index: 2; }
 .top_destinations__places__place__image {
         overflow: hidden;
         position: relative;
@@ -662,28 +663,17 @@ Descr: Custom radio toggle
 @media (min-width: 1600px) {
           .top_destinations__places__place__image {
             min-height: 60vh; } }
-.top_destinations__places__place__image img {
+.top_destinations__places__place__image > div {
+          width: 100%;
           height: 100%; }
-.top_destinations__places__place__image img:nth-child(2) {
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: -1; }
+.top_destinations__places__place__image img {
+          transition: -webkit-transform .3s ease-in-out;
+          transition: transform .3s ease-in-out;
+          transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out;
+          height: 100%; }
 @media (min-width: 1600px) {
             .top_destinations__places__place__image img {
               width: auto; } }
-.top_destinations__places__place__image .canvas_destinations {
-          position: absolute;
-          top: 0;
-          left: 0;
-          z-index: -1;
-          -o-object-fit: cover;
-             object-fit: cover; }
-@media (min-width: 1200px) {
-            .top_destinations__places__place__image .canvas_destinations {
-              min-height: 60vh; } }
-.top_destinations__places__place__image .canvas_destinations--ready {
-            z-index: 1; }
 .top_destinations__places__place__text {
         position: absolute;
         bottom: 0;

@@ -29,6 +29,11 @@
                 width: 23%;
             }
 
+            &:hover img{
+                transform: scale(1.1);
+                filter: url("#deformation");
+            }
+
             &::before{
                 content: '';
                 width: 100%;
@@ -53,18 +58,6 @@
                 background: linear-gradient(45deg, $light-green, $dark-green 20%, transparent);
             }
 
-            & a {
-                &:before {
-                    content: '';
-                    position: absolute;
-                    height: 100%;
-                    width: 100%;
-                    top: 0;
-                    left: 0;
-                    z-index: 2;
-                }
-            }
-
             &__image {
                 overflow: hidden;
                 position: relative;
@@ -74,36 +67,20 @@
                     min-height: 60vh;
                 }
 
-                & img {
+                & > div{
+                    width: 100%;
                     height: 100%;
+                }
 
-                    &:nth-child(2) {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        z-index: -1;
-                    }
+                & img {
+                    transition: transform .3s ease-in-out;
+                    height: 100%;
 
                     @include atXLarge {
                         width: auto;
                     }
                 }
 
-                & .canvas_destinations {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    z-index: -1;
-                    object-fit: cover;
-
-                    @include atLarge {
-                        min-height: 60vh;
-                    }
-
-                    &--ready {
-                        z-index: 1;
-                    }
-                }
             }
 
             &__text {
