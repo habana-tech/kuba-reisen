@@ -20,7 +20,7 @@
 ###> liip/imagine-bundle ###
 /public/media/cache/
 ###< liip/imagine-bundle ###
-.idea/*
+/.idea
 node_modules/
 public/static/uploads/
 public/static/squared_thumbnail/

@@ -1,0 +1,46 @@
+.gallery{
+    position: relative;
+
+    &__item{
+        position: absolute;
+        top: 0;
+        transition: transform .3s ease-in-out;
+        max-height: 100vh;
+        min-height: 40vh;
+
+        &:first-child{
+            position: relative;
+        }
+
+        @include atLarge{
+            min-height: auto;
+        }
+    }
+
+    &__arrow{
+        position: absolute;
+        width: 2em;
+        height: 2em;
+        top: 50%;
+        border-radius: 50%;
+        z-index: 1;
+        cursor: pointer;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        background-image: url("/images/icons/arrow.svg");
+
+        &--prev{
+            left: .5em;
+            right: auto;
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        &--next{
+            right: .5em;
+            left: auto;
+            transform: translateY(-50%) rotate(0deg);
+        }
+    }
+
+}
