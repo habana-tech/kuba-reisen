@@ -14,33 +14,38 @@
         "google/recaptcha": "^1.2",
         "liip/imagine-bundle": "^2.1",
         "oneup/flysystem-bundle": "^3.0",
-        "sensio/framework-extra-bundle": "^5.1",
-        "symfony/asset": "^4.2",
-        "symfony/console": "^4.2",
-        "symfony/dotenv": "^4.2",
-        "symfony/expression-language": "^4.2",
+        "sensio/framework-extra-bundle": "*",
+        "symfony/asset": "*",
+        "symfony/console": "*",
+        "symfony/dotenv": "*",
+        "symfony/expression-language": "*",
         "symfony/flex": "^1.1",
         "symfony/form": "^4.2",
-        "symfony/framework-bundle": "^4.2",
+        "symfony/framework-bundle": "*",
         "symfony/monolog-bundle": "^3.1",
         "symfony/orm-pack": "*",
-        "symfony/process": "^4.2",
-        "symfony/security-bundle": "^4.2",
+        "symfony/process": "*",
+        "symfony/security-bundle": "*",
         "symfony/serializer-pack": "*",
-        "symfony/swiftmailer-bundle": "^3.1",
-        "symfony/translation": "^4.2",
-        "symfony/twig-bundle": "^4.2",
-        "symfony/validator": "^4.2",
-        "symfony/web-link": "^4.2",
-        "symfony/yaml": "^4.2",
-        "vich/uploader-bundle": "^1.9"
+        "symfony/swiftmailer-bundle": "*",
+        "symfony/translation": "*",
+        "symfony/twig-bundle": "*",
+        "symfony/validator": "*",
+        "symfony/web-link": "*",
+        "symfony/yaml": "*",
+        "vich/uploader-bundle": "^1.9",
+        "symfony/mailer": "*",
+        "symfony/mime": "*",
+        "symfony/twig-pack": "*",
+        "symfony/webpack-encore-bundle": "^1.6",
+        "twig/cssinliner-extra": "^3.0",
+        "twig/markdown-extra": "^3.0"
     },
     "require-dev": {
         "symfony/debug-pack": "*",
         "symfony/maker-bundle": "^1.0",
         "symfony/profiler-pack": "*",
-        "symfony/test-pack": "*",
-        "symfony/web-server-bundle": "^4.2"
+        "symfony/test-pack": "*"
     },
     "config": {
         "preferred-install": {
@@ -85,7 +90,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": "true",
-            "require": "4.3.*"
+            "require": "4.4.*"
         }
     }
 }
