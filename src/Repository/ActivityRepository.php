@@ -4,7 +4,6 @@ namespace App\Repository;
 
 use App\Entity\Activity;
 use App\Entity\FilterTag;
-use App\Repository\FilterTagRepository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
