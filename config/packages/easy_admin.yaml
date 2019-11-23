@@ -85,7 +85,7 @@ easy_admin:
                     show:
                         - { property: 'title' }
                         - { property: 'description' }
-                        - { property: 'modified_by'}
+                        - { property: 'modified_by' }
 
         FilterTags:
             class: App\Entity\FilterTag
