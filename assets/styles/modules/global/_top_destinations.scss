@@ -17,11 +17,13 @@
             width: 100%;
             margin: 1.5em 0;
             max-height: 75vh;
+            min-height: 50vh;
             position: relative;
 
             @include atLarge{
                 margin: 3em 0;
                 width: 48%;
+                min-height: auto;
             }
 
             @include atXLarge{
@@ -30,8 +32,7 @@
             }
 
             &:hover img{
-                transform: scale(1.1);
-                filter: url("#deformation");
+                transform: scale(1.05);
             }
 
             &::before{
@@ -73,7 +74,7 @@
                 }
 
                 & img {
-                    transition: transform .3s ease-in-out;
+                    transition: transform .5s ease-in-out;
                     height: 100%;
 
                     @include atXLarge {

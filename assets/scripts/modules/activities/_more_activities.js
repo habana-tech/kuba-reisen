@@ -8,7 +8,7 @@ class LoadActivities {
 
         this.activitiesList = document.querySelector('.activities__list__container');
         this.activitiesListInitial = document.querySelector('.activities__list__container__initial');
-        this.btnLoad = document.querySelector('.activities__list__more a');
+        this.btnLoad = document.querySelector('.activities__list__more button');
         this.prototype = document.querySelector('.activities__list__item-prototype div');
         this.events();
     }

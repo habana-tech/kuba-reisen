@@ -3,7 +3,6 @@ class StoriesLayout {
         this.storiesSelectors = document.querySelectorAll('.activities__stories__items li');
         this.stories = document.querySelectorAll('.activities__stories__story');
         this.storiesAmount = this.stories.length;
-        console.log(this.storiesAmount);
         this.storiesContainer = document.querySelector('.activities__stories__story__container');
         this.events();
         this.init();

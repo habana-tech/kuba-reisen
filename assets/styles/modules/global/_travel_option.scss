@@ -17,9 +17,8 @@
                                 "img12 img14"
                                 "img13 img14";
         grid-template-rows: 33vh 33vh 33vh 33vh 33vh 33vh 33vh 33vh 33vh 33vh;
-        grid-template-columns: 50vw 50vw;
-        width: 100vw;
-        min-width: 100vw;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
         grid-gap: .15em;
 
         @include atLarge{
@@ -30,8 +29,8 @@
                                     "img5 img7 img12 img14"
                                     "img5 img8 img13 img14";
             grid-template-rows: 40vh 40vh 40vh 40vh;
-            grid-template-columns: 1fr 1fr;
-            width: 100vw;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            width: 100%;
         }
 
         &__item{
@@ -86,7 +85,7 @@
 
 
             &:hover{
-                div {
+                & > div {
                     opacity: 1;
                 }
             }
@@ -95,7 +94,7 @@
                 height: 100%;
                 width: 100%;
                 opacity: 0;
-                background-color: rgba($light-blue, .25);
+                background-color: rgba($light-blue, .5);
                 transition: opacity .3s ease-in-out;
                 display: flex;
                 justify-content: center;

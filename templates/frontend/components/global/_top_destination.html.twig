@@ -13,6 +13,7 @@
         {% set classes = ['top_destinations__places__place--blue', 'top_destinations__places__place--orange',
                         'top_destinations__places__place--green', 'top_destinations__places__place--blue'] %}
 
+        {% set urls = [''] %}
         {% for i in 0..3 %}
 
             {% set grape_img_id_a = '_top_destination_img_'~i~'a' %}
@@ -20,7 +21,6 @@
 
             {% set grape_text_title = '_top_destination_text_title_'~i %}
             {% set grape_text_description = '_top_destination_description_'~i %}
-
 
             <div class="top_destinations__places__place {{ classes[i] }}">
                 {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null %}
@@ -58,14 +58,6 @@
 
             </div>
         {% endfor %}
-
-        <svg class="filter">
-            <filter id="deformation" x="0" y="0" width="100%" height="100%">
-                <feTurbulence id="deformation-filter" numOctaves="3" seed="2" baseFrequency="0.02 0.05"></feTurbulence>
-                <feDisplacementMap scale="5" in="SourceGraphic"></feDisplacementMap>
-            </filter>
-            <animate xlink:href="#deformation-filter" attributeName="baseFrequency" dur="6s" keyTimes="0;0.5;1" values="0.02 0.06;0.04 0.08;0.02 0.06" repeatCount="indefinite"/>
-        </svg>
 
     </div>
 

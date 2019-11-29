@@ -1,1 +1,3 @@
-import './modules/destination/_slide';
+import Gallery from "./modules/activity/_gallery";
+
+new Gallery('.gallery');

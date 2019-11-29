@@ -94,7 +94,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _hero_links = __webpack_require__(/*! ./modules/index/_hero_links */ \"./assets/scripts/modules/index/_hero_links.js\");\n\nvar _hero_links2 = _interopRequireDefault(_hero_links);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n//# sourceURL=webpack:///./assets/scripts/index.js?");
+eval("\n\nvar _hero_links = __webpack_require__(/*! ./modules/index/_hero_links */ \"./assets/scripts/modules/index/_hero_links.js\");\n\nvar _hero_links2 = _interopRequireDefault(_hero_links);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nnew _hero_links2.default();\n\n//# sourceURL=webpack:///./assets/scripts/index.js?");
 
 /***/ }),
 

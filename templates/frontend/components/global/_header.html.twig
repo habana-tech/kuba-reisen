@@ -21,22 +21,6 @@
 
     <nav class="header__nav navigation_menu swing-out-top-bck">
 
-{#        <div class="header__nav__lang">#}
-
-{#            <a href="">#}
-{#                EN#}
-{#            </a>#}
-{#            <span>\</span>#}
-{#            <a href="">#}
-{#                DE#}
-{#            </a>#}
-{#            <span>\</span>#}
-{#            <a href="">#}
-{#                ES#}
-{#            </a>#}
-
-{#        </div>#}
-
         <div class="header__nav__menu">
 
             <div class="header__nav__menu__column">
@@ -66,24 +50,6 @@
             <div class="header__nav__menu__column">
 
                 <div class="header__nav__menu__column__title">
-                    <a href="{{ path('excursions') }}">
-                        <h3>Kuba Ausflüge</h3>
-                    </a>
-                </div>
-
-                <ul class="header__nav__menu__column__list">
-                    <li class="header__nav__menu__column__list__link">
-                        <a href="{{ path('activities') }}">Activities</a> <span>New!</span>
-                    </li>
-                    <li class="header__nav__menu__column__list__link">
-                        <a href="{{ path('bucket_list') }}">Our bucket list</a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="header__nav__menu__column">
-
-                <div class="header__nav__menu__column__title">
                     <a href="{{ path('tours') }}">
                         <h3>Kuba bereisen </h3>
                     </a>
@@ -103,6 +69,24 @@
                         </li>
                     {% endfor %}
 
+                </ul>
+            </div>
+
+            <div class="header__nav__menu__column">
+
+                <div class="header__nav__menu__column__title">
+                    <a href="{{ path('excursions') }}">
+                        <h3>Kuba Ausflüge</h3>
+                    </a>
+                </div>
+
+                <ul class="header__nav__menu__column__list">
+                    <li class="header__nav__menu__column__list__link">
+                        <a href="{{ path('activities') }}">Activities</a> <span>New!</span>
+                    </li>
+                    <li class="header__nav__menu__column__list__link">
+                        <a href="{{ path('bucket_list') }}">Our bucket list</a>
+                    </li>
                 </ul>
             </div>
 

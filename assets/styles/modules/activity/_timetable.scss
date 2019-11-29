@@ -1,7 +1,11 @@
 .description-timetable{
-    width: 75%;
+    width: 90%;
     margin: auto;
     position: relative;
+
+    @include atLarge{
+        width: 75%;
+    }
 
     &__content{
         width: 100%;

@@ -1,161 +1,59 @@
 @import url("https://fonts.googleapis.com/css?family=Baloo+Bhaina|Open+Sans:400,700&display=swap");
 @import "https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.css";
-body {
-  --color-text: #000;
-  --color-bg: #fff;
-  --color-link: #000;
-  --color-link-hover: #858585;
-  --color-header: #858585;
-  --color-nav-bg: #fff;
-  --color-nav-hover: #858585;
-  --color-cart-bg: #000;
-  --color-cart: #fff;
-  --color-close-bg: #6a6a6a;
-  --color-close: #fff;
-  --color-details-hover: #858585; }
-/* Icons */
-.icon {
-  display: block;
-  width: 1.5em;
-  height: 1.5em;
-  margin: 0 auto;
-  fill: currentColor; }
-.slideshow {
+.gallery {
   position: relative;
+  height: 70vh;
   width: 100%;
-  margin-top: 1rem; }
-.slideshow::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    opacity: 0;
-    transition: opacity 0.4s; }
-.slideshow--details::after {
-  opacity: 1; }
-.slide {
-  width: 100%;
-  height: 50vh;
-  top: 0;
-  left: 0;
-  position: absolute;
-  overflow-x: hidden;
-  pointer-events: none;
-  opacity: 0; }
-.slide--current {
-    opacity: 1;
-    z-index: 1;
-    pointer-events: auto;
-    position: relative; }
-.slide__wrap {
-    width: 100%;
-    height: 50vh;
-    overflow: hidden;
-    position: relative; }
-.slide__img {
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    background-color: white;
-    background-size: cover;
-    background-position: 50% 50%;
-    position: absolute;
-    pointer-events: none; }
-.slide__img img {
-      min-height: 100%;
-      min-width: 100%;
-      width: auto; }
-.slide__title-wrap {
-    position: absolute;
-    width: 50%;
-    bottom: 0;
-    left: 4em;
-    color: white; }
-.slide__title {
-    margin: 0;
-    font-size: 1.5rem;
-    line-height: 0.9;
-    white-space: pre; }
-.slide__title span {
-      display: inline-block; }
-.boxnav {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  z-index: 2;
-  width: 100%;
-  background-color: white; }
+  overflow: hidden; }
 @media (min-width: 1200px) {
-    .boxnav {
-      left: 75%;
-      -webkit-transform: translateX(-50%);
-              transform: translateX(-50%);
-      width: auto; } }
-.boxnav__item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: white;
-    border: 0;
-    height: 4rem;
-    flex: 1; }
-.boxnav__item--prev:hover,
-.boxnav__item--next:hover {
-  color: var(--color-nav-hover); }
-.boxnav__item:focus {
-  outline: none; }
-.boxnav__label {
-  padding: 0 0.5rem;
-  font-size: 1.15rem;
-  position: relative; }
-.boxnav__label--total::before {
-  content: '';
-  position: absolute;
-  right: 100%;
-  top: 0;
-  width: 2px;
-  height: 1.45rem;
-  background: #666;
-  -webkit-transform: rotate(22.5deg);
-          transform: rotate(22.5deg); }
-.icon--caret-rot {
-  -webkit-transform: rotate(180deg);
-          transform: rotate(180deg); }
-.category {
-  font-weight: normal; }
-.action--addtocart {
-  background: var(--color-cart-bg);
-  color: var(--color-cart); }
-.action--close {
-  background: var(--color-close-bg);
-  color: var(--color-close);
-  text-transform: lowercase; }
-@media screen and (min-width: 53em) {
-  .slideshow {
-    overflow: hidden;
-    margin: 0;
-    height: 85vh; }
-  .slide {
-    height: 100%; }
-    .slide__title {
-      font-size: 2em; }
-      .slide__title__title-wrap {
-        padding: calc(6rem + 10vh) 0 0 4rem;
-        text-align: left; }
-    .slide__wrap {
-      height: 100%;
-      position: absolute; }
-    .slide__img {
-      background-position: 50% 0; }
-  .boxnav__item {
-    width: 5em;
-    height: 4em;
-    flex: none; } }
+    .gallery {
+      height: 85vh; } }
+.gallery__item {
+    position: absolute;
+    top: 0;
+    transition: -webkit-transform .3s ease-in-out;
+    transition: transform .3s ease-in-out;
+    transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out;
+    height: 100%;
+    width: 100%; }
+.gallery__item:first-child {
+      position: relative; }
+.gallery__item__image {
+      width: 100%;
+      height: 100%; }
+.gallery__item__title {
+      position: absolute;
+      bottom: 0;
+      margin: 1em;
+      text-align: center; }
+@media (min-width: 1200px) {
+        .gallery__item__title {
+          margin: 1.25em; } }
+.gallery__item__title h2 {
+        color: white;
+        font-size: 2em; }
+.gallery__arrow {
+    position: absolute;
+    width: 2em;
+    height: 2em;
+    top: 50%;
+    border-radius: 50%;
+    z-index: 1;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-image: url("/static/img/svg/arrow.svg"); }
+.gallery__arrow--prev {
+      left: .5em;
+      right: auto;
+      -webkit-transform: translateY(-50%) rotate(180deg);
+              transform: translateY(-50%) rotate(180deg); }
+.gallery__arrow--next {
+      right: .5em;
+      left: auto;
+      -webkit-transform: translateY(-50%) rotate(0deg);
+              transform: translateY(-50%) rotate(0deg); }
 @-webkit-keyframes Zoom {
   0% {
     -webkit-transform: scale(1);
@@ -181,9 +79,13 @@ body {
 .float_button {
   position: absolute;
   height: 100%;
-  left: 4em;
-  top: 5em;
+  left: 1em;
+  top: -1em;
   cursor: pointer; }
+@media (min-width: 1200px) {
+    .float_button {
+      left: 4em;
+      top: 5em; } }
 .float_button__button {
     position: -webkit-sticky;
     position: sticky;
@@ -225,9 +127,12 @@ body {
         -webkit-transform: scale(1);
                 transform: scale(1); }
 .description-text {
-  width: 75%;
+  width: 90%;
   margin: auto;
   position: relative; }
+@media (min-width: 1200px) {
+    .description-text {
+      width: 75%; } }
 .description-text__content {
     width: 100%; }
 .description-map {
@@ -240,12 +145,15 @@ body {
 .description-map__content #map {
       height: 75vh; }
 .description-itinerary {
-  width: 75%;
+  width: 90%;
   margin: auto;
   position: relative;
   display: flex;
   flex-flow: wrap;
   justify-content: center; }
+@media (min-width: 1200px) {
+    .description-itinerary {
+      width: 75%; } }
 .description-itinerary__content h3 {
     border-bottom: 1px solid #f9c90d; }
 .description-itinerary__content span[data-map], .description-itinerary__content span[data-path-map] {
@@ -255,10 +163,24 @@ body {
     width: 0; }
 .description-itinerary__content ul {
     width: 100%; }
+.description-include__included-details {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; }
+@media (min-width: 1200px) {
+    .description-include__included-details {
+      width: 80%; } }
+.description-include__included-details__included, .description-include__included-details__not-included {
+    width: 47%; }
 .description-timetable {
-  width: 75%;
+  width: 90%;
   margin: auto;
   position: relative; }
+@media (min-width: 1200px) {
+    .description-timetable {
+      width: 75%; } }
 .description-timetable__content {
     width: 100%; }
 .description-timetable__content table {
@@ -274,14 +196,6 @@ body {
         text-transform: none;
         background: none;
         color: #666; }
-.description-include__included-details {
-  width: 80%;
-  margin: auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around; }
-.description-include__included-details__included, .description-include__included-details__not-included {
-    width: 47%; }
 .other_activities {
   width: 90%;
   margin: auto;

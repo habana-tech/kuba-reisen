@@ -48,12 +48,10 @@
         }
 
         & img{
-            //position: sticky;
-            //top: 0;
             max-height: 80vh;
+            min-height: 50vh;
 
             @include atLarge{
-                //min-height: 100vh;
                 min-height: auto;
             }
         }

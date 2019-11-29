@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Activity;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use App\PageManager\DynamicPageManager;
@@ -20,6 +21,10 @@ class RegionsController extends AbstractController
             'pageName'=>'_top_destinations',
             'language'=>'de'
         ];
+
+        $activity = $this->getDoctrine()
+            ->getRepository(Activity::class)
+            ->findOneBy();
 
         $page = $pm->findByOrCreateIfDoesNotExist($pageinfo, 'components/global/_top_destination.html.twig');
         if(!$page)
