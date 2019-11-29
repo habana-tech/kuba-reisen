@@ -13,8 +13,16 @@
         {% set classes = ['top_destinations__places__place--blue', 'top_destinations__places__place--orange',
                         'top_destinations__places__place--green', 'top_destinations__places__place--blue'] %}
 
-        {% set urls = [''] %}
+        {% set urls = [
+            url('activity', {'id': topDestinations.kuba_10.getId, 'name':topDestinations.kuba_10.getName}),
+            url('activity', {'id': topDestinations.havanna.getId, 'name':topDestinations.havanna.getName}),
+            url('destination', {'id': topDestinations.inseln.getId, 'name':topDestinations.inseln.getName}),
+            url('activity', {'id': topDestinations.queen.getId, 'name':topDestinations.queen.getName}),
+            ] %}
+
         {% for i in 0..3 %}
+
+            {% set url = urls[i] %}
 
             {% set grape_img_id_a = '_top_destination_img_'~i~'a' %}
             {% set grape_img_id_b = '_top_destination_img_'~i~'b' %}
@@ -25,7 +33,6 @@
             <div class="top_destinations__places__place {{ classes[i] }}">
                 {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null %}
                     <div class="top_destinations__places__place__image__editor">
-
                         <div class="grid__item-img__editor">
                             <img data-grape_section="_top_destinations" data-grape_id="{{ grape_img_id_a }}"
                                  src="{{ page.ElementAttr(grape_img_id_a, 'src', '/img/destination/Img20.jpg')  }}"
@@ -38,7 +45,7 @@
                         <p data-grape_section="_top_destinations" data-grape_id="{{ grape_text_description }}">{{ page.ElementContent(grape_text_description,"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet enim ") | raw }}</p>
                     </div>
                 {% else %}
-                    <a href="#">
+                    <a href="{{ url }}">
                         <div class="top_destinations__places__place__image">
                             <div class="grid__item-img" data-grape_section="_top_destinations">
                                 {{ imgTagContent(
