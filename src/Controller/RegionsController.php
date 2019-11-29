@@ -22,9 +22,9 @@ class RegionsController extends AbstractController
             'language'=>'de'
         ];
 
-        $activity = $this->getDoctrine()
-            ->getRepository(Activity::class)
-            ->findOneBy();
+//        $activity = $this->getDoctrine()
+//            ->getRepository(Activity::class)
+//            ->findOneBy();
 
         $page = $pm->findByOrCreateIfDoesNotExist($pageinfo, 'components/global/_top_destination.html.twig');
         if(!$page)
