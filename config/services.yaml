@@ -29,7 +29,7 @@ services:
     # please note that last definitions always *replace* previous ones
 
     App\EventListener\UserModification:
-        arguments: ['@security.token_storage']
+        arguments: ['@security.untracked_token_storage']
         tags:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: preUpdate }

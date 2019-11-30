@@ -15,11 +15,23 @@
         <!-- Stylesheet -->
 
         {% if is_granted('ROLE_EDITOR') and not app.request.get('preview') %}
-            <link rel="stylesheet" href="{{ asset('styles/kraken_backend.css') }}" type="text/css">
-            <link rel="stylesheet" href="{{ asset('styles/all_backend_css.css') }}" type="text/css">
+            {% for file in encore_entry_css_files('app_backend') %}
+                <link href="{{ absolute_url(asset(file)) }}" rel="stylesheet" />
+               <script>
+                   /*ESTO TIENE QUE ESTAR AQUI MIENTRAS USEMOS GRAPE!!!!!!!
+                   *webpack-encore saca las rutas de los archivos de un array, usando pop, asi que mas adelante
+                   no hay forma de obtenerlos nuevamente
+                   */
+                   var app_js_routing__styles_css = "{{ absolute_url(asset(file)) }}";
+               </script>
+            {% endfor %}
+{#            {{ encore_entry_link_tags('app_backend') }}#}
+{#            <link rel="stylesheet" href="{{ asset('styles/kraken_backend.css') }}" type="text/css">#}
+{#            <link rel="stylesheet" href="{{ asset('styles/all_backend_css.css') }}" type="text/css">#}
         {% else %}
-            <link rel="stylesheet" href="{{ asset('styles/kraken.css') }}" type="text/css">
-            <link rel="stylesheet" href="{{ asset('styles/styles.css') }}" type="text/css">
+            {{ encore_entry_link_tags('app') }}
+{#            <link rel="stylesheet" href="{{ asset('styles/kraken.css') }}" type="text/css">#}
+{#            <link rel="stylesheet" href="{{ asset('styles/styles.css') }}" type="text/css">#}
         {% endif %}
 
         {% block stylesheets %}{% endblock %}
@@ -70,21 +82,25 @@
 
         {% if is_granted('ROLE_EDITOR') and not app.request.get('preview')  %}
             <script>
+                {{ dump(encore_entry_css_files('app_backend')) }}
                 //APP_ROUTES & PARAMS
-                var app_js_param__csrf_token = "{{ csrf_token('_grapejs_editor_token') }}"
-                var app_js_routing__styles_css = "{{ absolute_url(asset('styles/all_backend_css.css')) }}"
-                var app_js_routing__grape_endpoint = "{{ absolute_url(path('endpoint')) }}"
-                var app_js_routing__grape_endpoint_upload = "{{ absolute_url(path('endpoint_upload_assets')) }}"
+                var app_js_param__csrf_token = "{{ csrf_token('_grapejs_editor_token') }}";
+                {#var app_js_routing__styles_css = "{{ absolute_url(asset('styles/all_backend_css.css')) }}"#}
+                {#var app_js_routing__styles_css = "{{ encore_entry_css_files('app_backend') | join('---')}}";#}
+                var app_js_routing__grape_endpoint = "{{ absolute_url(path('endpoint')) }}";
+                var app_js_routing__grape_endpoint_upload = "{{ absolute_url(path('endpoint_upload_assets')) }}";
                 var app_js_routing__list_images = "{{  absolute_url(path('endpoint_list_images'))  }}";
                 var app_js_param__page_id = {% if dynamic_page_id is defined %}"{{ dynamic_page_id }}"{% else %}-1;{% endif %}
                 
             </script>
-            <script src="{{ asset('scripts/app_backend.js') }}"></script>
+{#            <script src="{{ asset('scripts/app_backend.js') }}"></script>#}
+            {{ encore_entry_script_tags('app_backend') }}
             {% include "@CKSourceCKFinder/setup.html.twig" %}
         {% else %}
             {% block javascripts_vendors %}{% endblock %}
             {% block javascripts %}{% endblock %}
-            <script src="{{ asset('scripts/app.js') }}"></script>
+{#            <script src="{{ asset('scripts/app.js') }}"></script>#}
+            {{ encore_entry_script_tags('app') }}
         {% endif %}
 
     </body>
