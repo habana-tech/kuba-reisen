@@ -61,13 +61,9 @@
         <p class="sendFormInfo sendFormInfo__error hidden">There was some error processing the info you provided. Please try again.</p>
         
         <button class="btn sendFormBtn" href="#">{{ button_label|default('Sende Formular') }}</button>
-        <div class="hollow-dots-spinner sendFormBtn__spinner invisible" :style="spinnerStyle">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-        </div>
-        <!-- TODO: Translate the message-->
-        
+
+        {{ include('frontend/components/global/_loading_dots.html.twig') }}
+
     </div>
 
   

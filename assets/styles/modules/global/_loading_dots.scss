@@ -1,0 +1,65 @@
+@keyframes loading_dots_animation {
+    50% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes loading_dots_animation__wait {
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.loading_dots {
+    height: 2em;
+    margin: 1em;
+    width: auto;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+
+    & *{
+        box-sizing: border-box;
+    }
+
+    & .dot {
+        width: 1.5em;
+        height: 1.5em;
+        margin: 0 calc(1.5em / 2);
+        border: calc(1.5em / 5) solid rgb(20, 161, 230);
+        border-radius: 50%;
+        float: left;
+        transform: scale(0);
+        animation: loading_dots_animation 1s ease infinite 0s;
+
+        &:nth-child(1) {
+            animation-delay: calc(300ms * 1);
+        }
+
+        &:nth-child(2) {
+            animation-delay: calc(300ms * 2);
+        }
+
+        &:nth-child(3) {
+            animation-delay: calc(300ms * 3);
+
+        }
+    }
+
+    &--visible{
+        opacity: 1;
+    }
+
+    &--waiting{
+        opacity: 0;
+        animation: loading_dots_animation__wait 5s ease-in-out 1;
+    }
+}
+

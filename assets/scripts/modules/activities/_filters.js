@@ -19,6 +19,8 @@ class FilterActivities {
         this.searchFormInput = document.querySelector('.activities__selectors__search form input[type="text"]');
         this.searchFormSubmit = document.querySelector('.activities__selectors__search form input[type="submit"]');
 
+        this.loadingDots = document.querySelector('.loading_dots:first-child');
+
         this.events();
     }
 
@@ -67,10 +69,10 @@ class FilterActivities {
             .then(function (response) {
                 let activities = response.data.activities;
                 let loadMore = response.data.loadMore;
-                console.log(loadMore);
+
                 if (activities.length > 0) {
-                    that.activitiesListFilterSearch.querySelectorAll('.activity').forEach((x) => {
-                        x.parentNode.removeChild(x);
+                    that.activitiesListFilterSearch.querySelectorAll('.activity').forEach((activity) => {
+                        activity.parentNode.removeChild(activity);
                     });
 
                     activities.forEach(function (activity) {
@@ -83,18 +85,20 @@ class FilterActivities {
                     new AddtoCart('.activity__content__actions__add a');
                 }
                 else {
-                    console.log('error');
+                    console.error('Error fetching resource at '+url);
                 }
 
                 that.activitiesListFilterSearch.classList.remove('activities__list__container__filter_search--hide');
                 that.activitiesListInitial.classList.add('activities__list__container__initial--hide');
                 that.activitiesList.classList.toggle('activities__list__container--loading');
+                that.loadingDots.classList.toggle('loading_dots--visible');
             })
             .catch(function (error) {
                 console.log(error);
             });
 
         this.activitiesList.classList.toggle('activities__list__container--loading');
+        this.loadingDots.classList.toggle('loading_dots--visible');
     }
 
     showInitialContainer(){
