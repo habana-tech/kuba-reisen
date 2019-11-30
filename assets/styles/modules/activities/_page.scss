@@ -118,6 +118,7 @@
         &__story {
             top: 0;
             width: 100%;
+            overflow: hidden;
             position: absolute;
             transition: transform .3s ease-in-out;
 
@@ -128,7 +129,7 @@
                 width: 0;
             }
 
-            &:first-child{
+            &.active{
                 position: relative;
             }
 
@@ -143,9 +144,8 @@
                     margin: auto 5%;
                 }
             }
+
         }
-
-
 
     }
 

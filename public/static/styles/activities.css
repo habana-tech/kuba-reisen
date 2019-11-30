@@ -236,6 +236,7 @@
 .activities__stories__story {
   top: 0;
   width: 100%;
+  overflow: hidden;
   position: absolute;
   transition: -webkit-transform .3s ease-in-out;
   transition: transform .3s ease-in-out;
@@ -245,7 +246,7 @@
     visibility: hidden;
     height: 0;
     width: 0; }
-.activities__stories__story:first-child {
+.activities__stories__story.active {
     position: relative; }
 .activities__stories__story img {
     min-width: 100%;

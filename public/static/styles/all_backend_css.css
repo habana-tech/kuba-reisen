@@ -5630,8 +5630,8 @@ Descr: Custom radio toggle
     opacity: 1 !important; }
 .loading_dots--waiting {
     opacity: 0;
-    -webkit-animation: loading_dots_animation__wait 5s ease-in-out 1;
-            animation: loading_dots_animation__wait 5s ease-in-out 1; }
+    -webkit-animation: loading_dots_animation__wait 4s ease-in-out 1;
+            animation: loading_dots_animation__wait 4s ease-in-out 1; }
 @-webkit-keyframes showBar {
   0% {
     -webkit-transform: translateX(75%);
@@ -6164,6 +6164,7 @@ Descr: Custom radio toggle
 .activities__stories__story {
   top: 0;
   width: 100%;
+  overflow: hidden;
   position: absolute;
   transition: -webkit-transform .3s ease-in-out;
   transition: transform .3s ease-in-out;
@@ -6173,7 +6174,7 @@ Descr: Custom radio toggle
     visibility: hidden;
     height: 0;
     width: 0; }
-.activities__stories__story:first-child {
+.activities__stories__story.active {
     position: relative; }
 .activities__stories__story img {
     min-width: 100%;
