@@ -170,14 +170,13 @@ class ContactController extends AbstractController
             throw new Exception("Error Processing Request, no adminEmail avalaible", 1);
             
         $from = ['kontaktieren@kuba-reisen.reisen'=>'kontaktieren kuba-reisen'];
-        $bcc = ['josmiguel92@gmail.com', '14ndy15@gmail.com'];
 
         //Todo: translate the subject
         $message = (new \Swift_Message('Kuba-reisen kontaktieren - '.$contact->getRequestId()))
                 ->setFrom($from)
                 //TODO: set email to send notifications
-                ->setTo($adminEmail)
-                ->setBcc($bcc)
+                //->setTo($adminEmail)
+                ->setBcc($adminEmail)
                 ->setBody(
                     $this->renderView(
                         'emails/contactAdminNotification.html.twig',
@@ -200,7 +199,6 @@ class ContactController extends AbstractController
             ->setFrom($from)
             //TODO: set email to send notifications
             ->setTo($contact->getClientEmail())
-            ->setBcc($bcc)
             ->setBody(
                 $this->renderView(
                     'emails/contactClientNotification.html.twig',
