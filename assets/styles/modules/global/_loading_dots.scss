@@ -19,7 +19,7 @@
 
 .loading_dots {
     height: 2em;
-    margin: 1em;
+    margin: .5em;
     width: auto;
     box-sizing: border-box;
     opacity: 0;
@@ -33,7 +33,7 @@
         width: 1.5em;
         height: 1.5em;
         margin: 0 calc(1.5em / 2);
-        border: calc(1.5em / 5) solid rgb(20, 161, 230);
+        border: calc(1.5em / 5) solid $light-blue;
         border-radius: 50%;
         float: left;
         transform: scale(0);
@@ -54,7 +54,7 @@
     }
 
     &--visible{
-        opacity: 1;
+        opacity: 1 !important;
     }
 
     &--waiting{

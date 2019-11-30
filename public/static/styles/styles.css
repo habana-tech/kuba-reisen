@@ -953,7 +953,7 @@ Descr: Custom radio toggle
     opacity: 1; } }
 .loading_dots {
   height: 2em;
-  margin: 1em;
+  margin: .5em;
   width: auto;
   box-sizing: border-box;
   opacity: 0;
@@ -964,7 +964,7 @@ Descr: Custom radio toggle
     width: 1.5em;
     height: 1.5em;
     margin: 0 calc(1.5em / 2);
-    border: calc(1.5em / 5) solid #14a1e6;
+    border: calc(1.5em / 5) solid #35cfd4;
     border-radius: 50%;
     float: left;
     -webkit-transform: scale(0);
@@ -981,7 +981,7 @@ Descr: Custom radio toggle
       -webkit-animation-delay: calc(300ms * 3);
               animation-delay: calc(300ms * 3); }
 .loading_dots--visible {
-    opacity: 1; }
+    opacity: 1 !important; }
 .loading_dots--waiting {
     opacity: 0;
     -webkit-animation: loading_dots_animation__wait 5s ease-in-out 1;
