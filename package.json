@@ -11,32 +11,31 @@
     "type": "git",
     "url": "https://github.com/habana-tech/kuba-reisen.git"
   },
+  "scripts": {
+    "dev-server": "encore dev-server",
+    "dev": "encore dev",
+    "watch": "encore dev --watch",
+    "build": "encore production --progress"
+  },
   "devDependencies": {
+    "@babel/core": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "@symfony/webpack-encore": "^0.28.2",
     "autoprefixer": "^9.7.2",
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.5",
-    "babel-preset-es2015": "^6.24.1",
-    "browser-sync": "^2.26.7",
+    "babel-loader": "^8.0.6",
+    "core-js": "^3.4.5",
     "del": "^3.0.0",
-    "gulp": "^3.9.1",
-    "gulp-cssnano": "^2.1.3",
-    "gulp-imagemin": "^4.1.0",
-    "gulp-modernizr": "^3.4.0",
-    "gulp-postcss": "^7.0.1",
-    "gulp-rename": "^1.4.0",
-    "gulp-rev": "^8.1.1",
-    "gulp-sass": "^4.0.2",
-    "gulp-svg-sprite": "^1.4.0",
-    "gulp-svg2png": "^2.0.2",
-    "gulp-uglify": "^3.0.1",
-    "gulp-watch": "^5.0.1",
-    "postcss-hexrgba": "^1.0.1",
+    "node-sass": "^4.13.0",
+    "postcss-hexrgba": "^1.0.2",
     "postcss-import": "^11.1.0",
     "postcss-mixins": "^6.2.3",
     "postcss-simple-vars": "^4.1.0",
+    "regenerator-runtime": "^0.13.2",
+    "sass-loader": "^7.3.1",
     "usemin": "^0.5.0",
+    "vue-template-compiler": "^2.6.10",
     "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10"
+    "webpack-notifier": "^1.8.0"
   },
   "dependencies": {
     "Kraken": "github:cferdinandi/kraken",
@@ -58,8 +57,7 @@
     "sal.js": "^0.6.4",
     "segment-js": "^1.1.2",
     "smooth-scroll": "^16.1.0",
-    "swipe-listener": "^1.1.0",
-    "text-clipper": "^1.2.3",
-    "tui-image-editor": "^3.5.2"
+    "text-clipper": "^1.3.0",
+    "tui-image-editor": "^3.7.0"
   }
 }
