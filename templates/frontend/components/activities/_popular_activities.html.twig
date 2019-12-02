@@ -52,7 +52,7 @@
     <div class="activities__list">
 
         <div class="activities__list__title">
-            <h3>We have found <span>{{ activities | length }}</span> activities</h3>
+            <h3>{{ activities | length }} Aktivitäten gefunden</h3>
         </div>
 
         <div class="activities__list__item-prototype">
@@ -60,10 +60,6 @@
         </div>
 
         <div class="activities__list__container">
-
-            {% if selectedFilters is defined %}
-                {% set waiting = 'loading_dots--waiting' %}
-            {% endif %}
 
             {{ include('frontend/components/global/_loading_dots.html.twig') }}
 

@@ -982,10 +982,6 @@ Descr: Custom radio toggle
               animation-delay: calc(300ms * 3); }
 .loading_dots--visible {
     opacity: 1 !important; }
-.loading_dots--waiting {
-    opacity: 0;
-    -webkit-animation: loading_dots_animation__wait 4s ease-in-out 1;
-            animation: loading_dots_animation__wait 4s ease-in-out 1; }
 @-webkit-keyframes showBar {
   0% {
     -webkit-transform: translateX(75%);

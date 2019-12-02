@@ -386,8 +386,6 @@
   100% {
     -webkit-transform: translate(-50%, -50%) rotate(360deg);
             transform: translate(-50%, -50%) rotate(360deg); } }
-.activities__list__container--loading div.activity {
-      opacity: 1; }
 .activities__list__more {
     width: 100%;
     display: flex;

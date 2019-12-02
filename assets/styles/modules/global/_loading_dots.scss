@@ -56,10 +56,5 @@
     &--visible{
         opacity: 1 !important;
     }
-
-    &--waiting{
-        opacity: 0;
-        animation: loading_dots_animation__wait 4s ease-in-out 1;
-    }
 }
 

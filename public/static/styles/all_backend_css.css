@@ -5628,10 +5628,6 @@ Descr: Custom radio toggle
               animation-delay: calc(300ms * 3); }
 .loading_dots--visible {
     opacity: 1 !important; }
-.loading_dots--waiting {
-    opacity: 0;
-    -webkit-animation: loading_dots_animation__wait 4s ease-in-out 1;
-            animation: loading_dots_animation__wait 4s ease-in-out 1; }
 @-webkit-keyframes showBar {
   0% {
     -webkit-transform: translateX(75%);
@@ -6314,8 +6310,6 @@ Descr: Custom radio toggle
   100% {
     -webkit-transform: translate(-50%, -50%) rotate(360deg);
             transform: translate(-50%, -50%) rotate(360deg); } }
-.activities__list__container--loading div.activity {
-      opacity: 1; }
 .activities__list__more {
     width: 100%;
     display: flex;
