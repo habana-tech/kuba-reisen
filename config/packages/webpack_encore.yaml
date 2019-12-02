@@ -1,6 +1,6 @@
 webpack_encore:
     # The path where Encore is building the assets - i.e. Encore.setOutputPath()
-    output_path: '%kernel.project_dir%/public/build'
+    output_path: '%kernel.project_dir%/public/static/build'
     # If multiple builds are defined (as shown below), you can disable the default build:
     # output_path: false
 
@@ -11,7 +11,7 @@ webpack_encore:
     # preload: true
 
     # Throw an exception if the entrypoints.json file is missing or an entry is missing from the data
-    # strict_mode: false
+    strict_mode: false
 
     # if you have multiple builds:
     # builds:
