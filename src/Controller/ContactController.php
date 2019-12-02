@@ -21,9 +21,13 @@ class ContactController extends AbstractController
     private $selectedActivities = array();
 
     /**
-     * @Route("/kontaktieren",  name="contact")
+     *
+     * @Route("/kontaktieren/{travel}",
+     *     defaults={"travel": null},
+     *       name="contact")
      */
     public function contact(Request $request,
+                            $travel,
                             DynamicPageManager $pm,
                             ActivityRepository $activityRepository)
     {
@@ -42,6 +46,9 @@ class ContactController extends AbstractController
         if(!$page)
             throw new NotFoundHttpException();
 
+        $fromTravel = false;
+        if ($travel == 'raise')
+            $fromTravel = 'true';
 
         $contact = new ContactPlaning();
         $form = $this->createForm(ContactPlaningType::class, $contact, [
@@ -79,6 +86,7 @@ class ContactController extends AbstractController
             'form' => $form->createView(),
             'dynamic_page_id' => $page->getId(),
             'page' => $page,
+            'from_travel' => $fromTravel
         ]);
     }
 
@@ -162,14 +170,13 @@ class ContactController extends AbstractController
             throw new Exception("Error Processing Request, no adminEmail avalaible", 1);
             
         $from = ['kontaktieren@kuba-reisen.reisen'=>'kontaktieren kuba-reisen'];
-        $bcc = ['josmiguel92@gmail.com', '14ndy15@gmail.com'];
 
         //Todo: translate the subject
         $message = (new \Swift_Message('Kuba-reisen kontaktieren - '.$contact->getRequestId()))
                 ->setFrom($from)
                 //TODO: set email to send notifications
-                ->setTo($adminEmail)
-                ->setBcc($bcc)
+                //->setTo($adminEmail)
+                ->setBcc($adminEmail)
                 ->setBody(
                     $this->renderView(
                         'emails/contactAdminNotification.html.twig',
@@ -192,7 +199,6 @@ class ContactController extends AbstractController
             ->setFrom($from)
             //TODO: set email to send notifications
             ->setTo($contact->getClientEmail())
-            ->setBcc($bcc)
             ->setBody(
                 $this->renderView(
                     'emails/contactClientNotification.html.twig',

@@ -68,29 +68,31 @@ class FrontendController extends AbstractController
     /**
      * @Route("/activity/{id}/{name}", name="activity")
      */
-    public function activity(Activity $activity)
+    public function activity(Activity $activity, FilterTagRepository $filterTagRepository)
     {
         if(!$activity)
             throw new NotFoundHttpException();
 
+        $activityId = $activity->getId();
         $tags = $activity->getFilterTags();
-        $related_activities = new ArrayCollection();
-        foreach ($tags as $tag)
-        {
-            $current_tag_activities = $tag->getActivities();
-            foreach ($current_tag_activities as $_activity)
-            {
-                if($_activity != $activity and !$related_activities->contains($_activity)) {
-                    $related_activities[] = $_activity;
-                }
-            }
-        }
+        $tagsTitles = array_map(function ($tag){ return $tag->getTitle();}, $tags->toArray());
+
+        $related_activities = $this->getDoctrine()
+            ->getRepository(Activity::class)
+            ->findByFilter($tagsTitles, $filterTagRepository, 0, 4);
+
+        $related_activities = array_filter($related_activities,
+            function ($activity) use ($activityId)
+            { return $activity->getId() != $activityId; });
+
+        if (sizeof($related_activities) == 4)
+            array_pop($related_activities);
 
         return $this->render('frontend/activity.html.twig', [
             'dynamic_page_id' => $activity->getDynamicPage()->getId(),
             'page' => $activity->getDynamicPage(),
             'activity' => $activity,
-            'related_activities'=>$related_activities,
+            'related_activities'=> $related_activities,
         ]);
     }
 
@@ -118,9 +120,6 @@ class FrontendController extends AbstractController
             'dynamic_page_id' => $page->getId(),
             'page' => $page,
         ]);
-
-
-
     }
 
 
@@ -280,4 +279,30 @@ class FrontendController extends AbstractController
             'page' => $page,
         ]);
     }
+
+
+    /**
+     * @Route("/Gut_zu_wissen", name="good_to_know")
+     */
+    public function goodToKnow(DynamicPageManager $pm)
+    {
+
+        $pageinfo = [
+            'pageName'=> 'goodToKnow',
+            'language' => 'de'
+        ];
+
+        if($this->isGranted('ROLE_ADMIN'))
+            $page = $pm->findByOrCreateIfDoesNotExist($pageinfo);
+        else $page = $pm->findOneBy($pageinfo);
+
+
+        if(!$page) throw new NotFoundHttpException();
+
+        return $this->render('frontend/tours.html.twig', [
+            'dynamic_page_id' => $page->getId(),
+            'page' => $page,
+        ]);
+    }
+
 }

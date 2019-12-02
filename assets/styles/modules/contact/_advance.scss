@@ -1,6 +1,5 @@
 .selected-activities{
-    width: 120%;
-    left: -10%;
+    width: 100%;
     position: relative;
 
     &__title{
@@ -31,12 +30,28 @@
 
     &__options{
         display: grid;
-        grid-template-areas: "img1 img2 img3"
-                             "img4 img5 img6"
-                             "img7 img8 img9";
+        grid-template-areas: "img1"
+                             "img2"
+                             "img3"
+                             "img4"
+                             "img5"
+                             "img6"
+                             "img7"
+                             "img8"
+                             "img9";
 
-        grid-template-rows: 40vh 40vh 40vh;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-gap: .25em;
+        grid-template-rows: 40vh;
+        grid-template-columns: 1fr;
+        grid-gap: .2em;
+
+        @include atLarge{
+            grid-template-areas: "img1 img2 img3"
+            "img4 img5 img6"
+            "img7 img8 img9";
+
+            grid-template-rows: 40vh 40vh 40vh;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: .25em;
+        }
     }
 }

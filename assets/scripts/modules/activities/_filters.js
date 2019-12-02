@@ -8,6 +8,7 @@ class FilterActivities {
         this.urlSearch = '/activitiesApiPosSearch';
 
         this.activitiesTextCount = document.querySelector('.activities__list__title span');
+        this.activitiesText = document.querySelector('.activities__list__title h3');
 
         this.activitiesList = document.querySelector('.activities__list__container');
         this.activitiesListInitial = document.querySelector('.activities__list__container__initial');
@@ -19,58 +20,85 @@ class FilterActivities {
         this.searchFormInput = document.querySelector('.activities__selectors__search form input[type="text"]');
         this.searchFormSubmit = document.querySelector('.activities__selectors__search form input[type="submit"]');
 
+        this.loadingDots = document.querySelector('.loading_dots:first-child');
+        this.getActivitiesFromSelectedFilter();
+
         this.events();
     }
 
     events(){
-        this.filters.forEach((x)=>{x.addEventListener('click', this.selectAndGetData.bind(this) )});
+        this.filters.forEach((x)=>{x.addEventListener('click', this.activeFilter.bind(this) )});
 
-        this.searchFormSubmit.addEventListener('click', this.searchAndGetData.bind(this));
+        this.searchFormSubmit.addEventListener('click', this.getActivitiesFromSearch.bind(this));
 
         this.activitiesListFilterSearch.addEventListener('DOMNodeInserted', ()=>{
-            this.activitiesTextCount.innerHTML = this.activitiesListFilterSearch.querySelectorAll('.activity').length;
+            let amountActivities = this.activitiesListFilterSearch.querySelectorAll('.activity').length;
+            this.activitiesText.innerText =  amountActivities.toString()+' Aktivitäten gefunden';
         });
     }
 
-    selectAndGetData(e){
+    activeFilter(e){
         e.preventDefault();
         let element = e.target;
         element.classList.toggle('selected');
+        this.getActivitiesFromSelectedFilter();
+    }
+
+    makeUrlForFilter(){
+        let url = '';
         let filters = document.querySelectorAll('.activities__selectors__filters__lists li.selected');
-        let filtersText = '';
+
         if (filters.length > 0) {
+            let filtersText = '';
             for (let i = 0; i < filters.length - 1; i++)
                 filtersText += filters[i].innerText + ',';
             filtersText += filters[filters.length - 1].innerText;
-            let url = this.urlFilters + '/' + filtersText;
-            this.getData(url);
+            url = this.urlFilters + '/' + filtersText;
         }
-        else
-            this.showInitialContainer();
+        return url;
     }
 
-    searchAndGetData(e){
-        e.preventDefault();
+    makeUrlForSearch(){
+        let url = '';
         if (this.searchFormInput.value !== '') {
             let filtersText = this.searchFormInput.value;
-                let url = this.urlSearch + '/' + filtersText;
-                console.log(url);
-                this.getData(url);
-            }
+            url = this.urlSearch + '/' + filtersText;
+        }
+        return url;
+    }
+
+    getActivitiesFromSelectedFilter(){
+        let url = this.makeUrlForFilter();
+        if (url.length > 0)
+            this.getActivities(url);
         else
             this.showInitialContainer();
     }
 
-    getData(url){
+    getActivitiesFromSearch(e){
+        e.preventDefault();
+
+        let url = this.makeUrlForSearch();
+        if (url.length > 0)
+            this.getActivities(url);
+        else
+            this.showInitialContainer();
+    }
+
+    getActivities(url){
         let that = this;
+
         axios.get(url)
             .then(function (response) {
+
+
                 let activities = response.data.activities;
                 let loadMore = response.data.loadMore;
-                console.log(loadMore);
+
                 if (activities.length > 0) {
-                    that.activitiesListFilterSearch.querySelectorAll('.activity').forEach((x) => {
-                        x.parentNode.removeChild(x);
+
+                    that.activitiesListFilterSearch.querySelectorAll('.activity').forEach((activity) => {
+                        activity.parentNode.removeChild(activity);
                     });
 
                     activities.forEach(function (activity) {
@@ -82,26 +110,38 @@ class FilterActivities {
 
                     new AddtoCart('.activity__content__actions__add a');
                 }
-                else {
-                    console.log('error');
-                }
+                else //no se han encontrado
+                    that.activitiesText.innerText = 'Mit diesen Filtern wurden keine Aktivitäten gefunden';
 
-                that.activitiesListFilterSearch.classList.remove('activities__list__container__filter_search--hide');
-                that.activitiesListInitial.classList.add('activities__list__container__initial--hide');
-                that.activitiesList.classList.toggle('activities__list__container--loading');
+                that.hideLoadingAnimation();
             })
             .catch(function (error) {
                 console.log(error);
             });
 
-        this.activitiesList.classList.toggle('activities__list__container--loading');
+        this.showLoadingAnimation();
     }
 
     showInitialContainer(){
         this.activitiesListFilterSearch.classList.add('activities__list__container__filter_search--hide');
         this.activitiesListInitial.classList.remove('activities__list__container__initial--hide');
-        this.activitiesTextCount.innerHTML = this.activitiesListInitial.querySelectorAll('.activity').length;
+
+        let amountActivities = this.activitiesListInitial.querySelectorAll('.activity').length;
+        this.activitiesText.innerText =  amountActivities.toString()+' Aktivitäten gefunden';
     }
+
+    showLoadingAnimation(){
+        this.activitiesText.innerText = 'Suchen Sie nach Aktivitäten mit diesen Filtern ...'; //buscando
+        this.activitiesListFilterSearch.classList.remove('activities__list__container__filter_search--hide');
+        this.activitiesListInitial.classList.add('activities__list__container__initial--hide');
+
+        this.loadingDots.classList.toggle('loading_dots--visible');
+    }
+
+    hideLoadingAnimation(){
+        this.loadingDots.classList.toggle('loading_dots--visible');
+    }
+
 }
 
 export default FilterActivities;

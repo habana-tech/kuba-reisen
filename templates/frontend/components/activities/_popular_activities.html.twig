@@ -10,6 +10,7 @@
     </div>
 
     <div class="activities__selectors">
+
         <div class="activities__selectors__filters">
             <h3 data-grape_id="filter_text"  data-grape_format="txt">{{ page.ElementContent('filter_text','Select the filters') | raw }}</h3>
             
@@ -25,6 +26,7 @@
                 {% endfor %}
             </ul>
         </div>
+
         <div class="activities__selectors__search">
             <h3 data-grape_id="search_text"  data-grape_format="txt">{{ page.ElementContent('search_text','Type your search criteria') | raw }}</h3>
 
@@ -48,10 +50,10 @@
     </div>
 
     <div class="activities__list">
-        <div class="activities__list__title">
-            <h3>We have found <span>{{ activities | length }}</span> activities</h3>
-        </div>
 
+        <div class="activities__list__title">
+            <h3>{{ activities | length }} Aktivitäten gefunden</h3>
+        </div>
 
         <div class="activities__list__item-prototype">
             {{ include('frontend/components/global/_activity_prototype.html.twig') }}
@@ -59,25 +61,27 @@
 
         <div class="activities__list__container">
 
+            {{ include('frontend/components/global/_loading_dots.html.twig') }}
+
             <div class="activities__list__container__initial">
                 {% for activity in activities %}
                     {% include 'frontend/components/global/_activity.html.twig'
-                        with {'activity':activity} only %}
+                        with {'activity' : activity} only %}
                 {% else %}
                     <p>something</p>
                 {% endfor %}
             </div>
 
             <div class="activities__list__container__filter_search activities__list__container__filter_search--hide">
-
             </div>
 
-            <div class="loading_element"></div>
+            {{ include('frontend/components/global/_loading_dots.html.twig') }}
+
         </div>
 
         {% if loadMore %}
             <div class="activities__list__more">
-                <a href="#" class="btn">Load more</a>
+                <button class="btn">Load more</button>
             </div>
         {% endif %}
 

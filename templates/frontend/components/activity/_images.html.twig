@@ -1,77 +1,49 @@
-<symbol id="icon-caret" viewBox="0 0 16 24">
-    <title>caret</title>
-    <path d="M15.45 2.8L12.65 0l-12 12 12 12 2.8-2.8-9.2-9.2z"></path>
-</symbol>
 
-
-<section class="section images">
-    {% if not is_granted('ROLE_EDITOR') or app.request.get('preview') is not null %}
-        <div class="activities__container">
-            <div class="slideshow">
-                {% for i in 1..activity.featuresImagesCount %}
-                    <div class="slide">
-                        <div class="slide__wrap">
-                            <div class="slide__img">
-
-                                {{ imgTagContent(
-                                    page.ElementAttr('activity_images_img'~i, 'src', asset('img/header_pic.jpg')),
-                                    page.ElementAttr('activity_images_img'~i, 'srcb64', asset('img/header_pic.jpg')),
-                                    '',
-                                    '100vw',
-                                    'data-grape_id="activity_images_img'~i~'"') | raw }}
-                            </div>
-                            <div class="slide__title-wrap">
-                                <h1 data-grape_id="activity_images_img{{i}}_desc" data-grape_format="txt">
-                                    {{ page.ElementContent('activity_images_img'~i~'_desc') | striptags }}
-                                </h1>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div><!-- /slideshow -->
-
-            <nav class="boxnav">
-
-                <button class="boxnav__item boxnav__item--prev">
-                    {% include('frontend/components/_icons/_arrow.html.twig') with {rotate : 'arrow--rotate'} only %}
-                </button>
-
-                <div class="boxnav__item boxnav__item--label">
-                    <span class="boxnav__label boxnav__label--current">1</span>
-                    <span class="boxnav__label boxnav__label--total"></span>
-                </div>
-
-                <button class="boxnav__item boxnav__item--next">
-                    {{ include('frontend/components/_icons/_arrow.html.twig') }}
-                </button>
-
-            </nav>
-
-        </div>
-    {% else %}
-        <div class="editor__imagen_list">
-
+{% if not is_granted('ROLE_EDITOR') or app.request.get('preview') is not null %}
+    <section class="section">
+        <div class="gallery">
             {% for i in 1..activity.featuresImagesCount %}
-                <div class="editor__imagen_list__item">
-                <img data-grape_id="activity_images_img{{ i }}"
-                     src="{{ page.ElementAttr('activity_images_img'~i, 'src', asset('img/header_pic.jpg')) }}"
-                     alt="">
-                <div class="slide__title-wrap">
-                    {#{{ dump(activity.getElement('activity_images_img'~i~'_desc'))  }}#}
-                    {% if activity.getElement('activity_images_img'~i~'_desc') is null %}
-                        <h1 class="slide__subtitle" data-grape_id="activity_images_img{{ i }}_desc" data-grape_format="txt">
-                            Lorem ipsum dolor sit amet, consectetur
-                        </h1>
-                    {% else %}
-                        <h1>
-                            {{ activity.getElement('activity_images_img'~i~'_desc') | striptags }}
-                        </h1>
-                    {% endif %}
+                <div class="gallery__item">
+                    <div class="gallery__item__image">
+                        {{ imgTagContent(
+                            page.ElementAttr('activity_images_img'~i, 'src', asset('img/header_pic.jpg')),
+                            page.ElementAttr('activity_images_img'~i, 'srcb64', asset('img/header_pic.jpg')),
+                            '',
+                            '100vw',
+                            'data-grape_id="activity_images_img'~i~'"') | raw }}
+                    </div>
+                    <div class="gallery__item__title">
+                            <h2 data-grape_id="activity_images_img{{i}}_desc" data-grape_format="txt">
+                                {{ page.ElementContent('activity_images_img'~i~'_desc') | striptags }}
+                            </h2>
+                        </div>
                 </div>
-            </div>
             {% endfor %}
-
         </div>
-    {% endif %}
-</section>
+    </section>
+{% else %}
+    <div class="editor__imagen_list">
+
+        {% for i in 1..activity.featuresImagesCount %}
+            <div class="editor__imagen_list__item">
+            <img data-grape_id="activity_images_img{{ i }}"
+                 src="{{ page.ElementAttr('activity_images_img'~i, 'src', asset('img/header_pic.jpg')) }}"
+                 alt="">
+            <div class="slide__title-wrap">
+                {#{{ dump(activity.getElement('activity_images_img'~i~'_desc'))  }}#}
+                {% if activity.getElement('activity_images_img'~i~'_desc') is null %}
+                    <h1 class="slide__subtitle" data-grape_id="activity_images_img{{ i }}_desc" data-grape_format="txt">
+                        Lorem ipsum dolor sit amet, consectetur
+                    </h1>
+                {% else %}
+                    <h1>
+                        {{ activity.getElement('activity_images_img'~i~'_desc') | striptags }}
+                    </h1>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+{% endif %}
 

@@ -7,10 +7,12 @@
         width: 100%;
         overflow: hidden;
         order: 2;
+        min-height: 50vh;
 
         @include atLarge{
             order: 1;
             width: 75%;
+            min-height: auto;
         }
 
         & img{

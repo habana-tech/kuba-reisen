@@ -18,9 +18,14 @@
 .float_button{
     position: absolute;
     height: 100%;
-    left: 4em;
-    top: 5em;
+    left: 1em;
+    top: -1em;
     cursor: pointer;
+
+    @include atLarge{
+        left: 4em;
+        top: 5em;
+    }
 
     &__button {
         position: sticky;

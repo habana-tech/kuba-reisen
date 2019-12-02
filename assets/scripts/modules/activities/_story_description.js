@@ -58,7 +58,7 @@ class StoryDescription{
                         coordinates.push(coordinate);
                     })
                 }
-            })
+            });
 
             let lats = [];
             let logs = [];

@@ -1,9 +1,13 @@
 .form{
-    width: 80%;
+    width: 95%;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+
+    @include atLarge{
+        width: 80%;
+    }
 
     &__item{
         width: 100%;
@@ -12,14 +16,26 @@
         justify-content: center;
 
         &__label{
-            width: 30%;
-            margin: 0 2em;
+            width: 100%;
+            margin: 0 1em;
             padding: .5em 0;
-            text-align: right;
+            justify-content: center;
+            display: flex;
+
+            @include atLarge{
+                width: 30%;
+                margin: 0 2em;
+                justify-content: left;
+            }
         }
 
         &__input{
-            width: 40%;
+            width: 90%;
+
+
+            @include atLarge{
+                width: 40%;
+            }
         }
     }
 }

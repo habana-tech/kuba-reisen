@@ -25,10 +25,8 @@
         width: 100%;
         background: linear-gradient(to top, rgba($dark-blue, .8), $dark-blue, #23b6de);
         z-index: 2;
-        border-radius: 0;
-        border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px;
-        color: $color-white;
+        border-radius: 0 0 2px 2px;
+        color: white;
         top: 3.5em;
 
         &__menu{
@@ -47,12 +45,11 @@
                 position: relative;
                 text-align: center;
 
+
                 @include atLarge {
                     width: 24%;
                     text-align: left;
-                }
 
-                @include atLarge {
                     &::after {
                         content: '';
                         position: absolute;
@@ -71,6 +68,28 @@
                         margin-top: 2em; //para uso sin titulo de columna
                     }
                 }
+
+                &:nth-child(1){
+                    order: 1;
+                }
+                &:nth-child(2){
+                    order: 2;
+
+                    @include atLarge{
+                        order: 3;
+                    }
+                }
+                &:nth-child(3){
+                    order: 3;
+
+                    @include atLarge{
+                        order: 2;
+                    }
+                }
+                &:nth-child(4){
+                    order: 4;
+                }
+
 
                 &__title{
                     & a{

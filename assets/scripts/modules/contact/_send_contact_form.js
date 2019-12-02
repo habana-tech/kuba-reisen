@@ -7,7 +7,7 @@ class SendContactForm{
         this.form = document.querySelector('form[name="contact_planing"]');
         this.url = this.form ? this.form.action : null;
         this.btnSend = document.querySelector('.btn.sendFormBtn');
-        this.sendSpinner = document.querySelector('.sendFormBtn__spinner');
+        this.sendLoadingDots = document.querySelector('.loading_dots');
         this.formData = new URLSearchParams();
         
         this.events();
@@ -25,7 +25,7 @@ class SendContactForm{
         let that = this;
         this.form.querySelectorAll("input[name], textarea, select").forEach(function (input) {
             
-            if(input.type != 'checkbox' || input.checked)
+            if(input.type !== 'checkbox' || input.checked)
                 that.formData.append(input.name, input.value);
         });
     }
@@ -42,12 +42,14 @@ class SendContactForm{
                 headers: {
                   'Content-Type': 'application/x-www-form-urlencoded'
                 }
-              }
-            this.startAnimation();
+              };
+
+
+
             axios.post(this.url, this.formData, config)
                 .then(function (response) {
                     console.log(response);    
-                    if(response.status == 200)
+                    if(response.status === 200)
                         that.showMessage("success");    
                     else
                         that.showMessage("error");        
@@ -57,32 +59,25 @@ class SendContactForm{
                     console.log(error);
                 })
                 .finally(function () {
-                    that.stopAnimation();
+                    this.sendSpinner.classList.remove("loading_dots--visible");
                 });
+
+            this.btnSend.classList.add("invisible");
+            this.sendLoadingDots.classList.add("loading_dots--visible");
+            this.form.querySelectorAll(".sendFormInfo").forEach(function (msg) {
+                msg.classList.add("hidden");
+            });
         }
     }
 
-
-    startAnimation(){
-        this.btnSend.classList.add("invisible");
-        this.sendSpinner.classList.remove("invisible");
-        this.form.querySelectorAll(".sendFormInfo").forEach(function (msg) {
-            msg.classList.add("hidden");
-        });
-    }
-    stopAnimation(){
-        this.sendSpinner.classList.add("invisible");
-    }
     showMessage(event){
         let msg = document.querySelector(".sendFormInfo__" + event);
         if(msg)
         {
             msg.classList.remove("hidden");
-            if(event == "error")
+            if(event === "error")
                 this.btnSend.classList.remove("invisible");
         }
-        
-
     }
    
 }

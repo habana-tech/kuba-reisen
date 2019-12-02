@@ -46,7 +46,9 @@
         {% set class = 'admin-logged' %}
     {% else %}
         {% if app.request.get('_route') == 'frontend' %}
-            {% set class = class~' loading' %}
+{#            {% set class = class~' loading' %}#}
+{#            TODO: recordar que va el loading#}
+            {% set class = class~' ' %}
         {% endif %}
     {% endif %}
 
@@ -102,6 +104,22 @@
 {#            <script src="{{ asset('scripts/app.js') }}"></script>#}
             {{ encore_entry_script_tags('app') }}
         {% endif %}
+
+        <!-- Matomo -->
+        <script type="text/javascript">
+          var _paq = window._paq || [];
+          /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+          _paq.push(['trackPageView']);
+          _paq.push(['enableLinkTracking']);
+          (function() {
+            var u="https://habanatech.com/matomo/";
+            _paq.push(['setTrackerUrl', u+'matomo.php']);
+            _paq.push(['setSiteId', '4']);
+            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+            g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+          })();
+        </script>
+        <!-- End Matomo Code -->
 
     </body>
 </html>
