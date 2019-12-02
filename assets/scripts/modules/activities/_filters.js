@@ -20,12 +20,13 @@ class FilterActivities {
         this.searchFormSubmit = document.querySelector('.activities__selectors__search form input[type="submit"]');
 
         this.loadingDots = document.querySelector('.loading_dots:first-child');
+        this.getActivitiesFromSelectedFilter();
 
         this.events();
     }
 
     events(){
-        this.filters.forEach((x)=>{x.addEventListener('click', this.selectAndGetData.bind(this) )});
+        this.filters.forEach((x)=>{x.addEventListener('click', this.activeFilter.bind(this) )});
 
         this.searchFormSubmit.addEventListener('click', this.searchAndGetData.bind(this));
 
@@ -34,10 +35,14 @@ class FilterActivities {
         });
     }
 
-    selectAndGetData(e){
+    activeFilter(e){
         e.preventDefault();
         let element = e.target;
         element.classList.toggle('selected');
+        this.getActivitiesFromSelectedFilter();
+    }
+
+    getActivitiesFromSelectedFilter(){
         let filters = document.querySelectorAll('.activities__selectors__filters__lists li.selected');
         let filtersText = '';
         if (filters.length > 0) {

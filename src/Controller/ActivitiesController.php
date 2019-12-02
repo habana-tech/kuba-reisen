@@ -23,11 +23,15 @@ class ActivitiesController extends AbstractController
 
     /**
      * @Route("/activities", name="activities")
+     * @Route("/activities/filter/{filters}",
+     *     name="activitiesFilter",
+     *     defaults={"filters": null, "pos": null, "amount":null },)
      */
     public function activities(DynamicPageManager $pm,
                                ActivityRepository $activityRepository, 
                                FilterTagRepository $filterTagRepository,
-                               ActivityStoryRepository $storiesRepository)
+                               ActivityStoryRepository $storiesRepository,
+                                $filters = null)
     {
         $pageinfo = [
             'pageName'=>'activities',
@@ -41,6 +45,8 @@ class ActivitiesController extends AbstractController
         if(!$page)
             throw new NotFoundHttpException();
 
+
+        $filters = explode(',', $filters);
 
         $filterTags = $filterTagRepository->findBy(['language'=>'de']);
         $_activities = $activityRepository->findByLanguage('de',
@@ -59,6 +65,7 @@ class ActivitiesController extends AbstractController
             'page' => $page,
             'activities'=>$activities,
             'filterTags'=>$filterTags,
+            'selectedFilters'=>$filters,
             'loadMore'=> $loadMore,
             'stories' => $stories
         ]);
@@ -122,7 +129,7 @@ class ActivitiesController extends AbstractController
 
     /**
      * @Route("/activities/filter/{filters}",
-     *     name="activitiesFilter",
+     *     name="activitiesFilter1",
      *     defaults={"filters": null, "pos": null, "amount":null },)
      */
     public function activitiesFilter(DynamicPageManager $pm,
