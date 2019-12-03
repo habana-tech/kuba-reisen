@@ -29,6 +29,10 @@
         color: white;
         top: 3.5em;
 
+        transform: rotateX(-100deg);
+        transform-origin: top;
+        opacity: 0;
+
         &__menu{
             display: flex;
             justify-content: space-between;
@@ -145,8 +149,10 @@
     background-position: 100% 200%;
     background-repeat: no-repeat;
 
+
     &--pinned &--top {
         position: relative;
+        background-position: 100% 200%;
     }
 
     &--pinned{

@@ -432,7 +432,12 @@ Descr: Custom radio toggle
     z-index: 2;
     border-radius: 0 0 2px 2px;
     color: white;
-    top: 3.5em; }
+    top: 3.5em;
+    -webkit-transform: rotateX(-100deg);
+            transform: rotateX(-100deg);
+    -webkit-transform-origin: top;
+            transform-origin: top;
+    opacity: 0; }
 .header__nav__menu {
       display: flex;
       justify-content: space-between;
@@ -505,7 +510,8 @@ Descr: Custom radio toggle
   background-position: 100% 200%;
   background-repeat: no-repeat; }
 .headroom--pinned .headroom--top {
-    position: relative; }
+    position: relative;
+    background-position: 100% 200%; }
 .headroom--pinned {
     position: fixed;
     -webkit-transform: translateY(0%);

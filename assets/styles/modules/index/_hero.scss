@@ -66,19 +66,26 @@
     }
 
     &__buttom-links{
-        position: absolute;
-        bottom: 0;
-        display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
-        width: 54%;
-        left: 27%;
-        z-index: 1;
+        display: none;
+
+        @include atLarge{
+            display: flex;
+            position: absolute;
+            bottom: 0;
+            align-items: flex-end;
+            justify-content: space-between;
+            width: 54%;
+            left: 27%;
+            z-index: 1;
+        }
 
         &__item{
-            position: relative;
-            height: 5em;
-            transition: all .3s ease-in-out;
+
+            @include atLarge{
+                position: relative;
+                height: 5em;
+                transition: all .3s ease-in-out;
+            }
 
             & a{
                 color: white;
@@ -86,12 +93,14 @@
             }
 
             &:before{
-                content: '';
-                position: absolute;
-                background-color: white;
-                width: 2px;
-                height: calc(100% - 2em);
-                top: 2em;
+                @include atLarge {
+                    content: '';
+                    position: absolute;
+                    background-color: white;
+                    width: 2px;
+                    height: calc(100% - 2em);
+                    top: 2em;
+                }
             }
 
             &__nav{

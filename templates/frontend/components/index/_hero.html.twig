@@ -2,16 +2,44 @@
     <div class="hero__image">
         <div class="hero__image__water">
             <div class="hero__image__water__base">
-                <img src="{{ asset('img/hero/water/water.jpg') }}" alt="">
+                <img size="100vw" srcset="
+                {{ 'static/img/hero/water/water.jpg' | imagine_filter('min_width_1920') }} 1920w,
+                {{ 'static/img/hero/water/water.jpg' | imagine_filter('min_width_1200') }} 1200w,
+                {{ 'static/img/hero/water/water.jpg' | imagine_filter('min_width_1000') }} 1000w,
+                {{ 'static/img/hero/water/water.jpg' | imagine_filter('min_width_900') }} 900w,
+                {{ 'static/img/hero/water/water.jpg' | imagine_filter('min_width_800') }} 800w,
+                {{ 'static/img/hero/water/water.jpg' | imagine_filter('min_width_600') }} 600w"
+                alt="">
             </div>
             <div class="hero__image__water__sea">
-                <img src="{{ asset('img/hero/water/sea_map.png') }}" alt="">
+                <img size="100vw" srcset="
+                {{ 'static/img/hero/water/sea_map.png' | imagine_filter('min_width_1920') }} 1920w,
+                {{ 'static/img/hero/water/sea_map.png' | imagine_filter('min_width_1200') }} 1200w,
+                {{ 'static/img/hero/water/sea_map.png' | imagine_filter('min_width_1000') }} 1000w,
+                {{ 'static/img/hero/water/sea_map.png' | imagine_filter('min_width_900') }} 900w,
+                {{ 'static/img/hero/water/sea_map.png' | imagine_filter('min_width_800') }} 800w,
+                {{ 'static/img/hero/water/sea_map.png' | imagine_filter('min_width_600') }} 600w"
+                     alt="">
             </div>
             <div class="hero__image__water__wave">
-                <img src="{{ asset('img/hero/water/wave_map.png') }}" alt="">
+                <img size="100vw" srcset="
+                {{ 'static/img/hero/water/wave_map.png' | imagine_filter('min_width_1920') }} 1920w,
+                {{ 'static/img/hero/water/wave_map.png' | imagine_filter('min_width_1200') }} 1200w,
+                {{ 'static/img/hero/water/wave_map.png' | imagine_filter('min_width_1000') }} 1000w,
+                {{ 'static/img/hero/water/wave_map.png' | imagine_filter('min_width_900') }} 900w,
+                {{ 'static/img/hero/water/wave_map.png' | imagine_filter('min_width_800') }} 800w,
+                {{ 'static/img/hero/water/wave_map.png' | imagine_filter('min_width_600') }} 600w"
+                     alt="">
             </div>
             <div class="hero__image__water__clouds">
-                <img src="{{ asset('img/hero/water/clouds_map.png') }}" alt="">
+                <img size="100vw" srcset="
+                {{ 'static/img/hero/water/clouds_map.png' | imagine_filter('min_width_1920') }} 1920w,
+                {{ 'static/img/hero/water/clouds_map.png' | imagine_filter('min_width_1200') }} 1200w,
+                {{ 'static/img/hero/water/clouds_map.png' | imagine_filter('min_width_1000') }} 1000w,
+                {{ 'static/img/hero/water/clouds_map.png' | imagine_filter('min_width_900') }} 900w,
+                {{ 'static/img/hero/water/clouds_map.png' | imagine_filter('min_width_800') }} 800w,
+                {{ 'static/img/hero/water/clouds_map.png' | imagine_filter('min_width_600') }} 600w"
+                     alt="">
             </div>
 
             <svg>

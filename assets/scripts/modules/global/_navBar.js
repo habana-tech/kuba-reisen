@@ -47,7 +47,7 @@ class NavBar{
 
         this.main.addEventListener('click', ()=>{
             if (this.isOpen)
-                this.hideMenu();;
+                this.hideMenu();
         });
     }
 
@@ -79,12 +79,13 @@ class NavBar{
             this.outAC(this.segmentA, this);
             this.outB(this.segmentB, this);
             this.outAC(this.segmentC, this);
+
+            this.navegationMenu.classList.remove('swing-in-top-bck');
+            this.navegationMenu.classList.add('swing-out-top-bck');
+
+            this.isOpen = false;
         }
 
-        this.navegationMenu.classList.remove('swing-in-top-bck');
-        this.navegationMenu.classList.add('swing-out-top-bck');
-
-        this.isOpen = false;
     }
 
     hideMenu(){
@@ -92,14 +93,16 @@ class NavBar{
             this.header.classList.remove('header--pinned');
         }
 
-        this.outAC(this.segmentA, this);
-        this.outB(this.segmentB, this);
-        this.outAC(this.segmentC, this);
+        if(this.isOpen) {
+            this.outAC(this.segmentA, this);
+            this.outB(this.segmentB, this);
+            this.outAC(this.segmentC, this);
 
-        this.navegationMenu.classList.remove('swing-in-top-bck');
-        this.navegationMenu.classList.add('swing-out-top-bck');
+            this.navegationMenu.classList.remove('swing-in-top-bck');
+            this.navegationMenu.classList.add('swing-out-top-bck');
 
-        this.isOpen = false;
+            this.isOpen = false;
+        }
     }
 
 
