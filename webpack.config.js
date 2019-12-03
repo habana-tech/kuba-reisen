@@ -26,8 +26,7 @@ Encore
 
 
     .addEntry('app', './assets/scripts/app.js')
-    .addEntry('app_backend', './assets/scripts/app_backend.js')
-    .addEntry('admin', './assets/scripts/admin.js')
+    .addStyleEntry('loading', './assets/styles/loading.scss')
     .addEntry('index', './assets/scripts/index.js')
     .addEntry('destination', './assets/scripts/destination.js')
     .addEntry('faq', './assets/scripts/faq.js')
@@ -35,10 +34,15 @@ Encore
     .addEntry('activities', './assets/scripts/activities.js')
     .addEntry('activity', './assets/scripts/activity.js')
     .addEntry('bucket_list', './assets/scripts/bucket_list.js')
+
+    .addEntry('app_backend', './assets/scripts/app_backend.js')
+    .addStyleEntry('style_backend', './assets/styles/style_backend.scss')
+    .addEntry('admin', './assets/scripts/admin.js')
     .addEntry('MapMarker', './assets/scripts/ckeditor/MapMarker.js')
     .addEntry('MapMarkerDialog', './assets/scripts/ckeditor/MapMarkerDialog.js')
     .addEntry('MapPath', './assets/scripts/ckeditor/MapPath.js')
     .addEntry('MapPathDialog', './assets/scripts/ckeditor/MapPathDialog.js')
+
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
@@ -67,7 +71,11 @@ Encore
     })
 
     // enables Sass/SCSS support
-    .enableSassLoader()
+    .enableSassLoader((options) => {}, {
+        resolveUrlLoaderOptions: {
+            removeCR: true
+        }
+    })
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()

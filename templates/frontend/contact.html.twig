@@ -3,7 +3,8 @@
 {% block title %}Wenden Sie sich an einen Spezialisten{% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('styles/contact.css') }}" type="text/css">
+{#    <link rel="stylesheet" href="{{ asset('styles/contact.css') }}" type="text/css">#}
+    {{ encore_entry_link_tags('contact') }}
 {% endblock stylesheets %}
 
 
@@ -30,5 +31,6 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script defer src="{{ asset('scripts/contact.js') }}"></script>
+{#    <script defer src="{{ asset('scripts/contact.js') }}"></script>#}
+    {{ encore_entry_script_tags('contact') }}
 {% endblock javascripts %}

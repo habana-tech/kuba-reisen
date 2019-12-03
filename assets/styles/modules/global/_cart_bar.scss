@@ -28,6 +28,14 @@
 }
 
 .cart_bar{
+
+    bottom: 0;
+    width: calc( 100vw - 4px);
+    transform: translateY(60%);
+    height: 6em;
+    border-radius: 6px;
+    margin: 0 2px;
+
     position: fixed;
     z-index: 2;
     padding: .25em;
@@ -40,18 +48,13 @@
 
     transition: transform .3s ease-in-out;
 
-    bottom: 0;
-    width: calc( 100vw - 4px);
-    transform: translateY(60%);
-    height: 6em;
-    border-radius: 6px;
-    margin: 0 2px;
 
     @include atLarge{
         transform: translateX(75%);
         margin: auto;
         bottom: 2em;
         right: 0;
+        width: auto;
     }
 
     &:hover{

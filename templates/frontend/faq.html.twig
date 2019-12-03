@@ -3,7 +3,8 @@
 {% block title %}Reise FAQ für kuba{% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('styles/faq.css') }}" type="text/css">
+{#    <link rel="stylesheet" href="{{ asset('styles/faq.css') }}" type="text/css">#}
+      {{ encore_entry_link_tags('faq') }}
 {% endblock %}
 
 {% block body %}
@@ -22,5 +23,6 @@
 
 
 {% block javascripts %}
-    <script src="{{ asset('scripts/faq.js') }}"></script>
+{#    <script src="{{ asset('scripts/faq.js') }}"></script>#}
+    {{ encore_entry_script_tags('faq') }}
 {% endblock %}

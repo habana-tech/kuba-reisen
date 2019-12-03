@@ -3,6 +3,7 @@ import LoadActivities from './modules/activities/_more_activities';
 import AddtoCart from './modules/global/_addToCart';
 import StoryDescription from './modules/activities/_story_description';
 import StoriesLayout from './modules/activities/_stories_layout';
+require('../styles/activities.scss');
 
 new FilterActivities();
 new LoadActivities();
