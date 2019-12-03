@@ -3,7 +3,8 @@
 {% block title %}Aktivitäten{% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('styles/activities.css') }}" type="text/css">
+{#    <link rel="stylesheet" href="{{ asset('styles/activities.css') }}" type="text/css">#}
+    {{ encore_entry_link_tags('activities') }}
 {% endblock %}
 
 {% block body %}
@@ -29,5 +30,6 @@
     <script>
         var _activities_activitiesApiPos = '{{ url('activitiesApiPos') }}';
     </script>
-    <script src="{{ asset('scripts/activities.js') }}"></script>
+{#    <script src="{{ asset('scripts/activities.js') }}"></script>#}
+    {{ encore_entry_script_tags('activities') }}
 {% endblock %}

@@ -1,4 +1,4 @@
-@keyframes showBar {
+@keyframes showBarX {
     0%{
         transform: translateX(75%);
     }
@@ -12,14 +12,31 @@
         transform: translateX(75%);
     }
 }
+@keyframes showBarY {
+    0%{
+        transform: translateY(75%);
+    }
+    40%{
+        transform: translateY(0%);
+    }
+    60%{
+        transform: translateY(0%);
+    }
+    100%{
+        transform: translateY(75%);
+    }
+}
 
 .cart_bar{
+
+    bottom: 0;
+    width: calc( 100vw - 4px);
+    transform: translateY(60%);
+    height: 6em;
+    border-radius: 6px;
+    margin: 0 2px;
+
     position: fixed;
-    bottom: 2em;
-    border-top-left-radius: 2px;
-    border-bottom-left-radius: 2px;
-    right: 0;
-    margin: auto;
     z-index: 2;
     padding: .25em;
     background: linear-gradient(45deg, rgba($light-blue, .95), rgba($dark-blue, .95));
@@ -28,15 +45,30 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    transform: translateX(75%);
+
     transition: transform .3s ease-in-out;
 
+
+    @include atLarge{
+        transform: translateX(75%);
+        margin: auto;
+        bottom: 2em;
+        right: 0;
+        width: auto;
+    }
+
     &:hover{
-        transform: translateX(0);
+           transform: translateY(0);
+        @include atLarge {
+            transform: translateX(0);
+        }
     }
 
     &--visible{
-        animation: showBar 3.5s ease-in-out 1;
+        animation: showBarY 3.5s ease-in-out 1;
+        @include atLarge {
+            animation: showBarX 3.5s ease-in-out 1;
+        }
     }
 
     &__title{

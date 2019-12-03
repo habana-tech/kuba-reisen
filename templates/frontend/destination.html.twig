@@ -3,7 +3,8 @@
 {% block title %}Entdecken 👌 und entdecken Sie {{ destination.name }} {% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('styles/destinations.css') }}" type="text/css">
+{#    <link rel="stylesheet" href="{{ asset('styles/destinations.css') }}" type="text/css">#}
+    {{ encore_entry_link_tags('destinations') }}
 {% endblock %}
 
 {% block body %}
@@ -25,5 +26,6 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script src="{{ asset('scripts/destination.js') }}"></script>
+{#    <script src="{{ asset('scripts/destination.js') }}"></script>#}
+    {{ encore_entry_script_tags('destination') }}
 {% endblock %}

@@ -3,7 +3,8 @@
 {% block title %}Unsere Geheimtipps für Kuba{% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('styles/bucket_list.css') }}" type="text/css">
+{#    <link rel="stylesheet" href="{{ asset('styles/bucket_list.css') }}" type="text/css">#}
+    {{ encore_entry_link_tags('bucket_list') }}
 {% endblock %}
 
 {% block body %}
@@ -21,9 +22,10 @@
 
 
 {% block javascripts_vendors %}
-    <script src="{{ asset('scripts/vendors/three.min.js') }}"></script>
+{#    <script src="{{ asset('scripts/vendors/three.min.js') }}"></script>#}
 {% endblock %}
 
 {% block javascripts %}
-    <script src="{{ asset('scripts/bucket_list.js') }}"></script>
+{#    <script src="{{ asset('scripts/bucket_list.js') }}"></script>#}
+    {{ encore_entry_script_tags('bucket_list') }}
 {% endblock %}
