@@ -11,10 +11,9 @@
         <link rel="shortcut icon" type="image/ico" href="{{ asset('dist/favicon.ico') }}">
 
         <!-- Stylesheet -->
-        <link rel="stylesheet" href="{{ asset('styles/kraken.css') }}" type="text/css">
-        
-        <link rel="stylesheet" href="{{ asset('styles/style_backend.css') }}" type="text/css">
 
+        {{ encore_entry_link_tags('app_backend') }}
+        {{ encore_entry_link_tags('style_backend') }}
         <style>
             a:hover, a:active{
                 color: #6a6a6a
@@ -107,7 +106,8 @@
 
         </footer>
 
-        <script src="{{ asset('scripts/admin.js') }}"></script>
+{#        <script src="{{ asset('scripts/admin.js') }}"></script>#}
+    {{ encore_entry_script_tags('app_backend') }}
 
     </body>
 
