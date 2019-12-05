@@ -82,7 +82,6 @@
 
         {% if is_granted('ROLE_EDITOR') and not app.request.get('preview')  %}
             <script>
-                {{ dump(encore_entry_css_files('app_backend')) }}
                 //APP_ROUTES & PARAMS
                 var app_js_param__csrf_token = "{{ csrf_token('_grapejs_editor_token') }}";
                 {#var app_js_routing__styles_css = "{{ absolute_url(asset('styles/all_backend_css.css')) }}"#}

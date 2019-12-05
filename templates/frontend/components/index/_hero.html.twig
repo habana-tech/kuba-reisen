@@ -1,29 +1,29 @@
 <section class="section hero hero-home">
 
-    {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null %}
-        <div class="slide-wrapper slide-wrapper-editor">
-            {% for i in 1..4 %}
-                <div class="slide-item">
-                    <img data-grape_id="home_hero_img{{ i }}"
-                         src="{{ page.ElementAttr('home_hero_img'~i, 'src', asset('img/hero/'~i~'.jpg') ) }}"
-                         class="slide-item__image">
-                </div>
-            {% endfor %}
-        </div>
-    {% else %}
-        <div class="slide-wrapper">
-            {% for i in 1..4 %}
-                <div class="slide-item">
-                    {{ imgTagContent(
-                        page.ElementAttr('home_hero_img'~i, 'src', asset('img/hero/'~i~'.jpg')),
-                        page.ElementAttr('home_hero_img'~i, 'srcb64', asset('img/hero/'~i~'.jpg')),
-                        '',
-                        '100vw',
-                        'data-grape_id="home_hero_img'~i~'"') | raw }}
-                </div>
-            {% endfor %}
-        </div>
-    {% endif %}
+{#    {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null %}#}
+{#        <div class="slide-wrapper slide-wrapper-editor">#}
+{#            {% for i in 1..4 %}#}
+{#                <div class="slide-item">#}
+{#                    <img data-grape_id="home_hero_img{{ i }}"#}
+{#                         src="{{ page.ElementAttr('home_hero_img'~i, 'src', asset('img/hero/'~i~'.jpg') ) }}"#}
+{#                         class="slide-item__image">#}
+{#                </div>#}
+{#            {% endfor %}#}
+{#        </div>#}
+{#    {% else %}#}
+{#        <div class="slide-wrapper">#}
+{#            {% for i in 1..4 %}#}
+{#                <div class="slide-item">#}
+{#                    {{ imgTagContent(#}
+{#                        page.ElementAttr('home_hero_img'~i, 'src', asset('img/hero/'~i~'.jpg')),#}
+{#                        page.ElementAttr('home_hero_img'~i, 'srcb64', asset('img/hero/'~i~'.jpg')),#}
+{#                        '',#}
+{#                        '100vw',#}
+{#                        'data-grape_id="home_hero_img'~i~'"') | raw }}#}
+{#                </div>#}
+{#            {% endfor %}#}
+{#        </div>#}
+{#    {% endif %}#}
 
     <div class="hero__content">
         <h1 class="hero__content__text" data-grape_id="hero__content__text">
