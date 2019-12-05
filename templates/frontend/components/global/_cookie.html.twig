@@ -1,5 +1,5 @@
 {% if app.request.cookies.has('allow-cookies') %}
-    <!-- cookie dialog skiped -->
+    <!-- cookie dialog skipped -->
 {% else %}
     <div class="cookie-overlay"></div>
     <aside class="cookie">
@@ -12,7 +12,7 @@
                 <a href="#">Datenschutzerklärung</a>.</p>
         </div>
         <div class="cookie__btn">
-            <button class="btn btn--green btn--small">Allow</button>
+            <button class="btn btn--green btn--small" autofocus="autofocus">Allow</button>
         </div>
     </aside>
 {% endif %}
