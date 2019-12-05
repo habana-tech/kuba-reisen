@@ -72,7 +72,6 @@
     }
 
     &__title{
-        transform: rotate(-90deg);
         margin: 1em .5em;
         text-align: center;
         border-bottom: 1px solid white;
@@ -80,6 +79,12 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+        padding-top: 1em;
+
+        @include atLarge {
+            transform: rotate(-90deg);
+            padding-top: 0;
+        }
 
         &__icon{
             width: 2em;
@@ -93,14 +98,21 @@
     }
 
     &__content{
-        padding: 1em;
         width: 100%;
+        padding: 0 1em;
+        @include atLarge{
+            padding: 1em;
+        }
 
         &__text{
             text-align: center;
             width: 100%;
-            margin: .5em 0;
             color: white;
+            margin: 0;
+
+            @include atLarge{
+                margin: .5em 0;
+            }
 
             & p{
                 margin: 0;
