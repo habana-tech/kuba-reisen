@@ -3,15 +3,17 @@
 {% block title %}Reisen nach Kuba 👌 von Hand gemacht{% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('styles/index.css') }}" type="text/css">
+    {{ encore_entry_link_tags('index') }}
+{#    <link rel="stylesheet" href="{{ asset('styles/index.css') }}" type="text/css">#}
 {% endblock %}
 
 
 {% block inline_stylesheets %}
     {% if not is_granted('ROLE_EDITOR') or app.request.get('preview') %}
-        <style>
-            {{ source('@public/static/styles/loading.css') }}
-        </style>
+{#        <style>#}
+{#            {{ source('@public/static/styles/loading.css') }}#}
+{#        </style>#}
+            {{ encore_entry_link_tags('loading') }}
     {% endif %}
 {% endblock %}
 
@@ -43,10 +45,8 @@
     </main>
 {% endblock %}
 
-{% block javascripts_vendors %}
-    <script src="{{ asset('scripts/vendors/three.min.js') }}"></script>
-{% endblock %}
 
 {% block javascripts %}
-    <script src="{{ asset('scripts/index.js') }}"></script>
+{#    <script src="{{ asset('scripts/index.js') }}"></script>#}
+    {{ encore_entry_script_tags('index') }}
 {% endblock %}

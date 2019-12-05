@@ -1,12 +1,11 @@
 .introduction{
-    width: 100%;
+    width: 90%;
     position: relative;
     display: flex;
     justify-content: center;
-    padding: 2em 0;
+    margin: 2em auto;
 
-    &__content{
-        width: 50%;
-        text-align: center;
+    @include atLarge{
+        width: 75%;
     }
 }

@@ -1,7 +1,8 @@
 {% extends 'frontend/base.html.twig' %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('styles/activity.css') }}" type="text/css">
+{#    <link rel="stylesheet" href="{{ asset('styles/activity.css') }}" type="text/css">#}
+    {{ encore_entry_link_tags('activity') }}
 {% endblock %}
 
 {% block title %}{{ activity.name }}{% endblock %}
@@ -34,9 +35,11 @@
 {% endblock %}
 
 {% block javascripts_vendors %}
-    <script src="{{ asset('scripts/vendors/three.min.js') }}"></script>
+{#    <script src="{{ asset('scripts/vendors/three.min.js') }}"></script>#}
+{#    TODO: revisar que no se use esta lib #}
 {% endblock %}
 
 {% block javascripts %}
-    <script src="{{ asset('scripts/activity.js') }}"></script>
+{#    <script src="{{ asset('scripts/activity.js') }}"></script>#}
+    {{ encore_entry_script_tags('activity') }}
 {% endblock %}

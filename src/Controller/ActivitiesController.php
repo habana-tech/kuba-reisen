@@ -23,11 +23,15 @@ class ActivitiesController extends AbstractController
 
     /**
      * @Route("/activities", name="activities")
+     * @Route("/activities/filter/{filters}",
+     *     name="activitiesFilter",
+     *     defaults={"filters": null, "pos": null, "amount":null },)
      */
     public function activities(DynamicPageManager $pm,
                                ActivityRepository $activityRepository, 
                                FilterTagRepository $filterTagRepository,
-                               ActivityStoryRepository $storiesRepository)
+                               ActivityStoryRepository $storiesRepository,
+                                $filters = null)
     {
         $pageinfo = [
             'pageName'=>'activities',
@@ -41,6 +45,8 @@ class ActivitiesController extends AbstractController
         if(!$page)
             throw new NotFoundHttpException();
 
+
+        $filters = explode(',', $filters);
 
         $filterTags = $filterTagRepository->findBy(['language'=>'de']);
         $_activities = $activityRepository->findByLanguage('de',
@@ -59,6 +65,7 @@ class ActivitiesController extends AbstractController
             'page' => $page,
             'activities'=>$activities,
             'filterTags'=>$filterTags,
+            'selectedFilters'=>$filters,
             'loadMore'=> $loadMore,
             'stories' => $stories
         ]);
@@ -117,53 +124,6 @@ class ActivitiesController extends AbstractController
         );
 
         return $this->json($data);
-    }
-
-
-    /**
-     * @Route("/activities/filter/{filters}",
-     *     name="activitiesFilter",
-     *     defaults={"filters": null, "pos": null, "amount":null },)
-     */
-    public function activitiesFilter(DynamicPageManager $pm,
-                               ActivityRepository $activityRepository,
-                               FilterTagRepository $filterTagRepository,
-                               $filters)
-    {
-        $pageinfo = [
-            'pageName'=>'activities',
-            'language'=>'de'
-        ];
-
-        if($this->isGranted('ROLE_ADMIN'))
-            $page = $pm->findByOrCreateIfDoesNotExist($pageinfo);
-        else
-            $page = $pm->findOneBy($pageinfo);
-        if(!$page)
-            throw new NotFoundHttpException();
-
-
-        $filters = explode(',', $filters);
-        $_activities = $activityRepository->findByFilter($filters,
-                                                        $filterTagRepository,
-                                                        0, $this->amountActivitiesDefault+1);
-
-        $loadMore = count($_activities) > $this->amountActivitiesDefault;
-        $activities = array();
-        for ($i = 0; $i < min($this->amountActivitiesDefault, count($_activities)); $i++)
-            array_push($activities, $_activities[$i]);
-
-        $filterTags = $filterTagRepository->findBy(['language'=>'de']);
-
-
-        return $this->render('frontend/activities.html.twig', [
-            'dynamic_page_id' => $page->getId(),
-            'page' => $page,
-            'activities'=>$activities,
-            'filterTags'=>$filterTags,
-            'selectedFilters'=>$filters,
-            'loadMore'=>$loadMore,
-        ]);
     }
 
 

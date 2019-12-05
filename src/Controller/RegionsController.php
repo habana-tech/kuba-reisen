@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Activity;
+use App\Entity\Destination;
+use phpDocumentor\Reflection\Types\Array_;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use App\PageManager\DynamicPageManager;
@@ -21,12 +24,28 @@ class RegionsController extends AbstractController
             'language'=>'de'
         ];
 
+
+        $topDestinations = array();
+        $topDestinations['kuba_10'] = $this->getDoctrine()
+                                ->getRepository(Activity::class)
+                                ->findOneBy(['name'=>'Kuba in 10 Tagen']);
+        $topDestinations['havanna'] = $this->getDoctrine()
+                                ->getRepository(Activity::class)
+                                ->findOneBy(['name'=>'Havanna Komplett']);
+        $topDestinations['inseln'] = $this->getDoctrine()
+                                ->getRepository(Destination::class)
+                                ->findOneBy(['name'=>'Inseln & Strände']);
+        $topDestinations['queen'] = $this->getDoctrine()
+                                ->getRepository(Activity::class)
+                                ->findOneBy(['name'=>'Show Havana Queens']);
+
         $page = $pm->findByOrCreateIfDoesNotExist($pageinfo, 'components/global/_top_destination.html.twig');
         if(!$page)
             throw new NotFoundHttpException();
 
         return $this->render('frontend/components/global/_top_destination.html.twig', [
             'page' => $page,
+            'topDestinations' => $topDestinations,
         ]);
     }
 

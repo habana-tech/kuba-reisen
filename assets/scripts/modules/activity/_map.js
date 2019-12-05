@@ -33,9 +33,7 @@ class ActivityMap {
 
         this.points.forEach((point)=>{
             let props = point.getAttribute('data-map');
-            console.log(props);
             props = JSON.parse(props);
-            console.log(props);
 
             lats.push(props.center[0]);
             logs.push(props.center[1]);
@@ -72,10 +70,8 @@ class ActivityMap {
             let props = path.getAttribute('data-path-map');
             props = JSON.parse(props);
             let geojson = props.geojson;
-            console.log(geojson);
 
             let coordinates = geojson.features[0].geometry.coordinates;
-            console.log(coordinates);
 
             let lats = [];
             let logs = [];

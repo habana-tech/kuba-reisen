@@ -5,3 +5,9 @@
 body{
     position: relative;
 }
+
+svg.filter{
+    position: absolute;
+    z-index: -1;
+    visibility: hidden;
+}

@@ -24,7 +24,6 @@ class BucketList{
 
     }
 
-
     events(){
         this.points[0].classList.add('active');
 

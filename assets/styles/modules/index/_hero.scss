@@ -5,8 +5,46 @@
     display: flex;
     align-items: center;
 
-    &__content{
+    &__image{
         position: relative;
+        height: 100vh;
+        width: 100vw;
+
+        &__water{
+            height: 100%;
+            width: 100%;
+
+            &__base{
+                position: relative;
+                top:0;
+                left:0;
+                height: 100%;
+                width: 100%;
+            }
+
+            &__sea, &__wave, &__clouds{
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+            }
+
+            &__sea{
+                filter: url("#sea");
+            }
+            &__wave{
+                filter: url("#wave");
+            }
+            &__clouds{
+                filter: url("#clouds");
+            }
+            
+        }
+    }
+
+    &__content{
+        position: absolute;
         width: 90%;
         margin: 1em;
         color: $color-white;
@@ -18,7 +56,7 @@
         }
 
         &__text{
-            font-size: 2.25em;
+            font-size: 2em;
 
             &::first-letter{
                 font-size: inherit;
@@ -80,39 +118,5 @@
 
     & h1, a{
         text-shadow: 2px 2px 10px rgba(black, .5);
-    }
-}
-
-#canvas_hero {
-    overflow: hidden;
-    display: block;
-    position: absolute;
-    left: 0;
-    top: 0;
-    background-color: black;
-    height: 100vh;
-    width: 100vw;
-    transform: scale(1.2);
-    object-fit: cover;
-    z-index: -1;
-
-    &.canvas_hero--ready{
-        z-index: 0;
-    }
-}
-
-
-
-.slide-wrapper {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-
-    & .slide-item{
-        position: relative;
-
-        &:nth-child(1){
-            z-index: 0;
-        }
     }
 }

@@ -1,30 +1,45 @@
 <section class="section hero hero-home">
+    <div class="hero__image">
+        <div class="hero__image__water">
+            <div class="hero__image__water__base">
+                <img src="{{ asset('img/hero/water/water.jpg') }}" alt="">
+            </div>
+            <div class="hero__image__water__sea">
+                <img src="{{ asset('img/hero/water/sea_map.png') }}" alt="">
+            </div>
+            <div class="hero__image__water__wave">
+                <img src="{{ asset('img/hero/water/wave_map.png') }}" alt="">
+            </div>
+            <div class="hero__image__water__clouds">
+                <img src="{{ asset('img/hero/water/clouds_map.png') }}" alt="">
+            </div>
 
-{#    {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null %}#}
-{#        <div class="slide-wrapper slide-wrapper-editor">#}
-{#            {% for i in 1..4 %}#}
-{#                <div class="slide-item">#}
-{#                    <img data-grape_id="home_hero_img{{ i }}"#}
-{#                         src="{{ page.ElementAttr('home_hero_img'~i, 'src', asset('img/hero/'~i~'.jpg') ) }}"#}
-{#                         class="slide-item__image">#}
-{#                </div>#}
-{#            {% endfor %}#}
-{#        </div>#}
-{#    {% else %}#}
-{#        <div class="slide-wrapper">#}
-{#            {% for i in 1..4 %}#}
-{#                <div class="slide-item">#}
-{#                    {{ imgTagContent(#}
-{#                        page.ElementAttr('home_hero_img'~i, 'src', asset('img/hero/'~i~'.jpg')),#}
-{#                        page.ElementAttr('home_hero_img'~i, 'srcb64', asset('img/hero/'~i~'.jpg')),#}
-{#                        '',#}
-{#                        '100vw',#}
-{#                        'data-grape_id="home_hero_img'~i~'"') | raw }}#}
-{#                </div>#}
-{#            {% endfor %}#}
-{#        </div>#}
-{#    {% endif %}#}
+            <svg>
+                <filter id="sea" x="0" y="0" width="100%" height="100%">
+                    <feTurbulence id="sea-filter" numOctaves="3" seed="2" baseFrequency="0 5"></feTurbulence>
+                    <feDisplacementMap scale="5" in="SourceGraphic"></feDisplacementMap>
+                </filter>
+                <animate xlink:href="#sea-filter" attributeName="baseFrequency" dur="60s" keyTimes="0;0.5;1" values="0.02 0.06;0.04 0.08;0.02 0.06" repeatCount="indefinite"/>
+            </svg>
 
+            <svg>
+                <filter id="wave" x="0" y="0" width="100%" height="100%">
+                    <feTurbulence id="wave-filter" numOctaves="3" seed="2" baseFrequency="2 5"></feTurbulence>
+                    <feDisplacementMap scale="5" in="SourceGraphic"></feDisplacementMap>
+                </filter>
+                <animate xlink:href="#wave-filter" attributeName="baseFrequency" dur="60s" keyTimes="0;0.5;1" values="0.02 0.06;0.04 0.08;0.02 0.06" repeatCount="indefinite"/>
+            </svg>
+
+            <svg>
+                <filter id="clouds" x="0" y="0" width="100%" height="100%">
+                    <feTurbulence id="clouds-filter" numOctaves="5" seed="2" baseFrequency="2 0"></feTurbulence>
+                    <feDisplacementMap scale="15" in="SourceGraphic"></feDisplacementMap>
+                </filter>
+                <animate xlink:href="#clouds-filter" attributeName="baseFrequency" dur="60s" keyTimes="0;0.5;1" values="0.02 0.06;0.04 0.08;0.02 0.06" repeatCount="indefinite"/>
+            </svg>
+
+        </div>
+    </div>
     <div class="hero__content">
         <h1 class="hero__content__text" data-grape_id="hero__content__text">
             {% if page.getElement('hero__content__text') is null %}

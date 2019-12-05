@@ -8,22 +8,28 @@ class LoadActivities {
 
         this.activitiesList = document.querySelector('.activities__list__container');
         this.activitiesListInitial = document.querySelector('.activities__list__container__initial');
-        this.btnLoad = document.querySelector('.activities__list__more a');
+        this.btnLoad = document.querySelector('.activities__list__more button');
+
+        this.loadingDots = document.querySelector('.loading_dots:last-child');
+
         this.prototype = document.querySelector('.activities__list__item-prototype div');
         this.events();
     }
 
     events(){
         if (this.btnLoad != null)
-            this.btnLoad.addEventListener('click', this.loadMore.bind(this));
+            this.btnLoad.addEventListener('click', this.getData.bind(this));
     }
 
 
-    getData(){
+    getData(e){
+        e.preventDefault();
+
         let pos = this.activitiesListInitial.querySelectorAll('.activity').length;
 
         let url = this.url+'/'+pos+'/'+this.amount;
         let that = this;
+
         axios.get(url)
             .then(function (response) {
                 let activities = response.data.activities;
@@ -41,23 +47,21 @@ class LoadActivities {
                     });
                 }
                 else {
-                    console.log('error');
+                    console.error(' mostrar que no hay mas');
                 }
 
+                that.loadingDots.classList.toggle('loading_dots--visible');
                 that.activitiesList.classList.toggle('activities__list__container--loading');
+
             })
             .catch(function (error) {
-                console.log(error);
+                console.error("error at loading more activities");
             });
 
         this.activitiesList.classList.toggle('activities__list__container--loading');
+        this.loadingDots.classList.toggle('loading_dots--visible');
     }
 
-    loadMore(e){
-        e.preventDefault();
-        this.getData();
-        return false;
-    }
 }
 
 export default LoadActivities;

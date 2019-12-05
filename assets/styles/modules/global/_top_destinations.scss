@@ -17,16 +17,22 @@
             width: 100%;
             margin: 1.5em 0;
             max-height: 75vh;
+            min-height: 50vh;
             position: relative;
 
             @include atLarge{
                 margin: 3em 0;
                 width: 48%;
+                min-height: auto;
             }
 
             @include atXLarge{
                 margin: 3em 0;
                 width: 23%;
+            }
+
+            &:hover img{
+                transform: scale(1.05);
             }
 
             &::before{
@@ -53,18 +59,6 @@
                 background: linear-gradient(45deg, $light-green, $dark-green 20%, transparent);
             }
 
-            & a {
-                &:before {
-                    content: '';
-                    position: absolute;
-                    height: 100%;
-                    width: 100%;
-                    top: 0;
-                    left: 0;
-                    z-index: 2;
-                }
-            }
-
             &__image {
                 overflow: hidden;
                 position: relative;
@@ -74,36 +68,20 @@
                     min-height: 60vh;
                 }
 
-                & img {
+                & > div{
+                    width: 100%;
                     height: 100%;
+                }
 
-                    &:nth-child(2) {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        z-index: -1;
-                    }
+                & img {
+                    transition: transform .5s ease-in-out;
+                    height: 100%;
 
                     @include atXLarge {
                         width: auto;
                     }
                 }
 
-                & .canvas_destinations {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    z-index: -1;
-                    object-fit: cover;
-
-                    @include atLarge {
-                        min-height: 60vh;
-                    }
-
-                    &--ready {
-                        z-index: 1;
-                    }
-                }
             }
 
             &__text {

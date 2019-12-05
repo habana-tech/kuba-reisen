@@ -35,10 +35,15 @@
         top: -.75em;
         background-color: white;
         box-shadow: 2px 2px 10px rgba(black, .2);
-        padding: 1em;
-        width: 90%;
+        padding: .5em;
+        width: 95%;
         margin: auto;
         border-radius: 2px;
+
+        @include atLarge{
+            padding: 1em;
+            width: 90%;
+        }
 
         &__price{
             display: flex;
@@ -89,6 +94,10 @@
 
         &__description{
             text-align: center;
+
+            & p{
+                margin: .25em;
+            }
         }
     }
 }
