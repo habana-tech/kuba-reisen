@@ -62,6 +62,10 @@
             <div id="grapes-editable">
         {% endif %}
 
+        {% if not is_granted('ROLE_EDITOR') or app.request.get('preview') %}
+            {{  include('frontend/components/global/_cookie.html.twig') }}
+        {% endif %}
+
         {{ render(controller('App\\Controller\\RegionsController::regionHeader'), {'preview':app.request.get('preview')} ) }}
 
         {% block body %}{% endblock %}
@@ -74,11 +78,7 @@
                 
         {{ render(controller('App\\Controller\\RegionsController::regionFooter', {'preview':app.request.get('preview')})) }}
 
-        {% if not is_granted('ROLE_EDITOR') or app.request.get('preview') %}
-            {{  include('frontend/components/global/_cookie.html.twig') }}
-        {% endif %}
-
-        {% if is_granted('ROLE_EDITOR') and not app.request.get('preview')  %}
+       {% if is_granted('ROLE_EDITOR') and not app.request.get('preview')  %}
             </div>
         {% endif %}
 
