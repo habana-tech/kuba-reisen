@@ -20,7 +20,7 @@
 {% block body %}
     <main class="main {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null  %}grapes-editable{% endif %}">
 
-        {{ include('frontend/components/index/_loading.html.twig') }}
+{#        {{ include('frontend/components/index/_loading.html.twig') }}#}
 
         {{ include('frontend/components/index/_hero.html.twig') }}
 
