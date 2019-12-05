@@ -62,11 +62,11 @@
             <div id="grapes-editable">
         {% endif %}
 
-        {{ render(controller('App\\Controller\\RegionsController::regionHeader'), {'preview':app.request.get('preview')} ) }}
-
-         {% if not is_granted('ROLE_EDITOR') or app.request.get('preview') %}
+        {% if not is_granted('ROLE_EDITOR') or app.request.get('preview') %}
             {{  include('frontend/components/global/_cookie.html.twig') }}
         {% endif %}
+
+        {{ render(controller('App\\Controller\\RegionsController::regionHeader'), {'preview':app.request.get('preview')} ) }}
 
         {% block body %}{% endblock %}
 
