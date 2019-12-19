@@ -1,15 +1,16 @@
 {% extends "emails/base.html.twig" %}
 
 {% block emailSubject %}
-    <p>New contact request on Kubareisen {{ contact.requestId }}</p>
+    <p>Neue Anfrage auf Kubareisen KR-a05bb {{ contact.requestId }}</p>
 {% endblock emailSubject %}
 
 {% block infoline %}
-    <p>New contact request on Kubareisen {{ contact.requestId }}</p>
+    <p>Neue Anfrage auf Kubareisen KR-a05bb {{ contact.requestId }}</p>
 {% endblock infoline %}
 
 {% block titleOfEmail %}
-Hello, {{ contact.clientName }} sended a new contact request
+    {{ contact.clientName }} Ihre Anfrage ist bei uns eingegangen.
+    Mit den nachfolgenden Angaben werden wir Ihnen schnellstmöglich ein Angebot zusammenstellen.
 {% endblock titleOfEmail %}
 
 {% block afterTitleText %}
@@ -18,22 +19,22 @@ Hello, {{ contact.clientName }} sended a new contact request
             Email: <b>{{ contact.clientEmail }}</b>
         </li>
         <li>
-            Travel Date: <b> {{ contact.travelDate | date("Y/m/d") }} </b>
+            Reise Datum: <b> {{ contact.travelDate | date("d.m.Y") }} </b>
         </li>
         <li>
-            Travel Duration: <b>{{ contact.travelDuration }}</b>
+            Reise Dauer: <b>{{ contact.travelDuration }}</b>
         </li>
         <li>
-            People: <b>{{ contact.peopleAmount }}</b>
+            Anzahl Personen: <b>{{ contact.peopleAmount }}</b>
         </li>
         <li>
-            Travel Budget: <b>{{ contact.travelBudget }}</b>
+            Budget: <b>{{ contact.travelBudget }}</b>
         </li>
         <li>
-            Interests checked: <b>{{ contact.interests | raw }}</b> 
+            Ausgewählte Interessen: <b>{{ contact.interests | raw }}</b>
         </li>
         <li>
-            Fly Ticket: <b> {% if contact.flyTicket %} Yes {%else%} No {% endif %}</b>
+            Flug bereits gebucht: <b> {% if contact.flyTicket %} Yes {%else%} No {% endif %}</b>
         </li>
 
         {# TODO: show strings by ENUM on selfConsider,selfCharacter, etc #}
@@ -47,7 +48,7 @@ Hello, {{ contact.clientName }} sended a new contact request
                 Wie viel bevorzugen Sie Luxus?: <b> {{ contact.selfLuxury }}</b>
         </li>
         <li>
-                Message: 
+                Nachricht:
                 <br>
                 {{ contact.message }}
         </li>

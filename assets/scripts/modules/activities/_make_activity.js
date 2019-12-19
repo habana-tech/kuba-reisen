@@ -21,6 +21,7 @@ class MakeActivity {
         let imageSrcSet = this.makeImageSrcSet(image);
 
         newActivity.querySelector('.activity__content__actions__add').setAttribute('data-activity_id', id);
+
         newActivity.querySelector('img').setAttribute('data-srcset', imageSrcSet);
         newActivity.querySelector('img').setAttribute('sizes', '(min-width:1000px) 33vw, 90vw');
         //TODO: put the base64version?
@@ -29,8 +30,10 @@ class MakeActivity {
         newActivity.querySelector('img').classList.add('blur-up');
         newActivity.querySelector('img').classList.add('lazyload');
         newActivity.querySelector('h4').innerHTML = name;
-        newActivity.querySelector('.activity__content__description').innerHTML = clipHtml(description, this.descriptionLenght, {indicator:''});
+        newActivity.querySelector('.activity__content__description a').innerHTML = clipHtml(description, this.descriptionLenght, {indicator:''});
+        newActivity.querySelector('.activity__image a').setAttribute('href', link);
         newActivity.querySelector('.activity__content__title a').setAttribute('href', link);
+        newActivity.querySelector('.activity__content__description a').setAttribute('href', link);
 
         if(price !== null)
             newActivity.querySelector('.activity__content__price span').innerHTML = price + " €";

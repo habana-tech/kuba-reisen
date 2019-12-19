@@ -5817,7 +5817,8 @@ Descr: Custom radio toggle
 .footer__content__links__column ul {
           margin-left: .25em; }
 .footer__content__links__column ul li {
-            list-style: none; }
+            list-style: none;
+            margin: .25em 0; }
 .footer__content__links__column ul li a {
               color: white; }
 .footer__content__infos {

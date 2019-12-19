@@ -11,7 +11,7 @@ class CartBar{
         this.check();
     }
 
-    check(){
+    check() {
         let currentValue = getCookie('products_cart');
         if (!currentValue)
             return;
@@ -19,8 +19,12 @@ class CartBar{
         let activitiesAmount = currentValue[1].split(',').length;
 
         this.cartBar.classList.remove('cart_bar--initial');
-        this.cartBarText.innerHTML = activitiesAmount;
+        if (activitiesAmount === 1)
+            this.cartBarText.innerHTML = activitiesAmount + 'Produkt';
+        else if (activitiesAmount > 1)
+            this.cartBarText.innerHTML = activitiesAmount + 'Produkte';
     }
+
 }
 
 export default CartBar;

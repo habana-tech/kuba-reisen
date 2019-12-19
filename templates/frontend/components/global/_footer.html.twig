@@ -35,13 +35,13 @@
 
             <div class="footer__content__links__column">
                 <div class="footer__content__links__column__title">
-                    <a href="#">
+                    <a href="{{ path('exploring') }}">
                         <h3>Kuba erkunden</h3>
                     </a>
                 </div>
                 <ul>
                     {% for destination in destinations %}
-                        <li class="header__nav__menu__column__list__link">
+                        <li>
                             <a href="{{ path('destination',
                                 {'id':destination.getId,
                                     'name':destination.getMachineName })
@@ -55,18 +55,17 @@
 
             <div class="footer__content__links__column">
                 <div class="footer__content__links__column__title">
-                    <a href="">
+                    <a href="{{ path('tours') }}">
                         <h3>Kuba bereisen</h3>
                     </a>
                 </div>
-                <ul class="">
-
-                    <li class="header__nav__menu__column__list__link">
+                <ul>
+                    <li>
                         <a href="{{ path('contact', {'travel':'raise'}) }}">Individualreise</a>
                     </li>
 
                     {% for filter in filterTags %}
-                        <li class="header__nav__menu__column__list__link">
+                        <li>
                             <a href="{{ path('activitiesFilter', {'filters':filter.title }) }}#activities_filters">
                                 {{ filter.title }}
                             </a>
@@ -78,13 +77,13 @@
 
             <div class="footer__content__links__column">
                 <div class="footer__content__links__column__title">
-                    <a href="">
+                    <a href="{{ path('excursions') }}">
                         <h3>Kuba Ausflüge</h3>
                     </a>
                 </div>
-                <ul class="">
+                <ul>
                     <li>
-                        <a href="">Our Bucket List</a>
+                        <a href="{{ path('bucket_list') }}">Our Bucket List</a>
                     </li>
                     <li>
                         <a href="">Excursion Havanna</a>
@@ -103,7 +102,6 @@
                 </div>
 
                 <ul>
-
                     <li>
                         <a href="{{ path('faq') }}">Reise FAQ für kuba</a>
                     </li>
@@ -125,26 +123,6 @@
         </div>
 
         {{ include('/frontend/components/_divider--white.html.twig') }}
-
-{#        <div class="footer__content__infos">#}
-
-{#            <div class="footer__content__infos__column">#}
-{#                <h3  data-grape_section="_footer" data-grape_id="footer_t1">{{ page.ElementContent('footer_t1',"Destination Cuba") | raw }}</h3>#}
-{#                <p data-grape_section="_footer" data-grape_id="footer_t2">#}
-{#                    {{ page.ElementContent('footer_t2',"Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam beatae blanditiis cumque dicta distinctio ea explicabo iste maxime nihil, perferendis recusandae rem reprehenderit velit voluptas. Magnam natus odit placeat?") | raw }}#}
-{#                </p>#}
-{#            </div>#}
-
-{#            <div class="footer__content__infos__column">#}
-{#                <h3 data-grape_section="_footer" data-grape_id="footer_t3">{{ page.ElementContent('footer_t3',"Destination Cuba") | raw }}</h3>#}
-{#                <p data-grape_section="_footer" data-grape_id="footer_t4">{{ page.ElementContent('footer_t4',"Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam beatae blanditiis cumque dicta distinctio ea explicabo iste maxime nihil, perferendis recusandae rem reprehenderit velit voluptas. Magnam natus odit placeat?") | raw }}#}
-{#            </div>#}
-
-{#            <div class="footer__content__infos__column">#}
-{#                <h3 data-grape_section="_footer" data-grape_id="footer_t5">{{ page.ElementContent('footer_t5',"Destination Cuba") | raw }}</h3>#}
-{#                <p data-grape_section="_footer" data-grape_id="footer_t6">{{ page.ElementContent('footer_t6',"Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam beatae blanditiis cumque dicta distinctio ea explicabo iste maxime nihil, perferendis recusandae rem reprehenderit velit voluptas. Magnam natus odit placeat?") | raw }}#}
-{#            </div>#}
-{#        </div>#}
 
         <div class="footer__content__agb">
             <a href="#">
