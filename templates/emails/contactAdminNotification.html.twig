@@ -39,15 +39,15 @@
 
         {# TODO: show strings by ENUM on selfConsider,selfCharacter, etc #}
 
-    {% set optionsEnum = ['kaum', 'ein bisschen', 'hübsch', 'viel'] %}
+{#    {% set optionsEnum = ['kaum', 'ein bisschen', 'hübsch', 'viel'] %}#}
         <li>
-            Wie abenteuerlich bist du?: <b>{{ optionsEnum[contact.selfConsider] }}</b>
+            Wie abenteuerlich bist du?: <b>{{ contact.selfConsider }} von 5</b>
         </li>
         <li>
-                Wie sehr genießt du die Natur?: <b> {{ optionsEnum[contact.selfCharacter] }}</b>
+                Wie sehr genießt du die Natur?: <b> {{ contact.selfCharacter }} von 5</b>
         </li>
         <li>
-                Wie viel bevorzugen Sie Luxus?: <b> {{ optionsEnum[contact.selfLuxury] }}</b>
+                Wie viel bevorzugen Sie Luxus?: <b> {{ contact.selfLuxury }} von 5</b>
         </li>
         <li>
                 Nachricht:
