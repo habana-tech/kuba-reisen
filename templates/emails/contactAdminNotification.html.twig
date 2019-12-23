@@ -1,11 +1,11 @@
 {% extends "emails/base.html.twig" %}
 
 {% block emailSubject %}
-    <p>Neue Anfrage auf Kubareisen KR-a05bb {{ contact.requestId }}</p>
+    <p>Neue Anfrage auf Kubareisen {{ contact.requestId }}</p>
 {% endblock emailSubject %}
 
 {% block infoline %}
-    <p>Neue Anfrage auf Kubareisen KR-a05bb {{ contact.requestId }}</p>
+    <p>Neue Anfrage auf Kubareisen {{ contact.requestId }}</p>
 {% endblock infoline %}
 
 {% block titleOfEmail %}
@@ -38,14 +38,16 @@
         </li>
 
         {# TODO: show strings by ENUM on selfConsider,selfCharacter, etc #}
+
+    {% set optionsEnum = ['kaum', 'ein bisschen', 'hübsch', 'viel'] %}
         <li>
-            Wie abenteuerlich bist du?: <b>{{ contact.selfConsider }}</b>
+            Wie abenteuerlich bist du?: <b>{{ optionsEnum[contact.selfConsider] }}</b>
         </li>
         <li>
-                Wie sehr genießt du die Natur?: <b> {{ contact.selfCharacter }}</b>
+                Wie sehr genießt du die Natur?: <b> {{ optionsEnum[contact.selfCharacter] }}</b>
         </li>
         <li>
-                Wie viel bevorzugen Sie Luxus?: <b> {{ contact.selfLuxury }}</b>
+                Wie viel bevorzugen Sie Luxus?: <b> {{ optionsEnum[contact.selfLuxury] }}</b>
         </li>
         <li>
                 Nachricht:
@@ -55,7 +57,7 @@
     </ul>
 
     <hr>
-    <p>request recorded at {{ contact.requestDateTime | date('Y/m/d H:i') }}, you can search it usind the ID {{contact.requestId}} </p>
+{#    <p>request recorded at {{ contact.requestDateTime | date('Y/m/d H:i') }}, you can search it usind the ID {{contact.requestId}} </p>#}
 
 {% endblock afterTitleText %}
 

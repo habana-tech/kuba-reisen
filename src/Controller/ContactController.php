@@ -103,15 +103,15 @@ class ContactController extends AbstractController
         //if there are interest checked in the form...
         if($interest = $request->get('interest'))
         {
-            dump($interest);
+//            dump($interest);
             $allInterests .= "\nInterests: \n";
             foreach($interest as $index => $item)
                 $allInterests .= $item . ', ';
         }
-        //if there are products selected in thne cookie...
+        //if there are products selected in the cookie...
         if($ids = $request->cookies->get('products_cart')){
             $names = $repository->findNamesCollection(explode(',',$ids));
-            dump($names);
+//            dump($names);
             $allInterests .= "\n\nActivities: \n";
             foreach($names as $index => $item)
                 $allInterests .= $item['name'] .', ';
@@ -161,6 +161,7 @@ class ContactController extends AbstractController
 
         $users = $userRepository->findAll();
         $adminEmail = [];
+        $adminEmail[] = 'kubareisenkontactieren@meatmemi.33mail.com'; //josue
 
         foreach ($users as $user) 
             if($user->isAtEmailList())
