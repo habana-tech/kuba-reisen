@@ -48,7 +48,7 @@ class SendContactForm{
 
             axios.post(this.url, this.formData, config)
                 .then(function (response) {
-                    console.log(response);    
+                    // console.log(response);
                     if(response.status === 200)
                         that.showMessage("success");    
                     else
@@ -56,10 +56,10 @@ class SendContactForm{
                 })
                 .catch(function (error) {
                     that.showMessage("error");
-                    console.log(error);
+                    // console.log(error);
                 })
                 .finally(function () {
-                    this.sendLoadingDots.classList.remove("loading_dots--visible");
+                    that.sendLoadingDots.classList.remove("loading_dots--visible");
                 });
 
             this.btnSend.classList.add("invisible");
