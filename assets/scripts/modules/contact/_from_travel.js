@@ -7,7 +7,8 @@ class FromTravel{
     }
 
     events(){
-        this.button.addEventListener('click', this.closeModal.bind(this));
+        if(this.button)
+            this.button.addEventListener('click', this.closeModal.bind(this));
     }
 
     closeModal(){
