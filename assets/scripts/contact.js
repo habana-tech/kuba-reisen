@@ -7,6 +7,7 @@ new MakeSlider('contact_planing_selfCharacter');
 new MakeSlider('contact_planing_selfLuxury');
 new MakeSlider('contact_planing_selfConsider');
 new MakeSlider('contact_planing_travelDuration');
+new MakeSlider('contact_planing_travelBudget');;
 
 new Interest();
 new SendContactForm();

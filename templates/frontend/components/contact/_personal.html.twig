@@ -38,6 +38,19 @@
                     {{ form_widget(form.clientEmail) }}
                 </div>
             </div>
+
+            <div class="form__item">
+                <div class="form__item__label" data-grape_id="form__item__label_telephone">
+                    {% if page.ElementContent('form__item__label_telephone') %}
+                        {{ page.ElementContent('form__item__label_telephone') | raw }}
+                    {% else %}
+                        {{ form_label(form.telephone) }}
+                    {% endif %}
+                </div>
+                <div class="form__item__input">
+                    {{ form_widget(form.telephone) }}
+                </div>
+            </div>
         </div>
         <div class="contact__personal__message">
             <div class="form__item">

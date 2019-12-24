@@ -51,15 +51,9 @@ class ContactPlaningType extends AbstractType
                     ],
                 'expanded'=>false])
 
-            ->add('travelBudget',ChoiceType::class,[
+            ->add('travelBudget',HiddenType::class,[
                 'label'=>"Was ist Ihr Budget für diese Reise?",
-                'choices'=>[
-                    'Mein ganzes Geld'=>'All my money',
-                    '1000 EUR'=>'1000 EUR',
-                    '2000 EUR'=>'2000 EUR',
-                    'Geld ist kein Problem'=>'Money is not a problem'
-                ],
-                'expanded'=>false])
+               ])
 
             ->add('flyTicket',ChoiceType::class,[
                 'label'=>"Hast du schon ein Flugticket?",
@@ -96,6 +90,9 @@ class ContactPlaningType extends AbstractType
             ->add('clientName', null, ['label'=>'Name'])
             ->add('clientEmail', EmailType::class ,[
                 'label'=>'E-Mail'
+            ])
+            ->add('telephone', TextType::class ,[
+                'label'=>'Telefonnummer'
             ])
             ->add('message', null, ['label'=>'Nachricht'])
 

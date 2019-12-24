@@ -110,6 +110,11 @@ class ContactPlaning
      */
     private $clientEmail;
 
+     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $telephone;
+
     public function __construct()
     {
         $this->requestId = "KR-".substr(uniqid(),8,13);
@@ -340,5 +345,23 @@ class ContactPlaning
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getTelephone()
+    {
+        return $this->telephone;
+    }
+
+    /**
+     * @param mixed $telephone
+     */
+    public function setTelephone($telephone): void
+    {
+        $this->telephone = $telephone;
+    }
+
+
 
 }
