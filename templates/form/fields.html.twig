@@ -20,6 +20,21 @@
     </div>
 {% endblock %}
 
+{% block _contact_planing_flyTicketOnBudget_widget %}
+    <div {{ block('widget_container_attributes') }}>
+        {%- for child in form %}
+            <div class="radio-switch__item">
+                {{- form_widget(child, {'attr':{'class':'radio-switch__input visually-hidden'}}) -}}
+                {{- form_label(child, null, {translation_domain: choice_translation_domain,
+                                            'label_attr':{'class':'radio-switch__label'}}) -}}
+                {% if loop.index == loop.last %}
+                    <div aria-hidden="true" class="radio-switch__marker"></div>
+                {% endif %}
+            </div>
+        {% endfor -%}
+    </div>
+{% endblock %}
+
 {%- block choice_widget_collapsed -%}
 
     {%- if required and placeholder is none and not placeholder_in_choices and not multiple and (attr.size is not defined or attr.size <= 1) -%}

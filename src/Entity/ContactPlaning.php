@@ -57,6 +57,11 @@ class ContactPlaning
      */
     private $flyTicket;
 
+     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $flyTicketOnBudget;
+
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
@@ -203,6 +208,18 @@ class ContactPlaning
     public function setFlyTicket(bool $flyTicket): self
     {
         $this->flyTicket = $flyTicket;
+
+        return $this;
+    }
+
+    public function getFlyTicketOnBudget(): ?bool
+    {
+        return $this->flyTicketOnBudget;
+    }
+
+    public function setFlyTicketOnBudget(bool $flyTicketOnBudget): self
+    {
+        $this->flyTicketOnBudget = $flyTicketOnBudget;
 
         return $this;
     }

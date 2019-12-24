@@ -6,6 +6,7 @@ import FromTravel from "./modules/contact/_from_travel";
 new MakeSlider('contact_planing_selfCharacter');
 new MakeSlider('contact_planing_selfLuxury');
 new MakeSlider('contact_planing_selfConsider');
+new MakeSlider('contact_planing_travelDuration');
 
 new Interest();
 new SendContactForm();

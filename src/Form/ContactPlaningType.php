@@ -24,13 +24,8 @@ class ContactPlaningType extends AbstractType
                 'widget'=>'single_text',
                 'attr'=>['min'=>date('Y-m-d')]
             ])
-            ->add('travelDuration', ChoiceType::class,[
-                'label'=>"Wie lange wollen Sie dort bleiben?",
-                'choices'=>[
-                    'Eine Woche'=>'one_week',
-                    'Eineinhalb Wochen'=>'week_and_a_half',
-                    'Zwei Wochen oder länger'=>'two_weeks_or_more'
-                ],'expanded'=>false])
+            ->add('travelDuration', HiddenType::class,[
+                'label'=>"Wie lange wollen Sie dort bleiben?"]               )
 
             ->add('peopleAmount',ChoiceType::class,[
 //                'label'=>"Mit wie vielen Personen reisen Sie?",
@@ -71,6 +66,16 @@ class ContactPlaningType extends AbstractType
                 'choices'=>[
                     'Ja'=>'true',
                     'Noch nicht'=>'false',
+                ],
+                'expanded'=>true,
+                'attr'=>['class'=>'radio-switch'],
+                'choice_attr'=>['class'=>'radio-switch__item']
+            ])
+            ->add('flyTicketOnBudget',ChoiceType::class,[
+                'label'=>"Budget inkluidert Flug?",
+                'choices'=>[
+                    'Ja'=>'true',
+                    'Nein'=>'false',
                 ],
                 'expanded'=>true,
                 'attr'=>['class'=>'radio-switch'],

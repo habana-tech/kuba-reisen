@@ -33,6 +33,7 @@
     </div>
 
     <div class="form__item">
+
         <div class="form__item__label" data-grape_id="form__item__label_travelDuration">
             {% if page.ElementContent('form__item__label_travelDuration') %}
                 {{ page.ElementContent('form__item__label_travelDuration') | raw }}
@@ -40,10 +41,38 @@
                 {{ form_label(form.travelDuration) }}
             {% endif %}
         </div>
-        <div class="form__item__input">
-            {{ form_widget(form.travelDuration) }}
+        <div class="form__item__input select-control">
+            {{ form_widget(form.travelDuration, {}) }}
+            <div id="{{ form.travelDuration.vars.id }}_container"></div>
+            <div class="slider-labels">
+                <div class="travelDuration slider-labels_label first">
+                    -
+                </div>
+                <div class="travelDuration slider-labels_label value" id="{{ form.travelDuration.vars.id }}_value">{{ form.travelDuration.vars.id }}</div>
+                <div class="travelDuration slider-labels_label last">
+                    +
+                </div>
+            </div>
+
         </div>
+        <div class="visually-hidden" data-grape_id="form__item__label_travelDuration_options" id="{{ form.travelDuration.vars.id }}_labels">
+{#            {% if page.ElementContent('form__item__label_travelDuration_options') %}#}
+{#                {{ page.ElementContent('form__item__label_travelDuration_options') | raw }}#}
+{#            {% else %}#}
+            <ul class="visually-hidden">
+                <li>Weniger als 5 Tage</li>
+                <li>6 Tage</li><li>7 Tage</li><li>8 Tage</li><li>9 Tage</li><li>10 Tage</li><li>11 Tage</li><li>12 Tage</li>
+                <li>13 Tage</li><li>14 Tage</li><li>15 Tage</li><li>16 Tage</li><li>17 Tage</li><li>18 Tage</li>
+                <li>19 Tage</li><li>20 Tage</li><li>21 Tage</li><li>22 Tage</li><li>23 Tage</li><li>24 Tage</li>
+                <li>25 Tage</li><li>26 Tage</li><li>27 Tage</li><li>28 Tage</li><li>29 Tage</li>
+                <li>30 Tage und Mehr</li>
+            </ul>
+{#            {% endif %}#}
+
+        </div>
+
     </div>
+
 
 {#    <div class="form__item">#}
 {#        <div class="form__item__label" data-grape_id="form__item__label_peopleAmount_label">#}
