@@ -33,11 +33,26 @@ class ContactPlaningType extends AbstractType
                 ],'expanded'=>false])
 
             ->add('peopleAmount',ChoiceType::class,[
-                'label'=>"Mit wie vielen Personen reisen Sie?",
+//                'label'=>"Mit wie vielen Personen reisen Sie?",
                 'choices'=>[
-                    'Nur ich'=>'Just one',
-                    'Weniger als fünf'=>'Less than five',
-                    'fünf oder mehr'=>'Five or more'
+                    '1 Erwachsener'=>'1 Erwachsener', //'Just one',
+                    '2 Erwachsene'=>'2 Erwachsene',
+                    '3 Erwachsene'=>'3 Erwachsene',
+                    '4 Erwachsene'=>'4 Erwachsene',
+                    '5 Erwachsene'=>'5 Erwachsene',
+                    'Mehr als 5 Erwachsene'=>'Mehr als 5 Erwachsene',  //more than 5
+                    ],
+                'expanded'=>false])
+
+            ->add('childAmount',ChoiceType::class,[
+                'choices'=>[
+                    'Keine Kinder'=>'Keine Kinder', //no kids
+                    '1 Kind'=>'1 Kind',
+                    '2 Kinder'=>'2 Kinder',
+                    '3 Kinder'=>'3 Kinder',
+                    '4 Kinder'=>'4 Kinder',
+                    '5 Kinder'=>'5 Kinder',
+                    'Mehr als 5 Kinder'=>'Mehr als 5 Kinder',
                     ],
                 'expanded'=>false])
 

@@ -37,6 +37,12 @@ class ContactPlaning
     private $peopleAmount;
 
     /**
+     * @Assert\NotBlank()
+     * @ORM\Column(type="string", length=255)
+     */
+    private $childAmount;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private $travelBudget;
@@ -144,6 +150,19 @@ class ContactPlaning
     public function setPeopleAmount(string $peopleAmount): self
     {
         $this->peopleAmount = $peopleAmount;
+
+        return $this;
+    }
+
+
+    public function getChildAmount(): ?string
+    {
+        return $this->childAmount;
+    }
+
+    public function setChildAmount(string $childAmount): self
+    {
+        $this->childAmount = $childAmount;
 
         return $this;
     }

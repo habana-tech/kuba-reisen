@@ -45,6 +45,16 @@
         </div>
     </div>
 
+{#    <div class="form__item">#}
+{#        <div class="form__item__label" data-grape_id="form__item__label_peopleAmount_label">#}
+{#            {% if page.ElementContent('form__item__label_peopleAmount_label') %}#}
+{#                {{ page.ElementContent('form__item__label_peopleAmount_label') | raw }}#}
+{#            {% else %}#}
+{#                Mit wie vielen Personen reisen Sie?#}
+{#            {% endif %}#}
+{#        </div>#}
+{#    </div>#}
+
     <div class="form__item">
         <div class="form__item__label" data-grape_id="form__item__label_peopleAmount">
             {% if page.ElementContent('form__item__label_peopleAmount') %}
@@ -55,6 +65,15 @@
         </div>
         <div class="form__item__input">
             {{ form_widget(form.peopleAmount) }}
+        </div>
+    </div>
+
+    <div class="form__item">
+        <div class="form__item__label" data-grape_id="form__item__label_childAmount">
+
+        </div>
+        <div class="form__item__input">
+            {{ form_widget(form.childAmount) }}
         </div>
     </div>
 
