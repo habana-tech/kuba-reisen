@@ -22,6 +22,8 @@ Hello, {{ contact.clientName }} sended a new request
            
                 
                 flyTicket: {% if contact.flyTicket %} Yes {%else%} No {% endif %}
+
+                 Budget inkluidert Flug: {% if contact.flyTicketOnBudget %} Yes {%else%} No {% endif %}
            
                 
             {# TODO: show strings by ENUM on selfConsider,selfCharacter, etc #}

@@ -37,6 +37,10 @@
             Flug bereits gebucht: <b> {% if contact.flyTicket %} Yes {%else%} No {% endif %}</b>
         </li>
 
+        <li>
+            Budget inkluidert Flug: <b> {% if contact.flyTicketOnBudget %} Yes {%else%} No {% endif %}</b>
+        </li>
+
         {# TODO: show strings by ENUM on selfConsider,selfCharacter, etc #}
 
 {#    {% set optionsEnum = ['kaum', 'ein bisschen', 'hübsch', 'viel'] %}#}
