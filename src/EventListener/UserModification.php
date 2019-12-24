@@ -13,11 +13,11 @@ class UserModification
 {
 
     private $tokenStorage;
-
-    public function __construct(TokenStorage $tokenStorage = null)
-    {
-        $this->tokenStorage = $tokenStorage;
-    }
+//
+//    public function __construct(TokenStorage $tokenStorage = null)
+//    {
+//        $this->tokenStorage = $tokenStorage;
+//    }
 
     public function preUpdate(LifecycleEventArgs $args)
     {

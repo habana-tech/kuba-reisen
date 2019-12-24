@@ -26,13 +26,34 @@
             Reise Datum: <b> {{ contact.travelDate | date("d.m.Y") }} </b>
         </li>
         <li>
-            Reise Dauer: <b>{{ contact.travelDuration }}</b>
+
+            Reise Dauer:
+            <b>
+            {% if contact.travelDuration == 0 %}
+                Weniger als 5 Tage
+            {% elseif contact.travelDuration >= 25 %}
+                30 Tage und Mehr
+            {% else %}
+                {{ contact.travelDuration + 5 }} Tage
+            {% endif %}
+            </b>
         </li>
         <li>
             Anzahl Personen: <b>{{ contact.peopleAmount }}, {{ contact.childAmount }}</b>
         </li>
         <li>
-            Budget: <b>{{ contact.travelBudget }}</b>
+            Budget:
+            <b>
+            {% if contact.travelBudget == 0 %}
+                Weniger als 1000 EUR
+            {% elseif contact.travelBudget >= 20 %}
+                Geld spielt keine Rolle
+            {% else %}
+               {{ (contact.travelBudget + 1) * 500 }} EUR
+            {% endif %}
+
+    {{ contact.travelBudget }}
+            </b>
         </li>
         <li>
             Ausgewählte Interessen: <b>{{ contact.interests | raw }}</b>
@@ -47,15 +68,17 @@
 
         {# TODO: show strings by ENUM on selfConsider,selfCharacter, etc #}
 
-{#    {% set optionsEnum = ['kaum', 'ein bisschen', 'hübsch', 'viel'] %}#}
+    {% set optionsEnum = ['Nichts','kaum', 'ein bisschen', 'hübsch', 'viel','vollständig'] %}
+
+
         <li>
-            Wie abenteuerlich bist du?: <b>{{ contact.selfConsider }} von 5</b>
+            Wie abenteuerlich bist du?: <b>{{ optionsEnum[contact.selfConsider] }} </b>
         </li>
         <li>
-                Wie sehr genießt du die Natur?: <b> {{ contact.selfCharacter }} von 5</b>
+                Wie sehr genießt du die Natur?: <b> {{ optionsEnum[contact.selfCharacter] }}</b>
         </li>
         <li>
-                Wie viel bevorzugen Sie Luxus?: <b> {{ contact.selfLuxury }} von 5</b>
+                Wie viel bevorzugen Sie Luxus?: <b> {{ optionsEnum[contact.selfLuxury] }} </b>
         </li>
         <li>
                 Nachricht:
