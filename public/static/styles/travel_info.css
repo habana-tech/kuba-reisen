@@ -145,6 +145,7 @@
 .cards {
   width: 95%;
   margin: auto;
+  display: -webkit-box;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap; }

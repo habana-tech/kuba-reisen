@@ -1,12 +1,16 @@
 .hero-home {
+  display: -webkit-box;
   display: flex;
   background: grey;
   height: 100vh; }
   .hero-home .slide-wrapper {
-    order: 2;
+    -webkit-box-ordinal-group: 3;
+            order: 2;
+    display: -webkit-box !important;
     display: flex !important;
     flex-wrap: wrap;
-    justify-content: space-between;
+    -webkit-box-pack: justify;
+            justify-content: space-between;
     width: 50%;
     right: 0; }
   .hero-home .slide-wrapper .slide-item {
@@ -23,8 +27,10 @@
   width: 100%;
   min-height: 30vh; }
   .top_destinations__places__place__image__editor, .top_destinations__places__place .grid__item-img__editor {
+  display: -webkit-box;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
   width: 100%;
   min-height: 30vh; }
   .top_destinations__places__place__image__editor img, .top_destinations__places__place .grid__item-img__editor img {
@@ -46,6 +52,7 @@
   .interest label {
   position: relative;
   width: 100%;
+  display: -webkit-box;
   display: flex;
   flex-wrap: wrap; }
   .interest label::after {
@@ -54,7 +61,8 @@
     -webkit-transform: scale(1);
             transform: scale(1); }
   .interest label span {
-    order: 1;
+    -webkit-box-ordinal-group: 2;
+            order: 1;
     top: 1em;
     margin: 2em 0;
     position: relative;
@@ -63,7 +71,8 @@
     font-size: 1em;
     text-shadow: none; }
   .interest label img {
-    order: 2;
+    -webkit-box-ordinal-group: 3;
+            order: 2;
     width: 100%; }
   .interest input {
   display: none; }
@@ -77,10 +86,12 @@
   position: relative;
   white-space: inherit;
   width: 85%;
+  display: -webkit-box;
   display: flex; }
   .admin_visible_list:before {
     content: "options:"; }
   .admin_visible_list li {
     border: grey 1px solid;
+    display: -webkit-box;
     display: flex;
     margin: auto; }

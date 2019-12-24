@@ -155,6 +155,7 @@
 .gallery__item {
     position: absolute;
     top: 0;
+    -webkit-transition: -webkit-transform .3s ease-in-out;
     transition: -webkit-transform .3s ease-in-out;
     transition: transform .3s ease-in-out;
     transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out;
@@ -245,6 +246,7 @@
             transform: scale(1);
     -webkit-transform-origin: 50% 50%;
             transform-origin: 50% 50%;
+    -webkit-transition: -webkit-transform .3s ease-in-out;
     transition: -webkit-transform .3s ease-in-out;
     transition: transform .3s ease-in-out;
     transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out;
@@ -292,9 +294,11 @@
   width: 90%;
   margin: auto;
   position: relative;
+  display: -webkit-box;
   display: flex;
   flex-flow: wrap;
-  justify-content: center; }
+  -webkit-box-pack: center;
+          justify-content: center; }
 @media (min-width: 1200px) {
     .description-itinerary {
       width: 75%; } }
@@ -310,6 +314,7 @@
 .description-include__included-details {
   width: 90%;
   margin: auto;
+  display: -webkit-box;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around; }
@@ -343,6 +348,7 @@
 .other_activities {
   width: 90%;
   margin: auto;
+  display: -webkit-box;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around; }
