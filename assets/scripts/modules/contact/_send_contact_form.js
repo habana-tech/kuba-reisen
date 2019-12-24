@@ -59,7 +59,7 @@ class SendContactForm{
                     console.log(error);
                 })
                 .finally(function () {
-                    this.sendSpinner.classList.remove("loading_dots--visible");
+                    this.sendLoadingDots.classList.remove("loading_dots--visible");
                 });
 
             this.btnSend.classList.add("invisible");
