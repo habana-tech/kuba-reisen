@@ -1,4 +1,4 @@
-.description-text {
+.description-text-map {
     width: 90%;
     margin: auto;
     position: relative;
@@ -9,6 +9,24 @@
 
     &__content{
         width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &__text{
+            width: 75%;
+        }
+
+        &__map{
+            width: 25%;
+            margin: auto;
+            position: relative;
+            overflow: hidden;
+
+            #map {
+                height: 75vh;
+            }
+        }
     }
 }
 

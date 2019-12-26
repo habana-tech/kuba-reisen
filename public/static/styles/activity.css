@@ -270,24 +270,27 @@
 .float_button__button--disable:hover {
         -webkit-transform: scale(1);
                 transform: scale(1); }
-.description-text {
+.description-text-map {
   width: 90%;
   margin: auto;
   position: relative; }
 @media (min-width: 1200px) {
-    .description-text {
+    .description-text-map {
       width: 75%; } }
-.description-text__content {
-    width: 100%; }
-.description-map {
-  width: 80%;
-  margin: auto;
-  position: relative; }
-.description-map__content {
-    position: relative;
-    overflow: hidden; }
-.description-map__content #map {
-      height: 75vh; }
+.description-text-map__content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; }
+.description-text-map__content__text {
+      width: 75%; }
+.description-text-map__content__map {
+      width: 25%;
+      margin: auto;
+      position: relative;
+      overflow: hidden; }
+.description-text-map__content__map #map {
+        height: 75vh; }
 .description-itinerary {
   width: 90%;
   margin: auto;

@@ -1,7 +1,5 @@
 {% if not is_granted('ROLE_EDITOR') or app.request.get('preview') is not null %}
     <section class="section description-map">
-        <div class="description-map__content">
-            <div id="map"></div>
-        </div>
+
     </section>
 {% endif %}
