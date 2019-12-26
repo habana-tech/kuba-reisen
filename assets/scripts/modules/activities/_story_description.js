@@ -18,6 +18,9 @@ class StoryDescription{
         this.storiesSelectors = document.querySelectorAll('.activities__stories__items li');
         this.story = document.querySelector('.activities__stories__story');
         this.paths = this.story.querySelectorAll('span[data-path-map]');
+
+        this.markers = this.story.querySelectorAll('span[data-map]');
+
         this.geojsons = [];
         this.layers = [];
         this.maxViewCoords = [];
@@ -33,12 +36,24 @@ class StoryDescription{
         });
 
         window.onscroll = () => {
+
             this.paths.forEach((path, index)=>{
                 if (this.isElementOnScreen(path)) {
                     this.setActivePath(index);
                 }
-            })
+            });
+
+            //TODO: ugly solution
+            this.markers.forEach((marker)=>{
+                if (this.isElementOnScreen(marker)) {
+                    let props = marker.getAttribute('data-map');
+                    props = JSON.parse(props);
+
+                    this.map.flyTo({center: props.center, zoom: props.zoom});
+                }
+            });
         };
+
     }
 
     readPaths(){
@@ -148,25 +163,6 @@ class StoryDescription{
             this.map.fitBounds(this.maxViewCoords[index], {padding: 20});
         }
 
-        // this.map.addLayer({
-        //     'id': 'layer-path',
-        //     'type': 'line',
-        //     'source': {
-        //         'type': 'geojson',
-        //         'data': this.geojson
-        //     },
-        //     'layout': {
-        //         'line-cap': 'round',
-        //         'line-join': 'round'
-        //     },
-        //     'paint': {
-        //         'line-color': '#ed6498',
-        //         'line-width': 5,
-        //         'line-opacity': .8
-        //     }
-        // });
-        // this.map.fitBounds(maxCoordsPath, {padding: 100});
-        // requestAnimationFrame(this.animateMarker.bind(this));
     }
 
     isElementOnScreen(element) {
