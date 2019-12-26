@@ -149,13 +149,11 @@
     .about_us__intro {
       width: 80%; } }
 .philosophy_benefits {
-  display: -webkit-box;
   display: flex;
   width: 95%;
   margin: auto;
   flex-wrap: wrap;
-  -webkit-box-pack: justify;
-          justify-content: space-between; }
+  justify-content: space-between; }
 @media (min-width: 1200px) {
     .philosophy_benefits {
       width: 80%; } }
@@ -173,13 +171,11 @@
       .philosophy_benefits__benefits {
         width: 48%; } }
 .team {
-  display: -webkit-box;
   display: flex;
   width: 95%;
   margin: auto;
   flex-wrap: wrap;
-  -webkit-box-pack: justify;
-          justify-content: space-between; }
+  justify-content: space-between; }
 @media (min-width: 1200px) {
     .team {
       width: 80%; } }
