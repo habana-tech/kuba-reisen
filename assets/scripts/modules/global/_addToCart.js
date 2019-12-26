@@ -2,7 +2,10 @@ import { setCookie, getCookie } from './_utils';
 
 class AddtoCart {
     constructor(buttonsSelector){
-        this.buttonsAdd = document.querySelectorAll(buttonsSelector);
+        this.buttonsSelector = buttonsSelector;
+
+        this.activitiesFilterContainer = document.querySelector('.activities__list__container__filter_search');
+        this.buttonsAdd = document.querySelectorAll(this.buttonsSelector);
         this.cartBar = document.querySelector('.cart_bar');
         this.cartBarText = document.querySelector('.cart_bar .cart_bar__content__text span');
         this.activities = [];
@@ -24,6 +27,13 @@ class AddtoCart {
         this.buttonsAdd.forEach((button)=>{
             button.addEventListener('click', this.addOrRemoveActivity.bind(this)
         )});
+
+        if (this.activitiesFilterContainer !== null)
+        this.activitiesFilterContainer.addEventListener('DOMNodeInserted', (element)=>{
+            let activity = element.target;
+            let btn = activity.querySelector('.activity__content__actions__add');
+            btn.addEventListener('click', this.addOrRemoveActivity.bind(this));
+        });
     }
 
     setStatus(){
