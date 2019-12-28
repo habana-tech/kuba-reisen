@@ -1,0 +1,150 @@
+{
+  "entrypoints": {
+    "app": {
+      "js": [
+        "/static/build/runtime.6c8296b6.js",
+        "/static/build/1.370866bf.js",
+        "/static/build/4.69ecb340.js",
+        "/static/build/app.663e4016.js"
+      ],
+      "css": [
+        "/static/build/app.7a5e9e20.css"
+      ]
+    },
+    "index": {
+      "js": [
+        "/static/build/runtime.6c8296b6.js",
+        "/static/build/6.04cdb076.js",
+        "/static/build/index.5988546c.js"
+      ],
+      "css": [
+        "/static/build/index.e7950827.css"
+      ]
+    },
+    "destination": {
+      "js": [
+        "/static/build/runtime.6c8296b6.js",
+        "/static/build/5.7bd6bbed.js",
+        "/static/build/destination.246c7ea4.js"
+      ],
+      "css": [
+        "/static/build/destination.aa41a5d6.css"
+      ]
+    },
+    "faq": {
+      "js": [
+        "/static/build/runtime.6c8296b6.js",
+        "/static/build/faq.6cef7312.js"
+      ],
+      "css": [
+        "/static/build/faq.bea81307.css"
+      ]
+    },
+    "contact": {
+      "js": [
+        "/static/build/runtime.6c8296b6.js",
+        "/static/build/2.dd199b1e.js",
+        "/static/build/3.91c173eb.js",
+        "/static/build/contact.a9f8b517.js"
+      ],
+      "css": [
+        "/static/build/2.3d57e0a5.css",
+        "/static/build/contact.b56ae650.css"
+      ]
+    },
+    "activities": {
+      "js": [
+        "/static/build/runtime.6c8296b6.js",
+        "/static/build/0.dede5d2c.js",
+        "/static/build/1.370866bf.js",
+        "/static/build/activities.952d18d6.js"
+      ],
+      "css": [
+        "/static/build/activities.a45fd887.css"
+      ]
+    },
+    "activity": {
+      "js": [
+        "/static/build/runtime.6c8296b6.js",
+        "/static/build/0.dede5d2c.js",
+        "/static/build/1.370866bf.js",
+        "/static/build/activity.fa96ed92.js"
+      ],
+      "css": [
+        "/static/build/activity.ec35247a.css"
+      ]
+    },
+    "bucket_list": {
+      "js": [
+        "/static/build/runtime.6c8296b6.js",
+        "/static/build/0.dede5d2c.js",
+        "/static/build/bucket_list.560c0016.js"
+      ],
+      "css": [
+        "/static/build/bucket_list.f1e5342b.css"
+      ]
+    },
+    "app_backend": {
+      "js": [
+        "/static/build/runtime.6c8296b6.js",
+        "/static/build/2.dd199b1e.js",
+        "/static/build/7.032dc824.js",
+        "/static/build/app_backend.a9afdf6e.js"
+      ],
+      "css": [
+        "/static/build/2.3d57e0a5.css",
+        "/static/build/7.72087f10.css",
+        "/static/build/app_backend.50aea2fc.css"
+      ]
+    },
+    "admin": {
+      "js": [
+        "/static/build/runtime.6c8296b6.js",
+        "/static/build/admin.1bc135f4.js"
+      ]
+    },
+    "MapMarker": {
+      "js": [
+        "/static/build/runtime.6c8296b6.js",
+        "/static/build/MapMarker.04f0a8cd.js"
+      ]
+    },
+    "MapMarkerDialog": {
+      "js": [
+        "/static/build/runtime.6c8296b6.js",
+        "/static/build/0.dede5d2c.js",
+        "/static/build/1.370866bf.js",
+        "/static/build/MapMarkerDialog.15723822.js"
+      ]
+    },
+    "MapPath": {
+      "js": [
+        "/static/build/runtime.6c8296b6.js",
+        "/static/build/MapPath.47ad45d0.js"
+      ]
+    },
+    "MapPathDialog": {
+      "js": [
+        "/static/build/runtime.6c8296b6.js",
+        "/static/build/0.dede5d2c.js",
+        "/static/build/MapPathDialog.840ab1ef.js"
+      ]
+    },
+    "loading": {
+      "js": [
+        "/static/build/runtime.6c8296b6.js"
+      ],
+      "css": [
+        "/static/build/loading.a925f047.css"
+      ]
+    },
+    "style_backend": {
+      "js": [
+        "/static/build/runtime.6c8296b6.js"
+      ],
+      "css": [
+        "/static/build/style_backend.456afc0e.css"
+      ]
+    }
+  }
+}
