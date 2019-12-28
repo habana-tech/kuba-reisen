@@ -87,7 +87,7 @@
     </ul>
 
     <hr>
-{#    <p>request recorded at {{ contact.requestDateTime | date('Y/m/d H:i') }}, you can search it usind the ID {{contact.requestId}} </p>#}
+    <p>Anfrage mit der ID {{contact.requestId}} ist bei uns am {{ contact.requestDateTime | date('d.m.Y') }} eingegangen.</p>
 
 {% endblock afterTitleText %}
 
