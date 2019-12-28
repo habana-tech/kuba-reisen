@@ -664,7 +664,7 @@ Descr: Custom radio toggle
 nav.breadcrumb {
   position: relative;
   width: 75%;
-  margin: 1em auto;
+  margin: 1em auto 0 auto;
   display: flex;
   align-items: center; }
 nav.breadcrumb ul {
@@ -677,9 +677,11 @@ nav.breadcrumb ul li {
 nav.breadcrumb ul li::after {
         content: '\\';
         position: absolute;
-        margin-left: .5em; }
+        margin: .2em 0 0 .2em; }
 nav.breadcrumb ul li:last-child::after {
         display: none; }
+nav.breadcrumb ul li a {
+        text-decoration: underline; }
 .banner_sky {
   height: 75vh;
   display: flex;

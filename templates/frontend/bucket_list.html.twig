@@ -11,6 +11,12 @@
 
         {{ include('frontend/components/global/_hero.html.twig') }}
 
+        {% include('frontend/components/global/_breadcrumb.html.twig')
+            with {'pages': [
+            {'name' : 'Start', 'url' : path('frontend')},
+            {'name' : 'Our bucket list', 'url' : path('bucket_list') },
+        ] } %}
+
         {{ include('frontend/components/bucket_list/_introduction.html.twig') }}
 
         {{ include('frontend/components/bucket_list/_items.html.twig') }}

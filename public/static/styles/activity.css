@@ -193,11 +193,17 @@
       right: auto;
       -webkit-transform: translateY(-50%) rotate(180deg);
               transform: translateY(-50%) rotate(180deg); }
+@media (min-width: 1200px) {
+        .gallery__arrow--prev {
+          left: 2em; } }
 .gallery__arrow--next {
       right: .5em;
       left: auto;
       -webkit-transform: translateY(-50%) rotate(0deg);
               transform: translateY(-50%) rotate(0deg); }
+@media (min-width: 1200px) {
+        .gallery__arrow--next {
+          right: 2em; } }
 @-webkit-keyframes Zoom {
   0% {
     -webkit-transform: scale(1);

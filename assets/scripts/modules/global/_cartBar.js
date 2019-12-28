@@ -20,9 +20,9 @@ class CartBar{
 
         this.cartBar.classList.remove('cart_bar--initial');
         if (activitiesAmount === 1)
-            this.cartBarText.innerHTML = activitiesAmount + 'Produkt';
+            this.cartBarText.innerHTML = activitiesAmount + ' Produkt';
         else if (activitiesAmount > 1)
-            this.cartBarText.innerHTML = activitiesAmount + 'Produkte';
+            this.cartBarText.innerHTML = activitiesAmount + ' Produkte';
     }
 
 }

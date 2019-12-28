@@ -5315,7 +5315,7 @@ Descr: Custom radio toggle
 nav.breadcrumb {
   position: relative;
   width: 75%;
-  margin: 1em auto;
+  margin: 1em auto 0 auto;
   display: flex;
   align-items: center; }
 nav.breadcrumb ul {
@@ -5328,9 +5328,11 @@ nav.breadcrumb ul li {
 nav.breadcrumb ul li::after {
         content: '\\';
         position: absolute;
-        margin-left: .5em; }
+        margin: .2em 0 0 .2em; }
 nav.breadcrumb ul li:last-child::after {
         display: none; }
+nav.breadcrumb ul li a {
+        text-decoration: underline; }
 .banner_sky {
   height: 75vh;
   display: flex;
@@ -6552,11 +6554,17 @@ nav.breadcrumb ul li:last-child::after {
       right: auto;
       -webkit-transform: translateY(-50%) rotate(180deg);
               transform: translateY(-50%) rotate(180deg); }
+@media (min-width: 1200px) {
+        .gallery__arrow--prev {
+          left: 2em; } }
 .gallery__arrow--next {
       right: .5em;
       left: auto;
       -webkit-transform: translateY(-50%) rotate(0deg);
               transform: translateY(-50%) rotate(0deg); }
+@media (min-width: 1200px) {
+        .gallery__arrow--next {
+          right: 2em; } }
 @-webkit-keyframes Zoom {
   0% {
     -webkit-transform: scale(1);

@@ -12,6 +12,15 @@
 
         {{ include('frontend/components/activity/_images.html.twig') }}
 
+        {% include('frontend/components/global/_breadcrumb.html.twig')
+            with {'pages': [
+                            {'name' : 'Start', 'url' : path('frontend')},
+                            {'name' : 'Kuba Ausflüge', 'url' : path('excursions') },
+                            {'name' : 'Activities', 'url' : path('activities')},
+                            {'name' : activity.name, 'url' : path('activity',
+                                                                    {'id':activity.id, 'name':activity.machineName }) }
+        ] } %}
+
         <div class="float_button__container">
 
             {{ include ('frontend/components/activity/_float_button.html.twig') }}
