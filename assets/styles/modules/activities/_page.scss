@@ -235,6 +235,10 @@
                 align-items: center;
                 flex-wrap: wrap;
 
+                @include atLarge{
+                    justify-content: space-evenly;
+                }
+
                 & .form__item {
                     display: flex;
                     width: auto;

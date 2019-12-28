@@ -6257,6 +6257,9 @@ Descr: Custom radio toggle
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap; }
+@media (min-width: 1200px) {
+        .activities__selectors__search form {
+          justify-content: space-evenly; } }
 .activities__selectors__search form .form__item {
         display: flex;
         width: auto; }
