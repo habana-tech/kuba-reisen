@@ -270,24 +270,50 @@
 .float_button__button--disable:hover {
         -webkit-transform: scale(1);
                 transform: scale(1); }
-.description-text {
+.description-text-map {
   width: 90%;
   margin: auto;
   position: relative; }
 @media (min-width: 1200px) {
-    .description-text {
+    .description-text-map {
       width: 75%; } }
-.description-text__content {
-    width: 100%; }
-.description-map {
-  width: 80%;
-  margin: auto;
-  position: relative; }
-.description-map__content {
-    position: relative;
-    overflow: hidden; }
-.description-map__content #map {
-      height: 75vh; }
+.description-text-map__content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center; }
+.description-text-map__content__map {
+      margin: 1em 0 1em 0;
+      order: 1;
+      width: 100%;
+      position: relative;
+      overflow: hidden; }
+@media (min-width: 1200px) {
+        .description-text-map__content__map {
+          order: 2;
+          width: 40%;
+          margin: auto; } }
+.description-text-map__content__map #map {
+        height: 40vh; }
+@media (min-width: 1200px) {
+          .description-text-map__content__map #map {
+            height: 55vh; } }
+.description-text-map__content__text {
+      order: 2; }
+@media (min-width: 1200px) {
+        .description-text-map__content__text {
+          order: 1;
+          width: 55%; } }
+.description-text-map__go-back {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+.description-text-map__go-back .icon {
+      width: 2em;
+      height: 2em;
+      display: inline; }
 .description-itinerary {
   width: 90%;
   margin: auto;
@@ -317,7 +343,10 @@
     .description-include__included-details {
       width: 80%; } }
 .description-include__included-details__included, .description-include__included-details__not-included {
-    width: 47%; }
+    width: 100%; }
+@media (min-width: 1200px) {
+      .description-include__included-details__included, .description-include__included-details__not-included {
+        width: 47%; } }
 .description-timetable {
   width: 90%;
   margin: auto;
@@ -326,7 +355,8 @@
     .description-timetable {
       width: 75%; } }
 .description-timetable__content {
-    width: 100%; }
+    width: 100%;
+    margin: 1em 0 1em 0; }
 .description-timetable__content table {
       width: 100%;
       border-radius: 2px; }

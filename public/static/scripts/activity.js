@@ -94,7 +94,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _gallery = __webpack_require__(/*! ./modules/activity/_gallery */ \"./assets/scripts/modules/activity/_gallery.js\");\n\nvar _gallery2 = _interopRequireDefault(_gallery);\n\nvar _addToCart = __webpack_require__(/*! ./modules/global/_addToCart */ \"./assets/scripts/modules/global/_addToCart.js\");\n\nvar _addToCart2 = _interopRequireDefault(_addToCart);\n\nvar _map = __webpack_require__(/*! ./modules/activity/_map */ \"./assets/scripts/modules/activity/_map.js\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nnew _addToCart2.default('.float_button');\nnew _map.ActivityMap();\nnew _gallery2.default('.gallery');\n\n//# sourceURL=webpack:///./assets/scripts/activity.js?");
+eval("\n\nvar _gallery = __webpack_require__(/*! ./modules/activity/_gallery */ \"./assets/scripts/modules/activity/_gallery.js\");\n\nvar _gallery2 = _interopRequireDefault(_gallery);\n\nvar _addToCart = __webpack_require__(/*! ./modules/global/_addToCart */ \"./assets/scripts/modules/global/_addToCart.js\");\n\nvar _addToCart2 = _interopRequireDefault(_addToCart);\n\nvar _map = __webpack_require__(/*! ./modules/activity/_map */ \"./assets/scripts/modules/activity/_map.js\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nnew _addToCart2.default(['.float_button', '.activity__content__actions__add']);\nnew _map.ActivityMap();\nnew _gallery2.default('.gallery');\n\n//# sourceURL=webpack:///./assets/scripts/activity.js?");
 
 /***/ }),
 

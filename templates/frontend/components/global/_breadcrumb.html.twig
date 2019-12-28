@@ -1,0 +1,9 @@
+{% if pages %}
+    <nav class="breadcrumb">
+        <ul>
+            {% for page in pages %}
+                <li>{{ page }}</li>
+            {% endfor %}
+        </ul>
+    </nav>
+{% endif %}
