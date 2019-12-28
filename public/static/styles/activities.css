@@ -360,7 +360,7 @@
 .activities__list__title {
     width: 100%;
     text-align: center; }
-.activities__list__item-prototype {
+.activities__list__item__prototype {
     display: none; }
 .activities__list__container {
     display: flex;
