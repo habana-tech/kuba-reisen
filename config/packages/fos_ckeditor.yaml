@@ -16,9 +16,9 @@ fos_ck_editor:
             my_toolbar_1: [['PasteText', 'PasteFromWord', '-'],['Bold', 'Italic', 'Strike', 'Styles', 'Format','-', 'RemoveFormat'],['Link', 'Unlink', 'Anchor'],['NumberedList', 'BulletedList', 'Blockquote'],['Image', 'Table'], [ "Source", "MapMarker", "MapPath","Maximize"]]
     plugins:
         MapMarker:
-            path:     "/scripts/" # with trailing slash
-            filename: "MapMarker.js"
+            path:     "/" # with trailing slash
+            filename: "getBuildFile.php?file=MapMarker.js"
         MapPath:
-            path:     "/scripts/" # with trailing slash
-            filename: "MapPath.js"
+            path:     "/" # with trailing slash
+            filename: "getBuildFile.php?file=MapPath.js"
 

@@ -1,6 +1,9 @@
 easy_admin:
     site_name: 'kuba-raisen admin'
     design:
+        form_theme:
+            - '@EasyAdmin/form/bootstrap_4.html.twig'
+            - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
         menu:
             - { label: 'Products' }
             - { entity: 'Activities', label: 'Activities' , icon: 'location-arrow'}
@@ -84,30 +87,31 @@ easy_admin:
             list:
                 fields:
                     #- { property: 'image', template: 'backend/easyadmin/vich_uploader_image.html.twig' }
-                    - { property: 'title' }
+                    - { property: 'name' }
+                    - { property: 'initPrice' }
                     - { property: 'modified_by' }
-                form:
-                    fields:
-                        - { type: 'group', label: 'Interest Data', icon: 'comments', columns: 8 }
+            form:
+                fields:
+                    - { type: 'group', label: 'Interest Data', icon: 'comments', columns: 8 }
 
-                        - { property: 'title' }
-                        - { property: 'description' }
-                        - { property: 'filterTags', type: 'entity' }
+                    - { property: 'title' }
+                    - { property: 'description', type: 'fos_ckeditor' }
+                    - { property: 'filterTags', type: 'entity' }
 
 
 
-                        - { type: 'group', label: 'Language and Translation', icon: 'globe', columns: 4 }
-                        - { property: 'language', type: 'choice', type_options: {choices: {en: 'en', de: 'de',es: 'es'}} }
-                        - { property: 'translation_from', type: 'entity' }
+                    - { type: 'group', label: 'Language and Translation', icon: 'globe', columns: 4 }
+                    - { property: 'language', type: 'choice', type_options: {choices: {en: 'en', de: 'de',es: 'es'}} }
+                    - { property: 'translation_from', type: 'entity' }
 
-                        #- { type: 'group', label: 'Image Info', icon: 'image', columns: 4 }
-                        #- { property: 'image', template: 'backend/easyadmin/vich_uploader_image.html.twig' }
-                        #- { property: 'imageFile', type: 'vich_image' }
-                        - { property: 'alternativeText' }
-                    show:
-                        - { property: 'title' }
-                        - { property: 'description' }
-                        - { property: 'modified_by' }
+                    #- { type: 'group', label: 'Image Info', icon: 'image', columns: 4 }
+                    #- { property: 'image', template: 'backend/easyadmin/vich_uploader_image.html.twig' }
+                    #- { property: 'imageFile', type: 'vich_image' }
+                    - { property: 'alternativeText' }
+                show:
+                    - { property: 'title' }
+                    - { property: 'description' }
+                    - { property: 'modified_by' }
 
         FilterTags:
             class: App\Entity\FilterTag
@@ -120,4 +124,13 @@ easy_admin:
 
         Images:
             class: App\Entity\Image
+            list:
+                fields:
+                    - { property: 'imageName', type: 'image', base_path: '%app.path.uploaded_images%' }
+                    - { property: 'description' }
+            form:
+                fields:
+                    - { property: 'imageFile', type: 'vich_image' }
+                    - { property: 'description' }
+
         #- App\Entity\User
