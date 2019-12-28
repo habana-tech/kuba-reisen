@@ -1,4 +1,5 @@
 <section class="section hero hero-home">
+
     <div class="hero__image">
         <div class="hero__image__water">
             <div class="hero__image__water__base">
@@ -85,10 +86,11 @@
     </div>
 
     <div class="hero__buttom-links">
+
         <div class="hero__buttom-links__item">
             <a href="#" data-slide="1">Kuba erkunden </a>
             <ul class="hero__buttom-links__item__nav">
-                {% for destination in destinations | slice(0, 4) %}
+                {% for destination in destinations %}
                     <li>
                         <a href="{{ path('destination',
                             {'id':destination.getId,
@@ -101,30 +103,28 @@
                 {% endfor %}
             </ul>
         </div>
+
         <div class="hero__buttom-links__item">
             <a href="#" data-slide="2">Kuba Ausflüge</a>
             <ul class="hero__buttom-links__item__nav">
                 <li>
-                    <a href="#">Our Bucket List</a>
+                    <a href="{{ path('activities') }}">Activities</a>
                 </li>
                 <li>
-                    <a href="#">Excursion Havanna</a>
-                </li>
-                <li>
-                    <a href="#">Random text</a>
-                </li>
-                <li>
-                    <a href="#">Random text</a>
+                    <a href="{{ path('bucket_list') }}">Our bucket list</a>
                 </li>
             </ul>
         </div>
+
         <div class="hero__buttom-links__item">
-        <a href="#" data-slide="3">Kuba bereisen</a>
-        <ul class="hero__buttom-links__item__nav">
+            <a href="#" data-slide="3">Kuba bereisen</a>
+            <ul class="hero__buttom-links__item__nav">
 
-            <li><a href="{{ path('contact') }}">Individualreise</a></li>
+            <li>
+                <a href="{{ path('contact', {'travel':'raise'}) }}">Individualreise</a>
+            </li>
 
-            {% for filter in filterTags | slice(0, 3) %}
+            {% for filter in filterTags %}
                 <li>
                     <a href="{{ path('activitiesFilter', {'filters':filter.title }) }}#activities">
                         {{ filter.title }}
@@ -133,6 +133,7 @@
             {% endfor %}
 
         </ul>
+        </div>
     </div>
-    </div>
+
 </section>
