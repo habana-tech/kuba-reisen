@@ -1,5 +1,27 @@
 easy_admin:
     site_name: 'kuba-raisen admin'
+    design:
+        menu:
+            - { label: 'Products' }
+            - { entity: 'Activities', label: 'Activities' , icon: 'location-arrow'}
+            - { entity: 'Destination', label: 'Destinations' , icon: 'map-marker-alt'}
+            - { entity: 'Interest', label: 'Interest' , icon: 'heart'}
+            - { entity: 'FilterTags', label: 'Tags' , icon: 'tags'}
+            - { entity: 'Stories', label: 'Stories' , icon: 'bookmark'}
+
+            - { label: 'Management' }
+            - { label: 'Pages', route: 'backend_dynamic_page_index', icon: 'file-alt' }
+            - { label: 'Menus', route: 'backend_dynamic_page_index', icon: 'bars' }
+            - { label: 'Browse Images', route: 'ckfinder_fullpage', icon: 'images'}
+            - { entity: 'Images', label: 'Manage Images', icon: 'images'}
+            - { label: 'Config', route: 'ckfinder_fullpage', icon: 'cogs' }
+
+            - { label: 'Users' }
+            - { entity: 'Users', params: { action: 'new' }, label: 'New User' , icon: 'user-plus'}
+            - { entity: 'Users',label: 'All Users' , icon: 'users'}
+
+
+
     entities:
 #        # List the entity class name you want to manage
         Interest:
@@ -27,10 +49,10 @@ easy_admin:
                     #- { property: 'image', template: 'backend/easyadmin/vich_uploader_image.html.twig' }
                     #- { property: 'imageFile', type: 'vich_image' }
                     - { property: 'alternativeText' }
-                show:
-                    - { property: 'title' }
-                    - { property: 'description' }
-                    - { property: 'modified_by'}
+            show:
+                - { property: 'title' }
+                - { property: 'description' }
+                - { property: 'modified_by'}
 
         DynamicPage:
             class: App\Entity\DynamicPage
@@ -92,4 +114,10 @@ easy_admin:
 
         Destination:
             class: App\Entity\Destination
+
+        Stories:
+            class: App\Entity\ActivityStory
+
+        Images:
+            class: App\Entity\Image
         #- App\Entity\User
