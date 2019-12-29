@@ -25,11 +25,11 @@ trait ImageFieldTrait
     public function getStaticImagePath(){
         return '/static/uploads/images/'.$this->getImage()->getName();
     }
+
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
-     * @Vich\UploadableField(mapping="images", fileNameProperty="image.name", size="image.size", mimeType="image.mimeType", originalName="image.originalName", dimensions="image.dimensions")
-     *
+     * @Vich\UploadableField(mapping="images", fileNameProperty="imageName", size="imageSize")*
      * @var File
      */
     protected $imageFile;

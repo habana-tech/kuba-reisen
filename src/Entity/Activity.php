@@ -17,9 +17,7 @@ class Activity implements MachineNameInterface
 {
     const LENGTH_OF_DESCRIPTION = 75;
 
-    use LanguageFieldTrait;
-    use ImageFieldTrait;
-    use UserControlFieldsTrait;
+    use UserControlFieldsTrait, ImageFieldTrait;
 
     /**
      * @ORM\Id()
@@ -44,10 +42,6 @@ class Activity implements MachineNameInterface
      */
     private $filterTags;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Activity")
-     */
-    private $translation_from;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Destination",  inversedBy="activities")
@@ -60,12 +54,6 @@ class Activity implements MachineNameInterface
     private $description;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\DynamicPage", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $dynamic_page;
-
-    /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $priority;
@@ -75,6 +63,16 @@ class Activity implements MachineNameInterface
      */
     private $initPrice;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Image")
+     */
+    private $gallery;
+
+    /**
+     *  @ORM\Embedded(class="App\Entity\PageContent")
+     */
+    private $pageContent;
+
     public function __construct()
     {
         $this->filterTags = new ArrayCollection();
@@ -83,8 +81,28 @@ class Activity implements MachineNameInterface
         $this->language = 'de';
         $this->description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam beatae blanditiis cumque dicta distinctio ea explicabo iste maxime nihil, perferendis recusandae rem reprehenderit velit voluptas. Magnam natus odit placeat?";
         $this->featuresImagesCount = 4;
+        $this->gallery = new ArrayCollection();
+        $this->pageContent = new PageContent();
         // your own logic
     }
+
+    /**
+     * @return PageContent
+     */
+    public function getPageContent(): PageContent
+    {
+        return $this->pageContent;
+    }
+
+    /**
+     * @param PageContent $pageContent
+     */
+    public function setPageContent(PageContent $pageContent): void
+    {
+        $this->pageContent = $pageContent;
+    }
+
+
 
 
     public function getId(): ?int
@@ -179,35 +197,6 @@ class Activity implements MachineNameInterface
         return $this->name." (".$this->language.")";
     }
 
-    public function getDynamicPage(): ?DynamicPage
-    {
-        return $this->dynamic_page;
-    }
-
-    public function setDynamicPage(DynamicPage $dynamic_page): self
-    {
-        $this->dynamic_page = $dynamic_page;
-
-        return $this;
-    }
-
-    public function __get($name){
-        if (array_key_exists($name, $this->getDynamicPage()->getPageContent()))
-            return trim($this->getDynamicPage()->getElement($name));
-    }
-
-
-    public function __set($name, $value){
-        $this->getDynamicPage()->setElementContent($name, $value);
-
-    }
-
-
-    public function getElement($name)
-    {
-        return $this->getDynamicPage()->getElement($name);
-    }
-
     /**
      * @return mixed
      */
@@ -244,6 +233,32 @@ class Activity implements MachineNameInterface
     public function setInitPrice(?float $initPrice): self
     {
         $this->initPrice = $initPrice;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Image[]
+     */
+    public function getGallery(): Collection
+    {
+        return $this->gallery;
+    }
+
+    public function addGallery(Image $gallery): self
+    {
+        if (!$this->gallery->contains($gallery)) {
+            $this->gallery[] = $gallery;
+        }
+
+        return $this;
+    }
+
+    public function removeGallery(Image $gallery): self
+    {
+        if ($this->gallery->contains($gallery)) {
+            $this->gallery->removeElement($gallery);
+        }
 
         return $this;
     }

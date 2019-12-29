@@ -84,6 +84,7 @@ easy_admin:
 
         Activities:
             class: App\Entity\Activity
+            controller: App\Controller\Admin\ActivitiesController
             list:
                 fields:
                     #- { property: 'image', template: 'backend/easyadmin/vich_uploader_image.html.twig' }
@@ -92,17 +93,11 @@ easy_admin:
                     - { property: 'modified_by' }
             form:
                 fields:
-                    - { type: 'group', label: 'Interest Data', icon: 'comments', columns: 8 }
 
-                    - { property: 'title' }
                     - { property: 'description', type: 'fos_ckeditor' }
                     - { property: 'filterTags', type: 'entity' }
+                    - { property: 'pageContent',  }
 
-
-
-                    - { type: 'group', label: 'Language and Translation', icon: 'globe', columns: 4 }
-                    - { property: 'language', type: 'choice', type_options: {choices: {en: 'en', de: 'de',es: 'es'}} }
-                    - { property: 'translation_from', type: 'entity' }
 
                     #- { type: 'group', label: 'Image Info', icon: 'image', columns: 4 }
                     #- { property: 'image', template: 'backend/easyadmin/vich_uploader_image.html.twig' }
