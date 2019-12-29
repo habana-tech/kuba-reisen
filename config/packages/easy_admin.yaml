@@ -96,7 +96,6 @@ easy_admin:
 
                     - { property: 'description', type: 'fos_ckeditor' }
                     - { property: 'filterTags', type: 'entity' }
-                    - { property: 'pageContent',  }
 
 
                     #- { type: 'group', label: 'Image Info', icon: 'image', columns: 4 }
