@@ -1,6 +1,5 @@
 import axios from 'axios';
 import MakeActivity from "./_make_activity";
-import AddtoCart from "../global/_addToCart";
 
 class FilterActivities {
     constructor(){
@@ -107,8 +106,6 @@ class FilterActivities {
 
                         that.activitiesListFilterSearch.appendChild(newActivity);
                     });
-
-                    new AddtoCart('.activity__content__actions__add a');
                 }
                 else //no se han encontrado
                     that.activitiesText.innerText = 'Mit diesen Filtern wurden keine Aktivitäten gefunden';

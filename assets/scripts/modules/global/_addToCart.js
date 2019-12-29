@@ -42,30 +42,13 @@ class AddtoCart {
     }
 
     setStatus(){
-        this.buttonsAdd.forEach((button)=>{
-           let activityId = button.getAttribute('data-activity_id');
-            if (this.activities.includes(activityId)){
-               button.querySelector('svg.heart').classList.toggle('heart--fill-white');
-            }
-        });
+
     }
 
     containActivity(activityId){
         return this.activities.includes(activityId);
     }
 
-    removeActivity(activityId){
-        this.activities = this.activities.filter((x)=>{return x!==activityId});
-        setCookie(this.activities.toString());
-
-        this.activitiesFilterContainer.querySelector('#activityItem_'+activityId).remove();
-    }
-
-    addActivity(activityId){
-        this.activities.push(activityId);
-        setCookie(this.activities.toString());
-        this.fetchActivity(activityId);
-    }
 
     updateCartText(){
         if (this.activities.length === 0)
@@ -89,7 +72,7 @@ class AddtoCart {
         let image = activityItem.querySelector('img');
         image.setAttribute('src', activity.image);
         let name = activityItem.querySelector('h5');
-        name.innerHTML = activity.name.length < 15 ? activity.name : activity.name.substring(0, 15)+'...';
+        name.innerHTML = activity.name.length < 25 ? activity.name : activity.name.substring(0, 25)+'...';
 
         return activityItem;
     }

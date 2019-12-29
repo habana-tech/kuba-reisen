@@ -5,20 +5,23 @@
             {{ include('frontend/components/_icons/_heart.html.twig') }}
         </div>
         <h4>Activity Bag</h4>
+        <span>0</span>
     </div>
 
     <div class="cart_bar__content">
 
         <div class="cart_bar__content__activities">
+
+
             <div class="cart_bar__content__activities__item__prototype">
                 {{ include('frontend/components/global/_cart_bar_activity_prototype.html.twig') }}
             </div>
+
 
         </div>
 
         <div class="cart_bar__content__text">
             <p data-show="empty">You haven't yet any activity</p>
-            <p data-show="no-empty">Sie haben <span></span> </p>
         </div>
         <div class="cart_bar__content__button">
             <a data-show="no-empty" href="{{ path('contact') }}">Alle Ansehen</a>

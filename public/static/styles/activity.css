@@ -155,6 +155,7 @@
 .gallery__item {
     position: absolute;
     top: 0;
+    -webkit-transition: -webkit-transform .3s ease-in-out;
     transition: -webkit-transform .3s ease-in-out;
     transition: transform .3s ease-in-out;
     transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out;
@@ -251,6 +252,7 @@
             transform: scale(1);
     -webkit-transform-origin: 50% 50%;
             transform-origin: 50% 50%;
+    -webkit-transition: -webkit-transform .3s ease-in-out;
     transition: -webkit-transform .3s ease-in-out;
     transition: transform .3s ease-in-out;
     transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out;
@@ -285,19 +287,24 @@
       width: 75%; } }
 .description-text-map__content {
     width: 100%;
+    display: -webkit-box;
     display: flex;
-    justify-content: space-between;
+    -webkit-box-pack: justify;
+            justify-content: space-between;
     flex-wrap: wrap;
-    align-items: center; }
+    -webkit-box-align: center;
+            align-items: center; }
 .description-text-map__content__map {
       margin: 1em 0 1em 0;
-      order: 1;
+      -webkit-box-ordinal-group: 2;
+              order: 1;
       width: 100%;
       position: relative;
       overflow: hidden; }
 @media (min-width: 1200px) {
         .description-text-map__content__map {
-          order: 2;
+          -webkit-box-ordinal-group: 3;
+                  order: 2;
           width: 40%;
           margin: auto; } }
 .description-text-map__content__map #map {
@@ -306,16 +313,21 @@
           .description-text-map__content__map #map {
             height: 55vh; } }
 .description-text-map__content__text {
-      order: 2; }
+      -webkit-box-ordinal-group: 3;
+              order: 2; }
 @media (min-width: 1200px) {
         .description-text-map__content__text {
-          order: 1;
+          -webkit-box-ordinal-group: 2;
+                  order: 1;
           width: 55%; } }
 .description-text-map__go-back {
     width: 100%;
+    display: -webkit-box;
     display: flex;
-    justify-content: center;
-    align-items: center; }
+    -webkit-box-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+            align-items: center; }
 .description-text-map__go-back .icon {
       width: 2em;
       height: 2em;
@@ -324,9 +336,11 @@
   width: 90%;
   margin: auto;
   position: relative;
+  display: -webkit-box;
   display: flex;
   flex-flow: wrap;
-  justify-content: center; }
+  -webkit-box-pack: center;
+          justify-content: center; }
 @media (min-width: 1200px) {
     .description-itinerary {
       width: 75%; } }
@@ -342,6 +356,7 @@
 .description-include__included-details {
   width: 90%;
   margin: auto;
+  display: -webkit-box;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around; }
@@ -379,6 +394,7 @@
 .other_activities {
   width: 90%;
   margin: auto;
+  display: -webkit-box;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around; }

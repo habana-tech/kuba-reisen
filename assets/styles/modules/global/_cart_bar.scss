@@ -1,6 +1,6 @@
 @keyframes showBar {
     0%{
-        transform: translateY(68%);
+        transform: translateY(calc( 100% - 3em ));
     }
     40%{
         transform: translateY(0%);
@@ -9,7 +9,7 @@
         transform: translateY(0%);
     }
     100%{
-        transform: translateY(68%);
+        transform: translateY(calc( 100% - 3em ));
     }
 }
 
@@ -24,12 +24,13 @@
     }
 }
 
+
 .cart_bar{
+    width: 100vw;
     position: fixed;
     bottom: 0;
     border-top-left-radius: 2px;
     border-bottom-left-radius: 2px;
-    right: 2em;
     margin: auto;
     z-index: 2;
     padding: .25em;
@@ -40,8 +41,14 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    transform: translateY(68%);
+    transform: translateY(calc( 100% - 3em ));
     transition: transform .3s ease-in-out;
+
+    @include atLarge{
+        width: auto;
+        max-width: 30vw;
+        right: 2em;
+    }
 
     &:hover{
         transform: translateY(0);
@@ -52,7 +59,7 @@
     }
 
     &__title{
-        margin: .5em 1em;
+        margin: .25em auto;
         text-align: center;
         border-bottom: 1px solid white;
         width: 80%;
@@ -65,8 +72,17 @@
         }
 
         & h4{
-            margin: .5em auto;
+            margin: .5em 1em;
             padding: 0;
+        }
+
+        span{
+            padding: .5em;
+            border-radius: 50%;
+            height: 2em;
+            width: 2em;
+            background: linear-gradient($color-yellow-lighter, $color-yellow-light);
+            font-family: "Baloo Bhaina", cursive;
         }
     }
 
@@ -75,7 +91,7 @@
         width: 100%;
 
         &__activities{
-            height: 30vh;
+            max-height: 30vh;
             position: relative;
             overflow-y: auto;
 
@@ -109,12 +125,19 @@
                     height: 1.25em;
                     cursor: pointer;
 
+                    &:before{
+                        content: '';
+                        position: absolute;
+                        z-index: 1;
+                        height: 100%;
+                        width: 100%;
+                    }
+
                     & svg{
                         width: 100%;
                         height: 100%;
                     }
                 }
-
 
             }
         }
