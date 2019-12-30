@@ -16,9 +16,16 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 trait ImageFieldTrait
 {
     public function getImagePath(){
-        return 'uploads/images/'.$this->getImage()->getName();
+        return 'uploads/images/'.$this->getImage();
     }
 
+    /**
+     * @return string
+     * @deprecated Drop This function... use getImagePath or just Image (filename) and Vich mapping to locate the file
+     */
+    public function getStaticImagePath(){
+        return 'static/'.$this->getImagePath();
+    }
 
     /**
      * @ORM\Column(type="string", length=255)

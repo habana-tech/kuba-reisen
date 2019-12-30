@@ -18,6 +18,7 @@ class Activity implements MachineNameInterface
     public const LENGTH_OF_DESCRIPTION = 75;
 
     use UserControlFieldsTrait, ImageFieldTrait, ActiveFieldTrait, GalleryTrait;
+    use FilterTagsTrait;
 
     /**
      * @ORM\Id()
@@ -36,11 +37,6 @@ class Activity implements MachineNameInterface
      * @ORM\Column(type="integer")
      */
     private $featuresImagesCount;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\FilterTag", inversedBy="activities")
-     */
-    private $filterTags;
 
 
     /**
@@ -164,33 +160,6 @@ class Activity implements MachineNameInterface
     public function getMachineName(){
         return urlencode($this->name);
     }
-
-    /**
-     * @return Collection|FilterTag[]
-     */
-    public function getFilterTags(): Collection
-    {
-        return $this->filterTags;
-    }
-
-    public function addFilterTag(FilterTag $filterTag): self
-    {
-        if (!$this->filterTags->contains($filterTag)) {
-            $this->filterTags[] = $filterTag;
-        }
-
-        return $this;
-    }
-
-    public function removeFilterTag(FilterTag $filterTag): self
-    {
-        if ($this->filterTags->contains($filterTag)) {
-            $this->filterTags->removeElement($filterTag);
-        }
-
-        return $this;
-    }
-
     /**
      * @return Collection|Destination[]
      */
@@ -231,9 +200,9 @@ class Activity implements MachineNameInterface
         return $this;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->name." (".$this->language.")";
+        return $this->name;
     }
 
     /**

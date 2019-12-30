@@ -87,14 +87,11 @@ easy_admin:
             controller: App\Controller\Admin\ActivitiesController
             list:
                 fields:
-                    #- { property: 'image', template: 'backend/easyadmin/vich_uploader_image.html.twig' }
+                    - { property: 'ID', label: 'ID' }
                     - { property: 'active' }
                     - { property: 'name' }
                     - { property: 'initPrice' , label: 'Initial price'}
-                    - { property: 'image', label: 'Featured Image', type: 'image' , base_path: '%app.path.uploaded_images%' }
 
-#                    - { property: 'filterTags' }
-#                    - { property: 'modified_by' }
             form:
                 fields:
                     - { type: 'group', label: 'Activity Info', icon: 'location-arrow', columns: 8 }
@@ -139,16 +136,50 @@ easy_admin:
                     - { type: 'section', label: 'Images linked to this activity', icon: 'images', help: 'You can upload new images from here' }
                     - { property: 'gallery', label: '-', type: 'collection',  type_options: { entry_type: 'App\Form\ImageUploadType', by_reference: true } }
 
-                show:
-                    - { property: 'title' }
-                    - { property: 'description' }
-                    - { property: 'modified_by' }
-
         FilterTags:
             class: App\Entity\FilterTag
 
         Destination:
             class: App\Entity\Destination
+            list:
+                fields:
+                    - { property: 'ID', label: 'ID' }
+                    - { property: 'active' }
+                    - { property: 'name' }
+                    - { property: 'image', label: 'Featured Image', type: 'image' , base_path: '%app.path.uploaded_images%' }
+
+            form:
+                fields:
+                    - { type: 'group', label: 'Destination Info', icon: 'map-marker-alt', columns: 8 }
+                    - { property: 'name' }
+                    - { property: 'filterTags', type: 'entity' }
+                    - { property: 'activities', type: 'entity' }
+
+
+                    - { type: 'group', label: 'Destination settings', icon: 'cogs', columns: 4 }
+                    - { property: 'active', label: 'The Destination is Active' }
+                    - { property: 'priority' , label: 'Priority on results' }
+
+                    - { type: 'group', label: 'Destination description', icon: 'bookmark', columns: 8 }
+                    - { property: 'description', type: 'fos_ckeditor' }
+
+
+                    - { type: 'group', label: 'Featured Image', icon: 'image', columns: 4 }
+                    #                    - { property: 'image', template: 'backend/easyadmin/vich_uploader_image.html.twig' }
+                    - { property: 'imageFile',label: 'Featured Image', type: 'vich_image' }
+                    - { property: 'alternativeText' }
+
+
+                    - { type: 'group', label: 'Destination details', icon: 'book-open', columns: 8 }
+                    - { property: 'destinationFragment', label: '-', type: 'collection',  type_options: { entry_type: 'App\Form\DestinationFragmentType', by_reference: true } }
+
+
+                    - { type: 'group', label: 'Gallery', icon: 'images', columns: 4 }
+                    - { type: 'section', label: 'Images from Gallery', icon: 'folder-open', help: 'Previously uploaded images' }
+                    - { property: 'uploadedImages', label: 'Add images from Gallery',  help: 'Select one or more images', type: 'entity',  type_options: { class: 'App\Entity\Image', multiple: true, attr: {'data-widget': 'select2'} } }
+                    - { type: 'section', label: 'Images linked to this activity', icon: 'images', help: 'You can upload new images from here' }
+                    - { property: 'gallery', label: '-', type: 'collection',  type_options: { entry_type: 'App\Form\ImageUploadType', by_reference: true } }
+
 
         Stories:
             class: App\Entity\ActivityStory
