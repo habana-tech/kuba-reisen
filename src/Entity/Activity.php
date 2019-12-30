@@ -15,9 +15,9 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Activity implements MachineNameInterface
 {
-    const LENGTH_OF_DESCRIPTION = 75;
+    public const LENGTH_OF_DESCRIPTION = 75;
 
-    use UserControlFieldsTrait, ImageFieldTrait;
+    use UserControlFieldsTrait, ImageFieldTrait, ActiveFieldTrait, GalleryTrait;
 
     /**
      * @ORM\Id()
@@ -63,26 +63,65 @@ class Activity implements MachineNameInterface
      */
     private $initPrice;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Image")
-     */
-    private $gallery;
+
 
     /**
      *  @ORM\Embedded(class="App\Entity\PageContent")
      */
     private $pageContent;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $contentItineraryTitle;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $contentItineraryContent;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $contentIncludedTitle;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $contentIncludedContent;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $contentNotIncludedTitle;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $contentNotIncludedContent;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $contentCostAndDatesTitle;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $contentCostAndDatesContent;
+
     public function __construct()
     {
         $this->filterTags = new ArrayCollection();
         $this->destinations = new ArrayCollection();
-        $this->image = new EmbeddedFile();
-        $this->language = 'de';
-        $this->description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam beatae blanditiis cumque dicta distinctio ea explicabo iste maxime nihil, perferendis recusandae rem reprehenderit velit voluptas. Magnam natus odit placeat?";
         $this->featuresImagesCount = 4;
         $this->gallery = new ArrayCollection();
         $this->pageContent = new PageContent();
+
+        //CONTENT FIELDS
+        $this->contentIncludedTitle = 'Included in the tour';
+        $this->contentNotIncludedTitle = 'Not include in the tour';
+        $this->contentCostAndDatesTitle = 'Costs &amp; dates';
         // your own logic
     }
 
@@ -237,31 +276,100 @@ class Activity implements MachineNameInterface
         return $this;
     }
 
-    /**
-     * @return Collection|Image[]
-     */
-    public function getGallery(): Collection
+    public function getContentItineraryTitle(): ?string
     {
-        return $this->gallery;
+        return $this->contentItineraryTitle;
     }
 
-    public function addGallery(Image $gallery): self
+    public function setContentItineraryTitle(string $contentItineraryTitle): self
     {
-        if (!$this->gallery->contains($gallery)) {
-            $this->gallery[] = $gallery;
-        }
+        $this->contentItineraryTitle = $contentItineraryTitle;
 
         return $this;
     }
 
-    public function removeGallery(Image $gallery): self
+    public function getContentItineraryContent(): ?string
     {
-        if ($this->gallery->contains($gallery)) {
-            $this->gallery->removeElement($gallery);
-        }
+        return $this->contentItineraryContent;
+    }
+
+    public function setContentItineraryContent(?string $contentItineraryContent): self
+    {
+        $this->contentItineraryContent = $contentItineraryContent;
 
         return $this;
     }
 
+    public function getContentIncludedTitle(): ?string
+    {
+        return $this->contentIncludedTitle;
+    }
+
+    public function setContentIncludedTitle(?string $contentIncludedTitle): self
+    {
+        $this->contentIncludedTitle = $contentIncludedTitle;
+
+        return $this;
+    }
+
+    public function getContentIncludedContent(): ?string
+    {
+        return $this->contentIncludedContent;
+    }
+
+    public function setContentIncludedContent(?string $contentIncludedContent): self
+    {
+        $this->contentIncludedContent = $contentIncludedContent;
+
+        return $this;
+    }
+
+    public function getContentNotIncludedTitle(): ?string
+    {
+        return $this->contentNotIncludedTitle;
+    }
+
+    public function setContentNotIncludedTitle(?string $contentNotIncludedTitle): self
+    {
+        $this->contentNotIncludedTitle = $contentNotIncludedTitle;
+
+        return $this;
+    }
+
+    public function getContentNotIncludedContent(): ?string
+    {
+        return $this->contentNotIncludedContent;
+    }
+
+    public function setContentNotIncludedContent(?string $contentNotIncludedContent): self
+    {
+        $this->contentNotIncludedContent = $contentNotIncludedContent;
+
+        return $this;
+    }
+
+    public function getContentCostAndDatesTitle(): ?string
+    {
+        return $this->contentCostAndDatesTitle;
+    }
+
+    public function setContentCostAndDatesTitle(?string $contentCostAndDatesTitle): self
+    {
+        $this->contentCostAndDatesTitle = $contentCostAndDatesTitle;
+
+        return $this;
+    }
+
+    public function getContentCostAndDatesContent(): ?string
+    {
+        return $this->contentCostAndDatesContent;
+    }
+
+    public function setContentCostAndDatesContent(?string $contentCostAndDatesContent): self
+    {
+        $this->contentCostAndDatesContent = $contentCostAndDatesContent;
+
+        return $this;
+    }
 
 }
