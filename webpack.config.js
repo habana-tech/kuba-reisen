@@ -38,6 +38,8 @@ Encore
     .addEntry('app_backend', './assets/scripts/app_backend.js')
     .addStyleEntry('style_backend', './assets/styles/style_backend.scss')
     .addEntry('admin', './assets/scripts/admin.js')
+
+    //ckeditor PLUGINS save at 'static/ckeditor_plugins/'
     .addEntry('MapMarker', './assets/scripts/ckeditor/MapMarker.js')
     .addEntry('MapMarkerDialog', './assets/scripts/ckeditor/MapMarkerDialog.js')
     .addEntry('MapPath', './assets/scripts/ckeditor/MapPath.js')

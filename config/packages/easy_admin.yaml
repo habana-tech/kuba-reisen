@@ -84,30 +84,61 @@ easy_admin:
 
         Activities:
             class: App\Entity\Activity
+            controller: App\Controller\Admin\ActivitiesController
             list:
                 fields:
                     #- { property: 'image', template: 'backend/easyadmin/vich_uploader_image.html.twig' }
+                    - { property: 'active' }
                     - { property: 'name' }
-                    - { property: 'initPrice' }
-                    - { property: 'modified_by' }
+                    - { property: 'initPrice' , label: 'Initial price'}
+                    - { property: 'image', label: 'Featured Image', type: 'image' , base_path: '%app.path.uploaded_images%' }
+
+#                    - { property: 'filterTags' }
+#                    - { property: 'modified_by' }
             form:
                 fields:
-                    - { type: 'group', label: 'Interest Data', icon: 'comments', columns: 8 }
-
-                    - { property: 'title' }
-                    - { property: 'description', type: 'fos_ckeditor' }
+                    - { type: 'group', label: 'Activity Info', icon: 'location-arrow', columns: 8 }
+                    - { property: 'name' }
                     - { property: 'filterTags', type: 'entity' }
+                    - { property: 'destinations', type: 'entity' }
+
+#                    - { property: 'imageFile', type: 'vich_image' }
 
 
+                    - { type: 'group', label: 'Activity settings', icon: 'cogs', columns: 4 }
+                    - { property: 'active', label: 'The Activity is Active' }
+                    - { property: 'initPrice', type: 'money' , label: 'Starting price' }
+                    - { property: 'priority' , label: 'Priority on results' }
 
-                    - { type: 'group', label: 'Language and Translation', icon: 'globe', columns: 4 }
-                    - { property: 'language', type: 'choice', type_options: {choices: {en: 'en', de: 'de',es: 'es'}} }
-                    - { property: 'translation_from', type: 'entity' }
+                    - { type: 'group', label: 'Activity description', icon: 'bookmark', columns: 8 }
+                    - { property: 'description', type: 'fos_ckeditor' }
 
-                    #- { type: 'group', label: 'Image Info', icon: 'image', columns: 4 }
-                    #- { property: 'image', template: 'backend/easyadmin/vich_uploader_image.html.twig' }
-                    #- { property: 'imageFile', type: 'vich_image' }
+
+                    - { type: 'group', label: 'Featured Image', icon: 'image', columns: 4 }
+#                    - { property: 'image', template: 'backend/easyadmin/vich_uploader_image.html.twig' }
+                    - { property: 'imageFile',label: 'Featured Image', type: 'vich_image' }
                     - { property: 'alternativeText' }
+
+
+                    - { type: 'group', label: 'Activity details', icon: 'book-open', columns: 8 }
+                    - { property: 'contentItineraryTitle', type: 'text' }
+                    - { property: 'contentItineraryContent', type: 'fos_ckeditor' }
+                    - { property: 'contentIncludedTitle', type: 'text' }
+                    - { property: 'contentIncludedContent', type: 'fos_ckeditor' }
+                    - { property: 'contentNotIncludedTitle', type: 'text' }
+                    - { property: 'contentNotIncludedContent', type: 'fos_ckeditor' }
+                    - { property: 'contentCostAndDatesTitle', type: 'text' }
+                    - { property: 'contentCostAndDatesContent', type: 'fos_ckeditor' }
+
+
+
+
+                    - { type: 'group', label: 'Gallery', icon: 'images', columns: 4 }
+                    - { type: 'section', label: 'Images from Gallery', icon: 'folder-open', help: 'Previously uploaded images' }
+                    - { property: 'uploadedImages', label: 'Add images from Gallery',  help: 'Select one or more images', type: 'entity',  type_options: { class: 'App\Entity\Image', multiple: true, attr: {'data-widget': 'select2'} } }
+                    - { type: 'section', label: 'Images linked to this activity', icon: 'images', help: 'You can upload new images from here' }
+                    - { property: 'gallery', label: '-', type: 'collection',  type_options: { entry_type: 'App\Form\ImageUploadType', by_reference: true } }
+
                 show:
                     - { property: 'title' }
                     - { property: 'description' }

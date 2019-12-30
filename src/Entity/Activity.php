@@ -15,11 +15,9 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Activity implements MachineNameInterface
 {
-    const LENGTH_OF_DESCRIPTION = 75;
+    public const LENGTH_OF_DESCRIPTION = 75;
 
-    use LanguageFieldTrait;
-    use ImageFieldTrait;
-    use UserControlFieldsTrait;
+    use UserControlFieldsTrait, ImageFieldTrait, ActiveFieldTrait, GalleryTrait;
 
     /**
      * @ORM\Id()
@@ -44,10 +42,6 @@ class Activity implements MachineNameInterface
      */
     private $filterTags;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Activity")
-     */
-    private $translation_from;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Destination",  inversedBy="activities")
@@ -60,12 +54,6 @@ class Activity implements MachineNameInterface
     private $description;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\DynamicPage", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $dynamic_page;
-
-    /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $priority;
@@ -75,16 +63,85 @@ class Activity implements MachineNameInterface
      */
     private $initPrice;
 
+
+
+    /**
+     *  @ORM\Embedded(class="App\Entity\PageContent")
+     */
+    private $pageContent;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $contentItineraryTitle;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $contentItineraryContent;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $contentIncludedTitle;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $contentIncludedContent;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $contentNotIncludedTitle;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $contentNotIncludedContent;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $contentCostAndDatesTitle;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $contentCostAndDatesContent;
+
     public function __construct()
     {
         $this->filterTags = new ArrayCollection();
         $this->destinations = new ArrayCollection();
-        $this->image = new EmbeddedFile();
-        $this->language = 'de';
-        $this->description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam beatae blanditiis cumque dicta distinctio ea explicabo iste maxime nihil, perferendis recusandae rem reprehenderit velit voluptas. Magnam natus odit placeat?";
         $this->featuresImagesCount = 4;
+        $this->gallery = new ArrayCollection();
+        $this->pageContent = new PageContent();
+
+        //CONTENT FIELDS
+        $this->contentIncludedTitle = 'Included in the tour';
+        $this->contentNotIncludedTitle = 'Not include in the tour';
+        $this->contentCostAndDatesTitle = 'Costs &amp; dates';
         // your own logic
     }
+
+    /**
+     * @return PageContent
+     */
+    public function getPageContent(): PageContent
+    {
+        return $this->pageContent;
+    }
+
+    /**
+     * @param PageContent $pageContent
+     */
+    public function setPageContent(PageContent $pageContent): void
+    {
+        $this->pageContent = $pageContent;
+    }
+
+
 
 
     public function getId(): ?int
@@ -179,35 +236,6 @@ class Activity implements MachineNameInterface
         return $this->name." (".$this->language.")";
     }
 
-    public function getDynamicPage(): ?DynamicPage
-    {
-        return $this->dynamic_page;
-    }
-
-    public function setDynamicPage(DynamicPage $dynamic_page): self
-    {
-        $this->dynamic_page = $dynamic_page;
-
-        return $this;
-    }
-
-    public function __get($name){
-        if (array_key_exists($name, $this->getDynamicPage()->getPageContent()))
-            return trim($this->getDynamicPage()->getElement($name));
-    }
-
-
-    public function __set($name, $value){
-        $this->getDynamicPage()->setElementContent($name, $value);
-
-    }
-
-
-    public function getElement($name)
-    {
-        return $this->getDynamicPage()->getElement($name);
-    }
-
     /**
      * @return mixed
      */
@@ -248,5 +276,100 @@ class Activity implements MachineNameInterface
         return $this;
     }
 
+    public function getContentItineraryTitle(): ?string
+    {
+        return $this->contentItineraryTitle;
+    }
+
+    public function setContentItineraryTitle(string $contentItineraryTitle): self
+    {
+        $this->contentItineraryTitle = $contentItineraryTitle;
+
+        return $this;
+    }
+
+    public function getContentItineraryContent(): ?string
+    {
+        return $this->contentItineraryContent;
+    }
+
+    public function setContentItineraryContent(?string $contentItineraryContent): self
+    {
+        $this->contentItineraryContent = $contentItineraryContent;
+
+        return $this;
+    }
+
+    public function getContentIncludedTitle(): ?string
+    {
+        return $this->contentIncludedTitle;
+    }
+
+    public function setContentIncludedTitle(?string $contentIncludedTitle): self
+    {
+        $this->contentIncludedTitle = $contentIncludedTitle;
+
+        return $this;
+    }
+
+    public function getContentIncludedContent(): ?string
+    {
+        return $this->contentIncludedContent;
+    }
+
+    public function setContentIncludedContent(?string $contentIncludedContent): self
+    {
+        $this->contentIncludedContent = $contentIncludedContent;
+
+        return $this;
+    }
+
+    public function getContentNotIncludedTitle(): ?string
+    {
+        return $this->contentNotIncludedTitle;
+    }
+
+    public function setContentNotIncludedTitle(?string $contentNotIncludedTitle): self
+    {
+        $this->contentNotIncludedTitle = $contentNotIncludedTitle;
+
+        return $this;
+    }
+
+    public function getContentNotIncludedContent(): ?string
+    {
+        return $this->contentNotIncludedContent;
+    }
+
+    public function setContentNotIncludedContent(?string $contentNotIncludedContent): self
+    {
+        $this->contentNotIncludedContent = $contentNotIncludedContent;
+
+        return $this;
+    }
+
+    public function getContentCostAndDatesTitle(): ?string
+    {
+        return $this->contentCostAndDatesTitle;
+    }
+
+    public function setContentCostAndDatesTitle(?string $contentCostAndDatesTitle): self
+    {
+        $this->contentCostAndDatesTitle = $contentCostAndDatesTitle;
+
+        return $this;
+    }
+
+    public function getContentCostAndDatesContent(): ?string
+    {
+        return $this->contentCostAndDatesContent;
+    }
+
+    public function setContentCostAndDatesContent(?string $contentCostAndDatesContent): self
+    {
+        $this->contentCostAndDatesContent = $contentCostAndDatesContent;
+
+        return $this;
+    }
 
 }

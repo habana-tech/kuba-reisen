@@ -114,7 +114,7 @@ class Image
 
     public function __toString()
     {
-        return $this->imageName;
+        return $this->description;
     }
 
     public function getDescription(): ?string

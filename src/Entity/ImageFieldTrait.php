@@ -11,7 +11,6 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Image
- * @ORM\HasLifecycleCallbacks
  * @Vich\Uploadable
  */
 trait ImageFieldTrait
@@ -21,25 +20,24 @@ trait ImageFieldTrait
     }
 
 
-    //TODO: debera conincidircon la variable ENV del MEDIA_STATIC_HOST_URL
-    public function getStaticImagePath(){
-        return '/static/uploads/images/'.$this->getImage()->getName();
-    }
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @var string
+     */
+    private $image;
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
-     * @Vich\UploadableField(mapping="images", fileNameProperty="image.name", size="image.size", mimeType="image.mimeType", originalName="image.originalName", dimensions="image.dimensions")
+     * @Vich\UploadableField(mapping="images", fileNameProperty="image")
      *
      * @var File
      */
     protected $imageFile;
 
-    /**
-     * @ORM\Embedded(class="Vich\UploaderBundle\Entity\File")
-     *
-     * @var EmbeddedFile
-     */
-    protected $image;
+    public function getFileName()
+    {
+        return $this->image;
+    }
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -101,40 +99,19 @@ trait ImageFieldTrait
         return $this->imageFile;
     }
 
-    public function setImage(EmbeddedFile $image)
+    public function setImage($image)
     {
         $this->image = $image;
     }
 
-    public function getImage(): ?EmbeddedFile
+    public function getImage()
     {
         return $this->image;
     }
 
-    /**
-     * @return \DateTime
-     */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
-        return $this->updatedAt ? $this->updatedAt : new \DateTime();
+        return $this->updatedAt;
     }
-
-    /**
-     * @param \DateTime $updatedAt
-     */
-    public function setUpdatedAt(\DateTime $updatedAt): void
-    {
-        $this->updatedAt = $updatedAt;
-    }
-
-    /**
-     * @ORM\PrePersist()
-     * @ORM\PreUpdate()
-     */
-    public function updateModificationDate()
-    {
-        $this->setUpdatedAt(new \DateTime());
-    }
-
 
 }
