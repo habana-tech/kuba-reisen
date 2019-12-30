@@ -15,8 +15,17 @@ class DestinationFragmentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('image', ImageUploadType::class)
+            ->add('name', null, [
+                'label'=> 'Title of the fragment',
+                'attr' => [
+                    'required' => true
+                ]])
+            ->add('image', ImageUploadType::class, [
+                'label' => 'Image for this fragment',
+                'attr'=>[
+                    'class' => 'destination_fragment_image',
+
+            ]])
             ->add('content', CKEditorType::class)
             ->add('destination', HiddenType::class)
         ;

@@ -152,8 +152,8 @@ easy_admin:
                 fields:
                     - { type: 'group', label: 'Destination Info', icon: 'map-marker-alt', columns: 8 }
                     - { property: 'name' }
-                    - { property: 'filterTags', type: 'entity' }
-                    - { property: 'activities', type: 'entity' }
+                    - { property: 'filterTags', type: 'entity', help: 'Select the Tags related to this Destination. Users can use it at search' }
+                    - { property: 'activities', type: 'entity', help: 'Select the activities related to this Destination' }
 
 
                     - { type: 'group', label: 'Destination settings', icon: 'cogs', columns: 4 }
@@ -171,7 +171,7 @@ easy_admin:
 
 
                     - { type: 'group', label: 'Destination details', icon: 'book-open', columns: 8 }
-                    - { property: 'destinationFragment', label: '-', type: 'collection',  type_options: { entry_type: 'App\Form\DestinationFragmentType', by_reference: true } }
+                    - { property: 'destinationFragment', label: '-', help: 'Add many fragments as you need to describe this destination', type: 'collection',  type_options: { entry_type: 'App\Form\DestinationFragmentType', by_reference: true } }
 
 
                     - { type: 'group', label: 'Gallery', icon: 'images', columns: 4 }

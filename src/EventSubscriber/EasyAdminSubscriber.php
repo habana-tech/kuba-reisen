@@ -19,11 +19,12 @@ class EasyAdminSubscriber implements EventSubscriberInterface
 
     /**
      * EasyAdminSubscriber constructor.
-     * @param $em
+//     * @param ManagerRegistry $em
+     * @param DestinationRepository $destinationRepository
      */
-    public function __construct(ManagerRegistry $em, DestinationRepository $destinationRepository)
+    public function __construct(/*ManagerRegistry $em, */DestinationRepository $destinationRepository)
     {
-        $this->em = $em->getManager();
+//        $this->em = $em->getManager();
         $this->destinationRepository = $destinationRepository;
     }
 
@@ -31,7 +32,7 @@ class EasyAdminSubscriber implements EventSubscriberInterface
     /**
      * @inheritDoc
      */
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return array(
 //                'easy_admin.pre_new' => array('setUploadedImagesAsGallery'),
@@ -51,7 +52,7 @@ class EasyAdminSubscriber implements EventSubscriberInterface
             );
     }
 
-    public function setUploadedImagesInDestination(GenericEvent $event)
+    public function setUploadedImagesInDestination(GenericEvent $event): void
     {
         $entity = $event->getSubject();
         $request = $event->getArgument('request');
@@ -68,10 +69,10 @@ class EasyAdminSubscriber implements EventSubscriberInterface
                 return;
             }
 
-        if($entity instanceof DestinationFragment)
-        {
-            dump('fragment',$entity);
-        }
+//        if($entity instanceof DestinationFragment)
+//        {
+//            //Just DestinationFragment
+//        }
 
 //        $request = new \Symfony\Component\HttpFoundation\Request();
 
@@ -91,14 +92,11 @@ class EasyAdminSubscriber implements EventSubscriberInterface
         }
 
 
-        dump($destinationId,$destination, $request);
-
         $request->request->set('destination', $destination);
         $event['request'] = $request;
-        dump($event->getArgument('request'));
     }
-    public function setUploadedImagesAsGallery(GenericEvent $event)
-        {
+    public function setUploadedImagesAsGallery(GenericEvent $event): void
+    {
             $entity = $event->getSubject();
 
             //Add entities contains gallery

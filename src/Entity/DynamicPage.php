@@ -10,6 +10,7 @@ use App\DataConverter\ImageBase64ThumbCreator;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\DynamicPageRepository")
  * @ORM\HasLifecycleCallbacks
+ * @deprecated TODO: To be deleted
  */
 class DynamicPage
 {
@@ -111,31 +112,37 @@ class DynamicPage
 
     public function getElement($grape_id, $format = 'txt')
     {
-        if(!isset($this->pageContent[$grape_id][$format]))
-            $format == 'html' ? $format = 'txt' :  $format = 'html';
-        if(isset($this->pageContent[$grape_id][$format]))
-            return $this->pageContent[$grape_id][$format];
+        if(!isset($this->pageContent[$grape_id][$format])) {
+            $format === 'html' ? $format = 'txt' : $format = 'html';
+        }
+        return $this->pageContent[$grape_id][$format] ?? null;
     }
-    public function setElementContent($grape_id, $value, $format = 'html')
+    public function setElementContent($grape_id, $value, $format = 'html'):void
     {
-        if(!isset($this->pageContent[$grape_id][$format]))
-            $format == 'html' ? $format = 'txt' :  $format = 'html';
+        if(!isset($this->pageContent[$grape_id][$format])) {
+            $format === 'html' ? $format = 'txt' : $format = 'html';
+        }
 
-        if(isset($this->pageContent[$grape_id][$format]))
+        if(isset($this->pageContent[$grape_id][$format])) {
             $this->pageContent[$grape_id][$format] = $value;
+        }
     }
 
     public function getElementContent($grape_id, $default = null)
     {
-        if($res = $this->getElement($grape_id) and $res != '')
+        if(($res = $this->getElement($grape_id)) && $res !== '') {
             return $res;
+        }
         return $default;
     }
 
+    /**
+     * @return string|true
+     * @deprecated TODO: TO be deleted
+     */
     public function getPageContentAsArrayText()
     {
         return print_r($this->getPageContent(), false);
-
     }
 
     public function getElementAttr($grape_id, $attr, $default = null)
