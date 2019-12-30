@@ -13,9 +13,10 @@ class ImageUploadType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('imageFile', VichImageType::class)
+            ->add('imageFile', VichImageType::class, ['label'=>'Image'])
 //            ->add('imageSize')
-            ->add('description')
+            ->add('description', null, ['label'=>'Image description'])
+
         ;
     }
 

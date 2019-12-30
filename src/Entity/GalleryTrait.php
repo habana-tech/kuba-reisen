@@ -20,8 +20,10 @@ trait GalleryTrait
     /**
      * @return mixed
      */
-    public function getUploadedImages()
+    public function getUploadedImages(): Collection
     {
+        if($this->uploadedImages === null)
+            $this->uploadedImages = new ArrayCollection();
         return $this->uploadedImages;
     }
 

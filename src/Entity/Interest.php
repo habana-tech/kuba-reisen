@@ -15,7 +15,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Interest
 {
-    use LanguageFieldTrait;
+//    use LanguageFieldTrait;
     use ImageFieldTrait;
     use UserControlFieldsTrait;
     /**
@@ -24,11 +24,6 @@ class Interest
      * @ORM\Column(type="integer")
      */
     private $id;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Interest")
-     */
-    private $translation_from;
 
     /**
      * @ORM\Column(type="string", length=255)

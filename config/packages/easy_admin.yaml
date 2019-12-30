@@ -134,7 +134,11 @@ easy_admin:
 
 
                     - { type: 'group', label: 'Gallery', icon: 'images', columns: 4 }
-                    - { property: 'gallery', type: 'collection',  type_options: { entry_type: 'App\Form\ImageUploadType', by_reference: true } }
+                    - { type: 'section', label: 'Images from Gallery', icon: 'folder-open', help: 'Previously uploaded images' }
+                    - { property: 'uploadedImages', label: 'Add images from Gallery',  help: 'Select one or more images', type: 'entity',  type_options: { class: 'App\Entity\Image', multiple: true, attr: {'data-widget': 'select2'} } }
+                    - { type: 'section', label: 'Images linked to this activity', icon: 'images', help: 'You can upload new images from here' }
+                    - { property: 'gallery', label: '-', type: 'collection',  type_options: { entry_type: 'App\Form\ImageUploadType', by_reference: true } }
+
                 show:
                     - { property: 'title' }
                     - { property: 'description' }

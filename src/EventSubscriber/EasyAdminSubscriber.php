@@ -49,18 +49,11 @@ class EasyAdminSubscriber implements EventSubscriberInterface
                 return;
             }
 
-            $request = $event->getArgument('request');
-            dump($request, $entity);
-
-//            foreach ($entity->getUploadedImages() as $file)
-//            {
-//                $image = new Image();
-//                $image->setImageFile($file);
-//                $image->setDescription($entity->getName());
-//                $this->em->persist($image);
-//                $entity->addGallery($image);
-//            }
-            dump($entity);
+            foreach ($entity->getUploadedImages() as $image )
+            {
+                $entity->addGallery($image);
+            }
+//            dump($entity);
             $event['entity'] = $entity;
 
         }
