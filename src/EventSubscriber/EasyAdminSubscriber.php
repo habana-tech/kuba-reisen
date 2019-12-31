@@ -3,8 +3,9 @@
 
 namespace App\EventSubscriber;
 
-use App\Entity\DestinationFragment;
+use App\Entity\DescriptionFragment;
 use App\Entity\Image;
+use App\Repository\ActivityRepository;
 use App\Repository\DestinationRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -16,16 +17,19 @@ class EasyAdminSubscriber implements EventSubscriberInterface
 {
     private $em;
     private $destinationRepository;
+    private $activityRepository;
 
     /**
      * EasyAdminSubscriber constructor.
-//     * @param ManagerRegistry $em
      * @param DestinationRepository $destinationRepository
+     * @param ActivityRepository $activityRepository
      */
-    public function __construct(/*ManagerRegistry $em, */DestinationRepository $destinationRepository)
+    public function __construct(DestinationRepository $destinationRepository,
+                                                         ActivityRepository $activityRepository)
     {
 //        $this->em = $em->getManager();
         $this->destinationRepository = $destinationRepository;
+        $this->activityRepository = $activityRepository;
     }
 
 
@@ -39,60 +43,68 @@ class EasyAdminSubscriber implements EventSubscriberInterface
 //                'easy_admin.post_new' => array('setUploadedImagesAsGallery'),
                 'easy_admin.pre_persist' => [
                     'setUploadedImagesAsGallery',
-                    'setUploadedImagesInDestination'
+                    'setUploadedImagesInDestinationsAndActivities'
                     ],
                 'easy_admin.pre_update' => [
                     'setUploadedImagesAsGallery',
-                    'setUploadedImagesInDestination'
+                    'setUploadedImagesInDestinationsAndActivities'
                     ],
 
                 'easy_admin.post_initialize' => [
-                    'setUploadedImagesInDestination'
+                    'setUploadedImagesInDestinationsAndActivities'
                     ],
             );
     }
 
-    public function setUploadedImagesInDestination(GenericEvent $event): void
+    public function setUploadedImagesInDestinationsAndActivities(GenericEvent $event): void
     {
         $entity = $event->getSubject();
         $request = $event->getArgument('request');
 
 
 
+        //Si no Es destination o activity
         if (is_array($entity) && isset($entity['class']) &&
-            $entity['class'] !== Destination::class) {
+            ($entity['class'] !== Destination::class)  && ($entity['class'] !== Activity::class)
+        ) {
                 return;
             }
         if(is_object($entity) && !(
-            $entity instanceof Destination || $entity instanceof DestinationFragment
+            $entity instanceof Destination || $entity instanceof Activity || $entity instanceof DescriptionFragment
             )) {
                 return;
             }
 
-//        if($entity instanceof DestinationFragment)
+//        if($entity instanceof DescriptionFragment)
 //        {
-//            //Just DestinationFragment
+//            //Just DescriptionFragment
 //        }
 
 //        $request = new \Symfony\Component\HttpFoundation\Request();
 
-        $destinationId = $request->get('id');
+        $relatedEntityId = $request->query->get('id');
         $destination = $request->get('destination');
+        $activity = $request->get('activity');
 
-        if($destinationId)
+
+        [$entityName, $currentRepo, $sendedData] =  $destination ?
+                                                ['destination', $this->destinationRepository, $destination] :
+                                                ['activity', $this->activityRepository, $activity];
+
+        if($relatedEntityId)
         {
-             $destinationObj = $this->destinationRepository->find($destinationId);
-            if(is_array($destination['destinationFragment'])) {
-                foreach ($destination['destinationFragment'] as &$item) {
-                    $item['destination'] = $destinationObj;
+             $entityObj = $currentRepo->find($relatedEntityId);
+
+            if(is_array($sendedData['descriptionFragment'])) {
+                foreach ($sendedData['descriptionFragment'] as &$item) {
+                    $item[$entityName] = $entityObj;
                 }
                 unset($item);
             }
 
         }
-
-
-        $request->request->set('destination', $destination);
+        
+        $request->request->set($entityName, $sendedData);
         $event['request'] = $request;
     }
     public function setUploadedImagesAsGallery(GenericEvent $event): void
@@ -102,7 +114,7 @@ class EasyAdminSubscriber implements EventSubscriberInterface
             //Add entities contains gallery
             if (!($entity instanceof Activity
                 OR $entity instanceof Destination
-                OR $entity instanceof DestinationFragment
+                OR $entity instanceof DescriptionFragment
             ))
             {
                 return;

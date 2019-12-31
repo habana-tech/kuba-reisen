@@ -6,23 +6,23 @@ easy_admin:
             - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
         menu:
             - { label: 'Products' }
-            - { entity: 'Activities', label: 'Activities' , icon: 'location-arrow'}
+            - { entity: 'Activity', label: 'Activities' , icon: 'location-arrow'}
             - { entity: 'Destination', label: 'Destinations' , icon: 'map-marker-alt'}
-            - { entity: 'Stories', label: 'Stories' , icon: 'bookmark'}
+            - { entity: 'Story', label: 'Stories' , icon: 'bookmark'}
             - { entity: 'Interest', label: 'Interest' , icon: 'heart'}
-            - { entity: 'FilterTags', label: 'Tags' , icon: 'tags'}
+            - { entity: 'FilterTag', label: 'Tags' , icon: 'tags'}
 
 
             - { label: 'Management' }
             - { label: 'Pages', route: 'backend_dynamic_page_index', icon: 'file-alt' }
             - { label: 'Menus', route: 'backend_dynamic_page_index', icon: 'bars' }
             - { label: 'Browse Images', route: 'ckfinder_fullpage', icon: 'images'}
-            - { entity: 'Images', label: 'Manage Images', icon: 'images'}
+            - { entity: 'Image', label: 'Manage Images', icon: 'images'}
             - { label: 'Config', route: 'ckfinder_fullpage', icon: 'cogs' }
 
             - { label: 'Users' }
-            - { entity: 'Users', params: { action: 'new' }, label: 'New User' , icon: 'user-plus'}
-            - { entity: 'Users',label: 'All Users' , icon: 'users'}
+            - { entity: 'User', params: { action: 'new' }, label: 'New User' , icon: 'user-plus'}
+            - { entity: 'User',label: 'All Users' , icon: 'users'}
 
 
 
@@ -73,10 +73,10 @@ easy_admin:
 #
 #                    - { property: 'pageTemplate' }
 
-        Users:
+        User:
             class: App\Entity\User
 
-        Activities:
+        Activity:
             class: App\Entity\Activity
             controller: App\Controller\Admin\ActivitiesController
             list:
@@ -103,6 +103,7 @@ easy_admin:
 
                     - { type: 'group', label: 'Activity description', icon: 'bookmark', columns: 8 }
                     - { property: 'description', type: 'fos_ckeditor' }
+                    - { property: 'descriptionFragment', label: '-', help: 'Add many fragments as you need to describe this destination', type: 'collection',  type_options: { entry_type: 'App\Form\DescriptionFragmentType', by_reference: true } }
 
 
                     - { type: 'group', label: 'Featured Image', icon: 'image', columns: 4 }
@@ -130,7 +131,7 @@ easy_admin:
                     - { type: 'section', label: 'Images linked to this activity', icon: 'images', help: 'You can upload new images from here' }
                     - { property: 'gallery', label: '-', type: 'collection',  type_options: { entry_type: 'App\Form\ImageUploadType', by_reference: true } }
 
-        FilterTags:
+        FilterTag:
             class: App\Entity\FilterTag
 
         Destination:
@@ -165,7 +166,7 @@ easy_admin:
 
 
                     - { type: 'group', label: 'Destination details', icon: 'book-open', columns: 8 }
-                    - { property: 'destinationFragment', label: '-', help: 'Add many fragments as you need to describe this destination', type: 'collection',  type_options: { entry_type: 'App\Form\DestinationFragmentType', by_reference: true } }
+                    - { property: 'descriptionFragment', label: '-', help: 'Add many fragments as you need to describe this destination', type: 'collection',  type_options: { entry_type: 'App\Form\DescriptionFragmentType', by_reference: true } }
 
 
                     - { type: 'group', label: 'Gallery', icon: 'images', columns: 4 }
@@ -175,7 +176,7 @@ easy_admin:
                     - { property: 'gallery', label: '-', type: 'collection',  type_options: { entry_type: 'App\Form\ImageUploadType', by_reference: true } }
 
 
-        Stories:
+        Story:
             class: App\Entity\ActivityStory
             list:
                 fields:
@@ -200,7 +201,7 @@ easy_admin:
 
 
 
-        Images:
+        Image:
             class: App\Entity\Image
             list:
                 fields:

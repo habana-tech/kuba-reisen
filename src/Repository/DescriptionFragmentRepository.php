@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\DestinationFragment;
+use App\Entity\DescriptionFragment;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method DestinationFragment|null find($id, $lockMode = null, $lockVersion = null)
- * @method DestinationFragment|null findOneBy(array $criteria, array $orderBy = null)
- * @method DestinationFragment[]    findAll()
- * @method DestinationFragment[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method DescriptionFragment|null find($id, $lockMode = null, $lockVersion = null)
+ * @method DescriptionFragment|null findOneBy(array $criteria, array $orderBy = null)
+ * @method DescriptionFragment[]    findAll()
+ * @method DescriptionFragment[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class DestinationFragmentRepository extends ServiceEntityRepository
+class DescriptionFragmentRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, DestinationFragment::class);
+        parent::__construct($registry, DescriptionFragment::class);
     }
 
     // /**
-    //  * @return DestinationFragment[] Returns an array of DestinationFragment objects
+    //  * @return DescriptionFragment[] Returns an array of DescriptionFragment objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class DestinationFragmentRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?DestinationFragment
+    public function findOneBySomeField($value): ?DescriptionFragment
     {
         return $this->createQueryBuilder('d')
             ->andWhere('d.exampleField = :val')

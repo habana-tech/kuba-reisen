@@ -16,7 +16,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 class Destination
 {
     use LanguageFieldTrait, UserControlFieldsTrait, ImageFieldTrait, GalleryTrait;
-    use FilterTagsTrait, PriorityFieldTrait, ActiveFieldTrait;
+    use FilterTagsTrait, PriorityFieldTrait, ActiveFieldTrait, DescriptionFragmentFieldTrait;
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -47,16 +47,15 @@ class Destination
     private $dynamic_page;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\DestinationFragment", mappedBy="destination", orphanRemoval=true, cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="DescriptionFragment", mappedBy="destination", orphanRemoval=false, cascade={"persist", "remove"})
      */
-    private $destinationFragment;
+    private $descriptionFragment;
 
     public function __construct()
     {
         $this->activities = new ArrayCollection();
         $this->image = new EmbeddedFile();
         $this->filterTags = new ArrayCollection();
-        $this->destinationFragment = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -161,35 +160,5 @@ class Destination
 
     }
 
-    /**
-     * @return Collection|DestinationFragment[]
-     */
-    public function getDestinationFragment(): Collection
-    {
-        return $this->destinationFragment;
-    }
-
-    public function addDestinationFragment(DestinationFragment $destinationFragment): self
-    {
-        if (!$this->destinationFragment->contains($destinationFragment)) {
-            $this->destinationFragment[] = $destinationFragment;
-            $destinationFragment->setDestination($this);
-        }
-
-        return $this;
-    }
-
-    public function removeDestinationFragment(DestinationFragment $destinationFragment): self
-    {
-        if ($this->destinationFragment->contains($destinationFragment)) {
-            $this->destinationFragment->removeElement($destinationFragment);
-            // set the owning side to null (unless already changed)
-            if ($destinationFragment->getDestination() === $this) {
-                $destinationFragment->setDestination(null);
-            }
-        }
-
-        return $this;
-    }
 
 }

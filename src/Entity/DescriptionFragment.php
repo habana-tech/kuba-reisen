@@ -7,10 +7,10 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\DestinationFragmentRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\DescriptionFragmentRepository")
  * @Vich\Uploadable()
  */
-class DestinationFragment
+class DescriptionFragment
 {
     /**
      * @ORM\Id()
@@ -54,10 +54,15 @@ class DestinationFragment
     private $content;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Destination", inversedBy="destinationFragment")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Destination", inversedBy="descriptionFragment")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $destination;
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Activity", inversedBy="descriptionFragment")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $activity;
 
     public function getId(): ?int
     {
@@ -111,4 +116,24 @@ class DestinationFragment
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getActivity()
+    {
+        return $this->activity;
+    }
+
+    /**
+     * @param mixed $activity
+     * @return DescriptionFragment
+     */
+    public function setActivity($activity): DescriptionFragment
+    {
+        $this->activity = $activity;
+        return $this;
+    }
+
+
 }

@@ -13,12 +13,12 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @Vich\Uploadable
  * @ORM\HasLifecycleCallbacks
  */
-class Activity implements MachineNameInterface
+class Activity implements MachineNameInterface, DescriptionFragmentFieldInterface
 {
     public const LENGTH_OF_DESCRIPTION = 75;
 
     use UserControlFieldsTrait, ImageFieldTrait, ActiveFieldTrait, GalleryTrait;
-    use FilterTagsTrait, PriorityFieldTrait;
+    use FilterTagsTrait, PriorityFieldTrait, DescriptionFragmentFieldTrait;
 
     /**
      * @ORM\Id()
@@ -101,6 +101,11 @@ class Activity implements MachineNameInterface
      */
     private $contentCostAndDatesContent;
 
+    /**
+     * @ORM\OneToMany(targetEntity="DescriptionFragment", mappedBy="activity", orphanRemoval=false, cascade={"persist", "remove"})
+     */
+    private $descriptionFragment;
+
     public function __construct()
     {
         $this->filterTags = new ArrayCollection();
@@ -131,9 +136,6 @@ class Activity implements MachineNameInterface
     {
         $this->pageContent = $pageContent;
     }
-
-
-
 
     public function getId(): ?int
     {
