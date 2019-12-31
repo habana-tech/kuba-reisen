@@ -4,7 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Destination;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @method Destination|null find($id, $lockMode = null, $lockVersion = null)
@@ -48,6 +48,11 @@ class DestinationRepository extends ServiceEntityRepository
     }
     */
 
+    /**
+     * @param $lang
+     * @return mixed
+     * @deprecated
+     */
     public function findByLang($lang){
         return $this->createQueryBuilder('destination')
             ->where('destination.language = :lang')

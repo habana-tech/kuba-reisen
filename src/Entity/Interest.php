@@ -15,7 +15,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Interest
 {
-    use ActiveFieldTrait;
+    use ActiveFieldTrait, PriorityFieldTrait;
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()

@@ -4,13 +4,14 @@ namespace App\Repository;
 
 use App\Entity\UploadedImage;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @method UploadedImage|null find($id, $lockMode = null, $lockVersion = null)
  * @method UploadedImage|null findOneBy(array $criteria, array $orderBy = null)
  * @method UploadedImage[]    findAll()
  * @method UploadedImage[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @deprecated
  */
 class UploadedImageRepository extends ServiceEntityRepository
 {

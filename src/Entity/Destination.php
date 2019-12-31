@@ -15,7 +15,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Destination
 {
-    use LanguageFieldTrait, UserControlFieldsTrait, ImageFieldTrait, GalleryTrait, ActiveFieldTrait;
+    use LanguageFieldTrait, UserControlFieldsTrait, ImageFieldTrait, GalleryTrait;
     use FilterTagsTrait, PriorityFieldTrait, ActiveFieldTrait;
     /**
      * @ORM\Id()

@@ -13,8 +13,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class ActivityStory implements MachineNameInterface
 {
-    use ImageFieldTrait, PriorityFieldTrait, ActiveFieldTrait;
-
+    use PriorityFieldTrait, ActiveFieldTrait;
 
     /**
      * @ORM\Id()
@@ -37,6 +36,11 @@ class ActivityStory implements MachineNameInterface
      * @ORM\Column(type="json", nullable=true)
      */
     private $metadata = [];
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Image", cascade={"persist", "remove"})
+     */
+    private $image;
 
     public function getId(): ?int
     {
@@ -84,5 +88,22 @@ class ActivityStory implements MachineNameInterface
     public function getMachineName(){
         return urlencode($this->title);
     }
+
+    /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image): void
+    {
+        $this->image = $image;
+    }
+
 
 }

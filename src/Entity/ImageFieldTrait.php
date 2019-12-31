@@ -78,6 +78,7 @@ trait ImageFieldTrait
 
     public function __construct()
     {
+        parent::__construct();
         $this->image = new EmbeddedFile();
     }
 
