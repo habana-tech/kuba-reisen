@@ -13,9 +13,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class ActivityStory implements MachineNameInterface
 {
-    use ImageFieldTrait;
-    use LanguageFieldTrait;
-    use UserControlFieldsTrait;
+    use ImageFieldTrait, PriorityFieldTrait, ActiveFieldTrait;
 
 
     /**
@@ -31,47 +29,14 @@ class ActivityStory implements MachineNameInterface
     private $title;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\ActivityStory")
-     */
-    private $translation_from;
-
-    /**
      * @ORM\Column(type="text", nullable=true)
      */
     private $content;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $published;
-
-    /**
      * @ORM\Column(type="json", nullable=true)
      */
     private $metadata = [];
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $priority;
-
-    public function __contructor()
-    {
-        $this->setLanguage();
-    }
-
-    
-    public function getPriority(): ?int
-    {
-        return $this->priority;
-    }
-
-    public function setPriority(?int $priority): self
-    {
-        $this->priority = $priority;
-
-        return $this;
-    }
 
     public function getId(): ?int
     {
@@ -102,17 +67,6 @@ class ActivityStory implements MachineNameInterface
         return $this;
     }
 
-    public function getPublished(): ?bool
-    {
-        return $this->published;
-    }
-
-    public function setPublished(bool $published): self
-    {
-        $this->published = $published;
-
-        return $this;
-    }
 
     public function getMetadata(): ?array
     {

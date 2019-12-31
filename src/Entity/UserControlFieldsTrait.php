@@ -7,6 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Language Field
+ * @deprecated
  */
 trait UserControlFieldsTrait
 {

@@ -9,5 +9,4 @@ namespace App\Entity;
 interface MachineNameInterface
 {
     public function getMachineName();
-    
 }

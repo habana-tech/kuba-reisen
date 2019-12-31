@@ -15,9 +15,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Interest
 {
-//    use LanguageFieldTrait;
-    use ImageFieldTrait;
-    use UserControlFieldsTrait;
+    use ActiveFieldTrait;
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -40,11 +38,15 @@ class Interest
      */
     private $filterTags;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Image", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $image;
+
     public function __construct()
     {
         $this->filterTags = new ArrayCollection();
-        $this->image = new EmbeddedFile();
-        $this->language = 'de';
     }
 
     public function getId(): ?int
@@ -105,6 +107,18 @@ class Interest
             $this->filterTags->removeElement($filterTag);
             $filterTag->removeInterest($this);
         }
+
+        return $this;
+    }
+
+    public function getImage(): ?Image
+    {
+        return $this->image;
+    }
+
+    public function setImage(Image $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

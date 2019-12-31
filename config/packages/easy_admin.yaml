@@ -8,9 +8,10 @@ easy_admin:
             - { label: 'Products' }
             - { entity: 'Activities', label: 'Activities' , icon: 'location-arrow'}
             - { entity: 'Destination', label: 'Destinations' , icon: 'map-marker-alt'}
+            - { entity: 'Stories', label: 'Stories' , icon: 'bookmark'}
             - { entity: 'Interest', label: 'Interest' , icon: 'heart'}
             - { entity: 'FilterTags', label: 'Tags' , icon: 'tags'}
-            - { entity: 'Stories', label: 'Stories' , icon: 'bookmark'}
+
 
             - { label: 'Management' }
             - { label: 'Pages', route: 'backend_dynamic_page_index', icon: 'file-alt' }
@@ -31,31 +32,22 @@ easy_admin:
             class: App\Entity\Interest
             list:
                 fields:
-                    - { property: 'image', template: 'backend/easyadmin/vich_uploader_image.html.twig' }
+                    - { property: 'active' }
                     - { property: 'title' }
-                    - { property: 'modified_by' }
+                    - { property: 'image.imageName', label: 'Image', type: 'image', base_path: '%app.path.uploaded_images%' }
+
             form:
                 fields:
                     - { type: 'group', label: 'Interest Data', icon: 'comments', columns: 8 }
+                    - { property: 'active', label: 'The Interest is Active' }
 
                     - { property: 'title' }
                     - { property: 'description' }
                     - { property: 'filterTags', type: 'entity' }
 
-
-
-                    - { type: 'group', label: 'Language and Translation', icon: 'globe', columns: 4 }
-                    - { property: 'language', type: 'choice', type_options: {choices: {en: 'en', de: 'de',es: 'es'}} }
-                    - { property: 'translation_from', type: 'entity' }
-
-                    - { type: 'group', label: 'Image Info', icon: 'image', columns: 4 }
+                    - { type: 'group', label: 'Featured Image', icon: 'image', columns: 4 }
                     #- { property: 'image', template: 'backend/easyadmin/vich_uploader_image.html.twig' }
-                    #- { property: 'imageFile', type: 'vich_image' }
-                    - { property: 'alternativeText' }
-            show:
-                - { property: 'title' }
-                - { property: 'description' }
-                - { property: 'modified_by'}
+                    - { property: 'image', label: 'Featured Image', type: 'App\Form\ImageUploadType' }
 
         DynamicPage:
             class: App\Entity\DynamicPage

@@ -13,6 +13,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @ORM\Entity(repositoryClass="App\Repository\UploadedImageRepository")
  * @Vich\Uploadable
  * @ORM\HasLifecycleCallbacks
+ * @deprecated 
  */
 class UploadedImage
 {

@@ -12,8 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class FilterTag
 {
-    use LanguageFieldTrait;
-    use UserControlFieldsTrait;
+    use ActiveFieldTrait, PriorityFieldTrait;
 
     /**
      * @ORM\Id()
@@ -33,11 +32,6 @@ class FilterTag
     private $interests;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\FilterTag")
-     */
-    private $translation_from;
-
-    /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Activity", mappedBy="filterTags")
      */
     private $activities;
@@ -52,7 +46,6 @@ class FilterTag
     {
         $this->interests = new ArrayCollection();
         $this->activities = new ArrayCollection();
-        $this->language = 'de';
     }
 
     public function getId(): ?int

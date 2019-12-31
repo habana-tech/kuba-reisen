@@ -18,7 +18,7 @@ class Activity implements MachineNameInterface
     public const LENGTH_OF_DESCRIPTION = 75;
 
     use UserControlFieldsTrait, ImageFieldTrait, ActiveFieldTrait, GalleryTrait;
-    use FilterTagsTrait;
+    use FilterTagsTrait, PriorityFieldTrait;
 
     /**
      * @ORM\Id()
@@ -48,11 +48,6 @@ class Activity implements MachineNameInterface
      * @ORM\Column(type="text")
      */
     private $description;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $priority;
 
     /**
      * @ORM\Column(type="float", nullable=true)
@@ -219,18 +214,6 @@ class Activity implements MachineNameInterface
     public function setFeaturesImagesCount($featuresImagesCount): void
     {
         $this->featuresImagesCount = $featuresImagesCount;
-    }
-
-    public function getPriority(): ?int
-    {
-        return $this->priority;
-    }
-
-    public function setPriority(?int $priority): self
-    {
-        $this->priority = $priority;
-
-        return $this;
     }
 
     public function getInitPrice(): ?float

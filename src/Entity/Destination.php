@@ -16,7 +16,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 class Destination
 {
     use LanguageFieldTrait, UserControlFieldsTrait, ImageFieldTrait, GalleryTrait, ActiveFieldTrait;
-    use FilterTagsTrait;
+    use FilterTagsTrait, PriorityFieldTrait, ActiveFieldTrait;
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -39,18 +39,12 @@ class Destination
      */
     private $activities;
 
-
-
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\DynamicPage", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=true)
+     * @deprecated
      */
     private $dynamic_page;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $priority;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\DestinationFragment", mappedBy="destination", orphanRemoval=true, cascade={"persist"})
@@ -60,14 +54,8 @@ class Destination
     public function __construct()
     {
         $this->activities = new ArrayCollection();
-
         $this->image = new EmbeddedFile();
-
         $this->filterTags = new ArrayCollection();
-
-        $this->language = 'de';
-
-        $this->featuresCount = 4;
         $this->destinationFragment = new ArrayCollection();
     }
 
@@ -88,7 +76,8 @@ class Destination
         return $this;
     }
 
-    public function getMachineName(){
+    public function getMachineName(): string
+    {
         return urlencode($this->getName());
     }
 
@@ -132,7 +121,6 @@ class Destination
 
     public function __toString()
     {
-       // return $this->name. " (". $this->language . ")";
         return $this->name;
     }
 
@@ -153,27 +141,24 @@ class Destination
     }
 
 
+    /**
+     * @param $name
+     * @return string
+     * @deprecated
+     */
     public function __get($name){
         if (array_key_exists($name, $this->getDynamicPage()->getPageContent()))
             return trim($this->getDynamicPage()->getElement($name));
     }
 
-
+    /**
+     * @param $name
+     * @param $value
+     * @deprecated
+     */
     public function __set($name, $value){
         $this->getDynamicPage()->setElementContent($name, $value);
 
-    }
-
-    public function getPriority(): ?int
-    {
-        return $this->priority;
-    }
-
-    public function setPriority(?int $priority): self
-    {
-        $this->priority = $priority;
-
-        return $this;
     }
 
     /**

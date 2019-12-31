@@ -10,6 +10,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @ORM\Entity(repositoryClass="App\Repository\PostRepository")
  * @Vich\Uploadable
  * @ORM\HasLifecycleCallbacks
+ * @deprecated
  */
 class Post
 {
