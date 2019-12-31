@@ -4,19 +4,15 @@
 namespace App\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Doctrine\ORM\Mapping as ORM;
-use Vich\UploaderBundle\Entity\File as EmbeddedFile;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="fos_user")
- * @Vich\Uploadable
  * @ORM\HasLifecycleCallbacks
  */
 class User extends BaseUser
 {
-    use ImageFieldTrait;
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -50,7 +46,6 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
-        $this->image = new EmbeddedFile();
         // your own logic
     }
 

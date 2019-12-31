@@ -75,6 +75,25 @@ easy_admin:
 
         User:
             class: App\Entity\User
+            form:
+                fields:
+                    - { property: 'username' }
+                    - { property: 'email' }
+                    - { property: 'enabled' }
+
+                    - { property: 'roles', label: 'User roles',  help: 'Select one or more', type: 'choice', type_options: { choices: { 'Admin':'ROLE_ADMIN', 'Editor': 'ROLE_EDITOR', 'User': 'ROLE_USER'}, multiple: true, attr: {'data-widget': 'select2'}}  }
+                    - { property: 'bio' }
+                    - { property: 'telephone' }
+                    - { property: 'sendRequestEmail' }
+            list:
+                fields:
+                    - { property: 'username' }
+                    - { property: 'email' }
+                    - { property: 'enabled' }
+                    - { property: 'lastLogin' }
+#                    - { property: 'roles' }
+
+
 
         Activity:
             class: App\Entity\Activity

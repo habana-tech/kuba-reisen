@@ -103,7 +103,7 @@ class EasyAdminSubscriber implements EventSubscriberInterface
             }
 
         }
-        
+
         $request->request->set($entityName, $sendedData);
         $event['request'] = $request;
     }
