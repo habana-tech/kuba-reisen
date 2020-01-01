@@ -1,9 +1,7 @@
 <?php
-// src/Entity/User.php
 
 namespace App\Entity;
 
-use App\Entity\Fields\ActiveFieldTrait;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -14,7 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class User extends BaseUser
 {
-    use ActiveFieldTrait;
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
