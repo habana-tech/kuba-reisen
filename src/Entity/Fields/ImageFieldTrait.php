@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Fields;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -15,7 +15,8 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 trait ImageFieldTrait
 {
-    public function getImagePath(){
+    public function getImagePath(): string
+    {
         return 'uploads/images/'.$this->getImage();
     }
 
@@ -23,7 +24,8 @@ trait ImageFieldTrait
      * @return string
      * @deprecated Drop This function... use getImagePath or just Image (filename) and Vich mapping to locate the file
      */
-    public function getStaticImagePath(){
+    public function getStaticImagePath(): string
+    {
         return 'static/'.$this->getImagePath();
     }
 
@@ -90,8 +92,9 @@ trait ImageFieldTrait
      * during Doctrine hydration.
      *
      * @param File|UploadedFile $imageFile
+     * @throws \Exception
      */
-    public function setImageFile(?File $imageFile = null)
+    public function setImageFile(?File $imageFile = null): void
     {
         $this->imageFile = $imageFile;
 
@@ -107,7 +110,7 @@ trait ImageFieldTrait
         return $this->imageFile;
     }
 
-    public function setImage($image)
+    public function setImage($image): void
     {
         $this->image = $image;
     }

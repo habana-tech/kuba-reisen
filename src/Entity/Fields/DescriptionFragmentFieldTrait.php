@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Entity;
+namespace App\Entity\Fields;
 
 
 use Doctrine\Common\Collections\ArrayCollection;

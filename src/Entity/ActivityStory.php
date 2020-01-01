@@ -2,6 +2,9 @@
 
 namespace App\Entity;
 
+use App\Entity\Fields\ActiveFieldTrait;
+use App\Entity\Fields\MachineNameInterface;
+use App\Entity\Fields\PriorityFieldTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Entity\File as EmbeddedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;

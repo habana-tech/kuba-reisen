@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Entity\Fields\LanguageFieldTrait;
+use App\Entity\Fields\UserControlFieldsTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;

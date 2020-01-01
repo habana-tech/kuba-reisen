@@ -2,6 +2,16 @@
 
 namespace App\Entity;
 
+use App\Entity\Fields\ActiveFieldTrait;
+use App\Entity\Fields\DescriptionFragmentFieldInterface;
+use App\Entity\Fields\DescriptionFragmentFieldTrait;
+use App\Entity\Fields\FilterTagsTrait;
+use App\Entity\Fields\GalleryFieldInterface;
+use App\Entity\Fields\GalleryTrait;
+use App\Entity\Fields\ImageFieldTrait;
+use App\Entity\Fields\MachineNameInterface;
+use App\Entity\Fields\PriorityFieldTrait;
+use App\Entity\Fields\UserControlFieldsTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;

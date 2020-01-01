@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Fields\ImageFieldTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Entity\File as EmbeddedFile;
 

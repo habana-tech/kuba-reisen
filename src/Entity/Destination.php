@@ -2,6 +2,16 @@
 
 namespace App\Entity;
 
+use App\Entity\Fields\ActiveFieldTrait;
+use App\Entity\Fields\DescriptionFragmentFieldInterface;
+use App\Entity\Fields\DescriptionFragmentFieldTrait;
+use App\Entity\Fields\FilterTagsTrait;
+use App\Entity\Fields\GalleryFieldInterface;
+use App\Entity\Fields\GalleryTrait;
+use App\Entity\Fields\ImageFieldTrait;
+use App\Entity\Fields\LanguageFieldTrait;
+use App\Entity\Fields\PriorityFieldTrait;
+use App\Entity\Fields\UserControlFieldsTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -106,11 +116,20 @@ class Destination implements DescriptionFragmentFieldInterface, GalleryFieldInte
         return $this;
     }
 
+    /**
+     * @return DynamicPage|null
+     * @deprecated
+     */
     public function getDynamicPage(): ?DynamicPage
     {
         return $this->dynamic_page;
     }
 
+    /**
+     * @param DynamicPage $dynamic_page
+     * @return $this
+     * @deprecated
+     */
     public function setDynamicPage(DynamicPage $dynamic_page): self
     {
         $this->dynamic_page = $dynamic_page;
@@ -125,6 +144,7 @@ class Destination implements DescriptionFragmentFieldInterface, GalleryFieldInte
 
     /**
      * @return mixed
+     * @deprecated
      */
     public function getFeaturesCount()
     {
@@ -133,6 +153,7 @@ class Destination implements DescriptionFragmentFieldInterface, GalleryFieldInte
 
     /**
      * @param mixed $featuresCount
+     * @deprecated
      */
     public function setFeaturesCount($featuresCount): void
     {
