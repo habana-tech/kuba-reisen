@@ -23,7 +23,8 @@ easy_admin:
             - { label: 'Users' }
             - { entity: 'User', params: { action: 'new' }, label: 'New User' , icon: 'user-plus'}
             - { entity: 'User',label: 'All Users' , icon: 'users'}
-
+    edit:
+        item_permission: 'ROLE_EDITOR'
 
 
     entities:
@@ -75,6 +76,8 @@ easy_admin:
 
         User:
             class: App\Entity\User
+            edit:
+                item_permision: ['ROLE_ADMIN']
             form:
                 fields:
                     - { property: 'username' }
@@ -121,7 +124,8 @@ easy_admin:
 
                     - { type: 'group', label: 'Activity description', icon: 'bookmark', columns: 8 }
                     - { property: 'description', type: 'fos_ckeditor' }
-                    - { property: 'descriptionFragment', label: '-', help: 'Add many fragments as you need to describe this destination', type: 'collection',  type_options: { entry_type: 'App\Form\DescriptionFragmentType', by_reference: true } }
+                    - { type: 'section', label: 'Features or components for this Activity', icon: 'puzzle-piece', help: 'Describe the Feature components for this Activity' }
+                    - { property: 'descriptionFragment', label: '*', help: 'Add many features fragments as you need to describe this activity', type: 'collection',  type_options: { entry_type: 'App\Form\DescriptionFragmentType', by_reference: true } }
 
 
                     - { type: 'group', label: 'Featured Image', icon: 'image', columns: 4 }

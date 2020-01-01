@@ -16,12 +16,12 @@ class DescriptionFragmentType extends AbstractType
     {
         $builder
             ->add('name', null, [
-                'label'=> 'Title of the fragment',
+                'label'=> 'Title for the Feature component',
                 'attr' => [
                     'required' => true
                 ]])
             ->add('image', ImageUploadType::class, [
-                'label' => 'Image for this fragment',
+                'label' => 'Image for this component',
                 'attr'=>[
                     'class' => 'destination_fragment_image',
 
