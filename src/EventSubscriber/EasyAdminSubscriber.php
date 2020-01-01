@@ -5,6 +5,7 @@ namespace App\EventSubscriber;
 
 use App\Entity\DescriptionFragment;
 use App\Entity\DescriptionFragmentFieldInterface;
+use App\Entity\GalleryFieldInterface;
 use App\Entity\Image;
 use App\Repository\ActivityRepository;
 use App\Repository\DestinationRepository;
@@ -77,23 +78,23 @@ class EasyAdminSubscriber implements EventSubscriberInterface
         $destination = $request->get('destination');
         $activity = $request->get('activity');
 
-
-        [$entityName, $currentRepo, $sendedData] =  $destination ?
-                                                ['destination', $this->destinationRepository, $destination] :
-                                                ['activity', $this->activityRepository, $activity];
+        //Get the related data from Request Object, from destination or activity field, conditional(activity or destination)..
+        [$entityName, $currentRepo, $sentData] =  $destination ?
+                                ['destination', $this->destinationRepository, $destination] :
+                                ['activity', $this->activityRepository, $activity];
 
         if($relatedEntityId)
         {
             $entityObj = $currentRepo->find($relatedEntityId);
-            if($entityObj && is_array($sendedData['descriptionFragment'])) {
-                foreach ($sendedData['descriptionFragment'] as &$item) {
+            if($entityObj && is_array($sentData['descriptionFragment'])) {
+                foreach ($sentData['descriptionFragment'] as &$item) {
                     $item[$entityName] = $entityObj;
                 }
                 unset($item);
             }
         }
 
-        $request->request->set($entityName, $sendedData);
+        $request->request->set($entityName, $sentData);
         $event['request'] = $request;
     }
     public function setUploadedImagesAsGallery(GenericEvent $event): void
@@ -101,9 +102,8 @@ class EasyAdminSubscriber implements EventSubscriberInterface
             $entity = $event->getSubject();
 
             //Add entities contains gallery
-            if (!($entity instanceof Activity
-                OR $entity instanceof Destination
-                OR $entity instanceof DescriptionFragment
+            if (!($entity instanceof GalleryFieldInterface
+                || $entity instanceof DescriptionFragment
             ))
             {
                 return;

@@ -13,7 +13,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @Vich\Uploadable
  * @ORM\HasLifecycleCallbacks
  */
-class Activity implements MachineNameInterface, DescriptionFragmentFieldInterface
+class Activity implements MachineNameInterface, DescriptionFragmentFieldInterface, GalleryFieldInterface
 {
     public const LENGTH_OF_DESCRIPTION = 75;
 
