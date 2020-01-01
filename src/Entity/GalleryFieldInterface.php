@@ -26,11 +26,11 @@ interface GalleryFieldInterface
      * @param Image $gallery
      * @return $this
      */
-    public function addGallery(Image $gallery): self;
+    public function addGallery(Image $gallery);
 
     /**
      * @param Image $gallery
      * @return $this
      */
-    public function removeGallery(Image $gallery): self;
+    public function removeGallery(Image $gallery);
 }
