@@ -4,6 +4,7 @@
 namespace App\EventSubscriber;
 
 use App\Entity\DescriptionFragment;
+use App\Entity\DescriptionFragmentFieldInterface;
 use App\Entity\Image;
 use App\Repository\ActivityRepository;
 use App\Repository\DestinationRepository;
@@ -61,26 +62,16 @@ class EasyAdminSubscriber implements EventSubscriberInterface
         $entity = $event->getSubject();
         $request = $event->getArgument('request');
 
+        $TestClass = null;
+        if (is_array($entity) && isset($entity['class'])){
+            $TestClass = $entity['class'];
+            $TestClass =  new $TestClass();
+        }
+        else $TestClass = $entity;
 
-
-        //Si no Es destination o activity
-        if (is_array($entity) && isset($entity['class']) &&
-            ($entity['class'] !== Destination::class)  && ($entity['class'] !== Activity::class)
-        ) {
-                return;
-            }
-        if(is_object($entity) && !(
-            $entity instanceof Destination || $entity instanceof Activity || $entity instanceof DescriptionFragment
-            )) {
-                return;
-            }
-
-//        if($entity instanceof DescriptionFragment)
-//        {
-//            //Just DescriptionFragment
-//        }
-
-//        $request = new \Symfony\Component\HttpFoundation\Request();
+        //If not implements DescriptionFragmentFieldInterface......
+        if(!($TestClass instanceof DescriptionFragmentFieldInterface))
+            return;
 
         $relatedEntityId = $request->query->get('id');
         $destination = $request->get('destination');
@@ -93,15 +84,13 @@ class EasyAdminSubscriber implements EventSubscriberInterface
 
         if($relatedEntityId)
         {
-             $entityObj = $currentRepo->find($relatedEntityId);
-
-            if(is_array($sendedData['descriptionFragment'])) {
+            $entityObj = $currentRepo->find($relatedEntityId);
+            if($entityObj && is_array($sendedData['descriptionFragment'])) {
                 foreach ($sendedData['descriptionFragment'] as &$item) {
                     $item[$entityName] = $entityObj;
                 }
                 unset($item);
             }
-
         }
 
         $request->request->set($entityName, $sendedData);
@@ -124,7 +113,6 @@ class EasyAdminSubscriber implements EventSubscriberInterface
             {
                 $entity->addGallery($image);
             }
-//            dump($entity);
             $event['entity'] = $entity;
 
         }

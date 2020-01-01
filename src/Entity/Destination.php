@@ -13,7 +13,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @Vich\Uploadable
  * @ORM\HasLifecycleCallbacks
  */
-class Destination
+class Destination implements DescriptionFragmentFieldInterface
 {
     use LanguageFieldTrait, UserControlFieldsTrait, ImageFieldTrait, GalleryTrait;
     use FilterTagsTrait, PriorityFieldTrait, ActiveFieldTrait, DescriptionFragmentFieldTrait;
