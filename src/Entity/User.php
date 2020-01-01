@@ -21,11 +21,6 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=300, nullable=true)
-     */
-    private $bio;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $telephone;
@@ -66,18 +61,6 @@ class User extends BaseUser
     }
 
     
-
-    public function getBio(): ?string
-    {
-        return $this->bio;
-    }
-
-    public function setBio(?string $bio): self
-    {
-        $this->bio = $bio;
-
-        return $this;
-    }
 
     public function getTelephone(): ?string
     {
