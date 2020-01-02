@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Entity\Fields\ActiveFieldTrait;
+use App\Entity\Fields\DescriptionFragmentFieldInterface;
+use App\Entity\Fields\DescriptionFragmentFieldTrait;
 use App\Entity\Fields\MachineNameInterface;
 use App\Entity\Fields\MachineNameTrait;
 use App\Entity\Fields\PriorityFieldTrait;
@@ -15,9 +17,9 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @Vich\Uploadable
  * @ORM\HasLifecycleCallbacks
  */
-class ActivityStory implements MachineNameInterface
+class ActivityStory implements MachineNameInterface, DescriptionFragmentFieldInterface
 {
-    use PriorityFieldTrait, ActiveFieldTrait, MachineNameTrait;
+    use PriorityFieldTrait, ActiveFieldTrait, MachineNameTrait, DescriptionFragmentFieldTrait;
 
     /**
      * @ORM\Id()
@@ -45,6 +47,15 @@ class ActivityStory implements MachineNameInterface
      * @ORM\ManyToOne(targetEntity="App\Entity\Image", cascade={"persist", "remove"})
      */
     private $image;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="DescriptionFragment", cascade={"persist", "remove"})
+     * @ORM\JoinTable(name="activity_story_fragments",
+     *      joinColumns={@ORM\JoinColumn(name="activity_story_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="fragment_id", referencedColumnName="id", unique=true)}
+     *     )
+     */
+    private $descriptionFragment;
 
     public function getId(): ?int
     {

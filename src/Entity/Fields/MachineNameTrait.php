@@ -30,11 +30,11 @@ trait MachineNameTrait
     }
 
     /**
-     * @return string
+     * @return void
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
      */
-    public function generateMachineName(): string
+    public function generateMachineName(): void
     {
         $this->setMachineName(urlencode($this->getNameFieldValue()));
     }

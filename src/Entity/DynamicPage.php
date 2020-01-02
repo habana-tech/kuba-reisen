@@ -29,6 +29,15 @@ class DynamicPage implements MachineNameInterface, GalleryFieldInterface, Descri
     private $id;
 
     /**
+     * @ORM\manyToMany(targetEntity="DescriptionFragment", cascade={"persist", "remove"})
+     * @ORM\JoinTable(name="page_fragments",
+     *      joinColumns={@ORM\JoinColumn(name="page_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="fragment_id", referencedColumnName="id", unique=true)}
+     *     )
+     */
+    private $descriptionFragment;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private $pageName;

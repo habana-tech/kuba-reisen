@@ -112,7 +112,11 @@ class Activity implements MachineNameInterface, DescriptionFragmentFieldInterfac
     private $contentCostAndDatesContent;
 
     /**
-     * @ORM\OneToMany(targetEntity="DescriptionFragment", mappedBy="activity", orphanRemoval=false, cascade={"persist", "remove"})
+     * @ORM\ManyToMany(targetEntity="DescriptionFragment", cascade={"persist", "remove"})
+     * @ORM\JoinTable(name="activity_fragments",
+     *      joinColumns={@ORM\JoinColumn(name="activity_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="fragment_id", referencedColumnName="id", unique=true)}
+     *     )
      */
     private $descriptionFragment;
 

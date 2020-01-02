@@ -57,7 +57,11 @@ class Destination implements DescriptionFragmentFieldInterface, GalleryFieldInte
     private $dynamic_page;
 
     /**
-     * @ORM\OneToMany(targetEntity="DescriptionFragment", mappedBy="destination", orphanRemoval=false, cascade={"persist", "remove"})
+     * @ORM\ManyToMany(targetEntity="DescriptionFragment", cascade={"persist", "remove"})
+     * @ORM\JoinTable(name="destination_fragments",
+     *      joinColumns={@ORM\JoinColumn(name="destination_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="fragment_id", referencedColumnName="id", unique=true)}
+     *     )
      */
     private $descriptionFragment;
 
@@ -177,7 +181,7 @@ class Destination implements DescriptionFragmentFieldInterface, GalleryFieldInte
     }
 
 
-    public function getNameFieldValue(): string 
+    public function getNameFieldValue(): string
     {
         return $this->name;
     }

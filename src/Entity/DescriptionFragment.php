@@ -53,17 +53,6 @@ class DescriptionFragment
      */
     private $content;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Destination", inversedBy="descriptionFragment")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $destination;
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Activity", inversedBy="descriptionFragment")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $activity;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -105,34 +94,9 @@ class DescriptionFragment
         return $this;
     }
 
-    public function getDestination(): ?Destination
+    public function __toString()
     {
-        return $this->destination;
-    }
-
-    public function setDestination(?Destination $destination): self
-    {
-        $this->destination = $destination;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getActivity()
-    {
-        return $this->activity;
-    }
-
-    /**
-     * @param mixed $activity
-     * @return DescriptionFragment
-     */
-    public function setActivity($activity): DescriptionFragment
-    {
-        $this->activity = $activity;
-        return $this;
+        return $this->name;
     }
 
 

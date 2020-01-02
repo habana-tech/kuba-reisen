@@ -45,16 +45,16 @@ class EasyAdminSubscriber implements EventSubscriberInterface
 //                'easy_admin.post_new' => array('setUploadedImagesAsGallery'),
                 'easy_admin.pre_persist' => [
                     'setUploadedImagesAsGallery',
-                    'setUploadedImagesInDestinationsAndActivities'
+//                    'setUploadedImagesInDestinationsAndActivities'
                     ],
                 'easy_admin.pre_update' => [
                     'setUploadedImagesAsGallery',
-                    'setUploadedImagesInDestinationsAndActivities'
+//                    'setUploadedImagesInDestinationsAndActivities'
                     ],
-
-                'easy_admin.post_initialize' => [
-                    'setUploadedImagesInDestinationsAndActivities'
-                    ],
+//
+//                'easy_admin.post_initialize' => [
+//                    'setUploadedImagesInDestinationsAndActivities'
+//                    ],
             );
     }
 
@@ -74,28 +74,28 @@ class EasyAdminSubscriber implements EventSubscriberInterface
         if(!($TestClass instanceof DescriptionFragmentFieldInterface))
             return;
 
-        $relatedEntityId = $request->query->get('id');
-        $destination = $request->get('destination');
-        $activity = $request->get('activity');
+//        $relatedEntityId = $request->query->get('id');
+//        $destination = $request->get('destination');
+//        $activity = $request->get('activity');
 
         //Get the related data from Request Object, from destination or activity field, conditional(activity or destination)..
-        [$entityName, $currentRepo, $sentData] =  $destination ?
-                                ['destination', $this->destinationRepository, $destination] :
-                                ['activity', $this->activityRepository, $activity];
+//        [$entityName, $currentRepo, $sentData] =  $destination ?
+//                                ['destination', $this->destinationRepository, $destination] :
+//                                ['activity', $this->activityRepository, $activity];
+//
+//        if($relatedEntityId)
+//        {
+//            $entityObj = $currentRepo->find($relatedEntityId);
+//            if($entityObj && is_array($sentData['descriptionFragment'])) {
+//                foreach ($sentData['descriptionFragment'] as &$item) {
+//                    $item[$entityName] = $entityObj;
+//                }
+//                unset($item);
+//            }
+//        }
 
-        if($relatedEntityId)
-        {
-            $entityObj = $currentRepo->find($relatedEntityId);
-            if($entityObj && is_array($sentData['descriptionFragment'])) {
-                foreach ($sentData['descriptionFragment'] as &$item) {
-                    $item[$entityName] = $entityObj;
-                }
-                unset($item);
-            }
-        }
-
-        $request->request->set($entityName, $sentData);
-        $event['request'] = $request;
+//        $request->request->set($entityName, $sentData);
+//        $event['request'] = $request;
     }
     public function setUploadedImagesAsGallery(GenericEvent $event): void
     {

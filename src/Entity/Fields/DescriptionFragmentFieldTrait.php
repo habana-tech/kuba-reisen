@@ -4,14 +4,20 @@
 namespace App\Entity\Fields;
 
 
+use App\Entity\DescriptionFragment;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
 
 trait DescriptionFragmentFieldTrait
 {
+    //sustituir 'entity_id' por el nombre de currentEntity
     /**
-     * --ORM\OneToMany(targetEntity="DescriptionFragment", mappedBy="destination", orphanRemoval=false, cascade={"persist", "remove"})
-     * --ORM\OneToMany(targetEntity="DescriptionFragment", mappedBy="activity", orphanRemoval=false, cascade={"persist", "remove"})
+     * @ORM\manyToMany(targetEntity="DescriptionFragment", cascade={"persist", "remove"})
+     * @ORM\JoinTable(name="entity_fragments",
+     *      joinColumns={@ORM\JoinColumn(name="entity_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="fragment_id", referencedColumnName="id", unique=true)}
+     *     )
      */
     private $descriptionFragment;
 

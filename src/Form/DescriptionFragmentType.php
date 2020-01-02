@@ -27,8 +27,6 @@ class DescriptionFragmentType extends AbstractType
 
             ]])
             ->add('content', CKEditorType::class)
-            ->add('destination', HiddenType::class)
-            ->add('activity', HiddenType::class)
         ;
     }
 
