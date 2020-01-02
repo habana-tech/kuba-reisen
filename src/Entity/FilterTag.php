@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Entity\Fields\ActiveFieldTrait;
+use App\Entity\Fields\MachineNameInterface;
+use App\Entity\Fields\MachineNameTrait;
 use App\Entity\Fields\PriorityFieldTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -12,9 +14,9 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="App\Repository\FilterTagRepository")
  * @ORM\HasLifecycleCallbacks
  */
-class FilterTag
+class FilterTag implements MachineNameInterface
 {
-    use ActiveFieldTrait, PriorityFieldTrait;
+    use ActiveFieldTrait, PriorityFieldTrait, MachineNameTrait;
 
     /**
      * @ORM\Id()
@@ -140,4 +142,8 @@ class FilterTag
     }
 
 
+    public function getNameFieldValue(): string
+    {
+        return $this->title;
+    }
 }

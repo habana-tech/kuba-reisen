@@ -14,7 +14,7 @@ easy_admin:
 
 
             - { label: 'Management' }
-            - { label: 'Pages', route: 'backend_dynamic_page_index', icon: 'file-alt' }
+            - { entity: 'Page', label: 'Pages', icon: 'file-alt' }
             - { label: 'Menus', route: 'backend_dynamic_page_index', icon: 'bars' }
             - { label: 'Browse Images', route: 'ckfinder_fullpage', icon: 'images'}
             - { entity: 'Image', label: 'Manage Images', icon: 'images'}
@@ -51,28 +51,22 @@ easy_admin:
                     - { property: 'active', label: 'The Interest is Active' }
                     - { property: 'priority' , label: 'Priority on results' }
 
-#
-#        DynamicPage:
-#            class: App\Entity\DynamicPage
-#            list:
-#                fields:
-#                    - { property: 'id' }
-#                    - { property: 'pageName' }
-#                    - { property: 'pageTitle' }
-#                    - { property: 'language' }
-#                    - { property: 'pageTemplate' }
-#                    - { property: 'modified_by' }
-#            form:
-#                fields:
-#                    - { type: 'group', label: 'Page Info', icon: 'comments', columns: 8 }
-#                    - { property: 'pageName' }
-#                    - { property: 'pageTitle' }
-#
-#                    - { type: 'group', label: 'Language and Translation', icon: 'globe', columns: 4 }
-#                    - { property: 'language', type: 'choice', type_options: {choices: {en: 'en', de: 'de',es: 'es'}} }
-#                    - { property: 'translation_from', type: 'entity', class: 'App\Entity\DynamicPage' }
-#
-#                    - { property: 'pageTemplate' }
+
+        Page:
+            class: App\Entity\DynamicPage
+            list:
+                fields:
+                    - { property: 'id' }
+                    - { property: 'pageName' }
+                    - { property: 'pageTitle' }
+                    - { property: 'pageTemplate' }
+            form:
+                fields:
+                    - { type: 'group', label: 'Page Info', icon: 'comments', columns: 8 }
+                    - { property: 'pageName' }
+                    - { property: 'pageTitle' }
+
+                    - { property: 'pageTemplate' }
 
         User:
             class: App\Entity\User
@@ -94,8 +88,6 @@ easy_admin:
                     - { property: 'enabled' }
                     - { property: 'lastLogin' }
 #                    - { property: 'roles' }
-
-
 
         Activity:
             class: App\Entity\Activity
@@ -197,7 +189,6 @@ easy_admin:
                     - { type: 'section', label: 'Images linked to this activity', icon: 'images', help: 'You can upload new images from here' }
                     - { property: 'gallery', label: '-', type: 'collection',  type_options: { entry_type: 'App\Form\ImageUploadType', by_reference: true } }
 
-
         Story:
             class: App\Entity\ActivityStory
             list:
@@ -220,8 +211,6 @@ easy_admin:
                     - { property: 'priority' , label: 'Priority on results' }
                     - { type: 'section', label: 'Featured Image', icon: 'image' }
                     - { property: 'image', label: 'Featured Image', type: 'App\Form\ImageUploadType' }
-
-
 
         Image:
             class: App\Entity\Image

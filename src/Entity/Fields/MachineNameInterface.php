@@ -8,5 +8,12 @@ namespace App\Entity\Fields;
  */
 interface MachineNameInterface
 {
-    public function getMachineName();
+    public function setMachineName($machineName);
+
+    public function getMachineName(): string;
+
+    public function generateMachineName();
+
+    public function getNameFieldValue(): string;
+
 }

@@ -2,8 +2,12 @@
 
 namespace App\Entity;
 
-use App\Entity\Fields\LanguageFieldTrait;
-use App\Entity\Fields\UserControlFieldsTrait;
+use App\Entity\Fields\DescriptionFragmentFieldInterface;
+use App\Entity\Fields\DescriptionFragmentFieldTrait;
+use App\Entity\Fields\GalleryFieldInterface;
+use App\Entity\Fields\GalleryTrait;
+use App\Entity\Fields\MachineNameInterface;
+use App\Entity\Fields\MachineNameTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -11,13 +15,11 @@ use App\DataConverter\ImageBase64ThumbCreator;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\DynamicPageRepository")
- * @ORM\HasLifecycleCallbacks
- * @deprecated TODO: To be deleted
+ * @ORM\HasLifecycleCallbacks()
  */
-class DynamicPage
+class DynamicPage implements MachineNameInterface, GalleryFieldInterface, DescriptionFragmentFieldInterface
 {
-    use LanguageFieldTrait;
-    use UserControlFieldsTrait;
+    use MachineNameTrait, GalleryTrait, DescriptionFragmentFieldTrait;
 
     /**
      * @ORM\Id()
@@ -56,7 +58,6 @@ class DynamicPage
     {
         $this->pageTemplate = $pageTemplate;
         $this->uploadedImages = new ArrayCollection();
-        $this->language = 'de';
     }
 
     public function getId(): ?int
@@ -89,6 +90,10 @@ class DynamicPage
         return $this;
     }
 
+    /**
+     * @return false|string
+     * @deprecated
+     */
     public function getJsonContent(){
         return json_encode($this->pageContent);
     }
@@ -109,9 +114,12 @@ class DynamicPage
         $this->pageTemplate = $pageTemplate;
     }
 
-
-
-
+    /**
+     * @param $grape_id
+     * @param string $format
+     * @return |null
+     * @deprecated
+     */
     public function getElement($grape_id, $format = 'txt')
     {
         if(!isset($this->pageContent[$grape_id][$format])) {
@@ -119,6 +127,13 @@ class DynamicPage
         }
         return $this->pageContent[$grape_id][$format] ?? null;
     }
+
+    /**
+     * @param $grape_id
+     * @param $value
+     * @param string $format
+     * @deprecated
+     */
     public function setElementContent($grape_id, $value, $format = 'html'):void
     {
         if(!isset($this->pageContent[$grape_id][$format])) {
@@ -130,6 +145,12 @@ class DynamicPage
         }
     }
 
+    /**
+     * @param $grape_id
+     * @param null $default
+     * @return |null
+     * @deprecated
+     */
     public function getElementContent($grape_id, $default = null)
     {
         if(($res = $this->getElement($grape_id)) && $res !== '') {
@@ -147,6 +168,13 @@ class DynamicPage
         return print_r($this->getPageContent(), false);
     }
 
+    /**
+     * @param $grape_id
+     * @param $attr
+     * @param null $default
+     * @return mixed|string|null
+     * @deprecated
+     */
     public function getElementAttr($grape_id, $attr, $default = null)
     {
 
@@ -165,19 +193,28 @@ class DynamicPage
         return $data;
     }
 
-    public function __toString()
+    /**
+     * @return string
+     */
+    public function __toString(): string
     {
-        return $this->pageName."(".$this->language.")";
+        return $this->pageName;
     }
 
     /**
      * @return Collection|UploadedImage[]
+     * @deprecated
      */
     public function getUploadedImages(): Collection
     {
         return $this->uploadedImages;
     }
 
+    /**
+     * @param UploadedImage $uploadedImage
+     * @return $this
+     * @deprecated
+     */
     public function addUploadedImage(UploadedImage $uploadedImage): self
     {
         if (!$this->uploadedImages->contains($uploadedImage)) {
@@ -188,6 +225,11 @@ class DynamicPage
         return $this;
     }
 
+    /**
+     * @param UploadedImage $uploadedImage
+     * @return $this
+     * @deprecated
+     */
     public function removeUploadedImage(UploadedImage $uploadedImage): self
     {
         if ($this->uploadedImages->contains($uploadedImage)) {
@@ -201,23 +243,42 @@ class DynamicPage
         return $this;
     }
 
+    /**
+     * @param $name
+     * @return mixed
+     * @deprecated
+     */
     public function getHtmlTextElement($name){
         return $this->getPageContent()[$name];
     }
 
 
+    /**
+     * @param $name
+     * @return string
+     * @deprecated
+     */
      public function __get($name){
         if (array_key_exists($name, $this->getPageContent()))
             return trim($this->getElement($name));
     }
 
 
+    /**
+     * @param $name
+     * @param $value
+     * @deprecated
+     */
     public function __set($name, $value){
         if (array_key_exists($name, $this->getPageContent()))
             $this->setElementContent($name, $value);
 
     }
 
+    /**
+     * @return ArrayCollection
+     * @deprecated
+     */
     public function usedImageList(){
         $list = new ArrayCollection();
         foreach ($this->pageContent as $item){
@@ -225,5 +286,11 @@ class DynamicPage
                 $list->add(basename($item['src']));
         }
         return $list;
+    }
+
+
+    public function getNameFieldValue(): string
+    {
+        return $this->pageName;
     }
 }

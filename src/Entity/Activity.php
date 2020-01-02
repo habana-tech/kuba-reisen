@@ -10,8 +10,8 @@ use App\Entity\Fields\GalleryFieldInterface;
 use App\Entity\Fields\GalleryTrait;
 use App\Entity\Fields\ImageFieldTrait;
 use App\Entity\Fields\MachineNameInterface;
+use App\Entity\Fields\MachineNameTrait;
 use App\Entity\Fields\PriorityFieldTrait;
-use App\Entity\Fields\UserControlFieldsTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -27,8 +27,8 @@ class Activity implements MachineNameInterface, DescriptionFragmentFieldInterfac
 {
     public const LENGTH_OF_DESCRIPTION = 75;
 
-    use UserControlFieldsTrait, ImageFieldTrait, ActiveFieldTrait, GalleryTrait;
-    use FilterTagsTrait, PriorityFieldTrait, DescriptionFragmentFieldTrait;
+    use ImageFieldTrait, ActiveFieldTrait, GalleryTrait;
+    use FilterTagsTrait, PriorityFieldTrait, DescriptionFragmentFieldTrait, MachineNameTrait;
 
     /**
      * @ORM\Id()
@@ -164,9 +164,6 @@ class Activity implements MachineNameInterface, DescriptionFragmentFieldInterfac
         return $this;
     }
 
-    public function getMachineName(){
-        return urlencode($this->name);
-    }
     /**
      * @return Collection|Destination[]
      */
@@ -336,4 +333,8 @@ class Activity implements MachineNameInterface, DescriptionFragmentFieldInterfac
         return $this;
     }
 
+    public function getNameFieldValue(): string
+    {
+        return $this->name;
+    }
 }

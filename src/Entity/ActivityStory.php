@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Entity\Fields\ActiveFieldTrait;
 use App\Entity\Fields\MachineNameInterface;
+use App\Entity\Fields\MachineNameTrait;
 use App\Entity\Fields\PriorityFieldTrait;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Entity\File as EmbeddedFile;
@@ -16,7 +17,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class ActivityStory implements MachineNameInterface
 {
-    use PriorityFieldTrait, ActiveFieldTrait;
+    use PriorityFieldTrait, ActiveFieldTrait, MachineNameTrait;
 
     /**
      * @ORM\Id()
@@ -87,11 +88,6 @@ class ActivityStory implements MachineNameInterface
         return $this;
     }
 
-    
-    public function getMachineName(){
-        return urlencode($this->title);
-    }
-
     /**
      * @return mixed
      */
@@ -109,4 +105,8 @@ class ActivityStory implements MachineNameInterface
     }
 
 
+    public function getNameFieldValue(): string
+    {
+        return $this->title;
+    }
 }
