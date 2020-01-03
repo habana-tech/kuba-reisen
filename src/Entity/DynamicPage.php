@@ -115,7 +115,7 @@ class DynamicPage implements MachineNameInterface, GalleryFieldInterface, Descri
     /**
      * @return mixed
      */
-    public function getPageTemplate()
+    public function getPageTemplate(): PageTemplate
     {
         if($this->pageTemplate instanceof PageTemplate) {
             return $this->pageTemplate;
@@ -128,7 +128,7 @@ class DynamicPage implements MachineNameInterface, GalleryFieldInterface, Descri
                 return $template;
             }
         }
-        return null;
+        return new PageTemplate();
     }
 
     /**

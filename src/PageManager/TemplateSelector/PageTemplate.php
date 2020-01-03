@@ -27,17 +27,17 @@ class PageTemplate
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getPath()
+    public function getPath(): ?string
     {
         return $this->path;
     }
@@ -45,7 +45,7 @@ class PageTemplate
     /**
      * @return null
      */
-    public function getDescription()
+    public function getDescription(): ?string
     {
         return $this->description;
     }
