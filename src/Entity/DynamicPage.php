@@ -8,6 +8,8 @@ use App\Entity\Fields\GalleryFieldInterface;
 use App\Entity\Fields\GalleryTrait;
 use App\Entity\Fields\MachineNameInterface;
 use App\Entity\Fields\MachineNameTrait;
+use App\PageManager\TemplateSelector\PageTemplate;
+use App\PageManager\TemplateSelector\PageTemplateSelector;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -113,15 +115,26 @@ class DynamicPage implements MachineNameInterface, GalleryFieldInterface, Descri
     /**
      * @return mixed
      */
-    public function getPageTemplate()
+    public function getPageTemplate(): PageTemplate
     {
-        return $this->pageTemplate;
+        if($this->pageTemplate instanceof PageTemplate) {
+            return $this->pageTemplate;
+        }
+
+        $templates = PageTemplateSelector::getTemplates();
+        foreach ($templates as $template)
+        {
+            if($template->getPath() === $this->pageTemplate) {
+                return $template;
+            }
+        }
+        return new PageTemplate();
     }
 
     /**
      * @param mixed $pageTemplate
      */
-    public function setPageTemplate($pageTemplate): void
+    public function setPageTemplate( PageTemplate $pageTemplate): void
     {
         $this->pageTemplate = $pageTemplate;
     }

@@ -9,7 +9,11 @@ use App\Repository\DynamicPageRepository;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 
-
+/**
+ * Class DynamicPageManager
+ * @package App\PageManager
+ * @deprecated
+ */
 class DynamicPageManager
 {
     private $entitymanager;

@@ -58,13 +58,13 @@ easy_admin:
                 fields:
                     - { property: 'id' }
                     - { property: 'pageName' }
-                    - { property: 'pageTemplate' }
+                    - { property: 'pageTemplate.name'}
             form:
                 fields:
                     - { type: 'group', label: 'Page Info', icon: 'comments', columns: 8 }
                     - { property: 'pageName' }
 
-                    - { property: 'pageTemplate' }
+                    - { property: 'pageTemplate', type: 'App\Form\PageTemplateType' }
 
         User:
             class: App\Entity\User
