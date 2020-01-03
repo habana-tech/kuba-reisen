@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Entity\Fields\ActiveFieldTrait;
 use App\Entity\Fields\DescriptionFragmentFieldInterface;
 use App\Entity\Fields\DescriptionFragmentFieldTrait;
+use App\Entity\Fields\DynamicPagePlaceholderTrait;
 use App\Entity\Fields\FilterTagsTrait;
 use App\Entity\Fields\GalleryFieldInterface;
 use App\Entity\Fields\GalleryTrait;
@@ -29,6 +30,10 @@ class Activity implements MachineNameInterface, DescriptionFragmentFieldInterfac
 
     use ImageFieldTrait, ActiveFieldTrait, GalleryTrait;
     use FilterTagsTrait, PriorityFieldTrait, DescriptionFragmentFieldTrait, MachineNameTrait;
+    /**
+     * @deprecated
+     */
+    use DynamicPagePlaceholderTrait;
 
     /**
      * @ORM\Id()
@@ -341,4 +346,5 @@ class Activity implements MachineNameInterface, DescriptionFragmentFieldInterfac
     {
         return $this->name;
     }
+
 }

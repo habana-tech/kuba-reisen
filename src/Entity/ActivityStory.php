@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Entity\Fields\ActiveFieldTrait;
 use App\Entity\Fields\DescriptionFragmentFieldInterface;
 use App\Entity\Fields\DescriptionFragmentFieldTrait;
+use App\Entity\Fields\DynamicPagePlaceholderTrait;
 use App\Entity\Fields\MachineNameInterface;
 use App\Entity\Fields\MachineNameTrait;
 use App\Entity\Fields\PriorityFieldTrait;
@@ -20,6 +21,11 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 class ActivityStory implements MachineNameInterface, DescriptionFragmentFieldInterface
 {
     use PriorityFieldTrait, ActiveFieldTrait, MachineNameTrait, DescriptionFragmentFieldTrait;
+
+    /**
+     * @deprecated
+     */
+    use DynamicPagePlaceholderTrait;
 
     /**
      * @ORM\Id()

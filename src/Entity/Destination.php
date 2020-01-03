@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Entity\Fields\ActiveFieldTrait;
 use App\Entity\Fields\DescriptionFragmentFieldInterface;
 use App\Entity\Fields\DescriptionFragmentFieldTrait;
+use App\Entity\Fields\DynamicPagePlaceholderTrait;
 use App\Entity\Fields\FilterTagsTrait;
 use App\Entity\Fields\GalleryFieldInterface;
 use App\Entity\Fields\GalleryTrait;
@@ -27,6 +28,12 @@ class Destination implements DescriptionFragmentFieldInterface, GalleryFieldInte
 {
     use ImageFieldTrait, GalleryTrait, MachineNameTrait;
     use FilterTagsTrait, PriorityFieldTrait, ActiveFieldTrait, DescriptionFragmentFieldTrait;
+
+    /**
+     * @deprecated
+     */
+    use DynamicPagePlaceholderTrait;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
