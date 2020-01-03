@@ -58,13 +58,11 @@ easy_admin:
                 fields:
                     - { property: 'id' }
                     - { property: 'pageName' }
-                    - { property: 'pageTitle' }
                     - { property: 'pageTemplate' }
             form:
                 fields:
                     - { type: 'group', label: 'Page Info', icon: 'comments', columns: 8 }
                     - { property: 'pageName' }
-                    - { property: 'pageTitle' }
 
                     - { property: 'pageTemplate' }
 

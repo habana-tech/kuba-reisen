@@ -76,6 +76,9 @@ class DynamicPage implements MachineNameInterface, GalleryFieldInterface, Descri
 
     public function getPageName(): ?string
     {
+        if(($decode = urldecode($this->pageName))!== $this->pageName) {
+            return $decode;
+        }
         return $this->pageName;
     }
 
