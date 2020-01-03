@@ -26,16 +26,17 @@ trait MachineNameTrait
 
     public function getMachineName(): string
     {
-        return $this->machineName;
+        return  $this->machineName ?: $this->generateMachineName();
     }
 
     /**
-     * @return void
+     * @return string
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
      */
-    public function generateMachineName(): void
+    public function generateMachineName()
     {
         $this->setMachineName(urlencode($this->getNameFieldValue()));
+        return $this->machineName;
     }
 }

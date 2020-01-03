@@ -20,8 +20,7 @@ class RegionsController extends AbstractController
     public function regionTopDestinations(DynamicPageManager $pm)
     {
         $pageinfo = [
-            'pageName'=>'_top_destinations',
-            'language'=>'de'
+            'pageName'=>'_top_destinations'
         ];
 
 
@@ -53,8 +52,7 @@ class RegionsController extends AbstractController
                                         FilterTagRepository $filterTagRepository)
     {
         $pageinfo = [
-            'pageName'=>'_travel_options',
-            'language'=>'de'
+            'pageName'=>'_travel_options'
         ];
 
         $page = $pm->findByOrCreateIfDoesNotExist($pageinfo, 'components/global/_travel_options.html.twig');
@@ -63,7 +61,7 @@ class RegionsController extends AbstractController
 
         return $this->render('frontend/components/global/_travel_options.html.twig', [
             'page' => $page,
-            'filterTags'=>$filterTagRepository->findByPinned('de'),
+            'filterTags'=>$filterTagRepository->findByPinned(),
         ]);
     }
 
@@ -72,8 +70,7 @@ class RegionsController extends AbstractController
                                 DestinationRepository $destinationRepository)
     {
         $pageinfo = [
-            'pageName'=>'_footer',
-            'language'=>'de'
+            'pageName'=>'_footer'
         ];
 
         $page = $pm->findByOrCreateIfDoesNotExist($pageinfo, 'components/global/_footer.html.twig');
@@ -82,8 +79,8 @@ class RegionsController extends AbstractController
 
         return $this->render('frontend/components/global/_footer.html.twig', [
             'page' => $page,
-            'destinations'=>$destinationRepository->findByLang('de'),
-            'filterTags'=>$filterTagRepository->findByPinned('de'),
+            'destinations'=>$destinationRepository->findAll(),
+            'filterTags'=>$filterTagRepository->findByPinned(),
         ]);
     }
 
@@ -91,8 +88,8 @@ class RegionsController extends AbstractController
                                 FilterTagRepository $filterTagRepository)
     {
         return $this->render('frontend/components/global/_header.html.twig', [
-            'destinations'=>$destinationRepository->findByLang('de'),
-            'filterTags'=>$filterTagRepository->findByPinned('de'),
+            'destinations'=>$destinationRepository->findAll(),
+            'filterTags'=>$filterTagRepository->findByPinned(),
         ]);
     }
 }

@@ -26,7 +26,7 @@
             <div class="header__nav__menu__column">
 
                 <div class="header__nav__menu__column__title">
-                    <a href="{{ path('exploring') }}">
+                    <a href="{{ path('pageLoad', {'pageName' : 'exploring' }) }}">
                         <h3>Kuba erkunden</h3>
                     </a>
                 </div>
@@ -50,7 +50,7 @@
             <div class="header__nav__menu__column">
 
                 <div class="header__nav__menu__column__title">
-                    <a href="{{ path('tours') }}">
+                    <a href="{{ path('pageLoad', {'pageName' : 'tours' }) }}">
                         <h3>Kuba bereisen </h3>
                     </a>
                 </div>
@@ -75,17 +75,17 @@
             <div class="header__nav__menu__column">
 
                 <div class="header__nav__menu__column__title">
-                    <a href="{{ path('excursions') }}">
+                    <a href="{{ path('pageLoad', {'pageName' : 'excursions' }) }}">
                         <h3>Kuba Ausflüge</h3>
                     </a>
                 </div>
 
                 <ul class="header__nav__menu__column__list">
                     <li class="header__nav__menu__column__list__link">
-                        <a href="{{ path('activities') }}">Activities</a> <span>New!</span>
+                        <a href="{{ path('pageLoad', {'pageName' : 'activities'}) }}">Activities</a> <span>New!</span>
                     </li>
                     <li class="header__nav__menu__column__list__link">
-                        <a href="{{ path('bucket_list') }}">Our bucket list</a>
+                        <a href="{{ path('pageLoad', {'pageName' : 'bucket_list'}) }}">Our bucket list</a>
                     </li>
                 </ul>
             </div>
@@ -98,16 +98,16 @@
 
                 <ul class="header__nav__menu__column__list">
                     <li class="header__nav__menu__column__list__link">
-                        <a href="{{ path('faq') }}">Reise FAQ für kuba</a>
+                        <a href="{{ path('pageLoad', {'pageName' : 'faq'}) }}">Reise FAQ für kuba</a>
                     </li>
                     <li class="header__nav__menu__column__list__link">
-                        <a href="{{ path('good_to_know') }}">Gut zu wissen</a>
+                        <a href="{{ path('pageLoad', {'pageName' : 'good_to_know'}) }}">Gut zu wissen</a>
                     </li>
                     <li class="header__nav__menu__column__list__link">
-                        <a href="{{ path('travel_info') }}">Landesinformationen</a>
+                        <a href="{{ path('pageLoad', {'pageName' : 'travel_info'}) }}">Landesinformationen</a>
                     </li>
                     <li class="header__nav__menu__column__list__link">
-                        <a href="{{ path('about_us') }}">Über uns</a>
+                        <a href="{{ path('pageLoad', {'pageName' : 'about_us'}) }}">Über uns</a>
                     </li>
                     <li class="header__nav__menu__column__list__link">
                         <a href="{{ path('contact') }}">Kontaktieren</a>

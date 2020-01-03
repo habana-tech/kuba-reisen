@@ -35,7 +35,7 @@
 
             <div class="footer__content__links__column">
                 <div class="footer__content__links__column__title">
-                    <a href="{{ path('exploring') }}">
+                    <a href="{{ path('pageLoad', {'pageName' : 'exploring'}) }}">
                         <h3>Kuba erkunden</h3>
                     </a>
                 </div>
@@ -55,7 +55,7 @@
 
             <div class="footer__content__links__column">
                 <div class="footer__content__links__column__title">
-                    <a href="{{ path('tours') }}">
+                    <a href="{{ path('pageLoad', {'pageName' : 'tours'}) }}">
                         <h3>Kuba bereisen</h3>
                     </a>
                 </div>
@@ -77,13 +77,13 @@
 
             <div class="footer__content__links__column">
                 <div class="footer__content__links__column__title">
-                    <a href="{{ path('excursions') }}">
+                    <a href="{{ path('pageLoad', {'pageName' : 'excursions'}) }}">
                         <h3>Kuba Ausflüge</h3>
                     </a>
                 </div>
                 <ul>
                     <li>
-                        <a href="{{ path('bucket_list') }}">Our Bucket List</a>
+                        <a href="{{ path('pageLoad', {'pageName' : 'bucket_list'}) }}">Our Bucket List</a>
                     </li>
                     <li>
                         <a href="">Excursion Havanna</a>
@@ -103,16 +103,16 @@
 
                 <ul>
                     <li>
-                        <a href="{{ path('faq') }}">Reise FAQ für kuba</a>
+                        <a href="{{ path('pageLoad', {'pageName' : 'faq'}) }}">Reise FAQ für kuba</a>
                     </li>
                     <li>
-                        <a href="{{ path('good_to_know') }}">Gut zu wissen</a>
+                        <a href="{{ path('pageLoad', {'pageName' : 'good_to_know'}) }}">Gut zu wissen</a>
                     </li>
                     <li>
-                        <a href="{{ path('travel_info') }}">Landesinformationen</a>
+                        <a href="{{ path('pageLoad', {'pageName' : 'travel_info'}) }}">Landesinformationen</a>
                     </li>
                     <li>
-                        <a href="{{ path('about_us') }}">Über uns</a>
+                        <a href="{{ path('pageLoad', {'pageName' : 'about_us'}) }}">Über uns</a>
                     </li>
                     <li>
                         <a href="{{ path('contact') }}">Kontaktieren</a>
