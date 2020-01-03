@@ -65,6 +65,7 @@ easy_admin:
                     - { property: 'pageName' }
 
                     - { property: 'pageTemplate', type: 'App\Form\PageTemplateType' }
+                    - { property: 'textContent', type: 'fos_ckeditor'}
 
         User:
             class: App\Entity\User

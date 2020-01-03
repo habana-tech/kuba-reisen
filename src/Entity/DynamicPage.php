@@ -62,6 +62,11 @@ class DynamicPage implements MachineNameInterface, GalleryFieldInterface, Descri
     private $uploadedImages;
 
     /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $textContent;
+
+    /**
      * DynamicPage constructor.
      * @param $pageTemplate
      */
@@ -317,5 +322,17 @@ class DynamicPage implements MachineNameInterface, GalleryFieldInterface, Descri
     public function getNameFieldValue(): string
     {
         return $this->pageName;
+    }
+
+    public function getTextContent(): ?string
+    {
+        return $this->textContent;
+    }
+
+    public function setTextContent(?string $textContent): self
+    {
+        $this->textContent = $textContent;
+
+        return $this;
     }
 }
