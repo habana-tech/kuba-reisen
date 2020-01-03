@@ -16,6 +16,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use App\PageManager\DynamicPageManager;
 use Doctrine\Common\Collections\ArrayCollection;
+use Twig\Error\LoaderError;
 
 class FrontendController extends AbstractController
 {
@@ -100,6 +101,8 @@ class FrontendController extends AbstractController
 
         if(!$page)
             throw new NotFoundHttpException();
+        if(!$page->getPageTemplate()->getPath())
+            throw  new LoaderError('Page: "'.$page->getPageName().'" not contains a valid PageTemplate or it is undefined. Edit the page and add a PageTemplate using the form.');
 
         return $this->render('frontend/'.$page->getPageTemplate()->getPath(), [
             'dynamic_page_id' => $page->getId(),
