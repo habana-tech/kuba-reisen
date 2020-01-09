@@ -189,6 +189,9 @@ easy_admin:
                     - { type: 'group', label: 'Story Info', icon: 'bookmark', columns: 8 }
                     - { property: 'title' }
 
+                    - { type: 'group', label: 'Destination description', icon: 'bookmark', columns: 8 }
+                    - { property: 'description', label: 'Description', type: 'fos_ckeditor' }
+
                     - { type: 'group', label: 'Story details', icon: 'book-open', columns: 8 }
                     - { property: 'descriptionFragment', label: '-', help: 'Add many fragments as you need to describe this story', type: 'collection',  type_options: { entry_type: 'App\Form\DescriptionFragmentType', by_reference: true } }
 

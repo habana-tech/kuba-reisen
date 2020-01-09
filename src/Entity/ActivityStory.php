@@ -53,6 +53,11 @@ class ActivityStory implements MachineNameInterface, DescriptionFragmentFieldInt
      */
     private $descriptionFragment;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -87,5 +92,17 @@ class ActivityStory implements MachineNameInterface, DescriptionFragmentFieldInt
     public function getNameFieldValue(): string
     {
         return $this->title;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
     }
 }
