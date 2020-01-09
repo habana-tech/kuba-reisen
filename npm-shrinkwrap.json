@@ -13086,8 +13086,16 @@
       "resolved": "https://registry.npmjs.org/tui-image-editor/-/tui-image-editor-3.7.2.tgz",
       "integrity": "sha512-LdIycLHnzWah0lZOPX7mmxFyPNzdJlnLurI18gNAXQaS+2NMf8vx4ax3FKduWIASoWtfbT6CnS/0He/yhU1pGA==",
       "requires": {
+        "core-js": "2.4.1",
         "tui-code-snippet": "^1.5.0",
         "tui-color-picker": "^2.2.0"
+      },
+      "dependencies": {
+        "core-js": {
+          "version": "2.4.1",
+          "resolved": "https://registry.npmjs.org/core-js/-/core-js-2.4.1.tgz",
+          "integrity": "sha1-TekR5mew6ukSTjQlS1OupvxhjT4="
+        }
       }
     },
     "tweetnacl": {

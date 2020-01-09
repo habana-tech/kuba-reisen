@@ -3,7 +3,6 @@
 {% block title %}Aktivitäten{% endblock %}
 
 {% block stylesheets %}
-{#    <link rel="stylesheet" href="{{ asset('styles/activities.css') }}" type="text/css">#}
     {{ encore_entry_link_tags('activities') }}
 {% endblock %}
 
@@ -11,15 +10,15 @@
 
     <main class="main">
 
-        {{ include('frontend/components/global/_hero.html.twig') }}
+{#        {{ include('frontend/components/global/_hero.html.twig') }}#}
 
         {{ include('frontend/components/activities/_stories.html.twig') }}
 
-        {{ include('frontend/components/activities/_popular_activities.html.twig') }}
+{#        {{ include('frontend/components/activities/_popular_activities.html.twig') }}#}
 
-        {{ include('frontend/components/global/_banner_sky.html.twig') }}
+{#        {{ include('frontend/components/global/_banner_sky.html.twig') }}#}
 
-        {{ include('frontend/components/activities/_clients_opinions.html.twig') }}
+{#        {{ include('frontend/components/activities/_clients_opinions.html.twig') }}#}
 
     </main>
 
@@ -30,6 +29,6 @@
     <script>
         var _activities_activitiesApiPos = '{{ url('activitiesApiPos') }}';
     </script>
-{#    <script src="{{ asset('scripts/activities.js') }}"></script>#}
+
     {{ encore_entry_script_tags('activities') }}
 {% endblock %}

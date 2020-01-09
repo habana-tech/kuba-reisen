@@ -23,13 +23,10 @@ class ActivityRepository extends ServiceEntityRepository
 //
     /**
      * @return Activity[] Returns an array of Activity objects
-     * @deprecated
      */
-    public function findByLanguage($lang, $pos, $amount){
+    public function findStartingFrom($pos, $amount){
 
         return $this->createQueryBuilder('activity')
-            ->where('activity.language = :lang')
-            ->setParameter('lang', $lang)
             ->orderBy('activity.priority','DESC')
             ->setFirstResult($pos)
             ->setMaxResults($amount)

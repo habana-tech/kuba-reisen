@@ -33,24 +33,23 @@ class ActivitiesController extends AbstractController
                                ActivityStoryRepository $storiesRepository,
                                 $filters = null)
     {
-        $pageinfo = [
-            'pageName'=>'activities',
-            'language'=>'de'
-        ];
-
-        if($this->isGranted('ROLE_ADMIN'))
-            $page = $pm->findByOrCreateIfDoesNotExist($pageinfo);
-        else
-            $page = $pm->findOneBy($pageinfo);
-        if(!$page)
-            throw new NotFoundHttpException();
+//        $pageinfo = [
+//            'pageName'=>'activities',
+//            'language'=>'de'
+//        ];
+//
+//        if($this->isGranted('ROLE_ADMIN'))
+//            $page = $pm->findByOrCreateIfDoesNotExist($pageinfo);
+//        else
+//            $page = $pm->findOneBy($pageinfo);
+//        if(!$page)
+//            throw new NotFoundHttpException();
 
 
         $filters = explode(',', $filters);
 
-        $filterTags = $filterTagRepository->findBy(['language'=>'de']);
-        $_activities = $activityRepository->findByLanguage('de',
-                                        0, $this->amountActivitiesDefault+1);
+        $filterTags = $filterTagRepository->findAll();
+        $_activities = $activityRepository->findStartingFrom(0, $this->amountActivitiesDefault+1);
 
         $loadMore = count($_activities) > $this->amountActivitiesDefault;
         $activities = array();
@@ -61,8 +60,8 @@ class ActivitiesController extends AbstractController
         $stories = $storiesRepository->findLastPublished($amountStories);
 
         return $this->render('frontend/activities.html.twig', [
-            'dynamic_page_id' => $page->getId(),
-            'page' => $page,
+//            'dynamic_page_id' => $page->getId(),
+//            'page' => $page,
             'activities'=>$activities,
             'filterTags'=>$filterTags,
             'selectedFilters'=>$filters,

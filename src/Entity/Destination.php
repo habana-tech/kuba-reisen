@@ -24,9 +24,9 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @Vich\Uploadable
  * @ORM\HasLifecycleCallbacks
  */
-class Destination implements DescriptionFragmentFieldInterface, GalleryFieldInterface, MachineNameInterface
+class Destination implements DescriptionFragmentFieldInterface, MachineNameInterface
 {
-    use ImageFieldTrait, GalleryTrait, MachineNameTrait;
+    use ImageFieldTrait, MachineNameTrait;
     use FilterTagsTrait, PriorityFieldTrait, ActiveFieldTrait, DescriptionFragmentFieldTrait;
 
     /**
@@ -71,6 +71,11 @@ class Destination implements DescriptionFragmentFieldInterface, GalleryFieldInte
      *     )
      */
     private $descriptionFragment;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
 
     public function __construct()
     {
@@ -191,5 +196,17 @@ class Destination implements DescriptionFragmentFieldInterface, GalleryFieldInte
     public function getNameFieldValue(): string
     {
         return $this->name;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
     }
 }

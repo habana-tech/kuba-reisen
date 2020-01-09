@@ -2,7 +2,7 @@ import { setCookie, getCookie } from './_utils';
 
 class Cookies{
     constructor(){
-        //If the cokie was set, the dialog doenst exist!! (twig didnt write it) and JS twrows an error
+        //If the cookie was set, the dialog doenst exist!! (twig didnt write it) and JS twrows an error
         this.allowBtn = document.querySelector('.cookie .cookie__btn button');
         this.message = document.querySelector('.cookie');
         this.overlay = document.querySelector('.cookie-overlay');
@@ -14,7 +14,7 @@ class Cookies{
 
     event(){
         this.dialog();
-        this.allowBtn.addEventListener('click', this.allowCookies.bind(this));      
+        this.allowBtn.addEventListener('click', this.allowCookies.bind(this));
     }
 
     allowCookies(){

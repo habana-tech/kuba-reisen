@@ -40,19 +40,9 @@ class ActivityStory implements MachineNameInterface, DescriptionFragmentFieldInt
     private $title;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $content;
-
-    /**
      * @ORM\Column(type="json", nullable=true)
      */
     private $metadata = [];
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Image", cascade={"persist", "remove"})
-     */
-    private $image;
 
     /**
      * @ORM\ManyToMany(targetEntity="DescriptionFragment", cascade={"persist", "remove"})
@@ -80,18 +70,6 @@ class ActivityStory implements MachineNameInterface, DescriptionFragmentFieldInt
         return $this;
     }
 
-    public function getContent(): ?string
-    {
-        return $this->content;
-    }
-
-    public function setContent(?string $content): self
-    {
-        $this->content = $content;
-
-        return $this;
-    }
-
 
     public function getMetadata(): ?array
     {
@@ -103,22 +81,6 @@ class ActivityStory implements MachineNameInterface, DescriptionFragmentFieldInt
         $this->metadata = $metadata;
 
         return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-    /**
-     * @param mixed $image
-     */
-    public function setImage($image): void
-    {
-        $this->image = $image;
     }
 
 

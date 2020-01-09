@@ -1,7 +1,6 @@
 {% extends 'frontend/base.html.twig' %}
 
 {% block stylesheets %}
-{#    <link rel="stylesheet" href="{{ asset('styles/activity.css') }}" type="text/css">#}
     {{ encore_entry_link_tags('activity') }}
 {% endblock %}
 
@@ -9,26 +8,26 @@
 
 {% block body %}
 
-    <main class="main" {% if is_granted('ROLE_EDITOR') and not app.request.get('preview') %} id="grapes-editable" {% endif %} >
+    <main class="main">
 
         {{ include('frontend/components/activity/_images.html.twig') }}
 
         <div class="float_button__container">
 
-            {{ include ('frontend/components/activity/_float_button.html.twig') }}
+{#            {{ include ('frontend/components/activity/_float_button.html.twig') }}#}
 
-            {{ include('frontend/components/activity/_description.html.twig') }}
+{#            {{ include('frontend/components/activity/_description.html.twig') }}#}
 
-            {{ include('frontend/components/activity/_map.html.twig') }}
+{#            {{ include('frontend/components/activity/_map.html.twig') }}#}
 
-            {{ include('frontend/components/activity/_itinerary.html.twig') }}
+{#            {{ include('frontend/components/activity/_itinerary.html.twig') }}#}
 
-            {{ include('frontend/components/activity/_include_and_not.html.twig') }}
+{#            {{ include('frontend/components/activity/_include_and_not.html.twig') }}#}
 
-            {{ include('frontend/components/activity/_timetable.html.twig') }}
+{#            {{ include('frontend/components/activity/_timetable.html.twig') }}#}
         </div>
 
-        {{ include('frontend/components/activity/_related_activities.html.twig') }}
+{#        {{ include('frontend/components/activity/_related_activities.html.twig') }}#}
 
     </main>
 

@@ -56,8 +56,6 @@ class FrontendController extends AbstractController
             throw new NotFoundHttpException();
 
         return $this->render('frontend/destination.html.twig', [
-            'dynamic_page_id' => $destination->getDynamicPage()->getId(),
-            'page' => $destination->getDynamicPage(),
             'destination' => $destination,
         ]);
     }

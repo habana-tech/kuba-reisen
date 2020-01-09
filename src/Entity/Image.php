@@ -44,7 +44,7 @@ class Image
     private $imageSize;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $description;
 
@@ -65,6 +65,20 @@ class Image
 //        return $this;
 //    }
 
+
+    public function getImagePath(): string
+    {
+        return 'uploads/images/'.$this->getImageName();
+    }
+
+    /**
+     * @return string
+     */
+    #TODO: decapretar esto
+    public function getStaticImagePath(): string
+    {
+        return 'static/'.$this->getImagePath();
+    }
 
     public function getImageName(): ?string
     {

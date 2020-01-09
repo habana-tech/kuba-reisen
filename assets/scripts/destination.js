@@ -1,4 +1,5 @@
+import '../styles/destinations.scss';
+
 import Gallery from "./modules/activity/_gallery";
-require('../styles/destinations.scss');
 
 new Gallery('.gallery');

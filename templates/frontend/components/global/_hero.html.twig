@@ -2,43 +2,19 @@
 
     {% if hero__image is defined %}
         <div class="hero__image">
-            {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null %}
-                <img src="{{ hero__image }}" alt="">
-            {% else %}
-                {{ imgTagContent(
-                    hero__image,
-                    null,
-                    null,
-                    '100vw',
-                    null) | raw }}
-            {% endif %}
-        </div>
-    {% else %}
-        <div class="hero__image" >
-            {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null %}
-                <img data-grape_id="hero_image" src="{{ page.ElementAttr('hero_image', 'src', asset('img/header_pic.jpg') ) }}" alt="">
-            {% else %}
-                {{ imgTagContent(
-                    page.ElementAttr('hero_image', 'src', asset('img/header_pic.jpg')),
-                    page.ElementAttr('hero_image', 'srcb64', asset('img/header_pic.jpg')),
-                    null,
-                    '100vw',
-                    'data-grape_id="hero_image"') | raw }}
-            {% endif %}
-
+            {{ imgTagContent(
+                hero__image,
+                null,
+                null,
+                '100vw',
+                null) | raw }}
         </div>
     {% endif %}
 
     <div class="hero__content">
-        {% if hero__content__text is defined and hero__content__text is not null %}
         <h1 class="hero__content__text">
             {{ hero__content__text | raw }}
         </h1>
-        {% else %}
-            <h1 class="hero__content__text" data-grape_id="hero__content__text" data-grape_format="txt">
-                {{ page.getElementContent('hero__content__text', 'Lorem imsu&iacute;p') | striptags}}
-            </h1>
-        {% endif %}
     </div>
 
 </section>

@@ -14,25 +14,25 @@
 
         <!-- Stylesheet -->
 
-        {% if is_granted('ROLE_EDITOR') and not app.request.get('preview') %}
-            {% for file in encore_entry_css_files('app_backend') %}
-                <link href="{{ absolute_url(asset(file)) }}" rel="stylesheet" />
-               <script>
-                   /*ESTO TIENE QUE ESTAR AQUI MIENTRAS USEMOS GRAPE!!!!!!!
-                   *webpack-encore saca las rutas de los archivos de un array, usando pop, asi que mas adelante
-                   no hay forma de obtenerlos nuevamente
-                   */
-                   var app_js_routing__styles_css = "{{ absolute_url(asset(file)) }}";
-               </script>
-            {% endfor %}
+{#        {% if is_granted('ROLE_EDITOR') and not app.request.get('preview') %}#}
+{#            {% for file in encore_entry_css_files('app_backend') %}#}
+{#                <link href="{{ absolute_url(asset(file)) }}" rel="stylesheet" />#}
+{#               <script>#}
+{#                   /*ESTO TIENE QUE ESTAR AQUI MIENTRAS USEMOS GRAPE!!!!!!!#}
+{#                   *webpack-encore saca las rutas de los archivos de un array, usando pop, asi que mas adelante#}
+{#                   no hay forma de obtenerlos nuevamente#}
+{#                   */#}
+{#                   var app_js_routing__styles_css = "{{ absolute_url(asset(file)) }}";#}
+{#               </script>#}
+{#            {% endfor %}#}
 {#            {{ encore_entry_link_tags('app_backend') }}#}
 {#            <link rel="stylesheet" href="{{ asset('styles/kraken_backend.css') }}" type="text/css">#}
 {#            <link rel="stylesheet" href="{{ asset('styles/all_backend_css.css') }}" type="text/css">#}
-        {% else %}
+{#        {% else %}#}
             {{ encore_entry_link_tags('app') }}
 {#            <link rel="stylesheet" href="{{ asset('styles/kraken.css') }}" type="text/css">#}
 {#            <link rel="stylesheet" href="{{ asset('styles/styles.css') }}" type="text/css">#}
-        {% endif %}
+{#        {% endif %}#}
 
         {% block stylesheets %}{% endblock %}
 
@@ -54,75 +54,41 @@
 
     <body class="{{ class }}">
 
-        {% if is_granted('ROLE_EDITOR') and not app.request.get('preview') %}
-            {{ include('backend/adminbar/admin_bar.html.twig') }}
-        {% endif %}
-
-        {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null %}
-            <div id="grapes-editable">
-        {% endif %}
-
-        {% if not is_granted('ROLE_EDITOR') or app.request.get('preview') %}
-            {{  include('frontend/components/global/_cookie.html.twig') }}
-        {% endif %}
+        {{  include('frontend/components/global/_cookie.html.twig') }}
 
         {{ render(controller('App\\Controller\\RegionsController::regionHeader'), {'preview':app.request.get('preview')} ) }}
 
-         {% if not is_granted('ROLE_EDITOR') or app.request.get('preview') %}
-            {{  include('frontend/components/global/_cookie.html.twig') }}
-        {% endif %}
-
         {% block body %}{% endblock %}
 
-        {% if not is_granted('ROLE_EDITOR') or app.request.get('preview') %}
-            {% if app.request.attributes.get('_route') != 'contact' %}
-                {{  include('frontend/components/global/_cart_bar.html.twig') }}
-            {% endif %}
+        {% if app.request.attributes.get('_route') != 'contact' %}
+            {{  include('frontend/components/global/_cart_bar.html.twig') }}
         {% endif %}
+
                 
         {{ render(controller('App\\Controller\\RegionsController::regionFooter', {'preview':app.request.get('preview')})) }}
 
-       {% if is_granted('ROLE_EDITOR') and not app.request.get('preview')  %}
-            </div>
-        {% endif %}
 
-        {% if is_granted('ROLE_EDITOR') and not app.request.get('preview')  %}
-            <script>
-                //APP_ROUTES & PARAMS
-                var app_js_param__csrf_token = "{{ csrf_token('_grapejs_editor_token') }}";
-                {#var app_js_routing__styles_css = "{{ absolute_url(asset('styles/all_backend_css.css')) }}"#}
-                {#var app_js_routing__styles_css = "{{ encore_entry_css_files('app_backend') | join('---')}}";#}
-                var app_js_routing__grape_endpoint = "{{ absolute_url(path('endpoint')) }}";
-                var app_js_routing__grape_endpoint_upload = "{{ absolute_url(path('endpoint_upload_assets')) }}";
-                var app_js_routing__list_images = "{{  absolute_url(path('endpoint_list_images'))  }}";
-                var app_js_param__page_id = {% if dynamic_page_id is defined %}"{{ dynamic_page_id }}"{% else %}-1;{% endif %}
-                
-            </script>
+{#        {% if is_granted('ROLE_EDITOR') and not app.request.get('preview')  %}#}
+{#            <script>#}
+{#                //APP_ROUTES & PARAMS#}
+{#                var app_js_param__csrf_token = "{{ csrf_token('_grapejs_editor_token') }}";#}
+{#                #}{##}{#var app_js_routing__styles_css = "{{ absolute_url(asset('styles/all_backend_css.css')) }}"#}
+{#                #}{##}{#var app_js_routing__styles_css = "{{ encore_entry_css_files('app_backend') | join('---')}}";#}
+{#                var app_js_routing__grape_endpoint = "{{ absolute_url(path('endpoint')) }}";#}
+{#                var app_js_routing__grape_endpoint_upload = "{{ absolute_url(path('endpoint_upload_assets')) }}";#}
+{#                var app_js_routing__list_images = "{{  absolute_url(path('endpoint_list_images'))  }}";#}
+{#                var app_js_param__page_id = {% if dynamic_page_id is defined %}"{{ dynamic_page_id }}"{% else %}-1;{% endif %}#}
+{#                #}
+{#            </script>#}
 {#            <script src="{{ asset('scripts/app_backend.js') }}"></script>#}
-            {{ encore_entry_script_tags('app_backend') }}
-            {% include "@CKSourceCKFinder/setup.html.twig" %}
-        {% else %}
+{#            {{ encore_entry_script_tags('app_backend') }}#}
+{#            {% include "@CKSourceCKFinder/setup.html.twig" %}#}
+{#        {% else %}#}
             {% block javascripts_vendors %}{% endblock %}
             {% block javascripts %}{% endblock %}
 {#            <script src="{{ asset('scripts/app.js') }}"></script>#}
             {{ encore_entry_script_tags('app') }}
-        {% endif %}
-
-        <!-- Matomo -->
-        <script type="text/javascript">
-          var _paq = window._paq || [];
-          /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-          _paq.push(['trackPageView']);
-          _paq.push(['enableLinkTracking']);
-          (function() {
-            var u="https://habanatech.com/matomo/";
-            _paq.push(['setTrackerUrl', u+'matomo.php']);
-            _paq.push(['setSiteId', '4']);
-            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-            g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-          })();
-        </script>
-        <!-- End Matomo Code -->
+{#        {% endif %}#}
 
     </body>
 </html>

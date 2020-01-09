@@ -26,7 +26,7 @@ class ActivityStoryRepository extends ServiceEntityRepository
     public function findLastPublished($value)
     {
         return $this->createQueryBuilder('a')
-            ->andWhere('a.published = true')
+            ->andWhere('a.active = true')
             ->orderBy('a.priority', 'DESC')
             ->setMaxResults($value)
             ->getQuery()
