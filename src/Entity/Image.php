@@ -82,7 +82,7 @@ class Image
 
     public function getImageName(): ?string
     {
-        return $this->imageName;
+        return $this->imageName ?? 'no-image';
     }
 
     public function setImageName(string $imageName = null): self
@@ -128,7 +128,7 @@ class Image
 
     public function __toString()
     {
-        return $this->description;
+        return $this->description ?? $this->getImageName();
     }
 
     public function getDescription(): ?string
@@ -142,6 +142,5 @@ class Image
 
         return $this;
     }
-
 
 }

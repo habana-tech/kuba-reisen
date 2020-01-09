@@ -44,8 +44,10 @@ easy_admin:
                     - { property: 'description' }
                     - { property: 'filterTags', type: 'entity' }
 
-                    - { type: 'group', label: 'Featured Image', icon: 'image', columns: 4 }
-                    - { property: 'image', label: 'Featured Image', type: 'App\Form\ImageUploadType' }
+                    - { type: 'group', label: 'Featured Image', icon: 'image', columns: 4 , help: 'You can use an existing image from Gallery or upload a new one, replacing the current image '}
+                    - { property: 'fromGallery', label: 'Use this image from Gallery', type: 'entity', type_options: { 'class': 'App\Entity\Image', attr: {'data-widget': 'select2'}} }
+                    - { property: 'image', label: 'Upload a new image to Gallery', type: 'App\Form\ImageUploadType' }
+
 
                     - { type: 'group', label: 'Activity settings', icon: 'cogs', columns: 4 }
                     - { property: 'active', label: 'The Interest is Active' }
@@ -118,8 +120,9 @@ easy_admin:
                     - { property: 'descriptionFragment', label: '*', help: 'Add many features fragments as you need to describe this activity', type: 'collection',  type_options: { entry_type: 'App\Form\DescriptionFragmentType', by_reference: true } }
 
 
-                    - { type: 'group', label: 'Featured Image', icon: 'image', columns: 4 }
-                    - { property: 'image', label: 'Featured Image', type: 'App\Form\ImageUploadType' }
+                    - { type: 'group', label: 'Featured Image', icon: 'image', columns: 4 , help: 'You can use an existing image from Gallery or upload a new one, replacing the current image '}
+                    - { property: 'fromGallery', label: 'Use this image from Gallery', type: 'entity', type_options: { 'class' : 'App\Entity\Image', attr: {'data-widget': 'select2'}} }
+                    - { property: 'image', label: 'Upload a new image to Gallery', type: 'App\Form\ImageUploadType' }
 
 
                     - { type: 'group', label: 'Activity details', icon: 'book-open', columns: 8 }
@@ -166,9 +169,9 @@ easy_admin:
                     - { property: 'description', label: 'Description', type: 'fos_ckeditor' }
 
 
-                    - { type: 'group', label: 'Featured Image', icon: 'image', columns: 4 }
-                    #                    - { property: 'image', template: 'backend/easyadmin/vich_uploader_image.html.twig' }
-                    - { property: 'image', label: 'Featured Image', type: 'App\Form\ImageUploadType' }
+                    - { type: 'group', label: 'Featured Image', icon: 'image', columns: 4 , help: 'You can use an existing image from Gallery or upload a new one, replacing the current image '}
+                    - { property: 'fromGallery', label: 'Use this image from Gallery', type: 'entity', type_options: { 'class': 'App\Entity\Image', attr: {'data-widget': 'select2'}} }
+                    - { property: 'image', label: 'Upload a new image to Gallery', type: 'App\Form\ImageUploadType' }
 
 
                     - { type: 'group', label: 'Destination details', icon: 'book-open', columns: 8 }

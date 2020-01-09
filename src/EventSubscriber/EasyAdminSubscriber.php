@@ -4,8 +4,9 @@
 namespace App\EventSubscriber;
 
 use App\Entity\DescriptionFragment;
-use App\Entity\DescriptionFragmentFieldInterface;
-use App\Entity\GalleryFieldInterface;
+use App\Entity\Fields\DescriptionFragmentFieldInterface;
+use App\Entity\Fields\GalleryFieldInterface;
+use App\Entity\Fields\ImageFieldInterface;
 use App\Entity\Image;
 use App\Repository\ActivityRepository;
 use App\Repository\DestinationRepository;
@@ -24,12 +25,13 @@ class EasyAdminSubscriber implements EventSubscriberInterface
     /**
      * EasyAdminSubscriber constructor.
      * @param DestinationRepository $destinationRepository
+     * @param ManagerRegistry $em
      * @param ActivityRepository $activityRepository
      */
-    public function __construct(DestinationRepository $destinationRepository,
+    public function __construct(DestinationRepository $destinationRepository, ManagerRegistry $em,
                                                          ActivityRepository $activityRepository)
     {
-//        $this->em = $em->getManager();
+        $this->em = $em->getManager();
         $this->destinationRepository = $destinationRepository;
         $this->activityRepository = $activityRepository;
     }
@@ -48,7 +50,7 @@ class EasyAdminSubscriber implements EventSubscriberInterface
 //                    'setUploadedImagesInDestinationsAndActivities'
                     ],
                 'easy_admin.pre_update' => [
-                    'setUploadedImagesAsGallery',
+                    'setUploadedImagesAsGalleryOrImage',
 //                    'setUploadedImagesInDestinationsAndActivities'
                     ],
 //
@@ -68,11 +70,14 @@ class EasyAdminSubscriber implements EventSubscriberInterface
             $TestClass = $entity['class'];
             $TestClass =  new $TestClass();
         }
-        else $TestClass = $entity;
+        else {
+            $TestClass = $entity;
+        }
 
         //If not implements DescriptionFragmentFieldInterface......
-        if(!($TestClass instanceof DescriptionFragmentFieldInterface))
+        if(!($TestClass instanceof DescriptionFragmentFieldInterface)) {
             return;
+        }
 
 //        $relatedEntityId = $request->query->get('id');
 //        $destination = $request->get('destination');
@@ -97,23 +102,42 @@ class EasyAdminSubscriber implements EventSubscriberInterface
 //        $request->request->set($entityName, $sentData);
 //        $event['request'] = $request;
     }
-    public function setUploadedImagesAsGallery(GenericEvent $event): void
+    public function setUploadedImagesAsGalleryOrImage(GenericEvent $event): void
     {
             $entity = $event->getSubject();
 
             //Add entities contains gallery
-            if (!($entity instanceof GalleryFieldInterface
+            if (($entity instanceof GalleryFieldInterface
                 || $entity instanceof DescriptionFragment
             ))
             {
-                return;
+                foreach ($entity->getUploadedImages() as $image )
+                {
+                    $entity->addGallery($image);
+                }
+                $event['entity'] = $entity;
+
             }
 
-            foreach ($entity->getUploadedImages() as $image )
+            if ($entity instanceof ImageFieldInterface)
             {
-                $entity->addGallery($image);
+//                if($entity->getUploadNewFile())
+////                {
+////                    $newImage = (new Image())->setImageFile($entity->getUploadedImage())->setDescription($entity->getName());
+////                    $this->em->persist($newImage);
+////                    $entity->setImage($newImage);
+////                }
+////                else
+                if($entity->getFromGallery() !== $entity->getImage())
+                {
+                    $entity->setImage($entity->getFromGallery());
+                }
+                $event['entity'] = $entity;
+
             }
-            $event['entity'] = $entity;
+
+
+
 
         }
 }

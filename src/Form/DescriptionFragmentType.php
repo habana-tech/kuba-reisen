@@ -3,7 +3,9 @@
 namespace App\Form;
 
 use App\Entity\DescriptionFragment;
+use App\Entity\Image;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -15,6 +17,8 @@ class DescriptionFragmentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            //- { property: 'fromGallery', label: 'Use this image from Gallery', type: 'entity', type_options: { 'class': 'App\Entity\Image', attr: {'data-widget': 'select2'}} }
+            ->add('fromGallery', EntityType::class, ['class'=> Image::class, 'label'=> 'Use this image from Gallery', 'attr' => ['data-widget' => 'select2'] ])
             ->add('name', null, [
                 'label'=> 'Title for the Feature component',
                 'attr' => [

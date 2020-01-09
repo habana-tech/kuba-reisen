@@ -33,4 +33,45 @@ trait ImageFieldTrait
 
         return $this;
     }
+
+    public function hasImage(): bool
+    {
+        return ($this->image instanceof Image && $this->image->getImageName());
+    }
+
+    /**
+     * @return UploadedFile
+     */
+    public function getUploadedImage():?UploadedFile
+    {
+        return $this->uploadedImage;
+    }
+
+    /**
+     * @param mixed $uploadedImage
+     */
+    public function setUploadedImage($uploadedImage): void
+    {
+        $this->uploadedImage = $uploadedImage;
+    }
+
+    private $uploadedImage;
+
+
+    public function getFromGallery()
+    {
+        if(!$this->galleryImage) {
+            return $this->image;
+        }
+        return $this->galleryImage;
+    }
+
+    private $galleryImage;
+
+    public function setFromGallery($image): void
+    {
+        $this->galleryImage = $image;
+    }
+
+
 }
