@@ -16,7 +16,7 @@ easy_admin:
             - { label: 'Management' }
             - { entity: 'Page', label: 'Pages', icon: 'file-alt' }
             - { label: 'Menus', route: 'backend_dynamic_page_index', icon: 'bars' }
-            - { label: 'Browse Images', route: 'ckfinder_fullpage', icon: 'images'}
+            - { label: 'Browse Images folder', route: 'ckfinder_fullpage', icon: 'images'}
             - { entity: 'Image', label: 'Manage Images', icon: 'images'}
             - { label: 'Config', route: 'ckfinder_fullpage', icon: 'cogs' }
 
