@@ -15,7 +15,6 @@ easy_admin:
 
             - { label: 'Management' }
             - { entity: 'Page', label: 'Pages', icon: 'file-alt' }
-            - { label: 'Menus', route: 'backend_dynamic_page_index', icon: 'bars' }
             - { label: 'Browse Images folder', route: 'ckfinder_fullpage', icon: 'images'}
             - { entity: 'Image', label: 'Manage Images', icon: 'images'}
             - { label: 'Config', route: 'ckfinder_fullpage', icon: 'cogs' }
@@ -28,26 +27,22 @@ easy_admin:
 
 
     entities:
-#        # List the entity class name you want to manage
         Interest:
             class: App\Entity\Interest
             list:
                 fields:
-                    - { property: 'active' }
-                    - { property: 'title' }
+                    - { property: 'title', label: 'Title'}
+                    - { property: 'active', label: 'Active'}
                     - { property: 'image.imageName', label: 'Image', type: 'image', base_path: '%app.path.uploaded_images%' }
-
             form:
                 fields:
                     - { type: 'group', label: 'Interest Data', icon: 'comments', columns: 4 }
-                    - { property: 'title' }
-                    - { property: 'description' }
-                    - { property: 'filterTags', type: 'entity' }
+                    - { property: 'title', label: 'Title' }
+                    - { property: 'description', label: 'Small description' }
 
                     - { type: 'group', label: 'Featured Image', icon: 'image', columns: 4 , help: 'You can use an existing image from Gallery or upload a new one, replacing the current image '}
                     - { property: 'fromGallery', label: 'Use this image from Gallery', type: 'entity', type_options: { 'class': 'App\Entity\Image', attr: {'data-widget': 'select2'}} }
                     - { property: 'image', label: 'Upload a new image to Gallery', type: 'App\Form\ImageUploadType' }
-
 
                     - { type: 'group', label: 'Activity settings', icon: 'cogs', columns: 4 }
                     - { property: 'active', label: 'The Interest is Active' }
@@ -58,18 +53,18 @@ easy_admin:
             list:
                 fields:
                     - { property: 'id' }
-                    - { property: 'pageName' }
-                    - { property: 'pageName' }
-                    - { property: 'pageTemplate.name'}
+                    - { property: 'name', label: 'Page title' }
+                    - { property: 'machineName', label: 'Machine Name' }
+                    - { property: 'template.name', label: 'Template'}
                     - { property: 'image.imageName', label: 'Featured Image', type: 'image' , base_path: '%app.path.uploaded_images%' }
             form:
                 fields:
                     - { type: 'group', label: 'Page Info', icon: 'comments', columns: 8 }
-                    - { property: 'pageName' }
-                    - { property: 'pageTemplate', type: 'App\Form\PageTemplateType' }
+                    - { property: 'name', label: 'Page title' }
+                    - { property: 'template', type: 'App\Form\PageTemplateType', label: 'Template' }
                     - { property: 'fromGallery', label: 'Use this image from Gallery', type: 'entity', type_options: { 'class': 'App\Entity\Image', attr: {'data-widget': 'select2'}} }
                     - { property: 'image', label: 'Upload a new image to Gallery', type: 'App\Form\ImageUploadType' }
-                    - { property: 'textContent', type: 'fos_ckeditor'}
+                    - { property: 'description', label: 'Intro or Description', type: 'fos_ckeditor' }
 
                     - { type: 'group', label: 'Gallery', icon: 'image', columns: 4 , help: 'You can use an existing image from Gallery or upload a new one, replacing the current image '}
                     - { type: 'section', label: 'Images from Gallery', icon: 'folder-open', help: 'Previously uploaded images' }
@@ -77,11 +72,12 @@ easy_admin:
                     - { type: 'section', label: 'Images linked to this activity', icon: 'images', help: 'You can upload new images from here' }
                     - { property: 'gallery', label: '-', type: 'collection',  type_options: { entry_type: 'App\Form\ImageUploadType', by_reference: true } }
 
-                    - { type: 'group', label: 'Destination description', icon: 'bookmark', columns: 8 }
-                    - { property: 'description', label: 'Description', type: 'fos_ckeditor' }
+                    - { type: 'group', label: 'Content of the page', icon: 'bookmark', columns: 8 }
+                    - { property: 'textContent',  label: 'Content', type: 'fos_ckeditor'}
 
-                    - { type: 'group', label: 'Destination details', icon: 'book-open', columns: 8 }
+                    - { type: 'group', label: 'Content Fragments', icon: 'book-open', columns: 8 }
                     - { property: 'descriptionFragment', label: '-', help: 'Add many fragments as you need to describe this destination', type: 'collection',  type_options: { entry_type: 'App\Form\DescriptionFragmentType', by_reference: true } }
+
         User:
             class: App\Entity\User
             edit:
@@ -93,7 +89,7 @@ easy_admin:
                     - { property: 'enabled' }
 
                     - { property: 'roles', label: 'User roles',  help: 'Select one or more', type: 'choice', type_options: { choices: { 'Admin':'ROLE_ADMIN', 'Editor': 'ROLE_EDITOR', 'User': 'ROLE_USER'}, multiple: true, attr: {'data-widget': 'select2'}}  }
-                    - { property: 'telephone' }
+                    - { property: 'phone' }
                     - { property: 'sendRequestEmail' }
             list:
                 fields:
@@ -101,11 +97,9 @@ easy_admin:
                     - { property: 'email' }
                     - { property: 'enabled' }
                     - { property: 'lastLogin' }
-#                    - { property: 'roles' }
 
         Activity:
             class: App\Entity\Activity
-            controller: App\Controller\Admin\ActivitiesController
             list:
                 fields:
                     - { property: 'ID', label: 'ID' }

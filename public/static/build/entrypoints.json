@@ -2,148 +2,112 @@
   "entrypoints": {
     "app": {
       "js": [
-        "/build/runtime.5e3ab09c.js",
-        "/build/1.72f166f8.js",
-        "/build/4.443ea6f0.js",
-        "/build/app.3cbbf3b8.js"
+        "/build/runtime.js",
+        "/build/vendors~activities~activity~app~bucket_list~contact~destination~faq~index.js",
+        "/build/vendors~activities~activity~app~contact.js",
+        "/build/vendors~activities~activity~app.js",
+        "/build/vendors~activities~app~contact.js",
+        "/build/vendors~activities~app.js",
+        "/build/vendors~app.js",
+        "/build/app.js"
       ],
       "css": [
-        "/build/app.f585a3e2.css"
+        "/build/app.css"
       ]
     },
     "index": {
       "js": [
-        "/build/runtime.5e3ab09c.js",
-        "/build/6.1b31a407.js",
-        "/build/index.cc678193.js"
+        "/build/runtime.js",
+        "/build/vendors~activities~activity~app~bucket_list~contact~destination~faq~index.js",
+        "/build/index.js"
       ],
       "css": [
-        "/build/index.b1b571a0.css"
+        "/build/index.css"
       ]
     },
     "destination": {
       "js": [
-        "/build/runtime.5e3ab09c.js",
-        "/build/5.eb0a8f88.js",
-        "/build/destination.7125beae.js"
+        "/build/runtime.js",
+        "/build/vendors~activities~activity~app~bucket_list~contact~destination~faq~index.js",
+        "/build/destination.js"
       ],
       "css": [
-        "/build/destination.aa41a5d6.css"
+        "/build/destination.css"
       ]
     },
     "faq": {
       "js": [
-        "/build/runtime.5e3ab09c.js",
-        "/build/faq.8b2307e6.js"
+        "/build/runtime.js",
+        "/build/vendors~activities~activity~app~bucket_list~contact~destination~faq~index.js",
+        "/build/faq.js"
       ],
       "css": [
-        "/build/faq.bea81307.css"
+        "/build/faq.css"
       ]
     },
     "contact": {
       "js": [
-        "/build/runtime.5e3ab09c.js",
-        "/build/2.4c50919d.js",
-        "/build/3.c96c54cb.js",
-        "/build/contact.e83f7871.js"
+        "/build/runtime.js",
+        "/build/vendors~activities~activity~app~bucket_list~contact~destination~faq~index.js",
+        "/build/vendors~activities~activity~app~contact.js",
+        "/build/vendors~activities~app~contact.js",
+        "/build/vendors~activities~contact.js",
+        "/build/vendors~contact.js",
+        "/build/contact.js"
       ],
       "css": [
-        "/build/2.3d57e0a5.css",
-        "/build/contact.b56ae650.css"
+        "/build/vendors~contact.css",
+        "/build/contact.css"
       ]
     },
     "activities": {
       "js": [
-        "/build/runtime.5e3ab09c.js",
-        "/build/0.1273804c.js",
-        "/build/1.72f166f8.js",
-        "/build/activities.9b2c893f.js"
+        "/build/runtime.js",
+        "/build/vendors~activities~activity~app~bucket_list~contact~destination~faq~index.js",
+        "/build/vendors~activities~activity~app~contact.js",
+        "/build/vendors~activities~activity~bucket_list.js",
+        "/build/vendors~activities~activity~app.js",
+        "/build/vendors~activities~app~contact.js",
+        "/build/vendors~activities~contact.js",
+        "/build/vendors~activities~app.js",
+        "/build/vendors~activities.js",
+        "/build/activities.js"
       ],
       "css": [
-        "/build/activities.9fc96d07.css"
+        "/build/activities.css"
       ]
     },
     "activity": {
       "js": [
-        "/build/runtime.5e3ab09c.js",
-        "/build/0.1273804c.js",
-        "/build/1.72f166f8.js",
-        "/build/activity.db14be07.js"
+        "/build/runtime.js",
+        "/build/vendors~activities~activity~app~bucket_list~contact~destination~faq~index.js",
+        "/build/vendors~activities~activity~app~contact.js",
+        "/build/vendors~activities~activity~bucket_list.js",
+        "/build/vendors~activities~activity~app.js",
+        "/build/vendors~activity.js",
+        "/build/activity.js"
       ],
       "css": [
-        "/build/activity.ec35247a.css"
+        "/build/activity.css"
       ]
     },
     "bucket_list": {
       "js": [
-        "/build/runtime.5e3ab09c.js",
-        "/build/0.1273804c.js",
-        "/build/bucket_list.dda4d4f4.js"
+        "/build/runtime.js",
+        "/build/vendors~activities~activity~app~bucket_list~contact~destination~faq~index.js",
+        "/build/vendors~activities~activity~bucket_list.js",
+        "/build/bucket_list.js"
       ],
       "css": [
-        "/build/bucket_list.f1e5342b.css"
-      ]
-    },
-    "app_backend": {
-      "js": [
-        "/build/runtime.5e3ab09c.js",
-        "/build/2.4c50919d.js",
-        "/build/7.76de5ca1.js",
-        "/build/app_backend.5dac2fbb.js"
-      ],
-      "css": [
-        "/build/2.3d57e0a5.css",
-        "/build/7.d902816c.css",
-        "/build/app_backend.93af8d8e.css"
-      ]
-    },
-    "admin": {
-      "js": [
-        "/build/runtime.5e3ab09c.js",
-        "/build/admin.75b5660f.js"
-      ]
-    },
-    "MapMarker": {
-      "js": [
-        "/build/runtime.5e3ab09c.js",
-        "/build/MapMarker.4a675514.js"
-      ]
-    },
-    "MapMarkerDialog": {
-      "js": [
-        "/build/runtime.5e3ab09c.js",
-        "/build/0.1273804c.js",
-        "/build/1.72f166f8.js",
-        "/build/MapMarkerDialog.8c319021.js"
-      ]
-    },
-    "MapPath": {
-      "js": [
-        "/build/runtime.5e3ab09c.js",
-        "/build/MapPath.8ece3f1d.js"
-      ]
-    },
-    "MapPathDialog": {
-      "js": [
-        "/build/runtime.5e3ab09c.js",
-        "/build/0.1273804c.js",
-        "/build/MapPathDialog.90b65a27.js"
+        "/build/bucket_list.css"
       ]
     },
     "loading": {
       "js": [
-        "/build/runtime.5e3ab09c.js"
+        "/build/runtime.js"
       ],
       "css": [
-        "/build/loading.a925f047.css"
-      ]
-    },
-    "style_backend": {
-      "js": [
-        "/build/runtime.5e3ab09c.js"
-      ],
-      "css": [
-        "/build/style_backend.456afc0e.css"
+        "/build/loading.css"
       ]
     }
   }

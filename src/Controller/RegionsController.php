@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Activity;
 use App\Entity\Destination;
+use App\Repository\ActivityRepository;
+use App\Repository\DynamicPageRepository;
 use phpDocumentor\Reflection\Types\Array_;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,72 +15,40 @@ use App\Repository\FilterTagRepository;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Twig\Error\LoaderError;
 
 class RegionsController extends AbstractController
 {
 
-    public function regionTopDestinations(DynamicPageManager $pm)
+    public function regionTopDestinations(DynamicPageRepository $dynamicPageRepository)
     {
-        $pageinfo = [
-            'pageName'=>'_top_destinations'
-        ];
+        $page = $dynamicPageRepository->findOneBy(['machineName'=>'unsere_top_seller']);
 
-
-        $topDestinations = array();
-        $topDestinations['kuba_10'] = $this->getDoctrine()
-                                ->getRepository(Activity::class)
-                                ->findOneBy(['name'=>'Kuba in 10 Tagen']);
-        $topDestinations['havanna'] = $this->getDoctrine()
-                                ->getRepository(Activity::class)
-                                ->findOneBy(['name'=>'Havanna Komplett']);
-        $topDestinations['inseln'] = $this->getDoctrine()
-                                ->getRepository(Destination::class)
-                                ->findOneBy(['name'=>'Inseln & Strände']);
-        $topDestinations['queen'] = $this->getDoctrine()
-                                ->getRepository(Activity::class)
-                                ->findOneBy(['name'=>'Show Havana Queens']);
-
-        $page = $pm->findByOrCreateIfDoesNotExist($pageinfo, 'components/global/_top_destination.html.twig');
         if(!$page)
             throw new NotFoundHttpException();
 
         return $this->render('frontend/components/global/_top_destination.html.twig', [
             'page' => $page,
-            'topDestinations' => $topDestinations,
         ]);
     }
 
-    public function regionTravelOptions(DynamicPageManager $pm,
-                                        FilterTagRepository $filterTagRepository)
+    public function regionBanner(DynamicPageRepository $dynamicPageRepository)
     {
-        $pageinfo = [
-            'pageName'=>'_travel_options'
-        ];
+        $page = $dynamicPageRepository->findOneBy(['machineName'=>'_banner']);
 
-        $page = $pm->findByOrCreateIfDoesNotExist($pageinfo, 'components/global/_travel_options.html.twig');
         if(!$page)
             throw new NotFoundHttpException();
 
-        return $this->render('frontend/components/global/_travel_options.html.twig', [
-            'page' => $page,
-            'filterTags'=>$filterTagRepository->findByPinned(),
+        return $this->render('frontend/components/global/_banner.html.twig', [
+            'page' => $page
         ]);
     }
 
-    public function regionFooter(DynamicPageManager $pm,
-                                FilterTagRepository $filterTagRepository,
-                                DestinationRepository $destinationRepository)
+    public function regionFooter(FilterTagRepository $filterTagRepository,
+                                 DestinationRepository $destinationRepository)
     {
-        $pageinfo = [
-            'pageName'=>'_footer'
-        ];
-
-        $page = $pm->findByOrCreateIfDoesNotExist($pageinfo, 'components/global/_footer.html.twig');
-        if(!$page)
-            throw new NotFoundHttpException();
 
         return $this->render('frontend/components/global/_footer.html.twig', [
-            'page' => $page,
             'destinations'=>$destinationRepository->findAll(),
             'filterTags'=>$filterTagRepository->findByPinned(),
         ]);

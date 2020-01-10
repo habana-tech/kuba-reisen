@@ -46,7 +46,7 @@ class EasyAdminSubscriber implements EventSubscriberInterface
 //                'easy_admin.pre_new' => array('setUploadedImagesAsGallery'),
 //                'easy_admin.post_new' => array('setUploadedImagesAsGallery'),
                 'easy_admin.pre_persist' => [
-                    'setUploadedImagesAsGallery',
+                    'setUploadedImagesAsGalleryOrImage',
 //                    'setUploadedImagesInDestinationsAndActivities'
                     ],
                 'easy_admin.pre_update' => [

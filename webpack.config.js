@@ -34,18 +34,6 @@ Encore
     .addEntry('activities', './assets/scripts/activities.js')
     .addEntry('activity', './assets/scripts/activity.js')
     .addEntry('bucket_list', './assets/scripts/bucket_list.js')
-
-    .addEntry('app_backend', './assets/scripts/app_backend.js')
-    .addStyleEntry('style_backend', './assets/styles/style_backend.scss')
-    .addEntry('admin', './assets/scripts/admin.js')
-
-    //ckeditor PLUGINS save at 'static/ckeditor_plugins/'
-    .addEntry('MapMarker', './assets/scripts/ckeditor/MapMarker.js')
-    .addEntry('MapMarkerDialog', './assets/scripts/ckeditor/MapMarkerDialog.js')
-    .addEntry('MapPath', './assets/scripts/ckeditor/MapPath.js')
-    .addEntry('MapPathDialog', './assets/scripts/ckeditor/MapPathDialog.js')
-
-
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
 

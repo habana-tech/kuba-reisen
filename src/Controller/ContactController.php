@@ -2,10 +2,10 @@
 
 namespace App\Controller;
 
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\DynamicPageRepository;
-use App\PageManager\DynamicPageManager;
 use App\Repository\ActivityRepository;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,38 +13,31 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use App\Entity\ContactPlaning;
 use App\Form\ContactPlaningType;
 use App\Entity\Activity;
-use App\DataConverter\RequestJsonDataConverter;
+use Twig\Error\LoaderError;
 
 class ContactController extends AbstractController
 {
-
-    private $selectedActivities = array();
 
     /**
      *
      * @Route("/kontaktieren/{travel}",
      *     defaults={"travel": null},
      *       name="contact")
+     * @throws LoaderError
      */
-    public function contact(Request $request,
-                            $travel,
-                            DynamicPageManager $pm,
-                            ActivityRepository $activityRepository)
+    public function contact(Request $request, $travel, ActivityRepository $activityRepository,
+                            DynamicPageRepository $dynamicPageRepository)
     {
 
-        $pageinfo = [
-            'pageName'=>'contact',
-            'language'=>'de'
-        ];
-
-        if($this->isGranted('ROLE_ADMIN'))
-            $page = $pm->findByOrCreateIfDoesNotExist($pageinfo);
-        else {
-            $page = $pm->findOneBy($pageinfo);
-        }
+        $page = $dynamicPageRepository->findOneBy([
+            'name'=>'contact'
+        ]);
 
         if(!$page)
             throw new NotFoundHttpException();
+        if(!$page->getTemplate()->getPath())
+            throw  new LoaderError('Page: "'.$page->getName().'" not contains a valid PageTemplate or it is undefined. Edit the page and add a PageTemplate using the form.');
+
 
         $fromTravel = false;
         if ($travel == 'raise')
@@ -52,7 +45,6 @@ class ContactController extends AbstractController
 
         $contact = new ContactPlaning();
         $form = $this->createForm(ContactPlaningType::class, $contact, [
-            'locale' => 'de',
             'action' => $this->generateUrl('processContact')]);
         $form->handleRequest($request);
 
@@ -92,6 +84,7 @@ class ContactController extends AbstractController
 
     /**
      * @Route("/processContact", name="processContact", methods={"POST"})
+     * @throws Exception
      */
     public function processContact(Request $request,  \Swift_Mailer $mailer, ActivityRepository $repository, UserRepository $userRepository){
 
@@ -134,29 +127,6 @@ class ContactController extends AbstractController
         return $this->json(['status'=>'error', 'errors'=>$form->getErrors(), 400]);
     }
 
-    /**
-     * @Route("/addActivity/{id}", name="addActivity")
-     */
-    public function addActivity(Request $request, Activity $activity){
-
-        array_push($this->selectedActivities, $activity);
-        return $this->json(['yes'=>1]);
-    }
-
-    /**
-     * @Route("/getActivitiesApi", name="getActivities")
-     */
-    public function getActivitiesApi(){
-        $data = array();
-        foreach ($this->selectedActivities as $activity)
-            array_push($data, array(
-               'name'=>$activity.getName(),
-                'id'=>$activity.getId(),
-            ));
-
-        return $this->json($data);
-    }
-
     private function sendContactEmailNotification(ContactPlaning $contact, \Swift_Mailer $mailer, UserRepository $userRepository){
 
         $users = $userRepository->findAll();
@@ -175,8 +145,6 @@ class ContactController extends AbstractController
         //Todo: translate the subject
         $message = (new \Swift_Message('Kuba-reisen kontaktieren - '.$contact->getRequestId()))
                 ->setFrom($from)
-                //TODO: set email to send notifications
-                //->setTo($adminEmail)
                 ->setBcc($adminEmail)
                 ->setBody(
                     $this->renderView(
@@ -198,7 +166,6 @@ class ContactController extends AbstractController
             //send message to client
             $client_message = (new \Swift_Message('Kuba-reisen kontaktieren - '.$contact->getRequestId()))
             ->setFrom($from)
-            //TODO: set email to send notifications
             ->setTo($contact->getClientEmail())
             ->setBody(
                 $this->renderView(

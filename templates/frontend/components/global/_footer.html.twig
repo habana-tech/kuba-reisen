@@ -1,33 +1,6 @@
 <footer class="footer">
 
-    <div class="footer__banner">
-
-        <div class="footer__banner__image">
-
-            {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null %}
-                <img data-grape_section="_footer" data-grape_id="footer_img1" src="{{ page.ElementAttr('footer_img1', 'src', asset('img/banner/footer.png')) | raw }}" alt="">
-            {% else %}
-                {{ imgTagContent(page.ElementAttr('footer_img1', 'src', asset('img/banner/footer.png')),
-                    page.ElementAttr('footer_img1', 'srcb64', asset('img/banner/footer.png')),
-                    '',
-                    '100vw',
-                    'data-grape_section="_footer" data-grape_id="footer_img1"') | raw }}
-            {% endif %}
-        </div>
-
-        <div class="footer__banner__content">
-            <div class="footer__banner__content__titles">
-                <h2 data-grape_section="_footer" data-grape_id="footer_txt1">
-                    {{ page.ElementContent('footer_txt1',"Take a step toward your travel to Cuba") | raw }}
-                </h2>
-            </div>
-
-            <a class="btn" href="{{ path('contact') }}" data-grape_section="_footer" data-grape_id="footer_btn1">
-                {{ page.ElementContent('footer_btn1',"Talk to an Expert!") | raw }}
-            </a>
-        </div>
-
-    </div>
+    {#        {{ render(controller('App\\Controller\\RegionsController::regionBanner')) }}#}
 
     <div class="footer__content">
 

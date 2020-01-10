@@ -13,6 +13,7 @@ class PageTemplateSelector
     public static function getTemplates(): array
     {
         return [
+            (new PageTemplate('null.html.twig', "-Undefined-")),
             (new PageTemplate('about_us.html.twig', "About Us page")),
             (new PageTemplate('activities.html.twig',"Activities list page")),
             (new PageTemplate('bucket_list.html.twig',"Bucket List page")),

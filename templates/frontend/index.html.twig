@@ -4,17 +4,7 @@
 
 {% block stylesheets %}
     {{ encore_entry_link_tags('index') }}
-{#    <link rel="stylesheet" href="{{ asset('styles/index.css') }}" type="text/css">#}
-{% endblock %}
-
-
-{% block inline_stylesheets %}
-    {% if not is_granted('ROLE_EDITOR') or app.request.get('preview') %}
-{#        <style>#}
-{#            {{ source('@public/static/styles/loading.css') }}#}
-{#        </style>#}
-            {{ encore_entry_link_tags('loading') }}
-    {% endif %}
+    {{ encore_entry_link_tags('loading') }}
 {% endblock %}
 
 {% block body %}
@@ -22,15 +12,15 @@
 
 {#        {{ include('frontend/components/index/_loading.html.twig') }}#}
 
-        {{ include('frontend/components/index/_hero.html.twig') }}
+{#        {{ include('frontend/components/index/_hero.html.twig') }}#}
 
-        {{ include('frontend/components/index/_overview.html.twig') }}
+{#        {{ include('frontend/components/index/_overview.html.twig') }}#}
 
-        {{ include('frontend/components/index/_who_we_are.html.twig') }}
+{#        {{ include('frontend/components/index/_who_we_are.html.twig') }}#}
 
-        {{ include('frontend/components/index/_why_with_us.html.twig') }}
+{#        {{ include('frontend/components/index/_why_with_us.html.twig') }}#}
 
-        {{ include('frontend/components/global/_banner_sky.html.twig') }}
+{#        {{ render(controller('App\\Controller\\RegionsController::regionBanner')) }}#}
 
         {{ render(controller('App\\Controller\\RegionsController::regionTopDestinations', {'preview':app.request.get('preview')} )) }}
 
@@ -40,13 +30,12 @@
 
         {#{{ include('frontend/components/index/_team_opinions.html.twig') }}#}
 
-        {{ render(controller('App\\Controller\\RegionsController::regionTravelOptions', {'preview':app.request.get('preview')} )) }}
+{#        {{ include('frontend/components/index/_travel_options.html.twig') }}#}
 
     </main>
 {% endblock %}
 
 
 {% block javascripts %}
-{#    <script src="{{ asset('scripts/index.js') }}"></script>#}
     {{ encore_entry_script_tags('index') }}
 {% endblock %}

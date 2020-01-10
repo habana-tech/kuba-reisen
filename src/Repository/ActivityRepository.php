@@ -44,7 +44,7 @@ class ActivityRepository extends ServiceEntityRepository
      */
     public function findByFilter($filters,
                                  FilterTagRepository $filterTagRepository,
-                                 $pos, $amount): array
+                                 $pos, $amount, $selfId=-1): array
     {
 
         $filter_objs = $filterTagRepository->findBy(['title'=>$filters]);
@@ -55,8 +55,10 @@ class ActivityRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('activity')
             ->join('activity.filterTags', 'filter_tags')
             ->andWhere('filter_tags.id in (:ids)')
+            ->andWhere('activity.id != (:self_id)')
             ->orderBy('activity.priority','DESC')
             ->setParameter('ids', $filter_ids)
+            ->setParameter('self_id', $selfId)
             ->setFirstResult($pos)
             ->setMaxResults($amount)
             ->getQuery()

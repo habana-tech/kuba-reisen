@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Entity\Fields\ActiveFieldTrait;
+use App\Entity\Fields\ImageFieldTrait;
 use App\Entity\Fields\MachineNameInterface;
 use App\Entity\Fields\MachineNameTrait;
 use App\Entity\Fields\PriorityFieldTrait;
@@ -19,7 +20,8 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Interest implements MachineNameInterface
 {
-    use ActiveFieldTrait, PriorityFieldTrait, MachineNameTrait;
+    use ImageFieldTrait, ActiveFieldTrait, PriorityFieldTrait, MachineNameTrait;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -37,16 +39,6 @@ class Interest implements MachineNameInterface
      */
     private $description;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\FilterTag", mappedBy="interests")
-     */
-    private $filterTags;
-
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Image", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $image;
 
     public function __construct()
     {
@@ -82,51 +74,10 @@ class Interest implements MachineNameInterface
         return $this;
     }
 
-    public function __toString()
+    public function __toString():string
     {
         return $this->title;
     }
-
-    /**
-     * @return Collection|FilterTag[]
-     */
-    public function getFilterTags(): Collection
-    {
-        return $this->filterTags;
-    }
-
-    public function addFilterTag(FilterTag $filterTag): self
-    {
-        if (!$this->filterTags->contains($filterTag)) {
-            $this->filterTags[] = $filterTag;
-            $filterTag->addInterest($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFilterTag(FilterTag $filterTag): self
-    {
-        if ($this->filterTags->contains($filterTag)) {
-            $this->filterTags->removeElement($filterTag);
-            $filterTag->removeInterest($this);
-        }
-
-        return $this;
-    }
-
-    public function getImage(): ?Image
-    {
-        return $this->image;
-    }
-
-    public function setImage(Image $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
 
     public function getNameFieldValue(): string
     {
