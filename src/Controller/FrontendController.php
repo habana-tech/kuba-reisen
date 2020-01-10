@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Destination;
 use App\Entity\Activity;
 use App\Entity\DynamicPage;
+use App\Entity\FilterTag;
 use App\Repository\ActivityRepository;
 use App\Repository\DestinationRepository;
 use App\Repository\DynamicPageRepository;
@@ -50,11 +51,14 @@ class FrontendController extends AbstractController
 
     /**
      * @Route("/destination/{id}/{name}" , name="destination")
+     * @param Destination $destination
+     * @return Response
      */
-    public function destination(Destination $destination)
+    public function destination(Destination $destination): Response
     {
-        if(!$destination)
+        if(!$destination) {
             throw new NotFoundHttpException();
+        }
 
         return $this->render('frontend/destination.html.twig', [
             'destination' => $destination,
@@ -63,20 +67,27 @@ class FrontendController extends AbstractController
 
     /**
      * @Route("/activity/{id}/{name}", name="activity")
+     * @param Activity $activity
+     * @param ActivityRepository $activityRepository
+     * @param FilterTagRepository $filterTagRepository
+     * @return Response
      */
+
     public function activity(Activity $activity, ActivityRepository $activityRepository, FilterTagRepository $filterTagRepository)
     {
-        if(!$activity)
+        if(!$activity) {
             throw new NotFoundHttpException();
+        }
 
         $activityId = $activity->getId();
         $tags = $activity->getFilterTags();
-        $tagsTitles = array_map(function ($tag){ return $tag->getTitle();}, $tags->toArray());
+        $tagsTitles = array_map(static function (FilterTag $tag){ return $tag->getTitle();}, $tags->toArray());
 
         $related_activities = $activityRepository
                             ->findByFilter($tagsTitles,
                                 $filterTagRepository,
                                 0, 3, $activityId);
+
 
         return $this->render('frontend/activity.html.twig', [
             'activity' => $activity,
@@ -86,9 +97,11 @@ class FrontendController extends AbstractController
 
     /**
      * @Route("/{pageName}", name="pageLoad")
+     * @param DynamicPage $page
+     * @return Response
      * @throws LoaderError
      */
-    public function loadPage(DynamicPage $page)
+    public function loadPage(DynamicPage $page): Response
     {
         if(!$page)
             throw new NotFoundHttpException();
