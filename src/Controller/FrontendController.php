@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Destination;
 use App\Entity\Activity;
 use App\Entity\DynamicPage;
+use App\Entity\FilterTag;
 use App\Repository\ActivityRepository;
 use App\Repository\DestinationRepository;
 use App\Repository\DynamicPageRepository;
@@ -49,11 +50,14 @@ class FrontendController extends AbstractController
 
     /**
      * @Route("/destination/{id}/{name}" , name="destination")
+     * @param Destination $destination
+     * @return Response
      */
-    public function destination(Destination $destination)
+    public function destination(Destination $destination): Response
     {
-        if(!$destination)
+        if(!$destination) {
             throw new NotFoundHttpException();
+        }
 
         return $this->render('frontend/destination.html.twig', [
             'destination' => $destination,
@@ -62,26 +66,31 @@ class FrontendController extends AbstractController
 
     /**
      * @Route("/activity/{id}/{name}", name="activity")
+     * @param Activity $activity
+     * @param FilterTagRepository $filterTagRepository
+     * @return Response
      */
-    public function activity(Activity $activity, FilterTagRepository $filterTagRepository)
+    public function activity(Activity $activity, FilterTagRepository $filterTagRepository): Response
     {
-        if(!$activity)
+        if(!$activity) {
             throw new NotFoundHttpException();
+        }
 
         $activityId = $activity->getId();
         $tags = $activity->getFilterTags();
-        $tagsTitles = array_map(function ($tag){ return $tag->getTitle();}, $tags->toArray());
+        $tagsTitles = array_map(static function (FilterTag $tag){ return $tag->getTitle();}, $tags->toArray());
 
         $related_activities = $this->getDoctrine()
             ->getRepository(Activity::class)
             ->findByFilter($tagsTitles, $filterTagRepository, 0, 4);
 
         $related_activities = array_filter($related_activities,
-            function ($activity) use ($activityId)
-            { return $activity->getId() != $activityId; });
+            static function (Activity $activity) use ($activityId)
+            { return $activity->getId() !== $activityId; });
 
-        if (sizeof($related_activities) == 4)
+        if (count($related_activities) === 4) {
             array_pop($related_activities);
+        }
 
         return $this->render('frontend/activity.html.twig', [
             'dynamic_page_id' => $activity->getDynamicPage()->getId(),
@@ -93,14 +102,19 @@ class FrontendController extends AbstractController
 
     /**
      * @Route("/{pageName}", name="pageLoad")
+     * @param DynamicPage $page
+     * @return Response
+     * @throws LoaderError
      */
-    public function loadPage(DynamicPage $page)
+    public function loadPage(DynamicPage $page): Response
     {
 
-        if(!$page)
+        if(!$page) {
             throw new NotFoundHttpException();
-        if(!$page->getPageTemplate()->getPath())
-            throw  new LoaderError('Page: "'.$page->getPageName().'" not contains a valid PageTemplate or it is undefined. Edit the page and add a PageTemplate using the form.');
+        }
+        if(!$page->getPageTemplate()->getPath()) {
+            throw  new LoaderError('Page: "' . $page->getPageName() . '" not contains a valid PageTemplate or it is undefined. Edit the page and add a PageTemplate using the form.');
+        }
 
         return $this->render('frontend/'.$page->getPageTemplate()->getPath(), [
             'dynamic_page_id' => $page->getId(),
