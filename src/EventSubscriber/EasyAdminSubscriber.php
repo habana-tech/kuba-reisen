@@ -115,8 +115,22 @@ class EasyAdminSubscriber implements EventSubscriberInterface
                 {
                     $entity->addGallery($image);
                 }
+
                 $event['entity'] = $entity;
 
+            }
+
+            if ($entity instanceof DescriptionFragmentFieldInterface)
+            {
+                foreach ($entity->getDescriptionFragment() as $fragment)
+                {
+                    if($fragment->getFromGallery())
+                    {
+                        $fragment->setImage($fragment->getFromGallery());
+                        $this->em->persist($fragment);
+                    }
+
+                }
             }
 
             if ($entity instanceof ImageFieldInterface)
@@ -128,6 +142,7 @@ class EasyAdminSubscriber implements EventSubscriberInterface
 ////                    $entity->setImage($newImage);
 ////                }
 ////                else
+                
                 if($entity->getFromGallery() !== $entity->getImage())
                 {
                     $entity->setImage($entity->getFromGallery());
