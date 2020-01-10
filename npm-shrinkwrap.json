@@ -4978,6 +4978,11 @@
       "integrity": "sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==",
       "dev": true
     },
+    "headroom.js": {
+      "version": "0.10.4",
+      "resolved": "https://registry.npmjs.org/headroom.js/-/headroom.js-0.10.4.tgz",
+      "integrity": "sha512-kQg3laxBvghkKXKjhj/kmlNwNJMCE6+UDXmU5eupVBbKTwpk4KxV+WSzrAaYBBSjYrKAs4sHV2YQr7HCD0E3sQ=="
+    },
     "hex-color-regex": {
       "version": "1.1.0",
       "resolved": "https://registry.npmjs.org/hex-color-regex/-/hex-color-regex-1.1.0.tgz",

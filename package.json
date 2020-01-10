@@ -43,6 +43,7 @@
     "d3-ease": "^1.0.6",
     "grapesjs": "^0.14.62",
     "grapesjs-tui-image-editor": "^0.1.2",
+    "headroom.js": "^0.10.4",
     "imagesloaded": "^4.1.4",
     "lazysizes": "^5.1.2",
     "leaflet": "^1.6.0",

@@ -14,19 +14,7 @@
         {% block inline_stylesheets %}{% endblock %}
     </head>
 
-    {% set class = '' %}
-
-    {% if is_granted('ROLE_EDITOR') and not app.request.get('preview') %}
-        {% set class = 'admin-logged' %}
-    {% else %}
-        {% if app.request.get('_route') == 'frontend' %}
-{#            {% set class = class~' loading' %}#}
-{#            TODO: recordar que va el loading#}
-            {% set class = class~' ' %}
-        {% endif %}
-    {% endif %}
-
-    <body class="{{ class }}">
+    <body {% if app.request.get('_route') == 'frontend' %}class="loading"{% endif %}>
 
         {{  include('frontend/components/global/_cookie.html.twig') }}
 

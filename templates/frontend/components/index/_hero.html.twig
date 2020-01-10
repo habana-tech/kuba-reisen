@@ -1,4 +1,5 @@
 <section class="section hero hero-home">
+
     <div class="hero__image">
         <div class="hero__image__water">
             <div class="hero__image__water__base">
@@ -68,23 +69,20 @@
 
         </div>
     </div>
-    <div class="hero__content">
-        <h1 class="hero__content__text" data-grape_id="hero__content__text">
-            {% if page.getElement('hero__content__text') is null %}
-                Kuba bewusst erleben.
-                <br>
-                Für mutige Entdecker und gesellige Abenteurer.
-            {% else %}
-                {{ page.getElement('hero__content__text') | raw}}
-            {% endif %}
 
+    <div class="hero__content">
+        <h1 class="hero__content__text">
+            Kuba bewusst erleben.
+            <br>Für mutige Entdecker und gesellige Abenteurer...
         </h1>
 
-        <a href="{{ path("contact") }}"
-           class="btn btn--big btn--transparent">Reise planen</a>
+        <a href="{{ path("contact") }}" class="btn btn--big btn--transparent">
+            Reise planen
+        </a>
     </div>
 
     <div class="hero__buttom-links">
+
         <div class="hero__buttom-links__item">
             <a href="#" data-slide="1">Kuba erkunden </a>
             <ul class="hero__buttom-links__item__nav">
@@ -101,6 +99,7 @@
                 {% endfor %}
             </ul>
         </div>
+
         <div class="hero__buttom-links__item">
             <a href="#" data-slide="2">Kuba Ausflüge</a>
             <ul class="hero__buttom-links__item__nav">
@@ -113,6 +112,7 @@
 
             </ul>
         </div>
+
         <div class="hero__buttom-links__item">
         <a href="#" data-slide="3">Kuba bereisen</a>
         <ul class="hero__buttom-links__item__nav">
@@ -129,5 +129,7 @@
 
         </ul>
     </div>
+
     </div>
+
 </section>

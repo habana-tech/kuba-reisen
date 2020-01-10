@@ -11,7 +11,7 @@ export function getCookie(name) {
     for(let i=0;i < cArr.length;i++) {
         let cookie = cArr[i].split("=",2);
         cookie[0] = cookie[0].replace(/^\s+/,"");
-        if (cookie[0] == name)
+        if (cookie[0] === name)
             return cookie;
     }
     return false;

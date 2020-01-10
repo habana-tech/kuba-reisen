@@ -1,6 +1,6 @@
 import {easeElasticOut, easeElasticIn, easeBounceOut} from "d3-ease";
 import Segment from "segment-js";
-import Headroom from './../../vendors/headroom.min'
+import Headroom from 'headroom.js'
 
 class NavBar{
 
