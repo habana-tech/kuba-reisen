@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\DataConverter\ImageBase64ThumbCreator;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -47,6 +48,11 @@ class Image
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $description;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $base64;
 
     public function getId(): ?int
     {
@@ -121,9 +127,13 @@ class Image
     {
         $this->imageFile = $file;
         if(null !== $file) {
+            $base64Converter = new ImageBase64ThumbCreator($file->getRealPath(), false);
+            $this->setBase64($base64Converter->getBase64data());
             $this->updatedAt = new \DateTimeImmutable();
         }
         return $this;
+
+
     }
 
     public function __toString()
@@ -139,6 +149,18 @@ class Image
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getBase64(): ?string
+    {
+        return $this->base64;
+    }
+
+    public function setBase64(?string $base64): self
+    {
+        $this->base64 = $base64;
 
         return $this;
     }

@@ -24,10 +24,12 @@ class ImageBase64ThumbCreator extends AbstractController
     /**
      * ImageBase64ThumbCreator constructor.
      */
-    public function __construct(string $path = 'folder')
+    public function __construct(string $path = 'folder', $absoluteFileName = false)
     {
-        $path = $this::getStaticRelativePath($path);
-        $path = __DIR__.'/../../public/'. $path;
+        if($absoluteFileName){
+            $path = $this::getStaticRelativePath($path);
+            $path = __DIR__.'/../../public/'. $path;
+        }
 
         if(file_exists($path))
         {
@@ -62,7 +64,6 @@ class ImageBase64ThumbCreator extends AbstractController
             $this->base64data = "data:image/jpeg;base64,".base64_encode($image_data);
 
         }
-        return false;
     }
 
     /**
