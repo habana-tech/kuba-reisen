@@ -53,22 +53,35 @@ easy_admin:
                     - { property: 'active', label: 'The Interest is Active' }
                     - { property: 'priority' , label: 'Priority on results' }
 
-
         Page:
             class: App\Entity\DynamicPage
             list:
                 fields:
                     - { property: 'id' }
                     - { property: 'pageName' }
+                    - { property: 'pageName' }
                     - { property: 'pageTemplate.name'}
+                    - { property: 'image.imageName', label: 'Featured Image', type: 'image' , base_path: '%app.path.uploaded_images%' }
             form:
                 fields:
                     - { type: 'group', label: 'Page Info', icon: 'comments', columns: 8 }
                     - { property: 'pageName' }
-
                     - { property: 'pageTemplate', type: 'App\Form\PageTemplateType' }
+                    - { property: 'fromGallery', label: 'Use this image from Gallery', type: 'entity', type_options: { 'class': 'App\Entity\Image', attr: {'data-widget': 'select2'}} }
+                    - { property: 'image', label: 'Upload a new image to Gallery', type: 'App\Form\ImageUploadType' }
                     - { property: 'textContent', type: 'fos_ckeditor'}
 
+                    - { type: 'group', label: 'Gallery', icon: 'image', columns: 4 , help: 'You can use an existing image from Gallery or upload a new one, replacing the current image '}
+                    - { type: 'section', label: 'Images from Gallery', icon: 'folder-open', help: 'Previously uploaded images' }
+                    - { property: 'uploadedImages', label: 'Add images from Gallery',  help: 'Select one or more images', type: 'entity',  type_options: { class: 'App\Entity\Image', multiple: true, attr: {'data-widget': 'select2'} } }
+                    - { type: 'section', label: 'Images linked to this activity', icon: 'images', help: 'You can upload new images from here' }
+                    - { property: 'gallery', label: '-', type: 'collection',  type_options: { entry_type: 'App\Form\ImageUploadType', by_reference: true } }
+
+                    - { type: 'group', label: 'Destination description', icon: 'bookmark', columns: 8 }
+                    - { property: 'description', label: 'Description', type: 'fos_ckeditor' }
+
+                    - { type: 'group', label: 'Destination details', icon: 'book-open', columns: 8 }
+                    - { property: 'descriptionFragment', label: '-', help: 'Add many fragments as you need to describe this destination', type: 'collection',  type_options: { entry_type: 'App\Form\DescriptionFragmentType', by_reference: true } }
         User:
             class: App\Entity\User
             edit:
@@ -99,19 +112,19 @@ easy_admin:
                     - { property: 'active' }
                     - { property: 'name' }
                     - { property: 'initPrice' , label: 'Initial price'}
-
+                    - { property: 'image.imageName', label: 'Featured Image', type: 'image' , base_path: '%app.path.uploaded_images%' }
             form:
                 fields:
                     - { type: 'group', label: 'Activity Info', icon: 'location-arrow', columns: 8 }
                     - { property: 'name' }
-                    - { property: 'filterTags', type: 'entity' }
-                    - { property: 'destinations', type: 'entity' }
-
-#                    - { property: 'imageFile', type: 'vich_image' }
+                    - { property: 'fromGallery', label: 'Use this image from Gallery', type: 'entity', type_options: { 'class': 'App\Entity\Image', attr: {'data-widget': 'select2'}} }
+                    - { property: 'image', label: 'Upload a new image to Gallery', type: 'App\Form\ImageUploadType' }
 
                     - { type: 'group', label: 'Activity settings', icon: 'cogs', columns: 4 }
                     - { property: 'active', label: 'The Activity is Active' }
                     - { property: 'initPrice', type: 'money' , label: 'Starting price' }
+                    - { property: 'filterTags', type: 'entity' }
+                    - { property: 'destinations', type: 'entity' }
                     - { property: 'priority' , label: 'Priority on results' }
 
                     - { type: 'group', label: 'Activity description', icon: 'bookmark', columns: 8 }
@@ -119,11 +132,11 @@ easy_admin:
                     - { type: 'section', label: 'Features or components for this Activity', icon: 'puzzle-piece', help: 'Describe the Feature components for this Activity' }
                     - { property: 'descriptionFragment', label: '*', help: 'Add many features fragments as you need to describe this activity', type: 'collection',  type_options: { entry_type: 'App\Form\DescriptionFragmentType', by_reference: true } }
 
-
-                    - { type: 'group', label: 'Featured Image', icon: 'image', columns: 4 , help: 'You can use an existing image from Gallery or upload a new one, replacing the current image '}
-                    - { property: 'fromGallery', label: 'Use this image from Gallery', type: 'entity', type_options: { 'class' : 'App\Entity\Image', attr: {'data-widget': 'select2'}} }
-                    - { property: 'image', label: 'Upload a new image to Gallery', type: 'App\Form\ImageUploadType' }
-
+                    - { type: 'group', label: 'Gallery', icon: 'images', columns: 4 }
+                    - { type: 'section', label: 'Images from Gallery', icon: 'folder-open', help: 'Previously uploaded images' }
+                    - { property: 'uploadedImages', label: 'Add images from Gallery',  help: 'Select one or more images', type: 'entity',  type_options: { class: 'App\Entity\Image', multiple: true, attr: {'data-widget': 'select2'} } }
+                    - { type: 'section', label: 'Images linked to this activity', icon: 'images', help: 'You can upload new images from here' }
+                    - { property: 'gallery', label: '-', type: 'collection',  type_options: { entry_type: 'App\Form\ImageUploadType', by_reference: true } }
 
                     - { type: 'group', label: 'Activity details', icon: 'book-open', columns: 8 }
                     - { property: 'contentItineraryTitle', type: 'text' }
@@ -134,12 +147,6 @@ easy_admin:
                     - { property: 'contentNotIncludedContent', type: 'fos_ckeditor' }
                     - { property: 'contentCostAndDatesTitle', type: 'text' }
                     - { property: 'contentCostAndDatesContent', type: 'fos_ckeditor' }
-
-#                    - { type: 'group', label: 'Gallery', icon: 'images', columns: 4 }
-#                    - { type: 'section', label: 'Images from Gallery', icon: 'folder-open', help: 'Previously uploaded images' }
-#                    - { property: 'uploadedImages', label: 'Add images from Gallery',  help: 'Select one or more images', type: 'entity',  type_options: { class: 'App\Entity\Image', multiple: true, attr: {'data-widget': 'select2'} } }
-#                    - { type: 'section', label: 'Images linked to this activity', icon: 'images', help: 'You can upload new images from here' }
-#                    - { property: 'gallery', label: '-', type: 'collection',  type_options: { entry_type: 'App\Form\ImageUploadType', by_reference: true } }
 
         FilterTag:
             class: App\Entity\FilterTag

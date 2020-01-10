@@ -10,9 +10,9 @@
         "ckfinder/ckfinder-symfony-bundle": "^3.5",
         "easycorp/easyadmin-bundle": "^2.1",
         "friendsofsymfony/ckeditor-bundle": "^2.0",
-        "knplabs/doctrine-behaviors": "^1.5",
         "friendsofsymfony/user-bundle": "^2.1",
         "google/recaptcha": "^1.2",
+        "knplabs/doctrine-behaviors": "^1.5",
         "liip/imagine-bundle": "^2.1",
         "oneup/flysystem-bundle": "^3.0",
         "sensio/framework-extra-bundle": "*",
@@ -25,6 +25,7 @@
         "symfony/framework-bundle": "*",
         "symfony/google-mailer": "4.4.*",
         "symfony/mailer": "*",
+        "symfony/maker-bundle": "^1.14",
         "symfony/mime": "*",
         "symfony/monolog-bundle": "^3.1",
         "symfony/orm-pack": "*",
@@ -45,7 +46,6 @@
     },
     "require-dev": {
         "symfony/debug-pack": "*",
-        "symfony/maker-bundle": "^1.0",
         "symfony/profiler-pack": "*",
         "symfony/test-pack": "*"
     },

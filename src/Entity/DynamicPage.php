@@ -6,6 +6,8 @@ use App\Entity\Fields\DescriptionFragmentFieldInterface;
 use App\Entity\Fields\DescriptionFragmentFieldTrait;
 use App\Entity\Fields\GalleryFieldInterface;
 use App\Entity\Fields\GalleryTrait;
+use App\Entity\Fields\ImageFieldInterface;
+use App\Entity\Fields\ImageFieldTrait;
 use App\Entity\Fields\MachineNameInterface;
 use App\Entity\Fields\MachineNameTrait;
 use App\PageManager\TemplateSelector\PageTemplate;
@@ -19,9 +21,9 @@ use App\DataConverter\ImageBase64ThumbCreator;
  * @ORM\Entity(repositoryClass="App\Repository\DynamicPageRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class DynamicPage implements MachineNameInterface, GalleryFieldInterface, DescriptionFragmentFieldInterface
+class DynamicPage implements MachineNameInterface, GalleryFieldInterface, DescriptionFragmentFieldInterface, ImageFieldInterface
 {
-    use MachineNameTrait, GalleryTrait, DescriptionFragmentFieldTrait;
+    use MachineNameTrait, GalleryTrait, DescriptionFragmentFieldTrait, ImageFieldTrait;
 
     /**
      * @ORM\Id()
@@ -65,6 +67,11 @@ class DynamicPage implements MachineNameInterface, GalleryFieldInterface, Descri
      * @ORM\Column(type="text", nullable=true)
      */
     private $textContent;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
 
     /**
      * DynamicPage constructor.
@@ -332,6 +339,18 @@ class DynamicPage implements MachineNameInterface, GalleryFieldInterface, Descri
     public function setTextContent(?string $textContent): self
     {
         $this->textContent = $textContent;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }
