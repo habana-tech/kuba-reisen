@@ -41,6 +41,13 @@ class PageTemplate
     {
         return $this->path;
     }
+    /**
+     * @return string
+     */
+    public function getFullPath(): ?string
+    {
+        return $this->path ? 'frontend/'.$this->path: 'null.html.twig';
+    }
 
     /**
      * @return null

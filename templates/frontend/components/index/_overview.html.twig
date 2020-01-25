@@ -10,32 +10,17 @@
             </div>
 
             <div data-grape_id="overview_text">
-                <p>
-                    Traumhafte Strände, unberührte Natur, geschichtsträchtige Städte – all das finden Sie auf Kuba. Erleben Sie ein weltweit einzigartiges Reiseziel. Lassen Sie sich verzaubern vom Land der Salsa-Musik, der Zigarren und der puren Lebensfreude!
-                </p>
+                {{ page.description | raw }}
             </div>
        </div>
     </div>
 
-    {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null %}
-        {% for i in 1..3 %}
+
+
+        {% for image in page.gallery %}
             <div class="overview__item">
-                <img data-grape_id="index_overview_img{{ i }}"
-                class="overview_grid_item_img"
-                src="{{ page.ElementAttr('index_overview_img'~i, 'src', asset('img/DSC_4137.jpg') ) | raw }}" alt="">
+                {{ imgTag(image,'(min-width: 1200px) 25vw, 100vw') | raw }}
             </div>
         {% endfor %}
-    {% else %}
-        {% for i in 1..3 %}
-            <div class="overview__item">
-                {{ imgTagContent(
-                    page.ElementAttr('index_overview_img'~i, 'src', asset('img/DSC_4137.jpg')),
-                    page.ElementAttr('index_overview_img'~i, 'srcb64', asset('img/DSC_4137.jpg')),
-                    '',
-                    '(min-width: 1200px) 25vw, 100vw',
-                    'data-grape_id="index_overview_img'~i~'"') | raw }}
-            </div>
-        {% endfor %}
-    {% endif %}
 
 </section>

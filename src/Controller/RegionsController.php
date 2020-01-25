@@ -4,8 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Activity;
 use App\Entity\Destination;
+use App\Entity\Region;
 use App\Repository\ActivityRepository;
-use App\Repository\BannerRepository;
+use App\Repository\RegionRepository;
 use App\Repository\DynamicPageRepository;
 use App\Repository\TopDestinationRepository;
 use phpDocumentor\Reflection\Types\Array_;
@@ -22,18 +23,9 @@ use Twig\Error\LoaderError;
 class RegionsController extends AbstractController
 {
 
-    public function regionTopDestinations(TopDestinationRepository $topDestinationRepository)
+    public function regionBanner(RegionRepository $bannerRepository)
     {
-        $topDestinations = $topDestinationRepository->findAll();
-
-        return $this->render('frontend/components/global/_top_destination.html.twig', [
-            'topDestinations' => $topDestinations,
-        ]);
-    }
-
-    public function regionBanner(BannerRepository $bannerRepository)
-    {
-        if(!$banners = $bannerRepository->findAll())
+        if(!$banners = $bannerRepository->findBy(['type'=>Region::TYPE_BANNER_REGION]))
             return new Response();
 
         $index = array_rand($banners, 1);
@@ -41,6 +33,16 @@ class RegionsController extends AbstractController
 
         return $this->render('frontend/components/global/_banner.html.twig', [
             'banner' => $banner
+        ]);
+    }
+
+    public function regionTopDestinations(RegionRepository $bannerRepository)
+    {
+        if(!$banners = $bannerRepository->findBy(['type'=>Region::TYPE_TOP_DESTINATION_REGION]))
+            return new Response();
+
+        return $this->render('frontend/components/global/_top_destination.html.twig', [
+            'page' => $banners,
         ]);
     }
 
@@ -55,11 +57,22 @@ class RegionsController extends AbstractController
     }
 
     public function regionHeader(DestinationRepository $destinationRepository,
-                                FilterTagRepository $filterTagRepository)
+                                FilterTagRepository $filterTagRepository): Response
     {
         return $this->render('frontend/components/global/_header.html.twig', [
             'destinations'=>$destinationRepository->findAll(),
             'filterTags'=>$filterTagRepository->findByPinned(),
         ]);
+    }
+
+    public function regionLoader($machineName, RegionRepository $repository): Response
+    {
+        if($region = $repository->findOneBy(['machineName'=>$machineName])) {
+            return $this->render($region->getTemplate()->getFullPath(),
+                [
+                    'page' => $region
+                ]);
+        }
+        return new Response();
     }
 }

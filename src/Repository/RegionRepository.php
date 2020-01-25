@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Banner;
+use App\Entity\Region;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * @method Banner|null find($id, $lockMode = null, $lockVersion = null)
- * @method Banner|null findOneBy(array $criteria, array $orderBy = null)
- * @method Banner[]    findAll()
- * @method Banner[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Region|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Region|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Region[]    findAll()
+ * @method Region[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class BannerRepository extends ServiceEntityRepository
+class RegionRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Banner::class);
+        parent::__construct($registry, Region::class);
     }
 
     // /**
-    //  * @return Banner[] Returns an array of Banner objects
+    //  * @return Region[] Returns an array of Region objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class BannerRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Banner
+    public function findOneBySomeField($value): ?Region
     {
         return $this->createQueryBuilder('b')
             ->andWhere('b.exampleField = :val')

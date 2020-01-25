@@ -2,32 +2,28 @@
 
     <div class="section__title ">
         <div class="section__title__highlight">
-            <h2 data-grape_id="why_with_us_title" data-grape_format="txt">
-                {% if page.getElement('why_with_us_title') is null %}
-                    Activity name
-                {% else %}
-                    {{ page.getElement('why_with_us_title') }}
-                {% endif %}
+            <h2>
+                {{ page.title}}
             </h2>
         </div>
     </div>
 
     <div class="why_with_us__reasons">
-
-        {% for i in 0..3 %}
-            <div class="why_with_us__reasons__reason">
-            <h5 data-grape_id="why_with_us_reasons_h{{ i }}">
-                {% if page.getElement('why_with_us_reasons_h'~i) is null %}
-                    Title of reason
-                {% else %}
-                    {{ page.getElement('why_with_us_reasons_h'~i) }}
-                {% endif %}
-            </h5>
-            <p data-grape_id="why_with_us_reasons_p{{ i }}">
-                {{ page.ElementContent('why_with_us_reasons_p'~i,"While putting custom properties on the :root is great for things that you need to be available throughout your site") | raw }}
-            </p>
-        </div>
-        {% endfor %}
+{{ dump(page) }}
+{#        {% for i in 0..3 %}#}
+{#            <div class="why_with_us__reasons__reason">#}
+{#            <h5 data-grape_id="why_with_us_reasons_h{{ i }}">#}
+{#                {% if page.getElement('why_with_us_reasons_h'~i) is null %}#}
+{#                    Title of reason#}
+{#                {% else %}#}
+{#                    {{ page.getElement('why_with_us_reasons_h'~i) }}#}
+{#                {% endif %}#}
+{#            </h5>#}
+{#            <p data-grape_id="why_with_us_reasons_p{{ i }}">#}
+{#                {{ page.ElementContent('why_with_us_reasons_p'~i,"While putting custom properties on the :root is great for things that you need to be available throughout your site") | raw }}#}
+{#            </p>#}
+{#        </div>#}
+{#        {% endfor %}#}
 
     </div>
 </section>

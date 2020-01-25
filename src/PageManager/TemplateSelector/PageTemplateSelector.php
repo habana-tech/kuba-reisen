@@ -3,8 +3,6 @@
 
 namespace App\PageManager\TemplateSelector;
 
-use App\PageManager\TemplateSelector\PageTemplate;
-
 class PageTemplateSelector
 {
 
@@ -27,6 +25,15 @@ class PageTemplateSelector
         ];
     }
 
+    public static function getRegionTemplates(): array
+    {
+        return [
+            (new PageTemplate('components/index/_overview.html.twig',"HOME > Overview Section")),
+            (new PageTemplate('components/index/_who_we_are.html.twig',"HOME > Who we are Section")),
+            (new PageTemplate('components/index/_why_with_us.html.twig',"HOME > Why with us Section")),
+        ];
+    }
+
     public static function getTemplatesChoiceList(): array
     {
         $templateList = [];
@@ -34,6 +41,17 @@ class PageTemplateSelector
         {
             $templateList[$template->getName()] = $template->getPath();
         }
+        return $templateList;
+    }
+
+    public static function getRegionTemplatesChoiceList(): array
+    {
+        $templateList = [];
+        foreach (self::getRegionTemplates() as $template)
+        {
+            $templateList[$template->getName()] = $template->getPath();
+        }
+        dump($templateList);
         return $templateList;
     }
 

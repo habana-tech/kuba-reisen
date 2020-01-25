@@ -123,7 +123,7 @@ class FrontendController extends AbstractController
         if(!$page->getTemplate()->getPath())
             throw  new LoaderError('Page: "'.$page->getName().'" not contains a valid PageTemplate or it is undefined. Edit the page and add a PageTemplate using the form.');
 
-        return $this->render('frontend/'.$page->getTemplate()->getPath(), [
+        return $this->render($page->getTemplate()->getFullPath(), [
             'page' => $page,
         ]);
     }
