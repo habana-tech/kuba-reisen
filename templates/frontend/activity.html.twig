@@ -10,35 +10,31 @@
 
     <main class="main">
 
+        {{ dump(related_activities) }}
+
         {{ include('frontend/components/activity/_images.html.twig') }}
 
         <div class="float_button__container">
 
-{#            {{ include ('frontend/components/activity/_float_button.html.twig') }}#}
+            {{ include ('frontend/components/activity/_float_button.html.twig') }}
 
-{#            {{ include('frontend/components/activity/_description.html.twig') }}#}
+            {{ include('frontend/components/activity/_description.html.twig') }}
 
-{#            {{ include('frontend/components/activity/_map.html.twig') }}#}
+            {{ include('frontend/components/activity/_map.html.twig') }}
 
-{#            {{ include('frontend/components/activity/_itinerary.html.twig') }}#}
+            {{ include('frontend/components/activity/_itinerary.html.twig') }}
 
-{#            {{ include('frontend/components/activity/_include_and_not.html.twig') }}#}
+            {{ include('frontend/components/activity/_include_and_not.html.twig') }}
 
-{#            {{ include('frontend/components/activity/_timetable.html.twig') }}#}
+            {{ include('frontend/components/activity/_timetable.html.twig') }}
         </div>
 
-{#        {{ include('frontend/components/activity/_related_activities.html.twig') }}#}
+        {{ include('frontend/components/activity/_related_activities.html.twig') }}
 
     </main>
 
 {% endblock %}
 
-{% block javascripts_vendors %}
-{#    <script src="{{ asset('scripts/vendors/three.min.js') }}"></script>#}
-{#    TODO: revisar que no se use esta lib #}
-{% endblock %}
-
 {% block javascripts %}
-{#    <script src="{{ asset('scripts/activity.js') }}"></script>#}
     {{ encore_entry_script_tags('activity') }}
 {% endblock %}

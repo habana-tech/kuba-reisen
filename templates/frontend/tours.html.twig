@@ -5,7 +5,7 @@
     {% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('styles/destinations.css') }}" type="text/css">
+    {{ encore_entry_link_tags('destinations') }}
 {% endblock %}
 
 {% block body %}
@@ -24,10 +24,6 @@
     </main>
 {% endblock %}
 
-{% block javascripts_vendors %}
-    <script src="{{ asset('scripts/vendors/three.min.js') }}"></script>
+{% block javascripts %}
+{#    {{ encore_entry_script_tags('destination') }}#}
 {% endblock %}
-
-{#{% block javascripts %}#}
-{#    <script src="{{ asset('scripts/destination.js') }}"></script>#}
-{#{% endblock %}#}

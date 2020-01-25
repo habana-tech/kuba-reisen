@@ -1,7 +1,5 @@
-{% if not is_granted('ROLE_EDITOR') or app.request.get('preview') is not null %}
-    <div class="float_button">
-        <div class="float_button__button" data-activity_id="{{ activity.id }}">
-            {{ include('/frontend/components/_icons/_heart.html.twig') }}
-        </div>
+<div class="float_button">
+    <div class="float_button__button" data-activity_id="{{ activity.id }}">
+        {{ include('/frontend/components/_icons/_heart.html.twig') }}
     </div>
-{% endif %}
+</div>

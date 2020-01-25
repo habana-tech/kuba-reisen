@@ -32,10 +32,6 @@ class Activity implements MachineNameInterface, DescriptionFragmentFieldInterfac
 
     use ImageFieldTrait, ActiveFieldTrait, GalleryTrait;
     use FilterTagsTrait, PriorityFieldTrait, DescriptionFragmentFieldTrait, MachineNameTrait;
-    /**
-     * @deprecated
-     */
-    use DynamicPagePlaceholderTrait;
 
     /**
      * @ORM\Id()
@@ -81,42 +77,47 @@ class Activity implements MachineNameInterface, DescriptionFragmentFieldInterfac
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $contentItineraryTitle;
+    private $itineraryTitle;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $contentItineraryContent;
+    private $itineraryContent;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $contentIncludedTitle;
-
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $contentIncludedContent;
+    private $includedSectionTitle;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $contentNotIncludedTitle;
+    private $includedTitle;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $contentNotIncludedContent;
+    private $includedContent;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $contentCostAndDatesTitle;
+    private $notIncludedTitle;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $contentCostAndDatesContent;
+    private $notIncludedContent;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $costAndDatesTitle;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $costAndDatesContent;
 
     /**
      * @ORM\ManyToMany(targetEntity="DescriptionFragment", cascade={"persist", "remove"})
@@ -136,9 +137,11 @@ class Activity implements MachineNameInterface, DescriptionFragmentFieldInterfac
         $this->pageContent = new PageContent();
 
         //CONTENT FIELDS
-        $this->contentIncludedTitle = 'Included in the tour';
-        $this->contentNotIncludedTitle = 'Not include in the tour';
-        $this->contentCostAndDatesTitle = 'Costs &amp; dates';
+        $this->itineraryTitle = 'Itinerary summary';
+        $this->includedSectionTitle = 'Leistungen';
+        $this->includedTitle = 'Inkludiert';
+        $this->notIncludedTitle = 'Nicht inkludiert ';
+        $this->costAndDatesTitle = 'Costs & dates';
         // your own logic
     }
 
@@ -248,98 +251,110 @@ class Activity implements MachineNameInterface, DescriptionFragmentFieldInterfac
         return $this;
     }
 
-    public function getContentItineraryTitle(): ?string
+    public function getItineraryTitle(): ?string
     {
-        return $this->contentItineraryTitle;
+        return $this->itineraryTitle;
     }
 
-    public function setContentItineraryTitle(string $contentItineraryTitle): self
+    public function setItineraryTitle(string $itineraryTitle): self
     {
-        $this->contentItineraryTitle = $contentItineraryTitle;
+        $this->itineraryTitle = $itineraryTitle;
 
         return $this;
     }
 
-    public function getContentItineraryContent(): ?string
+    public function getItineraryContent(): ?string
     {
-        return $this->contentItineraryContent;
+        return $this->itineraryContent;
     }
 
-    public function setContentItineraryContent(?string $contentItineraryContent): self
+    public function setItineraryContent(?string $itineraryContent): self
     {
-        $this->contentItineraryContent = $contentItineraryContent;
+        $this->itineraryContent = $itineraryContent;
 
         return $this;
     }
 
-    public function getContentIncludedTitle(): ?string
+    public function getIncludedTitle(): ?string
     {
-        return $this->contentIncludedTitle;
+        return $this->includedTitle;
     }
 
-    public function setContentIncludedTitle(?string $contentIncludedTitle): self
+    public function setIncludedTitle(?string $includedTitle): self
     {
-        $this->contentIncludedTitle = $contentIncludedTitle;
+        $this->includedTitle = $includedTitle;
 
         return $this;
     }
 
-    public function getContentIncludedContent(): ?string
+    public function getIncludedContent(): ?string
     {
-        return $this->contentIncludedContent;
+        return $this->includedContent;
     }
 
-    public function setContentIncludedContent(?string $contentIncludedContent): self
+    public function setIncludedContent(?string $includedContent): self
     {
-        $this->contentIncludedContent = $contentIncludedContent;
+        $this->includedContent = $includedContent;
 
         return $this;
     }
 
-    public function getContentNotIncludedTitle(): ?string
+    public function getNotIncludedTitle(): ?string
     {
-        return $this->contentNotIncludedTitle;
+        return $this->notIncludedTitle;
     }
 
-    public function setContentNotIncludedTitle(?string $contentNotIncludedTitle): self
+    public function setNotIncludedTitle(?string $notIncludedTitle): self
     {
-        $this->contentNotIncludedTitle = $contentNotIncludedTitle;
+        $this->notIncludedTitle = $notIncludedTitle;
 
         return $this;
     }
 
-    public function getContentNotIncludedContent(): ?string
+    public function getNotIncludedContent(): ?string
     {
-        return $this->contentNotIncludedContent;
+        return $this->notIncludedContent;
     }
 
-    public function setContentNotIncludedContent(?string $contentNotIncludedContent): self
+    public function setNotIncludedContent(?string $notIncludedContent): self
     {
-        $this->contentNotIncludedContent = $contentNotIncludedContent;
+        $this->notIncludedContent = $notIncludedContent;
 
         return $this;
     }
 
-    public function getContentCostAndDatesTitle(): ?string
+    public function getCostAndDatesTitle(): ?string
     {
-        return $this->contentCostAndDatesTitle;
+        return $this->costAndDatesTitle;
     }
 
-    public function setContentCostAndDatesTitle(?string $contentCostAndDatesTitle): self
+    public function setCostAndDatesTitle(?string $costAndDatesTitle): self
     {
-        $this->contentCostAndDatesTitle = $contentCostAndDatesTitle;
+        $this->costAndDatesTitle = $costAndDatesTitle;
 
         return $this;
     }
 
-    public function getContentCostAndDatesContent(): ?string
+    public function setIncludedSectionTitle(?string $includedSectionTitle): self
     {
-        return $this->contentCostAndDatesContent;
+        $this->includedSectionTitle = $includedSectionTitle;
+
+        return $this;
     }
 
-    public function setContentCostAndDatesContent(?string $contentCostAndDatesContent): self
+    public function getIncludedSectionTitle()
     {
-        $this->contentCostAndDatesContent = $contentCostAndDatesContent;
+        return $this->includedSectionTitle;
+    }
+
+    public function getCostAndDatesContent(): ?string
+    {
+        return $this->costAndDatesContent;
+    }
+
+    public function setCostAndDatesContent(?string $costAndDatesContent): self
+    {
+        $this->costAndDatesContent = $costAndDatesContent;
 
         return $this;
     }

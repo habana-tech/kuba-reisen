@@ -133,14 +133,14 @@ easy_admin:
                     - { property: 'gallery', label: '-', type: 'collection',  type_options: { entry_type: 'App\Form\ImageUploadType', by_reference: true } }
 
                     - { type: 'group', label: 'Activity details', icon: 'book-open', columns: 8 }
-                    - { property: 'contentItineraryTitle', type: 'text' }
-                    - { property: 'contentItineraryContent', type: 'fos_ckeditor' }
-                    - { property: 'contentIncludedTitle', type: 'text' }
-                    - { property: 'contentIncludedContent', type: 'fos_ckeditor' }
-                    - { property: 'contentNotIncludedTitle', type: 'text' }
-                    - { property: 'contentNotIncludedContent', type: 'fos_ckeditor' }
-                    - { property: 'contentCostAndDatesTitle', type: 'text' }
-                    - { property: 'contentCostAndDatesContent', type: 'fos_ckeditor' }
+                    - { property: 'itineraryTitle', type: 'text' }
+                    - { property: 'itineraryContent', type: 'fos_ckeditor' }
+                    - { property: 'includedTitle', type: 'text' }
+                    - { property: 'includedContent', type: 'fos_ckeditor' }
+                    - { property: 'notIncludedTitle', type: 'text' }
+                    - { property: 'notIncludedContent', type: 'fos_ckeditor' }
+                    - { property: 'costAndDatesTitle', type: 'text' }
+                    - { property: 'costAndDatesContent', type: 'fos_ckeditor' }
 
         FilterTag:
             class: App\Entity\FilterTag

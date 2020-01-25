@@ -2,17 +2,19 @@
 
     <div class="section__title ">
         <div class="section__title__highlight section__title__highlight--green">
-            <h2 data-grape_id="activities_t1"  data-grape_format="txt">{{ page.ElementContent('activities_t1','Popular activities') | raw }}</h2>
+            <h2>beliebte Aktivitäten</h2>
         </div>
         <div class="section__title__description">
-            <p data-grape_id="activities_p1"  data-grape_format="txt">{{ page.ElementContent('activities_p1',"We have some many that is hard to choose") | raw }}</p>
+            <p>
+                Wir haben zahlreiche Vorschläge, was Sie auf Kuba unternehmen können. Lassen Sie sich von unseren Ideen inspirieren!
+            </p>
         </div>
     </div>
 
     <div  id="activities_filters"  class="activities__selectors">
 
         <div class="activities__selectors__filters">
-            <h3 data-grape_id="filter_text"  data-grape_format="txt">{{ page.ElementContent('filter_text','Select the filters') | raw }}</h3>
+            <h3>mit den Filtern gelangen Sie schneller zum Ziel</h3>
             
             <ul class="activities__selectors__filters__lists">
                 {% for filterTag in filterTags %}
@@ -28,7 +30,7 @@
         </div>
 
         <div class="activities__selectors__search">
-            <h3 data-grape_id="search_text"  data-grape_format="txt">{{ page.ElementContent('search_text','Type your search criteria') | raw }}</h3>
+            <h3>keinen passenden Filter gefunden? kein Problem, suchen Sie mit ihrem persönlichen Text!</h3>
 
             <form action="">
                 <div class="form__item">

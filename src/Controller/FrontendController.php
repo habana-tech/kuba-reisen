@@ -103,6 +103,7 @@ class FrontendController extends AbstractController
      */
     public function loadPage(DynamicPage $page): Response
     {
+
         if(!$page)
             throw new NotFoundHttpException();
         if(!$page->getTemplate()->getPath())

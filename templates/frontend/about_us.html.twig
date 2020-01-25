@@ -3,7 +3,7 @@
 {% block title %}Über uns{% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('styles/about_us.css') }}" type="text/css">
+    {{ encore_entry_link_tags('about_us') }}
 {% endblock %}
 
 {% block body %}

@@ -36,7 +36,7 @@
                                     <h3>{{ fragment.name }}</h3>
                                 </div>
                             {% endif %}
-                            {{ dump(fragment.hasImage) }}
+
                             {% if fragment.hasImage %}
                                 <div class="activities__stories__story__item__image">
                                     {{ imgTagContent(fragment.image.staticImagePath) | raw }}

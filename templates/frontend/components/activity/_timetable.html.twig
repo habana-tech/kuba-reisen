@@ -2,41 +2,12 @@
 
     <div class="section__title">
         <div class="section__title__highlight section__title__highlight--green">
-            <h2 data-grape_id="activity_costndates_title" data-grape_format="txt">
-                {% if activity.getElement('activity_costndates_title') is null %}
-                    Costs & dates
-                {% else %}
-                    {{ activity.getElement('activity_costndates_title') | raw }}
-                {% endif %}
-            </h2>
+            <h2>{{ activity.costAndDatesTitle ? activity.costAndDatesTitle : 'Costs & dates' }}</h2>
         </div>
     </div>
 
-    <div class="description-timetable__content" data-grape_id="timetable">
-        {% if activity.getElement('timetable') is null %}
-            <table >
-                <thead>
-                <tr>
-                    <td><span>Tour date</span></td>
-                    <td><span>Cost</span></td>
-                    <td><span>Comments</span></td>
-                    <td><span>Availability</span></td>
-                </tr>
-                </thead>
-                <tbody>
-                {% for i in 1..5 %}
-                    <tr>
-                        <td><span>Jun 15 to Jun 22, 2019</span></td>
-                        <td><span>$ 2699</span></td>
-                        <td><span>bring little clothes</span></td>
-                        <td><span>Available</span></td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        {% else %}
-            {{ activity.getElement('timetable') | raw }}
-        {% endif %}
+    <div class="description-timetable__content">
+        {{ activity.costAndDatesContent | raw }}
     </div>
 
 </section>

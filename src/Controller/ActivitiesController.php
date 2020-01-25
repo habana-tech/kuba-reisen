@@ -3,11 +3,15 @@
 namespace App\Controller;
 
 use App\Repository\ActivityStoryRepository;
+use App\Repository\DynamicPageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ActivityRepository;
 use App\Repository\FilterTagRepository;
 use \App\Twig\AppExtension;
+use Twig\Error\LoaderError;
 
 class ActivitiesController extends AbstractController
 {
@@ -19,13 +23,25 @@ class ActivitiesController extends AbstractController
      * @Route("/activities/filter/{filters}",
      *     name="activitiesFilter",
      *     defaults={"filters": null, "pos": null, "amount":null },)
+     * @param DynamicPageRepository $dynamicPageRepository
+     * @param ActivityRepository $activityRepository
+     * @param FilterTagRepository $filterTagRepository
+     * @param ActivityStoryRepository $storiesRepository
+     * @param null $filters
+     * @return Response
      */
-    public function activities(ActivityRepository $activityRepository,
+    public function activities(DynamicPageRepository $dynamicPageRepository, ActivityRepository $activityRepository,
                                FilterTagRepository $filterTagRepository,
                                ActivityStoryRepository $storiesRepository,
                                 $filters = null)
     {
 
+        $page = $dynamicPageRepository->findOneBy([
+            'name'=>'activities'
+        ]);
+
+        if(!$page)
+            throw new NotFoundHttpException();
         $filters = explode(',', $filters);
 
         $filterTags = $filterTagRepository->findAll();
@@ -40,6 +56,7 @@ class ActivitiesController extends AbstractController
         $stories = $storiesRepository->findLastPublished($amountStories);
 
         return $this->render('frontend/activities.html.twig', [
+            'page'=>$page,
             'activities'=>$activities,
             'filterTags'=>$filterTags,
             'selectedFilters'=>$filters,

@@ -2,34 +2,12 @@
 
     <div class="section__title">
         <div class="section__title__highlight section__title__highlight--green">
-            <h2 data-grape_id="activity_itinerary_title" data-grape_format="txt">
-                {% if activity.getElement('activity_itinerary_title') is null %}
-                    Itinerary summary
-                {% else %}
-                    {{ activity.getElement('activity_included_title') | raw }}
-                {% endif %}
-            </h2>
+            <h2>{{ activity.itineraryTitle ? activity.itineraryTitle : 'Itinerary summary' }}</h2>
         </div>
     </div>
 
-    <div class="description-itinerary__content" data-grape_id="itinerary__content">
-
-        {% if activity.getElement('itinerary__content') is null %}
-            {% for i in 1..3 %}
-                <h3>Day {{ i }} – Saturday: <strong>Hello Cuba, bienvenido a La Habana</strong></h3>
-
-                <ul>
-                    {% for j in 1..3 %}
-                        <li>
-                            Interest point {{ i }}
-                        </li>
-                    {% endfor %}
-                </ul>
-            {% endfor %}
-        {% else %}
-            {{ activity.getElement('itinerary__content') | raw }}
-        {% endif %}
-
+    <div class="description-itinerary__content">
+        {{ activity.itineraryContent| raw }}
     </div>
 
 </section>
