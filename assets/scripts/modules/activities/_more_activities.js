@@ -12,7 +12,7 @@ class LoadActivities {
 
         this.loadingDots = document.querySelector('.loading_dots:last-child');
 
-        this.prototype = document.querySelector('.activities__list__item-prototype div');
+        this.prototype = document.querySelector('.activities__list__item__prototype div');
         this.events();
     }
 

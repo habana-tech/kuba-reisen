@@ -5,14 +5,20 @@ class HeroLinks {
     }
 
     events(){
-        this.links.forEach((x)=>x.addEventListener('click', this.expand.bind(this)));
+        this.links.forEach((link)=>link.addEventListener('click', this.expand.bind(this)));
     }
 
     expand(e){
-        // e.preventDefault();
-        this.links.forEach((x)=>x.parentNode.classList.remove('hero__buttom-links__item--active'));
-        e.target.parentNode.classList.add('hero__buttom-links__item--active');
-        return false;
+        e.preventDefault();
+        let activeLink = e.target;
+
+        this.links.forEach((link)=>{
+            let parent = link.parentNode;
+            if (parent !== activeLink.parentNode)
+                link.parentNode.classList.remove('hero__buttom-links__item--active');
+        });
+
+        activeLink.parentNode.classList.toggle('hero__buttom-links__item--active');
     }
 
 }

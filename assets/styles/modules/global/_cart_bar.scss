@@ -1,20 +1,6 @@
-@keyframes showBarX {
+@keyframes showBar {
     0%{
-        transform: translateX(75%);
-    }
-    40%{
-        transform: translateX(0%);
-    }
-    60%{
-        transform: translateX(0%);
-    }
-    100%{
-        transform: translateX(75%);
-    }
-}
-@keyframes showBarY {
-    0%{
-        transform: translateY(75%);
+        transform: translateY(calc( 100% - 3em ));
     }
     40%{
         transform: translateY(0%);
@@ -23,68 +9,62 @@
         transform: translateY(0%);
     }
     100%{
-        transform: translateY(75%);
+        transform: translateY(calc( 100% - 3em ));
     }
 }
+
+@keyframes showActivityItem {
+    0%{
+        transform: translateY(-50%);
+        opacity: 0;
+    }
+    100%{
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 
 .cart_bar{
-
-    bottom: 0;
-    width: calc( 100vw - 4px);
-    transform: translateY(60%);
-    height: 6em;
-    border-radius: 6px;
-    margin: 0 2px;
-
+    width: 100vw;
     position: fixed;
+    bottom: 0;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+    margin: auto;
     z-index: 2;
     padding: .25em;
     background: linear-gradient(45deg, rgba($light-blue, .95), rgba($dark-blue, .95));
     color: white;
     border: 2px solid rgba(white, .9);
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-
+    transform: translateY(calc( 100% - 3em ));
     transition: transform .3s ease-in-out;
 
-
     @include atLarge{
-        transform: translateX(75%);
-        margin: auto;
-        bottom: 2em;
-        right: 0;
         width: auto;
+        max-width: 30vw;
+        right: 2em;
     }
 
     &:hover{
-           transform: translateY(0);
-        @include atLarge {
-            transform: translateX(0);
-        }
+        transform: translateY(0);
     }
 
     &--visible{
-        animation: showBarY 3.5s ease-in-out 1;
-        @include atLarge {
-            animation: showBarX 3.5s ease-in-out 1;
-        }
+        animation: showBar 3.5s ease-in-out 1;
     }
 
     &__title{
-        margin: 1em .5em;
+        margin: .25em auto;
         text-align: center;
         border-bottom: 1px solid white;
-        width: 30%;
+        width: 80%;
         display: flex;
-        flex-wrap: wrap;
         justify-content: center;
-        padding-top: 1em;
-
-        @include atLarge {
-            transform: rotate(-90deg);
-            padding-top: 0;
-        }
 
         &__icon{
             width: 2em;
@@ -92,27 +72,81 @@
         }
 
         & h4{
-            margin-top: .5em;
+            margin: .5em 1em;
             padding: 0;
+        }
+
+        span{
+            padding: .5em;
+            border-radius: 50%;
+            height: 2em;
+            width: 2em;
+            background: linear-gradient($color-yellow-lighter, $color-yellow-light);
+            font-family: "Baloo Bhaina", cursive;
         }
     }
 
     &__content{
+        padding: 1em;
         width: 100%;
-        padding: 0 1em;
-        @include atLarge{
-            padding: 1em;
+
+        &__activities{
+            max-height: 30vh;
+            position: relative;
+            overflow-y: auto;
+
+            &__item{
+                width: 80%;
+                margin: auto;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                animation: .3s ease-in 1 showActivityItem ;
+
+                &__prototype{
+                    display: none;
+                }
+
+                & img{
+                    width: 2em;
+                    height: 2em;
+                    display: inline;
+                }
+
+                h5{
+                    display: inline;
+                    margin-left: 1em;
+                }
+
+                &__drop{
+                    position: absolute;
+                    right: 3em;
+                    width: 1.25em;
+                    height: 1.25em;
+                    cursor: pointer;
+
+                    &:before{
+                        content: '';
+                        position: absolute;
+                        z-index: 1;
+                        height: 100%;
+                        width: 100%;
+                    }
+
+                    & svg{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+
+            }
         }
 
         &__text{
             text-align: center;
             width: 100%;
+            margin: .5em 0;
             color: white;
-            margin: 0;
-
-            @include atLarge{
-                margin: .5em 0;
-            }
 
             & p{
                 margin: 0;
@@ -140,6 +174,7 @@
     }
 
     &--initial{
+
         & [data-show='no-empty']{
             visibility: hidden;
             position: relative;

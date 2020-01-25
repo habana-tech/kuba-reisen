@@ -205,4 +205,24 @@ class ActivitiesController extends AbstractController
         return $this->json($data);
     }
 
+    /**
+     * @Route("/activitiesApiGetById/{id}",
+     *     name="activitiesApiGetById")
+     */
+    public function activitiesApiGetById(ActivityRepository $activityRepository, $id){
+
+        $activity = $activityRepository->find($id);
+
+        $activity = array(
+            'id' => $id,
+            'name'=>$activity->getName(),
+            'image'=>$activity->getDynamicPage()->getElementAttr('activity_images_img1', 'src'),
+        );
+
+        $data = array(
+            'activity'=>$activity,
+        );
+        return $this->json($data);
+    }
+
 }

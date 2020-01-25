@@ -1,11 +1,18 @@
-<section class="section description-text">
+<section class="section description-text-map">
     <div class="section__title ">
         <div class="section__title__highlight section__title__highlight--green">
             <h2>{{ activity.name }}</h2>
         </div>
     </div>
 
-    <div class="description-text__content">
-        {{ activity.description | raw }}
+    <div class="description-text-map__content">
+        <div class="description-text-map__content__map">
+            <div id="map"></div>
+        </div>
+
+        <div class="description-text-map__content__text">
+            {{ activity.description | raw }}
+        </div>
     </div>
+
 </section>

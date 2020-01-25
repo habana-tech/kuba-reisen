@@ -11,9 +11,12 @@
             width: 80%;
         }
 
-
         &__included, &__not-included{
-            width: 47%;
+            width: 100%;
+
+            @include atLarge{
+                width: 47%;
+            }
         }
     }
 

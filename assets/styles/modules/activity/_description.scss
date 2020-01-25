@@ -1,4 +1,4 @@
-.description-text {
+.description-text-map {
     width: 90%;
     margin: auto;
     position: relative;
@@ -9,6 +9,56 @@
 
     &__content{
         width: 100%;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        align-items: center;
+
+        &__map{
+            margin: 1em 0 1em 0;
+            order: 1;
+            //border: 1px red solid;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+
+            @include atLarge {
+                order: 2;
+                width: 40%;
+                margin: auto;
+            }
+
+            #map {
+                height: 40vh;
+
+                @include atLarge {
+                    height: 55vh;
+                }
+            }
+        }
+
+        &__text{
+            order: 2;
+            @include atLarge {
+                order: 1;
+                width: 55%;
+            }
+        }
+
+
+    }
+
+    &__go-back{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        & .icon{
+            width: 2em;
+            height: 2em;
+            display: inline;
+        }
     }
 }
 

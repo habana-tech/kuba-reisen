@@ -58,12 +58,20 @@
             left: .5em;
             right: auto;
             transform: translateY(-50%) rotate(180deg);
+
+            @include atLarge{
+                left: 2em;
+            }
         }
 
         &--next{
             right: .5em;
             left: auto;
             transform: translateY(-50%) rotate(0deg);
+
+            @include atLarge{
+                right: 2em;
+            }
         }
     }
 
