@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Entity\Fields\ActiveFieldTrait;
+use App\Entity\Fields\FilterTagsTrait;
 use App\Entity\Fields\ImageFieldTrait;
 use App\Entity\Fields\MachineNameInterface;
 use App\Entity\Fields\MachineNameTrait;
@@ -20,7 +21,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Interest implements MachineNameInterface
 {
-    use ImageFieldTrait, ActiveFieldTrait, PriorityFieldTrait, MachineNameTrait;
+    use ImageFieldTrait, ActiveFieldTrait, PriorityFieldTrait, MachineNameTrait, FilterTagsTrait;
 
     /**
      * @ORM\Id()
@@ -38,6 +39,11 @@ class Interest implements MachineNameInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $description;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\FilterTag", inversedBy="interests")
+     */
+    private $filterTags;
 
 
     public function __construct()

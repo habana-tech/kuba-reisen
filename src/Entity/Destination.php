@@ -78,6 +78,11 @@ class Destination implements DescriptionFragmentFieldInterface, MachineNameInter
      */
     private $description;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\FilterTag", inversedBy="destinations")
+     */
+    private $filterTags;
+
     public function __construct()
     {
         $this->activities = new ArrayCollection();
