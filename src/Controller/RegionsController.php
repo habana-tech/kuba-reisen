@@ -35,7 +35,9 @@ class RegionsController extends AbstractController
 
     public function regionBanner(BannerRepository $bannerRepository)
     {
-        $banners = $bannerRepository->findAll();
+        if(!$banners = $bannerRepository->findAll())
+            return new Response();
+
         $index = array_rand($banners, 1);
         $banner = $banners[$index];
 

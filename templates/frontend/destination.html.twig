@@ -16,7 +16,7 @@
         {% include('frontend/components/global/_breadcrumb.html.twig')
             with {'pages': [
             {'name' : 'Start', 'url' : path('frontend')},
-            {'name' : 'Kuba erkunden', 'url' : path('exploring')},
+            {'name' : 'Kuba erkunden', 'url' : path('pageLoad', {'name':'exploring'})},
             {'name' : destination.name, 'url' : path('destination',
                 {'id' : destination.id, 'name' : destination.machineName }) }
         ] } %}
@@ -33,6 +33,5 @@
 {% endblock %}
 
 {% block javascripts %}
-{#    <script src="{{ asset('scripts/destination.js') }}"></script>#}
     {{ encore_entry_script_tags('destination') }}
 {% endblock %}

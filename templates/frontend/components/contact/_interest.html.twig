@@ -1,19 +1,11 @@
 <div class="interest" style="grid-area: img{{ index }}">
     <label for="interest{{ index }}">
 
-        {{ imgTagContent(
-            interest.hasImage ? interest.image.staticImagePath : 'static/img/hero/water/water.jpg' ,
-            null,
-            '',
-            '(min-width:1000px) 25vw, 50vw',
-            '') | raw }}
+        {{ imgTag(interest.image,'(min-width:1000px) 25vw, 50vw') | raw }}
 
         <div class="interest__title">
             <div class="interest__title__icon">
-{#                <svg class="icon icon-heart icon-heart--green"#}
-
                 {{ include('/frontend/components/_icons/_heart.html.twig') }}
-
             </div>
             <div class="interest__title__text">
                 {{ interest.title }}

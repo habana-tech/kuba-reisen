@@ -1,12 +1,7 @@
 <section class="section banner">
 
     <div class="banner__image">
-        {{  imgTagContent(
-            banner.image.staticImagePath,
-            null,
-            '',
-            '100vw',
-            '') | raw }}
+        {{  imgTag(banner.image,'100vw') | raw }}
     </div>
 
     <div class="banner__content">
