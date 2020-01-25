@@ -1,4 +1,5 @@
 import { setCookie, getCookie } from './_utils';
+import axios from 'axios';
 
 class AddToCart {
     constructor(buttonsSelector){
@@ -9,10 +10,14 @@ class AddToCart {
         this.cartBar = document.querySelector('.cart_bar');
         this.cartBarText = document.querySelector('.cart_bar .cart_bar__content__text span');
         this.activities = [];
+        this.cartBarActivityPrototype = document.querySelector('.cart_bar__content__activities__item__prototype > div');
+        this.cartBarActivityContainer = document.querySelector('.cart_bar__content__activities');
 
         this.loadActivities();
         this.events();
         this.setStatus();
+
+        this.fetchUrl = '/activitiesApiGetById';
     }
 
     loadActivities(){
@@ -37,27 +42,13 @@ class AddToCart {
     }
 
     setStatus(){
-        this.buttonsAdd.forEach((button)=>{
-           let activityId = button.getAttribute('data-activity_id');
-            if (this.activities.includes(activityId)){
-               button.querySelector('svg.heart').classList.toggle('heart--fill-white');
-            }
-        });
+
     }
 
     containActivity(activityId){
         return this.activities.includes(activityId);
     }
 
-    removeActivity(activityId){
-        this.activities = this.activities.filter((x)=>{return x!==activityId});
-        setCookie(this.activities.toString());
-    }
-
-    addActivity(activityId){
-        this.activities.push(activityId);
-        setCookie(this.activities.toString());
-    }
 
     updateCartText(){
         if (this.activities.length === 0)
@@ -75,6 +66,33 @@ class AddToCart {
         this.cartBar.classList.add('cart_bar--visible');
     }
 
+    makeCartBarActivityItem(activity){
+        let activityItem = this.cartBarActivityPrototype.cloneNode(true);
+        activityItem.setAttribute('id', 'activityItem_'+activity.id);
+        let image = activityItem.querySelector('img');
+        image.setAttribute('src', activity.image);
+        let name = activityItem.querySelector('h5');
+        name.innerHTML = activity.name.length < 25 ? activity.name : activity.name.substring(0, 25)+'...';
+
+        return activityItem;
+    }
+
+    fetchActivity(activityId){
+        let url = this.fetchUrl+'/'+activityId;
+
+        axios.get(url)
+            .then((response)=>{
+                let dataActivity = response.data.activity;
+
+                let activityItem = this.makeCartBarActivityItem(dataActivity);
+                this.cartBarActivityContainer.appendChild(activityItem);
+
+            })
+            .catch(()=>{
+                return null;
+            });
+    }
+
     addOrRemoveActivity(e){
 
         let button = e.target;
@@ -88,7 +106,7 @@ class AddToCart {
         else {
             this.addActivity(activityId);
             this.updateCartText();
-            this.showCart()
+            this.showCart();
         }
 
         button.classList.toggle('checked');

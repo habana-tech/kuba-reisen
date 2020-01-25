@@ -83,8 +83,9 @@
 
             @include atLarge{
                 position: relative;
-                height: 5em;
-                transition: all .3s ease-in-out;
+                transition: transform .3s ease-in-out;
+
+                transform: translateY(calc( 100% - 3em ));
             }
 
             & a{
@@ -106,18 +107,15 @@
             &__nav{
                 left: -1.25em;
                 position: relative;
-                opacity: 0;
-                transform: translateY(85%);
-                transition: all .3s ease-in-out;
+                transition: opacity .3s ease-in-out;
                 list-style: none;
-
+                opacity: 0;
             }
 
             &--active{
-                height: 10em;
+                transform: translateY(calc( 0% + 1em ));
 
                 & .hero__buttom-links__item__nav{
-                    transform: translateY(5%);
                     opacity: 1;
                 }
             }

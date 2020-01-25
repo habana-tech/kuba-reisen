@@ -26,12 +26,7 @@
                     <a href="{{ url }}">
                         <div class="top_destinations__places__place__image">
                             <div class="grid__item-img" data-grape_section="_top_destinations">
-                                {{ imgTagContent(
-                                    fragment.hasImage ? fragment.image.staticImagePath : '/img/hero/water/water.jpg',
-                                    null,
-                                    fragment.hasImage ? fragment.image.description : 'placeholder image',
-                                    '(min-width: 1200px) 50vw, 100vw',
-                                    null) | raw }}
+                                {{ imgTag(fragment.image, '(min-width: 1200px) 50vw, 100vw') | raw }}
                             </div>
                         </div>
                         <div class="top_destinations__places__place__text">

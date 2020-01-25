@@ -31,9 +31,14 @@ class FilterTag implements MachineNameInterface
     private $title;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Interest", inversedBy="filterTags")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Interest", mappedBy="filterTags")
      */
     private $interests;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Destination", mappedBy="filterTags")
+     */
+    private $destinations;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Activity", mappedBy="filterTags")
@@ -50,6 +55,7 @@ class FilterTag implements MachineNameInterface
     {
         $this->interests = new ArrayCollection();
         $this->activities = new ArrayCollection();
+        $this->destinations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -145,5 +151,33 @@ class FilterTag implements MachineNameInterface
     public function getNameFieldValue(): string
     {
         return $this->title;
+    }
+
+     /**
+     * @return Collection|Destination[]
+     */
+    public function getDestinations(): Collection
+    {
+        return $this->destinations;
+    }
+
+    public function addDestination(Destination $destination): self
+    {
+        if (!$this->destinations->contains($destination)) {
+            $this->destinations[] = $destination;
+            $destination->addFilterTag($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDestination(Destination $destination): self
+    {
+        if ($this->destinations->contains($destination)) {
+            $this->destinations->removeElement($destination);
+            $destination->removeFilterTag($this);
+        }
+
+        return $this;
     }
 }

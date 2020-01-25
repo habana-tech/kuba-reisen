@@ -36,7 +36,7 @@ trait ImageFieldTrait
 
     public function hasImage(): bool
     {
-        return ($this->image instanceof Image && $this->image->getImageName());
+        return ($this->image instanceof Image && $this->image->getImageName() && $this->image->getImageName() !== 'no-image' );
     }
 
     /**

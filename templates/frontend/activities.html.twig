@@ -14,6 +14,13 @@
             'hero__content__text': page.name,
             'hero__image': page.hasImage ? page.image.staticImagePath : 'static/img/hero/water/water.jpg' }) }}
 
+        {% include('frontend/components/global/_breadcrumb.html.twig')
+            with {'pages': [
+            {'name' : 'Start', 'url' : path('frontend')},
+            {'name' : 'Kuba Ausflüge', 'url' : path('excursions') },
+            {'name' : 'Activities', 'url' : path('activities') },
+        ] } %}
+
         {{ include('frontend/components/activities/_stories.html.twig') }}
 
         {{ include('frontend/components/activities/_popular_activities.html.twig') }}

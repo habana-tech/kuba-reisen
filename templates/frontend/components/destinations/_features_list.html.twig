@@ -14,12 +14,7 @@
             </div>
 
             <div class="feature__image">
-                {{ imgTagContent(
-                    fragment.image.staticImagePath,
-                    null,
-                    fragment.image.description,
-                    '(min-width:1000px) 50vw, 100vw',
-                    null) | raw }}
+                {{ imgTag(fragment.image, '(min-width:1000px) 50vw, 100vw') | raw }}
             </div>
         </div>
     {% endfor %}

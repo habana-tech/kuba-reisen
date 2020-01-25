@@ -3,12 +3,7 @@
         {% for image in activity.gallery %}
             <div class="gallery__item">
                 <div class="gallery__item__image">
-                    {{ imgTagContent(
-                        image.staticImagePath,
-                        image.base64,
-                        image.description,
-                        '100vw',
-                        '') | raw }}
+                    {{ imgTag(image) | raw }}
                 </div>
                 <div class="gallery__item__title">
                         <h2>

@@ -27,6 +27,7 @@ Encore
 
     .addEntry('app', './assets/scripts/app.js')
     .addStyleEntry('loading', './assets/styles/loading.scss')
+    .addStyleEntry('login', './assets/styles/modules/_login.scss')
     .addEntry('index', './assets/scripts/index.js')
     .addEntry('destination', './assets/scripts/destination.js')
     .addEntry('faq', './assets/scripts/faq.js')

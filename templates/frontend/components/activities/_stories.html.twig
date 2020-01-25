@@ -37,9 +37,9 @@
                                 </div>
                             {% endif %}
 
-                            {% if fragment.hasImage %}
+                            {% if fragment.hasImage and fragment.image.load %}
                                 <div class="activities__stories__story__item__image">
-                                    {{ imgTagContent(fragment.image.staticImagePath) | raw }}
+                                    {{ imgTag(fragment.image) | raw }}
                                 </div>
                             {% endif %}
                             <div class="activities__stories__story__item__content">

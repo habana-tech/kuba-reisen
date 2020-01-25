@@ -13,6 +13,11 @@
             'hero__content__text': page.name,
             'hero__image': page.hasImage ? page.image.staticImagePath : 'static/img/hero/water/water.jpg' }) }}
 
+        {% include('frontend/components/global/_breadcrumb.html.twig')
+            with {'pages': [ {'name' : 'Start', 'url' : path('frontend')},
+                             {'name' : 'Reise FAQ für kuba', 'url' : path('faq')}
+                           ] } %}
+
         {{ include ('frontend/components/faq/_intro.html.twig') }}
 
 {#        {{ include ('frontend/components/faq/_content_index.html.twig') }}#}

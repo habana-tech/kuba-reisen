@@ -1,6 +1,5 @@
 import axios from 'axios';
 import MakeActivity from "./_make_activity";
-import AddtoCart from "../global/_addToCart";
 
 class FilterActivities {
     constructor(){
@@ -14,7 +13,7 @@ class FilterActivities {
         this.activitiesListInitial = document.querySelector('.activities__list__container__initial');
         this.activitiesListFilterSearch = document.querySelector('.activities__list__container__filter_search');
 
-        this.prototype = document.querySelector('.activities__list__item-prototype div');
+        this.prototype = document.querySelector('.activities__list__item__prototype div');
         this.filters = document.querySelectorAll('.activities__selectors__filters__lists li');
 
         this.searchFormInput = document.querySelector('.activities__selectors__search form input[type="text"]');
@@ -107,8 +106,6 @@ class FilterActivities {
 
                         that.activitiesListFilterSearch.appendChild(newActivity);
                     });
-
-                    new AddtoCart('.activity__content__actions__add a');
                 }
                 else //no se han encontrado
                     that.activitiesText.innerText = 'Mit diesen Filtern wurden keine Aktivitäten gefunden';

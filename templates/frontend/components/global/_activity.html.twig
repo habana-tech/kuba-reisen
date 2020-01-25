@@ -2,12 +2,7 @@
 
     <div class="activity__image">
         <a href="{{ path('activity', {'id':activity.id, 'name':activity.machineName}) }}">
-            {{ imgTagContent(
-                activity.hasImage ? activity.image.staticImagePath : 'static/img/hero/water/water.jpg',
-                null,
-                '',
-                '(min-width:1000px) 33vw, 90vw',
-                '') | raw }}
+            {{ imgTag(activity.image, '(min-width:1000px) 33vw, 90vw') | raw }}
         </a>
     </div>
 
