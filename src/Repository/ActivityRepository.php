@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Activity;
+use App\Entity\Destination;
 use App\Entity\FilterTag;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -99,4 +100,24 @@ class ActivityRepository extends ServiceEntityRepository
             ->getResult()
             ;
     }
+
+
+    /**
+     * @param Destination
+     * @param $count
+     * @return Activity[] Returns an array of Activity objects
+     */
+    public function findByDestination(Destination $destination, $count = 4): array
+    {
+
+        return $this->createQueryBuilder('activity')
+            ->join('activity.destinations', 'destinations')
+            ->where('destinations.id in (:id)')
+            ->orderBy('activity.priority','DESC')
+            ->setParameter('id', $destination->getId())
+            ->setMaxResults($count)
+            ->getQuery()
+            ->getResult();
+    }
+
 }

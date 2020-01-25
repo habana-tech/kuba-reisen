@@ -80,7 +80,6 @@ class Image
     /**
      * @return string
      */
-    #TODO: decapretar esto
     public function getStaticImagePath(): string
     {
         return 'static/'.$this->getImagePath();

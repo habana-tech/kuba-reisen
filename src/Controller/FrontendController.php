@@ -10,6 +10,11 @@ use App\Repository\ActivityRepository;
 use App\Repository\DestinationRepository;
 use App\Repository\DynamicPageRepository;
 use App\Repository\FilterTagRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\Proxy;
+use Proxies\__CG__\App\Entity\Image;
+use ProxyManager\Proxy\ProxyInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -52,16 +57,25 @@ class FrontendController extends AbstractController
     /**
      * @Route("/destination/{id}/{name}" , name="destination")
      * @param Destination $destination
+     * @param ActivityRepository $activityRepository
+     * @param EntityManager $em
      * @return Response
      */
-    public function destination(Destination $destination): Response
+    public function destination(Destination $destination, ActivityRepository $activityRepository, EntityManagerInterface $em): Response
     {
         if(!$destination) {
             throw new NotFoundHttpException();
         }
 
+        $activities = $activityRepository->findByDestination($destination);
+
+        foreach ($activities as &$item)
+            if($item->getImage() && $item->getImage() instanceof Proxy)
+                $item->getImage()->__load();
+
         return $this->render('frontend/destination.html.twig', [
             'destination' => $destination,
+            'destination_activities' => $activities,
         ]);
     }
 
