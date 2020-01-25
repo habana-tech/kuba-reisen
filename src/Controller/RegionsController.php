@@ -7,6 +7,7 @@ use App\Entity\Destination;
 use App\Repository\ActivityRepository;
 use App\Repository\BannerRepository;
 use App\Repository\DynamicPageRepository;
+use App\Repository\TopDestinationRepository;
 use phpDocumentor\Reflection\Types\Array_;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,15 +22,12 @@ use Twig\Error\LoaderError;
 class RegionsController extends AbstractController
 {
 
-    public function regionTopDestinations(DynamicPageRepository $dynamicPageRepository)
+    public function regionTopDestinations(TopDestinationRepository $topDestinationRepository)
     {
-        $page = $dynamicPageRepository->findOneBy(['machineName'=>'unsere_top_seller']);
-
-        if(!$page)
-            throw new NotFoundHttpException();
+        $topDestinations = $topDestinationRepository->findAll();
 
         return $this->render('frontend/components/global/_top_destination.html.twig', [
-            'page' => $page,
+            'topDestinations' => $topDestinations,
         ]);
     }
 

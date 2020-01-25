@@ -1,12 +1,11 @@
-{#TODO: cambiar el templete iterar por los fragment, y poner la url desde el content del fragment #}
-
 <section class="section top_destinations">
     <div class="section__title ">
         <div class="section__title__highlight section__title__highlight--orange">
-            <h2>{{ page.name }}</h2>
+            <h2>Unsere Top-Seller</h2>
         </div>
         <div class="section__title__description">
-            {{ page.description | raw }}
+            Die Qual der Wahl: So vielfältig wie Kuba ist, so umfangreich ist
+            auch unser Ideen- und Produktekatalog. Wir zeigen Ihnen, was unsere Kunden am häufigsten buchen.
         </div>
     </div>
 
@@ -15,23 +14,19 @@
         {% set classes = ['top_destinations__places__place--blue', 'top_destinations__places__place--orange',
                         'top_destinations__places__place--green', 'top_destinations__places__place--blue'] %}
 
-        {% for fragment in page.descriptionFragment %}
+        {% for topDestination in topDestinations %}
 
             <div class="top_destinations__places__place {{ classes[loop.index % 4] }}">
 
-                    {% set content = fragment.content | split('<hr />') %}
-                    {% set url = content.0 | striptags %}
-                    {% set description = content.1 | striptags %}
-
-                    <a href="{{ url }}">
+                    <a href="{{ topDestination.link }}">
                         <div class="top_destinations__places__place__image">
                             <div class="grid__item-img" data-grape_section="_top_destinations">
-                                {{ imgTag(fragment.image, '(min-width: 1200px) 50vw, 100vw') | raw }}
+                                {{ imgTag(topDestination.image, '(min-width: 1200px) 50vw, 100vw') | raw }}
                             </div>
                         </div>
                         <div class="top_destinations__places__place__text">
-                            <span>{{ fragment.name }}</span>
-                            <p>{{  description | raw }}</p>
+                            <span>{{ topDestination.title }}</span>
+                            <p>{{ topDestination.description }}</p>
                         </div>
                     </a>
             </div>
