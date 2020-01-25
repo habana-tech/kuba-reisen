@@ -1,29 +1,27 @@
-<section class="section banner_sky">
+<section class="section banner">
 
-    <div class="banner_sky__image">
+    <div class="banner__image">
         {{  imgTagContent(
-            page.ElementAttr('banner_sky__image', 'src', asset('img/banner/sky.png')),
-            page.ElementAttr('banner_sky__image', 'srcb64', asset('img/banner/sky.png')),
-            page.getElementContent('__banner_sky_headline__'),
+            banner.image.staticImagePath,
+            null,
+            '',
             '100vw',
-            'data-grape_id="banner_sky__image"') | raw }}
+            '') | raw }}
     </div>
 
-    <div class="banner_sky__content">
-        <div class="banner_sky__content__titles">
-            <h2 data-grape_id="__banner_sky_headline__" data-grape_format="txt">
-                {{ page.getElementContent('__banner_sky_headline__', 'Take a step toward travel to Cuba') }}
-            </h2>
+    <div class="banner__content">
+        <div class="banner__content__titles">
+            <h2>{{ banner.title}}</h2>
 
-            <h3 data-grape_id="__banner_sky_subtitle__" data-grape_format="txt">
-                {{ page.getElementContent('__banner_sky_subtitle__', 'Take a step toward travel to Cuba') }}
+            <h3>
+                {{ banner.description | raw }}
             </h3>
         </div>
 
-        <a class="btn" href="{{  path('contact') }}"
-           data-grape_id="__banner_sky_contact_btn__"
+        <a class="btn" href="{{  banner.link }}"
+           data-grape_id="__banner_contact_btn__"
            data-grape_format="txt">
-            {{ page.getElementContent('__banner_sky_contact_btn__', 'Talk to an expert') }}
+            {{ banner.linkText }}
         </a>
     </div>
 

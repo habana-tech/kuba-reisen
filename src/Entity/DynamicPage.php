@@ -66,6 +66,11 @@ class DynamicPage implements MachineNameInterface, GalleryFieldInterface, Descri
     private $description;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $titleDescription;
+
+    /**
      * DynamicPage constructor.
      * @param $template
      */
@@ -157,6 +162,18 @@ class DynamicPage implements MachineNameInterface, GalleryFieldInterface, Descri
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getTitleDescription(): ?string
+    {
+        return $this->titleDescription;
+    }
+
+    public function setTitleDescription(?string $titleDescription): self
+    {
+        $this->titleDescription = $titleDescription;
 
         return $this;
     }

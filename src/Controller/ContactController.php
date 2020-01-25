@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\InterestRepository;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,10 +24,14 @@ class ContactController extends AbstractController
      * @Route("/kontaktieren/{travel}",
      *     defaults={"travel": null},
      *       name="contact")
-     * @throws LoaderError
+     * @param Request $request
+     * @param $travel
+     * @param ActivityRepository $activityRepository
+     * @param DynamicPageRepository $dynamicPageRepository
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function contact(Request $request, $travel, ActivityRepository $activityRepository,
-                            DynamicPageRepository $dynamicPageRepository)
+                            DynamicPageRepository $dynamicPageRepository, InterestRepository $interestRepository)
     {
 
         $page = $dynamicPageRepository->findOneBy([
@@ -35,13 +40,8 @@ class ContactController extends AbstractController
 
         if(!$page)
             throw new NotFoundHttpException();
-        if(!$page->getTemplate()->getPath())
-            throw  new LoaderError('Page: "'.$page->getName().'" not contains a valid PageTemplate or it is undefined. Edit the page and add a PageTemplate using the form.');
 
-
-        $fromTravel = false;
-        if ($travel == 'raise')
-            $fromTravel = 'true';
+        $fromTravel = $travel == 'raise';
 
         $contact = new ContactPlaning();
         $form = $this->createForm(ContactPlaningType::class, $contact, [
@@ -72,9 +72,12 @@ class ContactController extends AbstractController
             }
         }
 
+        $interests = $interestRepository->findAll();
+
         return $this->render('frontend/contact.html.twig', [
             'contact' => $contact,
-            'activities'=>$activities,
+            'activities' => $activities,
+            'interests' => $interests,
             'form' => $form->createView(),
             'dynamic_page_id' => $page->getId(),
             'page' => $page,

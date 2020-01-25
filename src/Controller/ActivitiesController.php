@@ -42,6 +42,7 @@ class ActivitiesController extends AbstractController
 
         if(!$page)
             throw new NotFoundHttpException();
+
         $filters = explode(',', $filters);
 
         $filterTags = $filterTagRepository->findAll();

@@ -10,6 +10,8 @@ easy_admin:
             - { entity: 'Destination', label: 'Destinations' , icon: 'map-marker-alt'}
             - { entity: 'Story', label: 'Stories' , icon: 'bookmark'}
             - { entity: 'Interest', label: 'Interest' , icon: 'heart'}
+            - { entity: 'Banner', label: 'Banner' , icon: 'heart'}
+            - { entity: 'TopDestination', label: 'Top Destinations' , icon: 'heart'}
             - { entity: 'FilterTag', label: 'Tags' , icon: 'tags'}
 
 
@@ -64,6 +66,7 @@ easy_admin:
                     - { property: 'template', type: 'App\Form\PageTemplateType', label: 'Template' }
                     - { property: 'fromGallery', label: 'Use this image from Gallery', type: 'entity', type_options: { 'class': 'App\Entity\Image', attr: {'data-widget': 'select2'}} }
                     - { property: 'image', label: 'Upload a new image to Gallery', type: 'App\Form\ImageUploadType' }
+                    - { property: 'titleDescription', label: 'Title of Intro or Description' }
                     - { property: 'description', label: 'Intro or Description', type: 'fos_ckeditor' }
 
                     - { type: 'group', label: 'Gallery', icon: 'image', columns: 4 , help: 'You can use an existing image from Gallery or upload a new one, replacing the current image '}
@@ -211,4 +214,44 @@ easy_admin:
                     - { property: 'imageFile', type: 'vich_image' }
                     - { property: 'description' }
 
-        #- App\Entity\User
+        Banner:
+            class: App\Entity\Banner
+            list:
+                fields:
+                    - { property: 'title', label: 'Title' }
+                    - { property: 'image.imageName', label: 'Featured Image', type: 'image' , base_path: '%app.path.uploaded_images%' }
+                    - { property: 'description' }
+                    - { property: 'active' }
+            form:
+                fields:
+                    - { type: 'group', label: 'Banner content', icon: 'location-arrow', columns: 8 }
+                    - { property: 'title', label: 'Title' }
+                    - { property: 'description' }
+                    - { property: 'linkText', label: 'Text of the link (button)' }
+                    - { property: 'link', label: 'Url' }
+
+                    - { type: 'group', label: 'Banner Image', icon: 'location-arrow', columns: 4 }
+                    - { property: 'active', label: 'The Activity is Active' }
+                    - { property: 'fromGallery', label: 'Use this image from Gallery', type: 'entity', type_options: { 'class': 'App\Entity\Image', attr: {'data-widget': 'select2'}} }
+                    - { property: 'image', label: 'Upload a new image to Gallery', type: 'App\Form\ImageUploadType' }
+
+        TopDestination:
+            class: App\Entity\TopDestination
+            list:
+                fields:
+                    - { property: 'title', label: 'Title' }
+                    - { property: 'image.imageName', label: 'Featured Image', type: 'image' , base_path: '%app.path.uploaded_images%' }
+                    - { property: 'description' }
+                    - { property: 'active' }
+            form:
+                fields:
+                    - { type: 'group', label: 'TopDestination content', icon: 'location-arrow', columns: 8 }
+                    - { property: 'title', label: 'Title' }
+                    - { property: 'description' }
+                    - { property: 'linkText', label: 'Text of the link (button)' }
+                    - { property: 'link', label: 'Url' }
+
+                    - { type: 'group', label: 'Banner Image', icon: 'location-arrow', columns: 4 }
+                    - { property: 'active', label: 'The Activity is Active' }
+                    - { property: 'fromGallery', label: 'Use this image from Gallery', type: 'entity', type_options: { 'class': 'App\Entity\Image', attr: {'data-widget': 'select2'}} }
+                    - { property: 'image', label: 'Upload a new image to Gallery', type: 'App\Form\ImageUploadType' }

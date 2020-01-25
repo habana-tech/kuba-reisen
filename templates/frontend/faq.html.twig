@@ -3,26 +3,26 @@
 {% block title %}Reise FAQ für kuba{% endblock %}
 
 {% block stylesheets %}
-{#    <link rel="stylesheet" href="{{ asset('styles/faq.css') }}" type="text/css">#}
       {{ encore_entry_link_tags('faq') }}
 {% endblock %}
 
 {% block body %}
     <main class="main">
 
-        {%  include ('frontend/components/global/_hero.html.twig') with {'hero__image': '', 'hero__content__text': page.page } %}
+        {{ include('frontend/components/global/_hero.html.twig', {
+            'hero__content__text': page.name,
+            'hero__image': page.hasImage ? page.image.staticImagePath : 'static/img/hero/water/water.jpg' }) }}
 
         {{ include ('frontend/components/faq/_intro.html.twig') }}
 
-        {{ include ('frontend/components/faq/_content_index.html.twig') }}
+{#        {{ include ('frontend/components/faq/_content_index.html.twig') }}#}
 
-        {{ include ('frontend/components/faq/_question.html.twig') }}
+{#        {{ include ('frontend/components/faq/_question.html.twig') }}#}
 
     </main>
 {% endblock %}
 
 
 {% block javascripts %}
-{#    <script src="{{ asset('scripts/faq.js') }}"></script>#}
     {{ encore_entry_script_tags('faq') }}
 {% endblock %}

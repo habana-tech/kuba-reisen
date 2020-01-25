@@ -1,10 +1,10 @@
 {#expect a activity variable#}
 <div class="activity">
-    <a href="{{ path('activity', {'id':activity.id, 'name':activity.machineName}) }}">
+    <a href="{{ path('activity', {'id':activity.id, 'name' : activity.machineName}) }}">
         <div class="activity__image">
             {{ imgTagContent(
-                activity.dynamicPage.elementAttr('activity_images_img1', 'src', asset('img/header_pic.jpg')),
-                activity.dynamicPage.elementAttr('activity_images_img1', 'srcb64', asset('img/header_pic.jpg')),
+                activity.hasImage ? activity.image.staticImagePath : 'static/img/hero/water/water.jpg',
+                null,
                 '',
                 '(min-width:1000px) 33vw, 90vw',
                 '') | raw }}

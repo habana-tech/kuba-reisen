@@ -1,6 +1,6 @@
 import { setCookie, getCookie } from './_utils';
 
-class AddtoCart {
+class AddToCart {
     constructor(buttonsSelector){
         this.buttonsSelector = buttonsSelector;
 
@@ -97,4 +97,4 @@ class AddtoCart {
 
 }
 
-export default AddtoCart;
+export default AddToCart;

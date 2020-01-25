@@ -36,7 +36,7 @@ class MakeActivity {
         newActivity.querySelector('.activity__content__description a').setAttribute('href', link);
 
         if(price !== null)
-            newActivity.querySelector('.activity__content__price span').innerHTML = price + " €";
+            newActivity.querySelector('.activity__content__price span').innerHTML = 'ab <br>'+price + " €";
         else
             newActivity.querySelector('.activity__content__price').setAttribute('hidden', 'hidden');
 

@@ -2,29 +2,19 @@
 
     <div class="section__title ">
         <div class="section__title__highlight section__title__highlight--orange">
-            <h2 data-grape_id="contact_t1" data-grape_format="txt">
-            {{ page.ElementContent('contact_t1',"Beginnen wir mit den Grundlagen") | raw }}</h2>
+            <h2>Beginnen wir mit den Grundlagen</h2>
         </div>
-        <div class="section__title__description" data-grape_id="contact_p1">
-            {% if page.ElementContent('contact_p1') %}
-                {{ page.ElementContent('contact_p1') | raw }}
-            {% else %}
-                <p>
-                    ein paar fragen zum aufwärmen
-                </p>
-            {% endif %}
+        <div class="section__title__description" >
+            <p>
+                Hat kuba-reisen.de Ihr Interesse geweckt? Dann freuen wir uns auf
+                Ihre Kontaktaufnahme. Gerne helfen wir Ihnen bei der Planung Ihres Kuba Urlaubes.
+            </p>
         </div>
     </div>
 
-  
-
     <div class="form__item">
         <div class="form__item__label" data-grape_id="form__item__label_travelDate">
-            {% if page.ElementContent('form__item__label_travelDate') %}
-                {{ page.ElementContent('form__item__label_travelDate') | raw }}
-            {% else %}
-                {{ form_label(form.travelDate) }}
-            {% endif %}
+            {{ form_label(form.travelDate) }}
         </div>
         <div class="form__item__input">
             {{ form_widget(form.travelDate) }}
@@ -34,13 +24,10 @@
 
     <div class="form__item">
 
-        <div class="form__item__label" data-grape_id="form__item__label_travelDuration">
-            {% if page.ElementContent('form__item__label_travelDuration') %}
-                {{ page.ElementContent('form__item__label_travelDuration') | raw }}
-            {% else %}
-                {{ form_label(form.travelDuration) }}
-            {% endif %}
+        <div class="form__item__label">
+            {{ form_label(form.travelDuration) }}
         </div>
+
         <div class="form__item__input select-control">
             {{ form_widget(form.travelDuration, {}) }}
             <div id="{{ form.travelDuration.vars.id }}_container"></div>
@@ -53,21 +40,16 @@
                     +
                 </div>
             </div>
-
         </div>
-        <div class="visually-hidden" data-grape_id="form__item__label_travelDuration_options" id="{{ form.travelDuration.vars.id }}_labels">
-{#            {% if page.ElementContent('form__item__label_travelDuration_options') %}#}
-{#                {{ page.ElementContent('form__item__label_travelDuration_options') | raw }}#}
-{#            {% else %}#}
+
+        <div class="visually-hidden" id="{{ form.travelDuration.vars.id }}_labels">
             <ul class="visually-hidden">
                 <li>Weniger als 5 Tage</li>
-                <li>6 Tage</li><li>7 Tage</li><li>8 Tage</li><li>9 Tage</li><li>10 Tage</li><li>11 Tage</li><li>12 Tage</li>
-                <li>13 Tage</li><li>14 Tage</li><li>15 Tage</li><li>16 Tage</li><li>17 Tage</li><li>18 Tage</li>
-                <li>19 Tage</li><li>20 Tage</li><li>21 Tage</li><li>22 Tage</li><li>23 Tage</li><li>24 Tage</li>
-                <li>25 Tage</li><li>26 Tage</li><li>27 Tage</li><li>28 Tage</li><li>29 Tage</li>
+                {% for number in 6..29 %}
+                    <li>6 Tage</li>
+                {% endfor %}
                 <li>30 Tage und Mehr</li>
             </ul>
-{#            {% endif %}#}
 
         </div>
 
@@ -85,12 +67,8 @@
 {#    </div>#}
 
     <div class="form__item">
-        <div class="form__item__label" data-grape_id="form__item__label_peopleAmount">
-            {% if page.ElementContent('form__item__label_peopleAmount') %}
-                {{ page.ElementContent('form__item__label_peopleAmount') | raw }}
-            {% else %}
-                {{ form_label(form.peopleAmount) }}
-            {% endif %}
+        <div class="form__item__label">
+            {{ form_label(form.peopleAmount) }}
         </div>
         <div class="form__item__input">
             {{ form_widget(form.peopleAmount) }}
@@ -99,34 +77,17 @@
 
     <div class="form__item">
         <div class="form__item__label" data-grape_id="form__item__label_childAmount">
-
+            {{ form_label(form.childAmount) }}
         </div>
         <div class="form__item__input">
             {{ form_widget(form.childAmount) }}
         </div>
     </div>
 
-{#    <div class="form__item">#}
-{#        <div class="form__item__label" data-grape_id="form__item__label_travelBudget">#}
-{#            {% if page.ElementContent('form__item__label_travelBudget') %}#}
-{#                {{ page.ElementContent('form__item__label_travelBudget') | raw }}#}
-{#            {% else %}#}
-{#                {{ form_label(form.travelBudget) }}#}
-{#            {% endif %}#}
-{#        </div>#}
-{#        <div class="form__item__input">#}
-{#            {{ form_widget(form.travelBudget) }}#}
-{#        </div>#}
-{#    </div>#}
-
     <div class="form__item">
 
-        <div class="form__item__label" data-grape_id="form__item__label_travelBudget">
-            {% if page.ElementContent('form__item__label_travelBudget') %}
-                {{ page.ElementContent('form__item__label_travelBudget') | raw }}
-            {% else %}
-                {{ form_label(form.travelBudget) }}
-            {% endif %}
+        <div class="form__item__label">
+            {{ form_label(form.travelBudget) }}
         </div>
         <div class="form__item__input select-control">
             {{ form_widget(form.travelBudget, {}) }}
@@ -135,7 +96,9 @@
                 <div class="travelBudget slider-labels_label first">
                     -
                 </div>
-                <div class="travelBudget slider-labels_label value" id="{{ form.travelBudget.vars.id }}_value">{{ form.travelBudget.vars.id }}</div>
+                <div class="travelBudget slider-labels_label value" id="{{ form.travelBudget.vars.id }}_value">
+                    {{ form.travelBudget.vars.id }}
+                </div>
                 <div class="travelBudget slider-labels_label last">
                     +
                 </div>
@@ -143,25 +106,15 @@
 
         </div>
         <div class="visually-hidden" id="{{ form.travelBudget.vars.id }}_labels">
-{#        <div class="visually-hidden" data-grape_id="form__item__label_travelBudget_options" id="{{ form.travelBudget.vars.id }}_labels">#}
-{#            {% if page.ElementContent('form__item__label_travelDuration_options') %}#}
-{#                {{ page.ElementContent('form__item__label_travelDuration_options') | raw }}#}
-{#            {% else %}#}
             <ul class="visually-hidden">
                 <li>Weniger als 1000 EUR</li>
-                <li>1000 EUR</li><li>1'500 EUR</li>
-                <li>2'000 EUR</li><li>2'500 EUR</li>
-                <li>3'000 EUR</li><li>3'500 EUR</li>
-                <li>4'000 EUR</li><li>4'500 EUR</li>
-                <li>5'000 EUR</li><li>5'500 EUR</li>
-                <li>6'000 EUR</li><li>6'500 EUR</li>
-                <li>7'000 EUR</li><li>7'500 EUR</li>
-                <li>8'000 EUR</li><li>8'500 EUR</li>
-                <li>9'000 EUR</li><li>9'500 EUR</li>
+                {% for thousand in 1..9 %}
+                    <li>{{ thousand }}'000 EUR</li>
+                    <li>{{ thousand }}'500 EUR</li>
+                {%  endfor %}
                 <li>10'000 EUR</li>
                 <li>Geld spielt keine Rolle</li>
             </ul>
-{#            {% endif %}#}
 
         </div>
 

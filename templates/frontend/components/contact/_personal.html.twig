@@ -2,11 +2,11 @@
 
     <div class="section__title ">
         <div class="section__title__highlight section__title__highlight--orange">
-            <h2 data-grape_id="contact_t3" data-grape_format="txt">
-            {{ page.ElementContent('contact_t3',"Wie können wir Sie kontacktieren?") | raw }}</h2>
+            <h2>Wie können wir Sie kontaktieren?</h2>
         </div>
         <div class="section__title__description">
-            <p data-grape_id="contact_p3" data-grape_format="txt">{{ page.ElementContent('contact_p3',"Lassen Sie uns mehr über die Dinge wissen, die Sie mögen") | raw }}</p>
+            <p>Lassen Sie uns mehr über die Dinge wissen, die Sie mögen
+            </p>
         </div>
     </div>
 
@@ -15,11 +15,7 @@
         <div class="contact__personal__name_mail">
             <div class="form__item">
                 <div class="form__item__label" data-grape_id="form__item__label_name">
-                    {% if page.ElementContent('form__item__label_name') %}
-                        {{ page.ElementContent('form__item__label_name') | raw }}
-                    {% else %}
-                        {{ form_label(form.clientName) }}
-                    {% endif %}
+                    {{ form_label(form.clientName) }}
                 </div>
                 <div class="form__item__input">
                     {{ form_widget(form.clientName) }}
@@ -28,11 +24,7 @@
 
             <div class="form__item">
                 <div class="form__item__label" data-grape_id="form__item__label_email">
-                    {% if page.ElementContent('form__item__label_email') %}
-                        {{ page.ElementContent('form__item__label_email') | raw }}
-                    {% else %}
-                        {{ form_label(form.clientEmail) }}
-                    {% endif %}
+                    {{ form_label(form.clientEmail) }}
                 </div>
                 <div class="form__item__input">
                     {{ form_widget(form.clientEmail) }}
@@ -41,11 +33,7 @@
 
             <div class="form__item">
                 <div class="form__item__label" data-grape_id="form__item__label_telephone">
-                    {% if page.ElementContent('form__item__label_telephone') %}
-                        {{ page.ElementContent('form__item__label_telephone') | raw }}
-                    {% else %}
-                        {{ form_label(form.telephone) }}
-                    {% endif %}
+                    {{ form_label(form.telephone) }}
                 </div>
                 <div class="form__item__input">
                     {{ form_widget(form.telephone) }}
@@ -55,11 +43,7 @@
         <div class="contact__personal__message">
             <div class="form__item">
                 <div class="form__item__label" data-grape_id="form__item__label_message">
-                    {% if page.ElementContent('form__item__label_message') %}
-                        {{ page.ElementContent('form__item__label_message') | raw }}
-                    {% else %}
-                        {{ form_label(form.message) }}
-                    {% endif %}
+                    {{ form_label(form.message) }}
                 </div>
                 <div class="form__item__textarea">
                     {{ form_widget(form.message) }}

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Activity;
 use App\Entity\Destination;
 use App\Repository\ActivityRepository;
+use App\Repository\BannerRepository;
 use App\Repository\DynamicPageRepository;
 use phpDocumentor\Reflection\Types\Array_;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,15 +33,14 @@ class RegionsController extends AbstractController
         ]);
     }
 
-    public function regionBanner(DynamicPageRepository $dynamicPageRepository)
+    public function regionBanner(BannerRepository $bannerRepository)
     {
-        $page = $dynamicPageRepository->findOneBy(['machineName'=>'_banner']);
-
-        if(!$page)
-            throw new NotFoundHttpException();
+        $banners = $bannerRepository->findAll();
+        $index = array_rand($banners, 1);
+        $banner = $banners[$index];
 
         return $this->render('frontend/components/global/_banner.html.twig', [
-            'page' => $page
+            'banner' => $banner
         ]);
     }
 

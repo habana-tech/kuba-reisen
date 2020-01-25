@@ -1,6 +1,6 @@
 <footer class="footer">
 
-    {#        {{ render(controller('App\\Controller\\RegionsController::regionBanner')) }}#}
+    {{ render(controller('App\\Controller\\RegionsController::regionBanner')) }}
 
     <div class="footer__content">
 
@@ -8,7 +8,7 @@
 
             <div class="footer__content__links__column">
                 <div class="footer__content__links__column__title">
-                    <a href="{{ path('pageLoad', {'pageName' : 'exploring'}) }}">
+                    <a href="{{ path('pageLoad', {'name' : 'exploring'}) }}">
                         <h3>Kuba erkunden</h3>
                     </a>
                 </div>
@@ -28,7 +28,7 @@
 
             <div class="footer__content__links__column">
                 <div class="footer__content__links__column__title">
-                    <a href="{{ path('pageLoad', {'pageName' : 'tours'}) }}">
+                    <a href="{{ path('pageLoad', {'name' : 'tours'}) }}">
                         <h3>Kuba bereisen</h3>
                     </a>
                 </div>
@@ -50,13 +50,13 @@
 
             <div class="footer__content__links__column">
                 <div class="footer__content__links__column__title">
-                    <a href="{{ path('pageLoad', {'pageName' : 'excursions'}) }}">
+                    <a href="{{ path('pageLoad', {'name' : 'excursions'}) }}">
                         <h3>Kuba Ausflüge</h3>
                     </a>
                 </div>
                 <ul>
                     <li>
-                        <a href="{{ path('pageLoad', {'pageName' : 'bucket_list'}) }}">Our Bucket List</a>
+                        <a href="{{ path('pageLoad', {'name' : 'bucket_list'}) }}">Our Bucket List</a>
                     </li>
                     <li>
                         <a href="">Excursion Havanna</a>
@@ -76,16 +76,16 @@
 
                 <ul>
                     <li>
-                        <a href="{{ path('pageLoad', {'pageName' : 'faq'}) }}">Reise FAQ für kuba</a>
+                        <a href="{{ path('pageLoad', {'name' : 'faq'}) }}">Reise FAQ für kuba</a>
                     </li>
                     <li>
-                        <a href="{{ path('pageLoad', {'pageName' : 'good_to_know'}) }}">Gut zu wissen</a>
+                        <a href="{{ path('pageLoad', {'name' : 'good_to_know'}) }}">Gut zu wissen</a>
                     </li>
                     <li>
-                        <a href="{{ path('pageLoad', {'pageName' : 'travel_info'}) }}">Landesinformationen</a>
+                        <a href="{{ path('pageLoad', {'name' : 'travel_info'}) }}">Landesinformationen</a>
                     </li>
                     <li>
-                        <a href="{{ path('pageLoad', {'pageName' : 'about_us'}) }}">Über uns</a>
+                        <a href="{{ path('pageLoad', {'name' : 'about_us'}) }}">Über uns</a>
                     </li>
                     <li>
                         <a href="{{ path('contact') }}">Kontaktieren</a>

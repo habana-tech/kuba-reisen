@@ -96,7 +96,7 @@ class FrontendController extends AbstractController
     }
 
     /**
-     * @Route("/{pageName}", name="pageLoad")
+     * @Route("/{name}", name="pageLoad")
      * @param DynamicPage $page
      * @return Response
      * @throws LoaderError

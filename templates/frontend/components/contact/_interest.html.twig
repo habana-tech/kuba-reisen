@@ -1,19 +1,12 @@
-<div class="interest" style="grid-area: img{{ i }}">
-    <label for="interest{{ i }}">
+<div class="interest" style="grid-area: img{{ index }}">
+    <label for="interest{{ index }}">
 
-        {% if is_granted('ROLE_EDITOR') and not app.request.get('preview') %}
-            <img
-                data-grape_id="contact_interest_image_{{ i }}"
-                src="{{ page.ElementAttr('contact_interest_image_'~i, 'src', asset('img/grid/square1.jpg')) }}"
-                alt="">
-        {% else %}
-            {{ imgTagContent(
-                page.ElementAttr('contact_interest_image_'~i, 'src', asset('img/grid/square1.jpg')),
-                page.ElementAttr('contact_interest_image_'~i, 'srcb64', asset('img/grid/square1.jpg')),
-                '',
-                '(min-width:1000px) 25vw, 50vw',
-                '') | raw }}
-        {% endif %}
+        {{ imgTagContent(
+            interest.hasImage ? interest.image.staticImagePath : 'static/img/hero/water/water.jpg' ,
+            null,
+            '',
+            '(min-width:1000px) 25vw, 50vw',
+            '') | raw }}
 
         <div class="interest__title">
             <div class="interest__title__icon">
@@ -22,10 +15,10 @@
                 {{ include('/frontend/components/_icons/_heart.html.twig') }}
 
             </div>
-            <div class="interest__title__text" data-grape_id="contact_interest_text_{{ i }}" data-grape_format="txt">
-                {{ page.ElementContent('contact_interest_text_'~i, 'interest '~i) | raw}}
+            <div class="interest__title__text">
+                {{ interest.title }}
             </div>
         </div>
     </label>
-    <input id="interest{{ i }}" name="interest[{{ i }}]" type="checkbox" value="{{ page.ElementContent('contact_interest_text_'~i, 'interest '~i) | raw  | trim(' \n ')  }}">
+    <input id="interest{{ index }}" name="interest[{{ index }}]" type="checkbox" value="{{ interest.title }}">
 </div>
