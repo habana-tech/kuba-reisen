@@ -2,7 +2,6 @@
 
 namespace App\Repository;
 
-use App\Entity\Banner;
 use App\Entity\TopDestination;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
@@ -17,11 +16,11 @@ class TopDestinationRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Banner::class);
+        parent::__construct($registry, TopDestination::class);
     }
 
     // /**
-    //  * @return TopDestination[] Returns an array of Banner objects
+    //  * @return TopDestination[] Returns an array of TopDestination objects
     //  */
     /*
     public function findByExampleField($value)
@@ -38,7 +37,7 @@ class TopDestinationRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Banner
+    public function findOneBySomeField($value): ?TopDestination
     {
         return $this->createQueryBuilder('t')
             ->andWhere('t.exampleField = :val')
