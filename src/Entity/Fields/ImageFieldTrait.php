@@ -18,7 +18,7 @@ trait ImageFieldTrait
 {
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Image", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Image", cascade={"persist"})
      */
     private $image;
 
