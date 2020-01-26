@@ -18,12 +18,15 @@ trait ImageFieldTrait
 {
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Image", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Image", cascade={"persist"})
      */
     private $image;
 
     public function getImage(): Image
     {
+        if($this->image instanceof \Vich\UploaderBundle\Entity\File) {
+            return null;
+        }
         return $this->image;
     }
 

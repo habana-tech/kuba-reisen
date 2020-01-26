@@ -43,11 +43,6 @@ class Destination implements DescriptionFragmentFieldInterface, MachineNameInter
     private $name;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $featuresCount;
-
-    /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Activity", mappedBy="destinations")
      */
     private $activities;
@@ -83,6 +78,7 @@ class Destination implements DescriptionFragmentFieldInterface, MachineNameInter
         $this->activities = new ArrayCollection();
         $this->image = new EmbeddedFile();
         $this->filterTags = new ArrayCollection();
+        $this->descriptionFragment = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -134,8 +130,7 @@ class Destination implements DescriptionFragmentFieldInterface, MachineNameInter
     {
         return $this->name;
     }
-
-
+    
     public function getNameFieldValue(): string
     {
         return $this->name;

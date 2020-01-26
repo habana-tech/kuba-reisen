@@ -12,7 +12,7 @@ trait GalleryTrait
 {
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Image", cascade={"persist", "remove"})
+     * @ORM\ManyToMany(targetEntity="App\Entity\Image", cascade={"persist"})
      */
     private $gallery;
 
