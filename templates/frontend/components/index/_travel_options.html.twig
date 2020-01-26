@@ -6,7 +6,8 @@
         <div class="section__title__description">
             <p>Allein, in der Gruppe oder mit der Familie - langweilig wird es in Kuba sicher nicht.
                 Stöbern Sie in unserem vielfältigen Rundreise-Programm oder
-                lassen Sie sich von uns Ihre persönliche Entdeckungsreise zusammenstellen.</p>
+                lassen Sie sich von uns Ihre persönliche Entdeckungsreise zusammenstellen.
+            </p>
         </div>
     </div>
 
@@ -17,16 +18,11 @@
                 25, 25, 25, 50, 50, 50,
                 25, 25, 25 ] %}
 
-            {% for i in 1..14 %}
+            {% for image in randomImages %}
 
-                <div class="travel-options__grid__item" style="grid-area: img{{ i }}">
+                <div class="travel-options__grid__item" style="grid-area: img{{ loop.index }}">
 
-                    {{ imgTagContent(
-                        page.ElementAttr('travelgrid__item'~i, 'src', asset('img/grid/wide.jpg')),
-                        page.ElementAttr('travelgrid__item'~i, 'srcb64', asset('img/grid/wide.jpg')),
-                        '',
-                        sizes[loop.index0]~'vw',
-                        'data-grape_id="travelgrid__item'~i~'" data-grape_section="_travel_options"') | raw }}
+                    {{ imgTag(image, sizes[loop.index0]~'vw') | raw }}
 
                 </div>
 
@@ -43,8 +39,9 @@
                 </div>
             </a>
 
-            {% set pos = loop.index + 1 %}
+
             {% for filter in filterTags %}
+                {% set pos = loop.index + 1 %}
                 <a href="{{ path('activitiesFilter', {'filters':filter.title }) }}#activities" style="grid-area: section{{ pos }}">
                     <div>
                         <h3>

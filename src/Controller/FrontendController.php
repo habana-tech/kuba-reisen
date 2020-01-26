@@ -10,6 +10,7 @@ use App\Repository\ActivityRepository;
 use App\Repository\DestinationRepository;
 use App\Repository\DynamicPageRepository;
 use App\Repository\FilterTagRepository;
+use App\Repository\ImageRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\Proxy;
@@ -28,15 +29,14 @@ class FrontendController extends AbstractController
 {
     /**
      * @Route("/", name="frontend")
-     * @param DynamicPageRepository $pm
+     * @param DynamicPageRepository $dynamicPageRepository
      * @param DestinationRepository $destinationRepository
      * @param FilterTagRepository $filterTagRepository
      * @return Response
-     * @throws LoaderError
      */
     public function index(DynamicPageRepository $dynamicPageRepository,
                           DestinationRepository $destinationRepository,
-                          FilterTagRepository $filterTagRepository): Response
+                          FilterTagRepository $filterTagRepository, ImageRepository $imageRepository): Response
     {
 
         $page = $dynamicPageRepository->findOneBy([
@@ -50,6 +50,7 @@ class FrontendController extends AbstractController
             'page' => $page,
             'destinations' => $destinationRepository->findAll(),
             'filterTags' => $filterTagRepository->findByPinned(),
+            'randomImages' => $imageRepository->findBy([], null, 14),
         ]);
     }
 

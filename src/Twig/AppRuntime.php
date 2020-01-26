@@ -100,10 +100,10 @@ class AppRuntime implements RuntimeExtensionInterface
         $html ="<img class=\"lazyload blur-up\" sizes=\"$sizes\" ";
         $src = $image->getBase64() ?? $this->imagineCacheManager->getBrowserPath($imagePath, 'min_width_15');
         $html .= " src=\"$src\" ";
-        $html .= "data-srcset=\"".$this->filterSrcset($imagePath)."\"";
+        $html .= " data-srcset=\"".$this->filterSrcset($imagePath)."\" ";
 
         $alt= $alt?? $image->getDescription();
-        $html .= " \"$alt\">";
+        $html .= "alt=\"$alt\">";
 
         return $html;
     }

@@ -4,7 +4,8 @@
       "js": [
         "/build/runtime.js",
         "/build/vendors~activities~activity~app~bucket_list~contact~destination~faq~index.js",
-        "/build/vendors~activities~activity~app.js",
+        "/build/vendors~activities~app~contact.js",
+        "/build/vendors~activities~app.js",
         "/build/vendors~app.js",
         "/build/app.js"
       ],
@@ -27,7 +28,7 @@
       "js": [
         "/build/runtime.js",
         "/build/vendors~activities~activity~app~bucket_list~contact~destination~faq~index.js",
-        "/build/vendors~destination.js",
+        "/build/activity~destination.js",
         "/build/destination.js"
       ],
       "css": [
@@ -48,6 +49,7 @@
       "js": [
         "/build/runtime.js",
         "/build/vendors~activities~activity~app~bucket_list~contact~destination~faq~index.js",
+        "/build/vendors~activities~app~contact.js",
         "/build/vendors~activities~contact.js",
         "/build/vendors~contact.js",
         "/build/contact.js"
@@ -62,7 +64,8 @@
         "/build/runtime.js",
         "/build/vendors~activities~activity~app~bucket_list~contact~destination~faq~index.js",
         "/build/vendors~activities~activity~bucket_list.js",
-        "/build/vendors~activities~activity~app.js",
+        "/build/vendors~activities~app~contact.js",
+        "/build/vendors~activities~app.js",
         "/build/vendors~activities~contact.js",
         "/build/vendors~activities.js",
         "/build/activities.js"
@@ -76,8 +79,7 @@
         "/build/runtime.js",
         "/build/vendors~activities~activity~app~bucket_list~contact~destination~faq~index.js",
         "/build/vendors~activities~activity~bucket_list.js",
-        "/build/vendors~activities~activity~app.js",
-        "/build/vendors~activity.js",
+        "/build/activity~destination.js",
         "/build/activity.js"
       ],
       "css": [
@@ -101,6 +103,14 @@
       ],
       "css": [
         "/build/loading.css"
+      ]
+    },
+    "login": {
+      "js": [
+        "/build/runtime.js"
+      ],
+      "css": [
+        "/build/login.css"
       ]
     }
   }

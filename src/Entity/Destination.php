@@ -31,11 +31,6 @@ class Destination implements DescriptionFragmentFieldInterface, MachineNameInter
     use FilterTagsTrait, PriorityFieldTrait, ActiveFieldTrait, DescriptionFragmentFieldTrait;
 
     /**
-     * @deprecated
-     */
-    use DynamicPagePlaceholderTrait;
-
-    /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -133,69 +128,11 @@ class Destination implements DescriptionFragmentFieldInterface, MachineNameInter
         return $this;
     }
 
-    /**
-     * @return DynamicPage|null
-     * @deprecated
-     */
-    public function getDynamicPage(): ?DynamicPage
-    {
-        return $this->dynamic_page;
-    }
 
-    /**
-     * @param DynamicPage $dynamic_page
-     * @return $this
-     * @deprecated
-     */
-    public function setDynamicPage(DynamicPage $dynamic_page): self
-    {
-        $this->dynamic_page = $dynamic_page;
 
-        return $this;
-    }
-
-    public function __toString()
+    public function __toString(): string
     {
         return $this->name;
-    }
-
-    /**
-     * @return mixed
-     * @deprecated
-     */
-    public function getFeaturesCount()
-    {
-        return $this->featuresCount;
-    }
-
-    /**
-     * @param mixed $featuresCount
-     * @deprecated
-     */
-    public function setFeaturesCount($featuresCount): void
-    {
-        $this->featuresCount = $featuresCount;
-    }
-
-
-    /**
-     * @param $name
-     * @return string
-     * @deprecated
-     */
-    public function __get($name){
-        if (array_key_exists($name, $this->getDynamicPage()->getPageContent()))
-            return trim($this->getDynamicPage()->getElement($name));
-    }
-
-    /**
-     * @param $name
-     * @param $value
-     * @deprecated
-     */
-    public function __set($name, $value){
-        $this->getDynamicPage()->setElementContent($name, $value);
-
     }
 
 

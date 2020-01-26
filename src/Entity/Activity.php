@@ -5,7 +5,6 @@ namespace App\Entity;
 use App\Entity\Fields\ActiveFieldTrait;
 use App\Entity\Fields\DescriptionFragmentFieldInterface;
 use App\Entity\Fields\DescriptionFragmentFieldTrait;
-use App\Entity\Fields\DynamicPagePlaceholderTrait;
 use App\Entity\Fields\FilterTagsTrait;
 use App\Entity\Fields\GalleryFieldInterface;
 use App\Entity\Fields\GalleryTrait;

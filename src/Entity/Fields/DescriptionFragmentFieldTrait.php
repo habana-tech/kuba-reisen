@@ -34,7 +34,7 @@ trait DescriptionFragmentFieldTrait
     /**
      * @return Collection|DescriptionFragment[]
      */
-    public function getDescriptionFragment(): Collection
+    public function getDescriptionFragment():? Collection
     {
         return $this->descriptionFragment;
     }

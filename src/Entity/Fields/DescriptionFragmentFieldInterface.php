@@ -4,6 +4,7 @@
 namespace App\Entity\Fields;
 
 
+use App\Entity\DescriptionFragment;
 use Doctrine\Common\Collections\Collection;
 
 interface DescriptionFragmentFieldInterface
@@ -11,5 +12,5 @@ interface DescriptionFragmentFieldInterface
     /**
      * @return Collection|DescriptionFragment[]
      */
-    public function getDescriptionFragment(): Collection;
+    public function getDescriptionFragment():? Collection;
 }

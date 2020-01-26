@@ -22,7 +22,7 @@ trait ImageFieldTrait
      */
     private $image;
 
-    public function getImage(): ?Image
+    public function getImage(): Image
     {
         return $this->image;
     }
@@ -42,7 +42,7 @@ trait ImageFieldTrait
     /**
      * @return UploadedFile
      */
-    public function getUploadedImage():?UploadedFile
+    public function getUploadedImage(): ?UploadedFile
     {
         return $this->uploadedImage;
     }
@@ -72,6 +72,4 @@ trait ImageFieldTrait
     {
         $this->galleryImage = $image;
     }
-
-
 }
