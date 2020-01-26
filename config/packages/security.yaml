@@ -19,7 +19,7 @@ security:
             memory:
                 users:
                     habanatechsupervisor:
-                        password: $2y$12$zzpuK8GGQin.LeEDnisWOOnEcK2VBHO3z8ssTJbUXLsk4.iK4kGGC
+                        password:  $2y$12$bfh.dw7B7hjK5J/QVomlw.DCMqyZBy2LL3QrfVFgmAAkSbW2C4Cv.
                         roles: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_SUPERVISOR']
 
         fos_userbundle:

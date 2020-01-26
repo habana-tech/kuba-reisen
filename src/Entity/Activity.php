@@ -135,6 +135,7 @@ class Activity implements MachineNameInterface, DescriptionFragmentFieldInterfac
         $this->featuresImagesCount = 4;
         $this->gallery = new ArrayCollection();
         $this->pageContent = new PageContent();
+        $this->descriptionFragment = new ArrayCollection();
 
         //CONTENT FIELDS
         $this->itineraryTitle = 'Itinerary summary';

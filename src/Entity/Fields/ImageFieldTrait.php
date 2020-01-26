@@ -22,8 +22,11 @@ trait ImageFieldTrait
      */
     private $image;
 
-    public function getImage(): ?Image
+    public function getImage()
     {
+        if($this->image instanceof \Vich\UploaderBundle\Entity\File) {
+            return null;
+        }
         return $this->image;
     }
 
