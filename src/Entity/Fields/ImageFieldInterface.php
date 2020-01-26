@@ -11,7 +11,7 @@ interface ImageFieldInterface
 {
 
 
-    public function getImage(): Image;
+    public function getImage():? Image;
 
     public function setImage(?Image $image);
 

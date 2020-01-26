@@ -130,7 +130,7 @@ class Destination implements DescriptionFragmentFieldInterface, MachineNameInter
     {
         return $this->name;
     }
-    
+
     public function getNameFieldValue(): string
     {
         return $this->name;
