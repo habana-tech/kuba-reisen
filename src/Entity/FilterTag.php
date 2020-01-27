@@ -14,9 +14,9 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="App\Repository\FilterTagRepository")
  * @ORM\HasLifecycleCallbacks
  */
-class FilterTag implements MachineNameInterface
+class FilterTag
 {
-    use ActiveFieldTrait, PriorityFieldTrait, MachineNameTrait;
+    use ActiveFieldTrait, PriorityFieldTrait;
 
     /**
      * @ORM\Id()
@@ -30,10 +30,6 @@ class FilterTag implements MachineNameInterface
      */
     private $title;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Interest", mappedBy="filterTags")
-     */
-    private $interests;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Destination", mappedBy="filterTags")
@@ -76,31 +72,6 @@ class FilterTag implements MachineNameInterface
         return $this;
     }
 
-    /**
-     * @return Collection|Interest[]
-     */
-    public function getInterests(): Collection
-    {
-        return $this->interests;
-    }
-
-    public function addInterest(Interest $interest): self
-    {
-        if (!$this->interests->contains($interest)) {
-            $this->interests[] = $interest;
-        }
-
-        return $this;
-    }
-
-    public function removeInterest(Interest $interest): self
-    {
-        if ($this->interests->contains($interest)) {
-            $this->interests->removeElement($interest);
-        }
-
-        return $this;
-    }
 
     public function __toString():string
     {

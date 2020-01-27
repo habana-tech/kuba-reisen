@@ -59,12 +59,12 @@ class RegionsController extends AbstractController
         ]);
     }
 
-    public function regionLoader($machineName, RegionRepository $repository): Response
+    public function regionLoader($machineName, RegionRepository $repository, FilterTagRepository $filterTagRepository): Response
     {
         if($region = $repository->findOneBy(['machineName'=>$machineName])) {
             return $this->render($region->getTemplate()->getFullPath(),
-                [
-                    'region' => $region
+                ['region' => $region,
+                'filterTags' => $filterTagRepository->findBy(['pinned'=>true]),
                 ]);
         }
         return new Response();

@@ -12,6 +12,7 @@ class FilterActivities {
         this.activitiesList = document.querySelector('.activities__list__container');
         this.activitiesListInitial = document.querySelector('.activities__list__container__initial');
         this.activitiesListFilterSearch = document.querySelector('.activities__list__container__filter_search');
+        // this.btnLoad = document.querySelector('.activities__list__more button');
 
         this.prototype = document.querySelector('.activities__list__item__prototype div');
         this.filters = document.querySelectorAll('.activities__selectors__filters__lists li');
@@ -88,31 +89,34 @@ class FilterActivities {
         let that = this;
 
         axios.get(url)
-            .then(function (response) {
-
+            .then((response) => {
 
                 let activities = response.data.activities;
                 let loadMore = response.data.loadMore;
 
+                //TODO: make load more button para las actividades filtradas
+                // if (loadMore === false)
+                //     this.btnLoad.classList.add('hidden');
+
                 if (activities.length > 0) {
 
-                    that.activitiesListFilterSearch.querySelectorAll('.activity').forEach((activity) => {
+                    this.activitiesListFilterSearch.querySelectorAll('.activity').forEach((activity) => {
                         activity.parentNode.removeChild(activity);
                     });
 
-                    activities.forEach(function (activity) {
-                        let newActivity = new MakeActivity(that.prototype).make(activity.id, activity.image, activity.imageAlt,
-                            activity.name, activity.description, activity.link, activity.price);
-
-                        that.activitiesListFilterSearch.appendChild(newActivity);
+                    activities.forEach((activity) => {
+                        if (activity!== null && activity.image !== null) {
+                            let newActivity = new MakeActivity(that.prototype).make(activity);
+                            this.activitiesListFilterSearch.appendChild(newActivity);
+                        }
                     });
                 }
                 else //no se han encontrado
-                    that.activitiesText.innerText = 'Mit diesen Filtern wurden keine Aktivitäten gefunden';
+                    this.activitiesText.innerText = 'Mit diesen Filtern wurden keine Aktivitäten gefunden';
 
                 that.hideLoadingAnimation();
             })
-            .catch(function (error) {
+            .catch((error) => {
                 console.log(error);
             });
 

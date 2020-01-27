@@ -30,7 +30,8 @@
 
         {#{{ include('frontend/components/index/_team_opinions.html.twig') }}#}
 
-        {{ include('frontend/components/index/_travel_options.html.twig') }}
+        {{ render(controller('App\\Controller\\RegionsController::regionLoader', {'machineName': 'travel_options'})) }}
+
 
     </main>
 {% endblock %}

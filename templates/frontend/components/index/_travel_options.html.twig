@@ -1,13 +1,10 @@
 <section class="section top_destinations">
     <div class="section__title ">
         <div class="section__title__highlight">
-            <h2>Kuba-Rundreisen für jedes Bedürfnis</h2>
+            <h2>{{ region.title }}</h2>
         </div>
         <div class="section__title__description">
-            <p>Allein, in der Gruppe oder mit der Familie - langweilig wird es in Kuba sicher nicht.
-                Stöbern Sie in unserem vielfältigen Rundreise-Programm oder
-                lassen Sie sich von uns Ihre persönliche Entdeckungsreise zusammenstellen.
-            </p>
+            {{ region.description | raw }}
         </div>
     </div>
 
@@ -18,7 +15,7 @@
                 25, 25, 25, 50, 50, 50,
                 25, 25, 25 ] %}
 
-            {% for image in randomImages %}
+            {% for image in region.gallery %}
 
                 <div class="travel-options__grid__item" style="grid-area: img{{ loop.index }}">
 

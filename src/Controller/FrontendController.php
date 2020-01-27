@@ -76,7 +76,7 @@ class FrontendController extends AbstractController
 
         return $this->render('frontend/destination.html.twig', [
             'destination' => $destination,
-            'destination_activities' => $activities,
+            'destinationActivities' => $activities,
         ]);
     }
 

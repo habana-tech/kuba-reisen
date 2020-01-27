@@ -94,13 +94,10 @@ class ActivitiesController extends AbstractController
 
         foreach ($activities as $activity){
 
-            //TODO:
             array_push($activities_data, array(
                 'id'=>$activity->getId(),
                 'name'=>$activity->getName(),
                 'image'=>$activity->getImage(),
-                'imageMaxWidth' => 1920,
-                'imageAlt'=>$activity->getImage()->getDescription(),
                 'description'=> $twig_filter->truncate_html($activity->getDescription(),$activity::LENGTH_OF_DESCRIPTION),
                 'link'=>  $this->generateUrl('activity',
                     ['id'=>$activity->getId(),
@@ -218,7 +215,7 @@ class ActivitiesController extends AbstractController
         $activity = array(
             'id' => $id,
             'name'=>$activity->getName(),
-            'image'=>$activity->getDynamicPage()->getElementAttr('activity_images_img1', 'src'),
+            'image'=>$activity->getImage(),
         );
 
         $data = array(

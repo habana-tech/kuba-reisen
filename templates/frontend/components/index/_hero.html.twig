@@ -86,7 +86,7 @@
         <div class="hero__buttom-links__item">
             <a href="#" data-slide="1">Kuba erkunden </a>
             <ul class="hero__buttom-links__item__nav">
-                {% for destination in destinations | slice(0, 4) %}
+                {% for destination in destinations %}
                     <li>
                         <a href="{{ path('destination',
                             {'id':destination.getId,
@@ -104,11 +104,11 @@
             <a href="#" data-slide="2">Kuba Ausflüge</a>
             <ul class="hero__buttom-links__item__nav">
                 <li>
-                    <a href="{{ path('pageLoad', {'name' : 'bucket_list'}) }}">Our Bucket List</a>
+                    <a href="{{ path('pageLoad', {'machineName' : 'bucket_list'}) }}">Our Bucket List</a>
                 </li>
-                <li>
-                    <a href="{{ path('destination', {'id': 12, 'name': 'Havanna' }) }}">Excursion Havanna</a>
-                </li>
+{#                <li>#}
+{#                    <a href="{{ path('destination', {'id': 12, 'name': 'Havanna' }) }}">Excursion Havanna</a>#}
+{#                </li>#}
 
             </ul>
         </div>
@@ -119,7 +119,7 @@
 
             <li><a href="{{ path('contact') }}">Individualreise</a></li>
 
-            {% for filter in filterTags | slice(0, 3) %}
+            {% for filter in filterTags %}
                 <li>
                     <a href="{{ path('activitiesFilter', {'filters':filter.title }) }}#activities">
                         {{ filter.title }}

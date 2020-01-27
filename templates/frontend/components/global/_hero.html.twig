@@ -1,20 +1,16 @@
 <section class="section hero">
 
-    {% if hero__image is defined %}
-        <div class="hero__image">
-            {{ imgTagContent(
-                hero__image,
-                null,
-                null,
-                '100vw',
-                null) | raw }}
+    <div class="hero__image">
+        {% set alt = content | striptags | slice(50) %}
+        {{ imgTag(image, '100vw',  alt) | raw }}
+    </div>
+
+    {% if content %}
+        <div class="hero__content">
+            <h1 class="hero__content__text">
+                {{ content | raw }}
+            </h1>
         </div>
     {% endif %}
-
-    <div class="hero__content">
-        <h1 class="hero__content__text">
-            {{ hero__content__text | raw }}
-        </h1>
-    </div>
 
 </section>

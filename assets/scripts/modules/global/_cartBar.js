@@ -66,7 +66,8 @@ class CartBar{
 
         activityItem.setAttribute('id', 'activityItem_'+activity.id);
         let image = activityItem.querySelector('img');
-        image.setAttribute('src', activity.image);
+        //todo: get a small thumbnail
+        image.setAttribute('src', activity.image.staticImagePath);
         let name = activityItem.querySelector('h5');
         name.innerHTML = activity.name.length < 20 ? activity.name : activity.name.substring(0, 20)+'...';
 

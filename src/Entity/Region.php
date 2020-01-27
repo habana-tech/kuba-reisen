@@ -71,6 +71,7 @@ class Region implements ImageFieldInterface, GalleryFieldInterface, MachineNameI
     public function __construct()
     {
         $this->gallery = new ArrayCollection();
+        $this->active = true;
     }
 
 
@@ -143,6 +144,7 @@ class Region implements ImageFieldInterface, GalleryFieldInterface, MachineNameI
             case 0: return 'GENERIC REGION';
             case 1: return 'BANNER REGION';
             case 2: return 'TOP DESTINATION REGION';
+            case 3: return 'TRAVEL OPTIONS';
         }
 
     }

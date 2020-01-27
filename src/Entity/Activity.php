@@ -57,7 +57,7 @@ class Activity implements MachineNameInterface, DescriptionFragmentFieldInterfac
     private $destinations;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $description;
 
@@ -209,10 +209,10 @@ class Activity implements MachineNameInterface, DescriptionFragmentFieldInterfac
 
     public function getDescription(): ?string
     {
-        return $this->description;
+        return $this->description ?? '';
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 

@@ -1,6 +1,7 @@
 {% extends 'frontend/base.html.twig' %}
 
-{% block title %}Entdecken 👌 und entdecken Sie {{ destination.name }} {% endblock %}
+{% block title %} {{ destination.name }} {% endblock %}
+{% block metadescription %} {{ destination.description }} {% endblock %}
 
 {% block stylesheets %}
     {{ encore_entry_link_tags('destination') }}
@@ -10,8 +11,8 @@
     <main class="main">
 
         {{ include('frontend/components/global/_hero.html.twig', {
-            'hero__content__text': destination.name,
-            'hero__image': destination.hasImage ? destination.image.staticImagePath : 'static/img/hero/water/water.jpg' }) }}
+            'content': destination.name,
+            'image': destination.hasImage ? destination.image.staticImagePath : 'static/img/hero/water/water.jpg' }) }}
 
         {% include('frontend/components/global/_breadcrumb.html.twig')
             with {'pages': [

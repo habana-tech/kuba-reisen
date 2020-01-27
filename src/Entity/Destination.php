@@ -73,6 +73,16 @@ class Destination implements DescriptionFragmentFieldInterface, MachineNameInter
      */
     private $filterTags;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $activitySectionTitle;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $activitySectionSubtitle;
+
     public function __construct()
     {
         $this->activities = new ArrayCollection();
@@ -145,6 +155,31 @@ class Destination implements DescriptionFragmentFieldInterface, MachineNameInter
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getActivitySectionTitle(): ?string
+    {
+        return $this->activitySectionTitle;
+    }
+
+    public function setActivitySectionTitle(?string $activitySectionTitle): self
+    {
+        $this->activitySectionTitle = $activitySectionTitle;
+
+        return $this;
+    }
+
+
+    public function getActivitySectionSubtitle(): ?string
+    {
+        return $this->activitySectionSubtitle;
+    }
+
+    public function setActivitySectionSubtitle(?string $activitySectionSubtitle): self
+    {
+        $this->activitySectionSubtitle = $activitySectionSubtitle;
 
         return $this;
     }

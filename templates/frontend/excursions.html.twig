@@ -5,13 +5,15 @@
     {% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('styles/destinations.css') }}" type="text/css">
+    {{ encore_entry_link_tags('excursions') }}
 {% endblock %}
 
 {% block body %}
     <main class="main">
 
-        {{ include('frontend/components/global/_hero.html.twig') }}
+        {{ include('frontend/components/global/_hero.html.twig', {
+            'content': page.name,
+            'image': page.hasImage ? page.image.staticImagePath : 'static/img/hero/water/water.jpg' }) }}
 
         {{ include('frontend/components/destinations/_introduction.html.twig') }}
 
@@ -24,10 +26,7 @@
     </main>
 {% endblock %}
 
-{% block javascripts_vendors %}
-    <script src="{{ asset('scripts/vendors/three.min.js') }}"></script>
-{% endblock %}
 
-{#{% block javascripts %}#}
-{#    <script src="{{ asset('scripts/destination.js') }}"></script>#}
-{#{% endblock %}#}
+{% block javascripts %}
+    {{ encore_entry_script_tags('excursions') }}
+{% endblock %}

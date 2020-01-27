@@ -138,6 +138,7 @@ easy_admin:
                     - { type: 'group', label: 'Activity details', icon: 'book-open', columns: 8 }
                     - { property: 'itineraryTitle', type: 'text' }
                     - { property: 'itineraryContent', type: 'fos_ckeditor' }
+                    - { property: 'includedSectionTitle', type: 'text' }
                     - { property: 'includedTitle', type: 'text' }
                     - { property: 'includedContent', type: 'fos_ckeditor' }
                     - { property: 'notIncludedTitle', type: 'text' }
@@ -147,6 +148,21 @@ easy_admin:
 
         FilterTag:
             class: App\Entity\FilterTag
+            list:
+                fields:
+                    - { property: 'title', label: 'Title' }
+                    - { property: 'active', label: 'Active' }
+                    - { property: 'pinned', label: 'Pinned' }
+            form:
+                fields:
+                    - { type: 'group', label: 'FilterTag', columns: 4 }
+                    - { property: 'title', label: 'Title' }
+                    - { property: 'active', label: 'Active' }
+                    - { property: 'pinned', label: 'Pinned' }
+
+                    - { type: 'group', label: 'Associated entities', columns: 8 }
+                    - { property: 'destinations', label: 'Associated destinations' }
+                    - { property: 'activities', label: 'Associated activities' }
 
         Destination:
             class: App\Entity\Destination
@@ -161,25 +177,26 @@ easy_admin:
                 fields:
                     - { type: 'group', label: 'Destination Info', icon: 'map-marker-alt', columns: 8 }
                     - { property: 'name' }
-                    - { property: 'filterTags', type: 'entity', help: 'Select the Tags related to this Destination. Users can use it at search' }
-                    - { property: 'activities', type: 'entity', help: 'Select the activities related to this Destination' }
-
+                    - { property: 'fromGallery', label: 'Use this image from Gallery', type: 'entity', type_options: { 'class': 'App\Entity\Image', attr: {'data-widget': 'select2'}} }
+                    - { property: 'image', label: 'Upload a new image to Gallery', type: 'App\Form\ImageUploadType' }
 
                     - { type: 'group', label: 'Destination settings', icon: 'cogs', columns: 4 }
                     - { property: 'active', label: 'The Destination is Active' }
                     - { property: 'priority' , label: 'Priority on results' }
+                    - { property: 'filterTags', type: 'entity', help: 'Select the Tags related to this Destination. Users can use it at search' }
+                    - { property: 'activities', type: 'entity', help: 'Select the activities related to this Destination' }
 
                     - { type: 'group', label: 'Destination description', icon: 'bookmark', columns: 8 }
                     - { property: 'description', label: 'Description', type: 'fos_ckeditor' }
 
-
-                    - { type: 'group', label: 'Featured Image', icon: 'image', columns: 4 , help: 'You can use an existing image from Gallery or upload a new one, replacing the current image '}
-                    - { property: 'fromGallery', label: 'Use this image from Gallery', type: 'entity', type_options: { 'class': 'App\Entity\Image', attr: {'data-widget': 'select2'}} }
-                    - { property: 'image', label: 'Upload a new image to Gallery', type: 'App\Form\ImageUploadType' }
-
+                    - { type: 'group', label: 'Destination details', icon: 'book-open', columns: 4 }
+                    - { property: 'activitySectionTitle' , label: 'Title for activity section' }
+                    - { property: 'activitySectionSubtitle' , label: 'Subtitle for activity section' }
 
                     - { type: 'group', label: 'Destination details', icon: 'book-open', columns: 8 }
                     - { property: 'descriptionFragments', label: '-', help: 'Add many fragments as you need to describe this destination', type: 'collection',  type_options: { entry_type: 'App\Form\DescriptionFragmentType', by_reference: true } }
+
+
 
         Story:
             class: App\Entity\ActivityStory
@@ -193,15 +210,15 @@ easy_admin:
                     - { type: 'group', label: 'Story Info', icon: 'bookmark', columns: 8 }
                     - { property: 'title' }
 
+                    - { type: 'group', label: 'Story settings', icon: 'cogs', columns: 4 }
+                    - { property: 'active', label: 'The Story is Active' }
+                    - { property: 'priority' , label: 'Priority on results' }
+
                     - { type: 'group', label: 'Destination description', icon: 'bookmark', columns: 8 }
                     - { property: 'description', label: 'Description', type: 'fos_ckeditor' }
 
                     - { type: 'group', label: 'Story details', icon: 'book-open', columns: 8 }
                     - { property: 'descriptionFragments', label: '-', help: 'Add many fragments as you need to describe this story', type: 'collection',  type_options: { entry_type: 'App\Form\DescriptionFragmentType', by_reference: true } }
-
-                    - { type: 'group', label: 'Story settings', icon: 'cogs', columns: 4 }
-                    - { property: 'active', label: 'The Story is Active' }
-                    - { property: 'priority' , label: 'Priority on results' }
 
         Image:
             class: App\Entity\Image
@@ -229,23 +246,21 @@ easy_admin:
             form:
                 fields:
                     - { type: 'group', label: 'Region content', icon: 'location-arrow', columns: 8 }
-                    - { property: 'active', label: 'The Region is Active' }
+
                     - { property: 'title', label: 'Title' }
                     - { property: 'machineName', label: 'Machine Name' }
+                    - { property: 'fromGallery', label: 'Use this image from Gallery', type: 'entity', type_options: { 'class': 'App\Entity\Image', attr: {'data-widget': 'select2'}} }
+                    - { property: 'image', label: 'Upload a new image to Gallery', type: 'App\Form\ImageUploadType' }
                     - { property: 'description', type: 'fos_ckeditor' }
+
+                    - { type: 'group', label: 'Options', icon: 'image', columns: 4 , help: 'You can use an existing image from Gallery or upload a new one, replacing the current image '}
+                    - { property: 'active', label: 'The Region is Active' }
                     - { property: 'linkText', label: 'Text of the link (button)' }
                     - { property: 'link', label: 'Url' }
-
                     - { property: 'template', type: 'App\Form\RegionTemplateType', label: 'Template' }
                     - { property: 'type', label: 'Type of Region', type: 'choice', type_options: { choices: { 'GENERIC REGION':0, 'BANNER REGION': 1, 'DESTINATION REGION': 2} } }
 
-                    - { type: 'group', label: 'Gallery', icon: 'image', columns: 4 , help: 'You can use an existing image from Gallery or upload a new one, replacing the current image '}
                     - { type: 'section', label: 'Images from Gallery', icon: 'folder-open', help: 'Previously uploaded images' }
                     - { property: 'uploadedImages', label: 'Add images from Gallery',  help: 'Select one or more images', type: 'entity',  type_options: { class: 'App\Entity\Image', multiple: true, attr: {'data-widget': 'select2'} } }
                     - { type: 'section', label: 'Images linked to this activity', icon: 'images', help: 'You can upload new images from here' }
                     - { property: 'gallery', label: '-', type: 'collection',  type_options: { entry_type: 'App\Form\ImageUploadType', by_reference: true } }
-
-                    - { type: 'group', label: 'Region Image', icon: 'location-arrow', columns: 8 }
-                    - { property: 'fromGallery', label: 'Use this image from Gallery', type: 'entity', type_options: { 'class': 'App\Entity\Image', attr: {'data-widget': 'select2'}} }
-                    - { property: 'image', label: 'Upload a new image to Gallery', type: 'App\Form\ImageUploadType' }
-

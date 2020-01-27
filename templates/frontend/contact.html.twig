@@ -12,8 +12,8 @@
     <main class="main">
 
         {{ include('frontend/components/global/_hero.html.twig', {
-            'hero__content__text': page.name,
-            'hero__image': page.hasImage ? page.image.staticImagePath : 'static/img/hero/water/water.jpg' }) }}
+            'content': page.name,
+            'image': page.hasImage ? page.image.staticImagePath : 'static/img/hero/water/water.jpg' }) }}
 
         {{ form_start(form, { 'attr': {'class': 'form'} } ) }}
         {% form_theme form 'form/fields.html.twig' %}

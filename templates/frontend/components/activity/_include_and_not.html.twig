@@ -1,14 +1,14 @@
 <section class="section description-include">
     <div class="section__title">
         <div class="section__title__highlight section__title__highlight--green">
-            <h2>{{ activity.includedSectionTitle ? activity.includedSectionTitle : 'Leistungen' }} </h2>
+            <h2>{{ activity.includedSectionTitle }} </h2>
         </div>
     </div>
 
     <div class="description-include__included-details">
         <div class="description-include__included-details__included">
 
-            <h3>{{ activity.includedTitle ? activity.includedTitle : 'Inkludiert' }}</h3>
+            <h3>{{ activity.includedTitle }}</h3>
 
             <div data-grape_id="activity_included_text">
                 {{ activity.includedContent | raw }}
@@ -17,7 +17,7 @@
 
         <div class="description-include__included-details__not-included">
 
-        <h3>{{ activity.notIncludedTitle ? activity.notIncludedTitle : 'Nicht inkludiert' }}</h3>
+        <h3>{{ activity.notIncludedTitle }}</h3>
 
         <div>
             {{ activity.notIncludedContent | raw }}
