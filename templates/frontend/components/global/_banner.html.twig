@@ -5,19 +5,22 @@
     </div>
 
     <div class="banner__content">
-        <div class="banner__content__titles">
+        <div class="banner__content__title">
             <h2>{{ banner.title}}</h2>
 
-            <h3>
-                {{ banner.description | raw }}
-            </h3>
+            {%  if banner.description %}
+                <h3>
+                    {{ banner.description | raw }}
+                </h3>
+            {% endif %}
+
         </div>
 
-        <a class="btn" href="{{  banner.link }}"
-           data-grape_id="__banner_contact_btn__"
-           data-grape_format="txt">
-            {{ banner.linkText }}
-        </a>
+        {% if banner.link and banner.linkText %}
+            <a class="btn" href="{{ banner.link }}">
+                {{ banner.linkText }}
+            </a>
+        {% endif %}
     </div>
 
 </section>

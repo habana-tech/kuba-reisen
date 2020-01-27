@@ -19,7 +19,7 @@ trait DescriptionFragmentFieldTrait
      *      inverseJoinColumns={@ORM\JoinColumn(name="fragment_id", referencedColumnName="id", unique=true)}
      *     )
      */
-    private $descriptionFragment;
+    private $descriptionFragments;
 
     /**
      * DescriptionFragmentFieldTrait constructor.
@@ -27,22 +27,22 @@ trait DescriptionFragmentFieldTrait
     public function __construct()
     {
         parent::__construct();
-        $this->descriptionFragment = new ArrayCollection();
+        $this->descriptionFragments = new ArrayCollection();
     }
 
 
     /**
      * @return Collection|DescriptionFragment[]
      */
-    public function getDescriptionFragment():? Collection
+    public function getDescriptionFragments():? Collection
     {
-        return $this->descriptionFragment;
+        return $this->descriptionFragments;
     }
 
     public function addDescriptionFragment(DescriptionFragment $descriptionFragment): self
     {
-        if (!$this->descriptionFragment->contains($descriptionFragment)) {
-            $this->descriptionFragment[] = $descriptionFragment;
+        if (!$this->descriptionFragments->contains($descriptionFragment)) {
+            $this->descriptionFragments[] = $descriptionFragment;
             $descriptionFragment->setDestination($this);
         }
 
@@ -51,8 +51,8 @@ trait DescriptionFragmentFieldTrait
 
     public function removeDescriptionFragment(DescriptionFragment $descriptionFragment): self
     {
-        if ($this->descriptionFragment->contains($descriptionFragment)) {
-            $this->descriptionFragment->removeElement($descriptionFragment);
+        if ($this->descriptionFragments->contains($descriptionFragment)) {
+            $this->descriptionFragments->removeElement($descriptionFragment);
             // set the owning side to null (unless already changed)
             if ($descriptionFragment->getDestination() === $this) {
                 $descriptionFragment->setDestination(null);

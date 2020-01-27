@@ -32,11 +32,11 @@ class RegionsController extends AbstractController
 
     public function regionTopDestinations(RegionRepository $regionRepository)
     {
-        if(!$banners = $regionRepository->findBy(['type'=>Region::TYPE_TOP_DESTINATION_REGION]))
+        if(!$topDestinations = $regionRepository->findBy(['type'=>Region::TYPE_TOP_DESTINATION_REGION]))
             return new Response();
 
         return $this->render('frontend/components/global/_top_destination.html.twig', [
-            'page' => $banners,
+            'topDestinations' => $topDestinations,
         ]);
     }
 
@@ -46,7 +46,7 @@ class RegionsController extends AbstractController
 
         return $this->render('frontend/components/global/_footer.html.twig', [
             'destinations'=>$destinationRepository->findAll(),
-            'filterTags'=>$filterTagRepository->findByPinned(),
+            'filterTagsPinned'=>$filterTagRepository->findBy(['pinned'=>true]),
         ]);
     }
 
@@ -55,7 +55,7 @@ class RegionsController extends AbstractController
     {
         return $this->render('frontend/components/global/_header.html.twig', [
             'destinations'=>$destinationRepository->findAll(),
-            'filterTags'=>$filterTagRepository->findByPinned(),
+            'filterTagsPinned'=>$filterTagRepository->findBy(['pinned'=>true]),
         ]);
     }
 
@@ -64,7 +64,7 @@ class RegionsController extends AbstractController
         if($region = $repository->findOneBy(['machineName'=>$machineName])) {
             return $this->render($region->getTemplate()->getFullPath(),
                 [
-                    'page' => $region
+                    'region' => $region
                 ]);
         }
         return new Response();

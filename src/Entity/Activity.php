@@ -125,7 +125,7 @@ class Activity implements MachineNameInterface, DescriptionFragmentFieldInterfac
      *      inverseJoinColumns={@ORM\JoinColumn(name="fragment_id", referencedColumnName="id", unique=true)}
      *     )
      */
-    private $descriptionFragment;
+    private $descriptionFragments;
 
     public function __construct()
     {
@@ -134,7 +134,8 @@ class Activity implements MachineNameInterface, DescriptionFragmentFieldInterfac
         $this->featuresImagesCount = 4;
         $this->gallery = new ArrayCollection();
         $this->pageContent = new PageContent();
-        $this->descriptionFragment = new ArrayCollection();
+        $this->descriptionFragments = new ArrayCollection();
+        $this->active = true;
 
         //CONTENT FIELDS
         $this->itineraryTitle = 'Itinerary summary';

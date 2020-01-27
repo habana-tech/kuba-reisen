@@ -49,7 +49,7 @@ class FrontendController extends AbstractController
         return $this->render('frontend/index.html.twig', [
             'page' => $page,
             'destinations' => $destinationRepository->findAll(),
-            'filterTags' => $filterTagRepository->findByPinned(),
+            'filterTags' => $filterTagRepository->findBy(['pinned'=>true]),
             'randomImages' => $imageRepository->findBy([], null, 14),
         ]);
     }
@@ -111,7 +111,7 @@ class FrontendController extends AbstractController
     }
 
     /**
-     * @Route("/{name}", name="pageLoad")
+     * @Route("/{machineName}", name="pageLoad")
      * @param DynamicPage $page
      * @return Response
      * @throws LoaderError

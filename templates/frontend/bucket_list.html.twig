@@ -13,11 +13,19 @@
             'hero__content__text': page.name,
             'hero__image': page.hasImage ? page.image.staticImagePath : 'static/img/hero/water/water.jpg' }) }}
 
-{#        {{ include('frontend/components/bucket_list/_introduction.html.twig') }}#}
+        {% include('frontend/components/global/_breadcrumb.html.twig')
+            with {'pages': [
+            {'name' : 'Start', 'url' : path('frontend')},
+            {'name' : 'Kuba Ausflüge', 'url' : path('pageLoad', {'machineName':'excursions'}) },
+            {'name' : page.name, 'url' : path('pageLoad', {'machineName':'activities'}) },
+        ] } %}
 
-{#        {{ include('frontend/components/bucket_list/_items.html.twig') }}#}
+        {{ include('frontend/components/bucket_list/_introduction.html.twig') }}
 
-{#        {{ render(controller('App\\Controller\\RegionsController::regionTopDestinations', {'preview':app.request.get('preview')} )) }}#}
+        {{ include('frontend/components/bucket_list/_items.html.twig') }}
+
+        {{ render(controller('App\\Controller\\RegionsController::regionTopDestinations')) }}
+
     </main>
 {% endblock %}
 

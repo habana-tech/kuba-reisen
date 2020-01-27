@@ -38,7 +38,7 @@ class DynamicPage implements MachineNameInterface, GalleryFieldInterface, Descri
      *      inverseJoinColumns={@ORM\JoinColumn(name="fragment_id", referencedColumnName="id", unique=true)}
      *     )
      */
-    private $descriptionFragment;
+    private $descriptionFragments;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -79,7 +79,7 @@ class DynamicPage implements MachineNameInterface, GalleryFieldInterface, Descri
         $this->template = $template;
         $this->uploadedImages = new ArrayCollection();
         $this->gallery = new ArrayCollection();
-        $this->descriptionFragment = new ArrayCollection();
+        $this->descriptionFragments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -137,7 +137,7 @@ class DynamicPage implements MachineNameInterface, GalleryFieldInterface, Descri
         return $this->name;
     }
 
-    public function getNameFieldValue(): string
+    public function getNameFieldValue():? string
     {
         return $this->name;
     }

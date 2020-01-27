@@ -5,19 +5,19 @@
 
             <div class="section__title">
                 <div class="section__title__highlight section__title__highlight--no-decorator">
-                    <h2>Vielfältiges Kuba</h2>
+                    <h2>{{ region.title }}</h2>
                 </div>
             </div>
 
             <div data-grape_id="overview_text">
-                {{ page.description | raw }}
+                {{ region.description | raw }}
             </div>
        </div>
     </div>
 
 
 
-        {% for image in page.gallery %}
+        {% for image in region.gallery %}
             <div class="overview__item">
                 {{ imgTag(image,'(min-width: 1200px) 25vw, 100vw') | raw }}
             </div>

@@ -49,6 +49,7 @@ class Interest implements MachineNameInterface
     public function __construct()
     {
         $this->filterTags = new ArrayCollection();
+        $this->active = true;
     }
 
     public function getId(): ?int

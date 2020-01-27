@@ -127,7 +127,7 @@ class Region implements ImageFieldInterface, GalleryFieldInterface, MachineNameI
         return $this;
     }
 
-    public function getNameFieldValue(): string
+    public function getNameFieldValue():? string
     {
         return $this->title;
     }

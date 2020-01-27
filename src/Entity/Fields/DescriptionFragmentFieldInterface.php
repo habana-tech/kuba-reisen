@@ -12,5 +12,5 @@ interface DescriptionFragmentFieldInterface
     /**
      * @return Collection|DescriptionFragment[]
      */
-    public function getDescriptionFragment():? Collection;
+    public function getDescriptionFragments():? Collection;
 }

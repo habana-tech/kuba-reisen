@@ -122,7 +122,7 @@ class EasyAdminSubscriber implements EventSubscriberInterface
 
             if ($entity instanceof DescriptionFragmentFieldInterface)
             {
-                foreach ($entity->getDescriptionFragment() as $fragment)
+                foreach ($entity->getDescriptionFragments() as $fragment)
                 {
                     if($fragment->getFromGallery())
                     {

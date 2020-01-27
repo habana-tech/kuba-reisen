@@ -1,16 +1,17 @@
 {
   "entrypoints": {
-    "app": {
+    "contact": {
       "js": [
         "/build/runtime.js",
         "/build/vendors~activities~activity~app~bucket_list~contact~destination~faq~index.js",
         "/build/vendors~activities~app~contact.js",
-        "/build/vendors~activities~app.js",
-        "/build/vendors~app.js",
-        "/build/app.js"
+        "/build/vendors~activities~contact.js",
+        "/build/vendors~contact.js",
+        "/build/contact.js"
       ],
       "css": [
-        "/build/app.css"
+        "/build/vendors~contact.css",
+        "/build/contact.css"
       ]
     },
     "index": {
@@ -45,18 +46,17 @@
         "/build/faq.css"
       ]
     },
-    "contact": {
+    "app": {
       "js": [
         "/build/runtime.js",
         "/build/vendors~activities~activity~app~bucket_list~contact~destination~faq~index.js",
         "/build/vendors~activities~app~contact.js",
-        "/build/vendors~activities~contact.js",
-        "/build/vendors~contact.js",
-        "/build/contact.js"
+        "/build/vendors~activities~app.js",
+        "/build/vendors~app.js",
+        "/build/app.js"
       ],
       "css": [
-        "/build/vendors~contact.css",
-        "/build/contact.css"
+        "/build/app.css"
       ]
     },
     "activities": {

@@ -14,6 +14,6 @@ interface MachineNameInterface
 
     public function generateMachineName();
 
-    public function getNameFieldValue(): string;
+    public function getNameFieldValue():? string;
 
 }

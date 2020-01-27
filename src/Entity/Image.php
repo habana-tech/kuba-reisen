@@ -22,12 +22,12 @@ class Image
      * @ORM\Column(type="integer")
      */
     private $id;
-//
+
 //    /**
-//     * @ORM\Column(type="string", length=180)
+//     * @ORM\Column(type="string", length=180, nullable=true)
 //     */
 //    private $title;
-//
+
 
     /**
     * @Vich\UploadableField(mapping="images", fileNameProperty="imageName", size="imageSize")
@@ -58,7 +58,7 @@ class Image
     {
         return $this->id;
     }
-//
+
 //    public function getTitle(): ?string
 //    {
 //        return $this->title;

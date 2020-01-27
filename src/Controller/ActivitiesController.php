@@ -30,14 +30,15 @@ class ActivitiesController extends AbstractController
      * @param null $filters
      * @return Response
      */
-    public function activities(DynamicPageRepository $dynamicPageRepository, ActivityRepository $activityRepository,
+    public function activities(DynamicPageRepository $dynamicPageRepository,
+                               ActivityRepository $activityRepository,
                                FilterTagRepository $filterTagRepository,
                                ActivityStoryRepository $storiesRepository,
                                 $filters = null)
     {
 
         $page = $dynamicPageRepository->findOneBy([
-            'name'=>'activities'
+            'machineName'=>'activities'
         ]);
 
         if(!$page)

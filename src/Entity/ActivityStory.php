@@ -47,7 +47,7 @@ class ActivityStory implements MachineNameInterface, DescriptionFragmentFieldInt
      *      inverseJoinColumns={@ORM\JoinColumn(name="fragment_id", referencedColumnName="id", unique=true)}
      *     )
      */
-    private $descriptionFragment;
+    private $descriptionFragments;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -59,7 +59,8 @@ class ActivityStory implements MachineNameInterface, DescriptionFragmentFieldInt
      */
     public function __construct()
     {
-        $this->descriptionFragment = new ArrayCollection();
+        $this->descriptionFragments = new ArrayCollection();
+        $this->active = true;
     }
 
     public function getId(): ?int

@@ -12,16 +12,17 @@ class PageTemplateSelector
     {
         return [
             (new PageTemplate('null.html.twig', "-Undefined-")),
-            (new PageTemplate('about_us.html.twig', "About Us page")),
-            (new PageTemplate('activities.html.twig',"Activities list page")),
-            (new PageTemplate('bucket_list.html.twig',"Bucket List page")),
-            (new PageTemplate('contact.html.twig',"Contact page")),
             (new PageTemplate('excursions.html.twig',"Excursions page")),
             (new PageTemplate('exploring.html.twig',"Exploring page")),
+            (new PageTemplate('tours.html.twig',"Tour page")),
+            (new PageTemplate('activities.html.twig',"Activities list page")),
+            (new PageTemplate('bucket_list.html.twig',"Bucket List page")),
             (new PageTemplate('faq.html.twig',"FAQs page")),
-            (new PageTemplate('index.html.twig',"HOME page")),
-            (new PageTemplate('tours.html.twig',"TOURS page")),
+            (new PageTemplate('about_us.html.twig', "About Us page")),
+            (new PageTemplate('good_to_know.html.twig', "Good To Know page")),
             (new PageTemplate('travel_info.html.twig',"Travel Info page")),
+            (new PageTemplate('contact.html.twig',"Contact page")),
+            (new PageTemplate('index.html.twig',"Index page")),
         ];
     }
 

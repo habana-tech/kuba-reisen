@@ -1,63 +1,62 @@
 {% if stories is defined and stories is not empty %}
-<section class="section activities__stories">
+    <section class="section activities__stories">
 
-    <div class="section__title ">
-        <div class="section__title__highlight section__title__highlight--green">
-            <h2>Kuba Reisen schlägt vor</h2>
-        </div>
-        <div class="section__title__description">
-            <p>Schauen Sie sich unsere beliebtesten Aktivitäten genau an</p>
-        </div>
-    </div>
-
-
-    <div class="activities__stories__items">
-        <ul>
-            {% for story in stories %}
-                <li data-story="#story-{{ loop.index0 }}">{{ story.title }}</li>
-            {% endfor %}
-        </ul>
-    </div>
-
-    <div class="activities__stories__container">
-
-        <div class="activities__stories__map">
-            <div id="map"></div>
+        <div class="section__title ">
+            <div class="section__title__highlight section__title__highlight--green">
+                <h2>Kuba Reisen schlägt vor</h2>
+            </div>
+            <div class="section__title__description">
+                <p>Schauen Sie sich unsere beliebtesten Aktivitäten genau an</p>
+            </div>
         </div>
 
-        <div class="activities__stories__story__container">
-            {% for story in stories %}
-                <div id="story-{{ loop.index0 }}" class="activities__stories__story">
 
-                    {% for fragment in story.descriptionFragment %}
-                        <div class="activities__stories__story__item">
-                            {% if fragment.name %}
-                                <div class="activities__stories__story__item__name">
-                                    <h3>{{ fragment.name }}</h3>
+        <div class="activities__stories__items">
+            <ul>
+                {% for story in stories %}
+                    <li data-story="#story-{{ loop.index0 }}">{{ story.title }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="activities__stories__container">
+
+            <div class="activities__stories__map">
+                <div id="map"></div>
+            </div>
+
+            <div class="activities__stories__story__container">
+                {% for story in stories %}
+                    <div id="story-{{ loop.index0 }}" class="activities__stories__story">
+
+                        {% for fragment in story.descriptionFragments %}
+                            <div class="activities__stories__story__item">
+                                {% if fragment.name %}
+                                    <div class="activities__stories__story__item__name">
+                                        <h3>{{ fragment.name }}</h3>
+                                    </div>
+                                {% endif %}
+
+                                {% if fragment.hasImage and fragment.image.load %}
+                                    <div class="activities__stories__story__item__image">
+                                        {{ imgTag(fragment.image) | raw }}
+                                    </div>
+                                {% endif %}
+                                <div class="activities__stories__story__item__content">
+                                    {{ fragment.content | raw }}
                                 </div>
-                            {% endif %}
 
-                            {% if fragment.hasImage and fragment.image.load %}
-                                <div class="activities__stories__story__item__image">
-                                    {{ imgTag(fragment.image) | raw }}
-                                </div>
-                            {% endif %}
-                            <div class="activities__stories__story__item__content">
-                                {{ fragment.content | raw }}
                             </div>
 
-                        </div>
+                        {% endfor %}
 
-                    {% endfor %}
-
-                </div>
-            {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="activities__stories__skip">
+                <a class="btn btn--small" href="#activities">Skip</a>
+            </div>
         </div>
-        <div class="activities__stories__skip">
-            <a class="btn btn--small" href="#activities">Skip</a>
-        </div>
-    </div>
 
-
-</section>
+    </section>
 {% endif %}

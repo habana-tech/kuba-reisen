@@ -2,7 +2,7 @@
 
     <div class="who_we_are__image">
 
-        {{ imgTag(page.image,'(min-width: 1200px) 75vw, 100vw') | raw }}
+        {{ imgTag(region.image,'(min-width: 1200px) 75vw, 100vw') | raw }}
 
 
     </div>
@@ -11,14 +11,12 @@
 
         <div class="section__title">
             <div class="section__title__highlight section__title__highlight--no-decorator">
-                <h2>
-                        {{ page.title | raw }}
-                </h2>
+                <h2>{{ region.title}}</h2>
             </div>
         </div>
 
         <div data-grape_id="who_we_are__text">
-            {{ page.description | raw }}
+            {{ region.description | raw }}
         </div>
     </div>
 

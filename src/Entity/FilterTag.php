@@ -56,6 +56,7 @@ class FilterTag implements MachineNameInterface
         $this->interests = new ArrayCollection();
         $this->activities = new ArrayCollection();
         $this->destinations = new ArrayCollection();
+        $this->active = true;
     }
 
     public function getId(): ?int
@@ -101,7 +102,7 @@ class FilterTag implements MachineNameInterface
         return $this;
     }
 
-    public function __toString()
+    public function __toString():string
     {
         return $this->title;
     }
@@ -148,7 +149,7 @@ class FilterTag implements MachineNameInterface
     }
 
 
-    public function getNameFieldValue(): string
+    public function getNameFieldValue():? string
     {
         return $this->title;
     }

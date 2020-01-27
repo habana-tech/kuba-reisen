@@ -26,7 +26,7 @@
             <div class="header__nav__menu__column">
 
                 <div class="header__nav__menu__column__title">
-                    <a href="{{ path('pageLoad', {'name' : 'exploring' }) }}">
+                    <a href="{{ path('pageLoad', {'machineName' : 'exploring' }) }}">
                         <h3>Kuba erkunden</h3>
                     </a>
                 </div>
@@ -50,8 +50,8 @@
             <div class="header__nav__menu__column">
 
                 <div class="header__nav__menu__column__title">
-                    <a href="{{ path('pageLoad', {'name' : 'tours' }) }}">
-                        <h3>Kuba bereisen </h3>
+                    <a href="{{ path('pageLoad', {'machineName' : 'tours' }) }}">
+                        <h3>Kuba bereisen</h3>
                     </a>
                 </div>
 
@@ -61,7 +61,7 @@
                         <a href="{{ path('contact', {'travel':'raise'}) }}">Individualreise</a>
                     </li>
 
-                    {% for filter in filterTags %}
+                    {% for filter in filterTagsPinned %}
                         <li class="header__nav__menu__column__list__link">
                             <a href="{{ path('activitiesFilter', {'filters':filter.title }) }}#activities_filters">
                                 {{ filter.title }}
@@ -75,17 +75,17 @@
             <div class="header__nav__menu__column">
 
                 <div class="header__nav__menu__column__title">
-                    <a href="{{ path('pageLoad', {'name' : 'excursions' }) }}">
+                    <a href="{{ path('pageLoad', {'machineName' : 'excursions' }) }}">
                         <h3>Kuba Ausflüge</h3>
                     </a>
                 </div>
 
                 <ul class="header__nav__menu__column__list">
                     <li class="header__nav__menu__column__list__link">
-                        <a href="{{ path('pageLoad', {'name' : 'activities'}) }}">Activities</a> <span>New!</span>
+                        <a href="{{ path('pageLoad', {'machineName' : 'activities'}) }}">Activities</a> <span>New!</span>
                     </li>
                     <li class="header__nav__menu__column__list__link">
-                        <a href="{{ path('pageLoad', {'name' : 'bucket_list'}) }}">Our bucket list</a>
+                        <a href="{{ path('pageLoad', {'machineName' : 'bucket_list'}) }}">Our bucket list</a>
                     </li>
                 </ul>
             </div>
@@ -98,16 +98,16 @@
 
                 <ul class="header__nav__menu__column__list">
                     <li class="header__nav__menu__column__list__link">
-                        <a href="{{ path('pageLoad', {'name' : 'faq'}) }}">Reise FAQ für kuba</a>
+                        <a href="{{ path('pageLoad', {'machineName' : 'faq'}) }}">Reise FAQ für kuba</a>
                     </li>
                     <li class="header__nav__menu__column__list__link">
-                        <a href="{{ path('pageLoad', {'name' : 'good_to_know'}) }}">Gut zu wissen</a>
+                        <a href="{{ path('pageLoad', {'machineName' : 'good_to_know'}) }}">Gut zu wissen</a>
                     </li>
                     <li class="header__nav__menu__column__list__link">
-                        <a href="{{ path('pageLoad', {'name' : 'travel_info'}) }}">Landesinformationen</a>
+                        <a href="{{ path('pageLoad', {'machineName' : 'travel_info'}) }}">Landesinformationen</a>
                     </li>
                     <li class="header__nav__menu__column__list__link">
-                        <a href="{{ path('pageLoad', {'name' : 'about_us'}) }}">Über uns</a>
+                        <a href="{{ path('pageLoad', {'machineName' : 'about_us'}) }}">Über uns</a>
                     </li>
                     <li class="header__nav__menu__column__list__link">
                         <a href="{{ path('contact') }}">Kontaktieren</a>

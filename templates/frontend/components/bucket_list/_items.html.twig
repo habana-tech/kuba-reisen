@@ -5,13 +5,12 @@
     </div>
     <div class="bucket-list__items__features" id='features' data-grape_id="bucket-list__items__features">
 
-        {% if page.element('bucket-list__items__features') %}
-            {{ page.element('bucket-list__items__features') | raw }}
-        {% else %}
-            <h3>sample</h3>
-            <p><span></span></p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-        {% endif %}
+
+        {% for fragment in page.descriptionFragments %}
+            <h3>{{ fragment.name }}</h3>
+
+            {{ fragment.content | raw }}
+        {% endfor %}
 
     </div>
 

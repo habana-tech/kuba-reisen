@@ -1,16 +1,13 @@
 <section class="section feature_lists">
-    {% for fragment in destination.descriptionFragment %}
+
+    {% for fragment in destination.descriptionFragments %}
         <div class="feature {% if loop.index is even %} feature--inverse {% endif %}">
             <div class="feature__text">
                 <div class="feature__text__title">
-                    <h2>
-                        {{ fragment.name }}
-                    </h2>
+                    <h2>{{ fragment.name }}</h2>
                 </div>
 
-                <div>
-                    {{ fragment.content | raw }}
-                </div>
+                <div>{{ fragment.content | raw }}</div>
             </div>
 
             <div class="feature__image">
@@ -18,4 +15,5 @@
             </div>
         </div>
     {% endfor %}
+
 </section>

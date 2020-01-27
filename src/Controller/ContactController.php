@@ -35,7 +35,7 @@ class ContactController extends AbstractController
     {
 
         $page = $dynamicPageRepository->findOneBy([
-            'name'=>'contact'
+            'machineName'=>'contact'
         ]);
 
         if(!$page)

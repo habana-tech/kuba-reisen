@@ -56,11 +56,4 @@ class FilterTagRepository extends ServiceEntityRepository
 //            ->getResult();
 //    }
 
-    public function findByPinned(){
-        return $this->createQueryBuilder('filterTag')
-            ->where('filterTag.pinned = true')
-            ->getQuery()
-            ->getResult();
-    }
-
 }

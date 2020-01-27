@@ -26,7 +26,7 @@
                         </div>
                         <div class="top_destinations__places__place__text">
                             <span>{{ topDestination.title }}</span>
-                            <p>{{ topDestination.description }}</p>
+                            <p>{{ topDestination.description | striptags('p') | raw }}</p>
                         </div>
                     </a>
             </div>

@@ -36,7 +36,9 @@ trait MachineNameTrait
      */
     public function generateMachineName()
     {
-        $machineName = strtolower(trim(preg_replace('/[^A-Za-z0-9]+/', '_', $this->getNameFieldValue()), '_'));
+        $machineName = $this->machineName == null ?
+            strtolower(trim(preg_replace('/[^A-Za-z0-9]+/', '_', $this->getNameFieldValue()), '_'))
+            : $this->machineName;
         $this->setMachineName($machineName);
         return $this->machineName;
     }

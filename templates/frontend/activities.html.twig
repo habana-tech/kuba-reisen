@@ -17,15 +17,15 @@
         {% include('frontend/components/global/_breadcrumb.html.twig')
             with {'pages': [
             {'name' : 'Start', 'url' : path('frontend')},
-            {'name' : 'Kuba Ausflüge', 'url' : path('excursions') },
-            {'name' : 'Activities', 'url' : path('activities') },
+            {'name' : 'Kuba Ausflüge', 'url' : path('pageLoad', {'machineName':'excursions'}) },
+            {'name' : page.name, 'url' : path('pageLoad', {'machineName':'activities'}) },
         ] } %}
 
         {{ include('frontend/components/activities/_stories.html.twig') }}
 
         {{ include('frontend/components/activities/_popular_activities.html.twig') }}
 
-{#        {{ include('frontend/components/global/_banner.html.twig') }}#}
+        {{ render(controller('App\\Controller\\RegionsController::regionBanner')) }}
 
 {#        {{ include('frontend/components/activities/_clients_opinions.html.twig') }}#}
 
