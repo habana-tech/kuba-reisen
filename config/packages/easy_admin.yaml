@@ -89,10 +89,10 @@ easy_admin:
                 fields:
                     - { property: 'username' }
                     - { property: 'email' }
+                    - { property: 'plainPassword', type: 'password' , type_options: { required: false }}
                     - { property: 'enabled' }
 
                     - { property: 'roles', label: 'User roles',  help: 'Select one or more', type: 'choice', type_options: { choices: { 'Admin':'ROLE_ADMIN', 'Editor': 'ROLE_EDITOR', 'User': 'ROLE_USER'}, multiple: true, attr: {'data-widget': 'select2'}}  }
-                    - { property: 'phone' }
                     - { property: 'sendRequestEmail' }
             list:
                 fields:

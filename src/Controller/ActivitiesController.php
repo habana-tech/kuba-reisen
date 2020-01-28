@@ -51,8 +51,10 @@ class ActivitiesController extends AbstractController
 
         $loadMore = count($_activities) > $this->amountActivitiesDefault;
         $activities = array();
-        for ($i = 0; $i < min($this->amountActivitiesDefault, count($_activities)); $i++)
-            array_push($activities, $_activities[$i]);
+        $min = min($this->amountActivitiesDefault, count($_activities));
+        for ($i = 0; $i < $min; $i++) {
+            $activities[] = $_activities[$i];
+        }
 
         $amountStories = 4;
         $stories = $storiesRepository->findLastPublished($amountStories);

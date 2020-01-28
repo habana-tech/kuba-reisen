@@ -21,7 +21,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Interest implements MachineNameInterface
 {
-    use ImageFieldTrait, ActiveFieldTrait, PriorityFieldTrait, MachineNameTrait, FilterTagsTrait;
+    use ImageFieldTrait, ActiveFieldTrait, PriorityFieldTrait, MachineNameTrait;
 
     /**
      * @ORM\Id()
