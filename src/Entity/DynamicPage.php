@@ -5,7 +5,7 @@ namespace App\Entity;
 use App\Entity\Fields\DescriptionFragmentFieldInterface;
 use App\Entity\Fields\DescriptionFragmentFieldTrait;
 use App\Entity\Fields\GalleryFieldInterface;
-use App\Entity\Fields\GalleryTrait;
+use App\Entity\Fields\GalleryFieldTrait;
 use App\Entity\Fields\ImageFieldInterface;
 use App\Entity\Fields\ImageFieldTrait;
 use App\Entity\Fields\MachineNameInterface;
@@ -22,7 +22,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class DynamicPage implements MachineNameInterface, GalleryFieldInterface, DescriptionFragmentFieldInterface, ImageFieldInterface
 {
-    use MachineNameTrait, GalleryTrait, DescriptionFragmentFieldTrait, ImageFieldTrait;
+    use MachineNameTrait, GalleryFieldTrait, DescriptionFragmentFieldTrait, ImageFieldTrait;
 
     /**
      * @ORM\Id()

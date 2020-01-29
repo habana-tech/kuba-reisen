@@ -116,11 +116,13 @@ easy_admin:
                     - { property: 'name' }
                     - { property: 'initPrice' , label: 'Initial price'}
                     - { property: 'image.imageName', label: 'Featured Image', type: 'image' , base_path: '%app.path.uploaded_images%' }
+#                    - { property: 'image.imageName', label: 'Featured Image_'}
             form:
                 fields:
                     - { type: 'group', label: 'Activity Info', icon: 'location-arrow', columns: 8 }
                     - { property: 'name' }
-                    - { property: 'fromGallery', label: 'Use this image from Gallery', type: 'App\Form\MultipleImageFromGalleryType' }
+#                    - { property: 'fromGallery_', label: 'Use this image from Gallery', type: 'entity', type_options: { 'class': 'App\Entity\Image', attr: {'data-widget': 'select2'}} }
+                    - { property: 'fromGallery', label: 'Use this image from Gallery', type: 'App\Form\SingleImageFromGalleryType'}
                     - { property: 'image', label: 'Upload a new image to Gallery', type: 'App\Form\ImageUploadType' }
 
                     - { type: 'group', label: 'Activity settings', icon: 'cogs', columns: 4 }
@@ -137,9 +139,9 @@ easy_admin:
 
                     - { type: 'group', label: 'Gallery', icon: 'images', columns: 4 }
                     - { type: 'section', label: 'Images from Gallery', icon: 'folder-open', help: 'Previously uploaded images' }
-                    - { property: 'uploadedImages', label: 'Add images from Gallery',  help: 'Select one or more images', type: 'App\Form\MultipleImageFromGalleryType', type_options: { 'data_class': null} }
-                    - { type: 'section', label: 'Images linked to this activity', icon: 'images', help: 'You can upload new images from here' }
-                    - { property: 'gallery', label: '-', type: 'collection',  type_options: { entry_type: 'App\Form\ImageUploadType', by_reference: true } }
+#                    - { property: 'uploadedImages', label: 'Add images from Gallery',  help: 'Select one or more images', type: 'App\Form\MultipleImageFromGalleryType', type_options: { 'data_class': null} }
+#                    - { type: 'section', label: 'Images linked to this activity', icon: 'images', help: 'You can upload new images from here' }
+#                    - { property: 'gallery', label: '-', type: 'collection',  type_options: { entry_type: 'App\Form\ImageUploadType', by_reference: true } }
 
                     - { type: 'group', label: 'Activity details', icon: 'book-open', columns: 8 }
                     - { property: 'itineraryTitle', type: 'text' }

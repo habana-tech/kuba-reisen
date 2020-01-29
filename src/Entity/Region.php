@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use App\Entity\Fields\ActiveFieldTrait;
 use App\Entity\Fields\GalleryFieldInterface;
-use App\Entity\Fields\GalleryTrait;
+use App\Entity\Fields\GalleryFieldTrait;
 use App\Entity\Fields\ImageFieldInterface;
 use App\Entity\Fields\ImageFieldTrait;
 use App\Entity\Fields\MachineNameInterface;
@@ -22,7 +22,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Region implements ImageFieldInterface, GalleryFieldInterface, MachineNameInterface
 {
-    use ImageFieldTrait, ActiveFieldTrait, GalleryTrait, MachineNameTrait;
+    use ImageFieldTrait, ActiveFieldTrait, GalleryFieldTrait, MachineNameTrait;
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()

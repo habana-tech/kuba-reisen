@@ -23,11 +23,6 @@ class Image
      */
     private $id;
 
-//    /**
-//     * @ORM\Column(type="string", length=180, nullable=true)
-//     */
-//    private $title;
-
 
     /**
     * @Vich\UploadableField(mapping="images", fileNameProperty="imageName", size="imageSize")

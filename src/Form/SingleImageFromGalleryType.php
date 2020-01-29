@@ -13,16 +13,16 @@ class SingleImageFromGalleryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('image', EntityType::class, [
+            ->add('imageName', EntityType::class, [
                 'class'=> Image::class,
                 'choice_label' => 'description',
+                'choice_value' => 'id',
+//                'auto_initialize'=>Image::class,
                 'multiple' => false,
                 'attr' => [
                     'class' => 'selectpicker',
                 ],
                 'choice_attr' => function($choice, $key, $value) {
-                    // adds a class like attending_yes, attending_no, etc
-                    dump($choice, $key, $value);
                     return [
                         'data-thumbnail' => $choice->getBase64(),
 //                        'data-thumbnail' => '/static/uploads/images/'.$choice->getimageName(),

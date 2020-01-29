@@ -40,15 +40,9 @@ class Interest implements MachineNameInterface
      */
     private $description;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\FilterTag", inversedBy="interests")
-     */
-    private $filterTags;
-
 
     public function __construct()
     {
-        $this->filterTags = new ArrayCollection();
         $this->active = true;
     }
 
