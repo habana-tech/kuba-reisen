@@ -19,7 +19,7 @@
             </div>
             <div class="selected-activities__list">
                 {% for activity in activities %}
-                    {% include 'frontend/components/global/_activity_small.html.twig' with {'activity':activity} %}
+                    {% include 'frontend/components/global/_activity.html.twig' with {'activity':activity, 'contact': true } %}
                 {% endfor %}
             </div>
         </div>

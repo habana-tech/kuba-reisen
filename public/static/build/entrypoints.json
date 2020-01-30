@@ -64,8 +64,8 @@
         "/build/vendors~activities~activity~app~bucket_list~contact~destination~faq~index.js",
         "/build/vendors~activities~activity~bucket_list.js",
         "/build/vendors~activities~app~contact.js",
-        "/build/vendors~activities~app.js",
         "/build/vendors~activities~contact.js",
+        "/build/vendors~activities~app.js",
         "/build/vendors~activities.js",
         "/build/activities.js"
       ],
@@ -110,6 +110,9 @@
       "js": [
         "/build/runtime.js",
         "/build/travel_info.js"
+      ],
+      "css": [
+        "/build/travel_info.css"
       ]
     },
     "good_to_know": {

@@ -35,5 +35,6 @@
   "build/vendors~app.js": "/build/vendors~app.js",
   "build/vendors~contact.css": "/build/vendors~contact.css",
   "build/vendors~contact.js": "/build/vendors~contact.js",
-  "build/vendors~index.js": "/build/vendors~index.js"
+  "build/vendors~index.js": "/build/vendors~index.js",
+  "build/travel_info.css": "/build/travel_info.css"
 }

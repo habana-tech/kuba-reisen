@@ -1,5 +1,5 @@
 .interest{
-    height: 100%;
+    height: 40vh;
     width: 100%;
     overflow: hidden;
     position: relative;
@@ -82,7 +82,6 @@
     & input[type='checkbox']{
         display: none;
     }
-
 
     &--checked{
 

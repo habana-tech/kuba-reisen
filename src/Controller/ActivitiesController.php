@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\ActivityStoryRepository;
 use App\Repository\DynamicPageRepository;
+use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -12,9 +13,20 @@ use App\Repository\ActivityRepository;
 use App\Repository\FilterTagRepository;
 use \App\Twig\AppExtension;
 use Twig\Error\LoaderError;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class ActivitiesController extends AbstractController
 {
+
+    /**
+     * @var CacheManager|object|null
+     */
+    private $imagineCacheManager;
+
+    public function __construct(ContainerInterface $container = null)
+    {
+        $this->imagineCacheManager = $container->get('liip_imagine.cache.manager');
+    }
 
     private $amountActivitiesDefault = 12;
 
@@ -217,7 +229,7 @@ class ActivitiesController extends AbstractController
         $activity = array(
             'id' => $id,
             'name'=>$activity->getName(),
-            'image'=>$activity->getImage(),
+            'imageSmall' => $activity->hasImage() ? $this->imagineCacheManager->getBrowserPath($activity->getImage()->getStaticImagePath(), 'min_width_250') : '',
         );
 
         $data = array(
