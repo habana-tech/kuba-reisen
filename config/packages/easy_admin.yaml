@@ -196,8 +196,6 @@ easy_admin:
                     - { type: 'group', label: 'Destination details', icon: 'book-open', columns: 8 }
                     - { property: 'descriptionFragments', label: '-', help: 'Add many fragments as you need to describe this destination', type: 'collection',  type_options: { entry_type: 'App\Form\DescriptionFragmentType', by_reference: true } }
 
-
-
         Story:
             class: App\Entity\ActivityStory
             list:
@@ -258,7 +256,7 @@ easy_admin:
                     - { property: 'linkText', label: 'Text of the link (button)' }
                     - { property: 'link', label: 'Url' }
                     - { property: 'template', type: 'App\Form\RegionTemplateType', label: 'Template' }
-                    - { property: 'type', label: 'Type of Region', type: 'choice', type_options: { choices: { 'GENERIC REGION':0, 'BANNER REGION': 1, 'DESTINATION REGION': 2, 'TRAVEL OPTIONS' : 3, 'FAQ REGION' : 4} } }
+                    - { property: 'type', label: 'Type of Region', type: 'choice', type_options: { choices: { 'GENERIC REGION':0, 'BANNER REGION': 1, 'DESTINATION REGION': 2, 'TRAVEL OPTIONS' : 3, 'FAQ REGION' : 4, 'CLIENT OPINION REGION' : 5} } }
 
                     - { type: 'section', label: 'Images from Gallery', icon: 'folder-open', help: 'Previously uploaded images' }
                     - { property: 'uploadedImages', label: 'Add images from Gallery',  help: 'Select one or more images', type: 'entity',  type_options: { class: 'App\Entity\Image', multiple: true, attr: {'data-widget': 'select2'} } }

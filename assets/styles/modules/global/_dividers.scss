@@ -10,14 +10,10 @@
         width: 80%;
         height: 2px;
         border-radius: 2px;
-        background: linear-gradient(45deg, $light-blue, $dark-blue);
-    }
-
-    &--orange::before{
-        background: linear-gradient(45deg, $light-orange, $dark-orange);
-    }
-
-    &--white::before{
         background: white;
     }
+
+    //&--green::before{
+    //    background: linear-gradient(45deg, $light-green, $dark-green);
+    //}
 }

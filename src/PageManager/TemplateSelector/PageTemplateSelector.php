@@ -34,6 +34,7 @@ class PageTemplateSelector
             (new PageTemplate('components/index/_why_with_us.html.twig',"HOME > Why with us Section")),
             (new PageTemplate('components/index/_travel_options.html.twig',"HOME > Travel options")),
             (new PageTemplate('components/faq/_question.html.twig',"FAQ > QUESTION")),
+            (new PageTemplate('components/activities/_clients_opinions.html.twig',"ACTIVITIES > OPINIONS")),
         ];
     }
 

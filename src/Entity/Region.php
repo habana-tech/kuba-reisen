@@ -62,6 +62,7 @@ class Region implements ImageFieldInterface, GalleryFieldInterface, MachineNameI
     public const TYPE_TOP_DESTINATION_REGION = 2;
     public const TRAVEL_OPTIONS = 3;
     public const TYPE_FAQ = 4;
+    public const TYPE_CLIENTS_OPINIONS = 5;
 
 
     /**
@@ -151,6 +152,7 @@ class Region implements ImageFieldInterface, GalleryFieldInterface, MachineNameI
             case 2: return 'TOP DESTINATION REGION';
             case 3: return 'TRAVEL OPTIONS';
             case 4: return 'FAQ QUESTION';
+            case 5: return 'CLIENT OPINIONS';
         }
 
     }

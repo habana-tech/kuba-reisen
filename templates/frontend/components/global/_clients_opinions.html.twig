@@ -1,10 +1,23 @@
 <section class="section clients_opinions">
+
     <div class="section__title ">
+
         <div class="section__title__highlight section__title__highlight--green">
-            <h2 data-grape_id="contact_t1">{{ page.ElementContent('contact_t1',"Clients opinions") | raw }}</h2>
+            <h2>{{ clientsOpinions.title }}</h2>
         </div>
+
         <div class="section__title__description" data-grape_id="contact_p1">
-            {{ page.ElementContent('contact_p1',"<p>We have some many that is hard to choose</p>") | raw }}
+            {{ clientsOpinions.description | raw }}
         </div>
+
     </div>
+
+    <div class="clients_opinions__content">
+        {% for opinion in opinions %}
+
+        {% endfor %}
+    </div>
+
+
+
 </section>

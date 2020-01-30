@@ -85,6 +85,22 @@ class RegionsController extends AbstractController
         ]);
     }
 
+    public function regionClientsOpinion(RegionRepository $regionRepository)
+    {
+
+        if(!$clientsOpinions = $regionRepository->findOneBy(['type'=>Region::TYPE_CLIENTS_OPINIONS]))
+            return new Response();
+
+
+//        $opinions = array_rand($clientsOpinions->getDescriptionFragments(), 2);
+        $opinions = $clientsOpinions->getDescriptionFragments();
+
+        return $this->render('frontend/components/global/_clients_opinions.html.twig', [
+            'clientsOpinions' => $clientsOpinions,
+            'opinions' => $opinions
+        ]);
+    }
+
     public function regionLoader($machineName, RegionRepository $repository, FilterTagRepository $filterTagRepository): Response
     {
         if($region = $repository->findOneBy(['machineName'=>$machineName])) {

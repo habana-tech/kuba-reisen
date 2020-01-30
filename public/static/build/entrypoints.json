@@ -121,6 +121,15 @@
         "/build/good_to_know.css"
       ]
     },
+    "tours": {
+      "js": [
+        "/build/runtime.js",
+        "/build/tours.js"
+      ],
+      "css": [
+        "/build/tours.css"
+      ]
+    },
     "loading": {
       "js": [
         "/build/runtime.js"
