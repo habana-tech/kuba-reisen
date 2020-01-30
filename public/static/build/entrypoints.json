@@ -1,28 +1,28 @@
 {
   "entrypoints": {
-    "contact": {
+    "activity": {
+      "js": [
+        "/build/runtime.js",
+        "/build/vendors~activities~activity~app~bucket_list~contact~destination~faq~index.js",
+        "/build/vendors~activities~activity~bucket_list.js",
+        "/build/activity~destination.js",
+        "/build/activity.js"
+      ],
+      "css": [
+        "/build/activity.css"
+      ]
+    },
+    "app": {
       "js": [
         "/build/runtime.js",
         "/build/vendors~activities~activity~app~bucket_list~contact~destination~faq~index.js",
         "/build/vendors~activities~app~contact.js",
-        "/build/vendors~activities~contact.js",
-        "/build/vendors~contact.js",
-        "/build/contact.js"
+        "/build/vendors~activities~app.js",
+        "/build/vendors~app.js",
+        "/build/app.js"
       ],
       "css": [
-        "/build/vendors~contact.css",
-        "/build/contact.css"
-      ]
-    },
-    "index": {
-      "js": [
-        "/build/runtime.js",
-        "/build/vendors~activities~activity~app~bucket_list~contact~destination~faq~index.js",
-        "/build/vendors~index.js",
-        "/build/index.js"
-      ],
-      "css": [
-        "/build/index.css"
+        "/build/app.css"
       ]
     },
     "destination": {
@@ -46,17 +46,18 @@
         "/build/faq.css"
       ]
     },
-    "app": {
+    "contact": {
       "js": [
         "/build/runtime.js",
         "/build/vendors~activities~activity~app~bucket_list~contact~destination~faq~index.js",
         "/build/vendors~activities~app~contact.js",
-        "/build/vendors~activities~app.js",
-        "/build/vendors~app.js",
-        "/build/app.js"
+        "/build/vendors~activities~contact.js",
+        "/build/vendors~contact.js",
+        "/build/contact.js"
       ],
       "css": [
-        "/build/app.css"
+        "/build/vendors~contact.css",
+        "/build/contact.css"
       ]
     },
     "activities": {
@@ -74,16 +75,15 @@
         "/build/activities.css"
       ]
     },
-    "activity": {
+    "index": {
       "js": [
         "/build/runtime.js",
         "/build/vendors~activities~activity~app~bucket_list~contact~destination~faq~index.js",
-        "/build/vendors~activities~activity~bucket_list.js",
-        "/build/activity~destination.js",
-        "/build/activity.js"
+        "/build/vendors~index.js",
+        "/build/index.js"
       ],
       "css": [
-        "/build/activity.css"
+        "/build/index.css"
       ]
     },
     "bucket_list": {
@@ -95,6 +95,33 @@
       ],
       "css": [
         "/build/bucket_list.css"
+      ]
+    },
+    "about_us": {
+      "js": [
+        "/build/runtime.js",
+        "/build/about_us.js"
+      ],
+      "css": [
+        "/build/about_us.css"
+      ]
+    },
+    "travel_info": {
+      "js": [
+        "/build/runtime.js",
+        "/build/travel_info.js"
+      ],
+      "css": [
+        "/build/travel_info.css"
+      ]
+    },
+    "good_to_know": {
+      "js": [
+        "/build/runtime.js",
+        "/build/good_to_know.js"
+      ],
+      "css": [
+        "/build/good_to_know.css"
       ]
     },
     "loading": {

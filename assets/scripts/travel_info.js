@@ -1,0 +1,1 @@
+import '../styles/travel_info.scss';

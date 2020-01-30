@@ -11,14 +11,19 @@
 
   &__philosophy{
     width: 100%;
+    margin: auto;
 
     @include atLarge{
-      width: 48%;
+      width: 80%;
     }
 
     &__title{
       width: 100%;
       text-align: center;
+    }
+
+    &__content{
+      margin: auto;
     }
   }
 
