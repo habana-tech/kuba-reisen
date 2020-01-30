@@ -8,9 +8,10 @@
 
     &__content{
         width: 95%;
-        margin: auto;
+        margin: 1em auto;
 
         @include atLarge{
+            margin: auto;
             width: 50%;
         }
     }

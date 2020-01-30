@@ -25,6 +25,7 @@
   "build/runtime.js": "/build/runtime.js",
   "build/tours.css": "/build/tours.css",
   "build/tours.js": "/build/tours.js",
+  "build/travel_info.css": "/build/travel_info.css",
   "build/travel_info.js": "/build/travel_info.js",
   "build/vendors~activities.js": "/build/vendors~activities.js",
   "build/vendors~activities~activity~app~bucket_list~contact~destination~faq~index.js": "/build/vendors~activities~activity~app~bucket_list~contact~destination~faq~index.js",
@@ -35,6 +36,5 @@
   "build/vendors~app.js": "/build/vendors~app.js",
   "build/vendors~contact.css": "/build/vendors~contact.css",
   "build/vendors~contact.js": "/build/vendors~contact.js",
-  "build/vendors~index.js": "/build/vendors~index.js",
-  "build/travel_info.css": "/build/travel_info.css"
+  "build/vendors~index.js": "/build/vendors~index.js"
 }

@@ -43,6 +43,45 @@ class RegionsController extends AbstractController
         ]);
     }
 
+    public function regionAboutUsBenefits(RegionRepository $regionRepository)
+    {
+        if(!$aboutUsBenefits = $regionRepository->findOneBy(['machineName'=>'about_us_benefits']))
+            return new Response();
+
+        return $this->render('frontend/components/about_us/_benefits.html.twig', [
+            'aboutUsBenefits' => $aboutUsBenefits,
+        ]);
+    }
+
+    public function regionAboutUsPhilosophy(RegionRepository $regionRepository)
+    {
+        if(!$aboutUsPhilosophy = $regionRepository->findOneBy(['machineName'=>'about_us_philosophy']))
+            return new Response();
+
+        return $this->render('frontend/components/about_us/_philosophy.html.twig', [
+            'aboutUsPhilosophy' => $aboutUsPhilosophy,
+        ]);
+    }
+
+    public function regionAboutUsTeam(RegionRepository $regionRepository)
+    {
+        if(!$aboutUsTeam = $regionRepository->findOneBy(['machineName'=>'about_us_team']))
+            return new Response();
+
+        return $this->render('frontend/components/about_us/_team.html.twig', [
+            'aboutUsTeam' => $aboutUsTeam,
+        ]);
+    }
+
+    public function regionAboutUsFilters(FilterTagRepository $filterTagRepository)
+    {
+        $filters = $filterTagRepository->findAll();
+
+        return $this->render('frontend/components/about_us/_filters.html.twig', [
+            'filters' => $filters
+        ]);
+    }
+
     public function regionFooter(FilterTagRepository $filterTagRepository,
                                  DestinationRepository $destinationRepository,
                                  Utils $utils)

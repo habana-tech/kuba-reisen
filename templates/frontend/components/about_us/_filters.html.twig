@@ -1,0 +1,16 @@
+<section class="section filters">
+    <div class="filters__title">
+        <h2>Unsere Kuba Angebote auf einen Blick</h2>
+    </div>
+    <div class="filters__content">
+        <ul>
+            {% for filter in filters %}
+                <li>
+                    <a href="{{ path('activitiesFilter', {'filters':filter.title | url_encode }) }}#activities">
+                        {{ filter.title }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>

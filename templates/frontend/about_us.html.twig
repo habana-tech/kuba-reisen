@@ -22,11 +22,14 @@
             {'title': page.titleDescription,
              'content' : page.description }) }}
 
-        {{ include ('frontend/components/about_us/_philosophy_benefits.html.twig') }}
 
-{#        {{ include ('frontend/components/about_us/_team.html.twig') }}#}
+        {{ render(controller('App\\Controller\\RegionsController:regionAboutUsPhilosophy')) }}
 
-{#        {{ include ('frontend/components/about_us/_links.html.twig') }}#}
+        {{ render(controller('App\\Controller\\RegionsController:regionAboutUsBenefits')) }}
+
+        {{ render(controller('App\\Controller\\RegionsController:regionAboutUsTeam')) }}
+
+        {{ render(controller('App\\Controller\\RegionsController:regionAboutUsFilters')) }}
 
     </main>
 {% endblock %}
