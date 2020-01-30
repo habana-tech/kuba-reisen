@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Utils\Utils;
 use App\Entity\Region;
 use App\Repository\RegionRepository;
 use App\Repository\DynamicPageRepository;
@@ -13,6 +14,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Twig\Error\LoaderError;
+
+
 
 class RegionsController extends AbstractController
 {
@@ -41,21 +44,34 @@ class RegionsController extends AbstractController
     }
 
     public function regionFooter(FilterTagRepository $filterTagRepository,
-                                 DestinationRepository $destinationRepository)
+                                 DestinationRepository $destinationRepository,
+                                 Utils $utils)
     {
 
         return $this->render('frontend/components/global/_footer.html.twig', [
+            'staticPagesUrl'=>$utils->getStaticPagesUrl(),
             'destinations'=>$destinationRepository->findAll(),
             'filterTagsPinned'=>$filterTagRepository->findBy(['pinned'=>true]),
         ]);
     }
 
     public function regionHeader(DestinationRepository $destinationRepository,
-                                FilterTagRepository $filterTagRepository): Response
+                                FilterTagRepository $filterTagRepository,
+                                 Utils $utils): Response
     {
+
         return $this->render('frontend/components/global/_header.html.twig', [
+            'staticPagesUrl'=>$utils->getStaticPagesUrl(),
             'destinations'=>$destinationRepository->findAll(),
             'filterTagsPinned'=>$filterTagRepository->findBy(['pinned'=>true]),
+        ]);
+    }
+
+    public function regionBreadcrumbs($items, Utils $utils){
+
+        return $this->render('frontend/components/global/_breadcrumbs.html.twig', [
+            'items' => $items,
+            'staticPagesUrl'=>$utils->getStaticPagesUrl(),
         ]);
     }
 

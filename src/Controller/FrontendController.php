@@ -21,9 +21,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
-use App\PageManager\DynamicPageManager;
 use Doctrine\Common\Collections\ArrayCollection;
 use Twig\Error\LoaderError;
+
+use App\Utils\Utils;
 
 class FrontendController extends AbstractController
 {
@@ -32,21 +33,24 @@ class FrontendController extends AbstractController
      * @param DynamicPageRepository $dynamicPageRepository
      * @param DestinationRepository $destinationRepository
      * @param FilterTagRepository $filterTagRepository
+     * @param ImageRepository $imageRepository
+     * @param Utils $utils
      * @return Response
      */
     public function index(DynamicPageRepository $dynamicPageRepository,
                           DestinationRepository $destinationRepository,
-                          FilterTagRepository $filterTagRepository, ImageRepository $imageRepository): Response
+                          FilterTagRepository $filterTagRepository,
+                          ImageRepository $imageRepository,
+                          Utils $utils): Response
     {
 
-        $page = $dynamicPageRepository->findOneBy([
-            'machineName'=>'index'
-        ]);
+        $page = $dynamicPageRepository->findOneBy(['machineName'=>'index']);
 
         if(!$page)
             throw new NotFoundHttpException();
 
         return $this->render('frontend/index.html.twig', [
+            'staticPagesUrl'=>$utils->getStaticPagesUrl(),
             'page' => $page,
             'destinations' => $destinationRepository->findAll(),
             'filterTags' => $filterTagRepository->findBy(['pinned'=>true]),
@@ -111,13 +115,16 @@ class FrontendController extends AbstractController
     }
 
     /**
-     * @Route("/{machineName}", name="pageLoad")
-     * @param DynamicPage $page
+     * @Route("/{name}", name="pageLoad")
+     * @param $name
+     * @param DynamicPageRepository $dynamicPageRepository
      * @return Response
      * @throws LoaderError
      */
-    public function loadPage(DynamicPage $page): Response
+    public function loadPage($name, DynamicPageRepository $dynamicPageRepository): Response
     {
+        $name = urldecode($name);
+        $page = $dynamicPageRepository->findOneBy(['name' => $name]);
 
         if(!$page)
             throw new NotFoundHttpException();

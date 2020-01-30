@@ -10,16 +10,17 @@
 {% block body %}
     <main class="main">
 
-        {{ include('frontend/components/global/_hero.html.twig', {
-            'content': page.name,
-            'image': page.hasImage ? page.image.staticImagePath : 'static/img/hero/water/water.jpg' }) }}
+        {{ include('frontend/components/global/_hero.html.twig',
+            { 'content': page.name,
+              'image': page.image.staticImagePath }) }}
 
-        {% include('frontend/components/global/_breadcrumb.html.twig')
-            with {'pages': [ {'name' : 'Start', 'url' : path('frontend')},
-            {'name' : 'Über uns', 'url' : path('pageLoad', {'machineName':'about_us'})}
-        ] } %}
+        {{ render(controller('App\\Controller\\RegionsController:regionBreadcrumbs',  {'items':[
+            {'type' : 'page', 'machineName' : 'about_us'}
+        ]} )) }}
 
-        {{ include ('frontend/components/about_us/_introduction.html.twig') }}
+        {{ include ('frontend/components/global/_introduction.html.twig',
+            {'title': page.titleDescription,
+             'content' : page.description }) }}
 
         {{ include ('frontend/components/about_us/_philosophy_benefits.html.twig') }}
 

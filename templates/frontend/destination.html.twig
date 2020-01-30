@@ -12,18 +12,20 @@
 
         {{ include('frontend/components/global/_hero.html.twig', {
             'content': destination.name,
-            'image': destination.hasImage ? destination.image.staticImagePath : 'static/img/hero/water/water.jpg' }) }}
+            'image': destination.image.staticImagePath }) }}
 
-        {% include('frontend/components/global/_breadcrumb.html.twig')
-            with {'pages': [
-            {'name' : 'Start', 'url' : path('frontend')},
-            {'name' : 'Kuba erkunden', 'url' : path('pageLoad', {'machineName':'exploring'})},
-            {'name' : destination.name, 'url' : path('destination', {'id' : destination.id, 'name' : destination.machineName }) }
-        ] } %}
+        {{ render(controller('App\\Controller\\RegionsController:regionBreadcrumbs',  {'items':[
+            {'type' : 'page', 'machineName' : 'exploring'},
+            {'type' : 'destination', 'destination' : destination },
+        ]} )) }}
 
-        {{ include('frontend/components/destinations/_introduction.html.twig') }}
+        {{ include ('frontend/components/global/_introduction.html.twig',
+            {'title': destination.name,
+             'content' : destination.description }) }}
 
-        {{ include('frontend/components/destinations/_features_list.html.twig') }}
+
+        {{ include('frontend/components/global/_features_list.html.twig',
+            {'descriptionFragments' : destination.descriptionFragments }) }}
 
         {{ include('frontend/components/destinations/_activities.html.twig') }}
 

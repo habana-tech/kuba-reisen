@@ -8,8 +8,8 @@
 
             <div class="footer__content__links__column">
                 <div class="footer__content__links__column__title">
-                    <a href="{{ path('pageLoad', {'machineName' : 'exploring'}) }}">
-                        <h3>Kuba erkunden</h3>
+                    <a href="{{ path('pageLoad', {'name' : staticPagesUrl['exploring'] | url_encode }) }}">
+                        <h3>{{ staticPagesUrl['exploring'] }}</h3>
                     </a>
                 </div>
                 <ul>
@@ -28,13 +28,15 @@
 
             <div class="footer__content__links__column">
                 <div class="footer__content__links__column__title">
-                    <a href="{{ path('pageLoad', {'machineName' : 'tours'}) }}">
-                        <h3>Kuba bereisen</h3>
+                    <a href="{{ path('pageLoad', {'name' : staticPagesUrl['tours'] | url_encode }) }}">
+                        <h3>{{ staticPagesUrl['tours'] }}</h3>
                     </a>
                 </div>
                 <ul>
                     <li>
-                        <a href="{{ path('contact', {'travel':'raise'}) }}">Individualreise</a>
+                        <a href="{{ path('contact', {'travel':'raise'}) }}">
+                            Individualreise
+                        </a>
                     </li>
 
                     {% for filter in filterTagsPinned %}
@@ -50,20 +52,20 @@
 
             <div class="footer__content__links__column">
                 <div class="footer__content__links__column__title">
-                    <a href="{{ path('pageLoad', {'machineName' : 'excursions'}) }}">
-                        <h3>Kuba Ausflüge</h3>
+                    <a href="{{ path('pageLoad', {'name' : staticPagesUrl['excursions'] | url_encode }) }}">
+                        <h3>{{ staticPagesUrl['excursions'] }}</h3>
                     </a>
                 </div>
                 <ul>
                     <li>
-                        <a href="{{ path('pageLoad', {'machineName' : 'bucket_list'}) }}">Our Bucket List</a>
+                        <a href="{{ path('activities') }}">
+                            {{ staticPagesUrl['activities'] }}
+                        </a>
                     </li>
                     <li>
-                        <a href="">Excursion Havanna</a>
-                    </li>
-                    <li>
-                        <a href="">Excursion en campo
-                            <span>New!</span></a>
+                        <a href="{{ path('pageLoad', {'name' : staticPagesUrl['bucket_list'] | url_encode }) }}">
+                            {{ staticPagesUrl['bucket_list'] }}
+                        </a>
                     </li>
 
                 </ul>
@@ -76,19 +78,29 @@
 
                 <ul>
                     <li>
-                        <a href="{{ path('pageLoad', {'machineName' : 'faq'}) }}">Reise FAQ für kuba</a>
+                        <a href="{{ path('pageLoad', {'name' : staticPagesUrl['faq'] | url_encode }) }}">
+                            {{ staticPagesUrl['faq'] }}
+                        </a>
                     </li>
                     <li>
-                        <a href="{{ path('pageLoad', {'machineName' : 'good_to_know'}) }}">Gut zu wissen</a>
+                        <a href="{{ path('pageLoad', {'name' : staticPagesUrl['good_to_know'] | url_encode }) }}">
+                            {{ staticPagesUrl['good_to_know'] }}
+                        </a>
                     </li>
                     <li>
-                        <a href="{{ path('pageLoad', {'machineName' : 'travel_info'}) }}">Landesinformationen</a>
+                        <a href="{{ path('pageLoad', {'name' : staticPagesUrl['travel_info'] | url_encode }) }}">
+                            {{ staticPagesUrl['travel_info'] }}
+                        </a>
                     </li>
                     <li>
-                        <a href="{{ path('pageLoad', {'machineName' : 'about_us'}) }}">Über uns</a>
+                        <a href="{{ path('pageLoad', {'name' : staticPagesUrl['about_us'] | url_encode }) }}">
+                            {{ staticPagesUrl['about_us'] }}
+                        </a>
                     </li>
                     <li>
-                        <a href="{{ path('contact') }}">Kontaktieren</a>
+                        <a href="{{ path('contact') }}">
+                            Kontaktieren
+                        </a>
                     </li>
                 </ul>
             </div>

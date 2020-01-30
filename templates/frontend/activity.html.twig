@@ -1,7 +1,7 @@
 {% extends 'frontend/base.html.twig' %}
 
-{% block title %}{{ page.name }}{% endblock %}
-{% block metadescription %}{{ page.description }}{% endblock %}
+{% block title %}{{ activity.name }}{% endblock %}
+{% block metadescription %}{{ activity.description }}{% endblock %}
 
 {% block stylesheets %}
     {{ encore_entry_link_tags('activity') }}
@@ -13,14 +13,12 @@
 
         {{ include('frontend/components/activity/_images.html.twig') }}
 
-        {% include('frontend/components/global/_breadcrumb.html.twig')
-            with {'pages': [
-                            {'name' : 'Start', 'url' : path('frontend')},
-                            {'name' : 'Kuba Ausflüge', 'url' : path('pageLoad', {'machineName' : 'excursions'}) },
-                            {'name' : 'Aktivitäten', 'url' : path('pageLoad', {'machineName' : 'activities'}) },
-                            {'name' : activity.name, 'url' : path('activity',
-                                                                    {'id' : activity.id, 'name' : activity.machineName }) }
-        ] } %}
+        {{ render(controller('App\\Controller\\RegionsController:regionBreadcrumbs',  {'items':[
+            {'type' : 'page', 'machineName' : 'excursions'},
+            {'type' : 'custom', 'route' : 'activities', 'name': 'Aktivitäten'},
+            {'type' : 'activity', 'activity' : activity },
+        ]} )) }}
+
 
         <div class="float_button__container">
 

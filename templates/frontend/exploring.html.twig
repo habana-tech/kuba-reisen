@@ -1,8 +1,7 @@
 {% extends 'frontend/base.html.twig' %}
 
-    {% block title %}Entdecken 👌 und entdecken Sie
-        {{ page.getElementContent('hero__content__text', 'Kuba erkunden') | striptags}}
-    {% endblock %}
+{% block title %}{{ page.name }}{% endblock %}
+{% block metadescription %}{{ page.description }}{% endblock %}
 
 {% block stylesheets %}
     {{ encore_entry_link_tags('exploring') }}
@@ -13,21 +12,22 @@
 
         {{ include('frontend/components/global/_hero.html.twig', {
             'content': page.name,
-            'image': page.hasImage ? page.image.staticImagePath : 'static/img/hero/water/water.jpg' }) }}
+            'image': page.image.staticImagePath }) }}
 
-        {% include('frontend/components/global/_breadcrumb.html.twig')
-            with {'pages': [
-            {'name' : 'Start', 'url' : path('frontend')},
-            {'name' : 'Kuba erkunden', 'url' : path('exploring')},
-        ] } %}
+        {{ render(controller('App\\Controller\\RegionsController:regionBreadcrumbs',  {'items':[
+            {'type' : 'page', 'machineName' : 'exploring'}
+        ]} )) }}
 
-        {{ include('frontend/components/destinations/_introduction.html.twig') }}
+        {{ include ('frontend/components/global/_introduction.html.twig',
+            {'title': page.titleDescription,
+             'content' : page.description }) }}
 
-        {{ include('frontend/components/destinations/_generic_place_features_list.html.twig') }}
+        {{ include('frontend/components/global/_features_list.html.twig',
+            {'descriptionFragments' : page.descriptionFragments }) }}
 
         {#        {{ include('frontend/components/destinations/_activities.html.twig') }}#}
 
-        {{ render(controller('App\\Controller\\RegionsController::regionTopDestinations', {'preview':app.request.get('preview')} )) }}
+        {{ render(controller('App\\Controller\\RegionsController::regionTopDestinations')) }}
 
     </main>
 {% endblock %}

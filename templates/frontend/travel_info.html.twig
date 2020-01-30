@@ -14,15 +14,17 @@
             'content': page.name,
             'image': page.hasImage }) }}
 
-        {% include('frontend/components/global/_breadcrumb.html.twig')
-            with {'pages': [
-            {'name' : 'Start', 'url' : path('frontend')},
-            {'name' : page.name, 'url' : path('pageLoad', {'machineName':'travel_info'}) },
-        ] } %}
 
-        {{ include('frontend/components/travel_info/_introduction.html.twig') }}
+        {{ render(controller('App\\Controller\\RegionsController:regionBreadcrumbs',  {'items':[
+            {'type' : 'page', 'machineName' : 'travel_info'}
+        ]} )) }}
 
-        {{ include('frontend/components/travel_info/_features_list.html.twig') }}
+        {{ include ('frontend/components/global/_introduction.html.twig',
+            {'title': page.titleDescription,
+             'content' : page.description }) }}
+
+        {{ include('frontend/components/global/_features_list.html.twig',
+            {'descriptionFragments' : page.descriptionFragments }) }}
 
         {{ render(controller('App\\Controller\\RegionsController::regionTopDestinations')) }}
 

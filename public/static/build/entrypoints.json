@@ -12,17 +12,15 @@
         "/build/activity.css"
       ]
     },
-    "app": {
+    "index": {
       "js": [
         "/build/runtime.js",
         "/build/vendors~activities~activity~app~bucket_list~contact~destination~faq~index.js",
-        "/build/vendors~activities~app~contact.js",
-        "/build/vendors~activities~app.js",
-        "/build/vendors~app.js",
-        "/build/app.js"
+        "/build/vendors~index.js",
+        "/build/index.js"
       ],
       "css": [
-        "/build/app.css"
+        "/build/index.css"
       ]
     },
     "destination": {
@@ -75,15 +73,17 @@
         "/build/activities.css"
       ]
     },
-    "index": {
+    "app": {
       "js": [
         "/build/runtime.js",
         "/build/vendors~activities~activity~app~bucket_list~contact~destination~faq~index.js",
-        "/build/vendors~index.js",
-        "/build/index.js"
+        "/build/vendors~activities~app~contact.js",
+        "/build/vendors~activities~app.js",
+        "/build/vendors~app.js",
+        "/build/app.js"
       ],
       "css": [
-        "/build/index.css"
+        "/build/app.css"
       ]
     },
     "bucket_list": {
@@ -110,9 +110,6 @@
       "js": [
         "/build/runtime.js",
         "/build/travel_info.js"
-      ],
-      "css": [
-        "/build/travel_info.css"
       ]
     },
     "good_to_know": {

@@ -19,7 +19,7 @@ class ActivitiesController extends AbstractController
     private $amountActivitiesDefault = 12;
 
     /**
-     * @Route("/activities", name="activities")
+     * @Route("/Aktivitäten", name="activities", options={"utf8" : true})
      * @Route("/activities/filter/{filters}",
      *     name="activitiesFilter",
      *     defaults={"filters": null, "pos": null, "amount":null },)

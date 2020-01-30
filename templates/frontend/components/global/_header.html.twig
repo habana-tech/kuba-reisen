@@ -5,19 +5,18 @@
         </a>
     </div>
 
-        <div class="header__menu-icon">
+    <div class="header__menu-icon">
 
-            <div id="menu-icon-wrapper" class="menu-icon-wrapper float-right">
-                <svg width="1000px" height="1000px">
-                    <path id="burger_pathA" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
-                    <path id="burger_pathB" d="M 300 500 L 700 500"></path>
-                    <path id="burger_pathC" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
-                </svg>
-                <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
-            </div><!-- menu-icon-wrapper -->
+        <div id="menu-icon-wrapper" class="menu-icon-wrapper float-right">
+            <svg width="1000px" height="1000px">
+                <path id="burger_pathA" d="M 300 400 L 700 400 C 900 400 900 750 600 850 A 400 400 0 0 1 200 200 L 800 800"></path>
+                <path id="burger_pathB" d="M 300 500 L 700 500"></path>
+                <path id="burger_pathC" d="M 700 600 L 300 600 C 100 600 100 200 400 150 A 400 380 0 1 1 200 800 L 800 200"></path>
+            </svg>
+            <button id="menu-icon-trigger" class="menu-icon-trigger"></button>
+        </div><!-- menu-icon-wrapper -->
 
-        </div>
-
+    </div>
 
     <nav class="header__nav navigation_menu">
 
@@ -26,8 +25,8 @@
             <div class="header__nav__menu__column">
 
                 <div class="header__nav__menu__column__title">
-                    <a href="{{ path('pageLoad', {'machineName' : 'exploring' }) }}">
-                        <h3>Kuba erkunden</h3>
+                    <a href="{{ path('pageLoad', {'name' : staticPagesUrl['exploring'] | url_encode }) }}">
+                        <h3>{{ staticPagesUrl['exploring'] }}</h3>
                     </a>
                 </div>
 
@@ -50,8 +49,8 @@
             <div class="header__nav__menu__column">
 
                 <div class="header__nav__menu__column__title">
-                    <a href="{{ path('pageLoad', {'machineName' : 'tours' }) }}">
-                        <h3>Kuba bereisen</h3>
+                    <a href="{{ path('pageLoad', { 'name' : staticPagesUrl['tours'] | url_encode } ) }}">
+                        <h3>{{ staticPagesUrl['tours'] }}</h3>
                     </a>
                 </div>
 
@@ -75,17 +74,21 @@
             <div class="header__nav__menu__column">
 
                 <div class="header__nav__menu__column__title">
-                    <a href="{{ path('pageLoad', {'machineName' : 'excursions' }) }}">
-                        <h3>Kuba Ausflüge</h3>
+                    <a href="{{ path('pageLoad', {'name' : staticPagesUrl['excursions'] | url_encode }) }}">
+                        <h3>{{ staticPagesUrl['excursions'] }}</h3>
                     </a>
                 </div>
 
                 <ul class="header__nav__menu__column__list">
                     <li class="header__nav__menu__column__list__link">
-                        <a href="{{ path('pageLoad', {'machineName' : 'activities'}) }}">Activities</a> <span>New!</span>
+                        <a href="{{ path('activities') }}">
+                            {{ staticPagesUrl['activities'] }}
+                        </a>
                     </li>
                     <li class="header__nav__menu__column__list__link">
-                        <a href="{{ path('pageLoad', {'machineName' : 'bucket_list'}) }}">Our bucket list</a>
+                        <a href="{{ path('pageLoad', {'name' : staticPagesUrl['bucket_list'] | url_encode }) }}">
+                            {{ staticPagesUrl['bucket_list'] }}
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -98,19 +101,29 @@
 
                 <ul class="header__nav__menu__column__list">
                     <li class="header__nav__menu__column__list__link">
-                        <a href="{{ path('pageLoad', {'machineName' : 'faq'}) }}">Reise FAQ für kuba</a>
+                        <a href="{{ path('pageLoad', {'name' : staticPagesUrl['faq'] | url_encode }) }}">
+                            {{ staticPagesUrl['faq'] }}
+                        </a>
                     </li>
                     <li class="header__nav__menu__column__list__link">
-                        <a href="{{ path('pageLoad', {'machineName' : 'good_to_know'}) }}">Gut zu wissen</a>
+                        <a href="{{ path('pageLoad', {'name' : staticPagesUrl['good_to_know'] | url_encode }) }}">
+                            {{ staticPagesUrl['good_to_know'] }}
+                        </a>
                     </li>
                     <li class="header__nav__menu__column__list__link">
-                        <a href="{{ path('pageLoad', {'machineName' : 'travel_info'}) }}">Landesinformationen</a>
+                        <a href="{{ path('pageLoad', {'name' : staticPagesUrl['travel_info'] | url_encode }) }}">
+                            {{ staticPagesUrl['travel_info'] }}
+                        </a>
                     </li>
                     <li class="header__nav__menu__column__list__link">
-                        <a href="{{ path('pageLoad', {'machineName' : 'about_us'}) }}">Über uns</a>
+                        <a href="{{ path('pageLoad', {'name' : staticPagesUrl['about_us'] | url_encode }) }}">
+                            {{ staticPagesUrl['about_us'] }}
+                        </a>
                     </li>
                     <li class="header__nav__menu__column__list__link">
-                        <a href="{{ path('contact') }}">Kontaktieren</a>
+                        <a href="{{ path('contact') }}">
+                            Kontaktieren
+                        </a>
                     </li>
                 </ul>
             </div>

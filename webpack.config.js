@@ -38,6 +38,7 @@ Encore
     .addEntry('about_us', './assets/scripts/about_us.js')
     .addEntry('travel_info', './assets/scripts/travel_info.js')
     .addEntry('good_to_know', './assets/scripts/good_to_know.js')
+    .addEntry('tours', './assets/scripts/tours.js')
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
 

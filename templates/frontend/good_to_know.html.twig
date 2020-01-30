@@ -14,15 +14,18 @@
             'content': page.name,
             'image': page.hasImage }) }}
 
-        {% include('frontend/components/global/_breadcrumb.html.twig')
-            with {'pages': [
-            {'name' : 'Start', 'url' : path('frontend')},
-            {'name' : page.name, 'url' : path('pageLoad', {'machineName':'good_to_know'}) },
-        ] } %}
+        {{ render(controller('App\\Controller\\RegionsController:regionBreadcrumbs',  {'items':[
+            {'type' : 'page', 'machineName' : 'good_to_know'}
+        ]} )) }}
 
-        {{ include('frontend/components/good_to_know/_introduction.html.twig') }}
 
-        {{ include('frontend/components/good_to_know/_features_list.html.twig') }}
+        {{ include ('frontend/components/global/_introduction.html.twig',
+            {'title': page.titleDescription,
+             'content' : page.description }) }}
+
+
+        {{ include('frontend/components/global/_features_list.html.twig',
+            {'descriptionFragments' : page.descriptionFragments }) }}
 
         {{ render(controller('App\\Controller\\RegionsController::regionTopDestinations')) }}
 
