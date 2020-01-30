@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Entity\Fields\ActiveFieldTrait;
+use App\Entity\Fields\DescriptionFragmentFieldInterface;
+use App\Entity\Fields\DescriptionFragmentFieldTrait;
 use App\Entity\Fields\GalleryFieldInterface;
 use App\Entity\Fields\GalleryTrait;
 use App\Entity\Fields\ImageFieldInterface;
@@ -20,9 +22,9 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @Vich\Uploadable
  * @ORM\HasLifecycleCallbacks
  */
-class Region implements ImageFieldInterface, GalleryFieldInterface, MachineNameInterface
+class Region implements ImageFieldInterface, GalleryFieldInterface, MachineNameInterface, DescriptionFragmentFieldInterface
 {
-    use ImageFieldTrait, ActiveFieldTrait, GalleryTrait, MachineNameTrait;
+    use ImageFieldTrait, ActiveFieldTrait, GalleryTrait, MachineNameTrait, DescriptionFragmentFieldTrait;
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -58,6 +60,8 @@ class Region implements ImageFieldInterface, GalleryFieldInterface, MachineNameI
     public const TYPE_GENERIC_REGION = 0;
     public const TYPE_BANNER_REGION = 1;
     public const TYPE_TOP_DESTINATION_REGION = 2;
+    public const TRAVEL_OPTIONS = 3;
+    public const TYPE_FAQ = 4;
 
 
     /**
@@ -72,6 +76,7 @@ class Region implements ImageFieldInterface, GalleryFieldInterface, MachineNameI
     {
         $this->gallery = new ArrayCollection();
         $this->active = true;
+        $this->descriptionFragments = new ArrayCollection();
     }
 
 
@@ -145,6 +150,7 @@ class Region implements ImageFieldInterface, GalleryFieldInterface, MachineNameI
             case 1: return 'BANNER REGION';
             case 2: return 'TOP DESTINATION REGION';
             case 3: return 'TRAVEL OPTIONS';
+            case 4: return 'FAQ QUESTION';
         }
 
     }

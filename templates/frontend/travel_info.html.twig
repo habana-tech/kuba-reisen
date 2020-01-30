@@ -1,6 +1,7 @@
 {% extends 'frontend/base.html.twig' %}
 
-    {% block title %}Landesinformationen{% endblock %}
+{% block title %}{{ page.name }}{% endblock %}
+{% block metadescription %}{{ page.description }}{% endblock %}
 
 {% block stylesheets %}
     {{ encore_entry_link_tags('travel_info') }}
@@ -11,19 +12,17 @@
 
         {{ include('frontend/components/global/_hero.html.twig', {
             'content': page.name,
-            'image': page.hasImage ? page.image.staticImagePath : 'static/img/hero/water/water.jpg' }) }}
+            'image': page.hasImage }) }}
 
-        {#{ include('frontend/components/destinations/_introduction.html.twig') }#}
+        {% include('frontend/components/global/_breadcrumb.html.twig')
+            with {'pages': [
+            {'name' : 'Start', 'url' : path('frontend')},
+            {'name' : page.name, 'url' : path('pageLoad', {'machineName':'travel_info'}) },
+        ] } %}
 
-        <section class="section introduction">
-            <div class="introduction__content">
-                
-            </div>
-        </section>
+        {{ include('frontend/components/travel_info/_introduction.html.twig') }}
 
-        {{ include('frontend/components/destinations/_generic_place_features_list.html.twig') }}
-
-        {#        {{ include('frontend/components/destinations/_activities.html.twig') }}#}
+        {{ include('frontend/components/travel_info/_features_list.html.twig') }}
 
         {{ render(controller('App\\Controller\\RegionsController::regionTopDestinations')) }}
 

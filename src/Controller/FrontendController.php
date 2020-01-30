@@ -40,7 +40,7 @@ class FrontendController extends AbstractController
     {
 
         $page = $dynamicPageRepository->findOneBy([
-            'name'=>'index'
+            'machineName'=>'index'
         ]);
 
         if(!$page)

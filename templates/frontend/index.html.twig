@@ -1,6 +1,7 @@
 {% extends 'frontend/base.html.twig' %}
 
-{% block title %}Reisen nach Kuba 👌 von Hand gemacht{% endblock %}
+{% block title %}{{ page.name }}{% endblock %}
+{% block metadescription %}{{ page.description }}{% endblock %}
 
 {% block stylesheets %}
     {{ encore_entry_link_tags('index') }}
@@ -31,7 +32,6 @@
         {#{{ include('frontend/components/index/_team_opinions.html.twig') }}#}
 
         {{ render(controller('App\\Controller\\RegionsController::regionLoader', {'machineName': 'travel_options'})) }}
-
 
     </main>
 {% endblock %}

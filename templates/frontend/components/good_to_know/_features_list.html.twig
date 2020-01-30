@@ -1,0 +1,19 @@
+<section class="section feature_lists">
+
+    {% for fragment in page.descriptionFragments %}
+        <div class="feature {% if loop.index is even %} feature--inverse {% endif %}">
+            <div class="feature__text">
+                <div class="feature__text__title">
+                    <h2>{{ fragment.name }}</h2>
+                </div>
+
+                <div>{{ fragment.content | raw }}</div>
+            </div>
+
+            <div class="feature__image">
+                {{ imgTag(fragment.image, '(min-width:1000px) 50vw, 100vw') | raw }}
+            </div>
+        </div>
+    {% endfor %}
+
+</section>

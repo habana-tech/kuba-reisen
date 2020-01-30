@@ -107,7 +107,7 @@ class ContactController extends AbstractController
         //if there are products selected in the cookie...
         if($ids = $request->cookies->get('products_cart')){
             $names = $repository->findNamesCollection(explode(',',$ids));
-//            dump($names);
+
             $allInterests .= "\n\nActivities: \n";
             foreach($names as $index => $item)
                 $allInterests .= $item['name'] .', ';

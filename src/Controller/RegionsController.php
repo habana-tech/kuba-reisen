@@ -59,6 +59,16 @@ class RegionsController extends AbstractController
         ]);
     }
 
+    public function regionFaq(RegionRepository $regionRepository)
+    {
+        if(!$questionSections = $regionRepository->findBy(['type'=>Region::TYPE_FAQ]))
+            return new Response();
+
+        return $this->render('frontend/components/faq/_question.html.twig', [
+            'questionSections' => $questionSections,
+        ]);
+    }
+
     public function regionLoader($machineName, RegionRepository $repository, FilterTagRepository $filterTagRepository): Response
     {
         if($region = $repository->findOneBy(['machineName'=>$machineName])) {

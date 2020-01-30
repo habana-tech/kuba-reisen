@@ -1,8 +1,7 @@
 {% extends 'frontend/base.html.twig' %}
 
-    {% block title %}Entdecken 👌 und entdecken Sie
-        {{ page.getElementContent('hero__content__text', 'Kuba bereisen') | striptags}}
-    {% endblock %}
+{% block title %}{{ page.name }}{% endblock %}
+{% block metadescription %}{{ page.description }}{% endblock %}
 
 {% block stylesheets %}
     {{ encore_entry_link_tags('destinations') }}
