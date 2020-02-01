@@ -15,8 +15,8 @@ trait ImageFieldTrait
 {
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Image", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Image", cascade={"persist"} )
+     * @ORM\JoinColumn(nullable=true,  onDelete="SET NULL")
      */
     private $image;
 
@@ -50,8 +50,13 @@ trait ImageFieldTrait
 
     public function galleryImage(?Image $image = null)
     {
-        dump($image);
+//        dump($image);
         return;
+    }
+
+    public function getGalleryImage(): ?Image
+    {
+        return $this->getImage();
     }
 
 }

@@ -15,22 +15,19 @@ class SingleImageFromGalleryType extends AbstractType
         $builder
             ->add('galleryImage', EntityType::class, [
                 'class'=> Image::class,
-                'choice_label' => 'description',
-//                'choice_value' => 'id',
-//                'auto_initialize'=>Image::class,
+                'placeholder' => 'Keep the current image',
+                'help' => 'Choose an image from gallery to replace the current image',
                 'multiple' => false,
                 'required' => false,
+                'choice_label' => 'description',
+                'choice_value' => 'id',
                 'attr' => [
                     'class' => 'selectpicker show-tick',
                     'data-live-search' => 'true',
-
                 ],
                 'choice_attr' => function($choice, $key, $value) {
                     return [
                         'data-content'=> "<img style='width: 50px' src=' /media/cache/resolve/min_width_40/static/uploads/images/".$choice->getimageName()."'> ". $choice->getDescription(),
-
-//                        'data-thumbnail' => '/static/uploads/images/'.$choice->getimageName(),
-//                        'class' => "rounded-circle"
                     ];
                 },
             ])

@@ -48,7 +48,7 @@ easy_admin:
                     - { property: 'description', label: 'Small description' }
 
                     - { type: 'group', label: 'Featured Image', icon: 'image', columns: 4 , help: 'You can use an existing image from Gallery or upload a new one, replacing the current image '}
-                    - { property: 'fromGallery', label: 'Use this image from Gallery', type: 'entity', type_options: { 'class': 'App\Entity\Image', attr: {'data-widget': 'select2'}} }
+                    - { property: 'galleryImage', label: 'Use this image from Gallery', type: 'entity', type_options: { 'class': 'App\Entity\Image', attr: {'class': 'selectpicker show-tick', 'data-live-search': true}} }
                     - { property: 'image', label: 'Upload a new image to Gallery', type: 'App\Form\ImageUploadType' }
 
                     - { type: 'group', label: 'Activity settings', icon: 'cogs', columns: 4 }
@@ -95,11 +95,11 @@ easy_admin:
                 fields:
                     - { property: 'username' }
                     - { property: 'email' }
-                    - { property: 'plainPassword', type: 'password' , type_options: { required: false }}
+                    - { property: 'plainPassword', type: 'password' , type_options: { required: false }, label: 'Password'}
                     - { property: 'enabled' }
 
                     - { property: 'roles', label: 'User roles',  help: 'Select one or more', type: 'choice', type_options: { choices: { 'Admin':'ROLE_ADMIN', 'Editor': 'ROLE_EDITOR', 'User': 'ROLE_USER'}, multiple: true, attr: {'data-widget': 'select2'}}  }
-                    - { property: 'sendRequestEmail' }
+                    - { property: 'sendRequestEmail', help: 'If checked, this user will receive the emails from clients with the contact request' }
             list:
                 fields:
                     - { property: 'username' }
@@ -122,7 +122,7 @@ easy_admin:
                     - { type: 'group', label: 'Activity Info', icon: 'location-arrow', columns: 8 }
                     - { property: 'name' }
 #                    - { property: 'fromGallery_', label: 'Use this image from Gallery', type: 'entity', type_options: { 'class': 'App\Entity\Image', attr: {'data-widget': 'select2'}} }
-                    - { property: 'image', label: 'Use this image from Gallery', type: 'App\Form\SingleImageFromGalleryType'}
+                    - { property: 'galleryImage', label: 'Main Image', help: 'You can replace the current image with one from gallery or upload a new one', type: 'App\Form\SingleImageFromGalleryType'}
 #                    - { property: 'image', label: 'Upload a new image to Gallery', type: 'App\Form\ImageUploadType' }
 
                     - { type: 'group', label: 'Activity settings', icon: 'cogs', columns: 4 }

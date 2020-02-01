@@ -92,7 +92,7 @@ class EasyAdminSubscriber implements EventSubscriberInterface
                 if($event->isPropagationStopped())
                     return;
 
-                    $image = $objArray['image'];
+                    $image = $objArray['galleryImage'];
 
 //
 
@@ -102,35 +102,33 @@ class EasyAdminSubscriber implements EventSubscriberInterface
                             $entity->setImage($imageObj);
                         }
                     }
-                    else //maybe is an new file for upload
-                    {
-
-                        $file = $filesOnRequest->get($entityName);
-                        if(isset($file['image']['uploadImage']['imageFile'])){
-                            $newFile = $file['image']['uploadImage']['imageFile']['file'];
-
-                            if($newFile instanceof UploadedFile)
-                            {
-                                $newImage = new Image();
-                                $newImage->setImageFile($newFile);
-
-                                $newImageDescription = $image['uploadImage']['description'] ?? $newFile->getClientOriginalName();
-                                $newImage->setDescription($newImageDescription);
-//                                $this->em->persist($newImage);
-                                $entity->setImage($newImage);
-                                unset($file['image']['uploadImage']);
-
-                            }
-                        }
-
-                    }
+//                    else //maybe is an new file for upload
+//                    {
+//
+//                        $file = $filesOnRequest->get($entityName);
+//                        if(isset($file['galleryImage']['uploadImage']['imageFile'])){
+//                            $newFile = $file['galleryImage']['uploadImage']['imageFile']['file'];
+//
+//                            if($newFile instanceof UploadedFile)
+//                            {
+//                                $newImage = new Image();
+//                                $newImage->setImageFile($newFile);
+//
+//                                $newImageDescription = $image['uploadImage']['description'] ?? $newFile->getClientOriginalName();
+//                                $newImage->setDescription($newImageDescription);
+////                                $this->em->persist($newImage);
+//                                $entity->setImage($newImage);
+//                                unset($file['galleryImage']['uploadImage']);
+//
+//                            }
+//                        }
+//
+//                    }
 
 //                if($entity->getFromGallery() !== $entity->getImage())
 //                {
 //                    $entity->setImage($entity->getFromGallery());
 //                }
-                dump($entity, $eventName);
-                    $event->stopPropagation();
 
                 $event['entity'] = $entity;
 
