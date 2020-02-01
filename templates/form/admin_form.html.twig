@@ -38,7 +38,7 @@
   /*-webkit-transition: 0.5s;*/
   /*transition: 0.5s;*/
             display: none;
-            padding: 1em 2em;
+            padding: 1em 2 em;
 border: solid 1px #d2cfcf;
             margin: 1em;
 }
@@ -49,7 +49,12 @@ border: solid 1px #d2cfcf;
 .reveal-if-active input[type=text] {
   width: 100%;
 }
-.image_field input[type="radio"]:checked ~ .reveal-if-active, .image_field input[type="checkbox"]:checked ~ .reveal-if-active {
+.image_field input[type="radio"]:checked ~ label{
+    font-weight: bold;
+}
+.image_field input[type="radio"]:checked ~ .reveal-if-active,
+.image_field input[type="checkbox"]:checked ~ .reveal-if-active {
+
   /*opacity: 1;*/
   /*max-height: 100px;*/
   /*padding: 10px 20px;*/
