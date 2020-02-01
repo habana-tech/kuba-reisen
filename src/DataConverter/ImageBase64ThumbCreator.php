@@ -8,21 +8,26 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ImageBase64ThumbCreator extends AbstractController
 {
 
-    static function getStaticRelativePath($path){
+    public static function getStaticRelativePath($path){
 
         $temp = explode('/static/',$path);
-        if(count($temp))
-            $path = $temp[count($temp)-1];
-        if(!preg_match("|^static/|", $path))
-            $path = "/static/".$path;
+        if(count($temp)) {
+            $path = $temp[count($temp) - 1];
+        }
+        if(!preg_match('|^static/|', $path)) {
+            $path = '/static/' . $path;
+        }
 
 //        return trim($path,'/\\');
         return $path;
     }
 
     private $base64data;
+
     /**
      * ImageBase64ThumbCreator constructor.
+     * @param string $path
+     * @param bool $absoluteFileName
      */
     public function __construct(string $path = 'folder', $absoluteFileName = false)
     {
@@ -33,11 +38,10 @@ class ImageBase64ThumbCreator extends AbstractController
 
         if(file_exists($path))
         {
-           if($image = @imagecreatefromjpeg($path) or $image = @imagecreatefrompng($path))
-
-
-            $width = imagesx($image);
-            $height = imagesy($image);
+           if(($image = @imagecreatefromjpeg($path)) || ($image = @imagecreatefrompng($path)))
+           {
+            $width = imagesx($image) ?? 1;
+            $height = imagesy($image) ?? 1;
             $original_aspect = $height / $width;
 
             $thumb_width = 15; //px
@@ -57,12 +61,10 @@ class ImageBase64ThumbCreator extends AbstractController
             ob_start ();
 
             imagejpeg ($thumb);
-            $image_data = ob_get_contents ();
+            $image_data = ob_get_clean ();
 
-            ob_end_clean ();
-
-            $this->base64data = "data:image/jpeg;base64,".base64_encode($image_data);
-
+            $this->base64data = 'data:image/jpeg;base64,' .base64_encode($image_data);
+           }
         }
     }
 
