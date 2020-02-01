@@ -27,6 +27,7 @@ framework:
 
     templating:
         engines: ['twig', 'php']
+    ide: 'phpstorm://open?url=file://%%f&line=%%l'
 
 parameters:
     env(MEDIA_STATIC_HOST_URL): http://static.kuba-reisen.test

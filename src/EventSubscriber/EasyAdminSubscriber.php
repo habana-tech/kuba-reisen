@@ -15,6 +15,8 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 use App\Entity\Activity;
 use App\Entity\Destination;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Event\Event;
 
 class EasyAdminSubscriber implements EventSubscriberInterface
 {
@@ -40,46 +42,28 @@ class EasyAdminSubscriber implements EventSubscriberInterface
         return array(
                 'easy_admin.pre_persist' => ['setUploadedImagesAsGalleryOrImage'],
                 'easy_admin.pre_update' => ['setUploadedImagesAsGalleryOrImage'],
+                'vich_uploader.pre_upload' => ['dropFilesFromRequest'],
         );
 
     }
 
-    public function setUploadedImagesInDestinationsAndActivities(GenericEvent $event): void
-    {
-        $entity = $event->getSubject();
-
-        $TestClass = null;
-        if (is_array($entity) && isset($entity['class'])){
-            $TestClass = $entity['class'];
-            $TestClass =  new $TestClass();
-        }
-        else {
-            $TestClass = $entity;
-        }
-
-        //If not implements DescriptionFragmentFieldInterface......
-        if(!($TestClass instanceof DescriptionFragmentFieldInterface)) {
-            return;
-        }
-
-    }
-    public function setUploadedImagesAsGalleryOrImage(GenericEvent $event): void
+    public function setUploadedImagesAsGalleryOrImage(GenericEvent $event, $eventName): void
     {
             $entity = $event->getSubject();
+        /**
+         * @var \Symfony\Component\HttpFoundation\Request $request;
+         */
+            $request = $event->getArgument('request')->request;
 
             //Add entities contains gallery
-            if (($entity instanceof GalleryFieldInterface
-                || $entity instanceof DescriptionFragment
-            ))
+            if ($entity instanceof GalleryFieldInterface)
             {
                 foreach ($entity->getUploadedImages() as $image )
                 {
-//                    dump($entity, $image);
                     $entity->addGallery($image);
                 }
 
                 $event['entity'] = $entity;
-
             }
 
             if ($entity instanceof DescriptionFragmentFieldInterface)
@@ -98,13 +82,86 @@ class EasyAdminSubscriber implements EventSubscriberInterface
 
             if ($entity instanceof ImageFieldInterface)
             {
-                if($entity->getFromGallery() !== $entity->getImage())
-                {
-                    $entity->setImage($entity->getFromGallery());
-                }
+                //save the entity array send in request
+                $entityName = strtolower(basename(get_class($entity)));
+                $filesOnRequest = $event->getArgument('request')->files;
+
+                if(!$objArray = $request->get($entityName))
+                    return;
+
+                if($event->isPropagationStopped())
+                    return;
+
+                    $image = $objArray['image'];
+
+//
+
+                    //In case a image is selected from gallery
+                    if(isset($image['galleryImage']) && $galleryImageId = $image['galleryImage']) {
+                        if($imageObj = $this->em->getRepository(Image::class)->find($galleryImageId)) {
+                            $entity->setImage($imageObj);
+                        }
+                    }
+                    else //maybe is an new file for upload
+                    {
+
+                        $file = $filesOnRequest->get($entityName);
+                        if(isset($file['image']['uploadImage']['imageFile'])){
+                            $newFile = $file['image']['uploadImage']['imageFile']['file'];
+
+                            if($newFile instanceof UploadedFile)
+                            {
+                                $newImage = new Image();
+                                $newImage->setImageFile($newFile);
+
+                                $newImageDescription = $image['uploadImage']['description'] ?? $newFile->getClientOriginalName();
+                                $newImage->setDescription($newImageDescription);
+//                                $this->em->persist($newImage);
+                                $entity->setImage($newImage);
+                                unset($file['image']['uploadImage']);
+
+                            }
+                        }
+
+                    }
+
+//                if($entity->getFromGallery() !== $entity->getImage())
+//                {
+//                    $entity->setImage($entity->getFromGallery());
+//                }
+                dump($entity, $eventName);
+                    $event->stopPropagation();
+
                 $event['entity'] = $entity;
+
+
 
             }
 
         }
+
+        public function dropFilesFromRequest(Event $event)
+        {
+            $entity = $event->getObject();
+
+            $event->stopPropagation();
+            if($entity instanceof \Proxies\__CG__\App\Entity\Image)
+                return;
+
+            $event->stopPropagation();
+            unset($entity);
+
+            dump($event);
+
+//             $event['entity'] = null;
+
+
+//
+//            /**
+//             * Image $entity
+//             */
+//            if($entity->getId() && $entity->getImageFile() && (!$entity->getImageFile()->getLinkTarget() || !$entity->getImageFile()->isFile()))
+//                dump(["error case", $event]);
+        }
+
 }

@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
@@ -156,6 +157,23 @@ class Image
     {
         $this->base64 = $base64;
 
+        return $this;
+    }
+
+    public function uploadImage(?Image $image = null)
+    {
+        return;
+    }
+
+    public function galleryImage(?Image $image = null)
+    {
+
+        return;
+    }
+
+
+    public function getUploadImage()
+    {
         return $this;
     }
 

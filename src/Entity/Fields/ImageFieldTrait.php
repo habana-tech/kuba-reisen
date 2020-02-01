@@ -7,12 +7,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
-use Vich\UploaderBundle\Entity\File as EmbeddedFile;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Image
- * @Vich\Uploadable
  */
 trait ImageFieldTrait
 {
@@ -25,9 +22,6 @@ trait ImageFieldTrait
 
     public function getImage():? Image
     {
-        if($this->image instanceof \Vich\UploaderBundle\Entity\File) {
-            return null;
-        }
         return $this->image;
     }
 
@@ -43,37 +37,21 @@ trait ImageFieldTrait
         return ($this->image instanceof Image && $this->image->getImageName() && $this->image->getImageName() !== 'no-image' );
     }
 
-    /**
-     * @return UploadedFile
-     */
-    public function getUploadedImage(): ?UploadedFile
+    public function uploadImage()
     {
-        return $this->uploadedImage;
+        return;
     }
 
-    /**
-     * @param mixed $uploadedImage
-     */
-    public function setUploadedImage($uploadedImage): void
+
+    public function getUploadImage()
     {
-        $this->uploadedImage = $uploadedImage;
+        return $this->image;
     }
 
-    private $uploadedImage;
-
-
-    public function getFromGallery()
+    public function galleryImage(?Image $image = null)
     {
-        if(!$this->galleryImage) {
-            return $this->image;
-        }
-        return $this->galleryImage;
+        dump($image);
+        return;
     }
 
-    private $galleryImage;
-
-    public function setFromGallery($image): void
-    {
-        $this->galleryImage = $image;
-    }
 }

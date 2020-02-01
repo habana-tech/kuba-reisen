@@ -22,17 +22,7 @@ class DescriptionFragmentType extends AbstractType
                 'attr' => [
                     'required' => true
                 ]])
-            ->add('fromGallery', EntityType::class, [
-                'class'=> Image::class,
-                'label'=> 'Use this image from Gallery',
-                'required'=>false,
-                'attr' => ['data-widget' => 'select2', 'required'=>false]
-            ])
-            ->add('image', ImageUploadType::class, [
-                'label' => 'Image for this component',
-                'attr'=>[
-                    'class' => 'destination_fragment_image',
-            ]])
+            ->add('singleImage', SingleImageFromGalleryType::class)
             ->add('content', CKEditorType::class)
         ;
     }
