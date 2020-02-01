@@ -8,6 +8,7 @@ easy_admin:
             css:
                 - 'assets/bootstrap-select.min.css'
         form_theme:
+            - 'form/admin_form.html.twig'
             - '@EasyAdmin/form/bootstrap_4.html.twig'
             - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
         menu:
@@ -21,9 +22,10 @@ easy_admin:
 
             - { label: 'Management' }
             - { entity: 'Page', label: 'Pages', icon: 'file-alt' }
-            - { entity: 'Region', label: 'Region' , icon: 'heart'}
-            - { label: 'Browse Images folder', route: 'ckfinder_fullpage', icon: 'images'}
+            - { entity: 'Region', label: 'Region' , icon: 'puzzle-piece'}
             - { entity: 'Image', label: 'Manage Images', icon: 'images'}
+            - { label: 'Browse Images folder', route: 'ckfinder_fullpage', icon: 'images'}
+
 #            - { label: 'Config', route: 'ckfinder_fullpage', icon: 'cogs' }
 
             - { label: 'Users' }
@@ -34,79 +36,6 @@ easy_admin:
 
 
     entities:
-        Interest:
-            class: App\Entity\Interest
-            list:
-                fields:
-                    - { property: 'title', label: 'Title'}
-                    - { property: 'active', label: 'Active'}
-                    - { property: 'image.imageName', label: 'Image', type: 'image', base_path: '%app.path.uploaded_images%' }
-            form:
-                fields:
-                    - { type: 'group', label: 'Interest Data', icon: 'comments', columns: 4 }
-                    - { property: 'title', label: 'Title' }
-                    - { property: 'description', label: 'Small description' }
-
-                    - { type: 'group', label: 'Featured Image', icon: 'image', columns: 4 , help: 'You can use an existing image from Gallery or upload a new one, replacing the current image '}
-                    - { property: 'galleryImage', label: 'Use this image from Gallery', type: 'entity', type_options: { 'class': 'App\Entity\Image', attr: {'class': 'selectpicker show-tick', 'data-live-search': true}} }
-                    - { property: 'image', label: 'Upload a new image to Gallery', type: 'App\Form\ImageUploadType' }
-
-                    - { type: 'group', label: 'Activity settings', icon: 'cogs', columns: 4 }
-                    - { property: 'active', label: 'The Interest is Active' }
-                    - { property: 'priority' , label: 'Priority on results' }
-
-        Page:
-            class: App\Entity\DynamicPage
-            list:
-                fields:
-                    - { property: 'id' }
-                    - { property: 'name', label: 'Page title' }
-                    - { property: 'machineName', label: 'Machine Name' }
-                    - { property: 'template.name', label: 'Template'}
-                    - { property: 'image.imageName', label: 'Featured Image', type: 'image' , base_path: '%app.path.uploaded_images%' }
-            form:
-                fields:
-                    - { type: 'group', label: 'Page Info', icon: 'comments', columns: 8 }
-                    - { property: 'name', label: 'Page title' }
-                    - { property: 'machineName', label: 'Machine Name' }
-                    - { property: 'template', type: 'App\Form\PageTemplateType', label: 'Template' }
-                    - { property: 'fromGallery', label: 'Use this image from Gallery', type: 'entity', type_options: { 'class': 'App\Entity\Image', attr: {'data-widget': 'select2'}} }
-                    - { property: 'image', label: 'Upload a new image to Gallery', type: 'App\Form\ImageUploadType' }
-                    - { property: 'titleDescription', label: 'Title of Intro or Description' }
-                    - { property: 'description', label: 'Intro or Description', type: 'fos_ckeditor' }
-
-                    - { type: 'group', label: 'Gallery', icon: 'image', columns: 4 , help: 'You can use an existing image from Gallery or upload a new one, replacing the current image '}
-                    - { type: 'section', label: 'Images from Gallery', icon: 'folder-open', help: 'Previously uploaded images' }
-#                    - { property: 'uploadedImages', label: 'Add images from Gallery',  help: 'Select one or more images', type: 'entity',  type_options: { class: 'App\Entity\Image', multiple: true, attr: {'data-widget': 'select2'} } }
-                    - { type: 'section', label: 'Images linked to this activity', icon: 'images', help: 'You can upload new images from here' }
-                    - { property: 'gallery', label: '-', type: 'collection',  type_options: { entry_type: 'App\Form\ImageUploadType', by_reference: true } }
-
-                    - { type: 'group', label: 'Content of the page', icon: 'bookmark', columns: 8 }
-                    - { property: 'textContent',  label: 'Content', type: 'fos_ckeditor'}
-
-                    - { type: 'group', label: 'Content Fragments', icon: 'book-open', columns: 8 }
-                    - { property: 'descriptionFragments', label: '-', help: 'Add many fragments as you need to describe this destination', type: 'collection',  type_options: { entry_type: 'App\Form\DescriptionFragmentType', by_reference: true } }
-
-        User:
-            class: App\Entity\User
-            edit:
-                item_permision: ['ROLE_ADMIN']
-            form:
-                fields:
-                    - { property: 'username' }
-                    - { property: 'email' }
-                    - { property: 'plainPassword', type: 'password' , type_options: { required: false }, label: 'Password'}
-                    - { property: 'enabled' }
-
-                    - { property: 'roles', label: 'User roles',  help: 'Select one or more', type: 'choice', type_options: { choices: { 'Admin':'ROLE_ADMIN', 'Editor': 'ROLE_EDITOR', 'User': 'ROLE_USER'}, multiple: true, attr: {'data-widget': 'select2'}}  }
-                    - { property: 'sendRequestEmail', help: 'If checked, this user will receive the emails from clients with the contact request' }
-            list:
-                fields:
-                    - { property: 'username' }
-                    - { property: 'email' }
-                    - { property: 'enabled' }
-                    - { property: 'lastLogin' }
-
         Activity:
             class: App\Entity\Activity
             list:
@@ -116,14 +45,11 @@ easy_admin:
                     - { property: 'name' }
                     - { property: 'initPrice' , label: 'Initial price'}
                     - { property: 'image.imageName', label: 'Featured Image', type: 'image' , base_path: '%app.path.uploaded_images%' }
-#                    - { property: 'image.imageName', label: 'Featured Image_'}
             form:
                 fields:
                     - { type: 'group', label: 'Activity Info', icon: 'location-arrow', columns: 8 }
                     - { property: 'name' }
-#                    - { property: 'fromGallery_', label: 'Use this image from Gallery', type: 'entity', type_options: { 'class': 'App\Entity\Image', attr: {'data-widget': 'select2'}} }
-                    - { property: 'galleryImage', label: 'Main Image', help: 'You can replace the current image with one from gallery or upload a new one', type: 'App\Form\SingleImageFromGalleryType'}
-#                    - { property: 'image', label: 'Upload a new image to Gallery', type: 'App\Form\ImageUploadType' }
+                    - { property: 'imageField', label: 'Main Image', help: 'You can replace the current image with one from gallery or upload a new one', type: 'App\Form\SingleImageFromGalleryType',  type_options: { block_name: 'image_field' }}
 
                     - { type: 'group', label: 'Activity settings', icon: 'cogs', columns: 4 }
                     - { property: 'active', label: 'The Activity is Active' }
@@ -204,7 +130,78 @@ easy_admin:
                     - { type: 'group', label: 'Destination details', icon: 'book-open', columns: 8 }
                     - { property: 'descriptionFragments', label: '-', help: 'Add many fragments as you need to describe this destination', type: 'collection',  type_options: { entry_type: 'App\Form\DescriptionFragmentType', by_reference: true } }
 
+        Interest:
+            class: App\Entity\Interest
+            list:
+                fields:
+                    - { property: 'title', label: 'Title'}
+                    - { property: 'active', label: 'Active'}
+                    - { property: 'image.imageName', label: 'Image', type: 'image', base_path: '%app.path.uploaded_images%' }
+            form:
+                fields:
+                    - { type: 'group', label: 'Interest Data', icon: 'comments', columns: 4 }
+                    - { property: 'title', label: 'Title' }
+                    - { property: 'description', label: 'Small description' }
 
+                    - { type: 'group', label: 'Featured Image', icon: 'image', columns: 4 , help: 'You can use an existing image from Gallery or upload a new one, replacing the current image '}
+                    - { property: 'galleryImage', label: 'Use this image from Gallery', type: 'entity', type_options: { 'class': 'App\Entity\Image', attr: {'class': 'selectpicker show-tick', 'data-live-search': true}} }
+                    - { property: 'image', label: 'Upload a new image to Gallery', type: 'App\Form\ImageUploadType' }
+
+                    - { type: 'group', label: 'Activity settings', icon: 'cogs', columns: 4 }
+                    - { property: 'active', label: 'The Interest is Active' }
+                    - { property: 'priority' , label: 'Priority on results' }
+
+        Page:
+            class: App\Entity\DynamicPage
+            list:
+                fields:
+                    - { property: 'id' }
+                    - { property: 'name', label: 'Page title' }
+                    - { property: 'machineName', label: 'Machine Name' }
+                    - { property: 'template.name', label: 'Template'}
+                    - { property: 'image.imageName', label: 'Featured Image', type: 'image' , base_path: '%app.path.uploaded_images%' }
+            form:
+                fields:
+                    - { type: 'group', label: 'Page Info', icon: 'comments', columns: 8 }
+                    - { property: 'name', label: 'Page title' }
+                    - { property: 'machineName', label: 'Machine Name' }
+                    - { property: 'template', type: 'App\Form\PageTemplateType', label: 'Template' }
+                    - { property: 'fromGallery', label: 'Use this image from Gallery', type: 'entity', type_options: { 'class': 'App\Entity\Image', attr: {'data-widget': 'select2'}} }
+                    - { property: 'image', label: 'Upload a new image to Gallery', type: 'App\Form\ImageUploadType' }
+                    - { property: 'titleDescription', label: 'Title of Intro or Description' }
+                    - { property: 'description', label: 'Intro or Description', type: 'fos_ckeditor' }
+
+                    - { type: 'group', label: 'Gallery', icon: 'image', columns: 4 , help: 'You can use an existing image from Gallery or upload a new one, replacing the current image '}
+                    - { type: 'section', label: 'Images from Gallery', icon: 'folder-open', help: 'Previously uploaded images' }
+                    #                    - { property: 'uploadedImages', label: 'Add images from Gallery',  help: 'Select one or more images', type: 'entity',  type_options: { class: 'App\Entity\Image', multiple: true, attr: {'data-widget': 'select2'} } }
+                    - { type: 'section', label: 'Images linked to this activity', icon: 'images', help: 'You can upload new images from here' }
+                    - { property: 'gallery', label: '-', type: 'collection',  type_options: { entry_type: 'App\Form\ImageUploadType', by_reference: true } }
+
+                    - { type: 'group', label: 'Content of the page', icon: 'bookmark', columns: 8 }
+                    - { property: 'textContent',  label: 'Content', type: 'fos_ckeditor'}
+
+                    - { type: 'group', label: 'Content Fragments', icon: 'book-open', columns: 8 }
+                    - { property: 'descriptionFragments', label: '-', help: 'Add many fragments as you need to describe this destination', type: 'collection',  type_options: { entry_type: 'App\Form\DescriptionFragmentType', by_reference: true } }
+
+        User:
+            class: App\Entity\User
+            edit:
+                item_permision: ['ROLE_ADMIN']
+            form:
+                fields:
+                    - { property: 'username' }
+                    - { property: 'email' }
+                    - { property: 'plainPassword', type: 'password' , type_options: { required: false }, label: 'Password'}
+                    - { property: 'enabled' }
+
+                    - { property: 'roles', label: 'User roles',  help: 'Select one or more', type: 'choice', type_options: { choices: { 'Admin':'ROLE_ADMIN', 'Editor': 'ROLE_EDITOR', 'User': 'ROLE_USER'}, multiple: true, attr: {'data-widget': 'select2'}}  }
+                    - { property: 'sendRequestEmail', help: 'If checked, this user will receive the emails from clients with the contact request' }
+            list:
+                fields:
+                    - { property: 'username' }
+                    - { property: 'email' }
+                    - { property: 'enabled' }
+                    - { property: 'lastLogin' }
 
         Story:
             class: App\Entity\ActivityStory
@@ -233,11 +230,9 @@ easy_admin:
             list:
                 fields:
                     - { property: 'imageName', type: 'image', base_path: '%app.path.uploaded_images%' }
-#                    - { property: 'title', label: 'Title' }
                     - { property: 'description' }
             form:
                 fields:
-#                    - {property: 'title', label: 'Title'}
                     - { property: 'description' }
                     - { property: 'imageFile', type: 'vich_image' }
 

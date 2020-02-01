@@ -160,21 +160,4 @@ class Image
         return $this;
     }
 
-    public function uploadImage(?Image $image = null)
-    {
-        return;
-    }
-
-    public function galleryImage(?Image $image = null)
-    {
-
-        return;
-    }
-
-
-    public function getUploadImage()
-    {
-        return $this;
-    }
-
 }

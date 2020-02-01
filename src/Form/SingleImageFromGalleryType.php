@@ -5,6 +5,8 @@ namespace App\Form;
 use App\Entity\Image;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,6 +15,16 @@ class SingleImageFromGalleryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+
+            ->add('imageFieldAction', ChoiceType::class, [
+                    'choices' => [
+                        'Use one image from gallery' => 'isFromGallery',
+                        'Update the current Image' => 'isUpdateImage',
+                        'Upload a new image, keep the current on gallery' => 'isUploadImage'
+                    ],
+                    'expanded' => true,
+                ]
+            )
             ->add('galleryImage', EntityType::class, [
                 'class'=> Image::class,
                 'placeholder' => 'Keep the current image',
@@ -31,14 +43,17 @@ class SingleImageFromGalleryType extends AbstractType
                     ];
                 },
             ])
-            ->add('uploadImage', ImageUploadType::class)
+
+            ->add('updateImage', ImageUploadType::class)
+
+            ->add('uploadNewImage', ImageUploadType::class)
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Image::class,
+            'data_class' => null,
         ]);
     }
 }

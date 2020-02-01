@@ -84,17 +84,13 @@ class EasyAdminSubscriber implements EventSubscriberInterface
             {
                 //save the entity array send in request
                 $entityName = strtolower(basename(get_class($entity)));
+
                 $filesOnRequest = $event->getArgument('request')->files;
 
                 if(!$objArray = $request->get($entityName))
                     return;
 
-                if($event->isPropagationStopped())
-                    return;
-
-                    $image = $objArray['galleryImage'];
-
-//
+                    $imageField = $objArray['imageField'];
 
                     //In case a image is selected from gallery
                     if(isset($image['galleryImage']) && $galleryImageId = $image['galleryImage']) {

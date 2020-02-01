@@ -1,0 +1,68 @@
+{# templates/admin/form.html.twig #}
+{% block _image_field_widget %}
+{#{{ dump() }}#}
+    <div class="image_field">
+        <div class="image_fromGallery">
+            <input type="radio" id="{{ form.imageFieldAction[0].vars.id }}" name="{{ form.imageFieldAction.vars.name }}">
+            <label class="form-check-label" for="{{ form.imageFieldAction[0].vars.id }}">{{ form.imageFieldAction[0].vars.label }}</label>
+            <div class="reveal-if-active">
+                {{ form_widget(form.galleryImage) }}
+            </div>
+        </div>
+        <div class="image_updateImage">
+           <input type="radio" id="{{ form.imageFieldAction[1].vars.id }}" name="{{ form.imageFieldAction.vars.name }}">
+            <label class="form-check-label" for="{{ form.imageFieldAction[1].vars.id }}">{{ form.imageFieldAction[1].vars.label }}</label>
+         <div class="reveal-if-active">
+                {{ form_widget(form.updateImage) }}
+            </div>
+        </div>
+        <div class="image_uploadNewImage">
+            <input type="radio" id="{{ form.imageFieldAction[2].vars.id }}" name="{{ form.imageFieldAction.vars.name }}">
+            <label class="form-check-label" for="{{ form.imageFieldAction[2].vars.id }}">{{ form.imageFieldAction[2].vars.label }}</label>
+
+            <div class="reveal-if-active">
+                {{ form_widget(form.uploadNewImage) }}
+            </div>
+        </div>
+
+    </div>
+
+    <style>
+        .reveal-if-active {
+  /*opacity: 0;*/
+  /*max-height: 0;*/
+  /*overflow: hidden;*/
+  /*font-size: 16px;*/
+  /*-webkit-transform: scale(0.8);*/
+  /*        transform: scale(0.8);*/
+  /*-webkit-transition: 0.5s;*/
+  /*transition: 0.5s;*/
+            display: none;
+            padding: 1em 2em;
+border: solid 1px #d2cfcf;
+            margin: 1em;
+}
+.reveal-if-active label {
+  display: block;
+  margin: 0 0 3px 0;
+}
+.reveal-if-active input[type=text] {
+  width: 100%;
+}
+.image_field input[type="radio"]:checked ~ .reveal-if-active, .image_field input[type="checkbox"]:checked ~ .reveal-if-active {
+  /*opacity: 1;*/
+  /*max-height: 100px;*/
+  /*padding: 10px 20px;*/
+  /*-webkit-transform: scale(1);*/
+  /*        transform: scale(1);*/
+  /*overflow: visible;*/
+    display: block;
+}
+    </style>
+{% endblock %}
+
+{% block _activity_image_field_widget %}
+    {{ block('_image_field_widget') }}
+{% endblock %}
+
+

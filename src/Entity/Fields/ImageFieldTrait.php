@@ -14,6 +14,8 @@ use Symfony\Component\HttpFoundation\File\File;
 trait ImageFieldTrait
 {
 
+    private $imageField;
+
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Image", cascade={"persist"} )
      * @ORM\JoinColumn(nullable=true,  onDelete="SET NULL")
@@ -48,9 +50,10 @@ trait ImageFieldTrait
         return $this->image;
     }
 
-    public function galleryImage(?Image $image = null)
+    public function imageField($image = null)
     {
-//        dump($image);
+        $this->imageField = $image;
+        dump($image);
         return;
     }
 
@@ -58,5 +61,6 @@ trait ImageFieldTrait
     {
         return $this->getImage();
     }
+
 
 }
