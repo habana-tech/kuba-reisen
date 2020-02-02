@@ -2,6 +2,7 @@
 
 namespace App\Entity\Fields;
 
+use App\DataConverter\SingleImageFromGallery;
 use App\Entity\Image;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -50,17 +51,72 @@ trait ImageFieldTrait
         return $this->image;
     }
 
-    public function imageField($image = null)
+    public function getUpdateImage()
     {
-        $this->imageField = $image;
-        dump($image);
-        return;
+        return $this->image;
+    }
+    public function setUpdateImage($image = null){
+
+    }
+
+    public function  uploadNewImage($image = null)
+    {
+        return null;
+
+    }
+
+
+    private $galleryImage;
+    public function setGalleryImage(Image $image)
+    {
+        $this->galleryImage = $image;
     }
 
     public function getGalleryImage(): ?Image
     {
         return $this->getImage();
     }
+
+    private $imageFieldAction;
+
+    /**
+     * @return mixed
+     */
+    public function getImageFieldAction()
+    {
+        return $this->imageFieldAction;
+    }
+
+    /**
+     * @param mixed $imageFieldAction
+     * @return ImageFieldTrait
+     */
+    public function setImageFieldAction($imageFieldAction)
+    {
+        $this->imageFieldAction = $imageFieldAction;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImageField(): SingleImageFromGallery
+    {
+        if($this->imageField === null)
+            $this->imageField = new SingleImageFromGallery();
+        return $this->imageField;
+    }
+
+    /**
+     * @param mixed $imageField
+     * @return ImageFieldTrait
+     */
+    public function setImageField($imageField)
+    {
+        $this->imageField = $imageField;
+        return $this;
+    }
+
 
 
 }

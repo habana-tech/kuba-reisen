@@ -2,6 +2,8 @@
 
 namespace App\Form;
 
+use App\DataConverter\SingleImageFromGallery;
+use App\Entity\Fields\ImageFieldInterface;
 use App\Entity\Image;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -18,10 +20,11 @@ class SingleImageFromGalleryType extends AbstractType
 
             ->add('imageFieldAction', ChoiceType::class, [
                     'choices' => [
-                        'Use one image from gallery' => 'isFromGallery',
-                        'Update the current Image' => 'isUpdateImage',
-                        'Upload a new image, keep the current on gallery' => 'isUploadImage'
+                        'Use one image from gallery' => 'fromGallery',
+                        'Update the current Image' => 'updateImage',
+                        'Upload a new image, keep the current on gallery' => 'uploadNewImage'
                     ],
+
                     'expanded' => true,
                 ]
             )
@@ -53,7 +56,8 @@ class SingleImageFromGalleryType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => null,
+            'data_class' => SingleImageFromGallery::class,
+
         ]);
     }
 }

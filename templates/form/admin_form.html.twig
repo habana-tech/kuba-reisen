@@ -1,23 +1,32 @@
 {# templates/admin/form.html.twig #}
 {% block _image_field_widget %}
-{#{{ dump() }}#}
+
+
     <div class="image_field">
         <div class="image_fromGallery">
-            <input type="radio" id="{{ form.imageFieldAction[0].vars.id }}" name="{{ form.imageFieldAction.vars.name }}">
+            <input type="radio" value="fromGallery" id="{{ form.imageFieldAction[0].vars.id }}" name="activity[imageField][{{ form.imageFieldAction.vars.name }}]">
             <label class="form-check-label" for="{{ form.imageFieldAction[0].vars.id }}">{{ form.imageFieldAction[0].vars.label }}</label>
             <div class="reveal-if-active">
                 {{ form_widget(form.galleryImage) }}
             </div>
         </div>
         <div class="image_updateImage">
-           <input type="radio" id="{{ form.imageFieldAction[1].vars.id }}" name="{{ form.imageFieldAction.vars.name }}">
+           <input type="radio" value="updateImage" id="{{ form.imageFieldAction[1].vars.id }}" name="activity[imageField][{{ form.imageFieldAction.vars.name }}]">
             <label class="form-check-label" for="{{ form.imageFieldAction[1].vars.id }}">{{ form.imageFieldAction[1].vars.label }}</label>
          <div class="reveal-if-active">
+
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top img-thumbnail" src="{{ path('liip_imagine_filter', {'filter': 'squared_thumbnail', 'path': 'static/uploads/images/' ~ easyadmin.item.image.imageName } ) }}">
+
+                      <div class="card-body">
+                        <h5 class="card-title">{{ easyadmin.item.image.description }}</h5>
+                      </div>
+                </div>
                 {{ form_widget(form.updateImage) }}
             </div>
         </div>
         <div class="image_uploadNewImage">
-            <input type="radio" id="{{ form.imageFieldAction[2].vars.id }}" name="{{ form.imageFieldAction.vars.name }}">
+            <input type="radio" value="uploadNewImage" id="{{ form.imageFieldAction[2].vars.id }}" name="activity[imageField][{{ form.imageFieldAction.vars.name }}]">
             <label class="form-check-label" for="{{ form.imageFieldAction[2].vars.id }}">{{ form.imageFieldAction[2].vars.label }}</label>
 
             <div class="reveal-if-active">
@@ -38,7 +47,7 @@
   /*-webkit-transition: 0.5s;*/
   /*transition: 0.5s;*/
             display: none;
-            padding: 1em 2 em;
+            padding: 1em 2em;
 border: solid 1px #d2cfcf;
             margin: 1em;
 }
@@ -50,7 +59,7 @@ border: solid 1px #d2cfcf;
   width: 100%;
 }
 .image_field input[type="radio"]:checked ~ label{
-    font-weight: bold;
+    text-decoration: underline;
 }
 .image_field input[type="radio"]:checked ~ .reveal-if-active,
 .image_field input[type="checkbox"]:checked ~ .reveal-if-active {
