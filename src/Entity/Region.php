@@ -6,6 +6,7 @@ use App\Entity\Fields\ActiveFieldTrait;
 use App\Entity\Fields\DescriptionFragmentFieldInterface;
 use App\Entity\Fields\DescriptionFragmentFieldTrait;
 use App\Entity\Fields\GalleryFieldInterface;
+use App\Entity\Fields\GalleryFieldTrait;
 use App\Entity\Fields\GalleryTrait;
 use App\Entity\Fields\ImageFieldInterface;
 use App\Entity\Fields\ImageFieldTrait;
@@ -24,7 +25,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Region implements ImageFieldInterface, GalleryFieldInterface, MachineNameInterface, DescriptionFragmentFieldInterface
 {
-    use ImageFieldTrait, ActiveFieldTrait, GalleryTrait, MachineNameTrait, DescriptionFragmentFieldTrait;
+    use ImageFieldTrait, ActiveFieldTrait, GalleryFieldTrait, MachineNameTrait, DescriptionFragmentFieldTrait;
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
