@@ -12,6 +12,10 @@ parameters:
     locale: '%default_locale%'
     app_locales: en|de|es
 
+    #Dump the Service Container into a Single File, for performance
+    container.dumper.inline_factories: true
+    container.dumper.inline_class_loader: true
+
 services:
     # default configuration for services in *this* file
     _defaults:

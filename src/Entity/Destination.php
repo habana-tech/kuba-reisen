@@ -86,7 +86,6 @@ class Destination implements DescriptionFragmentFieldInterface, MachineNameInter
     public function __construct()
     {
         $this->activities = new ArrayCollection();
-        $this->image = new EmbeddedFile();
         $this->filterTags = new ArrayCollection();
         $this->descriptionFragments = new ArrayCollection();
         $this->active = true;

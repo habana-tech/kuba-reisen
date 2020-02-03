@@ -57,7 +57,8 @@ class SingleImageFromGalleryType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => SingleImageFromGallery::class,
-
+            'block_name' => 'image_field',
+            'block_prefix' => 'image_field'
         ]);
     }
 }

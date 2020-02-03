@@ -17,12 +17,21 @@ class DescriptionFragmentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('image', ImageUploadType::class, [
+                'label' => null,
+                'attr' => [
+                    'required' => false,
+                    'class' => 'image_upload_only_img_description'
+                ]
+            ])
             ->add('name', null, [
                 'label'=> 'Title for the Feature component',
                 'attr' => [
                     'required' => true
                 ]])
-            ->add('singleImage', SingleImageFromGalleryType::class)
+
+            ->add('imageField', SingleImageFromGalleryType::class, [
+            ])
             ->add('content', CKEditorType::class)
         ;
     }

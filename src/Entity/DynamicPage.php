@@ -51,11 +51,6 @@ class DynamicPage implements MachineNameInterface, GalleryFieldInterface, Descri
     private $template;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\UploadedImage", mappedBy="dynamic_page", cascade={"persist", "remove"})
-     */
-    private $uploadedImages;
-
-    /**
      * @ORM\Column(type="text", nullable=true)
      */
     private $textContent;
@@ -77,7 +72,6 @@ class DynamicPage implements MachineNameInterface, GalleryFieldInterface, Descri
     public function __construct($template = 'example.html.twig')
     {
         $this->template = $template;
-        $this->uploadedImages = new ArrayCollection();
         $this->gallery = new ArrayCollection();
         $this->descriptionFragments = new ArrayCollection();
     }

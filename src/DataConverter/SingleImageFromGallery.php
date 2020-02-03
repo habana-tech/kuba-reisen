@@ -91,17 +91,17 @@ class SingleImageFromGallery
 
     public function isUpdateImage(): bool
     {
-        return $this->imageFieldAction === 'updateImage';
+        return $this->imageFieldAction === 'updateImage' && $this->updateImage instanceof Image;
     }
 
     public function isFromGallery(): bool
     {
-        return $this->imageFieldAction === 'fromGallery';
+        return $this->imageFieldAction === 'fromGallery' &&  $this->galleryImage instanceof Image;
     }
 
     public function isUploadNewImage(): bool
     {
-        return $this->imageFieldAction === 'uploadNewImage';
+        return $this->imageFieldAction === 'uploadNewImage' && $this->uploadNewImage instanceof Image;
     }
 
 

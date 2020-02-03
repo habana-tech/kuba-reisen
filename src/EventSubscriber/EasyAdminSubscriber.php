@@ -65,11 +65,8 @@ class EasyAdminSubscriber implements EventSubscriberInterface
          * @var Request $request;
          */
         $this->request = $event->getArgument('request')->request;
-
         $this->entity = $event->getSubject();
-
         $this->event = $event;
-
 
         //Add entities contains gallery
         $this->GalleryFieldProcess();
@@ -80,9 +77,27 @@ class EasyAdminSubscriber implements EventSubscriberInterface
         //persist the description fragments
         $this->DescriptionFragmentsProcess();
 
-
         //set the modified entity to event and exit
         $event['entity'] = $this->entity;
+    }
+
+    private function getFromSingleImageInput(SingleImageFromGallery $imageField, ?Image $image): ?Image
+    {
+        if($imageField->isUpdateImage())
+        {
+            if($image instanceof Image)
+            {
+                $image->setImageFile($imageField->getLastImage()->getImageFile());
+                $image->setDescription($imageField->getLastImage()->getDescription());
+            }
+            else {
+                //if image dont exist, create anew one
+                $imageField->imageFieldAction('uploadNewImage');
+            }
+        }
+        $image = ($imageField->isUploadNewImage() || $imageField->isFromGallery()) ? $imageField->getLastImage() : $image;
+
+        return $image;
     }
 
     private function ImageFieldProcess(): void
@@ -95,45 +110,28 @@ class EasyAdminSubscriber implements EventSubscriberInterface
             return;
         }
 
-        $imageField = $this->entity->getImageField();
+        //get the correct image from request
+        $image = $this->getFromSingleImageInput($this->entity->getImageField(), $this->entity->getImage());
 
-        if($imageField->isUpdateImage())
-        {
-            $image = $this->entity->getImage();
-            if($image instanceof Image)
-            {
-                $image->setImageFile($imageField->getLastImage()->getImageFile());
-                $image->setDescription($imageField->getLastImage()->getDescription());
-            }
-            else {
-                //if image dont exist, create anew one
-                $imageField->imageFieldAction('uploadNewImage');
-            }
-        }
-        if($imageField->isUploadNewImage() || $imageField->isFromGallery())
-        {
-            $this->entity->setImage($imageField->getLastImage());
-        }
-
-
-        dump($this->event, $this->entity, $this->request);
-//        exit();
+        //override the image if necessary
+        $this->entity->setImage($image);
     }
 
 
     private function DescriptionFragmentsProcess(): void
     {
         if ($this->entity instanceof DescriptionFragmentFieldInterface)
+        {
+            foreach ($this->entity->getDescriptionFragments() as $fragment)
             {
-                foreach ($this->entity->getDescriptionFragments() as $fragment)
+                if($fragment->getImageField() instanceof SingleImageFromGallery)
                 {
-                    if($fragment->getFromGallery())  //TODO: review
-                    {
-                        $fragment->setImage($fragment->getFromGallery());
-                        $this->em->persist($fragment);
-                    }
+                    $image = $this->getFromSingleImageInput($fragment->getImageField(), $fragment->getImage());
+                    $fragment->setImage($image);
+                    $this->em->persist($fragment);
                 }
             }
+        }
     }
 
     private function GalleryFieldProcess(): void
@@ -144,91 +142,5 @@ class EasyAdminSubscriber implements EventSubscriberInterface
             }
         }
     }
-//
-//    public function setUploadedImagesAsGalleryOrImage(GenericEvent $event, $eventName): void
-//    {
-//
-//
-//
-//
-//
-//
-//            if ($entity instanceof ImageFieldInterface)
-//            {
-//                //save the entity array send in request
-//                $entityName = strtolower(basename(get_class($entity)));
-//
-//                $filesOnRequest = $event->getArgument('request')->files;
-//
-//                if(!$objArray = $request->get($entityName))
-//                    return;
-//
-//                    $imageField = $objArray['imageField'];
-//
-//                    //In case a image is selected from gallery
-//                    if(isset($image['galleryImage']) && $galleryImageId = $image['galleryImage']) {
-//                        if($imageObj = $this->em->getRepository(Image::class)->find($galleryImageId)) {
-//                            $entity->setImage($imageObj);
-//                        }
-//                    }
-//                    else //maybe is an new file for upload
-//                    {
-//
-//                        $file = $filesOnRequest->get($entityName);
-//                        if(isset($file['galleryImage']['uploadImage']['imageFile'])){
-//                            $newFile = $file['galleryImage']['uploadImage']['imageFile']['file'];
-//
-//                            if($newFile instanceof UploadedFile)
-//                            {
-//                                $newImage = new Image();
-//                                $newImage->setImageFile($newFile);
-//
-//                                $newImageDescription = $image['uploadImage']['description'] ?? $newFile->getClientOriginalName();
-//                                $newImage->setDescription($newImageDescription);
-////                                $this->em->persist($newImage);
-//                                $entity->setImage($newImage);
-//                                unset($file['galleryImage']['uploadImage']);
-//
-//                            }
-//                        }
-//
-//                    }
-
-//                if($entity->getFromGallery() !== $entity->getImage())
-//                {
-//                    $entity->setImage($entity->getFromGallery());
-//                }
-
-//                $event['entity'] = $entity;
-
-
-
-//            }
-
-//        }
-//
-//        public function dropFilesFromRequest(Event $event)
-//        {
-//            $entity = $event->getObject();
-//
-//            $event->stopPropagation();
-//            if($entity instanceof \Proxies\__CG__\App\Entity\Image)
-//                return;
-//
-//            $event->stopPropagation();
-//            unset($entity);
-//
-//            dump($event);
-
-//             $event['entity'] = null;
-
-
-//
-//            /**
-//             * Image $entity
-//             */
-//            if($entity->getId() && $entity->getImageFile() && (!$entity->getImageFile()->getLinkTarget() || !$entity->getImageFile()->isFile()))
-//                dump(["error case", $event]);
-//        }
 
 }
