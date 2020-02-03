@@ -3,6 +3,7 @@
 
 namespace App\EventSubscriber;
 
+use App\DataConverter\SingleImageFromGallery;
 use App\Entity\DescriptionFragment;
 use App\Entity\Fields\DescriptionFragmentFieldInterface;
 use App\Entity\Fields\GalleryFieldInterface;
@@ -15,6 +16,9 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 use App\Entity\Activity;
 use App\Entity\Destination;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\Request;
+use Vich\UploaderBundle\Event\Event;
 
 class EasyAdminSubscriber implements EventSubscriberInterface
 {
@@ -22,18 +26,20 @@ class EasyAdminSubscriber implements EventSubscriberInterface
     private $destinationRepository;
     private $activityRepository;
 
+    private $entity;
+    private $request;
+    /**
+     * @var GenericEvent
+     */
+    private $event;
+
     /**
      * EasyAdminSubscriber constructor.
-     * @param DestinationRepository $destinationRepository
      * @param ManagerRegistry $em
-     * @param ActivityRepository $activityRepository
      */
-    public function __construct(DestinationRepository $destinationRepository, ManagerRegistry $em,
-                                                         ActivityRepository $activityRepository)
+    public function __construct(ManagerRegistry $em)
     {
         $this->em = $em->getManager();
-        $this->destinationRepository = $destinationRepository;
-        $this->activityRepository = $activityRepository;
     }
 
 
@@ -43,113 +49,98 @@ class EasyAdminSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return array(
-//                'easy_admin.pre_new' => array('setUploadedImagesAsGallery'),
-//                'easy_admin.post_new' => array('setUploadedImagesAsGallery'),
-                'easy_admin.pre_persist' => [
-                    'setUploadedImagesAsGalleryOrImage',
-//                    'setUploadedImagesInDestinationsAndActivities'
-                    ],
-                'easy_admin.pre_update' => [
-                    'setUploadedImagesAsGalleryOrImage',
-//                    'setUploadedImagesInDestinationsAndActivities'
-                    ],
-//
-//                'easy_admin.post_initialize' => [
-//                    'setUploadedImagesInDestinationsAndActivities'
-//                    ],
-            );
+                'easy_admin.pre_persist' => ['processRequestFromEasyAdmin'],
+                'easy_admin.pre_update' => ['processRequestFromEasyAdmin'],
+        );
+
     }
 
-    public function setUploadedImagesInDestinationsAndActivities(GenericEvent $event): void
+    /**
+     * @param GenericEvent $event
+     * @param $eventName
+     */
+    public function processRequestFromEasyAdmin(GenericEvent $event, $eventName): void
     {
-        $entity = $event->getSubject();
-        $request = $event->getArgument('request');
+        /**
+         * @var Request $request;
+         */
+        $this->request = $event->getArgument('request')->request;
+        $this->entity = $event->getSubject();
+        $this->event = $event;
 
-        $TestClass = null;
-        if (is_array($entity) && isset($entity['class'])){
-            $TestClass = $entity['class'];
-            $TestClass =  new $TestClass();
-        }
-        else {
-            $TestClass = $entity;
-        }
+        //Add entities contains gallery
+        $this->GalleryFieldProcess();
 
-        //If not implements DescriptionFragmentFieldInterface......
-        if(!($TestClass instanceof DescriptionFragmentFieldInterface)) {
+        //upload or update the image on entity
+        $this->ImageFieldProcess();
+
+        //persist the description fragments
+        $this->DescriptionFragmentsProcess();
+
+        //set the modified entity to event and exit
+        $event['entity'] = $this->entity;
+    }
+
+    private function getFromSingleImageInput(SingleImageFromGallery $imageField, ?Image $image): ?Image
+    {
+        if($imageField->isUpdateImage())
+        {
+            if($image instanceof Image)
+            {
+                $image->setImageFile($imageField->getLastImage()->getImageFile());
+                $image->setDescription($imageField->getLastImage()->getDescription());
+            }
+            else {
+                //if image dont exist, create anew one
+                $imageField->imageFieldAction('uploadNewImage');
+            }
+        }
+        $image = ($imageField->isUploadNewImage() || $imageField->isFromGallery()) ? $imageField->getLastImage() : $image;
+
+        return $image;
+    }
+
+    private function ImageFieldProcess(): void
+    {
+        if (!$this->entity instanceof ImageFieldInterface) {
             return;
         }
 
-//        $relatedEntityId = $request->query->get('id');
-//        $destination = $request->get('destination');
-//        $activity = $request->get('activity');
-
-        //Get the related data from Request Object, from destination or activity field, conditional(activity or destination)..
-//        [$entityName, $currentRepo, $sentData] =  $destination ?
-//                                ['destination', $this->destinationRepository, $destination] :
-//                                ['activity', $this->activityRepository, $activity];
-//
-//        if($relatedEntityId)
-//        {
-//            $entityObj = $currentRepo->find($relatedEntityId);
-//            if($entityObj && is_array($sentData['descriptionFragment'])) {
-//                foreach ($sentData['descriptionFragment'] as &$item) {
-//                    $item[$entityName] = $entityObj;
-//                }
-//                unset($item);
-//            }
-//        }
-
-//        $request->request->set($entityName, $sentData);
-//        $event['request'] = $request;
-    }
-    public function setUploadedImagesAsGalleryOrImage(GenericEvent $event): void
-    {
-            $entity = $event->getSubject();
-
-            //Add entities contains gallery
-            if (($entity instanceof GalleryFieldInterface
-                || $entity instanceof DescriptionFragment
-            ))
-            {
-                foreach ($entity->getUploadedImages() as $image )
-                {
-                    $entity->addGallery($image);
-                }
-
-                $event['entity'] = $entity;
-
-            }
-
-            if ($entity instanceof DescriptionFragmentFieldInterface)
-            {
-                foreach ($entity->getDescriptionFragments() as $fragment)
-                {
-                    if($fragment->getFromGallery())
-                    {
-                        $fragment->setImage($fragment->getFromGallery());
-                        $this->em->persist($fragment);
-                    }
-
-                }
-            }
-
-            if ($entity instanceof ImageFieldInterface)
-            {
-//                if($entity->getUploadNewFile())
-////                {
-////                    $newImage = (new Image())->setImageFile($entity->getUploadedImage())->setDescription($entity->getName());
-////                    $this->em->persist($newImage);
-////                    $entity->setImage($newImage);
-////                }
-////                else
-                
-                if($entity->getFromGallery() !== $entity->getImage())
-                {
-                    $entity->setImage($entity->getFromGallery());
-                }
-                $event['entity'] = $entity;
-
-            }
-
+        if(!$this->entity->getImageField() instanceof SingleImageFromGallery) {
+            return;
         }
+
+        //get the correct image from request
+        $image = $this->getFromSingleImageInput($this->entity->getImageField(), $this->entity->getImage());
+
+        //override the image if necessary
+        $this->entity->setImage($image);
+    }
+
+
+    private function DescriptionFragmentsProcess(): void
+    {
+        if ($this->entity instanceof DescriptionFragmentFieldInterface)
+        {
+            foreach ($this->entity->getDescriptionFragments() as $fragment)
+            {
+                if($fragment->getImageField() instanceof SingleImageFromGallery)
+                {
+                    $image = $this->getFromSingleImageInput($fragment->getImageField(), $fragment->getImage());
+                    $fragment->setImage($image);
+                    $this->em->persist($fragment);
+                }
+            }
+        }
+    }
+
+    private function GalleryFieldProcess(): void
+    {
+        if ($this->entity instanceof GalleryFieldInterface) {
+            foreach ($this->entity->getUploadedImages() as $image) {
+                $this->entity->addGallery($image);
+            }
+        }
+    }
+
 }

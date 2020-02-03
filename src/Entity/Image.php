@@ -3,10 +3,12 @@
 namespace App\Entity;
 
 use App\DataConverter\ImageBase64ThumbCreator;
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
@@ -22,11 +24,6 @@ class Image
      * @ORM\Column(type="integer")
      */
     private $id;
-
-//    /**
-//     * @ORM\Column(type="string", length=180, nullable=true)
-//     */
-//    private $title;
 
 
     /**
@@ -117,9 +114,10 @@ class Image
         return $this->imageFile;
     }
 
+
     /**
-     * @param File|UploadedFile $file
-     * @return Image
+     * @param File|null $file
+     * @return $this
      * @throws \Exception
      */
     public function setImageFile(?File $file = null): self
@@ -128,7 +126,7 @@ class Image
         if(null !== $file) {
             $base64Converter = new ImageBase64ThumbCreator($file->getRealPath(), false);
             $this->setBase64($base64Converter->getBase64data());
-            $this->updatedAt = new \DateTimeImmutable();
+            $this->updatedAt = new DateTimeImmutable();
         }
         return $this;
 

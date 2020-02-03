@@ -8,7 +8,7 @@ use App\Entity\Fields\DescriptionFragmentFieldTrait;
 use App\Entity\Fields\DynamicPagePlaceholderTrait;
 use App\Entity\Fields\FilterTagsTrait;
 use App\Entity\Fields\GalleryFieldInterface;
-use App\Entity\Fields\GalleryTrait;
+use App\Entity\Fields\GalleryFieldTrait;
 use App\Entity\Fields\ImageFieldInterface;
 use App\Entity\Fields\ImageFieldTrait;
 use App\Entity\Fields\MachineNameInterface;
@@ -86,7 +86,6 @@ class Destination implements DescriptionFragmentFieldInterface, MachineNameInter
     public function __construct()
     {
         $this->activities = new ArrayCollection();
-        $this->image = new EmbeddedFile();
         $this->filterTags = new ArrayCollection();
         $this->descriptionFragments = new ArrayCollection();
         $this->active = true;

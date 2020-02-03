@@ -1,0 +1,73 @@
+.bootstrap-select .filter-option{
+    max-width: 18em;
+}
+.bootstrap-select .filter-option img{
+    max-width: 1.5em;
+}
+ .reveal-if-active {
+  /*opacity: 0;*/
+  /*max-height: 0;*/
+  /*overflow: hidden;*/
+  /*font-size: 16px;*/
+  /*-webkit-transform: scale(0.8);*/
+  /*        transform: scale(0.8);*/
+  /*-webkit-transition: 0.5s;*/
+  /*transition: 0.5s;*/
+            display: none;
+            padding: 1em 2em;
+border: solid 1px #d2cfcf;
+            margin: 1em;
+}
+.reveal-if-active label {
+  display: block;
+  margin: 0 0 3px 0;
+}
+.reveal-if-active input[type=text] {
+  width: 100%;
+}
+.image_field input[type="radio"]:checked ~ label{
+    text-decoration: underline;
+}
+.image_field input[type="radio"]:checked ~ .reveal-if-active,
+.image_field input[type="checkbox"]:checked ~ .reveal-if-active {
+
+  /*opacity: 1;*/
+  /*max-height: 100px;*/
+  /*padding: 10px 20px;*/
+  /*-webkit-transform: scale(1);*/
+  /*        transform: scale(1);*/
+  /*overflow: visible;*/
+    display: block;
+}
+.field-description_fragment .image_upload_only_img_description .field-vich_image > legend{
+    display: none;
+}
+.field-description_fragment .image_upload_only_img_description .easyadmin-vich-image > .easyadmin-vich-image-actions
+{
+    display: none;
+}
+.field-description_fragment .image_upload_only_img_description .easyadmin-vich-image > a img
+{
+    max-width: 20em;
+}
+
+.field-description_fragment .image_upload_only_img_description > .field-text,
+.field-description_fragment .image_upload_only_img_description > .field-text > label{
+    display: none;
+}
+.field-description_fragment .image_upload_only_img_description > .field-text > .form-widget{
+    display: block;
+}
+.form-group.field-description_fragment{
+    border-top: dashed 1.5px gray;
+    padding-top: 1em;
+}
+.field-collection-item-action{
+    color:red;
+font-weight: bold;
+font-size: 1.5em;
+}
+
+.field-description_fragment .reveal-if-active .card{
+    display: none;
+}

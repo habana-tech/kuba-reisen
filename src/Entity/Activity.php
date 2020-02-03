@@ -7,7 +7,7 @@ use App\Entity\Fields\DescriptionFragmentFieldInterface;
 use App\Entity\Fields\DescriptionFragmentFieldTrait;
 use App\Entity\Fields\FilterTagsTrait;
 use App\Entity\Fields\GalleryFieldInterface;
-use App\Entity\Fields\GalleryTrait;
+use App\Entity\Fields\GalleryFieldTrait;
 use App\Entity\Fields\ImageFieldInterface;
 use App\Entity\Fields\ImageFieldTrait;
 use App\Entity\Fields\MachineNameInterface;
@@ -29,7 +29,7 @@ class Activity implements MachineNameInterface, DescriptionFragmentFieldInterfac
 {
     public const LENGTH_OF_DESCRIPTION = 75;
 
-    use ImageFieldTrait, ActiveFieldTrait, GalleryTrait;
+    use ImageFieldTrait, ActiveFieldTrait, GalleryFieldTrait;
     use FilterTagsTrait, PriorityFieldTrait, DescriptionFragmentFieldTrait, MachineNameTrait;
 
     /**

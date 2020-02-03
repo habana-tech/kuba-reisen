@@ -21,7 +21,6 @@ class ImageUploadType extends AbstractType
                 ],
                 'required'=>false
             ])
-//            ->add('imageSize')
             ->add('description', null, ['label'=>'Image description'])
 
         ;

@@ -1,0 +1,47 @@
+{# templates/admin/form.html.twig #}
+{% block _image_field_widget %}
+    <div class="image_field">
+        <div class="image_fromGallery">
+            <input type="radio" value="fromGallery" id="{{ form.imageFieldAction[0].vars.id }}" name="{{ full_name }}[{{ form.imageFieldAction.vars.name }}]">
+            <label class="form-check-label" for="{{ form.imageFieldAction[0].vars.id }}">{{ form.imageFieldAction[0].vars.label }}</label>
+            <div class="reveal-if-active">
+                {{ form_widget(form.galleryImage) }}
+            </div>
+        </div>
+        <div class="image_updateImage">
+           <input type="radio" value="updateImage" id="{{ form.imageFieldAction[1].vars.id }}" name="{{ full_name }}[{{ form.imageFieldAction.vars.name }}]">
+            <label class="form-check-label" for="{{ form.imageFieldAction[1].vars.id }}">{{ form.imageFieldAction[1].vars.label }}</label>
+         <div class="reveal-if-active">
+
+             {% if  easyadmin.item.image is defined and easyadmin.item.image is not null %}
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top img-thumbnail" src="{{ path('liip_imagine_filter', {'filter': 'squared_thumbnail', 'path': 'static/uploads/images/' ~ easyadmin.item.image.imageName } ) }}">
+
+                      <div class="card-body">
+                        <h5 class="card-title">{{ easyadmin.item.image.description }}</h5>
+                      </div>
+                </div>
+             {% endif %}
+                {{ form_widget(form.updateImage) }}
+            </div>
+        </div>
+        <div class="image_uploadNewImage">
+            <input type="radio" value="uploadNewImage" id="{{ form.imageFieldAction[2].vars.id }}" name="{{ full_name }}[{{ form.imageFieldAction.vars.name }}]">
+            <label class="form-check-label" for="{{ form.imageFieldAction[2].vars.id }}">{{ form.imageFieldAction[2].vars.label }}</label>
+
+            <div class="reveal-if-active">
+                {{ form_widget(form.uploadNewImage) }}
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+
+{% block image_field_widget %}
+    {{ block('_image_field_widget') }}
+{% endblock %}
+
+
+
+

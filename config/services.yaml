@@ -12,6 +12,10 @@ parameters:
     locale: '%default_locale%'
     app_locales: en|de|es
 
+    #Dump the Service Container into a Single File, for performance
+    container.dumper.inline_factories: true
+    container.dumper.inline_class_loader: true
+
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -32,19 +36,6 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
-
-#    App\EventListener\UserModification:
-#        arguments: ['@security.token_storage']
-#        tags:
-#            - { name: doctrine.event_listener, event: prePersist }
-#            - { name: doctrine.event_listener, event: preUpdate }
-
-#    App\EventListener\DynamicPageRevision:
-#        tags:
-#            - { name: doctrine.event_listener, event: postPersist }
-#            - { name: doctrine.event_listener, event: postUpdate }
-
-    App\DataConverter\ImageBase64ThumbCreator: '@app.controller'
 
     App\Naming\FileNamer:
         public: true

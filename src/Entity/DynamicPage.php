@@ -5,7 +5,7 @@ namespace App\Entity;
 use App\Entity\Fields\DescriptionFragmentFieldInterface;
 use App\Entity\Fields\DescriptionFragmentFieldTrait;
 use App\Entity\Fields\GalleryFieldInterface;
-use App\Entity\Fields\GalleryTrait;
+use App\Entity\Fields\GalleryFieldTrait;
 use App\Entity\Fields\ImageFieldInterface;
 use App\Entity\Fields\ImageFieldTrait;
 use App\Entity\Fields\MachineNameInterface;
@@ -22,7 +22,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class DynamicPage implements MachineNameInterface, GalleryFieldInterface, DescriptionFragmentFieldInterface, ImageFieldInterface
 {
-    use MachineNameTrait, GalleryTrait, DescriptionFragmentFieldTrait, ImageFieldTrait;
+    use MachineNameTrait, GalleryFieldTrait, DescriptionFragmentFieldTrait, ImageFieldTrait;
 
     /**
      * @ORM\Id()
@@ -51,11 +51,6 @@ class DynamicPage implements MachineNameInterface, GalleryFieldInterface, Descri
     private $template;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\UploadedImage", mappedBy="dynamic_page", cascade={"persist", "remove"})
-     */
-    private $uploadedImages;
-
-    /**
      * @ORM\Column(type="text", nullable=true)
      */
     private $textContent;
@@ -77,7 +72,6 @@ class DynamicPage implements MachineNameInterface, GalleryFieldInterface, Descri
     public function __construct($template = 'example.html.twig')
     {
         $this->template = $template;
-        $this->uploadedImages = new ArrayCollection();
         $this->gallery = new ArrayCollection();
         $this->descriptionFragments = new ArrayCollection();
     }

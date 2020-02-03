@@ -28,9 +28,9 @@ class AdminController extends EasyAdminController
         $this->userManager = $userManager;
     }
 
-    public function createNewUserEntity(UserManager $userManager)
+    public function createNewUserEntity()
     {
-        return $userManager->createUser();
+        return $this->userManager->createUser();
     }
 
     public function persistUserEntity($user)

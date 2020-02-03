@@ -2,31 +2,29 @@
 
 namespace App\Entity\Fields;
 
+use App\DataConverter\SingleImageFromGallery;
 use App\Entity\Image;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
-use Vich\UploaderBundle\Entity\File as EmbeddedFile;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Image
- * @Vich\Uploadable
  */
 trait ImageFieldTrait
 {
 
+    private $imageField;
+
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Image", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Image", cascade={"persist"} )
+     * @ORM\JoinColumn(nullable=true,  onDelete="SET NULL")
      */
     private $image;
 
     public function getImage():? Image
     {
-        if($this->image instanceof \Vich\UploaderBundle\Entity\File) {
-            return null;
-        }
         return $this->image;
     }
 
@@ -42,37 +40,83 @@ trait ImageFieldTrait
         return ($this->image instanceof Image && $this->image->getImageName() && $this->image->getImageName() !== 'no-image' );
     }
 
-    /**
-     * @return UploadedFile
-     */
-    public function getUploadedImage(): ?UploadedFile
+    public function uploadImage()
     {
-        return $this->uploadedImage;
+        return;
     }
 
-    /**
-     * @param mixed $uploadedImage
-     */
-    public function setUploadedImage($uploadedImage): void
+
+    public function getUploadImage()
     {
-        $this->uploadedImage = $uploadedImage;
+        return $this->image;
     }
 
-    private $uploadedImage;
-
-
-    public function getFromGallery()
+    public function getUpdateImage()
     {
-        if(!$this->galleryImage) {
-            return $this->image;
-        }
-        return $this->galleryImage;
+        return $this->image;
     }
+    public function setUpdateImage($image = null){
+
+    }
+
+    public function  uploadNewImage($image = null)
+    {
+        return null;
+
+    }
+
 
     private $galleryImage;
-
-    public function setFromGallery($image): void
+    public function setGalleryImage(Image $image)
     {
         $this->galleryImage = $image;
     }
+
+    public function getGalleryImage(): ?Image
+    {
+        return $this->getImage();
+    }
+
+    private $imageFieldAction;
+
+    /**
+     * @return mixed
+     */
+    public function getImageFieldAction()
+    {
+        return $this->imageFieldAction;
+    }
+
+    /**
+     * @param mixed $imageFieldAction
+     * @return ImageFieldTrait
+     */
+    public function setImageFieldAction($imageFieldAction)
+    {
+        $this->imageFieldAction = $imageFieldAction;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImageField(): SingleImageFromGallery
+    {
+        if($this->imageField === null)
+            $this->imageField = new SingleImageFromGallery();
+        return $this->imageField;
+    }
+
+    /**
+     * @param mixed $imageField
+     * @return ImageFieldTrait
+     */
+    public function setImageField($imageField)
+    {
+        $this->imageField = $imageField;
+        return $this;
+    }
+
+
+
 }
