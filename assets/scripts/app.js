@@ -1,5 +1,5 @@
 import '../styles/kraken.scss';
-import '../styles/styles.scss';
+import '../styles/app.scss';
 
 import 'lazysizes/plugins/unveilhooks/ls.unveilhooks';
 import SmoothScroll from 'smooth-scroll';

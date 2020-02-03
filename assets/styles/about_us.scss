@@ -1,6 +1,7 @@
 @import "base/config";
 @import "base/mixins";
-@import "modules/about_us/intro";
-@import "modules/about_us/philosophy_benefits";
+
+@import "modules/about_us/philosophy";
+@import "modules/about_us/benefits";
 @import "modules/about_us/team";
-@import "modules/about_us/links";
+@import "modules/about_us/filters";

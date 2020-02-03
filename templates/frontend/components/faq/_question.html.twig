@@ -1,42 +1,48 @@
+<section class="section content_index">
+
+    <ul class="content_index__list">
+        {% for questionSection in questionSections %}
+        <li>
+            <a href="#section_question__{{ loop.index }}">
+                {{ questionSection.title }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+
+</section>
+
 <section class="section questions">
 
-    {% set amount = [12,3,8,1] %}
-    
-    {% for i in 1..4 %}
-        <div id="section_question__{{ i }}" class="questions__topic">
+    {% for questionSection in questionSections %}
+        <div id="section_question__{{ loop.index }}" class="questions__topic">
 
             <div class="questions__topic__title">
-                <h2 data-grape_id="faq_topic_title_{{ i }}" data-grape_format="txt">{{ page.ElementContent('faq_topic_title_'~i,"Title of section") | raw }}</h2>
+                <h2>{{ questionSection.title }}</h2>
             </div>
 
-            <div class="questions__topic__image">
-                {% if i == 1 %}
-                    <img src="{{ asset('svg/drink.svg') }}" alt="">
-                {% elseif i == 2%}
-                    <img src="{{ asset('svg/capitol-hill.svg') }}" alt="">
-                {% elseif i == 3%}
-                    <img src="{{ asset('svg/palm.svg') }}" alt="">
-                {% endif %}
-            </div>
+{#            <div class="questions__topic__image">#}
+{#                {% if i == 1 %}#}
+{#                    <img src="{{ asset('svg/drink.svg') }}" alt="">#}
+{#                {% elseif i == 2%}#}
+{#                    <img src="{{ asset('svg/capitol-hill.svg') }}" alt="">#}
+{#                {% elseif i == 3%}#}
+{#                    <img src="{{ asset('svg/palm.svg') }}" alt="">#}
+{#                {% endif %}#}
+{#            </div>#}
 
-            {% set amount_question = amount[loop.index0] %}
-            {% for j in 1..amount_question %}
+            {% for descriptionFragment in questionSection.descriptionFragments %}
+
                 <div class="question">
                     <div class="question__title">
-                        <h3 data-grape_id="faq_topic_question_title_{{ i }}_{{ j }}" data-grape_format="txt">
-                            {{ page.ElementContent('faq_topic_question_title_'~i~'_'~j,"Question title") | raw }}
-                        </h3>
+                        <h3>{{ descriptionFragment.name }}</h3>
                     </div>
 
-                    {% set edit_class = '' %}
-                    {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null %}
-                        {%  set edit_class = 'question__answer--active' %}
-                    {% endif %}
-
-                    <div class="question__answer {{ edit_class }}" data-grape_id="faq_topic_question_answer_{{ i }}_{{ j }}">
-                        {{ page.ElementContent('faq_topic_question_answer_'~i~'_'~j,"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,") | raw }}
+                    <div class="question__answer">
+                        {{ descriptionFragment.content | raw }}
                     </div>
                 </div>
+
             {% endfor %}
 
         </div>

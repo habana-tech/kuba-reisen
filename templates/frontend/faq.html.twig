@@ -1,6 +1,7 @@
 {% extends 'frontend/base.html.twig' %}
 
-{% block title %}Reise FAQ für kuba{% endblock %}
+{% block title %}{{ page.name }}{% endblock %}
+{% block metadescription %}{{ page.description }}{% endblock %}
 
 {% block stylesheets %}
       {{ encore_entry_link_tags('faq') }}
@@ -10,19 +11,16 @@
     <main class="main">
 
         {{ include('frontend/components/global/_hero.html.twig', {
-            'hero__content__text': page.name,
-            'hero__image': page.hasImage ? page.image.staticImagePath : 'static/img/hero/water/water.jpg' }) }}
+            'content': page.titleDescription,
+            'image': page.image.staticImagePath }) }}
 
-        {% include('frontend/components/global/_breadcrumb.html.twig')
-            with {'pages': [ {'name' : 'Start', 'url' : path('frontend')},
-                             {'name' : 'Reise FAQ für kuba', 'url' : path('faq')}
-                           ] } %}
+        {{ render(controller('App\\Controller\\RegionsController:regionBreadcrumbs',  {'items':[
+            {'type' : 'page', 'machineName' : 'faq'}
+        ]} )) }}
 
         {{ include ('frontend/components/faq/_intro.html.twig') }}
 
-{#        {{ include ('frontend/components/faq/_content_index.html.twig') }}#}
-
-{#        {{ include ('frontend/components/faq/_question.html.twig') }}#}
+        {{ render(controller('App\\Controller\\RegionsController::regionFaq')) }}
 
     </main>
 {% endblock %}

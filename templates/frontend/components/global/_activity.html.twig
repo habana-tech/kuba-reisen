@@ -13,11 +13,11 @@
             </div>
         {% endif %}
         <div class="activity__content__actions">
-            {% block activity__content__actions %}
-            <div class="activity__content__actions__add" data-activity_id="{{ activity.id }}">
-                {% include('frontend/components/_icons/_heart.html.twig') with {inverse:'heart--inverse'} only %}
-            </div>
-            {% endblock %}
+            {% if contact is not defined %}
+                <div class="activity__content__actions__add" data-activity_id="{{ activity.id }}">
+                    {% include('frontend/components/_icons/_heart.html.twig') with {inverse:'heart--inverse'} only %}
+                </div>
+            {% endif %}
         </div>
 
         <div class="activity__content__title">

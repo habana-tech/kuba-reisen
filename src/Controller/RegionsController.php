@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Utils\Utils;
 use App\Entity\Region;
 use App\Repository\RegionRepository;
 use App\Repository\DynamicPageRepository;
@@ -13,6 +14,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Twig\Error\LoaderError;
+
+
 
 class RegionsController extends AbstractController
 {
@@ -40,22 +43,100 @@ class RegionsController extends AbstractController
         ]);
     }
 
+    public function regionAboutUsBenefits(RegionRepository $regionRepository)
+    {
+        if(!$aboutUsBenefits = $regionRepository->findOneBy(['machineName'=>'about_us_benefits']))
+            return new Response();
+
+        return $this->render('frontend/components/about_us/_benefits.html.twig', [
+            'aboutUsBenefits' => $aboutUsBenefits,
+        ]);
+    }
+
+    public function regionAboutUsPhilosophy(RegionRepository $regionRepository)
+    {
+        if(!$aboutUsPhilosophy = $regionRepository->findOneBy(['machineName'=>'about_us_philosophy']))
+            return new Response();
+
+        return $this->render('frontend/components/about_us/_philosophy.html.twig', [
+            'aboutUsPhilosophy' => $aboutUsPhilosophy,
+        ]);
+    }
+
+    public function regionAboutUsTeam(RegionRepository $regionRepository)
+    {
+        if(!$aboutUsTeam = $regionRepository->findOneBy(['machineName'=>'about_us_team']))
+            return new Response();
+
+        return $this->render('frontend/components/about_us/_team.html.twig', [
+            'aboutUsTeam' => $aboutUsTeam,
+        ]);
+    }
+
+    public function regionAboutUsFilters(FilterTagRepository $filterTagRepository)
+    {
+        $filters = $filterTagRepository->findAll();
+
+        return $this->render('frontend/components/about_us/_filters.html.twig', [
+            'filters' => $filters
+        ]);
+    }
+
     public function regionFooter(FilterTagRepository $filterTagRepository,
-                                 DestinationRepository $destinationRepository)
+                                 DestinationRepository $destinationRepository,
+                                 Utils $utils)
     {
 
         return $this->render('frontend/components/global/_footer.html.twig', [
+            'staticPagesUrl'=>$utils->getStaticPagesUrl(),
             'destinations'=>$destinationRepository->findAll(),
             'filterTagsPinned'=>$filterTagRepository->findBy(['pinned'=>true]),
         ]);
     }
 
     public function regionHeader(DestinationRepository $destinationRepository,
-                                FilterTagRepository $filterTagRepository): Response
+                                FilterTagRepository $filterTagRepository,
+                                 Utils $utils): Response
     {
+
         return $this->render('frontend/components/global/_header.html.twig', [
+            'staticPagesUrl'=>$utils->getStaticPagesUrl(),
             'destinations'=>$destinationRepository->findAll(),
             'filterTagsPinned'=>$filterTagRepository->findBy(['pinned'=>true]),
+        ]);
+    }
+
+    public function regionBreadcrumbs($items, Utils $utils){
+
+        return $this->render('frontend/components/global/_breadcrumbs.html.twig', [
+            'items' => $items,
+            'staticPagesUrl'=>$utils->getStaticPagesUrl(),
+        ]);
+    }
+
+    public function regionFaq(RegionRepository $regionRepository)
+    {
+        if(!$questionSections = $regionRepository->findBy(['type'=>Region::TYPE_FAQ]))
+            return new Response();
+
+        return $this->render('frontend/components/faq/_question.html.twig', [
+            'questionSections' => $questionSections,
+        ]);
+    }
+
+    public function regionClientsOpinion(RegionRepository $regionRepository)
+    {
+
+        if(!$clientsOpinions = $regionRepository->findOneBy(['type'=>Region::TYPE_CLIENTS_OPINIONS]))
+            return new Response();
+
+
+//        $opinions = array_rand($clientsOpinions->getDescriptionFragments(), 2);
+        $opinions = $clientsOpinions->getDescriptionFragments();
+
+        return $this->render('frontend/components/global/_clients_opinions.html.twig', [
+            'clientsOpinions' => $clientsOpinions,
+            'opinions' => $opinions
         ]);
     }
 

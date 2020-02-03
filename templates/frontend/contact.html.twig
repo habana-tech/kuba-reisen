@@ -1,6 +1,7 @@
 {% extends 'frontend/base.html.twig' %}
 
-{% block title %}Wenden Sie sich an einen Spezialisten{% endblock %}
+{% block title %}{{ page.name }}{% endblock %}
+{% block metadescription %}{{ page.description }}{% endblock %}
 
 {% block stylesheets %}
     {{ encore_entry_link_tags('contact') }}
@@ -13,7 +14,11 @@
 
         {{ include('frontend/components/global/_hero.html.twig', {
             'content': page.name,
-            'image': page.hasImage ? page.image.staticImagePath : 'static/img/hero/water/water.jpg' }) }}
+            'image': page.image.staticImagePath}) }}
+
+        {{ render(controller('App\\Controller\\RegionsController:regionBreadcrumbs',  {'items':[
+            {'type' : 'custom', 'route' : 'contact', 'name': 'kontaktieren'},
+        ]} )) }}
 
         {{ form_start(form, { 'attr': {'class': 'form'} } ) }}
         {% form_theme form 'form/fields.html.twig' %}

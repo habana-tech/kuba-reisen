@@ -1,0 +1,38 @@
+{% extends 'frontend/base.html.twig' %}
+
+{% block title %}{{ page.name }}{% endblock %}
+{% block metadescription %}{{ page.description }}{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('good_to_know') }}
+{% endblock %}
+
+{% block body %}
+    <main class="main">
+
+        {{ include('frontend/components/global/_hero.html.twig', {
+            'content': page.name,
+            'image': page.image.staticImagePath }) }}
+
+        {{ render(controller('App\\Controller\\RegionsController:regionBreadcrumbs',  {'items':[
+            {'type' : 'page', 'machineName' : 'good_to_know'}
+        ]} )) }}
+
+
+        {{ include ('frontend/components/global/_introduction.html.twig',
+            {'title': page.titleDescription,
+             'content' : page.description }) }}
+
+
+        {{ include('frontend/components/global/_features_list.html.twig',
+            {'descriptionFragments' : page.descriptionFragments }) }}
+
+        {{ render(controller('App\\Controller\\RegionsController::regionTopDestinations')) }}
+
+    </main>
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('travel_info') }}
+{% endblock %}

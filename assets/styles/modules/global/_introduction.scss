@@ -1,0 +1,18 @@
+.introduction{
+    position: relative;
+    width: 100%;
+
+    &__title{
+
+    }
+
+    &__content{
+        width: 95%;
+        margin: 1em auto;
+
+        @include atLarge{
+            margin: auto;
+            width: 50%;
+        }
+    }
+}

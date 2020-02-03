@@ -1,6 +1,7 @@
 {% extends 'frontend/base.html.twig' %}
 
-{% block title %}Über uns{% endblock %}
+{% block title %}{{ page.name }}{% endblock %}
+{% block metadescription %}{{ page.description }}{% endblock %}
 
 {% block stylesheets %}
     {{ encore_entry_link_tags('about_us') }}
@@ -9,22 +10,31 @@
 {% block body %}
     <main class="main">
 
-        {{ include('frontend/components/global/_hero.html.twig', {
-            'content': page.name,
-            'image': page.hasImage ? page.image.staticImagePath : 'static/img/hero/water/water.jpg' }) }}
+        {{ include('frontend/components/global/_hero.html.twig',
+            { 'content': page.name,
+              'image': page.image.staticImagePath }) }}
 
-        {{ include ('frontend/components/about_us/_intro.html.twig') }}
+        {{ render(controller('App\\Controller\\RegionsController:regionBreadcrumbs',  {'items':[
+            {'type' : 'page', 'machineName' : 'about_us'}
+        ]} )) }}
 
-{#        {{ include ('frontend/components/about_us/_philosophy_benefits.html.twig') }}#}
+        {{ include ('frontend/components/global/_introduction.html.twig',
+            {'title': page.titleDescription,
+             'content' : page.description }) }}
 
-{#        {{ include ('frontend/components/about_us/_team.html.twig') }}#}
 
-{#        {{ include ('frontend/components/about_us/_links.html.twig') }}#}
+        {{ render(controller('App\\Controller\\RegionsController:regionAboutUsPhilosophy')) }}
+
+        {{ render(controller('App\\Controller\\RegionsController:regionAboutUsBenefits')) }}
+
+        {{ render(controller('App\\Controller\\RegionsController:regionAboutUsTeam')) }}
+
+        {{ render(controller('App\\Controller\\RegionsController:regionAboutUsFilters')) }}
 
     </main>
 {% endblock %}
 
 
 {% block javascripts %}
-
+    {{ encore_entry_script_tags('about_us') }}
 {% endblock %}

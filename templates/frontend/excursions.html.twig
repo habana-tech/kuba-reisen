@@ -1,8 +1,7 @@
 {% extends 'frontend/base.html.twig' %}
 
-    {% block title %}Entdecken 👌 und entdecken Sie
-        {{ page.getElementContent('hero__content__text', 'Kuba Ausflüge') | striptags}}
-    {% endblock %}
+{% block title %}{{ page.name }}{% endblock %}
+{% block metadescription %}{{ page.description }}{% endblock %}
 
 {% block stylesheets %}
     {{ encore_entry_link_tags('excursions') }}
@@ -13,11 +12,18 @@
 
         {{ include('frontend/components/global/_hero.html.twig', {
             'content': page.name,
-            'image': page.hasImage ? page.image.staticImagePath : 'static/img/hero/water/water.jpg' }) }}
+            'image': page.image.staticImagePath }) }}
 
-        {{ include('frontend/components/destinations/_introduction.html.twig') }}
+        {{ render(controller('App\\Controller\\RegionsController:regionBreadcrumbs',  {'items':[
+            {'type' : 'page', 'machineName' : 'excursions'}
+        ]} )) }}
 
-        {{ include('frontend/components/destinations/_generic_place_features_list.html.twig') }}
+        {{ include ('frontend/components/global/_introduction.html.twig',
+            {'title': page.titleDescription,
+             'content' : page.description }) }}
+
+        {{ include('frontend/components/global/_features_list.html.twig',
+            {'descriptionFragments' : page.descriptionFragments }) }}
 
         {#        {{ include('frontend/components/destinations/_activities.html.twig') }}#}
 

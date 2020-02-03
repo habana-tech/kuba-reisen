@@ -1,0 +1,33 @@
+{% if items %}
+    <nav class="breadcrumb">
+        <ul>
+
+            <li>
+                <a href="/">Startseite</a>
+            </li>
+
+            {% for item in items %}
+                <li>
+                    {% if item.type == 'page' %}
+                        <a href="{{ path('pageLoad', { 'name' : staticPagesUrl[ item.machineName ] | url_encode }) }}">
+                            {{ staticPagesUrl[ item.machineName ] }}
+                        </a>
+                    {% elseif item.type == 'destination' %}
+                        <a href="{{ path('destination', {'id' : item.destination.id, 'name' : item.destination.machineName }) }}">
+                            {{ item.destination.name }}
+                        </a>
+                    {% elseif item.type == 'custom' %}
+                        <a href="{{ path(item.route) }}">
+                            {{ item.name }}
+                        </a>
+                    {% elseif item.type == 'activity' %}
+                        <a href="{{ path('activity',
+                            {'id' : item.activity.id, 'name' : item.activity.machineName }) }}">
+                            {{ item.activity.name }}
+                        </a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </nav>
+{% endif %}

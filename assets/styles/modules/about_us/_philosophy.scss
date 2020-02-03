@@ -1,0 +1,65 @@
+.philosophy{
+    display: flex;
+    width: 95%;
+    margin: auto;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    @include atLarge{
+      width: 80%;
+    }
+
+    &__title{
+      width: 100%;
+      text-align: center;
+    }
+
+
+
+    &__content{
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+
+        &__image{
+            width: 100%;
+
+            @include atLarge{
+                width: 48%;
+            }
+        }
+
+        &__description {
+            width: 95%;
+            position: relative;
+            margin: auto;
+            font-size: 1.1em;
+
+            @include atLarge{
+                width: 48%;
+            }
+
+            &:before {
+                content: '"';
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 1;
+                font-size: 5em;
+                transform: translateY(-50%) rotate(-30deg)
+            }
+
+            &:after {
+                content: '"';
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                z-index: 1;
+                font-size: 5em;
+                transform: rotate(150deg)
+            }
+        }
+
+    }
+}
+

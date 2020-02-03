@@ -10,7 +10,6 @@ class CartBar{
         this.fetchUrl = '/activitiesApiGetById';
         this.activitiesIds = [];
 
-        this.cartBar = document.querySelector('.cart_bar');
         this.cartBarActivitiesItemsContainer = document.querySelector('.cart_bar__content__activities');
         this.cartBarActivitiesItemsPrototype = document.querySelector('.cart_bar__content__activities__item__prototype > div');
         this.cartBarActivitiesAmount = document.querySelector('.cart_bar .cart_bar__title span');
@@ -27,7 +26,6 @@ class CartBar{
         if (!activitiesCookie)
             return;
 
-
         let _activitiesIds = activitiesCookie[1] !== '' ? activitiesCookie[1].split(',') : [];
 
         _activitiesIds.forEach((activityId)=>{
@@ -37,9 +35,11 @@ class CartBar{
         this.buttonsAddActivity.forEach((button)=>{
             let activityId = button.getAttribute('data-activity_id');
             if (this.activitiesIds.includes(activityId)){
-                button.querySelector('svg.heart').classList.toggle('heart--fill-white');
+                button.querySelector('svg.heart').classList.add('heart--fill-white');
             }
         });
+
+
     }
 
     events(){
@@ -66,10 +66,9 @@ class CartBar{
 
         activityItem.setAttribute('id', 'activityItem_'+activity.id);
         let image = activityItem.querySelector('img');
-        //todo: get a small thumbnail
-        image.setAttribute('src', activity.image.staticImagePath);
+        image.setAttribute('src', activity.imageSmall);
         let name = activityItem.querySelector('h5');
-        name.innerHTML = activity.name.length < 20 ? activity.name : activity.name.substring(0, 20)+'...';
+        name.innerHTML = activity.name.length < 20 ? activity.name : activity.name.substring(0, 20) + '...';
 
         this.cartBarActivitiesItemsContainer.appendChild(activityItem);
     }
@@ -102,10 +101,15 @@ class CartBar{
         });
         setCookie(this.activitiesIds.toString());
 
+        if (this.activitiesIds.length === 0)
+            this.cartBar.classList.add('cart_bar--initial');
+
+
         let selectedHeart = document.querySelector('div[data-activity_id="'+activityId+'"]');
-        console.log(selectedHeart);
-        selectedHeart.classList.remove('checked');
-        selectedHeart.querySelector('svg').classList.remove('heart--fill-white');
+        if (selectedHeart) {
+            selectedHeart.classList.remove('checked');
+            selectedHeart.querySelector('svg').classList.remove('heart--fill-white');
+        }
 
         this.cartBarActivitiesItemsContainer.querySelector('#activityItem_'+activityId).remove();
         this.cartBarActivitiesAmount.innerHTML = this.activitiesIds.length.toString();
@@ -113,10 +117,7 @@ class CartBar{
 
     addActivity(activityId){
 
-        if (this.activitiesIds.length === 0)
-            this.cartBar.classList.add('cart_bar--initial');
-        else
-            this.cartBar.classList.remove('cart_bar--initial');
+        this.cartBar.classList.remove('cart_bar--initial');
 
         this.cartBar.classList.remove('cart_bar--visible');
 
@@ -124,9 +125,13 @@ class CartBar{
         this.fetchActivity(activityId);
         setCookie(this.activitiesIds.toString());
 
-        this.cartBarActivitiesAmount.innerHTML = this.activitiesIds.length.toString();
+        let selectedHeart = document.querySelector('div[data-activity_id="'+activityId+'"]');
+        if (selectedHeart) {
+            selectedHeart.classList.add('checked');
+            selectedHeart.querySelector('svg').classList.add('heart--fill-white');
+        }
 
-        this.showCart();
+        this.cartBarActivitiesAmount.innerHTML = this.activitiesIds.length.toString();
     }
 
     addOrRemoveActivity(e){
@@ -140,9 +145,6 @@ class CartBar{
             this.addActivity(activityId);
             this.showCart();
         }
-
-        button.classList.toggle('checked');
-        button.querySelector('svg.heart').classList.toggle('heart--fill-white');
     }
 
     showCart(){

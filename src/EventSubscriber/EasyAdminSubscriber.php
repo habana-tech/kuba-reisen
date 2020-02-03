@@ -151,8 +151,5 @@ class EasyAdminSubscriber implements EventSubscriberInterface
 
             }
 
-
-
-
         }
 }

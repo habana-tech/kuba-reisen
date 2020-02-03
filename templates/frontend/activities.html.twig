@@ -12,14 +12,12 @@
 
         {{ include('frontend/components/global/_hero.html.twig', {
             'content': page.name,
-            'image': page.hasImage ? page.image.staticImagePath : 'static/img/hero/water/water.jpg' }) }}
+            'image': page.image.staticImagePath }) }}
 
-        {% include('frontend/components/global/_breadcrumb.html.twig')
-            with {'pages': [
-            {'name' : 'Start', 'url' : path('frontend')},
-            {'name' : 'Kuba Ausflüge', 'url' : path('pageLoad', {'machineName':'excursions'}) },
-            {'name' : page.name, 'url' : path('pageLoad', {'machineName':'activities'}) },
-        ] } %}
+        {{ render(controller('App\\Controller\\RegionsController:regionBreadcrumbs',  {'items':[
+            {'type' : 'page', 'machineName' : 'excursions'},
+            {'type' : 'custom', 'route' : 'activities', 'name': 'Aktivitäten'},
+        ]} )) }}
 
         {{ include('frontend/components/activities/_stories.html.twig') }}
 
@@ -27,7 +25,7 @@
 
         {{ render(controller('App\\Controller\\RegionsController::regionBanner')) }}
 
-{#        {{ include('frontend/components/activities/_clients_opinions.html.twig') }}#}
+        {{ render(controller('App\\Controller\\RegionsController::regionClientsOpinion')) }}
 
     </main>
 

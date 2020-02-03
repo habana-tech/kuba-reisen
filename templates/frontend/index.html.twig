@@ -1,6 +1,7 @@
 {% extends 'frontend/base.html.twig' %}
 
-{% block title %}Reisen nach Kuba 👌 von Hand gemacht{% endblock %}
+{% block title %}{{ page.name }}{% endblock %}
+{% block metadescription %}{{ page.description }}{% endblock %}
 
 {% block stylesheets %}
     {{ encore_entry_link_tags('index') }}
@@ -8,7 +9,7 @@
 {% endblock %}
 
 {% block body %}
-    <main class="main {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null  %}grapes-editable{% endif %}">
+    <main class="main">
 
         {{ include('frontend/components/index/_loading.html.twig') }}
 
@@ -24,14 +25,11 @@
 
         {{ render(controller('App\\Controller\\RegionsController::regionTopDestinations')) }}
 
-        {#{{ include('frontend/components/_divider.html.twig') }}#}
-
-        {#{{ include('frontend/components/index/_clients_opinions.html.twig') }}#}
+        {{ render(controller('App\\Controller\\RegionsController::regionClientsOpinion')) }}
 
         {#{{ include('frontend/components/index/_team_opinions.html.twig') }}#}
 
         {{ render(controller('App\\Controller\\RegionsController::regionLoader', {'machineName': 'travel_options'})) }}
-
 
     </main>
 {% endblock %}

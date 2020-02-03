@@ -1,0 +1,17 @@
+<section class="section introduction">
+
+    {% if title %}
+        <div class="section__title introduction__title">
+            <div class="section__title__highlight section__title__highlight--orange">
+                <h2>{{ title }}</h2>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if content %}
+        <div class="introduction__content">
+            {{ content | raw }}
+        </div>
+    {% endif %}
+
+</section>
