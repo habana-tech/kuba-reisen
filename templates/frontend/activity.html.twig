@@ -15,7 +15,7 @@
 
         {{ render(controller('App\\Controller\\RegionsController:regionBreadcrumbs',  {'items':[
             {'type' : 'page', 'machineName' : 'excursions'},
-            {'type' : 'custom', 'route' : 'activities', 'name': 'Aktivitäten'},
+            {'type' : 'custom', 'route' : 'activities', 'name': 'Aktivitäten', 'section' : 'activities'},
             {'type' : 'activity', 'activity' : activity },
         ]} )) }}
 

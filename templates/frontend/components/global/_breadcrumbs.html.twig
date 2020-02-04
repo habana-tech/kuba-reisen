@@ -17,7 +17,7 @@
                             {{ item.destination.name }}
                         </a>
                     {% elseif item.type == 'custom' %}
-                        <a href="{{ path(item.route) }}">
+                        <a href="{{ path(item.route) }}{% if 'section' in item | keys %}#{{ item.section }} {% endif %}">
                             {{ item.name }}
                         </a>
                     {% elseif item.type == 'activity' %}
