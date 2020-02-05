@@ -18,6 +18,26 @@
                 width: 47%;
             }
         }
+
+        &__not-included{
+            & ul{
+                & li{
+                    &::marker {
+                        color: $light-red;
+                    }
+                }
+            }
+        }
+
+        &__included{
+            & ul{
+                & li{
+                    &::marker {
+                        color: $light-green;
+                    }
+                }
+            }
+        }
     }
 
 }
