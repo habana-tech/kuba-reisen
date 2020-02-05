@@ -127,6 +127,8 @@ class Image
             $base64Converter = new ImageBase64ThumbCreator($file->getRealPath(), false);
             $this->setBase64($base64Converter->getBase64data());
             $this->updatedAt = new DateTimeImmutable();
+            if(!$this->description && $file->getFilename())
+                $this->description = substr(basename($file->getClientOriginalName()), 0, -4);
         }
         return $this;
 
@@ -143,7 +145,7 @@ class Image
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 

@@ -44,4 +44,23 @@
 
 
 
+{% block _uploadedImages_widget %}
+    <select id="{{ form.vars.id }}" name="{{ form.vars.full_name }}"
+            class="selectpicker show-tick form-control" multiple="multiple"
+            data-live-search="true">
+        {% for option in form.vars.choices %}
+             <option  value="{{option.value}}" data-content="<img style='width: 50px' src='/media/cache/resolve/min_width_40/static/uploads/images/{{ option.data.getimageName }}'> {{ option.label }}">{{ option.label }}</option>
+        {% endfor %}
+    </select>
+{% endblock %}
 
+
+{% block _activity_uploadedImages_widget %}
+    {{ block('_uploadedImages_widget') }}
+{% endblock %}
+{% block _page_uploadedImages_widget %}
+    {{ block('_uploadedImages_widget') }}
+{% endblock %}
+{% block _region_uploadedImages_widget %}
+    {{ block('_uploadedImages_widget') }}
+{% endblock %}

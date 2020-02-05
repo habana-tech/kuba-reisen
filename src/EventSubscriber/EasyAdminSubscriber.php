@@ -16,6 +16,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 use App\Entity\Activity;
 use App\Entity\Destination;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Vich\UploaderBundle\Event\Event;
@@ -113,7 +114,11 @@ class EasyAdminSubscriber implements EventSubscriberInterface
         //get the correct image from request
         $image = $this->getFromSingleImageInput($this->entity->getImageField(), $this->entity->getImage());
 
-        //override the image if necessary
+        //override the image description if necessary
+        if($image instanceof Image && !$image->getDescription() && $image->getImageFile() instanceof File && $image->getImageFile()->getFilename() ) {
+            $image->setDescription($image->getImageFile()->getFilename());
+        }
+
         $this->entity->setImage($image);
     }
 
