@@ -208,6 +208,8 @@ easy_admin:
                     - { type: 'group', label: 'Content Fragments', icon: 'book-open', columns: 8 }
                     - { property: 'descriptionFragments', label: '-', help: 'Add many fragments as you need to describe this destination', type: 'collection',  type_options: { entry_type: 'App\Form\DescriptionFragmentType', by_reference: true } }
 
+        ClientOpinion:
+            class: App\Entity\ClientOpinion
         User:
             class: App\Entity\User
             edit:
