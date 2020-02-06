@@ -48,8 +48,15 @@
     <select id="{{ form.vars.id }}" name="{{ form.vars.full_name }}"
             class="selectpicker show-tick form-control" multiple="multiple"
             data-live-search="true">
-        {% for option in form.vars.choices %}
-             <option  value="{{option.value}}" data-content="<img style='width: 50px' src='/media/cache/resolve/min_width_40/static/uploads/images/{{ option.data.getimageName }}'> {{ option.label }}">{{ option.label }}</option>
+        {% for option in form.vars.choices | slice(1) %}
+             <option  value="{{option.value}}"
+                      data-content="<img class='lazyload'
+                      src='{{ option.data.getBase64 }}'
+                      style='width: 50px'
+                      data-src='/media/cache/resolve/min_width_40/static/uploads/images/{{ option.data.getImageName }}'>
+                    {{ option.label }}">
+                 {{ option.label }}
+             </option>
         {% endfor %}
     </select>
 {% endblock %}
