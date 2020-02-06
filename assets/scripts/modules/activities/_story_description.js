@@ -3,6 +3,7 @@ import mapboxgl from 'mapbox-gl';
 class StoryDescription{
 
     constructor(){
+
         mapboxgl.accessToken = 'pk.eyJ1IjoiY2FydG1hbnVzZXIiLCJhIjoiY2p5aHVyNHB2MDNudzNnbnJiaGVtcWJ2OCJ9.2UPDKnSZRNwNR1ITlZQEAA';
         this.map = new mapboxgl.Map({
             container: 'map',
@@ -11,6 +12,7 @@ class StoryDescription{
             zoom: 6
         });
         this.map.scrollZoom.disable();
+        this.map.addControl(new mapboxgl.NavigationControl());
 
         this.marker = new mapboxgl.Marker();
         this.pos = 0;

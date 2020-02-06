@@ -8,7 +8,7 @@
         "/build/bucket_list.148b522b.js"
       ],
       "css": [
-        "/build/bucket_list.15d8e661.css"
+        "/build/bucket_list.d32fb415.css"
       ]
     },
     "app": {
@@ -19,7 +19,7 @@
         "/build/app.c8a5bdc3.js"
       ],
       "css": [
-        "/build/app.e696df3c.css"
+        "/build/app.aae3d918.css"
       ]
     },
     "destination": {
@@ -29,7 +29,7 @@
         "/build/destination.01e91d71.js"
       ],
       "css": [
-        "/build/destination.e43e1091.css"
+        "/build/destination.05905810.css"
       ]
     },
     "faq": {
@@ -38,7 +38,7 @@
         "/build/faq.22d79666.js"
       ],
       "css": [
-        "/build/faq.7ad463cd.css"
+        "/build/faq.a3a4f1d9.css"
       ]
     },
     "contact": {
@@ -49,7 +49,7 @@
         "/build/contact.da8f3dff.js"
       ],
       "css": [
-        "/build/contact.f4a99f0e.css"
+        "/build/contact.13b1ca7a.css"
       ]
     },
     "activities": {
@@ -57,10 +57,10 @@
         "/build/runtime.5e3ab09c.js",
         "/build/0.a287177f.js",
         "/build/1.241680c8.js",
-        "/build/activities.ef35c5b1.js"
+        "/build/activities.c25747a9.js"
       ],
       "css": [
-        "/build/activities.54a6f617.css"
+        "/build/activities.5a1298bc.css"
       ]
     },
     "activity": {
@@ -71,7 +71,7 @@
         "/build/activity.2170db97.js"
       ],
       "css": [
-        "/build/activity.241fad91.css"
+        "/build/activity.2a03d1ae.css"
       ]
     },
     "index": {
@@ -81,7 +81,7 @@
         "/build/index.962fa8a4.js"
       ],
       "css": [
-        "/build/index.6664563b.css"
+        "/build/index.282e8ba1.css"
       ]
     },
     "about_us": {
@@ -90,7 +90,7 @@
         "/build/about_us.7d7bdb52.js"
       ],
       "css": [
-        "/build/about_us.6eb840af.css"
+        "/build/about_us.2cca6bc0.css"
       ]
     },
     "travel_info": {
@@ -99,7 +99,7 @@
         "/build/travel_info.c135aa0a.js"
       ],
       "css": [
-        "/build/travel_info.d503045d.css"
+        "/build/travel_info.dbf40aea.css"
       ]
     },
     "good_to_know": {
@@ -125,7 +125,7 @@
         "/build/runtime.5e3ab09c.js"
       ],
       "css": [
-        "/build/loading.5ed08e94.css"
+        "/build/loading.b2c484ee.css"
       ]
     },
     "login": {
@@ -133,7 +133,7 @@
         "/build/runtime.5e3ab09c.js"
       ],
       "css": [
-        "/build/login.d2e5b28c.css"
+        "/build/login.87051ce1.css"
       ]
     }
   }
