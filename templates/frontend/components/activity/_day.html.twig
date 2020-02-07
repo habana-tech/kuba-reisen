@@ -1,15 +1,26 @@
-<div class="day">
-    {% if day.hasImage %}
-        <div class="day__image">
-            {{ imgTag(day.image) | raw }}
+{% for day in activity.descriptionFragments %}
+
+    <div class="day {% if loop.index == 1 %} day--active {% endif %}">
+        <div class="day__title">
+            <a href="#">
+                <h3>{{ day.name }}</h3>
+            </a>
         </div>
-    {% endif %}
-    <div class="day__description">
-        <div class="day__description__title">
-            <h3>{{ day.name }}</h3>
+        <div class="day__content">
+            {% if day.hasImage %}
+                <div class="day__content__image">
+                    {{ imgTag(day.image) | raw }}
+                </div>
+            {% endif %}
+            <div class="day__content__description">
+
+                <div class="day__content__description__content">
+                    {#TODO: expand text#}
+                    {{ day.content | truncate_html(500, '...') | raw }}
+                </div>
+            </div>
         </div>
-        <div class="day__description__content">
-            {{ day.content | raw }}
-        </div>
+
     </div>
-</div>
+
+{% endfor %}

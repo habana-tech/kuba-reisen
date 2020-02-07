@@ -1,18 +1,51 @@
-<section class="section description-text-map">
-    <div class="section__title ">
-        <div class="section__title__highlight section__title__highlight--green">
-            <h2>{{ activity.name }}</h2>
-        </div>
-    </div>
+{#<section class="section description-text-map">#}
+{#    <div class="section__title ">#}
+{#        <div class="section__title__highlight section__title__highlight--green">#}
+{#            <h2>{{ activity.name }}</h2>#}
+{#        </div>#}
+{#    </div>#}
 
-    <div class="description-text-map__content">
-        <div class="description-text-map__content__map">
+{#    <div class="description-text-map__content">#}
+{#        <div class="description-text-map__content__map">#}
+{#            <div id="map"></div>#}
+{#        </div>#}
+
+{#        <div class="description-text-map__content__text">#}
+{#            {{ activity.description | raw }}#}
+{#        </div>#}
+{#    </div>#}
+
+{#</section>#}
+
+<section class="overview_activity">
+    <div class="overview_activity__content">
+        <div class="overview_activity__content__map">
             <div id="map"></div>
         </div>
 
-        <div class="description-text-map__content__text">
-            {{ activity.description | raw }}
+        <div class="overview_activity__content__favorite" >
+            <div class="overview_activity__content__favorite__button" data-activity_id="{{ activity.id }}">
+                {{ include('/frontend/components/_icons/_heart.html.twig') }}
+            </div>
+            <a href="#"><p>Add to favorites</p></a>
+        </div>
+
+{#        <div class="overview_activity__content__price">#}
+{#            ab : {{ activity.initPrice }}#}
+{#        </div>#}
+
+        {{ include('frontend/components/activity/_tags.html.twig') }}
+
+        <div class="overview_activity__content__text">
+            {{ activity.description | truncate_html(500, '...') | raw }}
         </div>
     </div>
+{#    <div class="section__title ">#}
+{#        <div class="section__title__highlight section__title__highlight--green">#}
+{#            <h2>{{ activity.name }}</h2>#}
+{#        </div>#}
+{#    </div>#}
+
+
 
 </section>

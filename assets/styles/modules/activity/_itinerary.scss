@@ -1,14 +1,10 @@
 .description-itinerary{
-    width: 90%;
+    width: 95%;
     margin: auto;
     position: relative;
     display: flex;
     flex-flow: wrap;
     justify-content: center;
-
-    @include atLarge{
-        width: 75%;
-    }
 
     &__content{
 

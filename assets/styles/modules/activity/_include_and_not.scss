@@ -1,15 +1,11 @@
 .description-include{
 
     &__included-details{
-        width: 90%;
+        width: 95%;
         margin: auto;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
-
-        @include atLarge{
-            width: 80%;
-        }
 
         &__included, &__not-included{
             width: 100%;

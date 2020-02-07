@@ -8,11 +8,9 @@
 
     <div class="description-itinerary__content">
 
-{#        {% for day in activity.descriptionFragments %}#}
-{#            {{ include('frontend/components/activity/_day.html.twig') }}#}
-{#        {% endfor %}#}
+            {{ include('frontend/components/activity/_day.html.twig') }}
 
-        {{ activity.itineraryContent| raw }}
+{#        {{ activity.itineraryContent| raw }}#}
     </div>
 
 </section>
