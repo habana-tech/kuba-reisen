@@ -155,7 +155,7 @@ liip_imagine:
         auto_rotate: ~
         strip: ~
         thumbnail:
-          size:          [150, 150]
+          size:          [125, 125]
           mode:          outbound
           allow_upscale: true
 

@@ -1,15 +1,16 @@
-$(document).ready(function () {
+let modifiedWhiteList = $.fn.selectpicker.Constructor.DEFAULTS.whiteList;
+modifiedWhiteList.img.push('data-src');
 
-    $('.field-collection-action a').on('click', function(e) {
-        e.preventDefault();
-            console.log('addinng');
-            $('.selectpicker').selectpicker()
-    });
-
+$('.selectpicker').selectpicker({
+    whiteList: modifiedWhiteList
 });
+
 
 $(document).on('easyadmin.collection.item-added',
     function() {
-    console.log('added');
-    $('.selectpicker').selectpicker();
-    });
+
+        $('.selectpicker').selectpicker({
+            whiteList: modifiedWhiteList
+        });
+    }
+);

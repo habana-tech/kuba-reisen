@@ -42,8 +42,12 @@ class SingleImageFromGalleryType extends AbstractType
                 ],
                 'choice_attr' => function($choice, $key, $value) {
                     return [
-                        'data-content'=> "<img style='width: 50px' src=' /media/cache/resolve/min_width_40/static/uploads/images/".$choice->getimageName()."'> ". $choice->getDescription(),
+                        'data-content'=> "<img style='width: 50px' 
+                        class='lazyload'
+                        src=".$choice->getbase64()."
+                        data-src='/media/cache/resolve/min_width_40/static/uploads/images/".$choice->getimageName()."'> ". $choice->getDescription(),
                     ];
+
                 },
             ])
 

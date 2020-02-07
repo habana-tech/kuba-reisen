@@ -1,7 +1,7 @@
 @import "base/config";
 @import "base/mixins";
 
-@import "https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.css";
+@import "modules/global/mapbox.scss";
 @import "modules/bucket_list/feature_items";
 
 

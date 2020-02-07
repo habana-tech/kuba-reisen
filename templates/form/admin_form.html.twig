@@ -49,7 +49,14 @@
             class="selectpicker show-tick form-control" multiple="multiple"
             data-live-search="true">
         {% for option in form.vars.choices %}
-             <option  value="{{option.value}}" data-content="<img style='width: 50px' src='/media/cache/resolve/min_width_40/static/uploads/images/{{ option.data.getimageName }}'> {{ option.label }}">{{ option.label }}</option>
+             <option  value="{{option.value}}"
+                      data-content="<img class='lazyload'
+                      src='{{ option.data.getBase64 }}'
+                      style='width: 80px'
+                      data-src='/media/cache/resolve/min_width_40/static/uploads/images/{{ option.data.getImageName }}'>
+                    {{ option.label }}">
+                 {{ option.label }}
+             </option>
         {% endfor %}
     </select>
 {% endblock %}

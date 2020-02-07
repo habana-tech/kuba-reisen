@@ -1,0 +1,47 @@
+.day{
+    display: flex;
+    justify-content: space-between;
+    margin: 2em 0;
+
+    &__image{
+        width: 100%;
+        overflow: hidden;
+        border-radius: 2px;
+
+        @include atLarge{
+            width: 40%;
+        }
+    }
+
+    &__description{
+        display: flex;
+        flex-wrap: wrap;
+        padding: .5em 1em;
+
+        @include atLarge{
+            width: 60%;
+        }
+
+        &__title{
+            width: 100%;
+        }
+
+        &__content{
+            width: 100%;
+        }
+    }
+
+    &::after{
+        position: absolute;
+        content: '';
+        height: 1px;
+        background: rgba(black, .25);
+        width: 70%;
+        margin: 15% 0;
+        bottom: 0;
+    }
+
+    //&:last-child::after{
+    //    display: none;
+    //}
+}

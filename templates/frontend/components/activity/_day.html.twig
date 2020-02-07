@@ -1,0 +1,15 @@
+<div class="day">
+    {% if day.hasImage %}
+        <div class="day__image">
+            {{ imgTag(day.image) | raw }}
+        </div>
+    {% endif %}
+    <div class="day__description">
+        <div class="day__description__title">
+            <h3>{{ day.name }}</h3>
+        </div>
+        <div class="day__description__content">
+            {{ day.content | raw }}
+        </div>
+    </div>
+</div>
