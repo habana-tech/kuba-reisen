@@ -65,7 +65,7 @@ easy_admin:
                     - { type: 'group', label: 'Activity description', icon: 'bookmark', columns: 8 }
                     - { property: 'description', type: 'fos_ckeditor' }
                     - { type: 'section', label: 'Features or components for this Activity', icon: 'puzzle-piece', help: 'Describe the Feature components for this Activity' }
-                    - { property: 'descriptionFragments', label: '*', help: 'Add many features fragments as you need to describe this activity', type: 'collection',  type_options: { entry_type: 'App\Form\DescriptionFragmentType', by_reference: true } }
+                    - { property: 'descriptionFragments', label: '*', help: 'Add many features fragments as you need to describe this activity', type: 'collection',  type_options: { entry_type: 'App\Form\ActivityDescriptionFragmentType', by_reference: true } }
 
                     - { type: 'group', label: 'Gallery', icon: 'images', columns: 4 }
                     - { type: 'section', label: 'Images from Gallery', icon: 'folder-open', help: 'Previously uploaded images' }

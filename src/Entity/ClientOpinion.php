@@ -35,12 +35,14 @@ class ClientOpinion
     private $pinOnHome;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Destination", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\Destination", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true,  onDelete="SET NULL")
      */
     private $destination;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Activity", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\Activity", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true,  onDelete="SET NULL")
      */
     private $activity;
 

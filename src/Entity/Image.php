@@ -58,19 +58,6 @@ class Image
         return $this->id;
     }
 
-//    public function getTitle(): ?string
-//    {
-//        return $this->title;
-//    }
-//
-//    public function setTitle(string $title): self
-//    {
-//        $this->title = $title;
-//
-//        return $this;
-//    }
-
-
     public function getImagePath(): string
     {
         return 'uploads/images/'.$this->getImageName();
