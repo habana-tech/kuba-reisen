@@ -41,6 +41,9 @@ class StoryDescription{
 
             this.paths.forEach((path, index)=>{
                 if (this.isElementOnScreen(path)) {
+                    let bound = path.getBoundingClientRect();
+                    console.log(bound);
+                    console.log(bound.top > 0  && bound.top < window.innerHeight / 2);
                     this.setActivePath(index);
                 }
             });
@@ -48,6 +51,9 @@ class StoryDescription{
             //TODO: ugly solution
             this.markers.forEach((marker)=>{
                 if (this.isElementOnScreen(marker)) {
+                    let bound = marker.getBoundingClientRect();
+                    console.log(bound);
+                    console.log(bound.top > 0  && bound.top < window.innerHeight / 2);
                     let props = marker.getAttribute('data-map');
                     props = JSON.parse(props);
 
@@ -168,6 +174,7 @@ class StoryDescription{
     }
 
     isElementOnScreen(element) {
+        element = element.parentNode.parentNode.parentNode.parentNode;
         let bounds = element.getBoundingClientRect();
         return bounds.top > 0  && bounds.top < window.innerHeight / 2;
     }

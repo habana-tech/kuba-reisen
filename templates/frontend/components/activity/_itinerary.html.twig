@@ -7,6 +7,11 @@
     </div>
 
     <div class="description-itinerary__content">
+
+{#        {% for day in activity.descriptionFragments %}#}
+{#            {{ include('frontend/components/activity/_day.html.twig') }}#}
+{#        {% endfor %}#}
+
         {{ activity.itineraryContent| raw }}
     </div>
 
