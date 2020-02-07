@@ -3,20 +3,22 @@
 namespace App\Entity;
 
 use App\Entity\Fields\ActiveFieldTrait;
-use App\Entity\Fields\MachineNameInterface;
-use App\Entity\Fields\MachineNameTrait;
+use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 use App\Entity\Fields\PriorityFieldTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\FilterTagRepository")
- * @ORM\HasLifecycleCallbacks
+ * @Vich\Uploadable()
  */
 class FilterTag
 {
     use ActiveFieldTrait, PriorityFieldTrait;
+    use ORMBehaviors\Timestampable\Timestampable;
 
     /**
      * @ORM\Id()
@@ -47,9 +49,17 @@ class FilterTag
      */
     private $pinned;
 
+    /**
+     * @ORM\Column(type="string", length=180)
+     */
+    private $iconName;
+    /**
+    * @Vich\UploadableField(mapping="tags_icons", fileNameProperty="iconName")
+    */
+    private $iconFile;
+
     public function __construct()
     {
-        $this->interests = new ArrayCollection();
         $this->activities = new ArrayCollection();
         $this->destinations = new ArrayCollection();
         $this->active = true;
@@ -152,4 +162,47 @@ class FilterTag
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getIconFile()
+    {
+        return $this->iconFile;
+    }
+
+    /**
+     * @param mixed $iconFile
+     * @return FilterTag
+     */
+    public function setIconFile($iconFile)
+    {
+        $this->iconFile = $iconFile;
+        if ($iconFile) {
+                // if 'updatedAt' is not defined in your entity, use another property
+                $this->updatedAt = new \DateTime('now');
+            }
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIconName()
+    {
+        return $this->iconName;
+    }
+
+    /**
+     * @param mixed $icon
+     * @return FilterTag
+     */
+    public function setIconName($icon)
+    {
+        $this->iconName = $icon;
+        return $this;
+    }
+
+
+
 }

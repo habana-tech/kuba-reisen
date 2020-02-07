@@ -6,6 +6,7 @@
 parameters:
     google_recaptcha_site_key: '%env(GOOGLE_RECAPTCHA_SITE_KEY)%'
     app.path.uploaded_images: ../media/cache/resolve/squared_thumbnail/static/uploads/images
+    app.path.uploaded_icons: ../media/cache/resolve/squared_thumbnail/static/uploads/icons
     knp.doctrine_behaviors.blameable_subscriber.user_entity: App\Entity\User
     mailer.sender.address: 'web@kuba-reisen.de'
     default_locale: de

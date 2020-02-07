@@ -1,6 +1,7 @@
 easy_admin:
     site_name: 'kuba-raisen admin'
     design:
+        brand_color: '#14a1e6'
         assets:
             js:
 #                - 'https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js'
@@ -18,6 +19,7 @@ easy_admin:
             - { entity: 'Activity', label: 'Activities' , icon: 'location-arrow'}
             - { entity: 'Destination', label: 'Destinations' , icon: 'map-marker-alt'}
             - { entity: 'Story', label: 'Stories' , icon: 'bookmark'}
+            - { entity: 'ClientOpinion', label: 'Client Opinions' , icon: 'comment-o'}
             - { entity: 'Interest', label: 'Interest' , icon: 'heart'}
             - { entity: 'FilterTag', label: 'Tags' , icon: 'tags'}
 
@@ -141,6 +143,7 @@ easy_admin:
             class: App\Entity\FilterTag
             list:
                 fields:
+                    - { property: 'iconName', label: 'Icon', type: 'image', base_path: '%app.path.uploaded_icons%'}
                     - { property: 'title', label: 'Title' }
                     - { property: 'active', label: 'Active' }
                     - { property: 'pinned', label: 'Pinned' }
@@ -148,8 +151,9 @@ easy_admin:
                 fields:
                     - { type: 'group', label: 'FilterTag', columns: 4 }
                     - { property: 'title', label: 'Title' }
+                    - { property: 'iconFile', type: 'vich_file'}
                     - { property: 'active', label: 'Active' }
-                    - { property: 'pinned', label: 'Pinned' }
+                    - { property: 'pinned', label: 'Pinned at Home' }
 
                     - { type: 'group', label: 'Associated entities', columns: 8 }
                     - { property: 'destinations', label: 'Associated destinations' }
