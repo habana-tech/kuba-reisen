@@ -1,6 +1,7 @@
 easy_admin:
     site_name: 'kuba-raisen admin'
     design:
+        brand_color: '#14a1e6'
         assets:
             js:
                 - 'assets/bootstrap-select.min.js'
@@ -18,6 +19,7 @@ easy_admin:
             - { entity: 'Activity', label: 'Activities' , icon: 'location-arrow'}
             - { entity: 'Destination', label: 'Destinations' , icon: 'map-marker-alt'}
             - { entity: 'Story', label: 'Stories' , icon: 'bookmark'}
+            - { entity: 'ClientOpinion', label: 'Client Opinions' , icon: 'comment-o'}
             - { entity: 'Interest', label: 'Interest' , icon: 'heart'}
             - { entity: 'FilterTag', label: 'Tags' , icon: 'tags'}
 
@@ -63,7 +65,7 @@ easy_admin:
                     - { type: 'group', label: 'Activity description', icon: 'bookmark', columns: 8 }
                     - { property: 'description', type: 'fos_ckeditor' }
                     - { type: 'section', label: 'Features or components for this Activity', icon: 'puzzle-piece', help: 'Describe the Feature components for this Activity' }
-                    - { property: 'descriptionFragments', label: '*', help: 'Add many features fragments as you need to describe this activity', type: 'collection',  type_options: { entry_type: 'App\Form\DescriptionFragmentType', by_reference: true } }
+                    - { property: 'descriptionFragments', label: '*', help: 'Add many features fragments as you need to describe this activity', type: 'collection',  type_options: { entry_type: 'App\Form\ActivityDescriptionFragmentType', by_reference: true } }
 
                     - { type: 'group', label: 'Gallery', icon: 'images', columns: 4 }
                     - { type: 'section', label: 'Images from Gallery', icon: 'folder-open', help: 'Previously uploaded images' }
@@ -141,6 +143,7 @@ easy_admin:
             class: App\Entity\FilterTag
             list:
                 fields:
+                    - { property: 'iconName', label: 'Icon', type: 'image', base_path: '%app.path.uploaded_icons%'}
                     - { property: 'title', label: 'Title' }
                     - { property: 'active', label: 'Active' }
                     - { property: 'pinned', label: 'Pinned' }
@@ -148,8 +151,9 @@ easy_admin:
                 fields:
                     - { type: 'group', label: 'FilterTag', columns: 4 }
                     - { property: 'title', label: 'Title' }
+                    - { property: 'iconFile', type: 'vich_file'}
                     - { property: 'active', label: 'Active' }
-                    - { property: 'pinned', label: 'Pinned' }
+                    - { property: 'pinned', label: 'Pinned at Home' }
 
                     - { type: 'group', label: 'Associated entities', columns: 8 }
                     - { property: 'destinations', label: 'Associated destinations' }
@@ -208,6 +212,8 @@ easy_admin:
                     - { type: 'group', label: 'Content Fragments', icon: 'book-open', columns: 8 }
                     - { property: 'descriptionFragments', label: '-', help: 'Add many fragments as you need to describe this destination', type: 'collection',  type_options: { entry_type: 'App\Form\DescriptionFragmentType', by_reference: true } }
 
+        ClientOpinion:
+            class: App\Entity\ClientOpinion
         User:
             class: App\Entity\User
             edit:

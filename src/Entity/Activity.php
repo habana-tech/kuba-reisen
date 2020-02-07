@@ -25,12 +25,18 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @ORM\HasLifecycleCallbacks
  */
 class Activity implements MachineNameInterface, DescriptionFragmentFieldInterface,
-                          GalleryFieldInterface, ImageFieldInterface
+      GalleryFieldInterface, ImageFieldInterface
 {
+    use ImageFieldTrait;
+    use ActiveFieldTrait;
+    use GalleryFieldTrait;
+    use FilterTagsTrait;
+    use PriorityFieldTrait;
+    use DescriptionFragmentFieldTrait;
+    use MachineNameTrait;
+
     public const LENGTH_OF_DESCRIPTION = 75;
 
-    use ImageFieldTrait, ActiveFieldTrait, GalleryFieldTrait;
-    use FilterTagsTrait, PriorityFieldTrait, DescriptionFragmentFieldTrait, MachineNameTrait;
 
     /**
      * @ORM\Id()
@@ -119,8 +125,8 @@ class Activity implements MachineNameInterface, DescriptionFragmentFieldInterfac
     private $costAndDatesContent;
 
     /**
-     * @ORM\ManyToMany(targetEntity="DescriptionFragment", cascade={"persist", "remove"})
-     * @ORM\JoinTable(name="activity_fragments",
+     * @ORM\ManyToMany(targetEntity="ActivityDescriptionFragment", cascade={"persist", "remove"})
+     * @ORM\JoinTable(name="activity_activityfragments",
      *      joinColumns={@ORM\JoinColumn(name="activity_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="fragment_id", referencedColumnName="id", unique=true)}
      *     )
