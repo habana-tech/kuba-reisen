@@ -8,8 +8,10 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ImageRepository")
@@ -162,6 +164,29 @@ class Image
         $this->base64 = $base64;
 
         return $this;
+    }
+
+
+    /**
+     * @Assert\Callback
+     * @param ExecutionContextInterface $context
+     */
+    public function validate(ExecutionContextInterface $context)
+    {
+        if (! in_array($this->imageFile->getMimeType(), array(
+            'image/jpeg',
+            'image/gif',
+            'image/png',
+            'image/svg+xml',
+            'image/svg',
+
+        ))) {
+            $context
+                ->buildViolation('Wrong file type (jpg,gif,png,svg)')
+                ->atPath('fileName')
+                ->addViolation()
+            ;
+        }
     }
 
 }

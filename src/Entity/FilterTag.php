@@ -9,7 +9,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\FilterTagRepository")
@@ -204,5 +206,24 @@ class FilterTag
     }
 
 
+    /**
+     * @Assert\Callback
+     * @param ExecutionContextInterface $context
+     */
+    public function validate(ExecutionContextInterface $context): void
+    {
+        if (! in_array($this->iconFile->getMimeType(), array(
+            'image/svg+xml',
+            'image/svg',
+            'image/png',
+
+        ))) {
+            $context
+                ->buildViolation('Wrong file type (svg, png)')
+                ->atPath('iconName')
+                ->addViolation()
+            ;
+        }
+    }
 
 }
