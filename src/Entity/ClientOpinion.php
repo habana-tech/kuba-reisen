@@ -46,11 +46,6 @@ class ClientOpinion
      */
     private $activity;
 
-    public function __construct()
-    {
-        $this->activities = new ArrayCollection();
-    }
-
     public function getId(): ?int
     {
         return $this->id;
