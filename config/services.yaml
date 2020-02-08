@@ -9,9 +9,9 @@ parameters:
     app.path.uploaded_icons: ../media/cache/resolve/squared_thumbnail/static/uploads/icons
     knp.doctrine_behaviors.blameable_subscriber.user_entity: App\Entity\User
     mailer.sender.address: 'web@kuba-reisen.de'
-    default_locale: de
+    default_locale: en
     locale: '%default_locale%'
-    app_locales: en|de|es
+    app_locales: en|de
 
     #Dump the Service Container into a Single File, for performance
     container.dumper.inline_factories: true
