@@ -67,6 +67,7 @@
 
             <div class="activities__list__container__initial">
                 {% for activity in activities %}
+
                     {% include 'frontend/components/global/_activity.html.twig'
                         with {'activity' : activity} only %}
                 {% else %}

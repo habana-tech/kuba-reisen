@@ -1,4 +1,7 @@
+{#{{ dump((activity.descriptionFragments | first) ) }}#}
+
 {% for day in activity.descriptionFragments %}
+    {{ dump(day.content) }}
 
     <div class="day {% if loop.index == 1 %} day--active {% endif %}">
         <div class="day__title">
@@ -15,8 +18,8 @@
             <div class="day__content__description">
 
                 <div class="day__content__description__content">
-                    {#TODO: expand text#}
-                    {{ day.content | truncate_html(500, '...') | raw }}
+{#                    TODO:  expand text#}
+                    {{ day.content | raw }}
                 </div>
             </div>
         </div>

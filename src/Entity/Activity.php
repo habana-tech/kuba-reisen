@@ -371,4 +371,9 @@ class Activity implements MachineNameInterface, DescriptionFragmentFieldInterfac
         return $this->name;
     }
 
+    public function getPinnedFilterTag(): ?string {
+        $mainPinned = $this->getFilterTags()->filter(function ($tag){ return $tag->getPinned(); })->first();
+        return $mainPinned;
+    }
+
 }

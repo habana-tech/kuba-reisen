@@ -23,7 +23,6 @@ easy_admin:
             - { entity: 'Interest', label: 'Interest' , icon: 'heart'}
             - { entity: 'FilterTag', label: 'Tags' , icon: 'tags'}
 
-
             - { label: 'Management' }
             - { entity: 'Page', label: 'Pages', icon: 'file-alt' }
             - { entity: 'Region', label: 'Region' , icon: 'puzzle-piece'}
@@ -64,7 +63,7 @@ easy_admin:
 
                     - { type: 'group', label: 'Activity description', icon: 'bookmark', columns: 8 }
                     - { property: 'description', type: 'fos_ckeditor' }
-                    - { type: 'section', label: 'Days for this activity', icon: 'puzzle-piece', help: 'Describe the Feature components for this Activity' }
+                    - { type: 'section', label: 'Describe the days for this activity', icon: 'puzzle-piece', help: 'Describe the Feature components for this Activity' }
                     - { property: 'descriptionFragments', label: '*', help: 'Add many features fragments as you need to describe this activity', type: 'collection',  type_options: { entry_type: 'App\Form\ActivityDescriptionFragmentType', by_reference: true } }
 
                     - { type: 'group', label: 'Gallery', icon: 'images', columns: 4 }

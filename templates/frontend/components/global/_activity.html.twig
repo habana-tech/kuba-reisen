@@ -1,6 +1,13 @@
 <div class="activity">
 
     <div class="activity__image">
+
+        {% if activity.getPinnedFilterTag %}
+            <div class="activity__image__tag">
+                {{ activity.getPinnedFilterTag }}
+            </div>
+        {% endif %}
+
         <a href="{{ path('activity', {'id':activity.id, 'name':activity.machineName}) }}">
             {{ imgTag(activity.image, '(min-width:1000px) 33vw, 90vw') | raw }}
         </a>
