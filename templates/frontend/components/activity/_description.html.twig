@@ -22,9 +22,11 @@
                 <a href="#"><p>Add to favorites</p></a>
             </div>
 
-            <div class="overview_activity__content__favorite_price__price">
-                <span><strong>ab:</strong></span>&nbsp;{{ activity.initPrice }} &euro;
-            </div>
+            {% if activity.initPrice is defined and activity.initPrice %}
+                <div class="overview_activity__content__favorite_price__price">
+                    <span><strong>ab:</strong></span>&nbsp;{{ activity.initPrice }} &euro;
+                </div>
+            {% endif %}
         </div>
 
 {#        <div class="overview_activity__content__price">#}

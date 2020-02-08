@@ -1,11 +1,11 @@
 .gallery{
     position: relative;
-    height: 70vh;
+    height: 55vh;
     width: 100%;
     overflow: hidden;
 
     @include atLarge{
-        height: 85vh;
+        height: 70vh;
     }
 
     &__item{
