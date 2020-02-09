@@ -39,23 +39,17 @@ border: solid 1px #d2cfcf;
   /*overflow: visible;*/
     display: block;
 }
-.field-description_fragment .image_upload_only_img_description .field-vich_image > legend{
+.image_upload_only_img_description > .field-text,
+.image_upload_only_img_description > .field-text > label,
+.image_upload_only_img_description .field-vich_image > legend,
+.image_upload_only_img_description .easyadmin-vich-image > .easyadmin-vich-image-actions{
     display: none;
 }
-.field-description_fragment .image_upload_only_img_description .easyadmin-vich-image > .easyadmin-vich-image-actions
-{
-    display: none;
-}
-.field-description_fragment .image_upload_only_img_description .easyadmin-vich-image > a img
+.image_upload_only_img_description .easyadmin-vich-image > a img
 {
     max-width: 20em;
 }
-
-.field-description_fragment .image_upload_only_img_description > .field-text,
-.field-description_fragment .image_upload_only_img_description > .field-text > label{
-    display: none;
-}
-.field-description_fragment .image_upload_only_img_description > .field-text > .form-widget{
+.image_upload_only_img_description > .field-text > .form-widget{
     display: block;
 }
 .form-group.field-description_fragment{
