@@ -62,6 +62,7 @@
             width: 100%;
             overflow: hidden;
             border-radius: 2px;
+            max-height: 45vh;
 
             @include atLarge{
                 width: 40%;
