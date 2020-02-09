@@ -5,15 +5,15 @@ class Days{
     }
 
     events(){
-        this.daysTitles.forEach((x)=>{x.addEventListener('click',
-            this.expand
-        )});
+        this.daysTitles.forEach((dayTitle)=>{
+            dayTitle.addEventListener('click', this.expand.bind(this));
+        });
     }
 
     expand(e){
         e.preventDefault();
 
-        let dayContent = e.target.parentNode.parentNode.parentNode;
+        let dayContent = e.target.parentNode.parentNode;
         dayContent.classList.toggle('day--active');
         dayContent.style.maxHeight ? dayContent.style.maxHeight = null : dayContent.style.maxHeight = dayContent.scrollHeight + "px";
     }

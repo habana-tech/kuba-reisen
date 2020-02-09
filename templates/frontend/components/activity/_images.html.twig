@@ -4,11 +4,6 @@
             <div class="gallery__item__image">
                 {{ imgTag(activity.image) | raw }}
             </div>
-            <div class="gallery__item__title">
-                <h2>
-                    {{ activity.name }}
-                </h2>
-            </div>
         </div>
 
         {% for image in activity.gallery %}
@@ -16,12 +11,6 @@
                 <div class="gallery__item__image">
                     {{ imgTag(image) | raw }}
                 </div>
-                <div class="gallery__item__title">
-                        <h2>
-                            {{ activity.name }}
-{#                            {{ image.description }}#}
-                        </h2>
-                    </div>
             </div>
         {% endfor %}
     </div>

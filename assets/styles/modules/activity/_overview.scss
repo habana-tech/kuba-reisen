@@ -44,6 +44,11 @@
             width: 100%;
             display: flex;
             justify-content: center;
+
+            & h2{
+                padding: .5em;
+                margin: auto;
+            }
         }
 
         &__favorite_price{

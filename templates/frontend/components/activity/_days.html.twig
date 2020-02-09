@@ -3,7 +3,11 @@
     <div class="day {% if loop.index == 1 %} day--active {% endif %}">
         <div class="day__title">
             <a href="#">
-                <h3>{{ day.name }}</h3>
+                <span class="day__title__icon">
+                    {%  include('frontend/components/_icons/_arrow.html.twig')
+                        with {'rotate': loop.index == 1 ? 'arrow--rotate' : '' } %}
+                </span>
+                 <h3>{{ day.name }}</h3>
             </a>
         </div>
         <div class="day__content">
