@@ -2,7 +2,8 @@ import mapboxgl from 'mapbox-gl';
 
 class SelectPointMap{
 
-    constructor(selector){
+    constructor(selector, inputSelector){
+        console.log(selector);
         mapboxgl.accessToken = 'pk.eyJ1IjoiY2FydG1hbnVzZXIiLCJhIjoiY2p5aHVyNHB2MDNudzNnbnJiaGVtcWJ2OCJ9.2UPDKnSZRNwNR1ITlZQEAA';
         this.map = new mapboxgl.Map({
             container: selector,
@@ -15,7 +16,7 @@ class SelectPointMap{
         });
 
         this.canvas = this.map.getCanvasContainer();
-        this.coordinatesAndZoom = document.querySelector('tbody input[type="text"]');
+        this.coordinatesAndZoom = document.querySelector(`#${inputSelector} input[type="text"]`);
         this.geojson = {
             "type": "FeatureCollection",
             "features": [{
@@ -149,10 +150,6 @@ CKEDITOR.dialog.add( 'MapMarkerDialog', function( editor ) {
                             let container = this._.dialog.parts.dialog.$;
                             let mapId = `selectMap_${this.domId}`;
 
-                            console.log(container);
-                            console.log(container.querySelectorAll(`#${mapId}`));
-                            console.log(container.querySelectorAll(`#${mapId}`).length);
-
                             let prevValue = JSON.parse(element.getAttribute("data-map"));
                             if (prevValue.center.isArray)
                                 this.setValue(prevValue.center.join(', ')+";"+prevValue.zoom);
@@ -165,7 +162,7 @@ CKEDITOR.dialog.add( 'MapMarkerDialog', function( editor ) {
                                 newMap.setAttribute('style', 'height: 50vh; width:100%');
 
                                 container.insertBefore(newMap, container.firstChild);
-                                map = new SelectPointMap(mapId);
+                                map = new SelectPointMap(mapId, this.domId);
                             }
 
                             map.setFiredOnLoad(()=>{

@@ -1,4 +1,3 @@
-console.log('hello');
 CKEDITOR.plugins.add( 'MapMarker', {
     icons: 'MapMarker',
     init: function( editor ) {
