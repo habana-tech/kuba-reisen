@@ -56,7 +56,7 @@ class ActivityMap {
 
         let maxCoords = getBoundingBox(lats, logs);
 
-        this.map.fitBounds(maxCoords, {padding: 100});
+        // this.map.fitBounds(maxCoords, {padding: 100});
     }
 
     setPathAndZoom(){
@@ -80,7 +80,6 @@ class ActivityMap {
 
             let maxCoordsPath = getBoundingBox(lats, logs);
 
-
             this.map.addLayer({
                 'id': 'layer-path',
                 'type': 'line',
@@ -99,7 +98,7 @@ class ActivityMap {
                 }
             });
 
-            this.map.fitBounds(maxCoordsPath, { padding: 50 });
+            // this.map.fitBounds(maxCoordsPath, {padding: 100});
 
         });
     }
