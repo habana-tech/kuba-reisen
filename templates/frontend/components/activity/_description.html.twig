@@ -29,7 +29,7 @@
         {{ include('frontend/components/activity/_tags.html.twig') }}
 
         <div class="overview_activity__content__text">
-            {{ activity.description | striptags('<ul><li><b><p><strong><span>') | truncate_html(500) | raw }}
+            {{ activity.description | striptags('<ul><li><b><p><strong><span>') | truncate_html(350) | raw }}
         </div>
     </div>
 {#    <div class="section__title ">#}
