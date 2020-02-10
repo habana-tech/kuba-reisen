@@ -56,7 +56,7 @@ class ActivityMap {
 
         let maxCoords = getBoundingBox(lats, logs);
 
-        // this.map.fitBounds(maxCoords, {padding: 100});
+        this.map.fitBounds(maxCoords, {padding: 15});
     }
 
     setPathAndZoom(){
@@ -98,7 +98,7 @@ class ActivityMap {
                 }
             });
 
-            // this.map.fitBounds(maxCoordsPath, {padding: 100});
+            this.map.fitBounds(maxCoordsPath, {padding: 15});
 
         });
     }

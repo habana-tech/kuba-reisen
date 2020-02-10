@@ -16,14 +16,13 @@
         &__place{
             width: 100%;
             margin: 1.5em 0;
-            max-height: 75vh;
-            min-height: 50vh;
+            height: 50vh;
             position: relative;
 
             @include atLarge{
                 margin: 3em 0;
                 width: 48%;
-                min-height: auto;
+                height: 40vh;
             }
 
             @include atXLarge{

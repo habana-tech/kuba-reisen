@@ -90,4 +90,94 @@ Encore
     //.addEntry('admin', './assets/js/admin.js')
 ;
 
-module.exports = Encore.getWebpackConfig();
+const firstConfig = Encore.getWebpackConfig();
+firstConfig.name = 'firstConfig';
+
+// reset Encore to build the second config
+Encore.reset();
+
+
+Encore
+    // directory where compiled assets will be stored
+    .setOutputPath('public/static/ckeditor_plugins/')
+    // public path used by the web server to access the output path
+    .setPublicPath('/static/ckeditor_plugins')
+    // only needed for CDN's or sub-directory deploy
+    //.setManifestKeyPrefix('build/')
+
+    /*
+     * ENTRY CONFIG
+     *
+     * Add 1 entry for each "page" of your app
+     * (including one that's included on every page - e.g. "app")
+     *
+     * Each entry will result in one JavaScript file (e.g. app.js)
+     * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
+     */
+
+
+    .addEntry('MapPathDialog', './assets/scripts/ckeditor/MapPathDialog.js')
+    .addEntry('MapMarkerDialog', './assets/scripts/ckeditor/MapMarkerDialog.js')
+    .addEntry('MapMarker', './assets/scripts/ckeditor/MapMarker.js')
+    .addEntry('MapPath', './assets/scripts/ckeditor/MapPath.js')
+
+    // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
+    // .splitEntryChunks()
+
+    // will require an extra script tag for runtime.js
+    // but, you probably want this, unless you're building a single-page app
+    // .enableSingleRuntimeChunk()
+
+    /*
+     * FEATURE CONFIG
+     *
+     * Enable & configure other features below. For a full
+     * list of features, see:
+     * https://symfony.com/doc/current/frontend.html#adding-more-features
+     */
+    .cleanupOutputBeforeBuild()
+    .enableBuildNotifications()
+    .enableSourceMaps(!Encore.isProduction())
+    // enables hashed filenames (e.g. app.abc123.css)
+    // .enableVersioning(Encore.isProduction())
+
+    // enables @babel/preset-env polyfills
+    .configureBabel(() => {}, {
+        useBuiltIns: 'usage',
+        corejs: 3
+    })
+
+    // enables Sass/SCSS support
+    .enableSassLoader((options) => {}, {
+        resolveUrlLoaderOptions: {
+            removeCR: true
+        }
+    })
+
+// uncomment if you use TypeScript
+//.enableTypeScriptLoader()
+
+// Enable Vue loader
+//.enableVueLoader()
+
+// uncomment to get integrity="..." attributes on your script & link tags
+// requires WebpackEncoreBundle 1.4 or higher
+//.enableIntegrityHashes(Encore.isProduction())
+
+// uncomment if you're having problems with a jQuery plugin
+//.autoProvidejQuery()
+
+// uncomment if you use API Platform Admin (composer req api-admin)
+//.enableReactPreset()
+//.addEntry('admin', './assets/js/admin.js')
+;
+
+
+// build the second configuration
+const secondConfig = Encore.getWebpackConfig();
+
+// Set a unique name for the config (needed later!)
+secondConfig.name = 'secondConfig';
+
+// export the final configuration as an array of multiple configurations
+module.exports = [firstConfig, secondConfig];

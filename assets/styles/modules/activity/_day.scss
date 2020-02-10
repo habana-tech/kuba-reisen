@@ -46,6 +46,10 @@
                 position: relative;
             }
 
+            & h3{
+                width: calc( 100% - 2em );
+            }
+
             //&:before {
             //    position: relative;
             //    content: '+';
@@ -82,11 +86,7 @@
             width: 100%;
             overflow: hidden;
             border-radius: 2px;
-            max-height: 45vh;
-
-            & img{
-                height: 45vh;
-            }
+            height: 45vh;
 
             @include atLarge{
                 width: 40%;

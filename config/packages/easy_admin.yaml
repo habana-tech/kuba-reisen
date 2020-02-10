@@ -10,6 +10,8 @@ easy_admin:
             css:
                 - 'assets/bootstrap-select.min.css'
                 - 'assets/easyadmin-customs.css'
+                - 'assets/mapbox.css'
+
         form_theme:
             - 'form/admin_form.html.twig'
             - '@EasyAdmin/form/bootstrap_4.html.twig'
