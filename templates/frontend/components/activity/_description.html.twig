@@ -1,6 +1,3 @@
-
-{# {{ activity.description | raw }}#}
-
 <section class="overview_activity">
     <div class="overview_activity__content">
 
@@ -29,14 +26,10 @@
             {% endif %}
         </div>
 
-{#        <div class="overview_activity__content__price">#}
-{#            ab : {{ activity.initPrice }}#}
-{#        </div>#}
-
         {{ include('frontend/components/activity/_tags.html.twig') }}
 
         <div class="overview_activity__content__text">
-            {{ activity.description | truncate_html(350, '...') | raw }}
+            {{ activity.description | striptags('<ul><li><b><p><strong><span>') | truncate_html(500) | raw }}
         </div>
     </div>
 {#    <div class="section__title ">#}
@@ -44,7 +37,5 @@
 {#
 {#        </div>#}
 {#    </div>#}
-
-
 
 </section>

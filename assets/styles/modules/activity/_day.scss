@@ -85,12 +85,11 @@
             max-height: 45vh;
 
             & img{
-                height: auto;
+                height: 45vh;
             }
 
             @include atLarge{
                 width: 40%;
-                height: 50vh;
             }
         }
 

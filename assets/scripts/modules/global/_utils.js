@@ -16,3 +16,11 @@ export function getCookie(name) {
     }
     return false;
 }
+
+export function getBoundingBox(lats, logs){
+    lats.sort((a,b) => { return a <= b ? -1 : 1 } );
+    logs.sort((a,b) => { return a <= b ? -1 : 1 } );
+
+    return [[lats[0],logs[0]],
+        [lats[lats.length-1], logs[logs.length-1] ]];
+}

@@ -3,9 +3,8 @@
     "bucket_list": {
       "js": [
         "/build/runtime.5e3ab09c.js",
-        "/build/1.241680c8.js",
-        "/build/3.c8329d46.js",
-        "/build/bucket_list.148b522b.js"
+        "/build/1.0c459ea9.js",
+        "/build/bucket_list.aca05a2d.js"
       ],
       "css": [
         "/build/bucket_list.d32fb415.css"
@@ -16,7 +15,7 @@
         "/build/runtime.5e3ab09c.js",
         "/build/0.a287177f.js",
         "/build/2.b86d2b6b.js",
-        "/build/app.c8a5bdc3.js"
+        "/build/app.0debb2e8.js"
       ],
       "css": [
         "/build/app.e247257d.css"
@@ -56,22 +55,22 @@
       "js": [
         "/build/runtime.5e3ab09c.js",
         "/build/0.a287177f.js",
-        "/build/1.241680c8.js",
-        "/build/activities.4d4b3331.js"
+        "/build/1.0c459ea9.js",
+        "/build/activities.ff6cfecc.js"
       ],
       "css": [
-        "/build/activities.e054e719.css"
+        "/build/activities.63a329ac.css"
       ]
     },
     "activity": {
       "js": [
         "/build/runtime.5e3ab09c.js",
         "/build/0.a287177f.js",
-        "/build/1.241680c8.js",
-        "/build/activity.1ac3f4c3.js"
+        "/build/1.0c459ea9.js",
+        "/build/activity.332834eb.js"
       ],
       "css": [
-        "/build/activity.c812b8ba.css"
+        "/build/activity.dc559c41.css"
       ]
     },
     "index": {
