@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Entity\Fields\ImageFieldInterface;
 use App\Entity\Fields\ImageFieldTrait;
+use App\Entity\Fields\MetadataField;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -14,6 +15,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 class ActivityDescriptionFragment implements ImageFieldInterface
 {
     use ImageFieldTrait;
+    use MetadataField;
 
     /**
      * @ORM\Id()
@@ -68,50 +70,12 @@ class ActivityDescriptionFragment implements ImageFieldInterface
 
 
     /**
-     * @ORM\Column(type="json", nullable=true)
-     */
-    private $metadata = [];
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Image", cascade={"persist"} )
      * @ORM\JoinColumn(nullable=true,  onDelete="SET NULL")
      */
     private $image;
 
 
-
-    public function getMetadata(): ?array
-    {
-        return $this->metadata;
-    }
-
-    public function setMetadata(?array $metadata): self
-    {
-        $this->metadata = $metadata;
-
-        return $this;
-    }
-
-    public function __get($name)
-    {
-        if(property_exists($this, $name))
-            return $this->$name;
-        return $this->metadata[$name] ?? null;
-    }
-
-    public function __set($name, $value)
-    {
-        if(property_exists($this, $name))
-            $this->$$name = $value;
-        else
-            $this->metadata[$name] = $value;
-    }
-
-    public function __isset($name)
-    {
-        return (property_exists($this, $name) || isset($this->metadata[$name]));
-
-    }
 
 
 

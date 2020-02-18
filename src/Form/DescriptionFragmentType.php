@@ -33,6 +33,7 @@ class DescriptionFragmentType extends AbstractType
             ->add('imageField', SingleImageFromGalleryType::class, [
             ])
             ->add('content', CKEditorType::class)
+            ->add('fragmentOrder', HiddenType::class)
         ;
     }
 

@@ -37,6 +37,7 @@ class ActivityDescriptionFragmentType extends AbstractType
             ])
             ->add('content', CKEditorType::class)
             ->add('location', TextType::class)
+            ->add('fragmentOrder', HiddenType::class)
         ;
     }
 
