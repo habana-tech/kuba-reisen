@@ -52,14 +52,11 @@ border: solid 1px #d2cfcf;
 .image_upload_only_img_description > .field-text > .form-widget{
     display: block;
 }
-.form-group.field-description_fragment{
-    border-top: dashed 1.5px gray;
-    padding-top: 1em;
-}
 .field-collection-item-action{
     color:red;
 font-weight: bold;
 font-size: 1.5em;
+    max-height: 1em;
 }
 
 .field-description_fragment .reveal-if-active .card{
@@ -67,4 +64,29 @@ font-size: 1.5em;
 }
 .field-collection-item-row {
     border-bottom: solid 1px gray;
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+/*.field-collection-item-row > .form-widget-compound > div::before{*/
+
+/*    content: "➕ Add one item here!";*/
+/*    border: solid 1px gray;*/
+/*    display: block;*/
+/*    margin-top: -4em;*/
+/*    cursor: pointer;*/
+/*    position: absolute;*/
+/*    background: #14a1e6;*/
+/*    padding: 5px;*/
+/*    border-radius: 5px;*/
+/*    color: #fff;*/
+/*}*/
+
+/*.field-collection-item-row::before {*/
+
+/*}*/
+
+.form-group.field-activity_description_fragment
+{
+    display: flex;
+flex-direction: column-reverse;
 }

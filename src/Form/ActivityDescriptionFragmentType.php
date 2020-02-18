@@ -17,7 +17,7 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ActivityDescriptionFragmentType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('image', ImageUploadType::class, [
