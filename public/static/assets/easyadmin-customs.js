@@ -10,7 +10,8 @@ function insertFragment(beforeElement)
     let currentFragment = beforeElement.target.parentNode;
     let fragmentCollection = currentFragment.parentNode;
     let newFragment = currentFragment.cloneNode(true);
-    newFragment.classList.add('swing-in-top-fwd');
+    //animate the new fragment on show
+    newFragment.classList.add('scale-in-center');
     currentFragment.before(newFragment);
     console.log(newFragment);
     let newFragmentInputs = newFragment.querySelectorAll('input', 'textarea');
