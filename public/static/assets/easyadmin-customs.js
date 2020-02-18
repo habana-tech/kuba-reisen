@@ -10,6 +10,7 @@ function insertFragment(beforeElement)
     let currentFragment = beforeElement.target.parentNode;
     let fragmentCollection = currentFragment.parentNode;
     let newFragment = currentFragment.cloneNode(true);
+    newFragment.classList.add('swing-in-top-fwd');
     currentFragment.before(newFragment);
     console.log(newFragment);
     let newFragmentInputs = newFragment.querySelectorAll('input', 'textarea');
@@ -53,7 +54,6 @@ function addFragmentBtnToRows()
                 btnNode.addEventListener('click', insertFragment);
             }
             item.setAttribute('tabindex','0');
-
         }
     );
 }
