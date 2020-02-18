@@ -35,7 +35,7 @@ class MultipleImageFromGalleryType extends AbstractType
                         ->orderBy('u.username', 'ASC');
                 },
                 'choices' => [0,1],
-                'choice_attr' => function($choice, $key, $value) {
+                'choice_attr' => static function ($choice, $key, $value) {
                     return [
                         'data-content'=> "<img style='width: 50px' src=' /media/cache/resolve/min_width_40/static/uploads/images/".$choice->getimageName()."'> ". $choice->getDescription(),
                     ];
