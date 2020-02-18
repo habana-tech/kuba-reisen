@@ -85,8 +85,20 @@ font-size: 1.5em;
 
 /*}*/
 
-.form-group.field-activity_description_fragment
+.form-group.field-activity_description_fragment,.form-group.field-description_fragment
 {
     display: flex;
 flex-direction: column-reverse;
+}
+.field-image_upload > .add_element_btn,
+.field-description_fragment > .add_element_btn,
+.field-activity_description_fragment > .add_element_btn{
+    display: none;
+}
+.field-description_fragment:focus > .add_element_btn,
+.field-description_fragment:hover > .add_element_btn,
+.field-activity_description_fragment:focus > .add_element_btn,
+.field-activity_description_fragment:hover > .add_element_btn
+{
+    display: block;
 }

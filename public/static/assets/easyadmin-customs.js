@@ -52,6 +52,7 @@ function addFragmentBtnToRows()
                 item.appendChild(btnNode);
                 btnNode.addEventListener('click', insertFragment);
             }
+            item.setAttribute('tabindex','0');
 
         }
     );
