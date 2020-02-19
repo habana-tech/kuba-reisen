@@ -30,7 +30,7 @@ function insertFragment(beforeElement)
 
     $(fragmentCollection).trigger('easyadmin.collection.item-added');
     //animate the new fragment on show
-    newFragment.classList.add('scale-in-center');
+    newFragment.classList.add('slide-in-bottom');
 
 
     let currentFragmentScripts = newFragment.querySelectorAll('script');
