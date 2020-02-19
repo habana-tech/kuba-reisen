@@ -15,7 +15,111 @@
 
 	<!-- Custom stlylesheet -->
 	<style>
-		{{ source('error-style.css') }}
+		* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+#notfound {
+  position: relative;
+  height: 100vh;
+}
+
+#notfound .notfound {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.notfound {
+  max-width: 520px;
+  width: 100%;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.notfound .notfound-404 {
+  position: relative;
+  height: 240px;
+}
+
+.notfound .notfound-404 h1 {
+  font-family: 'Montserrat', sans-serif;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  font-size: 252px;
+  font-weight: 900;
+  margin: 0px;
+  color: #262626;
+  text-transform: uppercase;
+  letter-spacing: -40px;
+  margin-left: -20px;
+}
+
+.notfound .notfound-404 h1>span {
+  text-shadow: -8px 0px 0px #fff;
+}
+
+.notfound .notfound-404 h3 {
+  font-family: 'Cabin', sans-serif;
+  position: relative;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #262626;
+  margin: 0px;
+  letter-spacing: 3px;
+  padding-left: 6px;
+}
+
+.notfound h2, a {
+  font-family: 'Cabin', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: #000;
+  margin-top: 0px;
+  margin-bottom: 25px;
+}
+
+@media only screen and (max-width: 767px) {
+  .notfound .notfound-404 {
+    height: 200px;
+  }
+  .notfound .notfound-404 h1 {
+    font-size: 200px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .notfound .notfound-404 {
+    height: 162px;
+  }
+  .notfound .notfound-404 h1 {
+    font-size: 162px;
+    height: 150px;
+    line-height: 162px;
+  }
+  .notfound h2, a {
+    font-size: 16px;
+  }
+}
+.notfound a{
+  text-underline: none;
+  text-decoration: none;
+}
 	</style>
 
 </head>
@@ -24,14 +128,26 @@
 
 	<div id="notfound">
 		<div class="notfound">
+				<img src="{{ asset('/img/logo.svg') }}" alt="" style="height: 4em;margin: 2em;">
 			{% block body %}
+
 			<div class="notfound-404">
+
+				<style>
+
+	   {% if status_code - 400 < 100 %}
+			.notfound .notfound-404 h1 > span { text-shadow: -8px 0px 0px #f39720; }
+		{% elseif status_code - 500 < 100  %}
+			.notfound .notfound-404 h1 > span { text-shadow: -8px 0px 0px #f04e23; }
+		{% endif %}
+
+				</style>
 
 				<h3>Oops! {{ status_text  }}</h3>
 				<h1><span>{{status_code | slice(0,1)}}</span><span>{{status_code | slice(1,1)}}</span><span>{{status_code | slice(2,1)}}</span></h1>
 			</div>
 			<h2>we are sorry, but the page you requested was {{ status_text  }}</h2>
-				<a href="{{ path('homepage') }}" style="text-transform: none;">Click here to return to the homepage</a>
+				<a href="{{ path('frontend') }}" style="text-transform: none;">Click here to return to the homepage</a>
 			{% endblock %}
 		</div>
 	</div>
