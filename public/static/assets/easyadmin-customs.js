@@ -9,25 +9,44 @@ function insertFragment(beforeElement)
 {
     let currentFragment = beforeElement.target.parentNode;
     let fragmentCollection = currentFragment.parentNode;
-    let newFragment = currentFragment.cloneNode(true);
+
+    let numItems = fragmentCollection.childElementCount;
+    let newItem = fragmentCollection.attributes.getNamedItem('data-prototype')
+        .value.replace(/__name__/g,  numItems);
+
+    // Increment the counter and store it in the collection
+    let count = document.createAttribute("data-count");
+    count.value = ++numItems;
+    fragmentCollection.attributes.setNamedItem(count);
+
+   // let newFragment = currentFragment.cloneNode(true);
+
+    let newItemContainer = document.createElement('div');
+    newItemContainer.innerHTML = newItem;
+
+    let newFragment = newItemContainer.children[0];
+    console.log(newFragment);
+    currentFragment.before(newFragment);
+
+    $(fragmentCollection).trigger('easyadmin.collection.item-added');
     //animate the new fragment on show
     newFragment.classList.add('scale-in-center');
-    currentFragment.before(newFragment);
-    console.log(newFragment);
-    let newFragmentInputs = newFragment.querySelectorAll('input', 'textarea');
-    newFragmentInputs.forEach(function (item) {
-        console.log(item);
-        item.value = null;
+
+
+    let currentFragmentScripts = newFragment.querySelectorAll('script');
+    currentFragmentScripts.forEach(function (script) {
+        if(script.src != null) {
+            eval(script.innerText);
+        }
+
     });
 
-    let fragments = fragmentCollection.querySelectorAll('div.form-group.field-activity_description_fragment .field-collection-item-row');
+    let fragments = fragmentCollection.querySelectorAll('.field-collection-item-row');
 
     fragments.forEach( function(element, index){
-        element.innerHTML = element.innerHTML
-            .replace(/descriptionFragments_[0-9]+/g, 'descriptionFragments_'+index)
-            .replace(/descriptionFragments\[[0-9]+/g, 'descriptionFragments['+index)
-            .replace(/descriptionFragments]\[[0-9]+/g, 'descriptionFragments]['+index)
-
+        let orderInput = element.querySelector('input[data-role=fragmentOrder');
+        orderInput.value = index;
+        console.log(orderInput);
 });
 
 

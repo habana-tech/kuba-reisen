@@ -22,7 +22,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class DynamicPage implements MachineNameInterface, GalleryFieldInterface, DescriptionFragmentFieldInterface, ImageFieldInterface
 {
-    use MachineNameTrait, GalleryFieldTrait, DescriptionFragmentFieldTrait, ImageFieldTrait;
+    use MachineNameTrait;
+    use GalleryFieldTrait;
+    use DescriptionFragmentFieldTrait;
+    use ImageFieldTrait;
 
     /**
      * @ORM\Id()

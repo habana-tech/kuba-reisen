@@ -36,29 +36,49 @@ trait DescriptionFragmentFieldTrait
      */
     public function getDescriptionFragments():? Collection
     {
-        return $this->descriptionFragments;
+         return self::orderedDescriptionFragments($this->descriptionFragments);
+
     }
 
-    public function addDescriptionFragment(DescriptionFragment $descriptionFragment): self
+    public function addDescriptionFragment($descriptionFragment): self
     {
         if (!$this->descriptionFragments->contains($descriptionFragment)) {
             $this->descriptionFragments[] = $descriptionFragment;
-            $descriptionFragment->setDestination($this);
+//            $descriptionFragment->setDestination($this);
         }
 
         return $this;
     }
 
-    public function removeDescriptionFragment(DescriptionFragment $descriptionFragment): self
+    public function removeDescriptionFragment($descriptionFragment): self
     {
         if ($this->descriptionFragments->contains($descriptionFragment)) {
             $this->descriptionFragments->removeElement($descriptionFragment);
-            // set the owning side to null (unless already changed)
-            if ($descriptionFragment->getDestination() === $this) {
-                $descriptionFragment->setDestination(null);
-            }
+//            // set the owning side to null (unless already changed)
+//            if ($descriptionFragment->getDestination() === $this) {
+//                $descriptionFragment->setDestination(null);
+//            }
         }
 
         return $this;
     }
+
+    public static function orderedDescriptionFragments($collection)
+    {
+
+        // get a new ArrayIterator
+        $iterator = $collection->getIterator();
+
+        // define ordering closure, using preferred comparison method/field
+        $iterator->uasort(function ($first, $second) {
+            return (int)$first->getMetadata()['fragmentOrder'] > (int)$second->getMetadata()['fragmentOrder'] ? 1 : -1;
+        });
+
+        // return the ordered iterator
+
+        // pass sorted array to a new ArrayCollection.
+        return new ArrayCollection(iterator_to_array($iterator));
+
+    }
+
 }
