@@ -24,9 +24,9 @@ framework:
         packages:
             img:
                 base_path: /static/images/
-
-    templating:
-        engines: ['twig', 'php']
+#
+#    templating:
+#        engines: ['twig', 'php']
 
 parameters:
     env(MEDIA_STATIC_HOST_URL): http://static.kuba-reisen.test
