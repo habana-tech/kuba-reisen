@@ -16,7 +16,9 @@ trait MetadataField
 
     public function getMetadata(): ?array
     {
-        return $this->metadata;
+        if(is_array($this->metadata))
+            return $this->metadata;
+        else return [];
     }
 
     public function setMetadata(?array $metadata): self
