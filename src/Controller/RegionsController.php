@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Utils\Utils;
 use App\Entity\Region;
 use App\Repository\RegionRepository;
 use App\Repository\DynamicPageRepository;
@@ -84,11 +83,11 @@ class RegionsController extends AbstractController
 
     public function regionFooter(FilterTagRepository $filterTagRepository,
                                  DestinationRepository $destinationRepository,
-                                 Utils $utils)
+                                 DynamicPageRepository $dynamicPageRepository)
     {
 
         return $this->render('frontend/components/global/_footer.html.twig', [
-            'staticPagesUrl'=>$utils->getStaticPagesUrl(),
+            'staticPagesUrl'=>$dynamicPageRepository->getStaticPagesUrl(),
             'destinations'=>$destinationRepository->findAll(),
             'filterTagsPinned'=>$filterTagRepository->findBy(['pinned'=>true]),
         ]);
@@ -96,21 +95,21 @@ class RegionsController extends AbstractController
 
     public function regionHeader(DestinationRepository $destinationRepository,
                                 FilterTagRepository $filterTagRepository,
-                                 Utils $utils): Response
+                                DynamicPageRepository $dynamicPageRepository): Response
     {
 
         return $this->render('frontend/components/global/_header.html.twig', [
-            'staticPagesUrl'=>$utils->getStaticPagesUrl(),
+            'staticPagesUrl'=>$dynamicPageRepository->getStaticPagesUrl(),
             'destinations'=>$destinationRepository->findAll(),
             'filterTagsPinned'=>$filterTagRepository->findBy(['pinned'=>true]),
         ]);
     }
 
-    public function regionBreadcrumbs($items, Utils $utils){
+    public function regionBreadcrumbs($items, DynamicPageRepository $dynamicPageRepository){
 
         return $this->render('frontend/components/global/_breadcrumbs.html.twig', [
             'items' => $items,
-            'staticPagesUrl'=>$utils->getStaticPagesUrl(),
+            'staticPagesUrl'=>$dynamicPageRepository->getStaticPagesUrl(),
         ]);
     }
 

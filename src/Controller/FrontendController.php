@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Destination;
 use App\Entity\Activity;
-use App\Entity\DynamicPage;
 use App\Entity\FilterTag;
 use App\Repository\ActivityRepository;
 use App\Repository\DestinationRepository;
@@ -14,17 +13,11 @@ use App\Repository\ImageRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\Proxy;
-use Proxies\__CG__\App\Entity\Image;
-use ProxyManager\Proxy\ProxyInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\Common\Collections\ArrayCollection;
 use Twig\Error\LoaderError;
-
-use App\Utils\Utils;
 
 class FrontendController extends AbstractController
 {
@@ -34,24 +27,23 @@ class FrontendController extends AbstractController
      * @param DestinationRepository $destinationRepository
      * @param FilterTagRepository $filterTagRepository
      * @param ImageRepository $imageRepository
-     * @param Utils $utils
      * @return Response
      */
     public function index(DynamicPageRepository $dynamicPageRepository,
                           DestinationRepository $destinationRepository,
                           FilterTagRepository $filterTagRepository,
-                          ImageRepository $imageRepository,
-                          Utils $utils): Response
+                          ImageRepository $imageRepository): Response
     {
 
         $page = $dynamicPageRepository->findOneBy(['machineName'=>'index']);
 
-        if(!$page)
+        if(!$page) {
             throw new NotFoundHttpException();
+        }
 
         return $this->render('frontend/index.html.twig', [
-            'staticPagesUrl'=>$utils->getStaticPagesUrl(),
             'page' => $page,
+            'staticPagesUrl'=>$dynamicPageRepository->getStaticPagesUrl(),
             'destinations' => $destinationRepository->findAll(),
             'filterTags' => $filterTagRepository->findBy(['pinned'=>true]),
             'randomImages' => $imageRepository->findBy([], null, 14),
@@ -74,9 +66,11 @@ class FrontendController extends AbstractController
 
         $activities = $activityRepository->findByDestination($destination);
 
-        foreach ($activities as &$item)
-            if($item->getImage() && $item->getImage() instanceof Proxy)
+        foreach ($activities as &$item) {
+            if ($item->getImage() && $item->getImage() instanceof Proxy) {
                 $item->getImage()->__load();
+            }
+        }
 
         return $this->render('frontend/destination.html.twig', [
             'destination' => $destination,
@@ -92,7 +86,7 @@ class FrontendController extends AbstractController
      * @return Response
      */
 
-    public function activity(Activity $activity, ActivityRepository $activityRepository, FilterTagRepository $filterTagRepository)
+    public function activity(Activity $activity, ActivityRepository $activityRepository, FilterTagRepository $filterTagRepository): Response
     {
         if(!$activity) {
             throw new NotFoundHttpException();
@@ -126,10 +120,12 @@ class FrontendController extends AbstractController
         $name = urldecode($name);
         $page = $dynamicPageRepository->findOneBy(['name' => $name]);
 
-        if(!$page)
+        if(!$page) {
             throw new NotFoundHttpException();
-        if(!$page->getTemplate()->getPath())
-            throw  new LoaderError('Page: "'.$page->getName().'" not contains a valid PageTemplate or it is undefined. Edit the page and add a PageTemplate using the form.');
+        }
+        if(!$page->getTemplate()->getPath()) {
+            throw  new LoaderError('Page: "' . $page->getName() . '" not contains a valid PageTemplate or it is undefined. Edit the page and add a PageTemplate using the form.');
+        }
 
         return $this->render($page->getTemplate()->getFullPath(), [
             'page' => $page,
