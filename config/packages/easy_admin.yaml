@@ -64,6 +64,7 @@ easy_admin:
                     - { property: 'priority' , label: 'Priority on results' }
 
                     - { type: 'group', label: 'Activity description', icon: 'bookmark', columns: 8 }
+                    - { property: 'itineraryTitle', type: 'text' }
                     - { property: 'description', type: 'fos_ckeditor' }
                     - { type: 'section', label: 'Describe the days for this activity', icon: 'puzzle-piece', help: 'Describe the Feature components for this Activity' }
                     - { property: 'descriptionFragments', label: '*', help: 'Add many features fragments as you need to describe this activity', type: 'collection',  type_options: { entry_type: 'App\Form\ActivityDescriptionFragmentType', by_reference: true } }
@@ -75,7 +76,7 @@ easy_admin:
                     - { property: 'gallery', label: '-', type: 'collection',  type_options: { entry_type: 'App\Form\ImageUploadType', by_reference: true,  attr: {'class': 'gallery_collection'}} }
 
                     - { type: 'group', label: 'Activity details', icon: 'book-open', columns: 8 }
-#                    - { property: 'itineraryTitle', type: 'text' }
+
 #                    - { property: 'itineraryContent', type: 'fos_ckeditor' , help: 'This content is now relocated as Fragments and will not be shown to users. It will be removed once all the content here are migrated' }
                     - { property: 'includedSectionTitle', type: 'text' }
                     - { property: 'includedTitle', type: 'text' }
