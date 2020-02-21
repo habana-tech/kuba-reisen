@@ -55,7 +55,6 @@ class PageTemplateSelector
         {
             $templateList[$template->getName()] = $template->getPath();
         }
-        dump($templateList);
         return $templateList;
     }
 
