@@ -1,15 +1,5 @@
 {
   "entrypoints": {
-    "bucket_list": {
-      "js": [
-        "/build/runtime.5e3ab09c.js",
-        "/build/1.0c459ea9.js",
-        "/build/bucket_list.aca05a2d.js"
-      ],
-      "css": [
-        "/build/bucket_list.d32fb415.css"
-      ]
-    },
     "app": {
       "js": [
         "/build/runtime.5e3ab09c.js",
@@ -19,6 +9,16 @@
       ],
       "css": [
         "/build/app.37add0de.css"
+      ]
+    },
+    "index": {
+      "js": [
+        "/build/runtime.5e3ab09c.js",
+        "/build/0.a287177f.js",
+        "/build/index.24108400.js"
+      ],
+      "css": [
+        "/build/index.282e8ba1.css"
       ]
     },
     "destination": {
@@ -34,7 +34,7 @@
     "faq": {
       "js": [
         "/build/runtime.5e3ab09c.js",
-        "/build/faq.22d79666.js"
+        "/build/faq.36d12865.js"
       ],
       "css": [
         "/build/faq.a3a4f1d9.css"
@@ -45,7 +45,7 @@
         "/build/runtime.5e3ab09c.js",
         "/build/0.a287177f.js",
         "/build/2.b86d2b6b.js",
-        "/build/contact.da8f3dff.js"
+        "/build/contact.d9f59d62.js"
       ],
       "css": [
         "/build/contact.13b1ca7a.css"
@@ -56,7 +56,7 @@
         "/build/runtime.5e3ab09c.js",
         "/build/0.a287177f.js",
         "/build/1.0c459ea9.js",
-        "/build/activities.ff6cfecc.js"
+        "/build/activities.16c87ecc.js"
       ],
       "css": [
         "/build/activities.60fc39e1.css"
@@ -67,20 +67,20 @@
         "/build/runtime.5e3ab09c.js",
         "/build/0.a287177f.js",
         "/build/1.0c459ea9.js",
-        "/build/activity.9af9804c.js"
+        "/build/activity.efda8013.js"
       ],
       "css": [
         "/build/activity.aab398d0.css"
       ]
     },
-    "index": {
+    "bucket_list": {
       "js": [
         "/build/runtime.5e3ab09c.js",
-        "/build/0.a287177f.js",
-        "/build/index.962fa8a4.js"
+        "/build/1.0c459ea9.js",
+        "/build/bucket_list.aca05a2d.js"
       ],
       "css": [
-        "/build/index.282e8ba1.css"
+        "/build/bucket_list.d32fb415.css"
       ]
     },
     "about_us": {
