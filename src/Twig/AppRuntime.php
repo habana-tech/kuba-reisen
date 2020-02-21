@@ -28,7 +28,7 @@ class AppRuntime implements RuntimeExtensionInterface
      * @param array $sizes, the sizes, depends on the filters 'min_width_XXX' defined on liip_image config file
      * @return string|FilterTag[]
      */
-    public function filterSrcset($imagePath, $sizes = [1920, 1200, 1000, 900, 800, 600])
+    public function filterSrcset($imagePath, $sizes = [1920, 1366, 1200, 1000, 900, 800, 600])
     {
         if(strpos($imagePath, ';base64,'))
             return;
