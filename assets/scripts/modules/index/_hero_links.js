@@ -9,7 +9,11 @@ class HeroLinks {
     }
 
     expand(e){
-        e.preventDefault();
+        if(e.target.href === '#') //only prevent Default if the link is an list header
+        {
+             e.preventDefault();
+        }
+
         let activeLink = e.target;
 
         this.links.forEach((link)=>{

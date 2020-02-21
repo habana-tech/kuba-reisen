@@ -12,6 +12,8 @@ class ActivityMap {
         });
 
         this.map.scrollZoom.disable();
+        this.map.addControl(new mapboxgl.NavigationControl());
+        this.map.zoom = 10;
 
         this.points = document.querySelectorAll('.description-itinerary__content span[data-map]');
         this.paths = document.querySelectorAll('.description-itinerary__content span[data-path-map]');
@@ -28,6 +30,11 @@ class ActivityMap {
 
         if (this.points.length === 0)
             return;
+        if(this.points.length === 1)
+        {
+            this.map.zoom = 10;
+            return;
+        }
 
         let lats = [];
         let logs = [];
