@@ -1,0 +1,24 @@
+{
+  "entrypoints": {
+    "MapPathDialog": {
+      "js": [
+        "/static/ckeditor_plugins/MapPathDialog.js"
+      ]
+    },
+    "MapMarkerDialog": {
+      "js": [
+        "/static/ckeditor_plugins/MapMarkerDialog.js"
+      ]
+    },
+    "MapMarker": {
+      "js": [
+        "/static/ckeditor_plugins/MapMarker.js"
+      ]
+    },
+    "MapPath": {
+      "js": [
+        "/static/ckeditor_plugins/MapPath.js"
+      ]
+    }
+  }
+}

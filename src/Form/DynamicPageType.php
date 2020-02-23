@@ -15,15 +15,9 @@ class DynamicPageType extends AbstractType
         $builder
             ->add('pageName')
 //            ->add('pageTitle')
-            ->add('pageTemplate')
+            ->add('pageTemplate', PageTemplateSelectorType::class)
 //            ->add('pageContent')
-            ->add('language',  ChoiceType::class, ['choices' => [
-                'de' => 'de',
-                'en' => 'en',
-                'es' => 'es',
-            ]])
 //            ->add('translation_from')
-            ->add('modified_by')
         ;
     }
 

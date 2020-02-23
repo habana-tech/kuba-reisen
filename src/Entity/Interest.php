@@ -2,6 +2,12 @@
 
 namespace App\Entity;
 
+use App\Entity\Fields\ActiveFieldTrait;
+use App\Entity\Fields\FilterTagsTrait;
+use App\Entity\Fields\ImageFieldTrait;
+use App\Entity\Fields\MachineNameInterface;
+use App\Entity\Fields\MachineNameTrait;
+use App\Entity\Fields\PriorityFieldTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -13,22 +19,16 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @Vich\Uploadable
  * @ORM\HasLifecycleCallbacks
  */
-class Interest
+class Interest implements MachineNameInterface
 {
-    use LanguageFieldTrait;
-    use ImageFieldTrait;
-    use UserControlFieldsTrait;
+    use ImageFieldTrait, ActiveFieldTrait, PriorityFieldTrait, MachineNameTrait;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
     private $id;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Interest")
-     */
-    private $translation_from;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -40,16 +40,10 @@ class Interest
      */
     private $description;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\FilterTag", mappedBy="interests")
-     */
-    private $filterTags;
 
     public function __construct()
     {
-        $this->filterTags = new ArrayCollection();
-        $this->image = new EmbeddedFile();
-        $this->language = 'de';
+        $this->active = true;
     }
 
     public function getId(): ?int
@@ -81,38 +75,13 @@ class Interest
         return $this;
     }
 
-    public function __toString()
+    public function __toString():string
     {
         return $this->title;
     }
 
-    /**
-     * @return Collection|FilterTag[]
-     */
-    public function getFilterTags(): Collection
+    public function getNameFieldValue(): string
     {
-        return $this->filterTags;
+        return $this->title;
     }
-
-    public function addFilterTag(FilterTag $filterTag): self
-    {
-        if (!$this->filterTags->contains($filterTag)) {
-            $this->filterTags[] = $filterTag;
-            $filterTag->addInterest($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFilterTag(FilterTag $filterTag): self
-    {
-        if ($this->filterTags->contains($filterTag)) {
-            $this->filterTags->removeElement($filterTag);
-            $filterTag->removeInterest($this);
-        }
-
-        return $this;
-    }
-
-
 }

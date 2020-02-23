@@ -7,6 +7,7 @@ CKEDITOR.plugins.add( 'MapPath', {
         editor.ui.addButton( 'MapPath', {
             label: 'Insert MapPath',
             command: 'MapPath',
+            icon: this.path + '../ckeditor_icons/MapPath.png',
             toolbar: 'insert'
         });
 

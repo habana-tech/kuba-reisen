@@ -1,18 +1,41 @@
-<section class="section description-text-map">
-    <div class="section__title ">
-        <div class="section__title__highlight section__title__highlight--green">
-            <h2>{{ activity.name }}</h2>
-        </div>
-    </div>
+<section class="overview_activity">
+    <div class="overview_activity__content">
 
-    <div class="description-text-map__content">
-        <div class="description-text-map__content__map">
+        <div class="overview_activity__content__map">
             <div id="map"></div>
         </div>
 
-        <div class="description-text-map__content__text">
-            {{ activity.description | raw }}
+        <div class="overview_activity__content__name">
+            <h2>{{ activity.name }}</h2>
+        </div>
+
+
+        <div class="overview_activity__content__favorite_price">
+
+            <div class="overview_activity__content__favorite_price__favorite">
+                <div class="overview_activity__content__favorite_price__favorite__button" data-activity_id="{{ activity.id }}">
+                    {{ include('/frontend/components/_icons/_heart.html.twig') }}
+                </div>
+                <a href="#"><p>Add to favorites</p></a>
+            </div>
+
+            {% if activity.initPrice is defined and activity.initPrice %}
+                <div class="overview_activity__content__favorite_price__price">
+                    <span><strong>ab:</strong></span>&nbsp;{{ activity.initPrice }} &euro;
+                </div>
+            {% endif %}
+        </div>
+
+        {{ include('frontend/components/activity/_tags.html.twig') }}
+
+        <div class="overview_activity__content__text">
+            {{ activity.description | striptags('<ul><li><b><p><strong><span>') | truncate_html(350) | raw }}
         </div>
     </div>
+{#    <div class="section__title ">#}
+{#        <div class="section__title__highlight section__title__highlight--green">#}
+{#
+{#        </div>#}
+{#    </div>#}
 
 </section>

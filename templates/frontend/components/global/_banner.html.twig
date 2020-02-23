@@ -1,0 +1,26 @@
+<section class="section banner">
+
+    <div class="banner__image">
+        {{  imgTag(banner.image,'100vw') | raw }}
+    </div>
+
+    <div class="banner__content">
+        <div class="banner__content__title">
+            <h2>{{ banner.title}}</h2>
+
+            {%  if banner.description %}
+                <h3>
+                    {{ banner.description | raw }}
+                </h3>
+            {% endif %}
+
+        </div>
+
+        {% if banner.link and banner.linkText %}
+            <a class="btn" href="{{ banner.link }}">
+                {{ banner.linkText }}
+            </a>
+        {% endif %}
+    </div>
+
+</section>

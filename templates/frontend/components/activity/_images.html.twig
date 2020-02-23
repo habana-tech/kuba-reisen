@@ -1,49 +1,17 @@
-
-{% if not is_granted('ROLE_EDITOR') or app.request.get('preview') is not null %}
-    <section class="section">
-        <div class="gallery">
-            {% for i in 1..activity.featuresImagesCount %}
-                <div class="gallery__item">
-                    <div class="gallery__item__image">
-                        {{ imgTagContent(
-                            page.ElementAttr('activity_images_img'~i, 'src', asset('img/header_pic.jpg')),
-                            page.ElementAttr('activity_images_img'~i, 'srcb64', asset('img/header_pic.jpg')),
-                            '',
-                            '100vw',
-                            'data-grape_id="activity_images_img'~i~'"') | raw }}
-                    </div>
-                    <div class="gallery__item__title">
-                            <h2 data-grape_id="activity_images_img{{i}}_desc" data-grape_format="txt">
-                                {{ page.ElementContent('activity_images_img'~i~'_desc') | striptags }}
-                            </h2>
-                        </div>
-                </div>
-            {% endfor %}
-        </div>
-    </section>
-{% else %}
-    <div class="editor__imagen_list">
-
-        {% for i in 1..activity.featuresImagesCount %}
-            <div class="editor__imagen_list__item">
-            <img data-grape_id="activity_images_img{{ i }}"
-                 src="{{ page.ElementAttr('activity_images_img'~i, 'src', asset('img/header_pic.jpg')) }}"
-                 alt="">
-            <div class="slide__title-wrap">
-                {#{{ dump(activity.getElement('activity_images_img'~i~'_desc'))  }}#}
-                {% if activity.getElement('activity_images_img'~i~'_desc') is null %}
-                    <h1 class="slide__subtitle" data-grape_id="activity_images_img{{ i }}_desc" data-grape_format="txt">
-                        Lorem ipsum dolor sit amet, consectetur
-                    </h1>
-                {% else %}
-                    <h1>
-                        {{ activity.getElement('activity_images_img'~i~'_desc') | striptags }}
-                    </h1>
-                {% endif %}
+<section class="section">
+    <div class="gallery">
+        <div class="gallery__item">
+            <div class="gallery__item__image">
+                {{ imgTag(activity.image) | raw }}
             </div>
         </div>
+
+        {% for image in activity.gallery %}
+            <div class="gallery__item">
+                <div class="gallery__item__image">
+                    {{ imgTag(image) | raw }}
+                </div>
+            </div>
         {% endfor %}
-
     </div>
-{% endif %}
-
+</section>

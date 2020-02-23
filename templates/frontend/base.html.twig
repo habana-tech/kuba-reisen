@@ -1,6 +1,3 @@
-{% if not is_granted('ROLE_EDITOR') or app.request.get('preview') %}
-    <!doctype html>
-{% endif %}
 <html lang="de">
     <head>
         <title>{% block title %}{% endblock %} | Kuba Reisen </title>
@@ -8,102 +5,33 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="{% block metadescription %}Kuba-reisen: get your next travel to Cuba{% endblock %}">
         <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina|Open+Sans" rel="stylesheet">
-        <!-- Icons -->
-        {#<link rel="shortcut icon" type="image/ico" href="{{ asset('dist/favicon.ico') }}">#}
-        <link rel="shortcut icon" type="image/png" href="{{ asset('favicon.png') }}">
+        <link rel="shortcut icon" type="image/png" href="{{ asset('/img/favicon.png') }}">
 
-        <!-- Stylesheet -->
-
-        {% if is_granted('ROLE_EDITOR') and not app.request.get('preview') %}
-            <link rel="stylesheet" href="{{ asset('styles/kraken_backend.css') }}" type="text/css">
-            <link rel="stylesheet" href="{{ asset('styles/all_backend_css.css') }}" type="text/css">
-        {% else %}
-            <link rel="stylesheet" href="{{ asset('styles/kraken.css') }}" type="text/css">
-            <link rel="stylesheet" href="{{ asset('styles/styles.css') }}" type="text/css">
-        {% endif %}
+        {{ encore_entry_link_tags('app') }}
 
         {% block stylesheets %}{% endblock %}
 
         {% block inline_stylesheets %}{% endblock %}
-
     </head>
 
-    {% set class = '' %}
+    <body {% if app.request.get('_route') == 'frontend' %}class="loading"{% endif %}>
 
-    {% if is_granted('ROLE_EDITOR') and not app.request.get('preview') %}
-        {% set class = 'admin-logged' %}
-    {% else %}
-        {% if app.request.get('_route') == 'frontend' %}
-{#            {% set class = class~' loading' %}#}
-{#            TODO: recordar que va el loading#}
-            {% set class = class~' ' %}
-        {% endif %}
-    {% endif %}
+        {{  include('frontend/components/global/_cookie.html.twig') }}
 
-    <body class="{{ class }}">
-
-        {% if is_granted('ROLE_EDITOR') and not app.request.get('preview') %}
-            {{ include('backend/adminbar/admin_bar.html.twig') }}
-        {% endif %}
-
-        {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null %}
-            <div id="grapes-editable">
-        {% endif %}
-
-        {{ render(controller('App\\Controller\\RegionsController::regionHeader'), {'preview':app.request.get('preview')} ) }}
+        {{ render(controller('App\\Controller\\RegionsController::regionHeader')) }}
 
         {% block body %}{% endblock %}
 
-        {% if not is_granted('ROLE_EDITOR') or app.request.get('preview') %}
-            {% if app.request.attributes.get('_route') != 'contact' %}
-                {{  include('frontend/components/global/_cart_bar.html.twig') }}
-            {% endif %}
-        {% endif %}
-                
-        {{ render(controller('App\\Controller\\RegionsController::regionFooter', {'preview':app.request.get('preview')})) }}
-
-        {% if not is_granted('ROLE_EDITOR') or app.request.get('preview') %}
-            {{  include('frontend/components/global/_cookie.html.twig') }}
+        {% if app.request.attributes.get('_route') != 'contact' %}
+            {{  include('frontend/components/global/_cart_bar.html.twig') }}
         {% endif %}
 
-        {% if is_granted('ROLE_EDITOR') and not app.request.get('preview')  %}
-            </div>
-        {% endif %}
+        {{ render(controller('App\\Controller\\RegionsController::regionFooter')) }}
 
-        {% if is_granted('ROLE_EDITOR') and not app.request.get('preview')  %}
-            <script>
-                //APP_ROUTES & PARAMS
-                var app_js_param__csrf_token = "{{ csrf_token('_grapejs_editor_token') }}"
-                var app_js_routing__styles_css = "{{ absolute_url(asset('styles/all_backend_css.css')) }}"
-                var app_js_routing__grape_endpoint = "{{ absolute_url(path('endpoint')) }}"
-                var app_js_routing__grape_endpoint_upload = "{{ absolute_url(path('endpoint_upload_assets')) }}"
-                var app_js_routing__list_images = "{{  absolute_url(path('endpoint_list_images'))  }}";
-                var app_js_param__page_id = {% if dynamic_page_id is defined %}"{{ dynamic_page_id }}"{% else %}-1;{% endif %}
-                
-            </script>
-            <script src="{{ asset('scripts/app_backend.js') }}"></script>
-            {% include "@CKSourceCKFinder/setup.html.twig" %}
-        {% else %}
-            {% block javascripts_vendors %}{% endblock %}
-            {% block javascripts %}{% endblock %}
-            <script src="{{ asset('scripts/app.js') }}"></script>
-        {% endif %}
+        {% block javascripts_vendors %}{% endblock %}
+        {% block javascripts %}{% endblock %}
 
-        <!-- Matomo -->
-        <script type="text/javascript">
-          var _paq = window._paq || [];
-          /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-          _paq.push(['trackPageView']);
-          _paq.push(['enableLinkTracking']);
-          (function() {
-            var u="https://habanatech.com/matomo/";
-            _paq.push(['setTrackerUrl', u+'matomo.php']);
-            _paq.push(['setSiteId', '4']);
-            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-            g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-          })();
-        </script>
-        <!-- End Matomo Code -->
+        {{ encore_entry_script_tags('app') }}
 
     </body>
 </html>

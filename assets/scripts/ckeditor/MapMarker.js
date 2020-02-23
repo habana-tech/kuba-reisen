@@ -7,16 +7,16 @@ CKEDITOR.plugins.add( 'MapMarker', {
         editor.ui.addButton( 'MapMarker', {
             label: 'Insert MapMarker',
             command: 'MapMarker',
+            icon: this.path + '../ckeditor_icons/MapMarker.png',
             toolbar: 'insert'
         });
 
         if ( editor.contextMenu ) {
-
             // Add a context menu group with the Edit Abbreviation item.
             editor.addMenuGroup( 'MapMarkerGroup' );
             editor.addMenuItem( 'MapMarkerItem', {
                 label: 'Edit MapMarker',
-                icon: this.path + 'icons/MapMarker.png',
+                icon: this.path + '../ckeditor_icons/MapMarker.png',
                 command: 'MapMarker',
                 group: 'MapMarkerGroup'
             });

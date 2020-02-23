@@ -2,6 +2,17 @@
 
 namespace App\Entity;
 
+use App\Entity\Fields\ActiveFieldTrait;
+use App\Entity\Fields\DescriptionFragmentFieldInterface;
+use App\Entity\Fields\DescriptionFragmentFieldTrait;
+use App\Entity\Fields\FilterTagsTrait;
+use App\Entity\Fields\GalleryFieldInterface;
+use App\Entity\Fields\GalleryFieldTrait;
+use App\Entity\Fields\ImageFieldInterface;
+use App\Entity\Fields\ImageFieldTrait;
+use App\Entity\Fields\MachineNameInterface;
+use App\Entity\Fields\MachineNameTrait;
+use App\Entity\Fields\PriorityFieldTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -13,13 +24,19 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @Vich\Uploadable
  * @ORM\HasLifecycleCallbacks
  */
-class Activity implements MachineNameInterface
+class Activity implements MachineNameInterface, DescriptionFragmentFieldInterface,
+      GalleryFieldInterface, ImageFieldInterface
 {
-    const LENGTH_OF_DESCRIPTION = 75;
-
-    use LanguageFieldTrait;
     use ImageFieldTrait;
-    use UserControlFieldsTrait;
+    use ActiveFieldTrait;
+    use GalleryFieldTrait;
+    use FilterTagsTrait;
+    use PriorityFieldTrait;
+    use DescriptionFragmentFieldTrait;
+    use MachineNameTrait;
+
+    public const LENGTH_OF_DESCRIPTION = 75;
+
 
     /**
      * @ORM\Id()
@@ -39,15 +56,6 @@ class Activity implements MachineNameInterface
      */
     private $featuresImagesCount;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\FilterTag", inversedBy="activities")
-     */
-    private $filterTags;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Activity")
-     */
-    private $translation_from;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Destination",  inversedBy="activities")
@@ -55,37 +63,110 @@ class Activity implements MachineNameInterface
     private $destinations;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $description;
-
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\DynamicPage", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $dynamic_page;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $priority;
 
     /**
      * @ORM\Column(type="float", nullable=true)
      */
     private $initPrice;
 
+
+
+    /**
+     *  @ORM\Embedded(class="App\Entity\PageContent")
+     */
+    private $pageContent;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $itineraryTitle;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $itineraryContent;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $includedSectionTitle;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $includedTitle;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $includedContent;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $notIncludedTitle;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $notIncludedContent;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $costAndDatesTitle;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $costAndDatesContent;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="ActivityDescriptionFragment", cascade={"persist", "remove"})
+     * @ORM\JoinTable(name="activity_activityfragments",
+     *      joinColumns={@ORM\JoinColumn(name="activity_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="fragment_id", referencedColumnName="id", unique=true)}
+     *     )
+     */
+    private $descriptionFragments;
+
     public function __construct()
     {
         $this->filterTags = new ArrayCollection();
         $this->destinations = new ArrayCollection();
-        $this->image = new EmbeddedFile();
-        $this->language = 'de';
-        $this->description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aliquam beatae blanditiis cumque dicta distinctio ea explicabo iste maxime nihil, perferendis recusandae rem reprehenderit velit voluptas. Magnam natus odit placeat?";
         $this->featuresImagesCount = 4;
+        $this->gallery = new ArrayCollection();
+        $this->pageContent = new PageContent();
+        $this->descriptionFragments = new ArrayCollection();
+        $this->active = true;
+
+        //CONTENT FIELDS
+        $this->itineraryTitle = 'Itinerary summary';
+        $this->includedSectionTitle = 'Leistungen';
+        $this->includedTitle = 'Inkludiert';
+        $this->notIncludedTitle = 'Nicht inkludiert ';
+        $this->costAndDatesTitle = 'Costs & dates';
         // your own logic
     }
 
+    /**
+     * @return PageContent
+     */
+    public function getPageContent(): PageContent
+    {
+        return $this->pageContent;
+    }
+
+    /**
+     * @param PageContent $pageContent
+     */
+    public function setPageContent(PageContent $pageContent): void
+    {
+        $this->pageContent = $pageContent;
+    }
 
     public function getId(): ?int
     {
@@ -100,36 +181,6 @@ class Activity implements MachineNameInterface
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getMachineName(){
-        return urlencode($this->name);
-    }
-
-    /**
-     * @return Collection|FilterTag[]
-     */
-    public function getFilterTags(): Collection
-    {
-        return $this->filterTags;
-    }
-
-    public function addFilterTag(FilterTag $filterTag): self
-    {
-        if (!$this->filterTags->contains($filterTag)) {
-            $this->filterTags[] = $filterTag;
-        }
-
-        return $this;
-    }
-
-    public function removeFilterTag(FilterTag $filterTag): self
-    {
-        if ($this->filterTags->contains($filterTag)) {
-            $this->filterTags->removeElement($filterTag);
-        }
 
         return $this;
     }
@@ -164,48 +215,19 @@ class Activity implements MachineNameInterface
 
     public function getDescription(): ?string
     {
-        return $this->description;
+        return $this->description ?? '';
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
         return $this;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->name." (".$this->language.")";
-    }
-
-    public function getDynamicPage(): ?DynamicPage
-    {
-        return $this->dynamic_page;
-    }
-
-    public function setDynamicPage(DynamicPage $dynamic_page): self
-    {
-        $this->dynamic_page = $dynamic_page;
-
-        return $this;
-    }
-
-    public function __get($name){
-        if (array_key_exists($name, $this->getDynamicPage()->getPageContent()))
-            return trim($this->getDynamicPage()->getElement($name));
-    }
-
-
-    public function __set($name, $value){
-        $this->getDynamicPage()->setElementContent($name, $value);
-
-    }
-
-
-    public function getElement($name)
-    {
-        return $this->getDynamicPage()->getElement($name);
+        return $this->name;
     }
 
     /**
@@ -224,18 +246,6 @@ class Activity implements MachineNameInterface
         $this->featuresImagesCount = $featuresImagesCount;
     }
 
-    public function getPriority(): ?int
-    {
-        return $this->priority;
-    }
-
-    public function setPriority(?int $priority): self
-    {
-        $this->priority = $priority;
-
-        return $this;
-    }
-
     public function getInitPrice(): ?float
     {
         return $this->initPrice;
@@ -248,5 +258,122 @@ class Activity implements MachineNameInterface
         return $this;
     }
 
+    public function getItineraryTitle(): ?string
+    {
+        return $this->itineraryTitle;
+    }
+
+    public function setItineraryTitle(string $itineraryTitle): self
+    {
+        $this->itineraryTitle = $itineraryTitle;
+
+        return $this;
+    }
+
+    public function getItineraryContent(): ?string
+    {
+        return $this->itineraryContent;
+    }
+
+    public function setItineraryContent(?string $itineraryContent): self
+    {
+        $this->itineraryContent = $itineraryContent;
+
+        return $this;
+    }
+
+    public function getIncludedTitle(): ?string
+    {
+        return $this->includedTitle;
+    }
+
+    public function setIncludedTitle(?string $includedTitle): self
+    {
+        $this->includedTitle = $includedTitle;
+
+        return $this;
+    }
+
+    public function getIncludedContent(): ?string
+    {
+        return $this->includedContent;
+    }
+
+    public function setIncludedContent(?string $includedContent): self
+    {
+        $this->includedContent = $includedContent;
+
+        return $this;
+    }
+
+    public function getNotIncludedTitle(): ?string
+    {
+        return $this->notIncludedTitle;
+    }
+
+    public function setNotIncludedTitle(?string $notIncludedTitle): self
+    {
+        $this->notIncludedTitle = $notIncludedTitle;
+
+        return $this;
+    }
+
+    public function getNotIncludedContent(): ?string
+    {
+        return $this->notIncludedContent;
+    }
+
+    public function setNotIncludedContent(?string $notIncludedContent): self
+    {
+        $this->notIncludedContent = $notIncludedContent;
+
+        return $this;
+    }
+
+    public function getCostAndDatesTitle(): ?string
+    {
+        return $this->costAndDatesTitle;
+    }
+
+    public function setCostAndDatesTitle(?string $costAndDatesTitle): self
+    {
+        $this->costAndDatesTitle = $costAndDatesTitle;
+
+        return $this;
+    }
+
+    public function setIncludedSectionTitle(?string $includedSectionTitle): self
+    {
+        $this->includedSectionTitle = $includedSectionTitle;
+
+        return $this;
+    }
+
+    public function getIncludedSectionTitle()
+    {
+        return $this->includedSectionTitle;
+    }
+
+    public function getCostAndDatesContent(): ?string
+    {
+        return $this->costAndDatesContent;
+    }
+
+    public function setCostAndDatesContent(?string $costAndDatesContent): self
+    {
+        $this->costAndDatesContent = $costAndDatesContent;
+
+        return $this;
+    }
+
+    public function getNameFieldValue(): string
+    {
+        return $this->name;
+    }
+
+    public function getPinnedFilterTag(): ?string {
+        $mainPinned = $this->getFilterTags()->filter(function ($tag){ return $tag->getPinned(); })->first();
+        return $mainPinned;
+    }
 
 }

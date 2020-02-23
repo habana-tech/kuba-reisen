@@ -3,29 +3,29 @@
 {% block title %}Aktivitäten{% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('styles/activities.css') }}" type="text/css">
+    {{ encore_entry_link_tags('activities') }}
 {% endblock %}
 
 {% block body %}
 
     <main class="main">
 
-        {{ include('frontend/components/global/_hero.html.twig') }}
+        {{ include('frontend/components/global/_hero.html.twig', {
+            'content': page.name,
+            'image': page.image.staticImagePath }) }}
 
-        {% include('frontend/components/global/_breadcrumb.html.twig')
-            with {'pages': [
-            {'name' : 'Start', 'url' : path('frontend')},
-            {'name' : 'Kuba Ausflüge', 'url' : path('excursions') },
-            {'name' : 'Activities', 'url' : path('activities') },
-        ] } %}
+        {{ render(controller('App\\Controller\\RegionsController:regionBreadcrumbs',  {'items':[
+            {'type' : 'page', 'machineName' : 'excursions'},
+            {'type' : 'custom', 'route' : 'activities', 'name': 'Aktivitäten'},
+        ]} )) }}
 
         {{ include('frontend/components/activities/_stories.html.twig') }}
 
         {{ include('frontend/components/activities/_popular_activities.html.twig') }}
 
-        {{ include('frontend/components/global/_banner_sky.html.twig') }}
+        {{ render(controller('App\\Controller\\RegionsController::regionBanner')) }}
 
-        {{ include('frontend/components/activities/_clients_opinions.html.twig') }}
+        {{ render(controller('App\\Controller\\RegionsController::regionClientsOpinion')) }}
 
     </main>
 
@@ -36,5 +36,6 @@
     <script>
         var _activities_activitiesApiPos = '{{ url('activitiesApiPos') }}';
     </script>
-    <script src="{{ asset('scripts/activities.js') }}"></script>
+
+    {{ encore_entry_script_tags('activities') }}
 {% endblock %}

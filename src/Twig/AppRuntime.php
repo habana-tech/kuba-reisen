@@ -2,6 +2,7 @@
 // src/Twig/AppRuntime.php
 namespace App\Twig;
 
+use App\Entity\Image;
 use Twig\Extension\RuntimeExtensionInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -27,7 +28,7 @@ class AppRuntime implements RuntimeExtensionInterface
      * @param array $sizes, the sizes, depends on the filters 'min_width_XXX' defined on liip_image config file
      * @return string|FilterTag[]
      */
-    public function filterSrcset($imagePath, $sizes = [1920, 1200, 1000, 900, 800, 600])
+    public function filterSrcset($imagePath, $sizes = [1920, 1366, 1200, 1000, 900, 800, 600])
     {
         if(strpos($imagePath, ';base64,'))
             return;
@@ -45,11 +46,12 @@ class AppRuntime implements RuntimeExtensionInterface
     }
 
     /**
-     * @param string $imagesPath, the relative path to image, ex: static/uploads/image/pic.jpg
+     * @param Image|string $imagesPath, the relative path to image, ex: static/uploads/image/pic.jpg
      * @param string $alt the Alternative text
      * @param string $sizes, for the html img tag
      * @param string $class, for the html img tag
      * @return string|FilterTag[]
+     * @deprecated
      */
     public function imgTagContent($imagePath,
                                   $database64 = null,
@@ -57,6 +59,11 @@ class AppRuntime implements RuntimeExtensionInterface
                                   $sizes = '100vw',
                                   $attr = null)
     {   
+
+        if($imagePath instanceof Image && $imagePath->getImageName())
+            $imagePath = $imagePath->getImageName();
+
+
 
         $html ="<img class=\"lazyload blur-up\" sizes=\"$sizes\" ";
         if($attr)
@@ -68,6 +75,42 @@ class AppRuntime implements RuntimeExtensionInterface
 
         $html .= "data-srcset=\"".$this->filterSrcset($imagePath)."\"
                          alt=\"$alt\">";
+
+        return $html;
+    }
+
+
+    /**
+     * @param Image $image, the Image Obj
+     * @param string $sizes, for the html img tag
+     * @param string $alt the Alternative text
+     * @param string $class, for the html img tag
+
+     * @return string
+     */
+    public function imgTag($image, $sizes = '100vw', $alt = null, $class = null)
+    {
+        if(!($image instanceof Image)) {
+            $imageObj = new Image();
+
+            if (!$image)
+                $imagePath = 'static/img/hero/water/water.jpg';
+            else
+                $imagePath = $image;
+
+        }
+        else {
+            $imageObj = $image;
+            $imagePath = $imageObj->getStaticImagePath();
+        }
+
+        $html = "<img class=\"lazyload blur-up\" sizes=\"$sizes\" ";
+        $src = $imageObj->getBase64() ?? $this->imagineCacheManager->getBrowserPath($imagePath, 'min_width_15');
+        $html .= " src=\"$src\" ";
+        $html .= " data-srcset=\"".$this->filterSrcset($imagePath)."\" ";
+
+        $alt= $alt?? $imageObj->getDescription();
+        $html .= "alt=\"$alt\">";
 
         return $html;
     }

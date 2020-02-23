@@ -1,35 +1,37 @@
 {% extends 'frontend/base.html.twig' %}
 
-{% block title %}Unsere Geheimtipps für Kuba{% endblock %}
+{% block title %}{{ page.name }}{% endblock %}
+{% block metadescription %}{{ page.description }}{% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('styles/bucket_list.css') }}" type="text/css">
+    {{ encore_entry_link_tags('bucket_list') }}
 {% endblock %}
 
 {% block body %}
-    <main class="main {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null  %}grapes-editable{% endif %}">
+    <main class="main">
 
-        {{ include('frontend/components/global/_hero.html.twig') }}
+        {{ include('frontend/components/global/_hero.html.twig', {
+            'content': page.name,
+            'image': page.image.staticImagePath }) }}
 
-        {% include('frontend/components/global/_breadcrumb.html.twig')
-            with {'pages': [
-            {'name' : 'Start', 'url' : path('frontend')},
-            {'name' : 'Our bucket list', 'url' : path('bucket_list') },
-        ] } %}
+        {{ render(controller('App\\Controller\\RegionsController:regionBreadcrumbs',  {'items':[
+            {'type' : 'page', 'machineName' : 'excursions'},
+            {'type' : 'page', 'machineName' : 'bucket_list'}
+        ]} )) }}
 
-        {{ include('frontend/components/bucket_list/_introduction.html.twig') }}
+        {{ include ('frontend/components/global/_introduction.html.twig',
+            {'title': page.titleDescription,
+             'content' : page.description }) }}
+
 
         {{ include('frontend/components/bucket_list/_items.html.twig') }}
 
-        {{ render(controller('App\\Controller\\RegionsController::regionTopDestinations', {'preview':app.request.get('preview')} )) }}
+        {{ render(controller('App\\Controller\\RegionsController::regionTopDestinations')) }}
+
     </main>
 {% endblock %}
 
 
-{% block javascripts_vendors %}
-    <script src="{{ asset('scripts/vendors/three.min.js') }}"></script>
-{% endblock %}
-
 {% block javascripts %}
-    <script src="{{ asset('scripts/bucket_list.js') }}"></script>
+    {{ encore_entry_script_tags('bucket_list') }}
 {% endblock %}

@@ -2,7 +2,8 @@ import mapboxgl from 'mapbox-gl';
 
 class SelectPointMap{
 
-    constructor(selector){
+    constructor(selector, inputSelector){
+        console.log(selector);
         mapboxgl.accessToken = 'pk.eyJ1IjoiY2FydG1hbnVzZXIiLCJhIjoiY2p5aHVyNHB2MDNudzNnbnJiaGVtcWJ2OCJ9.2UPDKnSZRNwNR1ITlZQEAA';
         this.map = new mapboxgl.Map({
             container: selector,
@@ -15,7 +16,7 @@ class SelectPointMap{
         });
 
         this.canvas = this.map.getCanvasContainer();
-        this.coordinatesAndZoom = document.querySelector('tbody input[type="text"]');
+        this.coordinatesAndZoom = document.querySelector(`#${inputSelector} input[type="text"]`);
         this.geojson = {
             "type": "FeatureCollection",
             "features": [{
@@ -146,8 +147,8 @@ CKEDITOR.dialog.add( 'MapMarkerDialog', function( editor ) {
                         validate: CKEDITOR.dialog.validate.notEmpty( "Coordinates and Zoom cannot be empty." ),
                         // Called by the main setupContent method call on dialog initialization.
                         setup: function( element ) {
-                            console.log(element);
-                            let container = document.querySelector('.cke_dialog_contents tbody');
+                            let container = this._.dialog.parts.dialog.$;
+                            let mapId = `selectMap_${this.domId}`;
 
                             let prevValue = JSON.parse(element.getAttribute("data-map"));
                             if (prevValue.center.isArray)
@@ -155,13 +156,13 @@ CKEDITOR.dialog.add( 'MapMarkerDialog', function( editor ) {
                             else
                                 this.setValue(prevValue.center+";"+prevValue.zoom);
 
-                            if (container.querySelectorAll('#selectMap').length===0) {
+                            if (container.querySelectorAll(`#${mapId}`).length===0) {
                                 let newMap = document.createElement('div');
-                                newMap.setAttribute('id', 'selectMap');
+                                newMap.setAttribute('id', mapId);
                                 newMap.setAttribute('style', 'height: 50vh; width:100%');
-                                newMap.setAttribute('id', 'selectMap');
+
                                 container.insertBefore(newMap, container.firstChild);
-                                map = new SelectPointMap('selectMap');
+                                map = new SelectPointMap(mapId, this.domId);
                             }
 
                             map.setFiredOnLoad(()=>{

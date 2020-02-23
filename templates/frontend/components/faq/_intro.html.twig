@@ -2,11 +2,13 @@
 
     <div class="section__title">
         <div class="section__title__highlight">
-            <h2 data-grape_id="faq_intro_title" data-grape_format="txt">{{ page.ElementContent('faq_intro_title',"Häufig gestellte Fragen zu Kuba") | raw }}</h2>
+            <h2>
+                {{ page.titleDescription  }}
+            </h2>
         </div>
     </div>
 
-    <div class="intro__content" data-grape_id="faq_intro_text">
-        {{ page.ElementContent('faq_intro_text',"intro text") | raw }}
+    <div class="intro__content">
+        {{ page.description | raw }}
     </div>
 </section>

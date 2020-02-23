@@ -1,0 +1,30 @@
+{% for day in activity.descriptionFragments %}
+
+    <div class="day {% if loop.index == 1 %} day--active {% endif %}">
+        <div class="day__title">
+            <a href="#">
+                <span class="day__title__icon">
+                    {%  include('frontend/components/_icons/_arrow.html.twig')
+                        with {'rotate': loop.index == 1 ? 'arrow--rotate' : '' } %}
+                </span>
+                 <h3>{{ day.name }}</h3>
+            </a>
+        </div>
+        <div class="day__content">
+            {% if day.hasImage %}
+                <div class="day__content__image">
+                    {{ imgTag(day.image) | raw }}
+                </div>
+            {% endif %}
+            <div class="day__content__description">
+
+                <div class="day__content__description__content">
+{#                    TODO:  expand text#}
+                    {{ day.content | striptags('<ul><li><b><p><strong><span>') | truncate_html(500) | raw }}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endfor %}

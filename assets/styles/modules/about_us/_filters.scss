@@ -1,0 +1,37 @@
+.filters{
+  width: 95%;
+  margin: auto;
+
+  @include atLarge{
+    width: 80%;
+  }
+
+  &__title{
+    width: 100%;
+  }
+
+  &__content{
+    width: 90%;
+
+    @include atLarge{
+      width: 80%;
+    }
+
+    & ul{
+      list-style: none;
+      & li{
+        display: inline;
+        position: relative;
+        margin: 0 .5em;
+
+        &:after{
+          content: '';
+          position: absolute;
+          height: 100%;
+          width: 1px;
+          background-color: rgba($grey, .9);
+        }
+      }
+    }
+  }
+}

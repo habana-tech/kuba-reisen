@@ -1,5 +1,3 @@
-import mapboxgl from 'mapbox-gl';
-
 CKEDITOR.dialog.add( 'MapPathDialog', function( editor ) {
     return {
         title: 'MapPath Properties',
@@ -41,9 +39,9 @@ CKEDITOR.dialog.add( 'MapPathDialog', function( editor ) {
                 ]
             }
         ],
-        // onChange: function(){
-        //     console.log('i change the content');
-        // },
+        onChange: function(){
+            console.log('i change the content');
+        },
         onOk: function() {
             // Create a new <span> element.
 
@@ -67,7 +65,7 @@ CKEDITOR.dialog.add( 'MapPathDialog', function( editor ) {
             data_path_map = '{'+data_path_map.toString()+'}';
 
             elm.setAttribute('data-path-map', data_path_map);
-            console.info(data_path_map);
+            console.info("test ", data_path_map);
             elm.setAttribute( 'class','MapPath');
             elm.setText( "[MP]");
             editor.insertElement( elm );

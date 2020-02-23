@@ -2,6 +2,13 @@
 
 namespace App\Entity;
 
+use App\Entity\Fields\ActiveFieldTrait;
+use App\Entity\Fields\DescriptionFragmentFieldInterface;
+use App\Entity\Fields\DescriptionFragmentFieldTrait;
+use App\Entity\Fields\MachineNameInterface;
+use App\Entity\Fields\MachineNameTrait;
+use App\Entity\Fields\PriorityFieldTrait;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Entity\File as EmbeddedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -11,11 +18,9 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @Vich\Uploadable
  * @ORM\HasLifecycleCallbacks
  */
-class ActivityStory implements MachineNameInterface
+class ActivityStory implements MachineNameInterface, DescriptionFragmentFieldInterface
 {
-    use ImageFieldTrait;
-    use LanguageFieldTrait;
-    use UserControlFieldsTrait;
+    use PriorityFieldTrait, ActiveFieldTrait, MachineNameTrait, DescriptionFragmentFieldTrait;
 
 
     /**
@@ -31,46 +36,31 @@ class ActivityStory implements MachineNameInterface
     private $title;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\ActivityStory")
-     */
-    private $translation_from;
-
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $content;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $published;
-
-    /**
      * @ORM\Column(type="json", nullable=true)
      */
     private $metadata = [];
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\ManyToMany(targetEntity="DescriptionFragment", cascade={"persist", "remove"})
+     * @ORM\JoinTable(name="activity_story_fragments",
+     *      joinColumns={@ORM\JoinColumn(name="activity_story_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="fragment_id", referencedColumnName="id", unique=true)}
+     *     )
      */
-    private $priority;
+    private $descriptionFragments;
 
-    public function __contructor()
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
+
+    /**
+     * ActivityStory constructor.
+     */
+    public function __construct()
     {
-        $this->setLanguage();
-    }
-
-    
-    public function getPriority(): ?int
-    {
-        return $this->priority;
-    }
-
-    public function setPriority(?int $priority): self
-    {
-        $this->priority = $priority;
-
-        return $this;
+        $this->descriptionFragments = new ArrayCollection();
+        $this->active = true;
     }
 
     public function getId(): ?int
@@ -90,29 +80,6 @@ class ActivityStory implements MachineNameInterface
         return $this;
     }
 
-    public function getContent(): ?string
-    {
-        return $this->content;
-    }
-
-    public function setContent(?string $content): self
-    {
-        $this->content = $content;
-
-        return $this;
-    }
-
-    public function getPublished(): ?bool
-    {
-        return $this->published;
-    }
-
-    public function setPublished(bool $published): self
-    {
-        $this->published = $published;
-
-        return $this;
-    }
 
     public function getMetadata(): ?array
     {
@@ -126,9 +93,23 @@ class ActivityStory implements MachineNameInterface
         return $this;
     }
 
-    
-    public function getMachineName(){
-        return urlencode($this->title);
+
+    public function getNameFieldValue(): string
+    {
+        return $this->title;
     }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
 
 }

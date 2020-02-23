@@ -18,7 +18,7 @@ class ActivityStoryType extends AbstractType
             ->add('content', CKEditorType::class)
             
             //->add('imageFile', VichImageType::class, ['required'=> false])
-            ->add('published')
+            ->add('active')
             ->add('priority')
 
             //->add('translation_from')

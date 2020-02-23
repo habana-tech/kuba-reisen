@@ -3,7 +3,6 @@
     width: 100%;
     height: 100%;
     transition: all .3s ease-in-out;
-
 }
 
 .heart{
@@ -47,8 +46,6 @@
 
 .arrow{
     cursor: pointer;
-    
-    &--rotate{
-        transform: rotate(180deg);
-    }
+    transform: rotate(0);
+    transition: transform .3s ease-in-out;
 }

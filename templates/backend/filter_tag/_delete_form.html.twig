@@ -1,5 +1,0 @@
-<form method="post" action="{{ path('backend_filter_tag_delete', {'id': filter_tag.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');" style="display: inline-block;">
-    <input type="hidden" name="_method" value="DELETE">
-    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ filter_tag.id) }}">
-    <button class="button button-secondary button-shadow button-block float-right" style="float: right">Delete</button>
-</form>

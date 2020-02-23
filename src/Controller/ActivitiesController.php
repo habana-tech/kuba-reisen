@@ -2,67 +2,77 @@
 
 namespace App\Controller;
 
-
-use App\Entity\Activity;
-use App\Repository\UploadedImageRepository;
 use App\Repository\ActivityStoryRepository;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use App\Repository\DynamicPageRepository;
+use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
-use App\PageManager\DynamicPageManager;
 use App\Repository\ActivityRepository;
 use App\Repository\FilterTagRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 use \App\Twig\AppExtension;
+use Twig\Error\LoaderError;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class ActivitiesController extends AbstractController
 {
 
+    /**
+     * @var CacheManager|object|null
+     */
+    private $imagineCacheManager;
+
+    public function __construct(ContainerInterface $container = null)
+    {
+        $this->imagineCacheManager = $container->get('liip_imagine.cache.manager');
+    }
+
     private $amountActivitiesDefault = 12;
 
     /**
-     * @Route("/activities", name="activities")
+     * @Route("/Aktivitäten", name="activities", options={"utf8" : true})
      * @Route("/activities/filter/{filters}",
      *     name="activitiesFilter",
      *     defaults={"filters": null, "pos": null, "amount":null },)
+     * @param DynamicPageRepository $dynamicPageRepository
+     * @param ActivityRepository $activityRepository
+     * @param FilterTagRepository $filterTagRepository
+     * @param ActivityStoryRepository $storiesRepository
+     * @param null $filters
+     * @return Response
      */
-    public function activities(DynamicPageManager $pm,
-                               ActivityRepository $activityRepository, 
+    public function activities(DynamicPageRepository $dynamicPageRepository,
+                               ActivityRepository $activityRepository,
                                FilterTagRepository $filterTagRepository,
                                ActivityStoryRepository $storiesRepository,
                                 $filters = null)
     {
-        $pageinfo = [
-            'pageName'=>'activities',
-            'language'=>'de'
-        ];
 
-        if($this->isGranted('ROLE_ADMIN'))
-            $page = $pm->findByOrCreateIfDoesNotExist($pageinfo);
-        else
-            $page = $pm->findOneBy($pageinfo);
+        $page = $dynamicPageRepository->findOneBy([
+            'machineName'=>'activities'
+        ]);
+
         if(!$page)
             throw new NotFoundHttpException();
 
-
         $filters = explode(',', $filters);
 
-        $filterTags = $filterTagRepository->findBy(['language'=>'de']);
-        $_activities = $activityRepository->findByLanguage('de',
-                                        0, $this->amountActivitiesDefault+1);
+        $filterTags = $filterTagRepository->findAll();
+        $_activities = $activityRepository->findStartingFrom(0, $this->amountActivitiesDefault+1);
 
         $loadMore = count($_activities) > $this->amountActivitiesDefault;
         $activities = array();
-        for ($i = 0; $i < min($this->amountActivitiesDefault, count($_activities)); $i++)
-            array_push($activities, $_activities[$i]);
+        $min = min($this->amountActivitiesDefault, count($_activities));
+        for ($i = 0; $i < $min; $i++) {
+            $activities[] = $_activities[$i];
+        }
 
         $amountStories = 4;
         $stories = $storiesRepository->findLastPublished($amountStories);
 
         return $this->render('frontend/activities.html.twig', [
-            'dynamic_page_id' => $page->getId(),
-            'page' => $page,
+            'page'=>$page,
             'activities'=>$activities,
             'filterTags'=>$filterTags,
             'selectedFilters'=>$filters,
@@ -77,7 +87,6 @@ class ActivitiesController extends AbstractController
      *     defaults={"pos": null, "amount":null })
      */
     public function activitiesApiPos(ActivityRepository $activityRepository,
-                                     UploadedImageRepository $uploadedImageRepository,
                                      $pos, $amount)
     {
 
@@ -86,8 +95,7 @@ class ActivitiesController extends AbstractController
         if ($amount==null)
             $amount=$this->amountActivitiesDefault;
 
-        $_activities = $activityRepository->findByLanguage('de',
-            $pos, $amount+1);
+        $_activities = $activityRepository->findStartingFrom($pos, $amount+1);
 
         $loadMore = count($_activities) > $amount;
         $activities = array();
@@ -100,16 +108,10 @@ class ActivitiesController extends AbstractController
 
         foreach ($activities as $activity){
 
-            $img_src = $activity->getDynamicPage()->getElementAttr('activity_images_img1', 'src');
-            $img = $uploadedImageRepository->findOneBy(['image.name'=>\basename($img_src)]);
-            $img_width = $img ? $img->getImage()->getDimensions()[0] : null;
-
             array_push($activities_data, array(
                 'id'=>$activity->getId(),
                 'name'=>$activity->getName(),
-                'image'=>$img_src,
-                'imageMaxWidth' => $img_width,
-                'imageAlt'=>$activity->getAlternativeText(),
+                'image'=>$activity->getImage(),
                 'description'=> $twig_filter->truncate_html($activity->getDescription(),$activity::LENGTH_OF_DESCRIPTION),
                 'link'=>  $this->generateUrl('activity',
                     ['id'=>$activity->getId(),
@@ -153,10 +155,11 @@ class ActivitiesController extends AbstractController
 
         $activities_data = [];
         foreach ($activities as $activity){
+            //TODO:
             array_push($activities_data, array(
                 'id'=>$activity->getId(),
                 'name'=>$activity->getName(),
-                'image'=>$activity->getDynamicPage()->getElementAttr('activity_images_img1', 'src'),
+                'image'=>$activity->getImage(),
                 'description'=>$activity->getDescription(),
                 'link'=>  $this->generateUrl('activity',
                     ['id'=>$activity->getId(),
@@ -186,7 +189,7 @@ class ActivitiesController extends AbstractController
         if ($amount==null)
             $amount=$this->amountActivitiesDefault;
 
-        $_activities = $activityRepository->findBySearch($search, 'de',
+        $_activities = $activityRepository->findBySearch($search,
                                                     $pos, $amount+1);
 
         $loadMore = count($_activities) > $amount;
@@ -196,9 +199,10 @@ class ActivitiesController extends AbstractController
 
         $activities_data = [];
         foreach ($activities as $activity){
+            //TODO:
             array_push($activities_data, array(
                 'name'=>$activity->getName(),
-                'image'=>$activity->getDynamicPage()->getElementAttr('activity_images_img1', 'src'),
+                'image'=>$activity->getImage(),
                 'description'=>$activity->getDescription(),
                 'link'=>  $this->generateUrl('activity',
                     ['id'=>$activity->getId(),
@@ -225,7 +229,7 @@ class ActivitiesController extends AbstractController
         $activity = array(
             'id' => $id,
             'name'=>$activity->getName(),
-            'image'=>$activity->getDynamicPage()->getElementAttr('activity_images_img1', 'src'),
+            'imageSmall' => $activity->hasImage() ? $this->imagineCacheManager->getBrowserPath($activity->getImage()->getStaticImagePath(), 'min_width_250') : '',
         );
 
         $data = array(

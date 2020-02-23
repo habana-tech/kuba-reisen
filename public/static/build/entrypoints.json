@@ -1,0 +1,139 @@
+{
+  "entrypoints": {
+    "app": {
+      "js": [
+        "/build/runtime.5e3ab09c.js",
+        "/build/0.a287177f.js",
+        "/build/2.b86d2b6b.js",
+        "/build/app.0debb2e8.js"
+      ],
+      "css": [
+        "/build/app.37add0de.css"
+      ]
+    },
+    "index": {
+      "js": [
+        "/build/runtime.5e3ab09c.js",
+        "/build/0.a287177f.js",
+        "/build/index.24108400.js"
+      ],
+      "css": [
+        "/build/index.282e8ba1.css"
+      ]
+    },
+    "destination": {
+      "js": [
+        "/build/runtime.5e3ab09c.js",
+        "/build/0.a287177f.js",
+        "/build/destination.01e91d71.js"
+      ],
+      "css": [
+        "/build/destination.05905810.css"
+      ]
+    },
+    "faq": {
+      "js": [
+        "/build/runtime.5e3ab09c.js",
+        "/build/faq.36d12865.js"
+      ],
+      "css": [
+        "/build/faq.a3a4f1d9.css"
+      ]
+    },
+    "contact": {
+      "js": [
+        "/build/runtime.5e3ab09c.js",
+        "/build/0.a287177f.js",
+        "/build/2.b86d2b6b.js",
+        "/build/contact.d9f59d62.js"
+      ],
+      "css": [
+        "/build/contact.13b1ca7a.css"
+      ]
+    },
+    "activities": {
+      "js": [
+        "/build/runtime.5e3ab09c.js",
+        "/build/0.a287177f.js",
+        "/build/1.0c459ea9.js",
+        "/build/activities.16c87ecc.js"
+      ],
+      "css": [
+        "/build/activities.60fc39e1.css"
+      ]
+    },
+    "activity": {
+      "js": [
+        "/build/runtime.5e3ab09c.js",
+        "/build/0.a287177f.js",
+        "/build/1.0c459ea9.js",
+        "/build/activity.efda8013.js"
+      ],
+      "css": [
+        "/build/activity.aab398d0.css"
+      ]
+    },
+    "bucket_list": {
+      "js": [
+        "/build/runtime.5e3ab09c.js",
+        "/build/1.0c459ea9.js",
+        "/build/bucket_list.aca05a2d.js"
+      ],
+      "css": [
+        "/build/bucket_list.d32fb415.css"
+      ]
+    },
+    "about_us": {
+      "js": [
+        "/build/runtime.5e3ab09c.js",
+        "/build/about_us.7d7bdb52.js"
+      ],
+      "css": [
+        "/build/about_us.2cca6bc0.css"
+      ]
+    },
+    "travel_info": {
+      "js": [
+        "/build/runtime.5e3ab09c.js",
+        "/build/travel_info.c135aa0a.js"
+      ],
+      "css": [
+        "/build/travel_info.dbf40aea.css"
+      ]
+    },
+    "good_to_know": {
+      "js": [
+        "/build/runtime.5e3ab09c.js",
+        "/build/good_to_know.173709a3.js"
+      ],
+      "css": [
+        "/build/good_to_know.c01f40c7.css"
+      ]
+    },
+    "tours": {
+      "js": [
+        "/build/runtime.5e3ab09c.js",
+        "/build/tours.a2079c2b.js"
+      ],
+      "css": [
+        "/build/tours.a7bf79e3.css"
+      ]
+    },
+    "loading": {
+      "js": [
+        "/build/runtime.5e3ab09c.js"
+      ],
+      "css": [
+        "/build/loading.b2c484ee.css"
+      ]
+    },
+    "login": {
+      "js": [
+        "/build/runtime.5e3ab09c.js"
+      ],
+      "css": [
+        "/build/login.87051ce1.css"
+      ]
+    }
+  }
+}

@@ -1,58 +1,26 @@
 <section class="section description-include">
-    <div class="section__title ">
+    <div class="section__title">
         <div class="section__title__highlight section__title__highlight--green">
-            <h2 data-grape_id="activity_section_included_title" data-grape_format="txt">
-                {% if activity.getElement('activity_section_included_title') is null %}
-                      Included in activity cost
-                {% else %}
-                    {{ activity.getElement('activity_section_included_title') | raw }}
-                {% endif %}
-            </h2>
-
-          
+            <h2>{{ activity.includedSectionTitle }} </h2>
         </div>
     </div>
 
     <div class="description-include__included-details">
         <div class="description-include__included-details__included">
 
-            <h3 data-grape_id="activity_included_title" data-grape_format="txt">
-                {% if activity.getElement('activity_included_title') is null %}
-                    Included in the tour
-                {% else %}
-                    {{ activity.getElement('activity_included_title') | raw }}
-                {% endif %}
-            </h3>
+            <h3>{{ activity.includedTitle }}</h3>
 
             <div data-grape_id="activity_included_text">
-                {% if activity.getElement('activity_included_text') is null %}
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet asperiores cumque deserunt, distinctio est id impedit libero modi nobis perferendis possimus provident, quae qui, quis sint vel velit vitae.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet asperiores cumque deserunt, distinctio est id impedit libero modi nobis perferendis possimus provident, quae qui, quis sint vel velit vitae.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet asperiores cumque deserunt, distinctio est id impedit libero modi nobis perferendis possimus provident, quae qui, quis sint vel velit vitae.</p>
-                {% else %}
-                    {{ activity.getElement('activity_included_text') | raw }}
-                {% endif %}
+                {{ activity.includedContent | raw }}
             </div>
         </div>
 
         <div class="description-include__included-details__not-included">
 
-        <h3 data-grape_id="activity_not_included_title" data-grape_format="txt">
-            {% if activity.getElement('activity_not_included_title') is null %}
-                Not include in the tour
-            {% else %}
-                {{ activity.getElement('activity_not_included_title') | raw}}
-            {% endif %}
-        </h3>
+        <h3>{{ activity.notIncludedTitle }}</h3>
 
-        <div data-grape_id="activity_not_included_text">
-            {% if activity.getElement('activity_not_included_text') is null %}
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet asperiores cumque deserunt, distinctio est id impedit libero modi nobis perferendis possimus provident, quae qui, quis sint vel velit vitae.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet asperiores cumque deserunt, distinctio est id impedit libero modi nobis perferendis possimus provident, quae qui, quis sint vel velit vitae.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet asperiores cumque deserunt, distinctio est id impedit libero modi nobis perferendis possimus provident, quae qui, quis sint vel velit vitae.</p>
-            {% else %}
-                {{ activity.getElement('activity_not_included_text') | raw }}
-            {% endif %}
+        <div>
+            {{ activity.notIncludedContent | raw }}
         </div>
     </div>
     </div>

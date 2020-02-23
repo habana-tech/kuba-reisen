@@ -1,4 +1,7 @@
-import 'lazysizes/plugins/unveilhooks/ls.unveilhooks.min';
+import '../styles/kraken.scss';
+import '../styles/app.scss';
+
+import 'lazysizes/plugins/unveilhooks/ls.unveilhooks';
 import SmoothScroll from 'smooth-scroll';
 import NavBar from "./modules/global/_navBar";
 import CartBar from './modules/global/_cartBar';
@@ -11,5 +14,4 @@ new SmoothScroll('a[href*="#"]', {
 new NavBar();
 new CartBar();
 new Cookies();
-
 

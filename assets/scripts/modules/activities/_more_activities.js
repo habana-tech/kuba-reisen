@@ -28,10 +28,9 @@ class LoadActivities {
         let pos = this.activitiesListInitial.querySelectorAll('.activity').length;
 
         let url = this.url+'/'+pos+'/'+this.amount;
-        let that = this;
 
         axios.get(url)
-            .then(function (response) {
+            .then((response) => {
                 let activities = response.data.activities;
                 let loadMore = response.data.loadMore;
 
@@ -39,22 +38,21 @@ class LoadActivities {
                     that.btnLoad.classList.add('hidden');
 
                 if (activities.length > 0) {
-                    activities.forEach(function (activity) {
-                        let newActivity = new MakeActivity(that.prototype).make(activity.id, activity.image, activity.imageAlt,
-                            activity.name, activity.description, activity.link, activity.price);
+                    activities.forEach((activity) => {
+                        let newActivity = new MakeActivity(this.prototype).make(activity);
 
-                        that.activitiesListInitial.appendChild(newActivity);
+                        this.activitiesListInitial.appendChild(newActivity);
                     });
                 }
                 else {
                     console.error(' mostrar que no hay mas');
                 }
 
-                that.loadingDots.classList.toggle('loading_dots--visible');
-                that.activitiesList.classList.toggle('activities__list__container--loading');
+                this.loadingDots.classList.toggle('loading_dots--visible');
+                this.activitiesList.classList.toggle('activities__list__container--loading');
 
             })
-            .catch(function (error) {
+            .catch((error) => {
                 console.error("error at loading more activities");
             });
 

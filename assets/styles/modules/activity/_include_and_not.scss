@@ -1,21 +1,37 @@
 .description-include{
 
     &__included-details{
-        width: 90%;
+        width: 95%;
         margin: auto;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
-
-        @include atLarge{
-            width: 80%;
-        }
 
         &__included, &__not-included{
             width: 100%;
 
             @include atLarge{
                 width: 47%;
+            }
+        }
+
+        &__not-included{
+            & ul{
+                & li{
+                    &::marker {
+                        color: $light-red;
+                    }
+                }
+            }
+        }
+
+        &__included{
+            & ul{
+                & li{
+                    &::marker {
+                        color: $light-green;
+                    }
+                }
             }
         }
     }

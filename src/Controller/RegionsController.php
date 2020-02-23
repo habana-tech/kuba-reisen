@@ -2,97 +2,151 @@
 
 namespace App\Controller;
 
-use App\Entity\Activity;
-use App\Entity\Destination;
+use App\Entity\Region;
+use App\Repository\RegionRepository;
+use App\Repository\DynamicPageRepository;
 use phpDocumentor\Reflection\Types\Array_;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Request;
-use App\PageManager\DynamicPageManager;
 use App\Repository\DestinationRepository;
 use App\Repository\FilterTagRepository;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Twig\Error\LoaderError;
+
+
 
 class RegionsController extends AbstractController
 {
 
-    public function regionTopDestinations(DynamicPageManager $pm)
+    public function regionBanner(RegionRepository $regionRepository)
     {
-        $pageinfo = [
-            'pageName'=>'_top_destinations',
-            'language'=>'de'
-        ];
+        if(!$banners = $regionRepository->findBy(['type'=>Region::TYPE_BANNER_REGION]))
+            return new Response();
 
+        $index = array_rand($banners, 1);
+        $banner = $banners[$index];
 
-        $topDestinations = array();
-        $topDestinations['kuba_10'] = $this->getDoctrine()
-                                ->getRepository(Activity::class)
-                                ->findOneBy(['name'=>'Kuba in 10 Tagen']);
-        $topDestinations['havanna'] = $this->getDoctrine()
-                                ->getRepository(Activity::class)
-                                ->findOneBy(['name'=>'Havanna Komplett']);
-        $topDestinations['inseln'] = $this->getDoctrine()
-                                ->getRepository(Destination::class)
-                                ->findOneBy(['name'=>'Inseln & Strände']);
-        $topDestinations['queen'] = $this->getDoctrine()
-                                ->getRepository(Activity::class)
-                                ->findOneBy(['name'=>'Show Havana Queens']);
+        return $this->render('frontend/components/global/_banner.html.twig', [
+            'banner' => $banner
+        ]);
+    }
 
-        $page = $pm->findByOrCreateIfDoesNotExist($pageinfo, 'components/global/_top_destination.html.twig');
-        if(!$page)
-            throw new NotFoundHttpException();
+    public function regionTopDestinations(RegionRepository $regionRepository)
+    {
+        if(!$topDestinations = $regionRepository->findBy(['type'=>Region::TYPE_TOP_DESTINATION_REGION]))
+            return new Response();
 
         return $this->render('frontend/components/global/_top_destination.html.twig', [
-            'page' => $page,
             'topDestinations' => $topDestinations,
         ]);
     }
 
-    public function regionTravelOptions(DynamicPageManager $pm,
-                                        FilterTagRepository $filterTagRepository)
+    public function regionAboutUsBenefits(RegionRepository $regionRepository)
     {
-        $pageinfo = [
-            'pageName'=>'_travel_options',
-            'language'=>'de'
-        ];
+        if(!$aboutUsBenefits = $regionRepository->findOneBy(['machineName'=>'about_us_benefits']))
+            return new Response();
 
-        $page = $pm->findByOrCreateIfDoesNotExist($pageinfo, 'components/global/_travel_options.html.twig');
-        if(!$page)
-            throw new NotFoundHttpException();
-
-        return $this->render('frontend/components/global/_travel_options.html.twig', [
-            'page' => $page,
-            'filterTags'=>$filterTagRepository->findByPinned('de'),
+        return $this->render('frontend/components/about_us/_benefits.html.twig', [
+            'aboutUsBenefits' => $aboutUsBenefits,
         ]);
     }
 
-    public function regionFooter(DynamicPageManager $pm,
-                                FilterTagRepository $filterTagRepository,
-                                DestinationRepository $destinationRepository)
+    public function regionAboutUsPhilosophy(RegionRepository $regionRepository)
     {
-        $pageinfo = [
-            'pageName'=>'_footer',
-            'language'=>'de'
-        ];
+        if(!$aboutUsPhilosophy = $regionRepository->findOneBy(['machineName'=>'about_us_philosophy']))
+            return new Response();
 
-        $page = $pm->findByOrCreateIfDoesNotExist($pageinfo, 'components/global/_footer.html.twig');
-        if(!$page)
-            throw new NotFoundHttpException();
+        return $this->render('frontend/components/about_us/_philosophy.html.twig', [
+            'aboutUsPhilosophy' => $aboutUsPhilosophy,
+        ]);
+    }
+
+    public function regionAboutUsTeam(RegionRepository $regionRepository)
+    {
+        if(!$aboutUsTeam = $regionRepository->findOneBy(['machineName'=>'about_us_team']))
+            return new Response();
+
+        return $this->render('frontend/components/about_us/_team.html.twig', [
+            'aboutUsTeam' => $aboutUsTeam,
+        ]);
+    }
+
+    public function regionAboutUsFilters(FilterTagRepository $filterTagRepository)
+    {
+        $filters = $filterTagRepository->findAll();
+
+        return $this->render('frontend/components/about_us/_filters.html.twig', [
+            'filters' => $filters
+        ]);
+    }
+
+    public function regionFooter(FilterTagRepository $filterTagRepository,
+                                 DestinationRepository $destinationRepository,
+                                 DynamicPageRepository $dynamicPageRepository)
+    {
 
         return $this->render('frontend/components/global/_footer.html.twig', [
-            'page' => $page,
-            'destinations'=>$destinationRepository->findByLang('de'),
-            'filterTags'=>$filterTagRepository->findByPinned('de'),
+            'staticPagesUrl'=>$dynamicPageRepository->getStaticPagesUrl(),
+            'destinations'=>$destinationRepository->findAll(),
+            'filterTagsPinned'=>$filterTagRepository->findBy(['pinned'=>true]),
         ]);
     }
 
     public function regionHeader(DestinationRepository $destinationRepository,
-                                FilterTagRepository $filterTagRepository)
+                                FilterTagRepository $filterTagRepository,
+                                DynamicPageRepository $dynamicPageRepository): Response
     {
+
         return $this->render('frontend/components/global/_header.html.twig', [
-            'destinations'=>$destinationRepository->findByLang('de'),
-            'filterTags'=>$filterTagRepository->findByPinned('de'),
+            'staticPagesUrl'=>$dynamicPageRepository->getStaticPagesUrl(),
+            'destinations'=>$destinationRepository->findAll(),
+            'filterTagsPinned'=>$filterTagRepository->findBy(['pinned'=>true]),
         ]);
+    }
+
+    public function regionBreadcrumbs($items, DynamicPageRepository $dynamicPageRepository){
+
+        return $this->render('frontend/components/global/_breadcrumbs.html.twig', [
+            'items' => $items,
+            'staticPagesUrl'=>$dynamicPageRepository->getStaticPagesUrl(),
+        ]);
+    }
+
+    public function regionFaq(RegionRepository $regionRepository)
+    {
+        if(!$questionSections = $regionRepository->findBy(['type'=>Region::TYPE_FAQ]))
+            return new Response();
+
+        return $this->render('frontend/components/faq/_question.html.twig', [
+            'questionSections' => $questionSections,
+        ]);
+    }
+
+    public function regionClientsOpinion(RegionRepository $regionRepository)
+    {
+
+        if(!$clientsOpinions = $regionRepository->findOneBy(['type'=>Region::TYPE_CLIENTS_OPINIONS]))
+            return new Response();
+
+
+//        $opinions = array_rand($clientsOpinions->getDescriptionFragments(), 2);
+        $opinions = $clientsOpinions->getDescriptionFragments();
+
+        return $this->render('frontend/components/global/_clients_opinions.html.twig', [
+            'clientsOpinions' => $clientsOpinions,
+            'opinions' => $opinions
+        ]);
+    }
+
+    public function regionLoader($machineName, RegionRepository $repository, FilterTagRepository $filterTagRepository): Response
+    {
+        if($region = $repository->findOneBy(['machineName'=>$machineName])) {
+            return $this->render($region->getTemplate()->getFullPath(),
+                ['region' => $region,
+                'filterTags' => $filterTagRepository->findBy(['pinned'=>true]),
+                ]);
+        }
+        return new Response();
     }
 }

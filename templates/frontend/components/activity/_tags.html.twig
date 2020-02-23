@@ -1,0 +1,9 @@
+{% if activity.filterTags %}
+    <div class="overview_activity__content__tags">
+        <ul>
+        {% for tag in activity.filterTags | slice(0, 3) %}
+            <li>{{ tag.title }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+{% endif %}

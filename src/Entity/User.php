@@ -1,33 +1,25 @@
 <?php
-// src/Entity/User.php
 
 namespace App\Entity;
 
+use FOS\UserBundle\Doctrine\UserManager;
 use FOS\UserBundle\Model\User as BaseUser;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Doctrine\ORM\Mapping as ORM;
-use Vich\UploaderBundle\Entity\File as EmbeddedFile;
+use FOS\UserBundle\Model\UserManagerInterface;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="fos_user")
- * @Vich\Uploadable
  * @ORM\HasLifecycleCallbacks
  */
 class User extends BaseUser
 {
-    use ImageFieldTrait;
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-
-    /**
-     * @ORM\Column(type="string", length=300, nullable=true)
-     */
-    private $bio;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -46,13 +38,19 @@ class User extends BaseUser
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $sendRequestEmail;
+    /**
+     * @var UserManager
+     */
+
+    private $userManager;
 
     public function __construct()
     {
         parent::__construct();
-        $this->image = new EmbeddedFile();
         // your own logic
     }
+
+
 
     /**
      * @return mixed
@@ -71,18 +69,6 @@ class User extends BaseUser
     }
 
     
-
-    public function getBio(): ?string
-    {
-        return $this->bio;
-    }
-
-    public function setBio(?string $bio): self
-    {
-        $this->bio = $bio;
-
-        return $this;
-    }
 
     public function getTelephone(): ?string
     {

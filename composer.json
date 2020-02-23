@@ -12,35 +12,42 @@
         "friendsofsymfony/ckeditor-bundle": "^2.0",
         "friendsofsymfony/user-bundle": "^2.1",
         "google/recaptcha": "^1.2",
+        "knplabs/doctrine-behaviors": "^1.5",
         "liip/imagine-bundle": "^2.1",
         "oneup/flysystem-bundle": "^3.0",
-        "sensio/framework-extra-bundle": "^5.1",
-        "symfony/asset": "^4.2",
-        "symfony/console": "^4.2",
-        "symfony/dotenv": "^4.2",
-        "symfony/expression-language": "^4.2",
+        "sensio/framework-extra-bundle": "*",
+        "symfony/asset": "*",
+        "symfony/console": "*",
+        "symfony/dotenv": "*",
+        "symfony/expression-language": "*",
         "symfony/flex": "^1.1",
         "symfony/form": "^4.2",
-        "symfony/framework-bundle": "^4.2",
+        "symfony/framework-bundle": "*",
+        "symfony/google-mailer": "4.4.*",
+        "symfony/mailer": "*",
+        "symfony/maker-bundle": "^1.14",
+        "symfony/mime": "*",
         "symfony/monolog-bundle": "^3.1",
         "symfony/orm-pack": "*",
-        "symfony/process": "^4.2",
-        "symfony/security-bundle": "^4.2",
+        "symfony/process": "*",
+        "symfony/security-bundle": "*",
         "symfony/serializer-pack": "*",
-        "symfony/swiftmailer-bundle": "^3.1",
-        "symfony/translation": "^4.2",
-        "symfony/twig-bundle": "^4.2",
-        "symfony/validator": "^4.2",
-        "symfony/web-link": "^4.2",
-        "symfony/yaml": "^4.2",
+        "symfony/swiftmailer-bundle": "*",
+        "symfony/translation": "*",
+        "symfony/twig-bundle": "*",
+        "symfony/twig-pack": "*",
+        "symfony/validator": "*",
+        "symfony/web-link": "*",
+        "symfony/webpack-encore-bundle": "^1.7",
+        "symfony/yaml": "*",
+        "twig/cssinliner-extra": "^3.0",
+        "twig/markdown-extra": "^3.0",
         "vich/uploader-bundle": "^1.9"
     },
     "require-dev": {
         "symfony/debug-pack": "*",
-        "symfony/maker-bundle": "^1.0",
         "symfony/profiler-pack": "*",
-        "symfony/test-pack": "*",
-        "symfony/web-server-bundle": "^4.2"
+        "symfony/test-pack": "*"
     },
     "config": {
         "preferred-install": {
@@ -68,6 +75,7 @@
         "symfony/polyfill-php56": "*"
     },
     "scripts": {
+        "phpcs": "phpcs --standard=PSR2",
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
@@ -85,7 +93,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": "true",
-            "require": "4.3.*"
+            "require": "4.4.*"
         }
     }
 }

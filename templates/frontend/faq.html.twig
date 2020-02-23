@@ -1,31 +1,31 @@
 {% extends 'frontend/base.html.twig' %}
 
-{% block title %}Reise FAQ für kuba{% endblock %}
+{% block title %}{{ page.name }}{% endblock %}
+{% block metadescription %}{{ page.description }}{% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('styles/faq.css') }}" type="text/css">
+      {{ encore_entry_link_tags('faq') }}
 {% endblock %}
 
 {% block body %}
     <main class="main">
 
-        {{ include ('frontend/components/global/_hero.html.twig') }}
+        {{ include('frontend/components/global/_hero.html.twig', {
+            'content': page.titleDescription,
+            'image': page.image.staticImagePath }) }}
 
-        {% include('frontend/components/global/_breadcrumb.html.twig')
-            with {'pages': [ {'name' : 'Start', 'url' : path('frontend')},
-                             {'name' : 'Reise FAQ für kuba', 'url' : path('faq')}
-                           ] } %}
+        {{ render(controller('App\\Controller\\RegionsController:regionBreadcrumbs',  {'items':[
+            {'type' : 'page', 'machineName' : 'faq'}
+        ]} )) }}
 
         {{ include ('frontend/components/faq/_intro.html.twig') }}
 
-        {{ include ('frontend/components/faq/_content_index.html.twig') }}
-
-        {{ include ('frontend/components/faq/_question.html.twig') }}
+        {{ render(controller('App\\Controller\\RegionsController::regionFaq')) }}
 
     </main>
 {% endblock %}
 
 
 {% block javascripts %}
-    <script src="{{ asset('scripts/faq.js') }}"></script>
+    {{ encore_entry_script_tags('faq') }}
 {% endblock %}

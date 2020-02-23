@@ -19,6 +19,36 @@ class DynamicPageRepository extends ServiceEntityRepository
         parent::__construct($registry, DynamicPage::class);
     }
 
+
+    /**
+     * @return array
+     */
+    public function getStaticPagesUrl(): array
+    {
+        $staticPages = [
+            'index',
+            'exploring',
+            'excursions',
+            'tours',
+            'activities',
+            'bucket_list',
+            'faq',
+            'good_to_know',
+            'travel_info',
+            'about_us',
+            'contact'
+        ];
+
+        $staticPagesUrl = [];
+
+        foreach ($staticPages as $staticPage) {
+            if($page = $this->findOneBy(['machineName' => $staticPage])) {
+                $staticPagesUrl[$staticPage] = $page->getName();
+            }
+        }
+        return $staticPagesUrl;
+
+    }
     // /**
     //  * @return DynamicPage[] Returns an array of DynamicPage objects
     //  */

@@ -32,9 +32,17 @@
         &__input{
             width: 90%;
 
-
             @include atLarge{
                 width: 40%;
+            }
+
+            &--center{
+                display: flex;
+                justify-content: center;
+
+                @include atLarge{
+                    justify-content: left;
+                }
             }
         }
     }

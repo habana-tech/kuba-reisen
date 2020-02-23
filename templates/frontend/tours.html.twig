@@ -1,21 +1,28 @@
 {% extends 'frontend/base.html.twig' %}
 
-    {% block title %}Entdecken 👌 und entdecken Sie
-        {{ page.getElementContent('hero__content__text', 'Kuba bereisen') | striptags}}
-    {% endblock %}
+{% block title %}{{ page.name }}{% endblock %}
+{% block metadescription %}{{ page.description }}{% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('styles/destinations.css') }}" type="text/css">
+    {{ encore_entry_link_tags('tours') }}
 {% endblock %}
 
 {% block body %}
     <main class="main">
 
-        {{ include('frontend/components/global/_hero.html.twig') }}
+        {{ include('frontend/components/global/_hero.html.twig', {
+            'content': page.name,
+            'image': page.image.staticImagePath }) }}
 
-        {{ include('frontend/components/destinations/_introduction.html.twig') }}
+        {{ render(controller('App\\Controller\\RegionsController:regionBreadcrumbs',  {'items':[
+            {'type' : 'page', 'machineName' : 'tours'}
+        ]} )) }}
 
-        {{ include('frontend/components/destinations/_generic_place_features_list.html.twig') }}
+        {{ include ('frontend/components/global/_introduction.html.twig',
+            {'title': page.titleDescription,
+             'content' : page.description }) }}
+
+{#        {{ include('frontend/components/destinations/_generic_place_features_list.html.twig') }}#}
 
 {#        {{ include('frontend/components/destinations/_activities.html.twig') }}#}
 
@@ -24,10 +31,6 @@
     </main>
 {% endblock %}
 
-{% block javascripts_vendors %}
-    <script src="{{ asset('scripts/vendors/three.min.js') }}"></script>
+{% block javascripts %}
+    {{ encore_entry_script_tags('tours') }}
 {% endblock %}
-
-{#{% block javascripts %}#}
-{#    <script src="{{ asset('scripts/destination.js') }}"></script>#}
-{#{% endblock %}#}

@@ -5,3 +5,5 @@ fos_user:
   from_email:
     address: "info@kuba-reisen.de"
     sender_name: "Kuba-reisen"
+  service:
+    mailer: fos_user.mailer.twig_swift

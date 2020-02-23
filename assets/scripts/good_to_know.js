@@ -1,0 +1,1 @@
+import '../styles/good_to_know.scss';

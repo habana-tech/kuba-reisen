@@ -1,0 +1,55 @@
+<section class="section top_destinations">
+    <div class="section__title ">
+        <div class="section__title__highlight">
+            <h2>{{ region.title }}</h2>
+        </div>
+        <div class="section__title__description">
+            {{ region.description | raw }}
+        </div>
+    </div>
+
+    <section class="travel-options">
+        <div class="travel-options__grid">
+
+            {% set sizes = [25, 25, 100, 50, 25,
+                25, 25, 25, 50, 50, 50,
+                25, 25, 25 ] %}
+
+            {% for image in region.gallery %}
+
+                <div class="travel-options__grid__item" style="grid-area: img{{ loop.index }}">
+
+                    {{ imgTag(image, sizes[loop.index0]~'vw') | raw }}
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+        <div class="travel-options__grid_overlay">
+            <a href="{{ path('contact') }}" style="grid-area: section1">
+                <div>
+                    <h3>
+                        Individualreise
+                    </h3>
+                </div>
+            </a>
+
+
+            {% for filter in filterTags %}
+                {% set pos = loop.index + 1 %}
+                <a href="{{ path('activitiesFilter', {'filters':filter.title }) }}#activities" style="grid-area: section{{ pos }}">
+                    <div>
+                        <h3>
+                            {{ filter.title }}
+                        </h3>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+
+    </section>
+
+
+</section>

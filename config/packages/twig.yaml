@@ -4,4 +4,7 @@ twig:
     strict_variables: '%kernel.debug%'
     paths:
         '%kernel.project_dir%/public/': public
+    exception_controller: null
+# form_themes: ['bootstrap_4_layout.html.twig','@EasyAdmin/form/bootstrap_4.html.twig' ,'@FOSCKEditor/Form/ckeditor_widget.html.twig']
+
 

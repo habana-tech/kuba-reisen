@@ -85,7 +85,7 @@ class ContactPlaningType extends AbstractType
             ] )
 
             ->add('selfLuxury', HiddenType::class,[
-             'label'=>"Wie viel bevorzugen Sie Luxus?"] )
+             'label'=>"Wie viel Komfort muss sein?"] )
 
             ->add('clientName', null, ['label'=>'Name'])
             ->add('clientEmail', EmailType::class ,[
@@ -96,7 +96,6 @@ class ContactPlaningType extends AbstractType
             ])
             ->add('message', null, ['label'=>'Nachricht'])
 
-            ->add('locale', HiddenType::class, ['attr'=>['value' => $options['locale']]])
             ->add('requestId', HiddenType::class)
             ->add('interests')
         ;
@@ -105,8 +104,7 @@ class ContactPlaningType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => ContactPlaning::class,
-            'locale' => 'de',
+            'data_class' => ContactPlaning::class
         ]);
     }
 }

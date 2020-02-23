@@ -1,20 +1,12 @@
 .description-itinerary{
-    width: 90%;
+    width: 100%;
     margin: auto;
     position: relative;
     display: flex;
     flex-flow: wrap;
     justify-content: center;
 
-    @include atLarge{
-        width: 75%;
-    }
-
     &__content{
-
-        & h3{
-            border-bottom: 1px solid $light-orange;
-        }
 
         span[data-map], span[data-path-map]{
             position: absolute;

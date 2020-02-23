@@ -1,16 +1,9 @@
 <section class="section who_we_are">
 
     <div class="who_we_are__image">
-        {% if is_granted('ROLE_EDITOR') and app.request.get('preview') is null %}
-            <img data-grape_id="who_we_are__img" src="{{ page.ElementAttr('who_we_are__img', 'src', asset('img/whoweare.jpg') ) }}">
-        {% else %}
-            {{ imgTagContent(
-                page.ElementAttr('who_we_are__img', 'src', asset('img/whoweare.jpg')),
-                page.ElementAttr('who_we_are__img', 'srcb64', asset('img/whoweare.jpg')),
-                '',
-                '(min-width: 1200px) 75vw, 100vw',
-                'data-grape_id="who_we_are__img"') | raw }}
-        {% endif %}
+
+        {{ imgTag(region.image,'(min-width: 1200px) 75vw, 100vw') | raw }}
+
 
     </div>
 
@@ -18,22 +11,12 @@
 
         <div class="section__title">
             <div class="section__title__highlight section__title__highlight--no-decorator">
-                <h2 data-grape_id="who_we_are__title" data-grape_format="txt">
-                    {% if page.getElement('who_we_are__title') is null %}
-                        Who we are!
-                    {% else %}
-                        {{ page.getElement('who_we_are__title') }}
-                    {% endif %}
-                </h2>
+                <h2>{{ region.title}}</h2>
             </div>
         </div>
 
         <div data-grape_id="who_we_are__text">
-            {% if page.getElement('who_we_are__text') is null %}
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet asperiores cumque deserunt, distinctio est id impedit libero modi nobis perferendis possimus provident, quae qui, quis sint vel velit vitae.</p>
-            {% else %}
-                {{ page.getElement('who_we_are__text') | raw }}
-            {% endif %}
+            {{ region.description | raw }}
         </div>
     </div>
 

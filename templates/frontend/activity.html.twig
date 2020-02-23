@@ -1,37 +1,41 @@
 {% extends 'frontend/base.html.twig' %}
 
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('styles/activity.css') }}" type="text/css">
-{% endblock %}
-
 {% block title %}{{ activity.name }}{% endblock %}
+{% block metadescription %}{{ activity.description }}{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('activity') }}
+{% endblock %}
 
 {% block body %}
 
-    <main class="main" {% if is_granted('ROLE_EDITOR') and not app.request.get('preview') %} id="grapes-editable" {% endif %} >
+    <main class="main">
 
         {{ include('frontend/components/activity/_images.html.twig') }}
 
-        {% include('frontend/components/global/_breadcrumb.html.twig')
-            with {'pages': [
-                            {'name' : 'Start', 'url' : path('frontend')},
-                            {'name' : 'Kuba Ausflüge', 'url' : path('excursions') },
-                            {'name' : 'Activities', 'url' : path('activities')},
-                            {'name' : activity.name, 'url' : path('activity',
-                                                                    {'id':activity.id, 'name':activity.machineName }) }
-        ] } %}
+        {{ render(controller('App\\Controller\\RegionsController:regionBreadcrumbs',  {'items':[
+            {'type' : 'page', 'machineName' : 'excursions'},
+            {'type' : 'custom', 'route' : 'activities', 'name': 'Aktivitäten', 'section' : 'activities'},
+            {'type' : 'activity', 'activity' : activity },
+        ]} )) }}
 
-        <div class="float_button__container">
 
-            {{ include ('frontend/components/activity/_float_button.html.twig') }}
+        <div class="float__container">
 
-            {{ include('frontend/components/activity/_description.html.twig') }}
+            <div class="float__container__float">
+                {{ include('frontend/components/activity/_description.html.twig') }}
+            </div>
 
-            {{ include('frontend/components/activity/_itinerary.html.twig') }}
+            <div class="float__container__center">
 
-            {{ include('frontend/components/activity/_include_and_not.html.twig') }}
+                {{ include('frontend/components/activity/_itinerary.html.twig') }}
 
-            {{ include('frontend/components/activity/_timetable.html.twig') }}
+                {{ include('frontend/components/activity/_include_and_not.html.twig') }}
+
+                {{ include('frontend/components/activity/_timetable.html.twig') }}
+
+            </div>
+
         </div>
 
         {{ include('frontend/components/activity/_related_activities.html.twig') }}
@@ -40,10 +44,6 @@
 
 {% endblock %}
 
-{% block javascripts_vendors %}
-    <script src="{{ asset('scripts/vendors/three.min.js') }}"></script>
-{% endblock %}
-
 {% block javascripts %}
-    <script src="{{ asset('scripts/activity.js') }}"></script>
+    {{ encore_entry_script_tags('activity') }}
 {% endblock %}

@@ -45,8 +45,7 @@
     transition: transform .3s ease-in-out;
 
     @include atLarge{
-        width: auto;
-        max-width: 30vw;
+        width: 25vw;
         right: 2em;
     }
 

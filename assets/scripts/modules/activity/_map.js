@@ -1,4 +1,5 @@
 import mapboxgl from 'mapbox-gl';
+import { getBoundingBox } from '../global/_utils';
 
 class ActivityMap {
     constructor(){
@@ -11,6 +12,8 @@ class ActivityMap {
         });
 
         this.map.scrollZoom.disable();
+        this.map.addControl(new mapboxgl.NavigationControl());
+        this.map.zoom = 10;
 
         this.points = document.querySelectorAll('.description-itinerary__content span[data-map]');
         this.paths = document.querySelectorAll('.description-itinerary__content span[data-path-map]');
@@ -27,6 +30,11 @@ class ActivityMap {
 
         if (this.points.length === 0)
             return;
+        if(this.points.length === 1)
+        {
+            this.map.zoom = 10;
+            return;
+        }
 
         let lats = [];
         let logs = [];
@@ -53,13 +61,9 @@ class ActivityMap {
 
         });
 
-        lats.sort((a,b) => { return a <= b ? -1 : 1 } );
-        logs.sort((a,b) => { return a <= b ? -1 : 1 } );
+        let maxCoords = getBoundingBox(lats, logs);
 
-        let maxCoords = [[lats[0],logs[0]],
-            [lats[lats.length-1], logs[logs.length-1] ]];
-
-        this.map.fitBounds(maxCoords, {padding: 100});
+        this.map.fitBounds(maxCoords, {padding: 15});
     }
 
     setPathAndZoom(){
@@ -81,12 +85,7 @@ class ActivityMap {
                 logs.push(coordinate[1]);
             });
 
-            lats.sort((a,b) => { return a <= b ? -1 : 1 } );
-            logs.sort((a,b) => { return a <= b ? -1 : 1 } );
-
-            let maxCoordsPath = [[lats[0],logs[0]],
-                [lats[lats.length-1], logs[logs.length-1] ]];
-
+            let maxCoordsPath = getBoundingBox(lats, logs);
 
             this.map.addLayer({
                 'id': 'layer-path',
@@ -106,7 +105,7 @@ class ActivityMap {
                 }
             });
 
-            this.map.fitBounds(maxCoordsPath, {padding: 100});
+            this.map.fitBounds(maxCoordsPath, {padding: 15});
 
         });
     }
@@ -114,6 +113,7 @@ class ActivityMap {
 }
 
 class ActivityMapAnimate{
+
     constructor(){
         mapboxgl.accessToken = 'pk.eyJ1IjoiY2FydG1hbnVzZXIiLCJhIjoiY2p5aHVyNHB2MDNudzNnbnJiaGVtcWJ2OCJ9.2UPDKnSZRNwNR1ITlZQEAA';
         this.map = new mapboxgl.Map({

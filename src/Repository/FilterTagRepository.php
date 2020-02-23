@@ -4,7 +4,7 @@ namespace App\Repository;
 
 use App\Entity\FilterTag;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @method FilterTag|null find($id, $lockMode = null, $lockVersion = null)
@@ -47,22 +47,13 @@ class FilterTagRepository extends ServiceEntityRepository
         ;
     }
     */
-
-    public function findByLang($lang){
-        return $this->createQueryBuilder('filterTag')
-            ->where('filterTag.language = :lang')
-            ->setParameter('lang', $lang)
-            ->getQuery()
-            ->getResult();
-    }
-
-    public function findByPinned($lang){
-        return $this->createQueryBuilder('filterTag')
-            ->where('filterTag.language = :lang')
-            ->andWhere('filterTag.pinned = true')
-            ->setParameter('lang', $lang)
-            ->getQuery()
-            ->getResult();
-    }
+//
+//    public function findByLang($lang){
+//        return $this->createQueryBuilder('filterTag')
+////            ->where('filterTag.language = :lang')
+////            ->setParameter('lang', $lang)
+//            ->getQuery()
+//            ->getResult();
+//    }
 
 }

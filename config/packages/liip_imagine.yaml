@@ -59,6 +59,15 @@ liip_imagine:
         relative_resize:
           widen: 1920
 
+    min_width_1366:
+      jpeg_quality: 85
+      png_compression_level: 8
+      filters:
+        auto_rotate: ~
+        strip: ~
+        relative_resize:
+          widen: 1366
+
     min_width_1200:
       jpeg_quality: 85
       png_compression_level: 8
@@ -119,6 +128,18 @@ liip_imagine:
         relative_resize:
           widen: 600
 
+    min_width_250:
+      # set your image quality defaults
+      jpeg_quality:          85
+      png_compression_level: 8
+
+      # setup the filter steps to apply for this transformation
+      filters:
+        auto_rotate: ~
+        strip: ~
+        relative_resize:
+          widen: 250
+
     min_width_15:
 
       # set your image quality defaults
@@ -131,6 +152,21 @@ liip_imagine:
         strip: ~
         relative_resize:
           widen: 15
+
+    min_width_40:
+
+      # set your image quality defaults
+      jpeg_quality:          85
+      png_compression_level: 8
+
+      # setup the filter steps to apply for this transformation
+      filters:
+        auto_rotate: ~
+        strip: ~
+        thumbnail:
+          size:          [125, 125]
+          mode:          outbound
+          allow_upscale: true
 
 
 oneup_flysystem:

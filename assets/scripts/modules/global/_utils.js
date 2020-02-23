@@ -11,8 +11,16 @@ export function getCookie(name) {
     for(let i=0;i < cArr.length;i++) {
         let cookie = cArr[i].split("=",2);
         cookie[0] = cookie[0].replace(/^\s+/,"");
-        if (cookie[0] == name)
+        if (cookie[0] === name)
             return cookie;
     }
     return false;
+}
+
+export function getBoundingBox(lats, logs){
+    lats.sort((a,b) => { return a <= b ? -1 : 1 } );
+    logs.sort((a,b) => { return a <= b ? -1 : 1 } );
+
+    return [[lats[0],logs[0]],
+        [lats[lats.length-1], logs[logs.length-1] ]];
 }

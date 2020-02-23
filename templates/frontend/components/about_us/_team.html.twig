@@ -1,32 +1,13 @@
-<div class="section team">
+<section class="section team">
+
     <div class="team__image">
-        {{ imgTagContent(
-            page.ElementAttr('team_image', 'src', asset('img/team_travel_info.jpg')),
-            page.ElementAttr('team_image', 'srcb64', asset('img/team_travel_info.jpg')),
-            '',
-            '100vw',
-            'data-grape_id="team_image"') | raw }}
+        {{ imgTag(aboutUsTeam.image) | raw }}
     </div>
-    <div class="team__content" data-grape_id="team_content">
-        <h2>
-            Das kuba-reisen.de Team
-        </h2>
 
-        <p>
-            <b>In Deutschland:</b> Wir beschäftigen Reisespezialisten,
-            die Kuba in- und auswändig kennen. Unser Mitarbeiter
-            Enrique ist gar selbst Kubaner. Enrique war früher
-            Reiseleiter auf Kuba und bringt all sein Wissen in die
-            von Ihnen angefragten Reisen ein. Lassen Sie sich von
-            seiner Begeisterung für sein Heimatland anstecken!
-        </p>
+    <div class="team__content">
+        <h2> {{ aboutUsTeam.title }}</h2>
 
-        <p>
-            <b>In Kuba:</b> Vor Ort in Havanna sorgt unser Team dafür,
-            dass Ihre Reise zum Erfolg wird. Nebst Kubanern beschäftigen
-            wir mehrere europäische Mitarbeitende, die aus eigener Erfahrung
-            wissen, was Reisenden aus Deutschland, Oesterreich und der Schweiz
-            wichtig ist.
-        </p>
+        {{ aboutUsTeam.description | raw }}
     </div>
-</div>
+
+</section>

@@ -2,18 +2,25 @@
 
 namespace App\Entity;
 
+use App\Entity\Fields\ActiveFieldTrait;
+use Knp\DoctrineBehaviors\Model as ORMBehaviors;
+use App\Entity\Fields\PriorityFieldTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\FilterTagRepository")
- * @ORM\HasLifecycleCallbacks
+ * @Vich\Uploadable()
  */
 class FilterTag
 {
-    use LanguageFieldTrait;
-    use UserControlFieldsTrait;
+    use ActiveFieldTrait, PriorityFieldTrait;
+    use ORMBehaviors\Timestampable\Timestampable;
 
     /**
      * @ORM\Id()
@@ -27,15 +34,11 @@ class FilterTag
      */
     private $title;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Interest", inversedBy="filterTags")
-     */
-    private $interests;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\FilterTag")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Destination", mappedBy="filterTags")
      */
-    private $translation_from;
+    private $destinations;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Activity", mappedBy="filterTags")
@@ -48,11 +51,20 @@ class FilterTag
      */
     private $pinned;
 
+    /**
+     * @ORM\Column(type="string", length=180)
+     */
+    private $iconName;
+    /**
+    * @Vich\UploadableField(mapping="tags_icons", fileNameProperty="iconName")
+    */
+    private $iconFile;
+
     public function __construct()
     {
-        $this->interests = new ArrayCollection();
         $this->activities = new ArrayCollection();
-        $this->language = 'de';
+        $this->destinations = new ArrayCollection();
+        $this->active = true;
     }
 
     public function getId(): ?int
@@ -72,35 +84,9 @@ class FilterTag
         return $this;
     }
 
-    /**
-     * @return Collection|Interest[]
-     */
-    public function getInterests(): Collection
+
+    public function __toString():string
     {
-        return $this->interests;
-    }
-
-    public function addInterest(Interest $interest): self
-    {
-        if (!$this->interests->contains($interest)) {
-            $this->interests[] = $interest;
-        }
-
-        return $this;
-    }
-
-    public function removeInterest(Interest $interest): self
-    {
-        if ($this->interests->contains($interest)) {
-            $this->interests->removeElement($interest);
-        }
-
-        return $this;
-    }
-
-    public function __toString()
-    {
-        //return $this->title. " (".$this->language.")";
         return $this->title;
     }
 
@@ -145,5 +131,99 @@ class FilterTag
         return $this;
     }
 
+
+    public function getNameFieldValue():? string
+    {
+        return $this->title;
+    }
+
+     /**
+     * @return Collection|Destination[]
+     */
+    public function getDestinations(): Collection
+    {
+        return $this->destinations;
+    }
+
+    public function addDestination(Destination $destination): self
+    {
+        if (!$this->destinations->contains($destination)) {
+            $this->destinations[] = $destination;
+            $destination->addFilterTag($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDestination(Destination $destination): self
+    {
+        if ($this->destinations->contains($destination)) {
+            $this->destinations->removeElement($destination);
+            $destination->removeFilterTag($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIconFile()
+    {
+        return $this->iconFile;
+    }
+
+    /**
+     * @param mixed $iconFile
+     * @return FilterTag
+     */
+    public function setIconFile($iconFile)
+    {
+        $this->iconFile = $iconFile;
+        if ($iconFile) {
+                // if 'updatedAt' is not defined in your entity, use another property
+                $this->updatedAt = new \DateTime('now');
+            }
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIconName()
+    {
+        return $this->iconName;
+    }
+
+    /**
+     * @param mixed $icon
+     * @return FilterTag
+     */
+    public function setIconName($icon)
+    {
+        $this->iconName = $icon;
+        return $this;
+    }
+
+
+    /**
+     * @Assert\Callback
+     * @param ExecutionContextInterface $context
+     */
+    public function validate(ExecutionContextInterface $context): void
+    {
+        if (! in_array($this->iconFile->getMimeType(), array(
+            'image/svg+xml',
+            'image/svg',
+            'image/png',
+
+        ))) {
+            $context
+                ->buildViolation('Wrong file type (svg, png)')
+                ->atPath('iconName')
+                ->addViolation()
+            ;
+        }
+    }
 
 }

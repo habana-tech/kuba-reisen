@@ -2,19 +2,30 @@
 
 namespace App\Entity;
 
+use App\Entity\Fields\DescriptionFragmentFieldInterface;
+use App\Entity\Fields\DescriptionFragmentFieldTrait;
+use App\Entity\Fields\GalleryFieldInterface;
+use App\Entity\Fields\GalleryFieldTrait;
+use App\Entity\Fields\ImageFieldInterface;
+use App\Entity\Fields\ImageFieldTrait;
+use App\Entity\Fields\MachineNameInterface;
+use App\Entity\Fields\MachineNameTrait;
+use App\PageManager\TemplateSelector\PageTemplate;
+use App\PageManager\TemplateSelector\PageTemplateSelector;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use App\DataConverter\ImageBase64ThumbCreator;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\DynamicPageRepository")
- * @ORM\HasLifecycleCallbacks
+ * @ORM\HasLifecycleCallbacks()
  */
-class DynamicPage
+class DynamicPage implements MachineNameInterface, GalleryFieldInterface, DescriptionFragmentFieldInterface, ImageFieldInterface
 {
-    use LanguageFieldTrait;
-    use UserControlFieldsTrait;
+    use MachineNameTrait;
+    use GalleryFieldTrait;
+    use DescriptionFragmentFieldTrait;
+    use ImageFieldTrait;
 
     /**
      * @ORM\Id()
@@ -24,36 +35,48 @@ class DynamicPage
     private $id;
 
     /**
+     * @ORM\ManyToMany(targetEntity="DescriptionFragment", cascade={"persist", "remove"})
+     * @ORM\JoinTable(name="page_fragments",
+     *      joinColumns={@ORM\JoinColumn(name="page_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="fragment_id", referencedColumnName="id", unique=true)}
+     *     )
+     */
+    private $descriptionFragments;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
-    private $pageName;
+    private $name;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $pageTemplate;
+    private $template;
 
     /**
-     * @ORM\Column(type="array", nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
-    private $pageContent = [];
-
-    private $elementsList;
+    private $textContent;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\UploadedImage", mappedBy="dynamic_page", cascade={"persist", "remove"})
+     * @ORM\Column(type="text", nullable=true)
      */
-    private $uploadedImages;
+    private $description;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $titleDescription;
 
     /**
      * DynamicPage constructor.
-     * @param $pageTemplate
+     * @param $template
      */
-    public function __construct($pageTemplate = 'example.html.twig')
+    public function __construct($template = 'example.html.twig')
     {
-        $this->pageTemplate = $pageTemplate;
-        $this->uploadedImages = new ArrayCollection();
-        $this->language = 'de';
+        $this->template = $template;
+        $this->gallery = new ArrayCollection();
+        $this->descriptionFragments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -61,160 +84,94 @@ class DynamicPage
         return $this->id;
     }
 
-    public function getPageName(): ?string
+    public function getName(): ?string
     {
-        return $this->pageName;
+        if(($decode = urldecode($this->name))!== $this->name) {
+            return $decode;
+        }
+        return $this->name;
     }
 
-    public function setPageName(string $pageName): self
+    public function setName(string $name): self
     {
-        $this->pageName = $pageName;
+        $this->name = $name;
 
         return $this;
-    }
-
-
-    public function getPageContent(): ?array
-    {
-        return $this->pageContent;
-    }
-
-    public function setPageContent(?array $pageContent): self
-    {
-        $this->pageContent = $pageContent;
-
-        return $this;
-    }
-
-    public function getJsonContent(){
-        return json_encode($this->pageContent);
     }
 
     /**
      * @return mixed
      */
-    public function getPageTemplate()
+    public function getTemplate(): PageTemplate
     {
-        return $this->pageTemplate;
-    }
-
-    /**
-     * @param mixed $pageTemplate
-     */
-    public function setPageTemplate($pageTemplate): void
-    {
-        $this->pageTemplate = $pageTemplate;
-    }
-
-
-
-
-    public function getElement($grape_id, $format = 'txt')
-    {
-        if(!isset($this->pageContent[$grape_id][$format]))
-            $format == 'html' ? $format = 'txt' :  $format = 'html';
-        if(isset($this->pageContent[$grape_id][$format]))
-            return $this->pageContent[$grape_id][$format];
-    }
-    public function setElementContent($grape_id, $value, $format = 'html')
-    {
-        if(!isset($this->pageContent[$grape_id][$format]))
-            $format == 'html' ? $format = 'txt' :  $format = 'html';
-
-        if(isset($this->pageContent[$grape_id][$format]))
-            $this->pageContent[$grape_id][$format] = $value;
-    }
-
-    public function getElementContent($grape_id, $default = null)
-    {
-        if($res = $this->getElement($grape_id) and $res != '')
-            return $res;
-        return $default;
-    }
-
-    public function getPageContentAsArrayText()
-    {
-        return print_r($this->getPageContent(), false);
-
-    }
-
-    public function getElementAttr($grape_id, $attr, $default = null)
-    {
-
-        $data = '';
-        if(isset($this->getPageContent()[$grape_id][$attr]))
-            $data = $this->getPageContent()[$grape_id][$attr];
-        else
-            $data = $default;
-
-        if($attr == 'src') {
-            if (!isset($this->getPageContent()[$grape_id][$attr]))
-                $data = '/static/img/header_pic.jpg';
-            $data = ImageBase64ThumbCreator::getStaticRelativePath($data);
+        if($this->template instanceof PageTemplate) {
+            return $this->template;
         }
 
-        return $data;
-    }
-
-    public function __toString()
-    {
-        return $this->pageName."(".$this->language.")";
-    }
-
-    /**
-     * @return Collection|UploadedImage[]
-     */
-    public function getUploadedImages(): Collection
-    {
-        return $this->uploadedImages;
-    }
-
-    public function addUploadedImage(UploadedImage $uploadedImage): self
-    {
-        if (!$this->uploadedImages->contains($uploadedImage)) {
-            $this->uploadedImages[] = $uploadedImage;
-            $uploadedImage->setDynamicPage($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUploadedImage(UploadedImage $uploadedImage): self
-    {
-        if ($this->uploadedImages->contains($uploadedImage)) {
-            $this->uploadedImages->removeElement($uploadedImage);
-            // set the owning side to null (unless already changed)
-            if ($uploadedImage->getDynamicPage() === $this) {
-                $uploadedImage->setDynamicPage(null);
+        $templates = PageTemplateSelector::getTemplates();
+        foreach ($templates as $template)
+        {
+            if($template->getPath() === $this->template) {
+                return $template;
             }
         }
+        return new PageTemplate();
+    }
+
+    /**
+     * @param PageTemplate $template
+     */
+    public function setTemplate(PageTemplate $template): void
+    {
+        $this->template = $template;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return $this->name;
+    }
+
+    public function getNameFieldValue():? string
+    {
+        return $this->name;
+    }
+
+    public function getTextContent(): ?string
+    {
+        return $this->textContent;
+    }
+
+    public function setTextContent(?string $textContent): self
+    {
+        $this->textContent = $textContent;
 
         return $this;
     }
 
-    public function getHtmlTextElement($name){
-        return $this->getPageContent()[$name];
+    public function getDescription(): ?string
+    {
+        return $this->description;
     }
 
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
 
-     public function __get($name){
-        if (array_key_exists($name, $this->getPageContent()))
-            return trim($this->getElement($name));
+        return $this;
     }
 
-
-    public function __set($name, $value){
-        if (array_key_exists($name, $this->getPageContent()))
-            $this->setElementContent($name, $value);
-
+    public function getTitleDescription(): ?string
+    {
+        return $this->titleDescription;
     }
 
-    public function usedImageList(){
-        $list = new ArrayCollection();
-        foreach ($this->pageContent as $item){
-            if(isset($item['src']) and !$list->contains(basename($item['src'])))
-                $list->add(basename($item['src']));
-        }
-        return $list;
+    public function setTitleDescription(?string $titleDescription): self
+    {
+        $this->titleDescription = $titleDescription;
+
+        return $this;
     }
 }

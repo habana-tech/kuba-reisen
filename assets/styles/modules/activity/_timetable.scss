@@ -1,11 +1,8 @@
 .description-timetable{
-    width: 90%;
+    width: 95%;
     margin: auto;
     position: relative;
-
-    @include atLarge{
-        width: 75%;
-    }
+    overflow-x: scroll;
 
     &__content{
         width: 100%;

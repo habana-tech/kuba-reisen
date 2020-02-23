@@ -1,18 +1,15 @@
-{#expect an activity variable#}
 <div class="activity">
 
     <div class="activity__image">
+
+        {% if activity.getPinnedFilterTag %}
+            <div class="activity__image__tag">
+                {{ activity.getPinnedFilterTag }}
+            </div>
+        {% endif %}
+
         <a href="{{ path('activity', {'id':activity.id, 'name':activity.machineName}) }}">
-            {% if is_granted('ROLE_EDITOR') and not app.request.get('preview') %}
-                <img src="{{ activity.dynamicPage.elementAttr('activity_images_img1', 'src', asset('img/header_pic.jpg')) }}" alt="">
-            {% else %}
-                {{ imgTagContent(
-                    activity.dynamicPage.elementAttr('activity_images_img1', 'src', asset('img/header_pic.jpg')),
-                    activity.dynamicPage.elementAttr('activity_images_img1', 'srcb64', asset('img/header_pic.jpg')),
-                    '',
-                    '(min-width:1000px) 33vw, 90vw',
-                    '') | raw }}
-            {% endif %}
+            {{ imgTag(activity.image, '(min-width:1000px) 33vw, 90vw') | raw }}
         </a>
     </div>
 
@@ -23,11 +20,11 @@
             </div>
         {% endif %}
         <div class="activity__content__actions">
-            {% block activity__content__actions %}
-            <div class="activity__content__actions__add" data-activity_id="{{ activity.id }}">
-                {% include('frontend/components/_icons/_heart.html.twig') with {inverse:'heart--inverse'} only %}
-            </div>
-            {% endblock %}
+            {% if contact is not defined %}
+                <div class="activity__content__actions__add" data-activity_id="{{ activity.id }}">
+                    {% include('frontend/components/_icons/_heart.html.twig') with {inverse:'heart--inverse'} only %}
+                </div>
+            {% endif %}
         </div>
 
         <div class="activity__content__title">

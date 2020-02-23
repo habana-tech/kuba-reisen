@@ -11,7 +11,8 @@ class FromTravel{
             this.button.addEventListener('click', this.closeModal.bind(this));
     }
 
-    closeModal(){
+    closeModal(e){
+        e.preventDefault();
         this.modalOverlay.classList.add('from_travel_overlay--no-visible');
     }
 }
