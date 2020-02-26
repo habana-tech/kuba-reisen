@@ -28,6 +28,7 @@ class ActivityRepository extends ServiceEntityRepository
     public function findStartingFrom($pos, $amount){
 
         return $this->createQueryBuilder('activity')
+            ->where('activity.active = True')
             ->orderBy('activity.priority','DESC')
             ->setFirstResult($pos)
             ->setMaxResults($amount)
@@ -55,6 +56,7 @@ class ActivityRepository extends ServiceEntityRepository
 
         return $this->createQueryBuilder('activity')
             ->join('activity.filterTags', 'filter_tags')
+            ->where('activity.active = True')
             ->andWhere('filter_tags.id in (:ids)')
             ->andWhere('activity.id != (:self_id)')
             ->orderBy('activity.priority','DESC')
@@ -76,7 +78,8 @@ class ActivityRepository extends ServiceEntityRepository
     public function findBySearch($search, $pos, $amount): array
     {
         return $this->createQueryBuilder('activity')
-            ->where('activity.name like :search')
+            ->where('activity.active = True')
+            ->andWhere('activity.name like :search')
             ->orWhere('activity.description like :search')
             ->orderBy('activity.priority','DESC')
             ->setParameter('search',"%$search%")
@@ -94,7 +97,8 @@ class ActivityRepository extends ServiceEntityRepository
 
         return $this->createQueryBuilder('activity')
             ->select('activity.name')
-            ->where('activity.id in (:ids)')
+            ->where('activity.active = True')
+            ->andWhere('activity.id in (:ids)')
             ->setParameter('ids', $ids)
             ->getQuery()
             ->getResult()
@@ -112,7 +116,8 @@ class ActivityRepository extends ServiceEntityRepository
 
         return $this->createQueryBuilder('activity')
             ->join('activity.destinations', 'destinations')
-            ->where('destinations.id in (:id)')
+            ->where('activity.active = True')
+            ->andWhere('destinations.id in (:id)')
             ->orderBy('activity.priority','DESC')
             ->setParameter('id', $destination->getId())
             ->setMaxResults($count)
