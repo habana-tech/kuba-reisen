@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\DataConverter\SingleImageFromGallery;
 use App\Entity\Image;
+use App\Repository\ImageRepository;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -19,7 +20,7 @@ class MultipleImageFromGalleryType extends AbstractType
     {
         $builder
             ->add('galleryImage', CollectionType::class, [
-                'class'=> Image::class,
+                'class' => Image::class,
                 'placeholder' => 'Keep the current image',
                 'help' => 'Choose an image from gallery to replace the current image',
                 'multiple' => true,
@@ -30,14 +31,17 @@ class MultipleImageFromGalleryType extends AbstractType
                     'class' => 'selectpicker show-tick',
                     'data-live-search' => 'true',
                 ],
-                'query_builder' => function (Galle $er) {
+                'query_builder' => static function (ImageRepository $er) {
                     return $er->createQueryBuilder('i')
-                        ->orderBy('u.username', 'ASC');
+                        ->orderBy('i.id', 'ASC');
                 },
                 'choices' => [0,1],
                 'choice_attr' => static function ($choice, $key, $value) {
                     return [
-                        'data-content'=> "<img style='width: 50px' src=' /media/cache/resolve/min_width_40/static/uploads/images/".$choice->getimageName()."'> ". $choice->getDescription(),
+                        /**
+                         * @var Image $choice
+                         */
+                        'data-content' => "<img style='width: 50px' src=' /media/cache/resolve/min_width_40/static/uploads/images/" . $choice->getimageName() . "'> " . $choice->getDescription(),
                     ];
                 },
             ])

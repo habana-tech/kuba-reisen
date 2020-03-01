@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use DateTime;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -116,7 +118,7 @@ class ContactPlaning
     public function __construct()
     {
         $this->requestId = 'KR-' . substr(uniqid('', true), 8, 13);
-        $this->requestDateTime = new \DateTime();
+        $this->requestDateTime = new DateTime();
     }
 
 
@@ -126,12 +128,12 @@ class ContactPlaning
         return $this->id;
     }
 
-    public function getTravelDate(): ?\DateTimeInterface
+    public function getTravelDate(): ?DateTimeInterface
     {
         return $this->travelDate;
     }
 
-    public function setTravelDate(\DateTimeInterface $travelDate): self
+    public function setTravelDate(DateTimeInterface $travelDate): self
     {
         $this->travelDate = $travelDate;
 
@@ -287,12 +289,12 @@ class ContactPlaning
         return $this;
     }
 
-    public function getRequestDateTime(): ?\DateTimeInterface
+    public function getRequestDateTime(): ?DateTimeInterface
     {
         return $this->requestDateTime;
     }
 
-    public function setRequestDateTime(\DateTimeInterface $requestDateTime): self
+    public function setRequestDateTime(DateTimeInterface $requestDateTime): self
     {
         $this->requestDateTime = $requestDateTime;
 
@@ -317,7 +319,7 @@ class ContactPlaning
      */
     public function updateRequestDateTime(): void
     {
-        $this->setRequestDateTime(new \DateTime());
+        $this->setRequestDateTime(new DateTime());
     }
 
     public function getClientName(): ?string

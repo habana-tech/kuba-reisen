@@ -17,7 +17,10 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Interest implements MachineNameInterface
 {
-    use ImageFieldTrait, ActiveFieldTrait, PriorityFieldTrait, MachineNameTrait;
+    use ImageFieldTrait;
+    use ActiveFieldTrait;
+    use PriorityFieldTrait;
+    use MachineNameTrait;
 
     /**
      * @ORM\Id()
@@ -71,7 +74,7 @@ class Interest implements MachineNameInterface
         return $this;
     }
 
-    public function __toString():string
+    public function __toString(): string
     {
         return $this->title;
     }

@@ -18,7 +18,10 @@ class SingleImageFromGalleryType extends AbstractType
     {
         $builder
 
-            ->add('imageFieldAction', ChoiceType::class, [
+            ->add(
+                'imageFieldAction',
+                ChoiceType::class,
+                [
                     'choices' => [
                         'Use one image from gallery' => 'fromGallery',
                         'Update the current Image' => 'updateImage',
@@ -29,7 +32,7 @@ class SingleImageFromGalleryType extends AbstractType
                 ]
             )
             ->add('galleryImage', EntityType::class, [
-                'class'=> Image::class,
+                'class' => Image::class,
                 'placeholder' => 'Keep the current image',
                 'help' => 'Choose an image from gallery to replace the current image',
                 'multiple' => false,
@@ -40,14 +43,13 @@ class SingleImageFromGalleryType extends AbstractType
                     'class' => 'selectpicker show-tick',
                     'data-live-search' => 'true',
                 ],
-                'choice_attr' => function($choice, $key, $value) {
+                'choice_attr' => static function ($choice, $key, $value) {
                     return [
-                        'data-content'=> "<img style='width: 50px' 
+                        'data-content' => "<img style='width: 50px' 
                         class='lazyload'
-                        src=".$choice->getbase64()."
-                        data-src='/media/cache/resolve/min_width_40/static/uploads/images/".$choice->getimageName()."'> ". $choice->getDescription(),
+                        src=" . $choice->getbase64() . "
+                        data-src='/media/cache/resolve/min_width_40/static/uploads/images/" . $choice->getimageName() . "'> " . $choice->getDescription(),
                     ];
-
                 },
             ])
 

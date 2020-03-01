@@ -14,8 +14,6 @@ use Doctrine\Common\Persistence\ManagerRegistry;
  */
 class RegionRepository extends ServiceEntityRepository
 {
-    use FindAllByActiveTrait;
-    use FindActivesByTrait;
 
     public function __construct(ManagerRegistry $registry)
     {

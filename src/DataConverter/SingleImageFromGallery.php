@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\DataConverter;
 
 use App\Entity\Image;

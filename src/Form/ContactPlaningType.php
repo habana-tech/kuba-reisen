@@ -16,16 +16,16 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 class ContactPlaningType extends AbstractType
 {
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('travelDate', DateType::class, [
-                'label' => "Wann planen Sie nach Kuba zu reisen?",
+                'label' => 'Wann planen Sie nach Kuba zu reisen?',
                 'widget' => 'single_text',
                 'attr' => ['min' => date('Y-m-d')]
             ])
             ->add('travelDuration', HiddenType::class, [
-                'label' => "Wie lange wollen Sie dort bleiben?"])
+                'label' => 'Wie lange wollen Sie dort bleiben?'])
 
             ->add('peopleAmount', ChoiceType::class, [
 //                'label'=>"Mit wie vielen Personen reisen Sie?",
@@ -52,11 +52,11 @@ class ContactPlaningType extends AbstractType
                 'expanded' => false])
 
             ->add('travelBudget', HiddenType::class, [
-                'label' => "Was ist Ihr Budget für diese Reise?",
+                'label' => 'Was ist Ihr Budget für diese Reise?',
                ])
 
             ->add('flyTicket', ChoiceType::class, [
-                'label' => "Hast du schon ein Flugticket?",
+                'label' => 'Hast du schon ein Flugticket?',
                 'choices' => [
                     'Ja' => 'true',
                     'Noch nicht' => 'false',
@@ -66,7 +66,7 @@ class ContactPlaningType extends AbstractType
                 'choice_attr' => ['class' => 'radio-switch__item']
             ])
             ->add('flyTicketOnBudget', ChoiceType::class, [
-                'label' => "Budget inkluidert Flug?",
+                'label' => 'Budget inkluidert Flug?',
                 'choices' => [
                     'Ja' => 'true',
                     'Nein' => 'false',
@@ -77,15 +77,15 @@ class ContactPlaningType extends AbstractType
             ])
 
             ->add('selfConsider', HiddenType::class, [
-                'label' => "Wie abenteuerlich bist du?"
+                'label' => 'Wie abenteuerlich bist du?'
             ])
 
             ->add('selfCharacter', HiddenType::class, [
-                'label' => "Wie sehr genießt du die Natur?"
+                'label' => 'Wie sehr genießt du die Natur?'
             ])
 
             ->add('selfLuxury', HiddenType::class, [
-             'label' => "Wie viel Komfort muss sein?"])
+             'label' => 'Wie viel Komfort muss sein?'])
 
             ->add('clientName', null, ['label' => 'Name'])
             ->add('clientEmail', EmailType::class, [
@@ -101,7 +101,7 @@ class ContactPlaningType extends AbstractType
         ;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => ContactPlaning::class

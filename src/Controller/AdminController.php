@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Controller;
 
 use EasyCorp\Bundle\EasyAdminBundle\Controller\EasyAdminController;
@@ -43,6 +42,6 @@ class AdminController extends EasyAdminController
     public function updateUserEntity($user): void
     {
         $this->userManager->updateUser($user, false);
-        parent::updateEntity($user);
+        $this->updateEntity($user);
     }
 }

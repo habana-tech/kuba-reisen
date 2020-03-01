@@ -19,13 +19,13 @@ class NewActivityType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', null, ['label'=>'Name of the activity, it will be used on the template'])
+            ->add('name', null, ['label' => 'Name of the activity, it will be used on the template'])
 
             ->add('featuresImagesCount', null, [
                 'label' => 'How many images do you want to show for this activity?'
             ])
 
-            ->add('saveAndEdit', SubmitType::class, array('label' => 'Save and start editing', 'attr'=>['class' => 'btn']))
+            ->add('saveAndEdit', SubmitType::class, array('label' => 'Save and start editing', 'attr' => ['class' => 'btn']))
         ;
     }
 

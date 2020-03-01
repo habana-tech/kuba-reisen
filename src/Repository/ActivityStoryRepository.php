@@ -22,11 +22,12 @@ class ActivityStoryRepository extends ServiceEntityRepository
         parent::__construct($registry, ActivityStory::class);
     }
 
-     /**
-      * @return ActivityStory[] Returns an array of ActivityStory objects
-      */
+    /**
+     * @param $value
+     * @return ActivityStory[] Returns an array of ActivityStory objects
+     */
     
-    public function findLastPublished($value)
+    public function findLastPublished($value): array
     {
         return $this->createQueryBuilder('a')
             ->andWhere('a.active = true')

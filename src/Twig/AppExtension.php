@@ -9,7 +9,7 @@ use App\Twig\AppRuntime;
 
 class AppExtension extends AbstractExtension
 {
-    public function getFilters()
+    public function getFilters(): array
     {
         return [
             new TwigFilter('price', [AppRuntime::class, 'formatPrice']),
@@ -29,12 +29,9 @@ class AppExtension extends AbstractExtension
     }
 
 
-    public function in_string(string $haystack, string $needle)
+    public function in_string(string $haystack, string $needle): bool
     {
-        if (stripos($haystack, $needle) === false) {
-            return false;
-        }
-        return true;
+        return !(stripos($haystack, $needle) === false);
     }
 
     /**
@@ -55,7 +52,7 @@ class AppExtension extends AbstractExtension
     * @internal param string $html
     * @access public
     */
-    public function truncate_html($text, $length = 100, $ending = '', $exact = false, $considerHtml = true)
+    public function truncate_html($text, $length = 100, $ending = '', $exact = false, $considerHtml = true): string
     {
         if (!is_string($text)) {
             trigger_error('Function \'truncate_html\' expects argument 1 to be an string', E_USER_ERROR);
@@ -83,7 +80,7 @@ class AppExtension extends AbstractExtension
                         // if tag is a closing tag
                     } elseif (preg_match('/^<\s*\/([^\s]+?)\s*>$/s', $lineMatchings[1], $tagMatchings)) {
                         // delete tag from $openTags list
-                        $pos = array_search($tagMatchings[1], $openTags);
+                        $pos = array_search($tagMatchings[1], $openTags, true);
                         if ($pos !== false) {
                             unset($openTags[$pos]);
                         }
@@ -97,7 +94,7 @@ class AppExtension extends AbstractExtension
                 }
                 // calculate the length of the plain text part of the line; handle entities as one character
                 $contentLength = strlen(preg_replace('/&[0-9a-z]{2,8};|&#[0-9]{1,7};|[0-9a-f]{1,6};/i', ' ', $lineMatchings[2]));
-                if ($totalLength+$contentLength> $length) {
+                if ($totalLength + $contentLength > $length) {
                     // the number of characters which are left
                     $left = $length - $totalLength;
                     $entitiesLength = 0;
@@ -105,7 +102,7 @@ class AppExtension extends AbstractExtension
                     if (preg_match_all('/&[0-9a-z]{2,8};|&#[0-9]{1,7};|[0-9a-f]{1,6};/i', $lineMatchings[2], $entities, PREG_OFFSET_CAPTURE)) {
                         // calculate the real length of all entities in the legal range
                         foreach ($entities[0] as $entity) {
-                            if ($entity[1]+1-$entitiesLength <= $left) {
+                            if ($entity[1] + 1 - $entitiesLength <= $left) {
                                 $left--;
                                 $entitiesLength += strlen($entity[0]);
                             } else {
@@ -114,24 +111,24 @@ class AppExtension extends AbstractExtension
                             }
                         }
                     }
-                    $truncate .= substr($lineMatchings[2], 0, $left+$entitiesLength);
+                    $truncate .= substr($lineMatchings[2], 0, $left + $entitiesLength);
                     // maximum lenght is reached, so get off the loop
                     break;
-                } else {
-                    $truncate .= $lineMatchings[2];
-                    $totalLength += $contentLength;
                 }
+
+                $truncate .= $lineMatchings[2];
+                $totalLength += $contentLength;
                 // if the maximum length is reached, get off the loop
-                if ($totalLength>= $length) {
+                if ($totalLength >= $length) {
                     break;
                 }
             }
         } else {
             if (strlen($text) <= $length) {
                 return $text;
-            } else {
-                $truncate = substr($text, 0, $length - strlen($ending));
             }
+
+            $truncate = substr($text, 0, $length - strlen($ending));
         }
         // if the words shouldn't be cut in the middle...
         if (!$exact) {

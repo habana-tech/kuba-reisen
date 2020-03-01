@@ -74,9 +74,4 @@ class ActivityDescriptionFragment implements ImageFieldInterface
      * @ORM\JoinColumn(nullable=true,  onDelete="SET NULL")
      */
     private $image;
-
-
-
-
-
 }

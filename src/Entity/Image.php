@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\DataConverter\ImageBase64ThumbCreator;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
+use Exception;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -106,7 +107,7 @@ class Image
     /**
      * @param File|null $file
      * @return $this
-     * @throws \Exception
+     * @throws Exception
      */
     public function setImageFile(?File $file = null): self
     {
@@ -156,7 +157,7 @@ class Image
      * @Assert\Callback
      * @param ExecutionContextInterface $context
      */
-    public function validate(ExecutionContextInterface $context)
+    public function validate(ExecutionContextInterface $context): void
     {
         if (
             ! in_array($this->imageFile->getMimeType(), array(

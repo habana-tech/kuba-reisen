@@ -156,8 +156,6 @@ class Region implements
     public function getTypeString(): string
     {
         switch ($this->type) {
-            case self::TYPE_GENERIC_REGION:
-                return 'GENERIC REGION';
             case self::TYPE_BANNER_REGION:
                 return 'BANNER REGION';
             case self::TYPE_TOP_DESTINATION_REGION:
@@ -168,6 +166,9 @@ class Region implements
                 return 'FAQ QUESTION';
             case self::TYPE_CLIENTS_OPINIONS:
                 return 'CLIENT OPINIONS';
+            default:
+            //case self::TYPE_GENERIC_REGION:
+                return 'GENERIC REGION';
         }
     }
 

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Form;
-
 
 use App\PageManager\TemplateSelector\PageTemplate;
 use App\PageManager\TemplateSelector\PageTemplateSelector;
@@ -14,12 +12,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class RegionTemplateType extends AbstractType
 {
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $templateSelector = new PageTemplateSelector();
         $builder
-            ->add('path', ChoiceType::class, ['choices'=> $templateSelector::getRegionTemplatesChoiceList()])
+            ->add('path', ChoiceType::class, ['choices' => $templateSelector::getRegionTemplatesChoiceList()])
 
         ;
     }

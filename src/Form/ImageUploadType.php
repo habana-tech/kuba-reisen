@@ -11,22 +11,22 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ImageUploadType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options):void
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('imageFile', VichImageType::class, [
-                'label'=>'Upload an Image',
-                'attr' =>[
-                    'required'=>false
+                'label' => 'Upload an Image',
+                'attr' => [
+                    'required' => false
                 ],
-                'required'=>false
+                'required' => false
             ])
-            ->add('description', null, ['label'=>'Image description'])
+            ->add('description', null, ['label' => 'Image description'])
 
         ;
     }
 
-    public function configureOptions(OptionsResolver $resolver):void
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Image::class,

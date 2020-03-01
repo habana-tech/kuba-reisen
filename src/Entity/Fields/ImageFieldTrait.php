@@ -38,7 +38,7 @@ trait ImageFieldTrait
             && $this->image->getImageName() !== 'no-image');
     }
 
-    public function uploadImage()
+    public function uploadImage(): void
     {
         return;
     }

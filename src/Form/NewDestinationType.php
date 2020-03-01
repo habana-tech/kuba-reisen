@@ -8,7 +8,6 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichImageType;
-
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class NewDestinationType extends AbstractType
@@ -28,8 +27,8 @@ class NewDestinationType extends AbstractType
 //            ->add('activities')
 //            ->add('modified_by')
 
-            ->add('imageFile', VichImageType::class, ['required'=> false])
-            ->add('saveAndEdit', SubmitType::class, array('label' => 'Save and start editing', 'attr'=>['class' => 'btn']))
+            ->add('imageFile', VichImageType::class, ['required' => false])
+            ->add('saveAndEdit', SubmitType::class, array('label' => 'Save and start editing', 'attr' => ['class' => 'btn']))
         ;
     }
 

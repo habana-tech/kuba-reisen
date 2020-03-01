@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\EventSubscriber;
 
 use App\DataConverter\SingleImageFromGallery;
@@ -12,6 +11,7 @@ use App\Entity\Image;
 use App\Repository\ActivityRepository;
 use App\Repository\DestinationRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Exception;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 use App\Entity\Activity;
@@ -84,7 +84,7 @@ class EasyAdminSubscriber implements EventSubscriberInterface
             if ($image instanceof Image) {
                 try {
                     $image->setImageFile($imageField->getLastImage()->getImageFile());
-                } catch (\Exception $e) {
+                } catch (Exception $e) {
                 }
                 $image->setDescription($imageField->getLastImage()->getDescription());
             } else {

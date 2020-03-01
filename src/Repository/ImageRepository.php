@@ -21,15 +21,14 @@ class ImageRepository extends ServiceEntityRepository
     }
 
     /**
-    * @return Image[] Returns an array of Image objects
-    */
-    public function getAmount($amount)
+     * @param $amount
+     * @return Image[] Returns an array of Image objects
+     */
+    public function getAmount($amount): array
     {
         return $this->createQueryBuilder('i')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
             ->orderBy('s.id', 'ASC')
-            ->setMaxResults($am)
+            ->setMaxResults($amount)
             ->getQuery()
             ->getResult()
         ;

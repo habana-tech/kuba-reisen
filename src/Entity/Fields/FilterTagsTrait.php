@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Entity\Fields;
 
 use App\Entity\FilterTag;

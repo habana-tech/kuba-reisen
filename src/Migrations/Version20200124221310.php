@@ -12,12 +12,12 @@ use Doctrine\Migrations\AbstractMigration;
  */
 final class Version20200124221310 extends AbstractMigration
 {
-    public function getDescription() : string
+    public function getDescription(): string
     {
         return '';
     }
 
-    public function up(Schema $schema) : void
+    public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
@@ -26,7 +26,7 @@ final class Version20200124221310 extends AbstractMigration
         $this->addSql('ALTER TABLE activity ADD itinerary_title VARCHAR(255) DEFAULT NULL, ADD itinerary_content LONGTEXT DEFAULT NULL, ADD included_section_title VARCHAR(255) DEFAULT NULL, ADD included_title VARCHAR(255) DEFAULT NULL, ADD included_content LONGTEXT DEFAULT NULL, ADD not_included_title VARCHAR(255) DEFAULT NULL, ADD not_included_content LONGTEXT DEFAULT NULL, ADD cost_and_dates_title VARCHAR(255) DEFAULT NULL, ADD cost_and_dates_content LONGTEXT DEFAULT NULL, DROP content_itinerary_content, DROP content_included_content, DROP content_not_included_content, DROP content_cost_and_dates_content');
     }
 
-    public function down(Schema $schema) : void
+    public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');

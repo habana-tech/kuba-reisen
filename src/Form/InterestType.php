@@ -20,7 +20,7 @@ class InterestType extends AbstractType
 //            ->add('translation_from')
 //
 //            ->add('modified_by')
-            ->add('imageFile', VichImageType::class, ['required'=> false])
+            ->add('imageFile', VichImageType::class, ['required' => false])
 //            ->add('language',  ChoiceType::class, ['choices' => [
 //                'de' => 'de',
 //                'en' => 'en',

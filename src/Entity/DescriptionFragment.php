@@ -67,5 +67,4 @@ class DescriptionFragment implements ImageFieldInterface
     {
         return $this->name;
     }
-
 }

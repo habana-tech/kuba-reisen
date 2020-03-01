@@ -14,8 +14,6 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class ActivityDescriptionFragmentRepository extends ServiceEntityRepository
 {
-    use FindAllByActiveTrait;
-    use FindActivesByTrait;
 
     public function __construct(ManagerRegistry $registry)
     {

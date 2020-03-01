@@ -74,7 +74,7 @@ trait DescriptionFragmentFieldTrait
         $iterator = $collection->getIterator();
 
         // define ordering closure, using preferred comparison method/field
-        $iterator->uasort(function ($first, $second) {
+        $iterator->uasort(static function ($first, $second) {
             return (int)$first->__get('fragmentOrder') > (int)$second->__get('fragmentOrder') ? 1 : -1;
         });
         // return the ordered iterator, pass sorted array to a new ArrayCollection.

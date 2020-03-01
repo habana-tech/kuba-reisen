@@ -25,10 +25,13 @@ class ActivityRepository extends ServiceEntityRepository
     }
 
 //
+
     /**
+     * @param $pos
+     * @param $amount
      * @return Activity[] Returns an array of Activity objects
      */
-    public function findStartingFrom($pos, $amount)
+    public function findStartingFrom($pos, $amount): array
     {
         return $this->createQueryBuilder('activity')
             ->where('activity.active = True')

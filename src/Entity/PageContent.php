@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -44,7 +45,8 @@ class PageContent
         return $this;
     }
 
-    public function getJsonContent(){
+    public function getJsonContent()
+    {
         return json_encode($this->pageContent);
     }
 
@@ -65,22 +67,28 @@ class PageContent
     }
 
 
-     public function __get($name){
-        if (array_key_exists($name, $this->getPageContent()))
+    public function __get($name)
+    {
+        if (array_key_exists($name, $this->getPageContent())) {
             return trim($this->getElement($name));
+        }
+        return null;
     }
 
 
-    public function __set($name, $value){
-        if (array_key_exists($name, $this->getPageContent()))
+    public function __set($name, $value)
+    {
+        if (array_key_exists($name, $this->getPageContent())) {
             $this->setElementContent($name, $value);
-
+        }
     }
 
 
-    public function __isset($name){
-        if (array_key_exists($name, $this->getPageContent()))
+    public function __isset($name)
+    {
+        if (array_key_exists($name, $this->getPageContent())) {
             return true;
+        }
         return false;
     }
 }

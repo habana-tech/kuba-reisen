@@ -6,7 +6,6 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
-
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -18,12 +17,12 @@ class UserType extends AbstractType
             ->add('username')
             ->add('enabled')
             ->add('email')
-            ->add('sendRequestEmail', null, ['label'=> 'This user recibes the contact request'])
-            ->add('changepassword', PasswordType::class, ['label'=> 'Write a new password, only to change it',
-                                        'required'=>false,
-                                        'attr'=>['value'=>'']
+            ->add('sendRequestEmail', null, ['label' => 'This user recibes the contact request'])
+            ->add('changepassword', PasswordType::class, ['label' => 'Write a new password, only to change it',
+                                        'required' => false,
+                                        'attr' => ['value' => '']
                                 ])
-            ->add('imageFile', VichImageType::class, ['required'=>false])
+            ->add('imageFile', VichImageType::class, ['required' => false])
                         
             
             ->add('roles')

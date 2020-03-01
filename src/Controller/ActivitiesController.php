@@ -27,7 +27,9 @@ class ActivitiesController extends AbstractController
 
     public function __construct(ContainerInterface $container = null)
     {
-        $this->imagineCacheManager = $container->get('liip_imagine.cache.manager');
+        if ($container instanceof ContainerInterface) {
+            $this->imagineCacheManager = $container->get('liip_imagine.cache.manager');
+        }
     }
 
     private $amountActivitiesDefault = 12;
@@ -50,7 +52,7 @@ class ActivitiesController extends AbstractController
         FilterTagRepository $filterTagRepository,
         ActivityStoryRepository $storiesRepository,
         $filters = null
-    ) {
+    ): Response {
         $page = $dynamicPageRepository->findOneBy([
             'machineName'=>'activities'
         ]);
@@ -234,7 +236,7 @@ class ActivitiesController extends AbstractController
         $search,
         $pos,
         $amount
-    ) {
+    ): JsonResponse {
         if ($pos===null) {
             $pos=0;
         }
@@ -300,6 +302,7 @@ class ActivitiesController extends AbstractController
             'id' => $id,
             'name'=>$activity->getName(),
             'imageSmall' => $activity->hasImage() ? $this->imagineCacheManager->getBrowserPath(
+                // If $activity->hasImage() prove that getImage() return an Image!
                 $activity->getImage()->getStaticImagePath(),
                 'min_width_250'
             ) : '',

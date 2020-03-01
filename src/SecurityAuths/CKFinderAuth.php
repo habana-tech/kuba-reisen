@@ -18,7 +18,7 @@ class CKFinderAuth extends AuthenticationBase
 //        $this->authorizationChecker = $authorizationChecker;
     }
 
-    public function authenticate()
+    public function authenticate(): bool
     {
 //        dump($this->$container);
 //        if(false === $this->authorizationChecker->isGranted("ROLE_EDITOR"))

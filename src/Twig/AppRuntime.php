@@ -13,7 +13,9 @@ class AppRuntime implements RuntimeExtensionInterface
 
     public function __construct(ContainerInterface $container = null)
     {
-        $this->imagineCacheManager = $container->get('liip_imagine.cache.manager');
+        if ($container instanceof ContainerInterface) {
+            $this->imagineCacheManager = $container->get('liip_imagine.cache.manager');
+        }
     }
 
     public function formatPrice($number, $decimals = 0, $decPoint = '.', $thousandsSep = ',')
@@ -25,8 +27,8 @@ class AppRuntime implements RuntimeExtensionInterface
     }
 
     /**
-     * @param string $imagesPath, the relative path to image, ex: static/uploads/image/pic.jpg
-     * @param array $sizes, the sizes, depends on the filters 'min_width_XXX' defined on liip_image config file
+     * @param $imagePath
+     * @param array $sizes , the sizes, depends on the filters 'min_width_XXX' defined on liip_image config file
      * @return string|FilterTag[]
      */
     public function filterSrcset($imagePath, $sizes = [1920, 1366, 1200, 1000, 900, 800, 600])
@@ -37,12 +39,12 @@ class AppRuntime implements RuntimeExtensionInterface
 
         $html = '';
         foreach ($sizes as $value) {
-            //obtiene las rutas de las imagenes según el tamaño
+            // Obtiene las rutas de las imagenes según el tamaño
             $resolvedPath = $this->imagineCacheManager->getBrowserPath($imagePath, 'min_width_' . $value);
-            //completa la lista de "path tamaño" de las imagenes disponibles
+            // Completa la lista de "path tamaño" de las imagenes disponibles
             $html .= ' ' . $resolvedPath . ' ' . $value . 'w, ';
         }
-        $html = trim($html, ", ");
+        $html = trim($html, ', ');
 
         return $html;
     }
@@ -71,7 +73,7 @@ class AppRuntime implements RuntimeExtensionInterface
 
         $html = "<img class=\"lazyload blur-up\" sizes=\"$sizes\" ";
         if ($attr) {
-            $html .= $attr . " ";
+            $html .= $attr . ' ';
         }
         if ($database64) { //se existe una miniatura en la db proveniente del grape
             $html .= "src=\"$database64\" ";
@@ -93,7 +95,7 @@ class AppRuntime implements RuntimeExtensionInterface
 
      * @return string
      */
-    public function imgTag($image, $sizes = '100vw', $alt = null, $class = null)
+    public function imgTag($image, $sizes = '100vw', $alt = null, $class = null): string
     {
         if (!($image instanceof Image)) {
             $imageObj = new Image();

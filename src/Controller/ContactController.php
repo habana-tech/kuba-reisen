@@ -4,6 +4,9 @@ namespace App\Controller;
 
 use App\Repository\InterestRepository;
 use Exception;
+use RuntimeException;
+use Swift_Mailer;
+use Swift_Message;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -97,7 +100,7 @@ class ContactController extends AbstractController
     /**
      * @Route("/processContact", name="processContact", methods={"POST"})
      * @param Request $request
-     * @param \Swift_Mailer $mailer
+     * @param Swift_Mailer $mailer
      * @param ActivityRepository $repository
      * @param UserRepository $userRepository
      * @return JsonResponse
@@ -105,7 +108,7 @@ class ContactController extends AbstractController
      */
     public function processContact(
         Request $request,
-        \Swift_Mailer $mailer,
+        Swift_Mailer $mailer,
         ActivityRepository $repository,
         UserRepository $userRepository
     ): JsonResponse {
@@ -151,7 +154,7 @@ class ContactController extends AbstractController
 
     private function sendContactEmailNotification(
         ContactPlaning $contact,
-        \Swift_Mailer $mailer,
+        Swift_Mailer $mailer,
         UserRepository $userRepository
     ): void {
         $users = $userRepository->findAllActive();
@@ -165,13 +168,13 @@ class ContactController extends AbstractController
         }
         
         if (!$adminEmail) {
-            throw new Exception('Error Processing Request, no adminEmail available', 1);
+            throw new RuntimeException('Error Processing Request, no adminEmail available', 1);
         }
             
         $from = ['kontaktieren@kuba-reisen.reisen' => 'Kuba-reisen kontaktieren'];
 
         //Todo: translate the subject
-        $message = (new \Swift_Message('Kuba-reisen kontaktieren - ' . $contact->getRequestId()))
+        $message = (new Swift_Message('Kuba-reisen kontaktieren - ' . $contact->getRequestId()))
                 ->setFrom($from)
                 ->setBcc($adminEmail)
                 ->setBody(
@@ -194,7 +197,7 @@ class ContactController extends AbstractController
         $mailer->send($message);
 
         //send message to client
-        $client_message = (new \Swift_Message('Kuba-reisen kontaktieren - ' . $contact->getRequestId()))
+        $client_message = (new Swift_Message('Kuba-reisen kontaktieren - ' . $contact->getRequestId()))
             ->setFrom($from)
             ->setTo($contact->getClientEmail())
             ->setBody(

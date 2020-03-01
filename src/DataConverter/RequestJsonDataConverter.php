@@ -55,7 +55,7 @@ class RequestJsonDataConverter
     /**
      * @return Request
      */
-    public function replaceDataRequest()
+    public function replaceDataRequest(): Request
     {
         $this->request->request->replace(is_array($this->data) ? $this->data : array());
         return $this->request;

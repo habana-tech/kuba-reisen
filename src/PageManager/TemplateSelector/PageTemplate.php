@@ -48,7 +48,7 @@ class PageTemplate
     }
 
     /**
-     * @return null
+     * @return string|null
      */
     public function getDescription(): ?string
     {
@@ -65,7 +65,7 @@ class PageTemplate
 
     public function __toString()
     {
-        return $this->path;
+        return $this->path ?? '';
     }
 
     /**
