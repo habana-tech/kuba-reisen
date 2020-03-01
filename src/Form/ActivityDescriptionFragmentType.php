@@ -28,7 +28,7 @@ class ActivityDescriptionFragmentType extends AbstractType
                 ]
             ])
             ->add('name', null, [
-                'label'=> 'Title for the Feature component',
+                'label' => 'Title for the Feature component',
                 'attr' => [
                     'required' => true
                 ]])
@@ -37,11 +37,14 @@ class ActivityDescriptionFragmentType extends AbstractType
             ])
             ->add('content', CKEditorType::class)
             ->add('location', TextType::class)
-            ->add('fragmentOrder', HiddenType::class, ['attr'=>['data-role' => 'fragmentOrder']])
+            ->add('fragmentOrder', HiddenType::class, ['attr' => ['data-role' => 'fragmentOrder']])
         ;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    /**
+     * @param OptionsResolver $resolver
+     */
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => ActivityDescriptionFragment::class,

@@ -3,7 +3,6 @@
 
 namespace App\Entity\Fields;
 
-
 trait PriorityFieldTrait
 {
 
@@ -21,8 +20,6 @@ trait PriorityFieldTrait
     public function setPriority(?int $priority): self
     {
         $this->priority = $priority;
-
         return $this;
     }
-
 }

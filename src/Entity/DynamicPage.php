@@ -15,12 +15,15 @@ use App\PageManager\TemplateSelector\PageTemplateSelector;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
-
 /**
  * @ORM\Entity(repositoryClass="App\Repository\DynamicPageRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class DynamicPage implements MachineNameInterface, GalleryFieldInterface, DescriptionFragmentFieldInterface, ImageFieldInterface
+class DynamicPage implements
+    MachineNameInterface,
+    GalleryFieldInterface,
+    DescriptionFragmentFieldInterface,
+    ImageFieldInterface
 {
     use MachineNameTrait;
     use GalleryFieldTrait;
@@ -86,7 +89,7 @@ class DynamicPage implements MachineNameInterface, GalleryFieldInterface, Descri
 
     public function getName(): ?string
     {
-        if(($decode = urldecode($this->name))!== $this->name) {
+        if (($decode = urldecode($this->name)) !== $this->name) {
             return $decode;
         }
         return $this->name;
@@ -104,14 +107,13 @@ class DynamicPage implements MachineNameInterface, GalleryFieldInterface, Descri
      */
     public function getTemplate(): PageTemplate
     {
-        if($this->template instanceof PageTemplate) {
+        if ($this->template instanceof PageTemplate) {
             return $this->template;
         }
 
         $templates = PageTemplateSelector::getTemplates();
-        foreach ($templates as $template)
-        {
-            if($template->getPath() === $this->template) {
+        foreach ($templates as $template) {
+            if ($template->getPath() === $this->template) {
                 return $template;
             }
         }
@@ -134,7 +136,7 @@ class DynamicPage implements MachineNameInterface, GalleryFieldInterface, Descri
         return $this->name;
     }
 
-    public function getNameFieldValue():? string
+    public function getNameFieldValue(): ?string
     {
         return $this->name;
     }

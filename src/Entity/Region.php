@@ -7,7 +7,6 @@ use App\Entity\Fields\DescriptionFragmentFieldInterface;
 use App\Entity\Fields\DescriptionFragmentFieldTrait;
 use App\Entity\Fields\GalleryFieldInterface;
 use App\Entity\Fields\GalleryFieldTrait;
-use App\Entity\Fields\GalleryTrait;
 use App\Entity\Fields\ImageFieldInterface;
 use App\Entity\Fields\ImageFieldTrait;
 use App\Entity\Fields\MachineNameInterface;
@@ -23,9 +22,18 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @Vich\Uploadable
  * @ORM\HasLifecycleCallbacks
  */
-class Region implements ImageFieldInterface, GalleryFieldInterface, MachineNameInterface, DescriptionFragmentFieldInterface
+class Region implements
+    ImageFieldInterface,
+    GalleryFieldInterface,
+    MachineNameInterface,
+    DescriptionFragmentFieldInterface
 {
-    use ImageFieldTrait, ActiveFieldTrait, GalleryFieldTrait, MachineNameTrait, DescriptionFragmentFieldTrait;
+    use ImageFieldTrait;
+    use ActiveFieldTrait;
+    use GalleryFieldTrait;
+    use MachineNameTrait;
+    use DescriptionFragmentFieldTrait;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -135,7 +143,7 @@ class Region implements ImageFieldInterface, GalleryFieldInterface, MachineNameI
         return $this;
     }
 
-    public function getNameFieldValue():? string
+    public function getNameFieldValue(): ?string
     {
         return $this->title;
     }
@@ -147,15 +155,20 @@ class Region implements ImageFieldInterface, GalleryFieldInterface, MachineNameI
 
     public function getTypeString(): string
     {
-        switch ($this->type){
-            case 0: return 'GENERIC REGION';
-            case 1: return 'BANNER REGION';
-            case 2: return 'TOP DESTINATION REGION';
-            case 3: return 'TRAVEL OPTIONS';
-            case 4: return 'FAQ QUESTION';
-            case 5: return 'CLIENT OPINIONS';
+        switch ($this->type) {
+            case self::TYPE_GENERIC_REGION:
+                return 'GENERIC REGION';
+            case self::TYPE_BANNER_REGION:
+                return 'BANNER REGION';
+            case self::TYPE_TOP_DESTINATION_REGION:
+                return 'TOP DESTINATION REGION';
+            case self::TRAVEL_OPTIONS:
+                return 'TRAVEL OPTIONS';
+            case self::TYPE_FAQ:
+                return 'FAQ QUESTION';
+            case self::TYPE_CLIENTS_OPINIONS:
+                return 'CLIENT OPINIONS';
         }
-
     }
 
     public function setType(int $type = self::TYPE_GENERIC_REGION): self
@@ -171,14 +184,13 @@ class Region implements ImageFieldInterface, GalleryFieldInterface, MachineNameI
      */
     public function getTemplate(): PageTemplate
     {
-        if($this->template instanceof PageTemplate) {
+        if ($this->template instanceof PageTemplate) {
             return $this->template;
         }
 
         $templates = PageTemplateSelector::getRegionTemplates();
-        foreach ($templates as $template)
-        {
-            if($template->getPath() === $this->template) {
+        foreach ($templates as $template) {
+            if ($template->getPath() === $this->template) {
                 return $template;
             }
         }
@@ -192,7 +204,4 @@ class Region implements ImageFieldInterface, GalleryFieldInterface, MachineNameI
     {
         $this->template = $template;
     }
-
-
-
 }

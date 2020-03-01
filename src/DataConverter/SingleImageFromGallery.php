@@ -3,19 +3,15 @@
 
 namespace App\DataConverter;
 
-
 use App\Entity\Image;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class SingleImageFromGallery
 {
-
     private $imageFieldAction;
-
-     private $galleryImage;
-
-     private $updateImage;
-     private $uploadNewImage;
+    private $galleryImage;
+    private $updateImage;
+    private $uploadNewImage;
 
     /**
      * @return mixed
@@ -107,12 +103,12 @@ class SingleImageFromGallery
 
     public function getLastImage(): Image
     {
-        if($this->isUpdateImage())
+        if ($this->isUpdateImage()) {
             return $this->getUpdateImage();
-        if($this->isFromGallery())
+        }
+        if ($this->isFromGallery()) {
             return $this->getGalleryImage();
-        if($this->isUploadNewImage())
-            return $this->getUploadNewImage();
+        }
+        return $this->getUploadNewImage();
     }
-
 }

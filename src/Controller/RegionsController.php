@@ -14,15 +14,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Twig\Error\LoaderError;
 
-
-
 class RegionsController extends AbstractController
 {
 
-    public function regionBanner(RegionRepository $regionRepository)
+    /**
+     * @param RegionRepository $regionRepository
+     * @return Response
+     */
+    public function regionBanner(RegionRepository $regionRepository): Response
     {
-        if(!$banners = $regionRepository->findBy(['type'=>Region::TYPE_BANNER_REGION]))
+        if (!$banners = $regionRepository->findBy(['type' => Region::TYPE_BANNER_REGION])) {
             return new Response();
+        }
 
         $index = array_rand($banners, 1);
         $banner = $banners[$index];
@@ -32,47 +35,71 @@ class RegionsController extends AbstractController
         ]);
     }
 
-    public function regionTopDestinations(RegionRepository $regionRepository)
+    /**
+     * @param RegionRepository $regionRepository
+     * @return Response
+     */
+    public function regionTopDestinations(RegionRepository $regionRepository): Response
     {
-        if(!$topDestinations = $regionRepository->findBy(['type'=>Region::TYPE_TOP_DESTINATION_REGION]))
+        if (!$topDestinations = $regionRepository->findBy(['type' => Region::TYPE_TOP_DESTINATION_REGION])) {
             return new Response();
+        }
 
         return $this->render('frontend/components/global/_top_destination.html.twig', [
             'topDestinations' => $topDestinations,
         ]);
     }
 
-    public function regionAboutUsBenefits(RegionRepository $regionRepository)
+    /**
+     * @param RegionRepository $regionRepository
+     * @return Response
+     */
+    public function regionAboutUsBenefits(RegionRepository $regionRepository): Response
     {
-        if(!$aboutUsBenefits = $regionRepository->findOneBy(['machineName'=>'about_us_benefits']))
+        if (!$aboutUsBenefits = $regionRepository->findOneBy(['machineName' => 'about_us_benefits'])) {
             return new Response();
+        }
 
         return $this->render('frontend/components/about_us/_benefits.html.twig', [
             'aboutUsBenefits' => $aboutUsBenefits,
         ]);
     }
 
-    public function regionAboutUsPhilosophy(RegionRepository $regionRepository)
+    /**
+     * @param RegionRepository $regionRepository
+     * @return Response
+     */
+    public function regionAboutUsPhilosophy(RegionRepository $regionRepository): Response
     {
-        if(!$aboutUsPhilosophy = $regionRepository->findOneBy(['machineName'=>'about_us_philosophy']))
+        if (!$aboutUsPhilosophy = $regionRepository->findOneBy(['machineName' => 'about_us_philosophy'])) {
             return new Response();
+        }
 
         return $this->render('frontend/components/about_us/_philosophy.html.twig', [
             'aboutUsPhilosophy' => $aboutUsPhilosophy,
         ]);
     }
 
-    public function regionAboutUsTeam(RegionRepository $regionRepository)
+    /**
+     * @param RegionRepository $regionRepository
+     * @return Response
+     */
+    public function regionAboutUsTeam(RegionRepository $regionRepository): Response
     {
-        if(!$aboutUsTeam = $regionRepository->findOneBy(['machineName'=>'about_us_team']))
+        if (!$aboutUsTeam = $regionRepository->findOneBy(['machineName' => 'about_us_team'])) {
             return new Response();
+        }
 
         return $this->render('frontend/components/about_us/_team.html.twig', [
             'aboutUsTeam' => $aboutUsTeam,
         ]);
     }
 
-    public function regionAboutUsFilters(FilterTagRepository $filterTagRepository)
+    /**
+     * @param FilterTagRepository $filterTagRepository
+     * @return Response
+     */
+    public function regionAboutUsFilters(FilterTagRepository $filterTagRepository): Response
     {
         $filters = $filterTagRepository->findAll();
 
@@ -81,53 +108,54 @@ class RegionsController extends AbstractController
         ]);
     }
 
-    public function regionFooter(FilterTagRepository $filterTagRepository,
-                                 DestinationRepository $destinationRepository,
-                                 DynamicPageRepository $dynamicPageRepository)
-    {
-
+    public function regionFooter(
+        FilterTagRepository $filterTagRepository,
+        DestinationRepository $destinationRepository,
+        DynamicPageRepository $dynamicPageRepository
+    ): Response {
         return $this->render('frontend/components/global/_footer.html.twig', [
-            'staticPagesUrl'=>$dynamicPageRepository->getStaticPagesUrl(),
-            'destinations'=>$destinationRepository->findAll(),
-            'filterTagsPinned'=>$filterTagRepository->findBy(['pinned'=>true]),
+            'staticPagesUrl' => $dynamicPageRepository->getStaticPagesUrl(),
+            'destinations' => $destinationRepository->findAll(),
+            'filterTagsPinned' => $filterTagRepository->findBy(['pinned' => true]),
         ]);
     }
 
-    public function regionHeader(DestinationRepository $destinationRepository,
-                                FilterTagRepository $filterTagRepository,
-                                DynamicPageRepository $dynamicPageRepository): Response
-    {
-
+    public function regionHeader(
+        DestinationRepository $destinationRepository,
+        FilterTagRepository $filterTagRepository,
+        DynamicPageRepository $dynamicPageRepository
+    ): Response {
         return $this->render('frontend/components/global/_header.html.twig', [
-            'staticPagesUrl'=>$dynamicPageRepository->getStaticPagesUrl(),
-            'destinations'=>$destinationRepository->findAll(),
-            'filterTagsPinned'=>$filterTagRepository->findBy(['pinned'=>true]),
+            'staticPagesUrl' => $dynamicPageRepository->getStaticPagesUrl(),
+            'destinations' => $destinationRepository->findAll(),
+            'filterTagsPinned' => $filterTagRepository->findBy(['pinned' => true]),
         ]);
     }
 
-    public function regionBreadcrumbs($items, DynamicPageRepository $dynamicPageRepository){
-
+    public function regionBreadcrumbs($items, DynamicPageRepository $dynamicPageRepository): Response
+    {
         return $this->render('frontend/components/global/_breadcrumbs.html.twig', [
             'items' => $items,
-            'staticPagesUrl'=>$dynamicPageRepository->getStaticPagesUrl(),
+            'staticPagesUrl' => $dynamicPageRepository->getStaticPagesUrl(),
         ]);
     }
 
-    public function regionFaq(RegionRepository $regionRepository)
+    public function regionFaq(RegionRepository $regionRepository): Response
     {
-        if(!$questionSections = $regionRepository->findBy(['type'=>Region::TYPE_FAQ]))
+        if (!$questionSections = $regionRepository->findBy(['type' => Region::TYPE_FAQ])) {
             return new Response();
+        }
 
         return $this->render('frontend/components/faq/_question.html.twig', [
             'questionSections' => $questionSections,
         ]);
     }
 
-    public function regionClientsOpinion(RegionRepository $regionRepository)
+    public function regionClientsOpinion(RegionRepository $regionRepository): Response
     {
-
-        if(!$clientsOpinions = $regionRepository->findOneBy(['type'=>Region::TYPE_CLIENTS_OPINIONS]))
+        if (!$clientsOpinions = $regionRepository->findOneBy(['type' => Region::TYPE_CLIENTS_OPINIONS])) {
             return new Response();
+        }
 
 
 //        $opinions = array_rand($clientsOpinions->getDescriptionFragments(), 2);
@@ -139,13 +167,18 @@ class RegionsController extends AbstractController
         ]);
     }
 
-    public function regionLoader($machineName, RegionRepository $repository, FilterTagRepository $filterTagRepository): Response
-    {
-        if($region = $repository->findOneBy(['machineName'=>$machineName])) {
-            return $this->render($region->getTemplate()->getFullPath(),
+    public function regionLoader(
+        $machineName,
+        RegionRepository $repository,
+        FilterTagRepository $filterTagRepository
+    ): Response {
+        if ($region = $repository->findOneBy(['machineName' => $machineName])) {
+            return $this->render(
+                $region->getTemplate()->getFullPath(),
                 ['region' => $region,
-                'filterTags' => $filterTagRepository->findBy(['pinned'=>true]),
-                ]);
+                'filterTags' => $filterTagRepository->findBy(['pinned' => true]),
+                ]
+            );
         }
         return new Response();
     }

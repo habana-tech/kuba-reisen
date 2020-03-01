@@ -16,7 +16,6 @@ use App\Entity\Fields\PriorityFieldTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Vich\UploaderBundle\Entity\File as EmbeddedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
@@ -24,8 +23,11 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @Vich\Uploadable
  * @ORM\HasLifecycleCallbacks
  */
-class Activity implements MachineNameInterface, DescriptionFragmentFieldInterface,
-      GalleryFieldInterface, ImageFieldInterface
+class Activity implements
+    MachineNameInterface,
+    DescriptionFragmentFieldInterface,
+    GalleryFieldInterface,
+    ImageFieldInterface
 {
     use ImageFieldTrait;
     use ActiveFieldTrait;
@@ -371,9 +373,13 @@ class Activity implements MachineNameInterface, DescriptionFragmentFieldInterfac
         return $this->name;
     }
 
-    public function getPinnedFilterTag(): ?string {
-        $mainPinned = $this->getFilterTags()->filter(function ($tag){ return $tag->getPinned(); })->first();
-        return $mainPinned;
+    public function getPinnedFilterTag(): ?string
+    {
+        return $this->getFilterTags()->filter(static function ($tag) {
+            /**
+             * @var FilterTag $tag
+             */
+            return $tag->getPinned();
+        })->first();
     }
-
 }

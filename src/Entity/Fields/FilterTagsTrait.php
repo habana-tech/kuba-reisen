@@ -3,7 +3,6 @@
 
 namespace App\Entity\Fields;
 
-
 use App\Entity\FilterTag;
 use Doctrine\Common\Collections\Collection;
 
@@ -41,6 +40,4 @@ trait FilterTagsTrait
 
         return $this;
     }
-
-
 }

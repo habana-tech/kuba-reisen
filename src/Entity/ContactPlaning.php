@@ -2,10 +2,8 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ContactPlaningRepository")
@@ -57,9 +55,9 @@ class ContactPlaning
      */
     private $flyTicket;
 
-     /**
-     * @ORM\Column(type="boolean")
-     */
+    /**
+    * @ORM\Column(type="boolean")
+    */
     private $flyTicketOnBudget;
 
     /**
@@ -110,14 +108,14 @@ class ContactPlaning
      */
     private $clientEmail;
 
-     /**
-     * @ORM\Column(type="string", length=255)
-     */
+    /**
+    * @ORM\Column(type="string", length=255)
+    */
     private $telephone;
 
     public function __construct()
     {
-        $this->requestId = "KR-".substr(uniqid(),8,13);
+        $this->requestId = 'KR-' . substr(uniqid('', true), 8, 13);
         $this->requestDateTime = new \DateTime();
     }
 
@@ -317,7 +315,7 @@ class ContactPlaning
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
      */
-    public function updateRequestDateTime()
+    public function updateRequestDateTime(): void
     {
         $this->setRequestDateTime(new \DateTime());
     }
@@ -361,7 +359,4 @@ class ContactPlaning
     {
         $this->telephone = $telephone;
     }
-
-
-
 }

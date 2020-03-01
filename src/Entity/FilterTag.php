@@ -3,15 +3,14 @@
 namespace App\Entity;
 
 use App\Entity\Fields\ActiveFieldTrait;
-use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 use App\Entity\Fields\PriorityFieldTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\File;
+use Knp\DoctrineBehaviors\Model as ORMBehaviors;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\FilterTagRepository")
@@ -19,7 +18,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class FilterTag
 {
-    use ActiveFieldTrait, PriorityFieldTrait;
+    use ActiveFieldTrait;
+    use PriorityFieldTrait;
     use ORMBehaviors\Timestampable\Timestampable;
 
     /**
@@ -85,7 +85,7 @@ class FilterTag
     }
 
 
-    public function __toString():string
+    public function __toString(): string
     {
         return $this->title;
     }
@@ -132,14 +132,14 @@ class FilterTag
     }
 
 
-    public function getNameFieldValue():? string
+    public function getNameFieldValue(): ?string
     {
         return $this->title;
     }
 
-     /**
-     * @return Collection|Destination[]
-     */
+    /**
+    * @return Collection|Destination[]
+    */
     public function getDestinations(): Collection
     {
         return $this->destinations;
@@ -176,14 +176,15 @@ class FilterTag
     /**
      * @param mixed $iconFile
      * @return FilterTag
+     * @throws \Exception
      */
-    public function setIconFile($iconFile)
+    public function setIconFile($iconFile): FilterTag
     {
         $this->iconFile = $iconFile;
         if ($iconFile) {
-                // if 'updatedAt' is not defined in your entity, use another property
-                $this->updatedAt = new \DateTime('now');
-            }
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTime('now');
+        }
         return $this;
     }
 
@@ -212,12 +213,14 @@ class FilterTag
      */
     public function validate(ExecutionContextInterface $context): void
     {
-        if (! in_array($this->iconFile->getMimeType(), array(
+        if (
+            ! in_array($this->iconFile->getMimeType(), array(
             'image/svg+xml',
             'image/svg',
             'image/png',
 
-        ))) {
+            ))
+        ) {
             $context
                 ->buildViolation('Wrong file type (svg, png)')
                 ->atPath('iconName')
@@ -225,5 +228,4 @@ class FilterTag
             ;
         }
     }
-
 }

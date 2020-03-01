@@ -25,11 +25,11 @@ class ActivityRepository extends ServiceEntityRepository
     /**
      * @return Activity[] Returns an array of Activity objects
      */
-    public function findStartingFrom($pos, $amount){
-
+    public function findStartingFrom($pos, $amount)
+    {
         return $this->createQueryBuilder('activity')
             ->where('activity.active = True')
-            ->orderBy('activity.priority','DESC')
+            ->orderBy('activity.priority', 'DESC')
             ->setFirstResult($pos)
             ->setMaxResults($amount)
             ->getQuery()
@@ -42,24 +42,31 @@ class ActivityRepository extends ServiceEntityRepository
      * @param FilterTagRepository $filterTagRepository
      * @param $pos
      * @param $amount
+     * @param int $selfId
      * @return Activity[] Returns an array of Activity objects
      */
-    public function findByFilter($filters,
-                                 FilterTagRepository $filterTagRepository,
-                                 $pos, $amount, $selfId=-1): array
-    {
+    public function findByFilter(
+        $filters,
+        FilterTagRepository $filterTagRepository,
+        $pos,
+        $amount,
+        $selfId = -1
+    ): array {
+        $filter_objs = $filterTagRepository->findBy(['title' => $filters]);
 
-        $filter_objs = $filterTagRepository->findBy(['title'=>$filters]);
-
-        $filter_ids = array_map(static function (FilterTag $filterTag) {return $filterTag->getId();},
-                                $filter_objs);
+        $filter_ids = array_map(
+            static function (FilterTag $filterTag) {
+                return $filterTag->getId();
+            },
+            $filter_objs
+        );
 
         return $this->createQueryBuilder('activity')
             ->join('activity.filterTags', 'filter_tags')
             ->where('activity.active = True')
             ->andWhere('filter_tags.id in (:ids)')
             ->andWhere('activity.id != (:self_id)')
-            ->orderBy('activity.priority','DESC')
+            ->orderBy('activity.priority', 'DESC')
             ->setParameter('ids', $filter_ids)
             ->setParameter('self_id', $selfId)
             ->setFirstResult($pos)
@@ -81,8 +88,8 @@ class ActivityRepository extends ServiceEntityRepository
             ->where('activity.active = True')
             ->andWhere('activity.name like :search')
             ->orWhere('activity.description like :search')
-            ->orderBy('activity.priority','DESC')
-            ->setParameter('search',"%$search%")
+            ->orderBy('activity.priority', 'DESC')
+            ->setParameter('search', "%$search%")
             ->setFirstResult($pos)
             ->setMaxResults($amount)
             ->getQuery()
@@ -91,10 +98,11 @@ class ActivityRepository extends ServiceEntityRepository
     }
 
     /**
+     * @param array $ids
      * @return Activity[] Returns an array of Activity objects
      */
-    public function findNamesCollection(array $ids){
-
+    public function findNamesCollection(array $ids): array
+    {
         return $this->createQueryBuilder('activity')
             ->select('activity.name')
             ->where('activity.active = True')
@@ -107,22 +115,20 @@ class ActivityRepository extends ServiceEntityRepository
 
 
     /**
-     * @param Destination
-     * @param $count
+     * @param Destination $destination
+     * @param int $count
      * @return Activity[] Returns an array of Activity objects
      */
     public function findByDestination(Destination $destination, $count = 4): array
     {
-
         return $this->createQueryBuilder('activity')
             ->join('activity.destinations', 'destinations')
             ->where('activity.active = True')
             ->andWhere('destinations.id in (:id)')
-            ->orderBy('activity.priority','DESC')
+            ->orderBy('activity.priority', 'DESC')
             ->setParameter('id', $destination->getId())
             ->setMaxResults($count)
             ->getQuery()
             ->getResult();
     }
-
 }

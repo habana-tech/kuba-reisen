@@ -3,7 +3,6 @@
 
 namespace App\Entity\Fields;
 
-
 trait ActiveFieldTrait
 {
 
@@ -36,6 +35,4 @@ trait ActiveFieldTrait
 
         return $this;
     }
-
-
 }

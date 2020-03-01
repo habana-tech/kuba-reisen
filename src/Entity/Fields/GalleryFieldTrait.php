@@ -1,12 +1,10 @@
 <?php
 
-
 namespace App\Entity\Fields;
 
-
+use App\Entity\Image;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use App\Entity\Image;
 
 trait GalleryFieldTrait
 {
@@ -23,7 +21,7 @@ trait GalleryFieldTrait
      */
     public function getUploadedImages(): Collection
     {
-        if($this->uploadedImages === null) {
+        if ($this->uploadedImages === null) {
             $this->uploadedImages = new ArrayCollection();
         }
         return $this->uploadedImages;
@@ -63,6 +61,4 @@ trait GalleryFieldTrait
 
         return $this;
     }
-
-
 }

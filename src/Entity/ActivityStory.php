@@ -10,7 +10,6 @@ use App\Entity\Fields\MachineNameTrait;
 use App\Entity\Fields\PriorityFieldTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Vich\UploaderBundle\Entity\File as EmbeddedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
@@ -20,7 +19,10 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class ActivityStory implements MachineNameInterface, DescriptionFragmentFieldInterface
 {
-    use PriorityFieldTrait, ActiveFieldTrait, MachineNameTrait, DescriptionFragmentFieldTrait;
+    use PriorityFieldTrait;
+    use ActiveFieldTrait;
+    use MachineNameTrait;
+    use DescriptionFragmentFieldTrait;
 
 
     /**
@@ -110,6 +112,4 @@ class ActivityStory implements MachineNameInterface, DescriptionFragmentFieldInt
 
         return $this;
     }
-
-
 }

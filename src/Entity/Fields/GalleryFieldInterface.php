@@ -1,16 +1,12 @@
 <?php
 
-
 namespace App\Entity\Fields;
 
-
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use App\Entity\Image;
+use Doctrine\Common\Collections\Collection;
 
 interface GalleryFieldInterface
 {
-
     public function getUploadedImages(): Collection;
 
     /**

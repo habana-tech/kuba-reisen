@@ -25,7 +25,7 @@ class DescriptionFragmentType extends AbstractType
                 ]
             ])
             ->add('name', null, [
-                'label'=> 'Title for the Feature component',
+                'label' => 'Title for the Feature component',
                 'attr' => [
                     'required' => true
                 ]])
@@ -33,7 +33,7 @@ class DescriptionFragmentType extends AbstractType
             ->add('imageField', SingleImageFromGalleryType::class, [
             ])
             ->add('content', CKEditorType::class)
-            ->add('fragmentOrder', HiddenType::class, ['attr'=>['data-role' => 'fragmentOrder']])
+            ->add('fragmentOrder', HiddenType::class, ['attr' => ['data-role' => 'fragmentOrder']])
         ;
     }
 

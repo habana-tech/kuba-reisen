@@ -5,13 +5,11 @@ namespace App\Entity;
 use App\DataConverter\ImageBase64ThumbCreator;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
-use Symfony\Component\Validator\Context\ExecutionContextInterface;
-use Vich\UploaderBundle\Form\Type\VichFileType;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ImageRepository")
@@ -20,6 +18,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Image
 {
     use ORMBehaviors\Timestampable\Timestampable;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -60,7 +59,7 @@ class Image
 
     public function getImagePath(): string
     {
-        return 'uploads/images/'.$this->getImageName();
+        return 'uploads/images/' . $this->getImageName();
     }
 
     /**
@@ -68,7 +67,7 @@ class Image
      */
     public function getStaticImagePath(): string
     {
-        return 'static/'.$this->getImagePath();
+        return 'static/' . $this->getImagePath();
     }
 
     public function getImageName(): ?string
@@ -112,16 +111,15 @@ class Image
     public function setImageFile(?File $file = null): self
     {
         $this->imageFile = $file;
-        if(null !== $file) {
+        if (null !== $file) {
             $base64Converter = new ImageBase64ThumbCreator($file->getRealPath(), false);
             $this->setBase64($base64Converter->getBase64data());
             $this->updatedAt = new DateTimeImmutable();
-            if(!$this->description && $file->getFilename())
+            if (!$this->description && $file->getFilename()) {
                 $this->description = substr(basename($file->getClientOriginalName()), 0, -4);
+            }
         }
         return $this;
-
-
     }
 
     public function __toString()
@@ -160,14 +158,16 @@ class Image
      */
     public function validate(ExecutionContextInterface $context)
     {
-        if (! in_array($this->imageFile->getMimeType(), array(
+        if (
+            ! in_array($this->imageFile->getMimeType(), array(
             'image/jpeg',
             'image/gif',
             'image/png',
             'image/svg+xml',
             'image/svg',
 
-        ))) {
+            ))
+        ) {
             $context
                 ->buildViolation('Wrong file type (jpg,gif,png,svg)')
                 ->atPath('fileName')
@@ -175,5 +175,4 @@ class Image
             ;
         }
     }
-
 }

@@ -24,9 +24,6 @@ use Vich\UploaderBundle\Event\Event;
 class EasyAdminSubscriber implements EventSubscriberInterface
 {
     private $em;
-    private $destinationRepository;
-    private $activityRepository;
-
     private $entity;
     private $request;
     /**
@@ -53,7 +50,6 @@ class EasyAdminSubscriber implements EventSubscriberInterface
                 'easy_admin.pre_persist' => ['processRequestFromEasyAdmin'],
                 'easy_admin.pre_update' => ['processRequestFromEasyAdmin'],
         );
-
     }
 
     /**
@@ -70,13 +66,13 @@ class EasyAdminSubscriber implements EventSubscriberInterface
         $this->event = $event;
 
         //Add entities contains gallery
-        $this->GalleryFieldProcess();
+        $this->galleryFieldProcess();
 
         //upload or update the image on entity
-        $this->ImageFieldProcess();
+        $this->imageFieldProcess();
 
         //persist the description fragments
-        $this->DescriptionFragmentsProcess();
+        $this->descriptionFragmentsProcess();
 
         //set the modified entity to event and exit
         $event['entity'] = $this->entity;
@@ -84,30 +80,32 @@ class EasyAdminSubscriber implements EventSubscriberInterface
 
     private function getFromSingleImageInput(SingleImageFromGallery $imageField, ?Image $image): ?Image
     {
-        if($imageField->isUpdateImage())
-        {
-            if($image instanceof Image)
-            {
-                $image->setImageFile($imageField->getLastImage()->getImageFile());
+        if ($imageField->isUpdateImage()) {
+            if ($image instanceof Image) {
+                try {
+                    $image->setImageFile($imageField->getLastImage()->getImageFile());
+                } catch (\Exception $e) {
+                }
                 $image->setDescription($imageField->getLastImage()->getDescription());
-            }
-            else {
+            } else {
                 //if image dont exist, create anew one
                 $imageField->imageFieldAction('uploadNewImage');
             }
         }
-        $image = ($imageField->isUploadNewImage() || $imageField->isFromGallery()) ? $imageField->getLastImage() : $image;
+        $image = (
+            $imageField->isUploadNewImage() || $imageField->isFromGallery()
+        ) ? $imageField->getLastImage() : $image;
 
         return $image;
     }
 
-    private function ImageFieldProcess(): void
+    private function imageFieldProcess(): void
     {
         if (!$this->entity instanceof ImageFieldInterface) {
             return;
         }
 
-        if(!$this->entity->getImageField() instanceof SingleImageFromGallery) {
+        if (!$this->entity->getImageField() instanceof SingleImageFromGallery) {
             return;
         }
 
@@ -115,7 +113,10 @@ class EasyAdminSubscriber implements EventSubscriberInterface
         $image = $this->getFromSingleImageInput($this->entity->getImageField(), $this->entity->getImage());
 
         //override the image description if necessary
-        if($image instanceof Image && !$image->getDescription() && $image->getImageFile() instanceof File && $image->getImageFile()->getFilename() ) {
+        if (
+            $image instanceof Image && !$image->getDescription()
+            && $image->getImageFile() instanceof File && $image->getImageFile()->getFilename()
+        ) {
             $image->setDescription($image->getImageFile()->getFilename());
         }
 
@@ -123,14 +124,11 @@ class EasyAdminSubscriber implements EventSubscriberInterface
     }
 
 
-    private function DescriptionFragmentsProcess(): void
+    private function descriptionFragmentsProcess(): void
     {
-        if ($this->entity instanceof DescriptionFragmentFieldInterface)
-        {
-            foreach ($this->entity->getDescriptionFragments() as $fragment)
-            {
-                if($fragment->getImageField() instanceof SingleImageFromGallery)
-                {
+        if ($this->entity instanceof DescriptionFragmentFieldInterface) {
+            foreach ($this->entity->getDescriptionFragments() as $fragment) {
+                if ($fragment->getImageField() instanceof SingleImageFromGallery) {
                     $image = $this->getFromSingleImageInput($fragment->getImageField(), $fragment->getImage());
                     $fragment->setImage($image);
                     $this->em->persist($fragment);
@@ -139,7 +137,7 @@ class EasyAdminSubscriber implements EventSubscriberInterface
         }
     }
 
-    private function GalleryFieldProcess(): void
+    private function galleryFieldProcess(): void
     {
         if ($this->entity instanceof GalleryFieldInterface) {
             foreach ($this->entity->getUploadedImages() as $image) {
@@ -147,5 +145,4 @@ class EasyAdminSubscriber implements EventSubscriberInterface
             }
         }
     }
-
 }

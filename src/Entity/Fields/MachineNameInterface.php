@@ -2,7 +2,6 @@
 
 namespace App\Entity\Fields;
 
-
 /**
  * Machinename Interface
  */
@@ -14,6 +13,5 @@ interface MachineNameInterface
 
     public function generateMachineName();
 
-    public function getNameFieldValue():? string;
-
+    public function getNameFieldValue(): ?string;
 }
