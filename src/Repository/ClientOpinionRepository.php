@@ -14,6 +14,9 @@ use Doctrine\Common\Persistence\ManagerRegistry;
  */
 class ClientOpinionRepository extends ServiceEntityRepository
 {
+    use FindAllByActiveTrait;
+    use FindActivesByTrait;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, ClientOpinion::class);

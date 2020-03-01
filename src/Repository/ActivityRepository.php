@@ -16,6 +16,9 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class ActivityRepository extends ServiceEntityRepository
 {
+    use FindAllByActiveTrait;
+    use FindActivesByTrait;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Activity::class);
@@ -52,7 +55,7 @@ class ActivityRepository extends ServiceEntityRepository
         $amount,
         $selfId = -1
     ): array {
-        $filter_objs = $filterTagRepository->findBy(['title' => $filters]);
+        $filter_objs = $filterTagRepository->findActivesBy(['title' => $filters]);
 
         $filter_ids = array_map(
             static function (FilterTag $filterTag) {

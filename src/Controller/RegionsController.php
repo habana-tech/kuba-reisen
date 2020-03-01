@@ -23,7 +23,7 @@ class RegionsController extends AbstractController
      */
     public function regionBanner(RegionRepository $regionRepository): Response
     {
-        if (!$banners = $regionRepository->findBy(['type' => Region::TYPE_BANNER_REGION])) {
+        if (!$banners = $regionRepository->findActivesBy(['type' => Region::TYPE_BANNER_REGION])) {
             return new Response();
         }
 
@@ -41,7 +41,7 @@ class RegionsController extends AbstractController
      */
     public function regionTopDestinations(RegionRepository $regionRepository): Response
     {
-        if (!$topDestinations = $regionRepository->findBy(['type' => Region::TYPE_TOP_DESTINATION_REGION])) {
+        if (!$topDestinations = $regionRepository->findActivesBy(['type' => Region::TYPE_TOP_DESTINATION_REGION])) {
             return new Response();
         }
 
@@ -101,7 +101,7 @@ class RegionsController extends AbstractController
      */
     public function regionAboutUsFilters(FilterTagRepository $filterTagRepository): Response
     {
-        $filters = $filterTagRepository->findAll();
+        $filters = $filterTagRepository->findAllActive();
 
         return $this->render('frontend/components/about_us/_filters.html.twig', [
             'filters' => $filters
@@ -115,8 +115,8 @@ class RegionsController extends AbstractController
     ): Response {
         return $this->render('frontend/components/global/_footer.html.twig', [
             'staticPagesUrl' => $dynamicPageRepository->getStaticPagesUrl(),
-            'destinations' => $destinationRepository->findAll(),
-            'filterTagsPinned' => $filterTagRepository->findBy(['pinned' => true]),
+            'destinations' => $destinationRepository->findAllActive(),
+            'filterTagsPinned' => $filterTagRepository->findActivesBy(['pinned' => true]),
         ]);
     }
 
@@ -127,8 +127,8 @@ class RegionsController extends AbstractController
     ): Response {
         return $this->render('frontend/components/global/_header.html.twig', [
             'staticPagesUrl' => $dynamicPageRepository->getStaticPagesUrl(),
-            'destinations' => $destinationRepository->findAll(),
-            'filterTagsPinned' => $filterTagRepository->findBy(['pinned' => true]),
+            'destinations' => $destinationRepository->findAllActive(),
+            'filterTagsPinned' => $filterTagRepository->findActivesBy(['pinned' => true]),
         ]);
     }
 
@@ -142,8 +142,8 @@ class RegionsController extends AbstractController
 
     public function regionFaq(RegionRepository $regionRepository): Response
     {
-        if (!$questionSections = $regionRepository->findBy(['type' => Region::TYPE_FAQ])) {
-            return new Response();
+        if (!$questionSections = $regionRepository->findActivesBy(['type' => Region::TYPE_FAQ])) {
+            return new Response("Region doesn't exist", 404);
         }
 
         return $this->render('frontend/components/faq/_question.html.twig', [
@@ -153,8 +153,13 @@ class RegionsController extends AbstractController
 
     public function regionClientsOpinion(RegionRepository $regionRepository): Response
     {
-        if (!$clientsOpinions = $regionRepository->findOneBy(['type' => Region::TYPE_CLIENTS_OPINIONS])) {
-            return new Response();
+        if (
+            !$clientsOpinions = $regionRepository->findOneBy(
+                ['active' => true,
+                'type' => Region::TYPE_CLIENTS_OPINIONS]
+            )
+        ) {
+            return new Response("Region doesn't exist", 404);
         }
 
 
@@ -176,7 +181,7 @@ class RegionsController extends AbstractController
             return $this->render(
                 $region->getTemplate()->getFullPath(),
                 ['region' => $region,
-                'filterTags' => $filterTagRepository->findBy(['pinned' => true]),
+                'filterTags' => $filterTagRepository->findActivesBy(['pinned' => true]),
                 ]
             );
         }

@@ -61,7 +61,7 @@ class ActivitiesController extends AbstractController
 
         $filters = explode(',', $filters);
 
-        $filterTags = $filterTagRepository->findAll();
+        $filterTags = $filterTagRepository->findAllActive();
         $_activities = $activityRepository->findStartingFrom(0, $this->amountActivitiesDefault+1);
 
         $loadMore = count($_activities) > $this->amountActivitiesDefault;

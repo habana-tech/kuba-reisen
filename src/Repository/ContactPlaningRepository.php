@@ -14,6 +14,9 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class ContactPlaningRepository extends ServiceEntityRepository
 {
+    use FindAllByActiveTrait;
+    use FindActivesByTrait;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, ContactPlaning::class);

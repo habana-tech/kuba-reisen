@@ -14,6 +14,9 @@ use Doctrine\Common\Persistence\ManagerRegistry;
  */
 class DynamicPageRepository extends ServiceEntityRepository
 {
+    use FindAllByActiveTrait;
+    use FindActivesByTrait;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, DynamicPage::class);
@@ -42,12 +45,11 @@ class DynamicPageRepository extends ServiceEntityRepository
         $staticPagesUrl = [];
 
         foreach ($staticPages as $staticPage) {
-            if($page = $this->findOneBy(['machineName' => $staticPage])) {
+            if ($page = $this->findOneBy(['machineName' => $staticPage])) {
                 $staticPagesUrl[$staticPage] = $page->getName();
             }
         }
         return $staticPagesUrl;
-
     }
     // /**
     //  * @return DynamicPage[] Returns an array of DynamicPage objects

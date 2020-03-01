@@ -44,9 +44,10 @@ class FrontendController extends AbstractController
         return $this->render('frontend/index.html.twig', [
             'page' => $page,
             'staticPagesUrl' => $dynamicPageRepository->getStaticPagesUrl(),
-            'destinations' => $destinationRepository->findAll(),
-            'filterTags' => $filterTagRepository->findBy(['pinned' => true]),
-            'randomImages' => $imageRepository->findBy([], null, 14),
+            'destinations' => $destinationRepository->findAllActive(),
+            'filterTags' => $filterTagRepository->findActivesBy(['pinned' => true]),
+            'randomImages' => $imageRepository->findActivesBy([], null, 14),
+            // TODO: randomly really??
         ]);
     }
 

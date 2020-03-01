@@ -14,6 +14,9 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class DestinationRepository extends ServiceEntityRepository
 {
+    use FindAllByActiveTrait;
+    use FindActivesByTrait;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Destination::class);

@@ -81,7 +81,7 @@ class ContactController extends AbstractController
             }
         }
 
-        $interests = $interestRepository->findAll();
+        $interests = $interestRepository->findAllActive();
 
         return $this->render('frontend/contact.html.twig', [
             'contact' => $contact,
@@ -154,7 +154,7 @@ class ContactController extends AbstractController
         \Swift_Mailer $mailer,
         UserRepository $userRepository
     ): void {
-        $users = $userRepository->findAll();
+        $users = $userRepository->findAllActive();
         $adminEmail = [];
         $adminEmail[] = 'kubareisenkontactieren@meatmemi.33mail.com'; //josue
 
