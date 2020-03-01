@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\PageManager\TemplateSelector;
-
 
 class PageTemplate
 {
@@ -18,7 +16,7 @@ class PageTemplate
      * @param $description
      * @param $icon
      */
-    public function __construct($path = null, $name=null, $description = null, $icon = null)
+    public function __construct($path = null, $name = null, $description = null, $icon = null)
     {
         $this->name = $name;
         $this->path = $path;
@@ -46,7 +44,7 @@ class PageTemplate
      */
     public function getFullPath(): ?string
     {
-        return $this->path ? 'frontend/'.$this->path: 'null.html.twig';
+        return $this->path ? 'frontend/' . $this->path : 'null.html.twig';
     }
 
     /**
@@ -109,7 +107,4 @@ class PageTemplate
         $this->icon = $icon;
         return $this;
     }
-
-
-
 }

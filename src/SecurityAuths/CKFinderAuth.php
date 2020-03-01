@@ -10,7 +10,8 @@ class CKFinderAuth extends AuthenticationBase
 {
     protected $authorizationChecker;
 
-    public function __construct(AuthorizationCheckerInterface $authorizationChecker = null){
+    public function __construct(AuthorizationCheckerInterface $authorizationChecker = null)
+    {
 //
 //        $this->setContainer();
 ////        dump($this->$container);
@@ -25,4 +26,4 @@ class CKFinderAuth extends AuthenticationBase
 
         return true;
     }
-} 
+}

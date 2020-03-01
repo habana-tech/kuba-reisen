@@ -7,7 +7,6 @@ use Twig\TwigFilter;
 use Twig\TwigFunction;
 use App\Twig\AppRuntime;
 
-
 class AppExtension extends AbstractExtension
 {
     public function getFilters()
@@ -20,7 +19,7 @@ class AppExtension extends AbstractExtension
     }
 
 
- 	public function getFunctions()
+    public function getFunctions()
     {
         return [
             new TwigFunction('in_string', [$this, 'in_string']),
@@ -32,8 +31,9 @@ class AppExtension extends AbstractExtension
 
     public function in_string(string $haystack, string $needle)
     {
-        if(stripos($haystack, $needle) === false)
-        	return false;
+        if (stripos($haystack, $needle) === false) {
+            return false;
+        }
         return true;
     }
 
@@ -81,14 +81,14 @@ class AppExtension extends AbstractExtension
                     if (preg_match('/^<(\s*.+?\/\s*|\s*(img|br|input|hr|area|base|basefont|col|frame|isindex|link|meta|param)(\s.+?)?)>$/is', $lineMatchings[1])) {
                         // do nothing
                         // if tag is a closing tag
-                    } else if (preg_match('/^<\s*\/([^\s]+?)\s*>$/s', $lineMatchings[1], $tagMatchings)) {
+                    } elseif (preg_match('/^<\s*\/([^\s]+?)\s*>$/s', $lineMatchings[1], $tagMatchings)) {
                         // delete tag from $openTags list
                         $pos = array_search($tagMatchings[1], $openTags);
                         if ($pos !== false) {
                             unset($openTags[$pos]);
                         }
                         // if tag is an opening tag
-                    } else if (preg_match('/^<\s*([^\s>!]+).*?>$/s', $lineMatchings[1], $tagMatchings)) {
+                    } elseif (preg_match('/^<\s*([^\s>!]+).*?>$/s', $lineMatchings[1], $tagMatchings)) {
                         // add tag to the beginning of $openTags list
                         array_unshift($openTags, strtolower($tagMatchings[1]));
                     }
@@ -122,7 +122,7 @@ class AppExtension extends AbstractExtension
                     $totalLength += $contentLength;
                 }
                 // if the maximum length is reached, get off the loop
-                if($totalLength>= $length) {
+                if ($totalLength>= $length) {
                     break;
                 }
             }
@@ -144,7 +144,7 @@ class AppExtension extends AbstractExtension
         }
         // add the defined ending to the text
         $truncate .= $ending;
-        if($considerHtml) {
+        if ($considerHtml) {
             // close all unclosed html-tags
             foreach ($openTags as $tag) {
                 $truncate .= '</' . $tag . '>';
@@ -152,4 +152,4 @@ class AppExtension extends AbstractExtension
         }
         return $truncate;
     }
-} 
+}

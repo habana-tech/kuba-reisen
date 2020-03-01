@@ -1,4 +1,5 @@
 <?php
+
 // src/Twig/AppRuntime.php
 namespace App\Twig;
 
@@ -18,7 +19,7 @@ class AppRuntime implements RuntimeExtensionInterface
     public function formatPrice($number, $decimals = 0, $decPoint = '.', $thousandsSep = ',')
     {
         $price = number_format($number, $decimals, $decPoint, $thousandsSep);
-        $price = '$'.$price;
+        $price = '$' . $price;
 
         return $price;
     }
@@ -30,51 +31,55 @@ class AppRuntime implements RuntimeExtensionInterface
      */
     public function filterSrcset($imagePath, $sizes = [1920, 1366, 1200, 1000, 900, 800, 600])
     {
-        if(strpos($imagePath, ';base64,'))
+        if (strpos($imagePath, ';base64,')) {
             return;
+        }
 
-    	$html = '';
-    	foreach ($sizes as $value) {
+        $html = '';
+        foreach ($sizes as $value) {
             //obtiene las rutas de las imagenes según el tamaño
-            $resolvedPath = $this->imagineCacheManager->getBrowserPath($imagePath, 'min_width_'.$value);
+            $resolvedPath = $this->imagineCacheManager->getBrowserPath($imagePath, 'min_width_' . $value);
             //completa la lista de "path tamaño" de las imagenes disponibles
-    		$html .= ' '.$resolvedPath.' '.$value.'w, ';
-    	}
-    	$html = trim($html, ", ");
+            $html .= ' ' . $resolvedPath . ' ' . $value . 'w, ';
+        }
+        $html = trim($html, ", ");
 
         return $html;
     }
 
     /**
-     * @param Image|string $imagesPath, the relative path to image, ex: static/uploads/image/pic.jpg
+     * @param $imagePath
+     * @param null $database64
      * @param string $alt the Alternative text
-     * @param string $sizes, for the html img tag
-     * @param string $class, for the html img tag
+     * @param string $sizes , for the html img tag
+     * @param null $attr
      * @return string|FilterTag[]
      * @deprecated
      */
-    public function imgTagContent($imagePath,
-                                  $database64 = null,
-                                  $alt = null,
-                                  $sizes = '100vw',
-                                  $attr = null)
-    {   
-
-        if($imagePath instanceof Image && $imagePath->getImageName())
+    public function imgTagContent(
+        $imagePath,
+        $database64 = null,
+        $alt = null,
+        $sizes = '100vw',
+        $attr = null
+    ) {
+        if ($imagePath instanceof Image && $imagePath->getImageName()) {
             $imagePath = $imagePath->getImageName();
+        }
 
 
 
-        $html ="<img class=\"lazyload blur-up\" sizes=\"$sizes\" ";
-        if($attr)
-            $html .= $attr." ";
-        if($database64) //se existe una miniatura en la db proveniente del grape
+        $html = "<img class=\"lazyload blur-up\" sizes=\"$sizes\" ";
+        if ($attr) {
+            $html .= $attr . " ";
+        }
+        if ($database64) { //se existe una miniatura en la db proveniente del grape
             $html .= "src=\"$database64\" ";
-        else //si no, se usa el path de la miniatura de imagen real
-            $html .= "src=\"".$this->imagineCacheManager->getBrowserPath($imagePath, 'min_width_15')."\" ";
+        } else { //si no, se usa el path de la miniatura de imagen real
+            $html .= 'src="' . $this->imagineCacheManager->getBrowserPath($imagePath, 'min_width_15') . '" ';
+        }
 
-        $html .= "data-srcset=\"".$this->filterSrcset($imagePath)."\"
-                         alt=\"$alt\">";
+        $html .= 'data-srcset="' . $this->filterSrcset($imagePath) . "\"alt=\"$alt\">";
 
         return $html;
     }
@@ -90,16 +95,15 @@ class AppRuntime implements RuntimeExtensionInterface
      */
     public function imgTag($image, $sizes = '100vw', $alt = null, $class = null)
     {
-        if(!($image instanceof Image)) {
+        if (!($image instanceof Image)) {
             $imageObj = new Image();
 
-            if (!$image)
+            if (!$image) {
                 $imagePath = 'static/img/hero/water/water.jpg';
-            else
+            } else {
                 $imagePath = $image;
-
-        }
-        else {
+            }
+        } else {
             $imageObj = $image;
             $imagePath = $imageObj->getStaticImagePath();
         }
@@ -107,12 +111,11 @@ class AppRuntime implements RuntimeExtensionInterface
         $html = "<img class=\"lazyload blur-up\" sizes=\"$sizes\" ";
         $src = $imageObj->getBase64() ?? $this->imagineCacheManager->getBrowserPath($imagePath, 'min_width_15');
         $html .= " src=\"$src\" ";
-        $html .= " data-srcset=\"".$this->filterSrcset($imagePath)."\" ";
+        $html .= ' data-srcset="' . $this->filterSrcset($imagePath) . '" ';
 
-        $alt= $alt?? $imageObj->getDescription();
+        $alt = $alt ?? $imageObj->getDescription();
         $html .= "alt=\"$alt\">";
 
         return $html;
     }
-    
 }
