@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\DataConverter;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -8,7 +7,6 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class RequestJsonDataConverter
 {
-
     private $request;
     private $data;
 
@@ -19,9 +17,9 @@ class RequestJsonDataConverter
     public function __construct(Request $request)
     {
         $this->request = $request;
-        if(!$this->isJsonAjax())
+        if (!$this->isJsonAjax()) {
             throw new BadRequestHttpException('invalid json body');
-
+        }
     }
 
     /**
@@ -30,26 +28,20 @@ class RequestJsonDataConverter
     public function isJsonAjax(): ?bool
     {
         if (
-            !$this->request->isXmlHttpRequest()
-                && $this->request->getContentType() != 'json'
-                || !$this->request->getContent()
-        )
+            !$this->request->getContent() ||
+            ($this->request->isXmlHttpRequest() === false && $this->request->getContentType() !== 'json')
+        ) {
             return false;
+        }
 
-            ///throw new BadRequestHttpException('invalid json body')
+        ///throw new BadRequestHttpException('invalid json body')
 
 
         $this->data = json_decode($this->request->getContent(), true);
         //header('Access-Control-Allow-Origin: http://localhost:8080');
         //header('Content-Type: application/json');
-
-
-        if (json_last_error() !== JSON_ERROR_NONE)
-            return false;
-            // throw new BadRequestHttpException('invalid json body: ' . json_last_error_msg());
-
-
-        return true;
+        
+        return !(json_last_error() !== JSON_ERROR_NONE);
     }
 
     /**
@@ -63,11 +55,9 @@ class RequestJsonDataConverter
     /**
      * @return Request
      */
-    public function replaceDataRequest(){
-
+    public function replaceDataRequest()
+    {
         $this->request->request->replace(is_array($this->data) ? $this->data : array());
         return $this->request;
-
     }
-
 }

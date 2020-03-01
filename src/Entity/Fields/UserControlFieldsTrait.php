@@ -2,9 +2,8 @@
 
 namespace App\Entity\Fields;
 
-use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 use App\Entity\User;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Language Field
@@ -19,7 +18,7 @@ trait UserControlFieldsTrait
      */
     private $modified_by;
 
-    public  $hasUserModificationField = true;
+    public $hasUserModificationField = true;
 
     public function getModifiedBy(): ?User
     {

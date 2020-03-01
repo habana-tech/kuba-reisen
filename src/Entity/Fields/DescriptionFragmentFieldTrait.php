@@ -1,14 +1,12 @@
 <?php
 
-
 namespace App\Entity\Fields;
-
 
 use App\Entity\DescriptionFragment;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\ORM\PersistentCollection;
+
 trait DescriptionFragmentFieldTrait
 {
     //sustituir 'entity_id' por el nombre de currentEntity
@@ -34,13 +32,13 @@ trait DescriptionFragmentFieldTrait
     /**
      * @return Collection|DescriptionFragment[]
      */
-    public function getDescriptionFragments():? Collection
+    public function getDescriptionFragments(): ?Collection
     {
-        if($this->descriptionFragments->count() > 1)
-         return self::orderedDescriptionFragments($this->descriptionFragments);
-        else
-            return $this->descriptionFragments;
+        if ($this->descriptionFragments->count() > 1) {
+            return self::orderedDescriptionFragments($this->descriptionFragments);
+        }
 
+        return $this->descriptionFragments;
     }
 
     public function addDescriptionFragment($descriptionFragment): self
@@ -53,6 +51,10 @@ trait DescriptionFragmentFieldTrait
         return $this;
     }
 
+    /**
+     * @param $descriptionFragment
+     * @return $this
+     */
     public function removeDescriptionFragment($descriptionFragment): self
     {
         if ($this->descriptionFragments->contains($descriptionFragment)) {
@@ -62,19 +64,20 @@ trait DescriptionFragmentFieldTrait
         return $this;
     }
 
-    public static function orderedDescriptionFragments($collection)
+    /**
+     * @param $collection
+     * @return ArrayCollection
+     */
+    public static function orderedDescriptionFragments($collection): ArrayCollection
     {
-             // get a new ArrayIterator
-            $iterator = $collection->getIterator();
+        // get a new ArrayIterator
+        $iterator = $collection->getIterator();
 
-            // define ordering closure, using preferred comparison method/field
-            $iterator->uasort(function ($first, $second) {
-
-                return (int)$first->__get('fragmentOrder') > (int)$second->__get('fragmentOrder') ? 1 : -1;
-            });
-            // return the ordered iterator, pass sorted array to a new ArrayCollection.
+        // define ordering closure, using preferred comparison method/field
+        $iterator->uasort(function ($first, $second) {
+            return (int)$first->__get('fragmentOrder') > (int)$second->__get('fragmentOrder') ? 1 : -1;
+        });
+        // return the ordered iterator, pass sorted array to a new ArrayCollection.
         return new ArrayCollection(iterator_to_array($iterator));
-
     }
-
 }

@@ -22,6 +22,7 @@ class AdminController extends EasyAdminController
 
     /**
      * AdminController constructor.
+     * @param UserManagerInterface $userManager
      */
     public function __construct(UserManagerInterface $userManager)
     {
@@ -33,15 +34,15 @@ class AdminController extends EasyAdminController
         return $this->userManager->createUser();
     }
 
-    public function persistUserEntity($user)
+    public function persistUserEntity($user): void
     {
         $this->userManager->updateUser($user, false);
         $this->persistEntity($user);
     }
 
-    public function updateUserEntity($user)
-        {
-           $this->userManager->updateUser($user, false);
-            parent::updateEntity($user);
-        }
+    public function updateUserEntity($user): void
+    {
+        $this->userManager->updateUser($user, false);
+        parent::updateEntity($user);
+    }
 }

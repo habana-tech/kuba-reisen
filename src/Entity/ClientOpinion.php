@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Entity\Fields\ActiveFieldTrait;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 class ClientOpinion
 {
     use ActiveFieldTrait;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()

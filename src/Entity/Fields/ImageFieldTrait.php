@@ -5,16 +5,12 @@ namespace App\Entity\Fields;
 use App\DataConverter\SingleImageFromGallery;
 use App\Entity\Image;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * Image
  */
 trait ImageFieldTrait
 {
-
     private $imageField;
 
     /**
@@ -23,7 +19,7 @@ trait ImageFieldTrait
      */
     private $image;
 
-    public function getImage():? Image
+    public function getImage(): ?Image
     {
         return $this->image;
     }
@@ -37,7 +33,9 @@ trait ImageFieldTrait
 
     public function hasImage(): bool
     {
-        return ($this->image instanceof Image && $this->image->getImageName() && $this->image->getImageName() !== 'no-image' );
+        return (
+            $this->image instanceof Image && $this->image->getImageName()
+            && $this->image->getImageName() !== 'no-image');
     }
 
     public function uploadImage()
@@ -55,14 +53,13 @@ trait ImageFieldTrait
     {
         return $this->image;
     }
-    public function setUpdateImage($image = null){
-
+    public function setUpdateImage($image = null)
+    {
     }
 
-    public function  uploadNewImage($image = null)
+    public function uploadNewImage($image = null)
     {
         return null;
-
     }
 
 
@@ -102,8 +99,9 @@ trait ImageFieldTrait
      */
     public function getImageField(): SingleImageFromGallery
     {
-        if($this->imageField === null)
+        if ($this->imageField === null) {
             $this->imageField = new SingleImageFromGallery();
+        }
         return $this->imageField;
     }
 
@@ -116,7 +114,4 @@ trait ImageFieldTrait
         $this->imageField = $imageField;
         return $this;
     }
-
-
-
 }

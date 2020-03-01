@@ -29,23 +29,23 @@ class FrontendController extends AbstractController
      * @param ImageRepository $imageRepository
      * @return Response
      */
-    public function index(DynamicPageRepository $dynamicPageRepository,
-                          DestinationRepository $destinationRepository,
-                          FilterTagRepository $filterTagRepository,
-                          ImageRepository $imageRepository): Response
-    {
+    public function index(
+        DynamicPageRepository $dynamicPageRepository,
+        DestinationRepository $destinationRepository,
+        FilterTagRepository $filterTagRepository,
+        ImageRepository $imageRepository
+    ): Response {
+        $page = $dynamicPageRepository->findOneBy(['machineName' => 'index']);
 
-        $page = $dynamicPageRepository->findOneBy(['machineName'=>'index']);
-
-        if(!$page) {
+        if (!$page) {
             throw new NotFoundHttpException();
         }
 
         return $this->render('frontend/index.html.twig', [
             'page' => $page,
-            'staticPagesUrl'=>$dynamicPageRepository->getStaticPagesUrl(),
+            'staticPagesUrl' => $dynamicPageRepository->getStaticPagesUrl(),
             'destinations' => $destinationRepository->findAll(),
-            'filterTags' => $filterTagRepository->findBy(['pinned'=>true]),
+            'filterTags' => $filterTagRepository->findBy(['pinned' => true]),
             'randomImages' => $imageRepository->findBy([], null, 14),
         ]);
     }
@@ -55,12 +55,13 @@ class FrontendController extends AbstractController
      * @Route("/destination/{id}/{name}" , name="destination")
      * @param Destination $destination
      * @param ActivityRepository $activityRepository
-     * @param EntityManager $em
      * @return Response
      */
-    public function destination(Destination $destination, ActivityRepository $activityRepository, EntityManagerInterface $em): Response
-    {
-        if(!$destination) {
+    public function destination(
+        Destination $destination,
+        ActivityRepository $activityRepository
+    ): Response {
+        if (!$destination) {
             throw new NotFoundHttpException();
         }
 
@@ -86,25 +87,34 @@ class FrontendController extends AbstractController
      * @return Response
      */
 
-    public function activity(Activity $activity, ActivityRepository $activityRepository, FilterTagRepository $filterTagRepository): Response
-    {
-        if(!$activity) {
+    public function activity(
+        Activity $activity,
+        ActivityRepository $activityRepository,
+        FilterTagRepository $filterTagRepository
+    ): Response {
+        if (!$activity) {
             throw new NotFoundHttpException();
         }
 
         $activityId = $activity->getId();
         $tags = $activity->getFilterTags();
-        $tagsTitles = array_map(static function (FilterTag $tag){ return $tag->getTitle();}, $tags->toArray());
+        $tagsTitles = array_map(static function (FilterTag $tag) {
+            return $tag->getTitle();
+        }, $tags->toArray());
 
         $related_activities = $activityRepository
-                            ->findByFilter($tagsTitles,
+                            ->findByFilter(
+                                $tagsTitles,
                                 $filterTagRepository,
-                                0, 3, $activityId);
+                                0,
+                                3,
+                                $activityId
+                            );
 
 
         return $this->render('frontend/activity.html.twig', [
             'activity' => $activity,
-            'related_activities'=> $related_activities,
+            'related_activities' => $related_activities,
         ]);
     }
 
@@ -120,16 +130,17 @@ class FrontendController extends AbstractController
         $name = urldecode($name);
         $page = $dynamicPageRepository->findOneBy(['name' => $name]);
 
-        if(!$page) {
+        if (!$page) {
             throw new NotFoundHttpException();
         }
-        if(!$page->getTemplate()->getPath()) {
-            throw  new LoaderError('Page: "' . $page->getName() . '" not contains a valid PageTemplate or it is undefined. Edit the page and add a PageTemplate using the form.');
+        if (!$page->getTemplate()->getPath()) {
+            throw  new LoaderError('Page: "' . $page->getName() . '"
+                 . "not contains a valid PageTemplate or it is undefined. "
+                 . "Edit the page and add a PageTemplate using the form.');
         }
 
         return $this->render($page->getTemplate()->getFullPath(), [
             'page' => $page,
         ]);
     }
-
 }

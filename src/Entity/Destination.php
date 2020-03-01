@@ -5,10 +5,7 @@ namespace App\Entity;
 use App\Entity\Fields\ActiveFieldTrait;
 use App\Entity\Fields\DescriptionFragmentFieldInterface;
 use App\Entity\Fields\DescriptionFragmentFieldTrait;
-use App\Entity\Fields\DynamicPagePlaceholderTrait;
 use App\Entity\Fields\FilterTagsTrait;
-use App\Entity\Fields\GalleryFieldInterface;
-use App\Entity\Fields\GalleryFieldTrait;
 use App\Entity\Fields\ImageFieldInterface;
 use App\Entity\Fields\ImageFieldTrait;
 use App\Entity\Fields\MachineNameInterface;
@@ -17,7 +14,6 @@ use App\Entity\Fields\PriorityFieldTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Vich\UploaderBundle\Entity\File as EmbeddedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
@@ -27,8 +23,12 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Destination implements DescriptionFragmentFieldInterface, MachineNameInterface, ImageFieldInterface
 {
-    use ImageFieldTrait, MachineNameTrait;
-    use FilterTagsTrait, PriorityFieldTrait, ActiveFieldTrait, DescriptionFragmentFieldTrait;
+    use ImageFieldTrait;
+    use MachineNameTrait;
+    use FilterTagsTrait;
+    use PriorityFieldTrait;
+    use ActiveFieldTrait;
+    use DescriptionFragmentFieldTrait;
 
     /**
      * @ORM\Id()

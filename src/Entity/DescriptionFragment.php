@@ -6,7 +6,6 @@ use App\Entity\Fields\ImageFieldInterface;
 use App\Entity\Fields\ImageFieldTrait;
 use App\Entity\Fields\MetadataField;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**

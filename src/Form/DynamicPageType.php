@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\DynamicPage;
+use App\PageManager\TemplateSelector\PageTemplate;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -15,7 +16,7 @@ class DynamicPageType extends AbstractType
         $builder
             ->add('pageName')
 //            ->add('pageTitle')
-            ->add('pageTemplate', PageTemplateSelectorType::class)
+            ->add('pageTemplate', PageTemplateType::class)
 //            ->add('pageContent')
 //            ->add('translation_from')
         ;
