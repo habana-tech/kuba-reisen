@@ -20,7 +20,7 @@ trait FindActivesByTrait
     {
         $persister = $this->_em->getUnitOfWork()->getEntityPersister($this->_entityName);
 
-        $criteria[] = ['active' => true];
+        $criteria['active'] = true;
 
         return $persister->loadAll($criteria, $orderBy, $limit, $offset);
     }
