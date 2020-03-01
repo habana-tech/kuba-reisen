@@ -46,7 +46,7 @@ class FrontendController extends AbstractController
             'staticPagesUrl' => $dynamicPageRepository->getStaticPagesUrl(),
             'destinations' => $destinationRepository->findAllActive(),
             'filterTags' => $filterTagRepository->findActivesBy(['pinned' => true]),
-            'randomImages' => $imageRepository->findActivesBy([], null, 14),
+            'randomImages' => $imageRepository->findBy([], null, 14),
             // TODO: randomly really??
         ]);
     }
