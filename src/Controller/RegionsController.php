@@ -23,7 +23,7 @@ class RegionsController extends AbstractController
      */
     public function regionBanner(RegionRepository $regionRepository): Response
     {
-        if (!$banners = $regionRepository->findActivesBy(['type' => Region::TYPE_BANNER_REGION])) {
+        if (!$banners = $regionRepository->findBy(['type' => Region::TYPE_BANNER_REGION])) {
             return new Response();
         }
 
@@ -41,7 +41,7 @@ class RegionsController extends AbstractController
      */
     public function regionTopDestinations(RegionRepository $regionRepository): Response
     {
-        if (!$topDestinations = $regionRepository->findActivesBy(['type' => Region::TYPE_TOP_DESTINATION_REGION])) {
+        if (!$topDestinations = $regionRepository->findBy(['type' => Region::TYPE_TOP_DESTINATION_REGION])) {
             return new Response();
         }
 
@@ -142,7 +142,7 @@ class RegionsController extends AbstractController
 
     public function regionFaq(RegionRepository $regionRepository): Response
     {
-        if (!$questionSections = $regionRepository->findActivesBy(['type' => Region::TYPE_FAQ])) {
+        if (!$questionSections = $regionRepository->findBy(['type' => Region::TYPE_FAQ])) {
             return new Response("Region doesn't exist", 404);
         }
 
