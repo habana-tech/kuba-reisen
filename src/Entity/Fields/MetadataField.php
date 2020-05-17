@@ -28,6 +28,18 @@ trait MetadataField
         return $this;
     }
 
+    /**
+     * @param $key
+     * @param $value
+     * @return $this
+     */
+    public function setMetadataKeyAndValue($key, $value): self
+    {
+        $this->metadata[$key] = $value;
+
+        return $this;
+    }
+
     public function __get($name)
     {
         if (property_exists($this, $name)) {

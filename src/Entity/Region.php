@@ -11,6 +11,10 @@ use App\Entity\Fields\ImageFieldInterface;
 use App\Entity\Fields\ImageFieldTrait;
 use App\Entity\Fields\MachineNameInterface;
 use App\Entity\Fields\MachineNameTrait;
+use App\Entity\Fields\MetadataField;
+use App\Entity\Fields\RelatedActivitiesMetadataFieldTrait;
+use App\Entity\Fields\RelatedDestinationMetadataFieldTrait;
+use App\Entity\Fields\RelatedPagesMetadataFieldTrait;
 use App\PageManager\TemplateSelector\PageTemplate;
 use App\PageManager\TemplateSelector\PageTemplateSelector;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -33,6 +37,10 @@ class Region implements
     use GalleryFieldTrait;
     use MachineNameTrait;
     use DescriptionFragmentFieldTrait;
+    use MetadataField;
+    use RelatedPagesMetadataFieldTrait;
+    use RelatedActivitiesMetadataFieldTrait;
+    use RelatedDestinationMetadataFieldTrait;
 
     /**
      * @ORM\Id()
@@ -205,4 +213,6 @@ class Region implements
     {
         $this->template = $template;
     }
+
+
 }

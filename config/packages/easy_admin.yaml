@@ -279,3 +279,8 @@ easy_admin:
                     - { property: 'uploadedImages', label: 'Add images from Gallery',  help: 'Select one or more images', type: 'entity',  type_options: { class: 'App\Entity\Image', multiple: true, attr: {'class': 'selectpicker show-tick'} } }
                     - { type: 'section', label: 'Images linked to this activity', icon: 'images', help: 'You can upload new images from here' }
                     - { property: 'gallery', label: '-', type: 'collection',  type_options: { entry_type: 'App\Form\ImageUploadType', by_reference: true,  attr: {'class': 'gallery_collection'}} }
+
+                    - { type: 'section', label: 'Related Content', icon: 'folder-open' }
+                    - { property: 'relatedPages', label: 'Related Pages',  help: 'Shows related pages on Pages-Stacks Regions', type: 'entity', type_options: { class: 'App\Entity\DynamicPage', multiple: true , attr: {'data-widget': 'select2'}}  }
+                    - { property: 'relatedActivities', label: 'Related Activities',  help: 'Shows related activities on Activities-Stacks Regions', type: 'entity', type_options: { class: 'App\Entity\Activity', multiple: true , attr: {'data-widget': 'select2'}}  }
+                    - { property: 'relatedDestinations', label: 'Related Destinations',  help: 'Shows related activities on Destination-Stacks Regions', type: 'entity', type_options: { class: 'App\Entity\Destination', multiple: true , attr: {'data-widget': 'select2'}}  }
