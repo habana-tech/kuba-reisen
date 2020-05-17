@@ -1,0 +1,38 @@
+<section class="section">
+    <div class="section__title__highlight section__title__highlight--green">
+        <h2>{{ region.title }}</h2>
+    </div>
+    <div class="section__title__description">
+        {{ region.description | raw }}
+    </div>
+ <div class="section related_content_lists">
+
+    <div class="feature_list">
+        {% for item in region.getAllRelatedContent %}
+            <div class="feature">
+                <div class="feature__text">
+                    <div class="feature__text__title">
+                        <h2>{{ item.name }}</h2>
+                    </div>
+
+                </div>
+
+                <div class="feature__image">
+                    {{ imgTag(item.image, '(min-width:600px) 30vw, 40vw') | raw }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+ </div>
+
+
+</section>
+<style>
+
+    .section.related_content_lists > .feature_list
+    {
+        column-count:         {{ region.getAllRelatedContent | length }};
+        width: calc({{ region.getAllRelatedContent | length }} * 25vw);
+    }
+</style>

@@ -272,7 +272,7 @@ easy_admin:
                     - { property: 'linkText', label: 'Text of the link (button)' }
                     - { property: 'link', label: 'Url' }
                     - { property: 'template', type: 'App\Form\RegionTemplateType', label: 'Template' }
-                    - { property: 'type', label: 'Type of Region', type: 'choice', type_options: { choices: { 'GENERIC PAGE REGION':0, 'BANNER REGION': 1, 'DESTINATION REGION': 2} } }
+                    - { property: 'type', label: 'Type of Region', type: 'choice', type_options: { choices: !php/const App\Entity\Region::REGION_TYPES_NAMES } }
 
 #                    - { type: 'group', label: 'Gallery', icon: 'images', columns: 4 }
                     - { type: 'section', label: 'Images from Gallery', icon: 'folder-open', help: 'Previously uploaded images' }
@@ -281,6 +281,6 @@ easy_admin:
                     - { property: 'gallery', label: '-', type: 'collection',  type_options: { entry_type: 'App\Form\ImageUploadType', by_reference: true,  attr: {'class': 'gallery_collection'}} }
 
                     - { type: 'section', label: 'Related Content', icon: 'folder-open' }
-                    - { property: 'relatedPages', label: 'Related Pages',  help: 'Shows related pages on Pages-Stacks Regions', type: 'entity', type_options: { class: 'App\Entity\DynamicPage', multiple: true , attr: {'data-widget': 'select2'}}  }
+                    - { property: 'relatedPages', label: 'Related Pages',  help: 'Shows related pages on Pages-Stacks Regions', type: 'entity', type_options: {by_reference: true, class: 'App\Entity\DynamicPage', multiple: true , attr: {'data-widget': 'select2'}}  }
                     - { property: 'relatedActivities', label: 'Related Activities',  help: 'Shows related activities on Activities-Stacks Regions', type: 'entity', type_options: { class: 'App\Entity\Activity', multiple: true , attr: {'data-widget': 'select2'}}  }
                     - { property: 'relatedDestinations', label: 'Related Destinations',  help: 'Shows related activities on Destination-Stacks Regions', type: 'entity', type_options: { class: 'App\Entity\Destination', multiple: true , attr: {'data-widget': 'select2'}}  }

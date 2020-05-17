@@ -18,6 +18,7 @@ use App\Entity\Fields\RelatedPagesMetadataFieldTrait;
 use App\PageManager\TemplateSelector\PageTemplate;
 use App\PageManager\TemplateSelector\PageTemplateSelector;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -38,9 +39,6 @@ class Region implements
     use MachineNameTrait;
     use DescriptionFragmentFieldTrait;
     use MetadataField;
-    use RelatedPagesMetadataFieldTrait;
-    use RelatedActivitiesMetadataFieldTrait;
-    use RelatedDestinationMetadataFieldTrait;
 
     /**
      * @ORM\Id()
@@ -80,12 +78,38 @@ class Region implements
     public const TRAVEL_OPTIONS = 3;
     public const TYPE_FAQ = 4;
     public const TYPE_CLIENTS_OPINIONS = 5;
+    public const TYPE_EXPLORING_PAGES = 6;
+
+    public const REGION_TYPES_NAMES = [
+        'GENERIC REGION' => self::TYPE_GENERIC_REGION,
+        'BANNER REGION' => self::TYPE_BANNER_REGION,
+        'TOP DESTINATION REGION' => self::TYPE_TOP_DESTINATION_REGION,
+        'TRAVEL OPTIONS' => self::TRAVEL_OPTIONS,
+        'FAQ > QUESTION' => self::TYPE_FAQ,
+        'CLIENT OPINIONS' => self::TYPE_CLIENTS_OPINIONS,
+        'EXPLORING > RELATED PAGES' => self::TYPE_EXPLORING_PAGES
+    ];
 
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $template;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=DynamicPage::class)
+     */
+    private $relatedPages;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Destination::class)
+     */
+    private $relatedDestinations;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Activity::class)
+     */
+    private $relatedActivities;
 
     /**
      * Region constructor.
@@ -95,6 +119,9 @@ class Region implements
         $this->gallery = new ArrayCollection();
         $this->active = true;
         $this->descriptionFragments = new ArrayCollection();
+        $this->relatedPages = new ArrayCollection();
+        $this->relatedDestinations = new ArrayCollection();
+        $this->relatedActivities = new ArrayCollection();
     }
 
 
@@ -163,21 +190,12 @@ class Region implements
 
     public function getTypeString(): string
     {
-        switch ($this->type) {
-            case self::TYPE_BANNER_REGION:
-                return 'BANNER REGION';
-            case self::TYPE_TOP_DESTINATION_REGION:
-                return 'TOP DESTINATION REGION';
-            case self::TRAVEL_OPTIONS:
-                return 'TRAVEL OPTIONS';
-            case self::TYPE_FAQ:
-                return 'FAQ QUESTION';
-            case self::TYPE_CLIENTS_OPINIONS:
-                return 'CLIENT OPINIONS';
-            default:
-            //case self::TYPE_GENERIC_REGION:
-                return 'GENERIC REGION';
+        foreach (self::REGION_TYPES_NAMES as $region => $type) {
+            if ($type === $this->type) {
+                return $region;
+            }
         }
+        return 'GENERIC REGION';
     }
 
     public function setType(int $type = self::TYPE_GENERIC_REGION): self
@@ -214,5 +232,96 @@ class Region implements
         $this->template = $template;
     }
 
+    /**
+     * @return Collection|DynamicPage[]
+     */
+    public function getRelatedPages(): Collection
+    {
+        return $this->relatedPages;
+    }
 
+    public function addRelatedPage(DynamicPage $relatedPage): self
+    {
+        if (!$this->relatedPages->contains($relatedPage)) {
+            $this->relatedPages[] = $relatedPage;
+        }
+
+        return $this;
+    }
+
+    public function removeRelatedPage(DynamicPage $relatedPage): self
+    {
+        if ($this->relatedPages->contains($relatedPage)) {
+            $this->relatedPages->removeElement($relatedPage);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Destination[]
+     */
+    public function getRelatedDestinations(): Collection
+    {
+        return $this->relatedDestinations;
+    }
+
+    public function addRelatedDestination(Destination $relatedDestination): self
+    {
+        if (!$this->relatedDestinations->contains($relatedDestination)) {
+            $this->relatedDestinations[] = $relatedDestination;
+        }
+
+        return $this;
+    }
+
+    public function removeRelatedDestination(Destination $relatedDestination): self
+    {
+        if ($this->relatedDestinations->contains($relatedDestination)) {
+            $this->relatedDestinations->removeElement($relatedDestination);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Activity[]
+     */
+    public function getRelatedActivities(): Collection
+    {
+        return $this->relatedActivities;
+    }
+
+    public function addRelatedActivity(Activity $relatedActivity): self
+    {
+        if (!$this->relatedActivities->contains($relatedActivity)) {
+            $this->relatedActivities[] = $relatedActivity;
+        }
+
+        return $this;
+    }
+
+    public function removeRelatedActivity(Activity $relatedActivity): self
+    {
+        if ($this->relatedActivities->contains($relatedActivity)) {
+            $this->relatedActivities->removeElement($relatedActivity);
+        }
+
+        return $this;
+    }
+
+    public function getAllRelatedContent()
+    {
+        $content = [];
+        foreach ($this->relatedPages as $item) {
+            $content[] = $item;
+        }
+        foreach ($this->relatedActivities as $item) {
+            $content[] = $item;
+        }
+        foreach ($this->relatedDestinations as $item) {
+            $content[] = $item;
+        }
+        return $content;
+    }
 }
