@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\DynamicPage;
+use App\PageManager\StaticPagesList;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
@@ -24,57 +25,17 @@ class DynamicPageRepository extends ServiceEntityRepository
     /**
      * @return array
      */
-    public function getStaticPagesUrl(): array
+    public function getStaticPagesMap(): array
     {
-        $staticPages = [
-            'index',
-            'exploring',
-            'excursions',
-            'tours',
-            'activities',
-            'bucket_list',
-            'faq',
-            'good_to_know',
-            'travel_info',
-            'about_us',
-            'contact'
-        ];
+        $staticPagesMachineNames = StaticPagesList::PAGE_MACHINE_NAMES;
 
-        $staticPagesUrl = [];
+        $staticPagesNamesMap = [];
 
-        foreach ($staticPages as $staticPage) {
+        foreach ($staticPagesMachineNames as $staticPage) {
             if ($page = $this->findOneBy(['machineName' => $staticPage])) {
-                $staticPagesUrl[$staticPage] = $page->getName();
+                $staticPagesNamesMap[$staticPage] = $page->getName();
             }
         }
-        return $staticPagesUrl;
+        return $staticPagesNamesMap;
     }
-    // /**
-    //  * @return DynamicPage[] Returns an array of DynamicPage objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('d')
-            ->andWhere('d.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('d.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?DynamicPage
-    {
-        return $this->createQueryBuilder('d')
-            ->andWhere('d.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

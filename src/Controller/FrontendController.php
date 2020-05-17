@@ -41,9 +41,10 @@ class FrontendController extends AbstractController
             throw new NotFoundHttpException();
         }
 
+        dump($dynamicPageRepository->getStaticPagesMap());
         return $this->render('frontend/index.html.twig', [
             'page' => $page,
-            'staticPagesUrl' => $dynamicPageRepository->getStaticPagesUrl(),
+            'staticPagesNamesMap' => $dynamicPageRepository->getStaticPagesMap(),
             'destinations' => $destinationRepository->findAllActive(),
             'filterTags' => $filterTagRepository->findActivesBy(['pinned' => true]),
             'randomImages' => $imageRepository->findBy([], null, 14),

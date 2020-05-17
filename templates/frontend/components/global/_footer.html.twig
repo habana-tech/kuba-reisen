@@ -8,8 +8,8 @@
 
             <div class="footer__content__links__column">
                 <div class="footer__content__links__column__title">
-                    <a href="{{ path('pageLoad', {'name' : staticPagesUrl['exploring'] | url_encode }) }}">
-                        <h3>{{ staticPagesUrl['exploring'] }}</h3>
+                    <a href="{{ path('pageLoad', {'name' : staticPagesNamesMap['exploring'] | url_encode }) }}">
+                        <h3>{{ staticPagesNamesMap['exploring'] }}</h3>
                     </a>
                 </div>
                 <ul>
@@ -28,8 +28,8 @@
 
             <div class="footer__content__links__column">
                 <div class="footer__content__links__column__title">
-                    <a href="{{ path('pageLoad', {'name' : staticPagesUrl['tours'] | url_encode }) }}">
-                        <h3>{{ staticPagesUrl['tours'] }}</h3>
+                    <a href="{{ path('pageLoad', {'name' : staticPagesNamesMap['tours'] | url_encode }) }}">
+                        <h3>{{ staticPagesNamesMap['tours'] }}</h3>
                     </a>
                 </div>
                 <ul>
@@ -52,19 +52,19 @@
 
             <div class="footer__content__links__column">
                 <div class="footer__content__links__column__title">
-                    <a href="{{ path('pageLoad', {'name' : staticPagesUrl['excursions'] | url_encode }) }}">
-                        <h3>{{ staticPagesUrl['excursions'] }}</h3>
+                    <a href="{{ path('pageLoad', {'name' : staticPagesNamesMap['excursions'] | url_encode }) }}">
+                        <h3>{{ staticPagesNamesMap['excursions'] }}</h3>
                     </a>
                 </div>
                 <ul>
                     <li>
                         <a href="{{ path('activities') }}">
-                            {{ staticPagesUrl['activities'] }}
+                            {{ staticPagesNamesMap['activities'] }}
                         </a>
                     </li>
                     <li>
-                        <a href="{{ path('pageLoad', {'name' : staticPagesUrl['bucket_list'] | url_encode }) }}">
-                            {{ staticPagesUrl['bucket_list'] }}
+                        <a href="{{ path('pageLoad', {'name' : staticPagesNamesMap['bucket_list'] | url_encode }) }}">
+                            {{ staticPagesNamesMap['bucket_list'] }}
                         </a>
                     </li>
 
@@ -78,28 +78,28 @@
 
                 <ul>
                     <li>
-                        <a href="{{ path('pageLoad', {'name' : staticPagesUrl['faq'] | url_encode }) }}">
-                            {{ staticPagesUrl['faq'] }}
+                        <a href="{{ path('pageLoad', {'name' : staticPagesNamesMap['faq'] | url_encode }) }}">
+                            {{ staticPagesNamesMap['faq'] }}
                         </a>
                     </li>
                     <li>
-                        <a href="{{ path('pageLoad', {'name' : staticPagesUrl['good_to_know'] | url_encode }) }}">
-                            {{ staticPagesUrl['good_to_know'] }}
+                        <a href="{{ path('pageLoad', {'name' : staticPagesNamesMap['good_to_know'] | url_encode }) }}">
+                            {{ staticPagesNamesMap['good_to_know'] }}
                         </a>
                     </li>
                     <li>
-                        <a href="{{ path('pageLoad', {'name' : staticPagesUrl['travel_info'] | url_encode }) }}">
-                            {{ staticPagesUrl['travel_info'] }}
+                        <a href="{{ path('pageLoad', {'name' : staticPagesNamesMap['travel_info'] | url_encode }) }}">
+                            {{ staticPagesNamesMap['travel_info'] }}
                         </a>
                     </li>
                     <li>
-                        <a href="{{ path('pageLoad', {'name' : staticPagesUrl['about_us'] | url_encode }) }}">
-                            {{ staticPagesUrl['about_us'] }}
+                        <a href="{{ path('pageLoad', {'name' : staticPagesNamesMap['about_us'] | url_encode }) }}">
+                            {{ staticPagesNamesMap['about_us'] }}
                         </a>
                     </li>
                     <li>
                         <a href="{{ path('contact') }}">
-                            {{ staticPagesUrl['contact'] }}
+                            {{ staticPagesNamesMap['contact'] }}
                         </a>
                     </li>
                 </ul>
@@ -110,9 +110,19 @@
         {{ include('/frontend/components/global/_divider.html.twig') }}
 
         <div class="footer__content__agb">
-            <a href="#">
-                <p>Allgemeine Vertragsbedingungen </p>
-            </a>
+            <p>
+                <a href="{{ path('pageLoad', {'name' : staticPagesNamesMap['travel_conditions'] | url_encode }) }}">
+                   <abbr title="Allgemeine Vertragsbedingungen">AGB</abbr>
+                </a>
+                 |
+                <a href="#">
+                    Allgemeine Vertragsbedingungen
+                </a>
+                 |
+                 <a href="#">
+                    Allgemeine Vertragsbedingungen
+                </a>
+            </p>
         </div>
 
         <div class="footer__content__copyright">

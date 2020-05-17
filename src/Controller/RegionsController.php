@@ -114,7 +114,7 @@ class RegionsController extends AbstractController
         DynamicPageRepository $dynamicPageRepository
     ): Response {
         return $this->render('frontend/components/global/_footer.html.twig', [
-            'staticPagesUrl' => $dynamicPageRepository->getStaticPagesUrl(),
+            'staticPagesNamesMap' => $dynamicPageRepository->getStaticPagesMap(),
             'destinations' => $destinationRepository->findAllActive(),
             'filterTagsPinned' => $filterTagRepository->findActivesBy(['pinned' => true]),
         ]);
@@ -126,7 +126,7 @@ class RegionsController extends AbstractController
         DynamicPageRepository $dynamicPageRepository
     ): Response {
         return $this->render('frontend/components/global/_header.html.twig', [
-            'staticPagesUrl' => $dynamicPageRepository->getStaticPagesUrl(),
+            'staticPagesNamesMap' => $dynamicPageRepository->getStaticPagesMap(),
             'destinations' => $destinationRepository->findAllActive(),
             'filterTagsPinned' => $filterTagRepository->findActivesBy(['pinned' => true]),
         ]);
@@ -136,7 +136,7 @@ class RegionsController extends AbstractController
     {
         return $this->render('frontend/components/global/_breadcrumbs.html.twig', [
             'items' => $items,
-            'staticPagesUrl' => $dynamicPageRepository->getStaticPagesUrl(),
+            'staticPagesUrl' => $dynamicPageRepository->getStaticPagesMap(),
         ]);
     }
 
