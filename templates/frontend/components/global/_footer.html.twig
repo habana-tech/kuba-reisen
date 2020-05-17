@@ -115,12 +115,12 @@
                    <abbr title="Allgemeine Vertragsbedingungen">AGB</abbr>
                 </a>
                  |
-                <a href="#">
-                    Allgemeine Vertragsbedingungen
+                <a href="{{ path('pageLoad', {'name' : staticPagesNamesMap['imprint'] | url_encode }) }}">
+                    {{ staticPagesNamesMap['imprint'] }}
                 </a>
                  |
-                 <a href="#">
-                    Allgemeine Vertragsbedingungen
+                 <a href="{{ path('pageLoad', {'name' : staticPagesNamesMap['protection_data_declaration'] | url_encode }) }}">
+                    {{ staticPagesNamesMap['protection_data_declaration'] }}
                 </a>
             </p>
         </div>

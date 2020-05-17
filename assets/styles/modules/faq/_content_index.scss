@@ -5,6 +5,9 @@
 
     &__list{
         list-style-type: decimal;
+        &__unordered{
+          list-style: none;
+        }
       & li{
           margin: .25em auto;
           & a{

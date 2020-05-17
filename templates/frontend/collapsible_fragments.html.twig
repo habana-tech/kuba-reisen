@@ -8,6 +8,7 @@
 {% endblock %}
 
 {% block body %}
+
     <main class="main">
 
         {% if page.image is not null %}
@@ -24,9 +25,13 @@
             {'type' : 'page', 'machineName' : page.machineName}
         ]} )) }}
 
+        {# this intro looks like FAQs intro #}
         {{ include ('frontend/components/faq/_intro.html.twig') }}
 
-        {{ render(controller('App\\Controller\\RegionsController::regionFaq')) }}
+         {{ include ('frontend/components/global/_collapsible_fragments.html.twig', {
+            '_showFragmentsIndex': true
+         }) }}
+
 
     </main>
 {% endblock %}

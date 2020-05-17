@@ -21,6 +21,7 @@ class PageTemplateSelector
             (new PageTemplate('travel_info.html.twig', 'Travel Info page')),
             (new PageTemplate('contact.html.twig', 'Contact page')),
             (new PageTemplate('index.html.twig', 'Index page')),
+            (new PageTemplate('collapsible_fragments.html.twig', 'Collapsible Fragments like FAQs')),
         ];
     }
 

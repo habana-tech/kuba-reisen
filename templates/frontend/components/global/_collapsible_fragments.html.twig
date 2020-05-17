@@ -1,0 +1,32 @@
+{% if _showFragmentsIndex is defined and _showFragmentsIndex is same as(true) and page.descriptionFragments is not empty %}
+    <section class="section content_index">
+        <h3>Inhalt</h3>{#content#}
+            <ul class="content_index__list content_index__list__unordered">
+                {% for descriptionFragment in page.descriptionFragments %}
+                <li>
+                    <a href="#section_question__{{ loop.index }}">
+                        {{ descriptionFragment.name }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+    </section>
+{% endif %}
+
+<section class="section questions">
+
+     {% for descriptionFragment in page.descriptionFragments %}
+
+        <div class="question"  id="section_question__{{ loop.index }}">
+            <div class="question__title">
+                <h3>{{ descriptionFragment.name }}</h3>
+            </div>
+
+            <div class="question__answer">
+                {{ descriptionFragment.content | raw }}
+            </div>
+        </div>
+
+    {% endfor %}
+
+</section>

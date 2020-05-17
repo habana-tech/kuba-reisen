@@ -136,7 +136,7 @@ class RegionsController extends AbstractController
     {
         return $this->render('frontend/components/global/_breadcrumbs.html.twig', [
             'items' => $items,
-            'staticPagesUrl' => $dynamicPageRepository->getStaticPagesMap(),
+            'staticPagesNamesMap' => $dynamicPageRepository->getStaticPagesMap(),
         ]);
     }
 

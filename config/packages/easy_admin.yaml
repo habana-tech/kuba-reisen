@@ -265,15 +265,16 @@ easy_admin:
                     - { property: 'machineName', label: 'Machine Name', permission: ['ROLE_ADMIN']  }
                     - { property: 'imageField', label: 'Main Image', help: 'You can replace the current image with one from gallery or upload a new one', type: 'App\Form\SingleImageFromGalleryType',  type_options: { block_name: 'image_field' }}
                     - { property: 'description', type: 'fos_ckeditor' }
+                    - { property: 'descriptionFragments', label: '*', help: 'Add many features fragments as you need to describe this activity', type: 'collection',  type_options: { entry_type: 'App\Form\DescriptionFragmentType', by_reference: true } }
 
                     - { type: 'group', label: 'Options', icon: 'image', columns: 4 , help: 'You can use an existing image from Gallery or upload a new one, replacing the current image '}
                     - { property: 'active', label: 'The Region is Active' }
                     - { property: 'linkText', label: 'Text of the link (button)' }
                     - { property: 'link', label: 'Url' }
                     - { property: 'template', type: 'App\Form\RegionTemplateType', label: 'Template' }
-                    - { property: 'type', label: 'Type of Region', type: 'choice', type_options: { choices: { 'GENERIC REGION':0, 'BANNER REGION': 1, 'DESTINATION REGION': 2} } }
+                    - { property: 'type', label: 'Type of Region', type: 'choice', type_options: { choices: { 'GENERIC PAGE REGION':0, 'BANNER REGION': 1, 'DESTINATION REGION': 2} } }
 
-                    - { type: 'group', label: 'Gallery', icon: 'images', columns: 4 }
+#                    - { type: 'group', label: 'Gallery', icon: 'images', columns: 4 }
                     - { type: 'section', label: 'Images from Gallery', icon: 'folder-open', help: 'Previously uploaded images' }
                     - { property: 'uploadedImages', label: 'Add images from Gallery',  help: 'Select one or more images', type: 'entity',  type_options: { class: 'App\Entity\Image', multiple: true, attr: {'class': 'selectpicker show-tick'} } }
                     - { type: 'section', label: 'Images linked to this activity', icon: 'images', help: 'You can upload new images from here' }
