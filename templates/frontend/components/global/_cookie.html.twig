@@ -7,12 +7,14 @@
             {{ include('frontend/components/_icons/_cookie.html.twig') }}
         </div>
         <div class="cookie__message">
-            <h1>Diese Webseite verwendet Cookies</h1>
-            <p>Wir verwenden Cookies, um Inhalte zu personalisieren und die Zugriffe auf unsere Website zu analysieren. Weitere Informationen finden Sie in unserer
-                <a href="#">Datenschutzerklärung</a>.</p>
+            <h1>Cookies &amp; Drittinhalte</h1>
+            <p>Auf dieser Website werden Cookies und Drittinhalte verwendet.
+                Im Folgenden können Sie Ihre Zustimmung geben oder widerrufen.
+                Weitere Informationen finden Sie in unserer
+                <a href="{{ path('pageLoad', {'name' : staticPagesNamesMap['protection_data_declaration'] | url_encode }) }}">Datenschutzerklärung</a>.</p>
         </div>
         <div class="cookie__btn">
-            <button class="btn btn--green btn--small" autofocus="autofocus">Allow</button>
+            <button class="btn btn--green btn--small" autofocus="autofocus" role="button" aria-selected="true">OK</button>
         </div>
     </aside>
 {% endif %}
