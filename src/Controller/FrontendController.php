@@ -41,7 +41,6 @@ class FrontendController extends AbstractController
             throw new NotFoundHttpException();
         }
 
-        dump($dynamicPageRepository->getStaticPagesMap());
         return $this->render('frontend/index.html.twig', [
             'page' => $page,
             'staticPagesNamesMap' => $dynamicPageRepository->getStaticPagesMap(),
