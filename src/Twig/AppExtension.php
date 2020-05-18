@@ -25,6 +25,8 @@ class AppExtension extends AbstractExtension
             new TwigFunction('in_string', [$this, 'in_string']),
             new TwigFunction('imgTagContent', [AppRuntime::class, 'imgTagContent']),
             new TwigFunction('imgTag', [AppRuntime::class, 'imgTag']),
+            new TwigFunction('guess_class_name', [$this, 'guessClassName']),
+            new TwigFunction('static_page_name', [$this, 'staticPageName']),
         ];
     }
 
@@ -149,4 +151,16 @@ class AppExtension extends AbstractExtension
         }
         return $truncate;
     }
+
+    public function guessClassName($obj)
+    {
+        return basename(get_class($obj));
+    }
+
+    public function staticPageName($machineName)
+    {
+
+    }
+
+
 }

@@ -1,0 +1,51 @@
+<div class="feature activity">
+    {% if guess_class_name(feature) == 'Activity' %}
+        {% set _isActivity = true %}
+        {% set _link = path('activity', {'id':feature.id, 'name':feature.name | url_encode }) %}
+    {% elseif guess_class_name(feature) ==  'DynamicPage' %}
+        {% set _isPage = true %}
+        {% set _link = path('pageLoad', {'name':feature.name | url_encode }) %}
+    {% elseif guess_class_name(feature) ==  'Destination' %}
+        {% set _link = path('destination', {'id':feature.id, 'name':feature.name | url_encode }) %}
+        {% set _isPage = true %}
+    {% endif %}
+
+
+    <div class="activity__image">
+
+        {% if _isActivity is defined and feature.getPinnedFilterTag %}
+            <div class="activity__image__tag featured__list">
+                {{ feature.getPinnedFilterTag }}
+            </div>
+        {% endif %}
+
+        <a href="{{ _link  }}">
+            {{ imgTag(feature.image, '(min-width:1000px) 33vw, 90vw') | raw }}
+        </a>
+    </div>
+
+    <div class="activity__content">
+        {% if  feature.initPrice is defined and feature.initPrice %}
+            <div class="activity__content__price featured__list">
+               <span style="font-size: 80%">ab <br> {{ feature.initPrice }} €</span>
+            </div>
+        {% endif %}
+
+        {% if _isActivity is defined %}
+            <div class="activity__content__actions">
+                {% if contact is not defined %}
+                    <div class="activity__content__actions__add" data-activity_id="{{ feature.id }}">
+                        {% include('frontend/components/_icons/_heart.html.twig') with {inverse:'heart--inverse'} only %}
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        <div class="activity__content__title">
+            <a href="{{ _link  }}">
+                <h4>{{ feature.name }}</h4>
+            </a>
+        </div>
+
+    </div>
+</div>

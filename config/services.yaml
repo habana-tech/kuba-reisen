@@ -43,3 +43,5 @@ services:
 
     App\SecurityAuths\CKFinderAuth:
         arguments: ['@security.authorization_checker']
+
+    App\Twig\AppRequestStack: ~

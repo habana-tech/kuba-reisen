@@ -33,6 +33,12 @@
             width: auto;
             transform: translateY(100%) translateX(-30%) rotate(-45deg);
             transform-origin: 50% 0;
+
+             &.featured__list{
+                 transform: none;
+                 transform-origin: inherit;
+                 padding: .6em 1.5em;
+             }
         }
 
         & img{
@@ -68,6 +74,12 @@
             right: .5em;
             width: 3.75em;
             height: 3.75em;
+
+            &.featured__list{
+                line-height: 15px;
+                width: 3.5em;
+                height: 3.5em;
+            }
 
             & span{
                 text-align: center;
