@@ -15,7 +15,6 @@ use Doctrine\Common\Persistence\ManagerRegistry;
  */
 class DynamicPageRepository extends ServiceEntityRepository
 {
-
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, DynamicPage::class);
@@ -31,11 +30,13 @@ class DynamicPageRepository extends ServiceEntityRepository
 
         $staticPagesNamesMap = [];
 
-        foreach ($staticPagesMachineNames as $staticPage) {
-            if ($page = $this->findOneBy(['machineName' => $staticPage])) {
-                $staticPagesNamesMap[$staticPage] = $page->getName();
+        $allPages = $this->findAll();
+        foreach ($allPages as $page) {
+            if (in_array($page->getMachineName(), $staticPagesMachineNames, true)) {
+                $staticPagesNamesMap[$page->getMachineName()] = $page->getName();
             }
         }
+
         return $staticPagesNamesMap;
     }
 }
