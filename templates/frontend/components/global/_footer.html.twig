@@ -8,8 +8,8 @@
 
             <div class="footer__content__links__column">
                 <div class="footer__content__links__column__title">
-                    <a href="{{ path('pageLoad', {'name' : staticPagesNamesMap['exploring'] | url_encode }) }}">
-                        <h3>{{ staticPagesNamesMap['exploring'] }}</h3>
+                    <a href="{{ path('pageLoad', {'name' : pager.url('exploring') }) }}">
+                        <h3>{{ pager.name('exploring') }}</h3>
                     </a>
                 </div>
                 <ul>
@@ -28,8 +28,8 @@
 
             <div class="footer__content__links__column">
                 <div class="footer__content__links__column__title">
-                    <a href="{{ path('pageLoad', {'name' : staticPagesNamesMap['tours'] | url_encode }) }}">
-                        <h3>{{ staticPagesNamesMap['tours'] }}</h3>
+                    <a href="{{ path('pageLoad', {'name' : pager.name('tours')  }) }}">
+                        <h3>{{ pager.name('tours') }}</h3>
                     </a>
                 </div>
                 <ul>
@@ -52,19 +52,19 @@
 
             <div class="footer__content__links__column">
                 <div class="footer__content__links__column__title">
-                    <a href="{{ path('pageLoad', {'name' : staticPagesNamesMap['excursions'] | url_encode }) }}">
-                        <h3>{{ staticPagesNamesMap['excursions'] }}</h3>
+                    <a href="{{ path('pageLoad', {'name' : pager.url('excursions') }) }}">
+                        <h3>{{  pager.name('excursions')  }}</h3>
                     </a>
                 </div>
                 <ul>
                     <li>
                         <a href="{{ path('activities') }}">
-                            {{ staticPagesNamesMap['activities'] }}
+                            {{ pager.name('activities') }}
                         </a>
                     </li>
                     <li>
-                        <a href="{{ path('pageLoad', {'name' : staticPagesNamesMap['bucket_list'] | url_encode }) }}">
-                            {{ staticPagesNamesMap['bucket_list'] }}
+                        <a href="{{ path('pageLoad', {'name' : pager.url('bucket_list') }) }}">
+                            {{ pager.name('bucket_list') }}
                         </a>
                     </li>
 
@@ -78,28 +78,28 @@
 
                 <ul>
                     <li>
-                        <a href="{{ path('pageLoad', {'name' : staticPagesNamesMap['faq'] | url_encode }) }}">
-                            {{ staticPagesNamesMap['faq'] }}
+                        <a href="{{ path('pageLoad', {'name' : pager.url('faq') }) }}">
+                            {{ pager.name('faq') }}
                         </a>
                     </li>
                     <li>
-                        <a href="{{ path('pageLoad', {'name' : staticPagesNamesMap['good_to_know'] | url_encode }) }}">
-                            {{ staticPagesNamesMap['good_to_know'] }}
+                        <a href="{{ path('pageLoad', {'name' : pager.url('good_to_know') }) }}">
+                            {{ pager.name('good_to_know') }}
                         </a>
                     </li>
                     <li>
-                        <a href="{{ path('pageLoad', {'name' : staticPagesNamesMap['travel_info'] | url_encode }) }}">
-                            {{ staticPagesNamesMap['travel_info'] }}
+                        <a href="{{ path('pageLoad', {'name' : pager.url('travel_info') }) }}">
+                            {{ pager.name('travel_info') }}
                         </a>
                     </li>
                     <li>
-                        <a href="{{ path('pageLoad', {'name' : staticPagesNamesMap['about_us'] | url_encode }) }}">
-                            {{ staticPagesNamesMap['about_us'] }}
+                        <a href="{{ path('pageLoad', {'name' : pager.url('about_us') }) }}">
+                            {{ pager.name('about_us') }}
                         </a>
                     </li>
                     <li>
                         <a href="{{ path('contact') }}">
-                            {{ staticPagesNamesMap['contact'] }}
+                            {{ pager.name('contact')  }}
                         </a>
                     </li>
                 </ul>
@@ -111,16 +111,17 @@
 
         <div class="footer__content__agb">
             <p>
-                <a href="{{ path('pageLoad', {'name' : staticPagesNamesMap['travel_conditions'] | url_encode }) }}">
+                <a href="{{ path('pageLoad', {'name' : pager.url('travel_conditions') }) }}">
                    <abbr title="Allgemeine Vertragsbedingungen">AGB</abbr>
                 </a>
                  |
-                <a href="{{ path('pageLoad', {'name' : staticPagesNamesMap['imprint'] | url_encode }) }}">
-                    {{ staticPagesNamesMap['imprint'] }}
+                <a href="{{ path('pageLoad', {'name' : pager.url('imprint') }) }}">
+                    {{ pager.name('imprint') }}
                 </a>
                  |
-                 <a href="{{ path('pageLoad', {'name' : staticPagesNamesMap['protection_data_declaration'] | url_encode }) }}">
-                    {{ staticPagesNamesMap['protection_data_declaration'] }}
+
+                 <a href="{{ path('pageLoad', {'name' : pager.url('protection_data_declaration') }) }}">
+                    {{ pager.name('protection_data_declaration') }}
                 </a>
             </p>
         </div>

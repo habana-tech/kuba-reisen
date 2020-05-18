@@ -7,6 +7,7 @@ twig:
     exception_controller: null
     globals:
         requestStack: '@App\Twig\AppRequestStack'
+        pager: '@App\PageManager\StaticPagesList'
 # form_themes: ['bootstrap_4_layout.html.twig','@EasyAdmin/form/bootstrap_4.html.twig' ,'@FOSCKEditor/Form/ckeditor_widget.html.twig']
 
 

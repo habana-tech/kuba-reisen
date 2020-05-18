@@ -11,7 +11,8 @@
             <p>Auf dieser Website werden Cookies und Drittinhalte verwendet.
                 Im Folgenden können Sie Ihre Zustimmung geben oder widerrufen.
                 Weitere Informationen finden Sie in unserer
-                <a href="{{ path('pageLoad', {'name' : staticPagesNamesMap['protection_data_declaration'] | url_encode }) }}">Datenschutzerklärung</a>.</p>
+
+                <a href="{{ path('pageLoad', {'name' : pager.url('protection_data_declaration') }) }}">Datenschutzerklärung</a>.</p>
         </div>
         <div class="cookie__btn">
             <button class="btn btn--green btn--small" autofocus="autofocus" role="button" aria-selected="true">OK</button>

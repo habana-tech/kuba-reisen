@@ -9,8 +9,8 @@
             {% for item in items %}
                 <li>
                     {% if item.type == 'page' %}
-                        <a href="{{ path('pageLoad', { 'name' : staticPagesNamesMap[ item.machineName ] | url_encode }) }}">
-                            {{ staticPagesNamesMap[ item.machineName ] }}
+                        <a href="{{ path('pageLoad', { 'name' : pager.url(item.machineName) }) }}">
+                            {{ pager.name(item.machineName) }}
                         </a>
                     {% elseif item.type == 'destination' %}
                         <a href="{{ path('destination', {'id' : item.destination.id, 'name' : item.destination.machineName }) }}">

@@ -110,11 +110,9 @@ class RegionsController extends AbstractController
 
     public function regionFooter(
         FilterTagRepository $filterTagRepository,
-        DestinationRepository $destinationRepository,
-        DynamicPageRepository $dynamicPageRepository
+        DestinationRepository $destinationRepository
     ): Response {
         return $this->render('frontend/components/global/_footer.html.twig', [
-            'staticPagesNamesMap' => $dynamicPageRepository->getStaticPagesMap(),
             'destinations' => $destinationRepository->findAllActive(),
             'filterTagsPinned' => $filterTagRepository->findActivesBy(['pinned' => true]),
         ]);
@@ -122,21 +120,18 @@ class RegionsController extends AbstractController
 
     public function regionHeader(
         DestinationRepository $destinationRepository,
-        FilterTagRepository $filterTagRepository,
-        DynamicPageRepository $dynamicPageRepository
+        FilterTagRepository $filterTagRepository
     ): Response {
         return $this->render('frontend/components/global/_header.html.twig', [
-            'staticPagesNamesMap' => $dynamicPageRepository->getStaticPagesMap(),
             'destinations' => $destinationRepository->findAllActive(),
             'filterTagsPinned' => $filterTagRepository->findActivesBy(['pinned' => true]),
         ]);
     }
 
-    public function regionBreadcrumbs($items, DynamicPageRepository $dynamicPageRepository): Response
+    public function regionBreadcrumbs($items): Response
     {
         return $this->render('frontend/components/global/_breadcrumbs.html.twig', [
-            'items' => $items,
-            'staticPagesNamesMap' => $dynamicPageRepository->getStaticPagesMap(),
+            'items' => $items
         ]);
     }
 
