@@ -55,14 +55,24 @@ class FrontendController extends AbstractController
      * @Route("/destination/{id}/{name}" , name="destination")
      * @param Destination $destination
      * @param ActivityRepository $activityRepository
+     * @param null $name
      * @return Response
      */
     public function destination(
         Destination $destination,
-        ActivityRepository $activityRepository
+        ActivityRepository $activityRepository,
+        $name = null
     ): Response {
         if (!$destination) {
             throw new NotFoundHttpException();
+        }
+
+        if ($name !== $destination->getMachineName()) {
+            return $this->redirectToRoute(
+                'destination',
+                ['id' => $destination->getId(), 'name' => $destination->getMachineName()],
+                301
+            );
         }
 
         $activities = $activityRepository->findByDestination($destination);
@@ -84,16 +94,26 @@ class FrontendController extends AbstractController
      * @param Activity $activity
      * @param ActivityRepository $activityRepository
      * @param FilterTagRepository $filterTagRepository
+     * @param null $name
      * @return Response
      */
 
     public function activity(
         Activity $activity,
         ActivityRepository $activityRepository,
-        FilterTagRepository $filterTagRepository
+        FilterTagRepository $filterTagRepository,
+        $name = null
     ): Response {
         if (!$activity) {
             throw new NotFoundHttpException();
+        }
+
+        if ($name !== $activity->getMachineName()) {
+            return $this->redirectToRoute(
+                'activity',
+                ['id' => $activity->getId(), 'name' => $activity->getMachineName()],
+                301
+            );
         }
 
         $activityId = $activity->getId();
