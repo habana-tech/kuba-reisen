@@ -30,7 +30,7 @@ class LoadActivities {
         let url = this.url+'/'+pos+'/'+this.amount;
 
         axios.get(url)
-            .then((response) => {
+            .then((response, that = this) => {
                 let activities = response.data.activities;
                 let loadMore = response.data.loadMore;
 
@@ -39,9 +39,9 @@ class LoadActivities {
 
                 if (activities.length > 0) {
                     activities.forEach((activity) => {
-                        let newActivity = new MakeActivity(this.prototype).make(activity);
+                        let newActivity = new MakeActivity(that.prototype).make(activity);
 
-                        this.activitiesListInitial.appendChild(newActivity);
+                        that.activitiesListInitial.appendChild(newActivity);
                     });
                 }
                 else {
