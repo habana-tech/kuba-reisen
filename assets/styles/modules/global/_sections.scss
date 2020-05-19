@@ -25,6 +25,7 @@
             & h2{
                 font-size: 2.5em;
                 margin: 0 0 .25em;
+                padding: 0 1em;
 
                 @include atLarge{
                     margin: 0 0 1em;;
@@ -114,13 +115,30 @@
 
         & > .feature_list{
             line-height: 0;
-            column-gap:           1em;
+            column-gap: 3em;
             position: relative;
             max-height: 20em;
+
+            --related-feature-content-width: 45vw;
+             @include atLarge{
+                 --related-feature-content-width: 23vw;
+                 min-height: calc(var(--related-feature-content-width) *1.2) !important;
+            }
         }
         & > .feature_list > .feature{
-            width: 100% !important;
+            width: 250px !important;
+            max-width: 45vw;
+
+
+            & .activity__image{
+                height: calc(var(--related-feature-content-width) * 0.9 );
+            }
             //max-height: 20em;
+
+            @include atLarge{
+                width: --related-feature-content-width !important;
+            }
+
     }
      }
 }
