@@ -62,8 +62,9 @@ easy_admin:
                     - { property: 'imageField', label: 'Main Image', help: 'You can replace the current image with one from gallery or upload a new one', type: 'App\Form\SingleImageFromGalleryType',  type_options: { block_name: 'image_field' }}
 
                     - { type: 'group', label: 'Activity settings', icon: 'cogs', columns: 4 }
-                    - { property: 'active', label: 'The Activity is Active' }
+                    - { property: 'active', label: 'This activity is Active' }
                     - { property: 'initPrice', type: 'money' , label: 'Starting price' }
+                    - { property: 'flyTicketIncluded', type: 'checkbox' , label: '✈ Fly ticket included' }
                     - { property: 'filterTags', type: 'entity' }
                     - { property: 'destinations', type: 'entity' }
                     - { property: 'priority' , label: 'Priority on results' }

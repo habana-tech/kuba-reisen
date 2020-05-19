@@ -21,7 +21,16 @@
 
             {% if activity.initPrice is defined and activity.initPrice %}
                 <div class="overview_activity__content__favorite_price__price">
-                    <span><strong>ab:</strong></span>&nbsp;{{ activity.initPrice }} &euro;
+                    <div>
+                        <small>ab</small> &nbsp;<strong>{{ activity.initPrice }} &euro;</strong>
+                    </div>
+                    <div class="overview_activity__content__favorite_price__flyTicket">
+                         {% if activity.flyTicketIncluded is defined and  activity.flyTicketIncluded %}
+                             🛫 <small>(inklusive Flug)</small>
+                         {% else %}
+                             ✈ <small>(exklusive Flug)</small>
+                         {% endif %}
+                    </div>
                 </div>
             {% endif %}
         </div>
