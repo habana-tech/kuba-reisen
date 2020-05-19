@@ -10,6 +10,7 @@ use App\Entity\Fields\ImageFieldInterface;
 use App\Entity\Fields\ImageFieldTrait;
 use App\Entity\Fields\MachineNameInterface;
 use App\Entity\Fields\MachineNameTrait;
+use App\Entity\Fields\MetadataField;
 use App\Entity\Fields\PriorityFieldTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -29,6 +30,7 @@ class Destination implements DescriptionFragmentFieldInterface, MachineNameInter
     use PriorityFieldTrait;
     use ActiveFieldTrait;
     use DescriptionFragmentFieldTrait;
+    use MetadataField;
 
     /**
      * @ORM\Id()
