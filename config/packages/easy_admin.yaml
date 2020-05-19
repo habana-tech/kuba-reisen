@@ -18,6 +18,7 @@ easy_admin:
             - '@EasyAdmin/form/bootstrap_4.html.twig'
             - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
         menu:
+            - { label: 'Home', route: 'frontend' , icon: 'home' }
             - { label: 'Products' }
             - { entity: 'Activity', label: 'Activities' , icon: 'location-arrow'}
             - { entity: 'Destination', label: 'Destinations' , icon: 'map-marker-alt'}
@@ -35,8 +36,9 @@ easy_admin:
 #            - { label: 'Config', route: 'ckfinder_fullpage', icon: 'cogs' }
 
             - { label: 'Users' }
-            - { entity: 'User', params: { action: 'new' }, label: 'New User' , icon: 'user-plus'}
+            - { entity: 'User', params: { action: 'new' }, label: 'New User' , icon: 'user-plus', , permission: 'ROLE_ADMIN'}
             - { entity: 'User',label: 'All Users' , icon: 'users'}
+
     edit:
         item_permission: 'ROLE_EDITOR'
     user:
