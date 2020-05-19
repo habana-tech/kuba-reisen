@@ -35,6 +35,12 @@
             {% endif %}
         </div>
 
+        {% if activity.notSuitableReducedMobility is defined and  activity.notSuitableReducedMobility %}
+            <div class="overview_activity__content__tags__wheelchair">
+                <img src="{{ asset('svg/wheel-chair.svg') }}">
+                <p>Reise nicht geeignet für Menschen mit eingeschränker Mobilität</p>
+            </div>
+        {% endif %}
         {{ include('frontend/components/activity/_tags.html.twig') }}
 
         <div class="overview_activity__content__text">

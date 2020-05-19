@@ -65,7 +65,9 @@ easy_admin:
                     - { property: 'active', label: 'This activity is Active' }
                     - { property: 'initPrice', type: 'money' , label: 'Starting price' }
                     - { property: 'flyTicketIncluded', type: 'checkbox' , label: '✈ Fly ticket included' }
+                    - { property: 'notSuitableReducedMobility', type: 'checkbox' , label: '🦽 Reduced mobility restriction' }
                     - { property: 'filterTags', type: 'entity' }
+                    - { property: 'groupPeopleMinMax', type: 'text' , label: 'Group size', help: 'Only if you selected "Gruppeenreise" as tag. Example: 6-12 PERS.' }
                     - { property: 'destinations', type: 'entity' }
                     - { property: 'priority' , label: 'Priority on results' }
 
