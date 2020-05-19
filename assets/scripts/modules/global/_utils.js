@@ -3,7 +3,7 @@ export function setCookie(value, name='products_cart' , days=3) {
     date.setTime(date.getTime()+(days*24*60*60*1000));
     let expires = "; expires="+date.toGMTString ();
     document.cookie = name + "=" + value +
-        expires + "; path=/";
+        expires + "; path=/; Secure; SameSite=Strict";
 }
 
 export function getCookie(name) {
