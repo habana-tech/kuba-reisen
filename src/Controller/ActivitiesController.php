@@ -131,7 +131,8 @@ class ActivitiesController extends AbstractController
                 'id' => $activity->getId(),
                 'name' => $activity->getName(),
                 'image' => $activity->getImage(),
-                'description' => $twig_filter->truncate_html($activity->getDescription(), $activity::LENGTH_OF_DESCRIPTION),
+                'description' => $twig_filter->truncateText(strip_tags($activity->getDescription()), $activity::LENGTH_OF_DESCRIPTION),
+//                'description' => $twig_filter->truncate_html($activity->getDescription(), $activity::LENGTH_OF_DESCRIPTION),
                 'link' => $this->generateUrl(
                     'activity',
                     ['id' => $activity->getId(),
@@ -198,12 +199,16 @@ class ActivitiesController extends AbstractController
                 continue;
             }
 
+            $twig_filter = new AppExtension();
+
             //TODO:
             $activities_data[] = array(
                 'id' => $activity->getId(),
                 'name' => $activity->getName(),
                 'image' => $activity->getImage(),
-                'description' => $activity->getDescription(),
+                'description' => $twig_filter->truncateText(strip_tags($activity->getDescription()), $activity::LENGTH_OF_DESCRIPTION),
+//                'description' => $twig_filter->truncate_html($activity->getDescription(), $activity::LENGTH_OF_DESCRIPTION),
+//                'description' => $activity->getDescription(),
                 'link' => $this->generateUrl(
                     'activity',
                     ['id' => $activity->getId(),

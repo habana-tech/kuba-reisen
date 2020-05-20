@@ -19,11 +19,12 @@ class RegionsController extends AbstractController
 
     /**
      * @param RegionRepository $regionRepository
+     * @param int $regionType
      * @return Response
      */
-    public function regionBanner(RegionRepository $regionRepository): Response
+    public function regionBanner(RegionRepository $regionRepository, $regionType = Region::TYPE_BANNER_REGION): Response
     {
-        if (!$banners = $regionRepository->findBy(['type' => Region::TYPE_BANNER_REGION])) {
+        if (!$banners = $regionRepository->findBy(['type' => $regionType])) {
             return new Response();
         }
 
@@ -164,6 +165,24 @@ class RegionsController extends AbstractController
         return $this->render('frontend/components/global/_clients_opinions.html.twig', [
             'clientsOpinions' => $clientsOpinions,
             'opinions' => $opinions
+        ]);
+    }
+
+
+    public function regionExcursionsActivities(RegionRepository $regionRepository): Response
+    {
+        if (
+            !$banner = $regionRepository->findOneBy(
+                ['active' => true,
+                'type' => Region::TYPE_EXCURSIONS_ACTIVITIES]
+            )
+        ) {
+            return new Response("Region doesn't exist", 404);
+        }
+
+
+        return $this->render('frontend/components/global/_excursions_activities_banner.html.twig', [
+            'banner' => $banner,
         ]);
     }
 

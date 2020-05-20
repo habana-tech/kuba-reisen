@@ -15,6 +15,7 @@ class AppExtension extends AbstractExtension
             new TwigFilter('price', [AppRuntime::class, 'formatPrice']),
             new TwigFilter('filterSrcset', [AppRuntime::class, 'filterSrcset']),
             new TwigFilter('truncate_html', [$this, 'truncate_html']),
+            new TwigFilter('truncate', [$this, 'truncateText']),
         ];
     }
 
@@ -26,7 +27,6 @@ class AppExtension extends AbstractExtension
             new TwigFunction('imgTagContent', [AppRuntime::class, 'imgTagContent']),
             new TwigFunction('imgTag', [AppRuntime::class, 'imgTag']),
             new TwigFunction('guess_class_name', [$this, 'guessClassName']),
-            new TwigFunction('static_page_name', [$this, 'staticPageName']),
         ];
     }
 
@@ -37,7 +37,7 @@ class AppExtension extends AbstractExtension
     }
 
     /**
-    * truncate()
+    * truncate_html()
     *
     * Truncates a HTML string to a given length of _visible_ (content) characters.
     * E.g.
@@ -157,9 +157,38 @@ class AppExtension extends AbstractExtension
         return basename(get_class($obj));
     }
 
-    public function staticPageName($machineName)
-    {
 
+    /*
+     * Copied from the official Text Twig extension.
+     *
+     * code: https://github.com/twigphp/Twig-extensions/blob/master/lib/Twig/Extensions/Extension/Text.php
+     * author: Henrik Bjornskov <hb@peytz.dk>
+     * copyright holder: (c) 2009 Fabien Potencier
+     *
+     * @return string
+     */
+    public function truncateText($value, $length = 64, $preserve = true, $separator = '...')
+    {
+        try {
+            $value = (string) $value;
+        } catch (\Exception $e) {
+            $value = '';
+        }
+
+        if (mb_strlen($value) > $length) {
+            if ($preserve) {
+                // If breakpoint is on the last word, return the value without separator.
+                if (false === ($breakpoint = mb_strpos($value, ' ', $length))) {
+                    return $value;
+                }
+
+                $length = $breakpoint;
+            }
+
+            return rtrim(mb_substr($value, 0, $length)).$separator;
+        }
+
+        return $value;
     }
 
 

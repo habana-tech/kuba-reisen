@@ -79,6 +79,7 @@ class Region implements
     public const TYPE_FAQ = 4;
     public const TYPE_CLIENTS_OPINIONS = 5;
     public const TYPE_EXPLORING_PAGES = 6;
+    public const TYPE_EXCURSIONS_ACTIVITIES = 7;
 
     public const REGION_TYPES_NAMES = [
         'GENERIC REGION' => self::TYPE_GENERIC_REGION,
@@ -87,7 +88,8 @@ class Region implements
         'TRAVEL OPTIONS' => self::TRAVEL_OPTIONS,
         'FAQ > QUESTION' => self::TYPE_FAQ,
         'CLIENT OPINIONS' => self::TYPE_CLIENTS_OPINIONS,
-        'EXPLORING > RELATED PAGES' => self::TYPE_EXPLORING_PAGES
+        'EXPLORING > RELATED PAGES' => self::TYPE_EXPLORING_PAGES,
+        'EXCURSIONS > ACTIVITIES BANNER' => self::TYPE_EXCURSIONS_ACTIVITIES
     ];
 
 

@@ -1,0 +1,30 @@
+<section class="section banner banner-small">
+
+    <div class="banner__image">
+        {{  imgTag(banner.image,'100vw') | raw }}
+    </div>
+
+    <div class="banner__content">
+        <div class="banner__content__title">
+            <h2>{{ banner.title}}</h2>
+
+            {%  if banner.description %}
+                <h3>
+                    {{ banner.description | raw }}
+                </h3>
+            {% endif %}
+
+        </div>
+
+
+            <a class="btn" href="{{ pager.url('activities') }}">
+                 {% if  banner.linkText %}
+                    {{ banner.linkText }}
+                 {% else %}
+                     Aktivitäten
+                {% endif %}
+            </a>
+
+    </div>
+
+</section>

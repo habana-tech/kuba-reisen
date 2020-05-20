@@ -35,8 +35,18 @@
 
         <div class="activity__content__description">
             <a href="{{ path('activity', {'id':activity.id, 'name':activity.machineName}) }}">
-                {{ activity.description | truncate_html(constant('LENGTH_OF_DESCRIPTION', activity)) | raw }}
+{#                {{ activity.description | truncate_html(constant('LENGTH_OF_DESCRIPTION', activity)) | raw }}#}
+                {{ activity.description | truncate_html(constant('LENGTH_OF_DESCRIPTION', activity)) | striptags | raw }}
+
+
             </a>
         </div>
     </div>
 </div>
+<style>
+    .activity__content__description::after{
+        content: '(lesen sie mehr)';
+        font-size: 80%;
+        margin: 0 .4em;
+    }
+</style>

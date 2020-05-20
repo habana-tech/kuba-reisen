@@ -45,4 +45,4 @@ services:
         arguments: ['@security.authorization_checker']
 
     App\Twig\AppRequestStack: ~
-    App\PageManager\StaticPagesList: ~
+    App\PageManager\PageManager: ~

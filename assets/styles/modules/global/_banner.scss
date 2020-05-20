@@ -5,6 +5,10 @@
     justify-content: center;
     overflow: hidden;
 
+    &-small{
+        height: 40vh;
+    }
+
     &__image{
         position: absolute;
         width: 100%;

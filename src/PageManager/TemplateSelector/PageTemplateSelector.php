@@ -35,6 +35,7 @@ class PageTemplateSelector
             (new PageTemplate('components/faq/_question.html.twig', 'FAQ > QUESTION')),
             (new PageTemplate('components/activities/_clients_opinions.html.twig', 'ACTIVITIES > OPINIONS')),
             (new PageTemplate('components/global/_related_content.html.twig', 'EXPLORING > Related Pages')),
+            (new PageTemplate('components/global/_excursions_activities_banner.html.twig', 'EXCURSIONS > Activities link')),
         ];
     }
 
