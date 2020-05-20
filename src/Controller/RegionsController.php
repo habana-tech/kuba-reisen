@@ -171,14 +171,10 @@ class RegionsController extends AbstractController
 
     public function regionExcursionsActivities(RegionRepository $regionRepository): Response
     {
-        if (
-            !$banner = $regionRepository->findOneBy(
+        $banner = $regionRepository->findOneBy(
                 ['active' => true,
                 'type' => Region::TYPE_EXCURSIONS_ACTIVITIES]
-            )
-        ) {
-            return new Response("Region doesn't exist", 404);
-        }
+            );
 
 
         return $this->render('frontend/components/global/_excursions_activities_banner.html.twig', [
