@@ -28,6 +28,13 @@
 
             <div class="float__container__center">
 
+                 <div class="section__title__highlight section__title__highlight--padding-top section__title__highlight--green ">
+                    <h2>{{ activity.name }}</h2>
+                </div>
+                <div class="overview_activity__content__text">
+                    {{ activity.description | raw }}
+                </div>
+
                 {{ include('frontend/components/activity/_itinerary.html.twig') }}
 
                 {{ include('frontend/components/activity/_include_and_not.html.twig') }}

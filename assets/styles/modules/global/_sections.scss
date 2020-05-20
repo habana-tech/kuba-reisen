@@ -18,6 +18,10 @@
             font-weight: 600;
             flex-wrap: wrap;
 
+            &--padding-top {
+                    padding-top: 2em;
+            }
+
             @include atLarge{
                 flex-wrap: nowrap;
             }
