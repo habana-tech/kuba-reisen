@@ -26,6 +26,8 @@
 
         {{ include('frontend/components/bucket_list/_items.html.twig') }}
 
+        {{ render(controller('App\\Controller\\RegionsController::regionExcursionsActivities')) }}
+
         {{ render(controller('App\\Controller\\RegionsController::regionTopDestinations')) }}
 
     </main>

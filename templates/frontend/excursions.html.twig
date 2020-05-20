@@ -27,7 +27,7 @@
 
 {#                {{ include('frontend/components/destinations/_activities.html.twig') }}#}
 
-        {{ render(controller('App\\Controller\\RegionsController::regionExcursionsActivities', {'type': ''})) }}
+        {{ render(controller('App\\Controller\\RegionsController::regionExcursionsActivities')) }}
 
         {{ render(controller('App\\Controller\\RegionsController::regionTopDestinations', {'preview':app.request.get('preview')} )) }}
 
