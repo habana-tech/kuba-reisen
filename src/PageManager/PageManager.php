@@ -3,6 +3,7 @@
 namespace App\PageManager;
 
 use App\Repository\DynamicPageRepository;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class PageManager
 {
@@ -11,15 +12,21 @@ class PageManager
      * @var DynamicPageRepository
      */
     private $repository;
+    /**
+     * @var RequestStack
+     */
+    private $stack;
 
     /**
      * StaticPagesList constructor.
      * @param DynamicPageRepository $pageRepository
+     * @param RequestStack $stack
      */
-    public function __construct(DynamicPageRepository $pageRepository)
+    public function __construct(DynamicPageRepository $pageRepository, RequestStack $stack)
     {
         $this->repository = $pageRepository;
         $this->map = $pageRepository->getStaticPagesMap();
+        $this->stack = $stack;
     }
 
     public static function pageListMachineNames(): array
@@ -50,5 +57,16 @@ class PageManager
     public function getPageByMachineName($machineName)
     {
         return $this->repository->findOneByMachineName($machineName);
+    }
+
+    public function getCurrentPageMachineName()
+    {
+        $path = basename($this->stack->getMasterRequest() ? $this->stack->getMasterRequest()->getPathInfo() : null);
+
+        foreach ($this->map as $index => $value) {
+            if ($value === $path) {
+                return $index;
+            }
+        }
     }
 }

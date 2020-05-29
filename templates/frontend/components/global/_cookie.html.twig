@@ -1,4 +1,4 @@
-{% if app.request.cookies.has('allow-cookies') %}
+{% if app.request.cookies.has('allow-cookies') or pager.currentPageMachineName == 'protection_data_declaration' %}
     <!-- cookie dialog skipped -->
 {% else %}
     <div class="cookie-overlay"></div>

@@ -76,6 +76,9 @@
         & h1, & p{
             margin-bottom: .25em;
         }
+        & a{
+            text-decoration: underline;
+        }
     }
 
     &__btn{
