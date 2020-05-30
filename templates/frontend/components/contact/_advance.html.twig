@@ -2,11 +2,13 @@
 
     <div class="section__title ">
         <div class="section__title__highlight section__title__highlight--orange">
-            <h2>Mehr Info bedeutet bessere Beratung</h2>
+            <h2>{% trans %}contact.advance.title{% endtrans %}</h2>
+{#            <h2>Mehr Info bedeutet bessere Beratung</h2>#}
         </div>
         <div class="section__title__description">
-            <p >
-                Klicken Sie doch schon mal Ihre Interessen an, damit können Sie noch gezielter beraten werden.
+            <p>
+                {% trans %}contact.advance.text{% endtrans %}
+{#                Klicken Sie doch schon mal Ihre Interessen an, damit können Sie noch gezielter beraten werden.#}
             </p>
         </div>
     </div>
@@ -14,7 +16,8 @@
     {% if activities | length > 0 %}
         <div class="selected-activities">
             <div class="selected-activities__title">
-                <h3>Activities selected for you</h3>
+                <h3>{% trans %}contact.advance.activities.title{% endtrans %}</h3>
+{#                <h3>Activities selected for you</h3>#}
             </div>
             <div class="selected-activities__list">
                 {% for activity in activities %}
@@ -26,7 +29,8 @@
 
     <div class="travel-interest">
         <div class="travel-interest__title">
-            <h3>Wählen Sie aus, was Sie interessiert</h3>
+            <h3>{% trans %}contact.advance.activities.selecting{% endtrans %}</h3>
+{#            <h3>Choose what interests you</h3>#}
         </div>
 
         <div class="travel-interest__options">
@@ -119,12 +123,12 @@
 
         <div class="visually-hidden admin_visible_list" id="{{ form.selfCharacter.vars.id }}_labels">
             <ul class="visually-hidden admin_visible_list">
-                <li>keine Angabe</li>
-                <li>ich bin ein Stadtmensch</li>
-                <li>etwas</li>
-                <li>ich mag die Natur</li>
-                <li>ich bevorzuge grüne Gegenden als Asphalt</li>
-                <li>wann immer möglich</li>
+                <li>{% trans %}contact.advance.selfCharacter.noInfo{% endtrans %}</li>
+                <li>{% trans %}contact.advance.selfCharacter.cityPerson{% endtrans %}</li>
+                <li>{% trans %}contact.advance.selfCharacter.something{% endtrans %}</li>
+                <li>{% trans %}contact.advance.selfCharacter.likeNature{% endtrans %}</li>
+                <li>{% trans %}contact.advance.selfCharacter.preferGreen{% endtrans %}</li>
+                <li>{% trans %}contact.advance.selfCharacter.wheneverPossible{% endtrans %}</li>
             </ul>
         </div>
     </div>
@@ -152,12 +156,12 @@
 
         <div class="visually-hidden admin_visible_list" id="{{ form.selfLuxury.vars.id }}_labels">
             <ul class="visually-hidden admin_visible_list">
-                <li>keine Angabe</li>
-                <li>sagt mir nichts</li>
-                <li>die Hauptsache ist Sauberkeit</li>
-                <li>ich mag es ab und an Schön und Komfortabel</li>
-                <li>Komfort muss sein</li>
-                <li>ohne Luxus verreise ich nicht</li>
+                <li>{% trans %}contact.advance.selfLuxury.noInfo{% endtrans %}</li>
+                <li>{% trans %}contact.advance.selfLuxury.dontTellme{% endtrans %}</li>
+                <li>{% trans %}contact.advance.selfLuxury.mainThingIsCleanliness{% endtrans %}</li>
+                <li>{% trans %}contact.advance.selfLuxury.NiceAndComfortable{% endtrans %}</li>
+                <li>{% trans %}contact.advance.selfLuxury.MustBeComfort{% endtrans %}</li>
+                <li>{% trans %}contact.advance.selfLuxury.dontTravelWithoutLuxury{% endtrans %}</li>
             </ul>
         </div>
 

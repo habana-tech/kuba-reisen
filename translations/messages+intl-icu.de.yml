@@ -1,0 +1,45 @@
+global.__banner_sky_headline__: 'Machen Sie einen Schritt in Richtung Ihrer Reise nach Kuba'
+global.__banner_sky_subtitle__: 'Machen Sie einen Schritt in Richtung'
+global.__banner_sky_contact_btn__: 'Sprechen Sie mit einem Experten!'
+contact.selfConsider.min: __contact.selfConsider.min
+contact.selfConsider.max: __contact.selfConsider.max
+contact.selfCharacter.min: __contact.selfCharacter.min
+contact.selfCharacter.max: __contact.selfCharacter.max
+contact.selfLuxury.min: __contact.selfLuxury.min
+contact.selfLuxury.max: __contact.selfLuxury.max
+hero.activities.title: Aktivitäten
+OK: OK
+contact.modal.fromTravel.title: 'Sie haben eine individuelle Reise ausgewählt'
+contact.modal.fromTravel.text.primary: 'Gerne stellen wir Ihnen ein massgeschneidertes Produkt zusammen.'
+contact.modal.fromTravel.text.secondary: 'Geben Sie uns ein paar weitere Informationen zu Ihren Reisevorstellungen und schon können wir mit der Planung Ihrer Individualreise beginnen.'
+contact.advance.title: 'Mehr Info bedeutet bessere Beratung'
+contact.advance.text: 'Klicken Sie doch schon mal Ihre Interessen an, damit können Sie noch gezielter beraten werden.'
+contact.advance.activities.title: 'Für Sie ausgewählte Aktivitäten'
+contact.advance.activities.selecting: 'Wählen Sie aus, was Sie interessiert'
+contact.advance.selfCharacter.noInfo: 'keine Angabe'
+contact.advance.selfCharacter.cityPerson: 'ich bin ein Stadtmensch'
+contact.advance.selfCharacter.something: etwas
+contact.advance.selfCharacter.likeNature: 'ich mag die Natur'
+contact.advance.selfCharacter.preferGreen: 'ich bevorzuge grüne Gegenden als Asphalt'
+contact.advance.selfCharacter.wheneverPossible: 'wann immer möglich'
+contact.advance.selfLuxury.noInfo: 'keine Angabe'
+contact.advance.selfLuxury.dontTellme: 'sagt mir nichts'
+contact.advance.selfLuxury.mainThingIsCleanliness: 'die Hauptsache ist Sauberkeit'
+contact.advance.selfLuxury.NiceAndComfortable: 'ich mag es ab und an Schön und Komfortabel'
+contact.advance.selfLuxury.MustBeComfort: 'Komfort muss sein'
+contact.advance.selfLuxury.dontTravelWithoutLuxury: 'ohne Luxus verreise ich nicht'
+contact.basic.title: 'Beginnen wir mit den Grundlagen'
+contact.basic.description: 'Hat kuba-reisen.de Ihr Interesse geweckt? Dann freuen wir uns auf Ihre Kontaktaufnahme. Gerne helfen wir Ihnen bei der Planung Ihres Kuba Urlaubes.'
+contact.basic.travelDuration.LessThan5Days: 'Weniger als 5 Tage'
+contact.basic.travelDuration.days: Tage
+contact.basic.travelDuration.moreThan30Days: '30 Tage und Mehr'
+contact.basic.travelBudget.LessThan1000EUR: 'Weniger als 1000 EUR'
+contact.basic.travelBudget.Equal1000EUR: '10''000 EUR'
+contact.basic.travelBudget.MoneyDoesntMatter: 'Geld spielt keine Rolle'
+contact.personal.howToContact: 'Wie können wir Sie kontaktieren?'
+contact.personal.thingsYouLike: 'Lassen Sie uns mehr über die Dinge wissen, die Sie mögen'
+contact.sendForm.Info.success: 'Die von Ihnen angegebenen Informationen wurden an unseren Spezialisten gesendet. Wir werden uns bald mit Ihnen in Verbindung setzen. Vielen Dank.'
+contact.sendForm.Info.error: 'Bei der Verarbeitung der von Ihnen angegebenen Informationen ist ein Fehler aufgetreten. Bitte versuche es erneut.'
+global.modal.cookie.title: 'Cookies &amp; Drittinhalte'
+global.modal.cookie.description: 'Auf dieser Website werden Cookies und Drittinhalte verwendet. Im Folgenden können Sie Ihre Zustimmung geben oder widerrufen. Weitere Informationen finden Sie in unserer'
+global.modal.cookie.protectionDataDeclaration: 'Datenschutzerklärung'

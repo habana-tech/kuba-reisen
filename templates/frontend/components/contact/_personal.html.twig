@@ -2,10 +2,12 @@
 
     <div class="section__title ">
         <div class="section__title__highlight section__title__highlight--orange">
-            <h2>Wie können wir Sie kontaktieren?</h2>
+            <h2>{% trans %}contact.personal.howToContact{% endtrans %}</h2>
+{#            <h2>Wie können wir Sie kontaktieren?</h2>#}
         </div>
         <div class="section__title__description">
-            <p>Lassen Sie uns mehr über die Dinge wissen, die Sie mögen
+            <p>{% trans %}contact.personal.thingsYouLike{% endtrans %}
+{#                Lassen Sie uns mehr über die Dinge wissen, die Sie mögen#}
             </p>
         </div>
     </div>
@@ -54,8 +56,14 @@
     </div>
 
     <div class="form__item sendFormFlex">
-        <p class="sendFormInfo sendFormInfo__success hidden">The information you provided was sended to our specialist. We'll contact you soon about it. Thanks a lot.</p>
-        <p class="sendFormInfo sendFormInfo__error hidden">There was some error processing the info you provided. Please try again.</p>
+        <p class="sendFormInfo sendFormInfo__success hidden">
+            {% trans %}contact.sendForm.Info.success{% endtrans %}
+{#            The information you provided was sent to our specialist. We'll contact you soon about it. Thanks a lot.#}
+        </p>
+        <p class="sendFormInfo sendFormInfo__error hidden">
+              {% trans %}contact.sendForm.Info.error{% endtrans %}
+{#            There was some error processing the info you provided. Please try again.#}
+        </p>
         
         <button class="btn sendFormBtn" href="#">{{ button_label|default('Sende Formular') }}</button>
 

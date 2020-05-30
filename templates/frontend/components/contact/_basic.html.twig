@@ -2,12 +2,14 @@
 
     <div class="section__title ">
         <div class="section__title__highlight section__title__highlight--orange">
-            <h2>Beginnen wir mit den Grundlagen</h2>
+            <h2>{% trans %}contact.basic.title{% endtrans %}</h2>
+{#            <h2>Beginnen wir mit den Grundlagen</h2>#}
         </div>
         <div class="section__title__description" >
             <p>
-                Hat kuba-reisen.de Ihr Interesse geweckt? Dann freuen wir uns auf
-                Ihre Kontaktaufnahme. Gerne helfen wir Ihnen bei der Planung Ihres Kuba Urlaubes.
+                {% trans %}contact.basic.description{% endtrans %}
+{#                Hat kuba-reisen.de Ihr Interesse geweckt? Dann freuen wir uns auf#}
+{#                Ihre Kontaktaufnahme. Gerne helfen wir Ihnen bei der Planung Ihres Kuba Urlaubes.#}
             </p>
         </div>
     </div>
@@ -44,11 +46,11 @@
 
         <div class="visually-hidden" id="{{ form.travelDuration.vars.id }}_labels">
             <ul class="visually-hidden">
-                <li>Weniger als 5 Tage</li>
+                <li>{% trans %}contact.basic.travelDuration.LessThan5Days{% endtrans %}</li>
                 {% for number in 6..29 %}
-                    <li>{{ number }} Tage</li>
+                    <li>{{ number }} {% trans %}contact.basic.travelDuration.days{% endtrans %}</li>
                 {% endfor %}
-                <li>30 Tage und Mehr</li>
+                <li>{% trans %}contact.basic.travelDuration.moreThan30Days{% endtrans %}</li>
             </ul>
 
         </div>
@@ -107,13 +109,13 @@
         </div>
         <div class="visually-hidden" id="{{ form.travelBudget.vars.id }}_labels">
             <ul class="visually-hidden">
-                <li>Weniger als 1000 EUR</li>
+                <li>{% trans %}contact.basic.travelBudget.LessThan1000EUR{% endtrans %}</li>
                 {% for thousand in 1..9 %}
                     <li>{{ thousand }}'000 EUR</li>
                     <li>{{ thousand }}'500 EUR</li>
                 {%  endfor %}
-                <li>10'000 EUR</li>
-                <li>Geld spielt keine Rolle</li>
+                <li>{% trans %}contact.basic.travelBudget.Equal1000EUR{% endtrans %}</li>
+                <li>{% trans %}contact.basic.travelBudget.MoneyDoesntMatter{% endtrans %}</li>
             </ul>
 
         </div>

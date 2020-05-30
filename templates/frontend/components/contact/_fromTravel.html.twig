@@ -4,22 +4,23 @@
         <div class="from_travel">
             <div class="from_travel__title">
                 <h2>
-                    Sie haben eine individuelle Reise ausgewählt
+                     {% trans %}contact.modal.fromTravel.title{% endtrans %}
                 </h2>
             </div>
 
             <div class="from_travel__content">
                 <p>
-                    Gerne stellen wir Ihnen ein massgeschneidertes
-                    Produkt zusammen. Geben Sie uns ein paar
-                    weitere Informationen zu Ihren Reisevorstellungen
-                    und schon können wir mit der Planung Ihrer
-                    Individualreise beginnen.
+                    {% trans %}contact.modal.fromTravel.text.primary{% endtrans %}
                 </p>
+                <p>
+                    {% trans %}contact.modal.fromTravel.text.secondary{% endtrans %}
+                </p>
+
+
             </div>
 
             <div class="from_travel__action">
-                <button class="btn">OK</button>
+                <button class="btn">{% trans %}OK{% endtrans %}</button>
             </div>
 
 
