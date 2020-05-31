@@ -26,22 +26,23 @@ class ContactController extends AbstractController
 
     /**
      *
-     * @Route("/kontaktieren/{travel}",
-     *     defaults={"travel": null},
-     *       name="contact")
+     * @Route("/kontaktieren/{travel}", defaults={"travel": null}, name="contact")
+     * @Route("/kontaktieren/activity/{activity}", defaults={"travel": null}, name="contact_for_activity")
      * @param Request $request
-     * @param $travel
      * @param ActivityRepository $activityRepository
      * @param DynamicPageRepository $dynamicPageRepository
      * @param InterestRepository $interestRepository
+     * @param $travel
+     * @param Activity|null $activity
      * @return Response
      */
     public function contact(
         Request $request,
-        $travel,
         ActivityRepository $activityRepository,
         DynamicPageRepository $dynamicPageRepository,
-        InterestRepository $interestRepository
+        InterestRepository $interestRepository,
+        $travel = null,
+        Activity $activity = null
     ): Response {
         $page = $dynamicPageRepository->findOneBy([
             'machineName' => 'contact'
@@ -78,8 +79,8 @@ class ContactController extends AbstractController
                 $ids = explode(',', $ids);
 
                 foreach (array_unique($ids) as $id) {
-                    $activity = $activityRepository->find($id);
-                    $activities[] = $activity;
+                    $_activity = $activityRepository->find($id);
+                    $activities[] = $_activity;
                 }
             }
         }
@@ -93,8 +94,8 @@ class ContactController extends AbstractController
             'form' => $form->createView(),
             'dynamic_page_id' => $page->getId(),
             'page' => $page,
-            'from_travel' => $fromTravel
-        ]);
+            'from_travel' => $fromTravel,
+            'selected_activity' => $activity]);
     }
 
     /**
