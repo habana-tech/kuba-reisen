@@ -122,4 +122,8 @@
 
     </div>
 
+    {% if selected_activity is defined and selected_activity is not null %}
+            {{ include('frontend/components/contact/_advance_flyquestions.html.twig') }}
+    {% endif %}
+
 </section>
