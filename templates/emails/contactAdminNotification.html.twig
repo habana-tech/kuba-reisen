@@ -70,20 +70,28 @@
     {% set optionsEnum = ['Nichts','kaum', 'ein bisschen', 'hübsch', 'viel','vollständig'] %}
 
 
+    {% if contact.selfConsider is not null and contact.selfConsider is not empty %}
         <li>
             Wie abenteuerlich bist du?: <b>{{ optionsEnum[contact.selfConsider] }} </b>
         </li>
+    {% endif %}
+    {% if contact.selfCharacter is not null and contact.selfCharacter is not empty %}
         <li>
                 Wie sehr genießt du die Natur?: <b> {{ optionsEnum[contact.selfCharacter] }}</b>
         </li>
+    {% endif %}
+    {% if contact.selfLuxury is not null and contact.selfLuxury is not empty %}
         <li>
                 Wie viel bevorzugen Sie Luxus?: <b> {{ optionsEnum[contact.selfLuxury] }} </b>
         </li>
+    {% endif %}
+    {% if contact.message is not null and contact.message is not empty %}
         <li>
                 Nachricht:
                 <br>
                 {{ contact.message }}
         </li>
+    {% endif %}
     </ul>
 
     <hr>
@@ -92,4 +100,4 @@
 {% endblock afterTitleText %}
 
 {% block emailCTABtnLabel %}Länderinformationen{% endblock %}
-{% block emailCTABtnURL %}{{ absolute_url(path('travel_info')) }}{% endblock emailCTABtnURL %}
+{% block emailCTABtnURL %}{{ absolute_url(path('pageLoad', {'name' : pager.url('travel_info') } )) }}{% endblock emailCTABtnURL %}

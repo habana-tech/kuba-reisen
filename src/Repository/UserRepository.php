@@ -20,6 +20,15 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
+    /**
+     * Finds all actives entities in the repository.
+     *
+     * @return array The entities.
+     */
+    public function findAllActive(): array
+    {
+        return $this->findBy(['enabled' => true]);
+    }
     // /**
     //  * @return User[] Returns an array of User objects
     //  */

@@ -19,4 +19,4 @@
 {% endblock afterTitleText %}
 
 {% block emailCTABtnLabel %}Länderinformationen{% endblock %}
-{% block emailCTABtnURL %}{{ absolute_url(path('travel_info')) }}{% endblock emailCTABtnURL %}
+{% block emailCTABtnURL %}{{ absolute_url(path('pageLoad', {'name' : pager.url('travel_info') } )) }}{% endblock emailCTABtnURL %}

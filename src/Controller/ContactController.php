@@ -136,6 +136,7 @@ class ContactController extends AbstractController
             }
         }
         $contact->setInterests($allInterests);
+        $contact->setLocale($request->getDefaultLocale());
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
