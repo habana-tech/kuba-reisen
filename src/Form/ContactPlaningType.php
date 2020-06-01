@@ -58,8 +58,8 @@ class ContactPlaningType extends AbstractType
             ->add('flyTicket', ChoiceType::class, [
                 'label' => 'Hast du schon ein Flugticket?',
                 'choices' => [
-                    'Ja' => 'true',
-                    'Noch nicht' => 'false',
+                    'Ja' => true,
+                    'Noch nicht' => false,
                 ],
                 'expanded' => true,
                 'attr' => ['class' => 'radio-switch'],
@@ -68,8 +68,8 @@ class ContactPlaningType extends AbstractType
             ->add('flyTicketOnBudget', ChoiceType::class, [
                 'label' => 'Budget inkluidert Flug?',
                 'choices' => [
-                    'Ja' => 'true',
-                    'Nein' => 'false',
+                    'Ja' => true,
+                    'Nein' => false,
                 ],
                 'expanded' => true,
                 'attr' => ['class' => 'radio-switch'],

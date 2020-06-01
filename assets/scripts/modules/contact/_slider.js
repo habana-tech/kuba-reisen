@@ -39,8 +39,8 @@ class MakeSlider {
     updateSlider(values)
     {
         let selectedItem = Number.parseInt(values[0]);
-        this.input.value = selectedItem;
-        this.span.innerHTML = this.labels.children.item(selectedItem).innerHTML
+        this.input.value = this.labels.children.item(selectedItem).innerHTML;
+        this.span.innerHTML = this.labels.children.item(selectedItem).innerHTML;
     }
 }
 

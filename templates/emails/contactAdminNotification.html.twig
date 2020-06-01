@@ -25,38 +25,29 @@
         <li>
             Reise Datum: <b> {{ contact.travelDate | date("d.m.Y") }} </b>
         </li>
-        <li>
 
-            Reise Dauer:
-            <b>
-            {% if contact.travelDuration == 0 %}
-                Weniger als 5 Tage
-            {% elseif contact.travelDuration >= 25 %}
-                30 Tage und Mehr
-            {% else %}
-                {{ contact.travelDuration + 5 }} Tage
-            {% endif %}
-            </b>
-        </li>
+        {% if contact.travelDuration is not null and contact.travelDuration is not empty %}
+            <li>
+                Reise Dauer: <b>{{ contact.travelDuration }}</b>
+            </li>
+        {% endif %}
+
         <li>
             Anzahl Personen: <b>{{ contact.peopleAmount }}, {{ contact.childAmount }}</b>
         </li>
-        <li>
-            Budget:
-            <b>
-            {% if contact.travelBudget == 0 %}
-                Weniger als 1000 EUR
-            {% elseif contact.travelBudget >= 20 %}
-                Geld spielt keine Rolle
-            {% else %}
-               {{ (contact.travelBudget + 1) * 500 }} EUR
-            {% endif %}
 
-            </b>
-        </li>
-        <li>
-            Ausgewählte Interessen: <b>{{ contact.interests | raw }}</b>
-        </li>
+        {% if contact.travelDuration is not null and contact.travelDuration is not empty %}
+            <li>
+                Budget: <b> {{ contact.travelBudget }}</b>
+            </li>
+        {% endif %}
+
+        {% if contact.interests is not null and contact.interests is not empty %}
+            <li>
+                Ausgewählte Interessen: <b>{{ contact.interests | raw }}</b>
+            </li>
+        {% endif %}
+
         <li>
             Flug bereits gebucht: <b> {% if contact.flyTicket %} Yes {%else%} No {% endif %}</b>
         </li>
@@ -65,24 +56,19 @@
             Budget inkluidert Flug: <b> {% if contact.flyTicketOnBudget %} Yes {%else%} No {% endif %}</b>
         </li>
 
-        {# TODO: show strings by ENUM on selfConsider,selfCharacter, etc #}
-
-    {% set optionsEnum = ['Nichts','kaum', 'ein bisschen', 'hübsch', 'viel','vollständig'] %}
-
-
     {% if contact.selfConsider is not null and contact.selfConsider is not empty %}
         <li>
-            Wie abenteuerlich bist du?: <b>{{ optionsEnum[contact.selfConsider] }} </b>
+            Wie abenteuerlich bist du?: <b>{{ contact.selfConsider }} </b>
         </li>
     {% endif %}
     {% if contact.selfCharacter is not null and contact.selfCharacter is not empty %}
         <li>
-                Wie sehr genießt du die Natur?: <b> {{ optionsEnum[contact.selfCharacter] }}</b>
+                Wie sehr genießt du die Natur?: <b> {{ contact.selfCharacter }}</b>
         </li>
     {% endif %}
     {% if contact.selfLuxury is not null and contact.selfLuxury is not empty %}
         <li>
-                Wie viel bevorzugen Sie Luxus?: <b> {{ optionsEnum[contact.selfLuxury] }} </b>
+                Wie viel bevorzugen Sie Luxus?: <b> {{ contact.selfLuxury }} </b>
         </li>
     {% endif %}
     {% if contact.message is not null and contact.message is not empty %}

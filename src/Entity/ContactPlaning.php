@@ -63,17 +63,17 @@ class ContactPlaning
     private $flyTicketOnBudget;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $selfConsider;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $selfCharacter;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $selfLuxury;
 
@@ -117,7 +117,7 @@ class ContactPlaning
 
     public function __construct()
     {
-        $this->requestId = 'KR-' . substr(uniqid('', true), 8, 13);
+        $this->requestId = 'KR-' . substr(uniqid('', true), 8, 12);
         $this->requestDateTime = new DateTime();
     }
 
@@ -229,36 +229,36 @@ class ContactPlaning
         return $this;
     }
 
-    public function getSelfConsider(): ?int
+    public function getSelfConsider(): ?string
     {
         return $this->selfConsider;
     }
 
-    public function setSelfConsider(?int $selfConsider): self
+    public function setSelfConsider(?string $selfConsider): self
     {
         $this->selfConsider = $selfConsider;
 
         return $this;
     }
 
-    public function getSelfCharacter(): ?int
+    public function getSelfCharacter(): ?string
     {
         return $this->selfCharacter;
     }
 
-    public function setSelfCharacter(?int $selfCharacter): self
+    public function setSelfCharacter(?string $selfCharacter): self
     {
         $this->selfCharacter = $selfCharacter;
 
         return $this;
     }
 
-    public function getSelfLuxury(): ?int
+    public function getSelfLuxury(): ?string
     {
         return $this->selfLuxury;
     }
 
-    public function setSelfLuxury(?int $selfLuxury): self
+    public function setSelfLuxury(?string $selfLuxury): self
     {
         $this->selfLuxury = $selfLuxury;
 

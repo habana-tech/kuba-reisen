@@ -19,8 +19,9 @@ Hello, {{ contact.clientName }} sended a new request
                 
                 travelBudget: {{ contact.travelBudget }}
           
-                
+                {% if contact.interests is not null and contact.interests is not empty %}
                 interests: {{ contact.interests | raw }}
+                {% endif %}
            
                 
                 flyTicket: {% if contact.flyTicket %} Yes {%else%} No {% endif %}
@@ -28,16 +29,19 @@ Hello, {{ contact.clientName }} sended a new request
                  Budget inkluidert Flug: {% if contact.flyTicketOnBudget %} Yes {%else%} No {% endif %}
            
                 
-            {# TODO: show strings by ENUM on selfConsider,selfCharacter, etc #}
-            
-            
-                selfConsider: {{ contact.selfConsider }}
+
+                {% if contact.selfConsider is not null and contact.selfConsider is not empty %}
+                Wie abenteuerlich bist du?: {{ contact.selfConsider }}
+                {% endif %}
            
 
-                selfCharacter: {{ contact.selfCharacter }}
+                {% if contact.selfCharacter is not null and contact.selfCharacter is not empty %}
+                Wie sehr genießt du die Natur?: {{ contact.selfCharacter }}
+                {% endif %}
            
-                
-                selfLuxury: {{ contact.selfLuxury }}
+                {% if contact.selfLuxury is not null and contact.selfLuxury is not empty %}
+                Wie viel Komfort muss sein?: {{ contact.selfLuxury }}
+                {% endif %}
            
                 
                 Nachricht: {{ contact.message }}
