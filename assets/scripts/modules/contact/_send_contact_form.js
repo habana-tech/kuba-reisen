@@ -5,8 +5,6 @@ class SendContactForm{
 
     constructor()
     {
-        this.statusCodes = {'error': 'error', 'success' : 'success'  };
-
         this.form = document.querySelector('form[name="contact_planing"]');
         this.url = this.form ? this.form.action : null;
         this.btnSend = document.querySelector('.btn.sendFormBtn');
@@ -63,19 +61,17 @@ class SendContactForm{
             };
 
 
-
-            let statusCodes = this.statusCodes;
             axios.post(this.url, this.formData, config)
-                .then(function (response, statusCodes) {
+                .then(function (response) {
                     // console.log(response);
                     if (response.status === 200) {
-                        that.showMessage(statusCodes.success);
+                        that.showMessage('success');
                     } else {
-                        that.showMessage(statusCodes.error);
+                        that.showMessage('error');
                     }
                 })
                 .catch(function (error) {
-                    that.showMessage(statusCodes.error);
+                    that.showMessage('error');
                     // console.log(error);
                 })
                 .finally(function () {
@@ -95,7 +91,7 @@ class SendContactForm{
         let msg = document.querySelector(".sendFormInfo__" + statusCode);
         if (msg) {
             msg.classList.remove("hidden");
-            if (statusCode === this.statusCodes.error) {
+            if (statusCode === 'error') {
                 this.btnSend.classList.remove("invisible");
             }
         }
