@@ -123,6 +123,13 @@
             & p{
                 margin: .25em;
             }
+
+            & a.readmore{
+                font-size: 80%;
+                margin: 0 .4em;
+                display: block;
+                cursor: pointer;
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 // import clipHtml from 'text-clipper';
+import clip from "text-clipper";
 
 class MakeActivity {
     constructor(prototype){
@@ -30,11 +31,12 @@ class MakeActivity {
         newActivity.querySelector('img').classList.add('blur-up');
         newActivity.querySelector('img').classList.add('lazyload');
         newActivity.querySelector('h4').innerHTML = activity.name;
-        newActivity.querySelector('.activity__content__description a').innerHTML = clipHtml(activity.description, this.descriptionLenght, {indicator:''});
+        newActivity.querySelector('.activity__content__description p').innerHTML = clip(activity.description, this.descriptionLenght, {indicator:'...'});
         // newActivity.querySelector('.activity__content__description a').innerHTML = clipHtml(activity.description, this.descriptionLenght, {indicator:''});
         newActivity.querySelector('.activity__image a').setAttribute('href', activity.link);
         newActivity.querySelector('.activity__content__title a').setAttribute('href', activity.link);
-        newActivity.querySelector('.activity__content__description a').setAttribute('href', activity.link);
+        // newActivity.querySelector('.activity__content__description a').setAttribute('href', activity.link);
+        newActivity.querySelector('.activity__content__description a.readmore').setAttribute('href', activity.link);
 
         if(activity.price !== null)
             newActivity.querySelector('.activity__content__price span').innerHTML = 'ab <br>'+activity.price + " €";

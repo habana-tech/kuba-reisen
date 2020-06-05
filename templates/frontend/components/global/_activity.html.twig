@@ -27,28 +27,21 @@
             {% endif %}
         </div>
 
+        {% set __link = path('activity', {'id':activity.id, 'name':activity.machineName})  %}
         <div class="activity__content__title">
-            <a href="{{ path('activity', {'id':activity.id, 'name':activity.machineName}) }}">
+            <a href="{{ __link }}">
                 <h4>{{ activity.name }}</h4>
             </a>
         </div>
 
         <div class="activity__content__description">
-            <a href="{{ path('activity', {'id':activity.id, 'name':activity.machineName}) }}">
+            <p>
 {#                {{ activity.description | truncate_html(constant('LENGTH_OF_DESCRIPTION', activity)) | raw }}#}
-                {{ activity.description | truncate_html(constant('LENGTH_OF_DESCRIPTION', activity)) | striptags | raw }}
+                {{ activity.description | truncate_html (constant('LENGTH_OF_DESCRIPTION', activity)) | striptags | raw }}...
+{#                {{ activity.description | truncate(constant('LENGTH_OF_DESCRIPTION', activity, '...')) | striptags | raw }}#}
 
-
-            </a>
+            </p>
+            <a class="readmore" href="{{ __link }}">{% trans %}global.cards.readmore{% endtrans %}</a>
         </div>
     </div>
 </div>
-<style>
-    .activity__content__description::after{
-        content: '(lesen sie mehr)';
-        font-size: 80%;
-        margin: 0 .4em;
-        display: block;
-        cursor: pointer;
-    }
-</style>

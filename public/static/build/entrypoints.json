@@ -1,31 +1,32 @@
 {
   "entrypoints": {
-    "app": {
+    "bucket_list": {
       "js": [
-        "/build/runtime.5e3ab09c.js",
-        "/build/0.a287177f.js",
-        "/build/2.b86d2b6b.js",
-        "/build/app.f8412361.js"
+        "/build/runtime.420770e4.js",
+        "/build/1.81e14bc4.js",
+        "/build/3.0a5a32ee.js",
+        "/build/bucket_list.af4e3eab.js"
       ],
       "css": [
-        "/build/app.c386746a.css"
+        "/build/bucket_list.d32fb415.css"
       ]
     },
-    "index": {
+    "app": {
       "js": [
-        "/build/runtime.5e3ab09c.js",
-        "/build/0.a287177f.js",
-        "/build/index.58d98237.js"
+        "/build/runtime.420770e4.js",
+        "/build/0.183a7ad7.js",
+        "/build/2.47bc52db.js",
+        "/build/app.9ffbb90e.js"
       ],
       "css": [
-        "/build/index.282e8ba1.css"
+        "/build/app.08c0c92c.css"
       ]
     },
     "destination": {
       "js": [
-        "/build/runtime.5e3ab09c.js",
-        "/build/0.a287177f.js",
-        "/build/destination.01e91d71.js"
+        "/build/runtime.420770e4.js",
+        "/build/0.183a7ad7.js",
+        "/build/destination.16ee0108.js"
       ],
       "css": [
         "/build/destination.05905810.css"
@@ -33,8 +34,9 @@
     },
     "faq": {
       "js": [
-        "/build/runtime.5e3ab09c.js",
-        "/build/faq.36d12865.js"
+        "/build/runtime.420770e4.js",
+        "/build/0.183a7ad7.js",
+        "/build/faq.839a8ca4.js"
       ],
       "css": [
         "/build/faq.5db6d536.css"
@@ -42,21 +44,21 @@
     },
     "contact": {
       "js": [
-        "/build/runtime.5e3ab09c.js",
-        "/build/0.a287177f.js",
-        "/build/2.b86d2b6b.js",
-        "/build/contact.64a534e8.js"
+        "/build/runtime.420770e4.js",
+        "/build/0.183a7ad7.js",
+        "/build/2.47bc52db.js",
+        "/build/contact.f8735597.js"
       ],
       "css": [
-        "/build/contact.13b1ca7a.css"
+        "/build/contact.d22e8465.css"
       ]
     },
     "activities": {
       "js": [
-        "/build/runtime.5e3ab09c.js",
-        "/build/0.a287177f.js",
-        "/build/1.0c459ea9.js",
-        "/build/activities.0e2e2439.js"
+        "/build/runtime.420770e4.js",
+        "/build/0.183a7ad7.js",
+        "/build/1.81e14bc4.js",
+        "/build/activities.3d7944c0.js"
       ],
       "css": [
         "/build/activities.60fc39e1.css"
@@ -64,29 +66,29 @@
     },
     "activity": {
       "js": [
-        "/build/runtime.5e3ab09c.js",
-        "/build/0.a287177f.js",
-        "/build/1.0c459ea9.js",
-        "/build/activity.e54b7059.js"
+        "/build/runtime.420770e4.js",
+        "/build/0.183a7ad7.js",
+        "/build/1.81e14bc4.js",
+        "/build/activity.c967c948.js"
       ],
       "css": [
         "/build/activity.1dd57141.css"
       ]
     },
-    "bucket_list": {
+    "index": {
       "js": [
-        "/build/runtime.5e3ab09c.js",
-        "/build/1.0c459ea9.js",
-        "/build/bucket_list.aca05a2d.js"
+        "/build/runtime.420770e4.js",
+        "/build/0.183a7ad7.js",
+        "/build/index.892c4d5a.js"
       ],
       "css": [
-        "/build/bucket_list.d32fb415.css"
+        "/build/index.282e8ba1.css"
       ]
     },
     "about_us": {
       "js": [
-        "/build/runtime.5e3ab09c.js",
-        "/build/about_us.7d7bdb52.js"
+        "/build/runtime.420770e4.js",
+        "/build/about_us.1c93c2cc.js"
       ],
       "css": [
         "/build/about_us.2cca6bc0.css"
@@ -94,8 +96,8 @@
     },
     "travel_info": {
       "js": [
-        "/build/runtime.5e3ab09c.js",
-        "/build/travel_info.c135aa0a.js"
+        "/build/runtime.420770e4.js",
+        "/build/travel_info.d35210aa.js"
       ],
       "css": [
         "/build/travel_info.dbf40aea.css"
@@ -103,8 +105,8 @@
     },
     "good_to_know": {
       "js": [
-        "/build/runtime.5e3ab09c.js",
-        "/build/good_to_know.173709a3.js"
+        "/build/runtime.420770e4.js",
+        "/build/good_to_know.9d1ff598.js"
       ],
       "css": [
         "/build/good_to_know.c01f40c7.css"
@@ -112,8 +114,8 @@
     },
     "tours": {
       "js": [
-        "/build/runtime.5e3ab09c.js",
-        "/build/tours.a2079c2b.js"
+        "/build/runtime.420770e4.js",
+        "/build/tours.613ccf2d.js"
       ],
       "css": [
         "/build/tours.a7bf79e3.css"
@@ -121,7 +123,7 @@
     },
     "loading": {
       "js": [
-        "/build/runtime.5e3ab09c.js"
+        "/build/runtime.420770e4.js"
       ],
       "css": [
         "/build/loading.b2c484ee.css"
@@ -129,7 +131,7 @@
     },
     "login": {
       "js": [
-        "/build/runtime.5e3ab09c.js"
+        "/build/runtime.420770e4.js"
       ],
       "css": [
         "/build/login.87051ce1.css"

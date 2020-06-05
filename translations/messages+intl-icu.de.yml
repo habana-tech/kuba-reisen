@@ -43,3 +43,4 @@ contact.sendForm.Info.error: 'Bei der Verarbeitung der von Ihnen angegebenen Inf
 global.modal.cookie.title: 'Cookies &amp; Drittinhalte'
 global.modal.cookie.description: 'Auf dieser Website werden Cookies und Drittinhalte verwendet. Im Folgenden können Sie Ihre Zustimmung geben oder widerrufen. Weitere Informationen finden Sie in unserer'
 global.modal.cookie.protectionDataDeclaration: 'Datenschutzerklärung'
+global.cards.readmore: '(lesen sie mehr)'
