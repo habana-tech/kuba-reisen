@@ -2,17 +2,17 @@
 <project version="4">
   <component name="MessDetector">
     <phpmd_settings>
-      <MessDetectorConfiguration tool_path="D:/exe/phpmessdetector" />
+      <MessDetectorConfiguration tool_path="$USER_HOME$/.config/composer/vendor/phpmd/phpmd/src/bin/phpmd" />
     </phpmd_settings>
   </component>
   <component name="PhpCSFixer">
     <phpcsfixer_settings>
-      <PhpCSFixerConfiguration tool_path="D:/exe/php-cs-fixer" />
+      <PhpCSFixerConfiguration standards="PSR1;PSR2;Symfony;DoctrineAnnotation;PHP70Migration;PHP71Migration" tool_path="$USER_HOME$/.config/composer/vendor/friendsofphp/php-cs-fixer/php-cs-fixer" />
     </phpcsfixer_settings>
   </component>
   <component name="PhpCodeSniffer">
     <phpcs_settings>
-      <PhpCSConfiguration beautifier_path="$USER_HOME$/AppData/Roaming/Composer/vendor/squizlabs/php_codesniffer/bin/phpcbf" tool_path="$USER_HOME$/AppData/Roaming/Composer/vendor/squizlabs/php_codesniffer/bin/phpcs" />
+      <PhpCSConfiguration beautifier_path="$USER_HOME$/.config/composer/vendor/squizlabs/php_codesniffer/bin/phpcbf" tool_path="$USER_HOME$/.config/composer/vendor/squizlabs/php_codesniffer/bin/phpcs" />
     </phpcs_settings>
   </component>
   <component name="PhpIncludePathManager">
@@ -193,4 +193,9 @@
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />
+  <component name="PhpUnit">
+    <phpunit_settings>
+      <PhpUnitSettings configuration_file_path="$PROJECT_DIR$/phpunit.xml.dist" custom_loader_path="$PROJECT_DIR$/vendor/autoload.php" use_configuration_file="true" />
+    </phpunit_settings>
+  </component>
 </project>

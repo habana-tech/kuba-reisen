@@ -25,7 +25,6 @@
         "symfony/framework-bundle": "*",
         "symfony/google-mailer": "4.4.*",
         "symfony/mailer": "*",
-        "symfony/maker-bundle": "^1.14",
         "symfony/mime": "*",
         "symfony/monolog-bundle": "^3.1",
         "symfony/orm-pack": "*",
@@ -47,7 +46,8 @@
     "require-dev": {
         "symfony/debug-pack": "*",
         "symfony/profiler-pack": "*",
-        "symfony/test-pack": "*"
+        "symfony/test-pack": "*",
+        "symfony/maker-bundle": "^1.14"
     },
     "config": {
         "preferred-install": {
