@@ -1,5 +1,4 @@
 <div class="feature activity">
-<div class="feature activity">
     {% if guess_class_name(feature) == 'Activity' %}
         {% set _isActivity = true %}
         {% set _link = path('activity', {'id':feature.id, 'name':feature.name | url_encode }) %}

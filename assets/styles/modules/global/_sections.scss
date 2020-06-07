@@ -52,7 +52,7 @@
             &:before {
                 background: linear-gradient(45deg, $light-blue, $dark-blue);
                 display: none;
-                
+
                 @include atLarge{
                     display: block;
                 }
@@ -115,23 +115,21 @@
          position: relative;
          max-width: 100vw;
          //max-height: 20em;
-         overflow-y: hidden;
+         //overflow-y: hidden;
 
         & > .feature_list{
-            line-height: 0;
-            column-gap: 3em;
-            position: relative;
-            max-height: 20em;
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
 
-            --related-feature-content-width: 45vw;
-             @include atLarge{
-                 --related-feature-content-width: 23vw;
-                 min-height: calc(var(--related-feature-content-width) *1.2) !important;
-            }
+            //--related-feature-content-width: 45vw;
+            // @include atLarge{
+            //     --related-feature-content-width: 23vw;
+            //     min-height: calc(var(--related-feature-content-width) *1.2) !important;
+            //}
         }
         & > .feature_list > .feature{
-            width: 250px !important;
-            max-width: 45vw;
+            flex: 0 0 auto;
 
 
             & .activity__image{
@@ -139,9 +137,9 @@
             }
             //max-height: 20em;
 
-            @include atLarge{
-                width: --related-feature-content-width !important;
-            }
+            //@include atLarge{
+            //    width: --related-feature-content-width !important;
+            //}
 
     }
      }
