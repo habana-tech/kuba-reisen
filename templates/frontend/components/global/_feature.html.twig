@@ -1,4 +1,5 @@
 <div class="feature activity">
+<div class="feature activity">
     {% if guess_class_name(feature) == 'Activity' %}
         {% set _isActivity = true %}
         {% set _link = path('activity', {'id':feature.id, 'name':feature.name | url_encode }) %}
@@ -7,7 +8,9 @@
         {% set _link = path('pageLoad', {'name':feature.name | url_encode }) %}
     {% elseif guess_class_name(feature) ==  'Destination' %}
         {% set _link = path('destination', {'id':feature.id, 'name':feature.name | url_encode }) %}
-        {% set _isPage = true %}
+        {% set _isDestination = true %}
+    {% else %}
+        {% set _link = '#' %}
     {% endif %}
 
 

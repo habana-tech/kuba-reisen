@@ -134,7 +134,7 @@ class AppExtension extends AbstractExtension
         }
         // if the words shouldn't be cut in the middle...
         if (!$exact) {
-            // ...search the last occurance of a space...
+            // ...search the last occurrence of a space...
             $spacepos = strrpos($truncate, ' ');
             if (isset($spacepos)) {
                 // ...and cut the text in this position
@@ -154,7 +154,11 @@ class AppExtension extends AbstractExtension
 
     public function guessClassName($obj)
     {
-        return basename(get_class($obj));
+        try {
+            return (new \ReflectionClass($obj))->getShortName();
+        } catch (\ReflectionException $e) {
+            return '';
+        }
     }
 
 
