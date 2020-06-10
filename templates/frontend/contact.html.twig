@@ -27,6 +27,9 @@
             {{ include('frontend/components/contact/_fromTravel.html.twig') }}
 
             {{ include('frontend/components/contact/_advance.html.twig') }}
+        {% else %}
+            {% include 'frontend/components/global/_activity.html.twig'
+                with {'activity':selected_activity} only %}
         {% endif %}
 
             {{ include('frontend/components/contact/_basic.html.twig') }}

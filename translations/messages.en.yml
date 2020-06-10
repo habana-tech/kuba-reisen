@@ -9,3 +9,6 @@ error:
     description: 'we are sorry, but the page you requested was '
   link:
     homepage: 'Click here to return to the homepage'
+activity:
+  description:
+    reserve: 'Book now'

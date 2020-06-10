@@ -50,3 +50,6 @@ error:
     description: 'Es tut uns leid, aber die von Ihnen angeforderte Seite war'
   link:
     homepage: 'Klicken Sie hier, um zur Startseite zurückzukehren'
+activity:
+  description:
+    reserve: 'Buchen Sie jetzt'

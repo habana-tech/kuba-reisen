@@ -44,10 +44,26 @@
             width: 100%;
             display: flex;
             justify-content: center;
+            flex-direction: column;
 
+            @include atLarge{
+                flex-direction: row;
+            }
             & h2{
                 padding: .5em;
                 margin: auto;
+            }
+
+            & .activity__contact_link{
+                line-height: 1.2em;
+                margin: auto .5em;
+
+                & > a{
+                    display: block;
+                    text-align: center;
+                    width: max-content;
+                    margin: auto;
+                }
             }
         }
 
