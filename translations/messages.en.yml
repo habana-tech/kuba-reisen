@@ -3,3 +3,9 @@ global.__banner_sky_subtitle__: 'Take a step toward'
 global.__banner_sky_contact_btn__: 'Talk to an expert!'
 contact.modal.fromTravel.title: 'You have chosen an individual trip'
 global.cards.readmore: '(read more)'
+error:
+  title: 'Oops!'
+  request:
+    description: 'we are sorry, but the page you requested was '
+  link:
+    homepage: 'Click here to return to the homepage'

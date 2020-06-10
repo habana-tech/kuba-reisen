@@ -44,3 +44,9 @@ global.modal.cookie.title: 'Cookies &amp; Drittinhalte'
 global.modal.cookie.description: 'Auf dieser Website werden Cookies und Drittinhalte verwendet. Im Folgenden können Sie Ihre Zustimmung geben oder widerrufen. Weitere Informationen finden Sie in unserer'
 global.modal.cookie.protectionDataDeclaration: 'Datenschutzerklärung'
 global.cards.readmore: '(lesen sie mehr)'
+error:
+  title: 'Hoppla!'
+  request:
+    description: 'Es tut uns leid, aber die von Ihnen angeforderte Seite war'
+  link:
+    homepage: 'Klicken Sie hier, um zur Startseite zurückzukehren'

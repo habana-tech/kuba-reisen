@@ -29,7 +29,7 @@
 
         {{ render(controller('App\\Controller\\RegionsController::regionExcursionsActivities')) }}
 
-        {{ render(controller('App\\Controller\\RegionsController::regionTopDestinations', {'preview':app.request.get('preview')} )) }}
+        {{ render(controller('App\\Controller\\RegionsController::regionTopDestinations')) }}
 
     </main>
 {% endblock %}
