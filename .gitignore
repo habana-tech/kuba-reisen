@@ -1,5 +1,4 @@
 .env
-.idea
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
@@ -21,8 +20,7 @@
 ###> liip/imagine-bundle ###
 /public/media/cache/
 ###< liip/imagine-bundle ###
-/.idea
-node_modules/
+/.idea/
 public/static/uploads/
 public/static/squared_thumbnail/
 public/static/min_*/
