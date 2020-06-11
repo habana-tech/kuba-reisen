@@ -117,7 +117,7 @@ class ContactPlaning
 
     public function __construct()
     {
-        $this->requestId = 'KR-' . substr(uniqid('', true), 8, 12);
+        $this->requestId = 'KR-' . substr(uniqid('', false), 8, 8);
         $this->requestDateTime = new DateTime();
     }
 

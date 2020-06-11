@@ -63,14 +63,15 @@
         <p class="sendFormInfo sendFormInfo__error hidden">
               {% trans %}contact.sendForm.Info.error{% endtrans %}
 {#            There was some error processing the info you provided. Please try again.#}
+            <span class="sendFormInfo__errors__description"></span>
         </p>
-        
+
         <button class="btn sendFormBtn" href="#">{{ button_label|default('Sende Formular') }}</button>
 
         {{ include('frontend/components/global/_loading_dots.html.twig') }}
 
     </div>
 
-  
+
 
 </section>

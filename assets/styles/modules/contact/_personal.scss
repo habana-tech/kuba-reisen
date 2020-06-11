@@ -53,4 +53,9 @@
 .sendFormBtn__spinner.invisible, .sendFormBtn.invisible{
     opacity: 0;
 }
+.sendFormInfo__errors__description{
+    display: block;
+    margin: .5em 0;
+    font-weight: bold;
+}
 

@@ -10,7 +10,7 @@ class SendContactForm{
         this.btnSend = document.querySelector('.btn.sendFormBtn');
         this.sendLoadingDots = document.querySelector('.loading_dots');
         this.formData = new URLSearchParams();
-        
+
         this.events();
     }
 
@@ -46,13 +46,13 @@ class SendContactForm{
         });
     }
 
-    
+
     sendForm(e)
     {
         if (this.isValidForm()) {
             e.preventDefault();
             this.collectData();
-        
+
             let that = this;
             let config = {
                 headers: {
@@ -71,8 +71,8 @@ class SendContactForm{
                     }
                 })
                 .catch(function (error) {
-                    that.showMessage('error');
-                    // console.log(error);
+                    that.showMessage('error', error.response.data.errors);
+                    console.log(error);
                 })
                 .finally(function () {
                     that.sendLoadingDots.classList.remove("loading_dots--visible");
@@ -86,17 +86,18 @@ class SendContactForm{
         }
     }
 
-    showMessage(statusCode)
+    showMessage(statusCode, errorText = null)
     {
         let msg = document.querySelector(".sendFormInfo__" + statusCode);
         if (msg) {
             msg.classList.remove("hidden");
             if (statusCode === 'error') {
                 this.btnSend.classList.remove("invisible");
+                document.querySelector('.sendFormInfo__errors__description').innerHTML = errorText;
             }
         }
     }
-   
+
 }
 
 export default SendContactForm;

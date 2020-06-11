@@ -30,7 +30,7 @@ class ContactController extends AbstractController
      * @Route("/kontaktieren/activity/{activity}", defaults={"travel": null}, name="contact_for_activity")
      * @param Request $request
      * @param ActivityRepository $activityRepository
-     * @param DynamicPageRepository $dynamicPageRepository
+     * @param DynamicPageRepository $pageRepo
      * @param InterestRepository $interestRepository
      * @param $travel
      * @param Activity|null $activity
@@ -39,12 +39,12 @@ class ContactController extends AbstractController
     public function contact(
         Request $request,
         ActivityRepository $activityRepository,
-        DynamicPageRepository $dynamicPageRepository,
+        DynamicPageRepository $pageRepo,
         InterestRepository $interestRepository,
         $travel = null,
         Activity $activity = null
     ): Response {
-        $page = $dynamicPageRepository->findOneBy([
+        $page = $pageRepo->findOneBy([
             'machineName' => 'contact'
         ]);
 
@@ -55,35 +55,23 @@ class ContactController extends AbstractController
         $fromTravel = $travel === 'raise';
 
         $contact = new ContactPlaning();
-        $form = $this->createForm(ContactPlaningType::class, $contact, [
-            'action' => $this->generateUrl('processContact')]);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($contact);
-            $entityManager->flush();
-
-            //TODO: show a send form page
-
-            //return $this->redirectToRoute('post_index');
+        if ($activity === null) {
+            $formActionRoute = $this->generateUrl('processContact');
+        } else {
+            $formActionRoute = $this->generateUrl('processContact_for_activity', ['activity' => $activity->getId()]);
         }
+
+        $form = $this->createForm(
+            ContactPlaningType::class,
+            $contact,
+            [
+                'action' => $formActionRoute
+            ]
+        );
 
         //obtaining activities from cookies
-        $activities = [];
-
-        if (isset($request->cookies->all()['products_cart'])) {
-            $ids = $request->cookies->all()['products_cart'];
-
-            if ($ids !== '') {
-                $ids = explode(',', $ids);
-
-                foreach (array_unique($ids) as $id) {
-                    $_activity = $activityRepository->find($id);
-                    $activities[] = $_activity;
-                }
-            }
-        }
+        $activities = $this->getActivitiesFromCookie($activityRepository, $request);
 
         $interests = $interestRepository->findAllActive();
 
@@ -100,41 +88,50 @@ class ContactController extends AbstractController
 
     /**
      * @Route("/processContact", name="processContact", methods={"POST"})
+     * @Route("/processContact/activity/{activity}", name="processContact_for_activity", methods={"POST"})
      * @param Request $request
      * @param Swift_Mailer $mailer
      * @param ActivityRepository $repository
      * @param UserRepository $userRepository
+     * @param Activity|null $activity
      * @return JsonResponse
-     * @throws Exception
      */
     public function processContact(
         Request $request,
         Swift_Mailer $mailer,
         ActivityRepository $repository,
-        UserRepository $userRepository
+        UserRepository $userRepository,
+        Activity $activity = null
     ): JsonResponse {
         $contact = new ContactPlaning();
         $form = $this->createForm(ContactPlaningType::class, $contact);
         $form->handleRequest($request);
 
         $allInterests = '';
-        //if there are interest checked in the form...
-        if ($interest = $request->get('interest')) {
-//            dump($interest);
-            $allInterests .= "\nInterests: \n";
-            foreach ($interest as $index => $item) {
-                $allInterests .= $item . ', ';
-            }
-        }
-        //if there are products selected in the cookie...
-        if ($ids = $request->cookies->get('products_cart')) {
-            $names = $repository->findNamesCollection(explode(',', $ids));
 
-            $allInterests .= "\n\nActivities: \n";
-            foreach ($names as $index => $item) {
-                $allInterests .= $item['name'] . ', ';
+        if ($activity === null) {
+            //if there are interest checked in the form...
+            if ($interest = $request->get('interest')) {
+//            dump($interest);
+                $allInterests .= "\nInterests: \n";
+                foreach ($interest as $index => $item) {
+                    $allInterests .= $item . ', ';
+                }
             }
+
+            //if there are products selected in the cookie...
+            if ($ids = $request->cookies->get('products_cart')) {
+                $names = $repository->findNamesCollection(explode(',', $ids));
+
+                $allInterests .= "\n\nActivities: \n";
+                foreach ($names as $index => $item) {
+                    $allInterests .= $item['name'] . ', ';
+                }
+            }
+        } else { //If there is a 'selected activity'
+            $allInterests .= "\n\nSelected Activity: \n" . $activity->getName();
         }
+
         $contact->setInterests($allInterests);
         $contact->setLocale($request->getDefaultLocale());
 
@@ -145,13 +142,20 @@ class ContactController extends AbstractController
 
             $this->sendContactEmailNotification($contact, $mailer, $userRepository);
             return $this->json(['status' => 'sucess', 'id' => $contact->getId()]);
-            //TODO: show a sended form page
-
-            //return $this->redirectToRoute('post_index');
         }
 
-        
-        return $this->json(['status' => 'error', 'errors' => $form->getErrors(), 400]);
+
+        $errors = $form->getErrors(true, true);
+        $errorsMessages = '';
+        foreach ($errors as $error) {
+            $message = array_values($error->getMessageParameters());
+            if (isset($message[0])) {
+                $errorsMessages .= sprintf("%s (%s). ", $error->getMessage(), $message[0]);
+            } else {
+                $errorsMessages .= $error->getMessage() . " ";
+            }
+        }
+        return $this->json(['status' => 'error', 'errors' => $errorsMessages], 400);
     }
 
     private function sendContactEmailNotification(
@@ -168,11 +172,11 @@ class ContactController extends AbstractController
                 $adminEmail[] = $user->getEmail();
             }
         }
-        
+
         if (!$adminEmail) {
             throw new RuntimeException('Error Processing Request, no adminEmail available', 1);
         }
-            
+
         $from = ['kontaktieren@kuba-reisen.reisen' => 'Kuba-reisen kontaktieren'];
 
         //Todo: translate the subject
@@ -199,7 +203,7 @@ class ContactController extends AbstractController
         $mailer->send($message);
 
         //send message to client
-        $client_message = (new Swift_Message('Kuba-reisen kontaktieren - ' . $contact->getRequestId()))
+        $clientMessage = (new Swift_Message('Kuba-reisen kontaktieren - ' . $contact->getRequestId()))
             ->setFrom($from)
             ->setTo($contact->getClientEmail())
             ->setBody(
@@ -219,6 +223,25 @@ class ContactController extends AbstractController
                 'UTF-8'
             );
 
-        $mailer->send($client_message);
+        $mailer->send($clientMessage);
+    }
+
+    /**
+     * @param ActivityRepository $activityRepository
+     * @param Request $request
+     * @return array|null
+     */
+    public function getActivitiesFromCookie(ActivityRepository $activityRepository, Request $request): ?array
+    {
+        if (isset($request->cookies->all()['products_cart'])) {
+            $ids = $request->cookies->all()['products_cart'];
+
+            if ($ids !== '') {
+                $ids = explode(',', $ids);
+
+                return $activityRepository->findByIds(array_unique($ids));
+            }
+        }
+        return null;
     }
 }

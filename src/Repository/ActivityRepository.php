@@ -81,6 +81,21 @@ class ActivityRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    /**
+     * @param $ids
+     * @return Activity[] Returns an array of Activity objects
+     */
+    public function findByIds($ids): ?array
+    {
+        return $this->createQueryBuilder('activity')
+            ->where('activity.active = True')
+            ->andWhere('activity.id in (:ids)')
+            ->orderBy('activity.priority', 'DESC')
+            ->setParameter('ids', $ids)
+            ->getQuery()
+            ->getResult();
+    }
+
 
     /**
      * @param $search
