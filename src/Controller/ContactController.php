@@ -3,13 +3,13 @@
 namespace App\Controller;
 
 use App\Repository\InterestRepository;
-use Exception;
 use RuntimeException;
-use Swift_Mailer;
-use Swift_Message;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\DynamicPageRepository;
 use App\Repository\ActivityRepository;
@@ -19,7 +19,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use App\Entity\ContactPlaning;
 use App\Form\ContactPlaningType;
 use App\Entity\Activity;
-use Twig\Error\LoaderError;
+use Symfony\Component\Mime\Email;
 
 class ContactController extends AbstractController
 {
@@ -90,7 +90,7 @@ class ContactController extends AbstractController
      * @Route("/processContact", name="processContact", methods={"POST"})
      * @Route("/processContact/activity/{activity}", name="processContact_for_activity", methods={"POST"})
      * @param Request $request
-     * @param Swift_Mailer $mailer
+     * @param MailerInterface $mailer
      * @param ActivityRepository $repository
      * @param UserRepository $userRepository
      * @param Activity|null $activity
@@ -98,7 +98,7 @@ class ContactController extends AbstractController
      */
     public function processContact(
         Request $request,
-        Swift_Mailer $mailer,
+        MailerInterface $mailer,
         ActivityRepository $repository,
         UserRepository $userRepository,
         Activity $activity = null
@@ -141,7 +141,7 @@ class ContactController extends AbstractController
             $entityManager->flush();
 
             $this->sendContactEmailNotification($contact, $mailer, $userRepository);
-            return $this->json(['status' => 'sucess', 'id' => $contact->getId()]);
+            return $this->json(['status' => 'sucess', 'id' => $contact->getRequestId()]);
         }
 
 
@@ -160,68 +160,32 @@ class ContactController extends AbstractController
 
     private function sendContactEmailNotification(
         ContactPlaning $contact,
-        Swift_Mailer $mailer,
+        MailerInterface $mailer,
         UserRepository $userRepository
     ): void {
-        $users = $userRepository->findAllActive();
-        $adminEmail = [];
-        $adminEmail[] = 'kubareisenkontactieren@meatmemi.33mail.com'; //josue
 
-        foreach ($users as $user) {
+        //send admin email
+        $message = (new TemplatedEmail())
+            ->subject('Kuba-reisen kontaktieren - ' . $contact->getRequestId())
+            ->htmlTemplate('emails/contactAdminNotification.html.twig')
+            ->textTemplate('emails/contactAdminNotification.txt.twig')
+            ->context(['contact' => $contact]);
+
+        foreach ($userRepository->findAllActive() as $user) {
             if ($user->isAtEmailList()) {
-                $adminEmail[] = $user->getEmail();
+                $message->to($user->getEmail());
+                $mailer->send($message);
             }
         }
 
-        if (!$adminEmail) {
-            throw new RuntimeException('Error Processing Request, no adminEmail available', 1);
-        }
-
-        $from = ['kontaktieren@kuba-reisen.reisen' => 'Kuba-reisen kontaktieren'];
-
-        //Todo: translate the subject
-        $message = (new Swift_Message('Kuba-reisen kontaktieren - ' . $contact->getRequestId()))
-                ->setFrom($from)
-                ->setBcc($adminEmail)
-                ->setBody(
-                    $this->renderView(
-                        'emails/contactAdminNotification.html.twig',
-                        ['contact' => $contact]
-                    ),
-                    'text/html',
-                    'UTF-8'
-                )
-                ->addPart(
-                    $this->renderView(
-                        'emails/contactAdminNotification.txt.twig',
-                        ['contact' => $contact]
-                    ),
-                    'text/plain',
-                    'UTF-8'
-                );
-
-        $mailer->send($message);
 
         //send message to client
-        $clientMessage = (new Swift_Message('Kuba-reisen kontaktieren - ' . $contact->getRequestId()))
-            ->setFrom($from)
-            ->setTo($contact->getClientEmail())
-            ->setBody(
-                $this->renderView(
-                    'emails/contactClientNotification.html.twig',
-                    ['contact' => $contact]
-                ),
-                'text/html',
-                'UTF-8'
-            )
-            ->addPart(
-                $this->renderView(
-                    'emails/contactClientNotification.txt.twig',
-                    ['contact' => $contact]
-                ),
-                'text/plain',
-                'UTF-8'
-            );
+        $clientMessage = (new TemplatedEmail())
+            ->subject('Kuba-reisen kontaktieren - ' . $contact->getRequestId())
+            ->htmlTemplate('emails/contactClientNotification.html.twig')
+            ->textTemplate('emails/contactClientNotification.txt.twig')
+            ->context(['contact' => $contact])
+            ->to($contact->getClientEmail());
 
         $mailer->send($clientMessage);
     }
