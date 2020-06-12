@@ -4,7 +4,8 @@ import Headroom from 'headroom.js'
 
 class NavBar{
 
-    constructor(){
+    constructor()
+    {
         this.header = document.querySelector('header');
         this.navegationMenu = document.querySelector('.header__nav');
 
@@ -27,6 +28,7 @@ class NavBar{
 
         this.events();
         this.headroomInit();
+        this.showMenuTrigger();
     }
 
     headroomInit()
@@ -42,24 +44,29 @@ class NavBar{
         headroom.init();
     }
 
-    events(){
+    events()
+    {
         this.button.addEventListener('click', this.showOrHideMenu.bind(this));
 
-        this.main.addEventListener('click', ()=>{
-            if (this.isOpen)
+        this.main.addEventListener('click', () => {
+            if (this.isOpen) {
                 this.hideMenu();
+            }
         });
     }
 
-    showOrHideMenu(){
-        if (this.isOpen)
+    showOrHideMenu()
+    {
+        if (this.isOpen) {
             this.hideMenu();
-        else
+        } else {
             this.showMenu();
+        }
     }
 
-    showMenu(){
-        if (this.header.classList.contains('headroom--top')){
+    showMenu()
+    {
+        if (this.header.classList.contains('headroom--top')) {
             this.header.classList.add('header--pinned');
         }
 
@@ -74,8 +81,9 @@ class NavBar{
         this.isOpen = true;
     }
 
-    hideMenuUnPin(){
-        if (this.isOpen){
+    hideMenuUnPin()
+    {
+        if (this.isOpen) {
             this.outAC(this.segmentA, this);
             this.outB(this.segmentB, this);
             this.outAC(this.segmentC, this);
@@ -88,12 +96,13 @@ class NavBar{
 
     }
 
-    hideMenu(){
-        if (this.header.classList.contains('headroom--top')){
+    hideMenu()
+    {
+        if (this.header.classList.contains('headroom--top')) {
             this.header.classList.remove('header--pinned');
         }
 
-        if(this.isOpen) {
+        if (this.isOpen) {
             this.outAC(this.segmentA, this);
             this.outB(this.segmentB, this);
             this.outAC(this.segmentC, this);
@@ -105,31 +114,40 @@ class NavBar{
         }
     }
 
+    showMenuTrigger()
+    {
+        this.wrapper.classList.remove('hidden');
+    }
 
-    inAC(s, that) {
+
+    inAC(s, that)
+    {
         s.draw('80% - 240', '80%', 0.3, {
             delay: 0.1,
-            callback: function() {
+            callback: function () {
                 that.inAC2(s);
             }
         });
     }
 
-    inAC2(s) {
+    inAC2(s)
+    {
         s.draw('100% - 545', '100% - 305', 0.6, {
             easing: easeElasticOut
         });
     }
 
-    inB(s, that) {
+    inB(s, that)
+    {
         s.draw(this.beginB - 60, this.endB + 60, 0.1, {
-            callback: function() {
+            callback: function () {
                 that.inB2(s);
             }
         });
     }
 
-    inB2(s) {
+    inB2(s)
+    {
         s.draw(this.beginB + 120, this.endB - 120, 0.3, {
             easing: easeBounceOut
         });
@@ -137,30 +155,34 @@ class NavBar{
 
     /* Out animations (to burger icon) */
 
-    outAC(s, that) {
+    outAC(s, that)
+    {
         s.draw('90% - 240', '90%', 0.1, {
             easing: easeElasticIn,
-            callback: function() {
+            callback: function () {
                 that.outAC2(s, that);
             }
         });
     }
 
-    outAC2(s, that) {
+    outAC2(s, that)
+    {
         s.draw('20% - 240', '20%', 0.3, {
-            callback: function() {
+            callback: function () {
                 that.outAC3(s);
             }
         });
     }
 
-    outAC3(s) {
+    outAC3(s)
+    {
         s.draw(this.beginAC, this.endAC, 0.7, {
             easing: easeElasticOut
         });
     }
 
-    outB(s) {
+    outB(s)
+    {
         s.draw(this.beginB, this.endB, 0.7, {
             delay: 0.1,
             easing: easeElasticOut
