@@ -3,13 +3,11 @@
 namespace App\Controller;
 
 use App\Repository\InterestRepository;
-use RuntimeException;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Address;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\DynamicPageRepository;
 use App\Repository\ActivityRepository;
@@ -19,7 +17,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use App\Entity\ContactPlaning;
 use App\Form\ContactPlaningType;
 use App\Entity\Activity;
-use Symfony\Component\Mime\Email;
 
 class ContactController extends AbstractController
 {
@@ -141,7 +138,7 @@ class ContactController extends AbstractController
             $entityManager->flush();
 
             $this->sendContactEmailNotification($contact, $mailer, $userRepository);
-            return $this->json(['status' => 'sucess', 'id' => $contact->getRequestId()]);
+            return $this->json(['status' => 'success', 'id' => $contact->getRequestId()]);
         }
 
 
