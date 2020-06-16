@@ -11,3 +11,11 @@ svg.filter{
     z-index: -1;
     visibility: hidden;
 }
+
+main.main a, footer a{
+    border-bottom: solid 2px #fff6;
+    transition: border-bottom-color, border-bottom-width ease-in-out .5s;
+    &:hover, &:active{
+        border-bottom-color: #fffa;
+    }
+}

@@ -153,13 +153,13 @@
         &__copyright{
             width: auto;
         }
-        
+
         &__made-by{
             width: auto;
 
             & a{
                 color: white;
-                text-decoration: underline;
+                //text-decoration: underline;
                 font-weight: bold;
 
             }
@@ -179,6 +179,7 @@
 
                     & a{
                         display: inline-block;
+                        border-bottom: none;
 
                         & svg{
                             width: 2em;
