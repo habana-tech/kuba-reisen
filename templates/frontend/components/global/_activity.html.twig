@@ -16,7 +16,7 @@
     <div class="activity__content">
         {% if activity.initPrice is defined and activity.initPrice %}
             <div class="activity__content__price">
-               <span>ab <br> {{ activity.initPrice }} €</span>
+               <span>{% trans%}activity.description.overview.price.since{% endtrans%} <br> {{ activity.initPrice }} €</span>
             </div>
         {% endif %}
         <div class="activity__content__actions">

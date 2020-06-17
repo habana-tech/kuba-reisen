@@ -3,10 +3,14 @@
 
         <div class="section__title ">
             <div class="section__title__highlight section__title__highlight--green">
-                <h2>Kuba Reisen schlägt vor</h2>
+                <h2>
+                    {% trans %}activities.stories.title{% endtrans %}
+                </h2>
             </div>
             <div class="section__title__description">
-                <p>Schauen Sie sich unsere beliebtesten Aktivitäten genau an</p>
+                <p>
+                    {% trans %}activities.stories.description{% endtrans %}
+                </p>
             </div>
         </div>
 
@@ -54,7 +58,7 @@
                 {% endfor %}
             </div>
             <div class="activities__stories__skip">
-                <a class="btn btn--small" href="#activities">Skip</a>
+                <a class="btn btn--small" href="#activities">{% trans %}activities.stories.actions.skip{% endtrans %}</a>
             </div>
         </div>
 

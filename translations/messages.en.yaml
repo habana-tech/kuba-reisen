@@ -1,0 +1,83 @@
+global.__banner_sky_headline__: 'Take a step toward your travel to Cuba'
+global.__banner_sky_subtitle__: 'Take a step toward'
+global.__banner_sky_contact_btn__: 'Talk to an expert!'
+contact.modal.fromTravel.title: 'You have chosen an individual trip'
+global.cards.readmore: '(read more)'
+error.title: Oops!
+error.request.description: 'we are sorry, but the page you requested was '
+error.link.homepage: 'Click here to return to the homepage'
+activity.description.reserve: 'Book now'
+hero.activities.title: __hero.activities.title
+activities.popularActivities.title: __activities.popularActivities.title
+activities.popularActivities.description: __activities.popularActivities.description
+activities.popularActivities.selectors.filters: __activities.popularActivities.selectors.filters
+activities.popularActivities.selectors.search: __activities.popularActivities.selectors.search
+activities.popularActivities.list.title: __activities.popularActivities.list.title
+activities.popularActivities.list.more: __activities.popularActivities.list.more
+activities.stories.title: __activities.stories.title
+activities.stories.description: __activities.stories.description
+activities.stories.actions.skip: __activities.stories.actions.skip
+global.activityBag.title: __global.activityBag.title
+global.activityBag.emptyMessage: __global.activityBag.emptyMessage
+global.activityBag.goToContacttravel: __global.activityBag.goToContacttravel
+global.activityBag.seeActivities: __global.activityBag.seeActivities
+contact.pagename: __contact.pagename
+activity.description.overview.price.since: __activity.description.overview.price.since
+global.links.goHome: __global.links.goHome
+destinations.topDestinations.title: __destinations.topDestinations.title
+destinations.topDestinations.description: __destinations.topDestinations.description
+global.modal.cookie.title: __global.modal.cookie.title
+global.modal.cookie.description: __global.modal.cookie.description
+global.modal.cookie.protectionDataDeclaration: __global.modal.cookie.protectionDataDeclaration
+global.travels.individual: __global.travels.individual
+global.agb.title: __global.agb.title
+global.agb.abbr: __global.agb.abbr
+activity.description.relatedActivities.title: __activity.description.relatedActivities.title
+activity.description.overview.addToFavorites: __activity.description.overview.addToFavorites
+activity.description.overview.price.flyIncluded: __activity.description.overview.price.flyIncluded
+activity.description.overview.price.flyExcluded: __activity.description.overview.price.flyExcluded
+activity.description.overview.wheelchairNeeded: __activity.description.overview.wheelchairNeeded
+aboutUs.filters.title: __aboutUs.filters.title
+home.hero.text.line1: __home.hero.text.line1
+home.hero.text.line2: __home.hero.text.line2
+home.hero.btn.travelPlaning: __home.hero.btn.travelPlaning
+home.hero.links.bucket_list: __home.hero.links.bucket_list
+contact.modal.fromTravel.text.primary: __contact.modal.fromTravel.text.primary
+contact.modal.fromTravel.text.secondary: __contact.modal.fromTravel.text.secondary
+OK: __OK
+contact.basic.title: __contact.basic.title
+contact.basic.description: __contact.basic.description
+contact.basic.travelDuration.LessThan5Days: __contact.basic.travelDuration.LessThan5Days
+contact.basic.travelDuration.days: __contact.basic.travelDuration.days
+contact.basic.travelDuration.moreThan30Days: __contact.basic.travelDuration.moreThan30Days
+contact.basic.travelBudget.LessThan1000EUR: __contact.basic.travelBudget.LessThan1000EUR
+contact.basic.travelBudget.Equal1000EUR: __contact.basic.travelBudget.Equal1000EUR
+contact.basic.travelBudget.MoneyDoesntMatter: __contact.basic.travelBudget.MoneyDoesntMatter
+contact.advance.title: __contact.advance.title
+contact.advance.text: __contact.advance.text
+contact.advance.activities.title: __contact.advance.activities.title
+contact.advance.activities.selecting: __contact.advance.activities.selecting
+contact.advance.selfConsider.opt1: __contact.advance.selfConsider.opt1
+contact.advance.selfConsider.opt2: __contact.advance.selfConsider.opt2
+contact.advance.selfConsider.opt3: __contact.advance.selfConsider.opt3
+contact.advance.selfConsider.opt4: __contact.advance.selfConsider.opt4
+contact.advance.selfConsider.opt5: __contact.advance.selfConsider.opt5
+contact.advance.selfConsider.opt6: __contact.advance.selfConsider.opt6
+contact.advance.selfCharacter.noInfo: __contact.advance.selfCharacter.noInfo
+contact.advance.selfCharacter.cityPerson: __contact.advance.selfCharacter.cityPerson
+contact.advance.selfCharacter.something: __contact.advance.selfCharacter.something
+contact.advance.selfCharacter.likeNature: __contact.advance.selfCharacter.likeNature
+contact.advance.selfCharacter.preferGreen: __contact.advance.selfCharacter.preferGreen
+contact.advance.selfCharacter.wheneverPossible: __contact.advance.selfCharacter.wheneverPossible
+contact.advance.selfLuxury.noInfo: __contact.advance.selfLuxury.noInfo
+contact.advance.selfLuxury.dontTellme: __contact.advance.selfLuxury.dontTellme
+contact.advance.selfLuxury.mainThingIsCleanliness: __contact.advance.selfLuxury.mainThingIsCleanliness
+contact.advance.selfLuxury.NiceAndComfortable: __contact.advance.selfLuxury.NiceAndComfortable
+contact.advance.selfLuxury.MustBeComfort: __contact.advance.selfLuxury.MustBeComfort
+contact.advance.selfLuxury.dontTravelWithoutLuxury: __contact.advance.selfLuxury.dontTravelWithoutLuxury
+contact.personal.howToContact: __contact.personal.howToContact
+contact.personal.thingsYouLike: __contact.personal.thingsYouLike
+contact.sendForm.Info.success: __contact.sendForm.Info.success
+contact.sendForm.Info.error: __contact.sendForm.Info.error
+contact.advance.selfConsider.opt4_action: __contact.advance.selfConsider.opt4_action
+contact.advance.selfConsider.opt6_indianajones: __contact.advance.selfConsider.opt6_indianajones
