@@ -4,7 +4,7 @@
         <div class="cart_bar__title__icon">
             {{ include('frontend/components/_icons/_heart.html.twig') }}
         </div>
-        <h4>{{ 'global.activityBag.title'|trans }}</h4>
+        <h4>Activity Bag</h4>
         <span>0</span>
     </div>
 
@@ -21,14 +21,14 @@
         </div>
 
         <div class="cart_bar__content__text">
-            <p data-show="empty">{{ 'global.activityBag.emptyMessage'|trans }}</p>
+            <p data-show="empty">You haven't yet any activity</p>
         </div>
         <div class="cart_bar__content__button">
-            <a data-show="no-empty" href="{{ path('contact') }}">{{ 'global.activityBag.goToContacttravel'|trans }}</a>
+            <a data-show="no-empty" href="{{ path('contact') }}">Alle Ansehen</a>
 
-            <a data-show="empty" href="{{ path('activities') }}">{{ 'global.activityBag.seeActivities'|trans }}</a>
+            <a data-show="empty" href="{{ path('activities') }}">See activities</a>
 
-            <a data-show="no-empty" href="{{ path('contact') }}">{{ 'contact.pagename'|trans }}</a>
+            <a data-show="no-empty" href="{{ path('contact') }}">Kontaktieren</a>
         </div>
     </div>
 

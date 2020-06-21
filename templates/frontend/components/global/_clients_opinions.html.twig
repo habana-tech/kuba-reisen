@@ -11,18 +11,10 @@
         </div>
 
     </div>
+
     <div class="clients_opinions__content">
         {% for opinion in opinions %}
 
-            <div class="grid-auto clients-think_img no-lat-margins text-center float-center">
-                <div class="grid-half float-center clients-think_img_quote">
-{#                    <h2>"brathtaking"</h2>#}
-                    <blockquote>{{ opinion.opinion }}
-                        <cite>- {{ opinion.clientName }}</cite>
-                    </blockquote>
-                </div>
-
-            </div>
         {% endfor %}
     </div>
 
