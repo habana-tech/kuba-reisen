@@ -1,12 +1,12 @@
 global.__banner_sky_headline__: 'Machen Sie einen Schritt in Richtung Ihrer Reise nach Kuba'
 global.__banner_sky_subtitle__: 'Machen Sie einen Schritt in Richtung'
 global.__banner_sky_contact_btn__: 'Sprechen Sie mit einem Experten!'
-contact.selfConsider.min: '-'
-contact.selfConsider.max: '+'
-contact.selfCharacter.min: '-'
-contact.selfCharacter.max: '+'
-contact.selfLuxury.min: '-'
-contact.selfLuxury.max: '+'
+contact.selfConsider.min: __contact.selfConsider.min
+contact.selfConsider.max: __contact.selfConsider.max
+contact.selfCharacter.min: __contact.selfCharacter.min
+contact.selfCharacter.max: __contact.selfCharacter.max
+contact.selfLuxury.min: __contact.selfLuxury.min
+contact.selfLuxury.max: __contact.selfLuxury.max
 hero.activities.title: Aktivitäten
 OK: OK
 contact.modal.fromTravel.title: 'Sie haben eine individuelle Reise ausgewählt'
@@ -28,14 +28,6 @@ contact.advance.selfLuxury.mainThingIsCleanliness: 'die Hauptsache ist Sauberkei
 contact.advance.selfLuxury.NiceAndComfortable: 'ich mag es ab und an Schön und Komfortabel'
 contact.advance.selfLuxury.MustBeComfort: 'Komfort muss sein'
 contact.advance.selfLuxury.dontTravelWithoutLuxury: 'ohne Luxus verreise ich nicht'
-contact.advance.selfConsider.opt1: 'keine Angabe'
-contact.advance.selfConsider.opt2: 'überhaupt nicht'
-contact.advance.selfConsider.opt3: 'ich mag es spannend'
-contact.advance.selfConsider.opt4_action: 'Action muss sein'
-contact.advance.selfConsider.opt5: 'sehr abenteuerlustig'
-contact.advance.selfConsider.opt6_indianajones: 'man nennt mich Indiana Jones'
-
-contact.pagename: 'Kontaktieren'
 contact.basic.title: 'Beginnen wir mit den Grundlagen'
 contact.basic.description: 'Hat kuba-reisen.de Ihr Interesse geweckt? Dann freuen wir uns auf Ihre Kontaktaufnahme. Gerne helfen wir Ihnen bei der Planung Ihres Kuba Urlaubes.'
 contact.basic.travelDuration.LessThan5Days: 'Weniger als 5 Tage'
@@ -48,20 +40,10 @@ contact.personal.howToContact: 'Wie können wir Sie kontaktieren?'
 contact.personal.thingsYouLike: 'Lassen Sie uns mehr über die Dinge wissen, die Sie mögen'
 contact.sendForm.Info.success: 'Die von Ihnen angegebenen Informationen wurden an unseren Spezialisten gesendet. Wir werden uns bald mit Ihnen in Verbindung setzen. Vielen Dank.'
 contact.sendForm.Info.error: 'Bei der Verarbeitung der von Ihnen angegebenen Informationen ist ein Fehler aufgetreten. Bitte versuche es erneut.'
-
-global.travels.individual: 'Individualreise'
-
 global.modal.cookie.title: 'Cookies &amp; Drittinhalte'
 global.modal.cookie.description: 'Auf dieser Website werden Cookies und Drittinhalte verwendet. Im Folgenden können Sie Ihre Zustimmung geben oder widerrufen. Weitere Informationen finden Sie in unserer'
 global.modal.cookie.protectionDataDeclaration: 'Datenschutzerklärung'
 global.cards.readmore: '(lesen sie mehr)'
-global.links.goHome: 'Startseite'
-global.activityBag.title: 'Activity Bag'
-global.activityBag.emptyMessage: "You haven't yet any activity"
-global.activityBag.goToContacttravel: "Alle Ansehen"
-global.activityBag.seeActivities: 'See activities'
-global.agb.title: 'Allgemeine Vertragsbedingungen'
-global.agb.abbr: 'AGB'
 error:
   title: 'Hoppla!'
   request:
@@ -71,39 +53,3 @@ error:
 activity:
   description:
     reserve: 'Buchen Sie jetzt'
-    overview:
-      addToFavorites: 'Add to favorites'
-      price:
-        since: 'ab'
-        flyIncluded: 'inklusive Flug'
-        flyExcluded: 'exklusive Flug'
-      wheelchairNeeded: 'Reise nicht geeignet für Menschen mit eingeschränker Mobilität'
-    relatedActivities.title: 'Zudem empfehlen wir'
-aboutUs:
-  filters:
-    title: 'Unsere Kuba Angebote auf einen Blick'
-activities:
-  popularActivities:
-    title: 'beliebte Aktivitäten'
-
-    description: 'Wir haben zahlreiche Vorschläge, was Sie auf Kuba unternehmen können. Lassen Sie sich von unseren Ideen inspirieren!'
-
-    selectors:
-      filters: 'mit den Filtern gelangen Sie schneller zum Ziel'
-      search: 'keinen passenden Filter gefunden? kein Problem, suchen Sie mit ihrem persönlichen Text!'
-    list.title: 'Aktivitäten gefunden'
-    list.more: 'mehr anzeigen'
-  stories:
-    title: 'Kuba Reisen schlägt vor'
-    description: 'Schauen Sie sich unsere beliebtesten Aktivitäten genau an'
-    actions.skip: 'Skip'
-destinations:
-  topDestinations.title: 'Unsere Top-Seller'
-  topDestinations.description: 'Die Qual der Wahl: So vielfältig wie Kuba ist, so umfangreich ist auch unser Ideen- und Produktekatalog. Wir zeigen Ihnen, was unsere Kunden am häufigsten buchen.'
-home:
-  clientsOpinions:
-    title: 'What our clients think about us?'
-  hero.text.line1: 'Kuba bewusst erleben.'
-  hero.text.line2: 'Für mutige Entdecker und gesellige Abenteurer...'
-  hero.btn.travelPlaning: 'Reise planen'
-  hero.links.bucket_list: 'Our Bucket List'

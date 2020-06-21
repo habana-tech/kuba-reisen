@@ -41,7 +41,7 @@
 
     .section.related_content_lists > .feature_list
     {
-        column-count: {{ region.getAllRelatedContent | length - 1 }};
+        column-count:         {{ region.getAllRelatedContent | length - 1 }};
         width: calc({{ region.getAllRelatedContent | length - 1 }} * var(--related-feature-content-width));
     }
 </style>
