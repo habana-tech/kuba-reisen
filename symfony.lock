@@ -216,7 +216,7 @@
         "version": "v2.1.2"
     },
     "php": {
-        "version": "7.4"
+        "version": "7.3.9"
     },
     "phpdocumentor/reflection-common": {
         "version": "1.0.1"
@@ -475,6 +475,9 @@
     "symfony/polyfill-intl-idn": {
         "version": "v1.11.0"
     },
+    "symfony/polyfill-intl-messageformatter": {
+        "version": "v1.17.0"
+    },
     "symfony/polyfill-intl-normalizer": {
         "version": "v1.14.0"
     },
@@ -695,9 +698,6 @@
         "files": [
             "config/packages/vich_uploader.yaml"
         ]
-    },
-    "webimpress/safe-writer": {
-        "version": "2.0.0"
     },
     "webmozart/assert": {
         "version": "1.4.0"

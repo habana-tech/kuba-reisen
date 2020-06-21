@@ -35,7 +35,7 @@
                 <ul>
                     <li>
                         <a href="{{ path('contact', {'travel':'raise'}) }}">
-                            Individualreise
+                            {{ 'global.travels.individual'|trans }}
                         </a>
                     </li>
 
@@ -112,7 +112,7 @@
         <div class="footer__content__agb">
             <p>
                 <a href="{{ path('pageLoad', {'name' : pager.url('travel_conditions') }) }}">
-                   <abbr title="Allgemeine Vertragsbedingungen">AGB</abbr>
+                   <abbr title="{% trans %}global.agb.title{% endtrans %}">{% trans %}global.agb.abbr{% endtrans %}</abbr>
                 </a>
                  |
                 <a href="{{ path('pageLoad', {'name' : pager.url('imprint') }) }}">

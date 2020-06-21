@@ -2,7 +2,8 @@
 <html lang="de">
     <head>
         <meta charset="UTF-8" />
-        <title>Login ✔ | Kuba Reisen </title>
+        <title> {{ 'layout.login'|trans({}, 'FOSUserBundle') }}
+              | Kuba Reisen </title>
         {{ encore_entry_link_tags('app') }}
         {{ encore_entry_link_tags('login') }}
     </head>
