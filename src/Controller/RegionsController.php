@@ -13,7 +13,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Twig\Error\LoaderError;
-use App\Repository\ClientOpinionRepository;
 
 class RegionsController extends AbstractController
 {
@@ -148,10 +147,7 @@ class RegionsController extends AbstractController
         ]);
     }
 
-    public function regionClientsOpinion(
-        RegionRepository $regionRepository,
-        ClientOpinionRepository $opinionRepository
-    ): Response
+    public function regionClientsOpinion(RegionRepository $regionRepository): Response
     {
         if (
             !$clientsOpinions = $regionRepository->findOneBy(
@@ -164,9 +160,7 @@ class RegionsController extends AbstractController
 
 
 //        $opinions = array_rand($clientsOpinions->getDescriptionFragments(), 2);
-//        $opinions = $clientsOpinions->getDescriptionFragments();
-
-        $opinions = $opinionRepository->findActivesBy([], null, 2);
+        $opinions = $clientsOpinions->getDescriptionFragments();
 
         return $this->render('frontend/components/global/_clients_opinions.html.twig', [
             'clientsOpinions' => $clientsOpinions,
@@ -178,9 +172,9 @@ class RegionsController extends AbstractController
     public function regionExcursionsActivities(RegionRepository $regionRepository): Response
     {
         $banner = $regionRepository->findOneBy(
-            ['active' => true,
+                ['active' => true,
                 'type' => Region::TYPE_EXCURSIONS_ACTIVITIES]
-        );
+            );
 
 
         return $this->render('frontend/components/global/_excursions_activities_banner.html.twig', [

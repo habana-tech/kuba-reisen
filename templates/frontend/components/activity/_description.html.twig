@@ -21,7 +21,7 @@
                 <div class="overview_activity__content__favorite_price__favorite__button" data-activity_id="{{ activity.id }}">
                     {{ include('/frontend/components/_icons/_heart.html.twig') }}
                 </div>
-                <a href="#"><p>{% trans %}activity.description.overview.addToFavorites{% endtrans %}</p></a>
+                <a href="#"><p>Add to favorites</p></a>
             </div>
 
 
@@ -29,13 +29,13 @@
             {% if activity.initPrice is defined and activity.initPrice %}
                 <div class="overview_activity__content__favorite_price__price">
                     <div>
-                        <small>{% trans %}activity.description.overview.price.since{% endtrans %}</small> &nbsp;<strong>{{ activity.initPrice }} &euro;</strong>
+                        <small>ab</small> &nbsp;<strong>{{ activity.initPrice }} &euro;</strong>
                     </div>
                     <div class="overview_activity__content__favorite_price__flyTicket">
                          {% if activity.flyTicketIncluded is defined and  activity.flyTicketIncluded %}
-                             🛫 <small>({% trans %}activity.description.overview.price.flyIncluded{% endtrans %})</small>
+                             🛫 <small>(inklusive Flug)</small>
                          {% else %}
-                             ✈ <small>({% trans %}activity.description.overview.price.flyExcluded{% endtrans %})</small>
+                             ✈ <small>(exklusive Flug)</small>
                          {% endif %}
                     </div>
                 </div>
@@ -45,7 +45,7 @@
         {% if activity.notSuitableReducedMobility is defined and  activity.notSuitableReducedMobility %}
             <div class="overview_activity__content__tags__wheelchair">
                 <img src="{{ asset('svg/wheel-chair.svg') }}">
-                <p>{% trans %}activity.description.overview.wheelchairNeeded{% endtrans %}</p>
+                <p>Reise nicht geeignet für Menschen mit eingeschränker Mobilität</p>
             </div>
         {% endif %}
         {{ include('frontend/components/activity/_tags.html.twig') }}
