@@ -1,9 +1,6 @@
-<?php 
+<?php
 
-if ($_SERVER['HTTP_HOST'] == 'www.kuba-reisen.reisen'){
-header("HTTP/1.1 301 Moved Permanently"); 
-header("Location: https://kuba-reisen.reisen".$_SERVER['REQUEST_URI']);
-}
+//require "git-deploy/auth.php";
 
 
 use App\Kernel;
