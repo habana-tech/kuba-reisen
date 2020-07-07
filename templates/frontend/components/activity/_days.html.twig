@@ -19,8 +19,7 @@
             <div class="day__content__description">
 
                 <div class="day__content__description__content">
-{#                    TODO:  expand text#}
-                    {{ day.content | striptags('<ul><li><b><p><strong><span>') | truncate_html(500) | raw }}
+                    {{ day.content | striptags('<ul><li><b><p><strong><span>')  | raw }}
                 </div>
             </div>
         </div>

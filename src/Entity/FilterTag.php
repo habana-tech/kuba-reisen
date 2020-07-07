@@ -57,7 +57,7 @@ class FilterTag
     private $pinned;
 
     /**
-     * @ORM\Column(type="string", length=180)
+     * @ORM\Column(type="string", length=180, nullable=true)
      */
     private $iconName;
     /**
@@ -66,12 +66,12 @@ class FilterTag
     private $iconFile;
 
     /**
-     * @ORM\Column(type="date_immutable", length=180)
+     * @ORM\Column(type="datetime", length=180)
      */
     protected $createdAt;
 
     /**
-     * @ORM\Column(type="date_immutable", length=180)
+     * @ORM\Column(type="datetime", length=180)
      */
     protected $updatedAt;
 
@@ -79,6 +79,8 @@ class FilterTag
     {
         $this->activities = new ArrayCollection();
         $this->destinations = new ArrayCollection();
+        $this->createdAt = new DateTime();
+        $this->updatedAt = new DateTime();
         $this->active = true;
     }
 
@@ -199,7 +201,7 @@ class FilterTag
         $this->iconFile = $iconFile;
         if ($iconFile) {
             // if 'updatedAt' is not defined in your entity, use another property
-            $this->updatedAt = new DateTimeImmutable();
+            $this->updatedAt = new DateTime();
         }
         return $this;
     }
@@ -256,5 +258,22 @@ class FilterTag
                 ->addViolation()
             ;
         }
+    }
+
+    /**
+     * @ORM\PreUpdate()
+     * @ORM\PrePersist()
+     */
+    public function updateTimestamps()
+    {
+        // Create a datetime with microseconds
+        $dateTime = \DateTime::createFromFormat('U.u', sprintf('%.6F', microtime(true)));
+        $dateTime->setTimezone(new \DateTimeZone(date_default_timezone_get()));
+
+        if (null === $this->createdAt) {
+            $this->createdAt = $dateTime;
+        }
+
+        $this->updatedAt = $dateTime;
     }
 }
