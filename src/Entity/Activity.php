@@ -39,7 +39,7 @@ class Activity implements
     use MachineNameTrait;
     use MetadataField;
 
-    public const LENGTH_OF_DESCRIPTION = 75;
+    public const LENGTH_OF_DESCRIPTION = 150;
 
 
     /**

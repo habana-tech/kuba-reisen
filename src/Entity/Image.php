@@ -3,11 +3,12 @@
 namespace App\Entity;
 
 use App\DataConverter\ImageBase64ThumbCreator;
+use App\Exception\SavingException;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Exception;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
-use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile as File;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -112,6 +113,14 @@ class Image
     public function setImageFile(?File $file = null): self
     {
         $this->imageFile = $file;
+        if ($this->imageFile->getError() !== null) {
+            throw new SavingException(
+                get_class($this),
+                $this->imageFile->getErrorMessage(),
+                $this->imageFile->getError(),
+            );
+        }
+
         if (null !== $file) {
             $base64Converter = new ImageBase64ThumbCreator($file->getRealPath(), false);
             $this->setBase64($base64Converter->getBase64data());
@@ -162,6 +171,7 @@ class Image
         if (
             ! in_array($this->imageFile->getMimeType(), array(
             'image/jpeg',
+            'image/jpg',
             'image/gif',
             'image/png',
             'image/svg+xml',

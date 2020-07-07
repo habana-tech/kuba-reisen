@@ -134,7 +134,7 @@
 
             {% for filter in filterTags %}
                 <li>
-                    <a href="{{ path('activitiesFilter', {'filters':filter.title }) }}#activities">
+                    <a href="{{ path('activitiesFilter', {'filters':filter.title  | url_encode}) }}#activities">
                         {{ filter.title }}
                     </a>
                 </li>

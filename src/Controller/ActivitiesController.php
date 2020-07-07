@@ -13,7 +13,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ActivityRepository;
 use App\Repository\FilterTagRepository;
-use \App\Twig\AppExtension;
+use App\Twig\AppExtension;
 use Twig\Error\LoaderError;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -39,7 +39,7 @@ class ActivitiesController extends AbstractController
      * @Route("/activities/filter/{filters}",
      *     name="activitiesFilter",
      *     defaults={"filters": null, "pos": null, "amount":null },)
-     * @param DynamicPageRepository $dynamicPageRepository
+     * @param DynamicPageRepository $pageRepository
      * @param ActivityRepository $activityRepository
      * @param FilterTagRepository $filterTagRepository
      * @param ActivityStoryRepository $storiesRepository
@@ -47,16 +47,17 @@ class ActivitiesController extends AbstractController
      * @return Response
      */
     public function activities(
-        DynamicPageRepository $dynamicPageRepository,
+        DynamicPageRepository $pageRepository,
         ActivityRepository $activityRepository,
         FilterTagRepository $filterTagRepository,
         ActivityStoryRepository $storiesRepository,
         $filters = null
     ): Response {
-        $page = $dynamicPageRepository->findOneBy([
-            'machineName'=>'activities'
+        $page = $pageRepository->findOneBy([
+            'machineName' => 'activities'
         ]);
 
+        $filters = urldecode($filters);
         if (!$page) {
             throw new NotFoundHttpException();
         }
@@ -64,7 +65,7 @@ class ActivitiesController extends AbstractController
         $filters = explode(',', $filters);
 
         $filterTags = $filterTagRepository->findAllActive();
-        $_activities = $activityRepository->findStartingFrom(0, $this->amountActivitiesDefault+1);
+        $_activities = $activityRepository->findStartingFrom(0, $this->amountActivitiesDefault + 1);
 
         $loadMore = count($_activities) > $this->amountActivitiesDefault;
         $activities = array();
@@ -77,11 +78,11 @@ class ActivitiesController extends AbstractController
         $stories = $storiesRepository->findLastPublished($amountStories);
 
         return $this->render('frontend/activities.html.twig', [
-            'page'=>$page,
-            'activities'=>$activities,
-            'filterTags'=>$filterTags,
-            'selectedFilters'=>$filters,
-            'loadMore'=> $loadMore,
+            'page' => $page,
+            'activities' => $activities,
+            'filterTags' => $filterTags,
+            'selectedFilters' => $filters,
+            'loadMore' => $loadMore,
             'stories' => $stories
         ]);
     }
@@ -100,14 +101,14 @@ class ActivitiesController extends AbstractController
         $pos,
         $amount
     ): JsonResponse {
-        if ($pos===null) {
-            $pos=0;
+        if ($pos === null) {
+            $pos = 0;
         }
-        if ($amount===null) {
-            $amount=$this->amountActivitiesDefault;
+        if ($amount === null) {
+            $amount = $this->amountActivitiesDefault;
         }
 
-        $_activities = $activityRepository->findStartingFrom($pos, $amount+1);
+        $_activities = $activityRepository->findStartingFrom($pos, $amount + 1);
 
         $loadMore = count($_activities) > $amount;
         $activities = array();
@@ -143,8 +144,8 @@ class ActivitiesController extends AbstractController
         }
 
         $data = array(
-            'activities'=>$activities_data,
-            'loadMore'=>$loadMore
+            'activities' => $activities_data,
+            'loadMore' => $loadMore
         );
 
         return $this->json($data);
@@ -169,10 +170,10 @@ class ActivitiesController extends AbstractController
         $pos,
         $amount
     ): JsonResponse {
-        if ($pos===null) {
+        if ($pos === null) {
             $pos = 0;
         }
-        if ($amount===null) {
+        if ($amount === null) {
             $amount = $this->amountActivitiesDefault;
         }
 
@@ -182,7 +183,7 @@ class ActivitiesController extends AbstractController
             $filters,
             $filterTagRepository,
             $pos,
-            $amount+1
+            $amount + 1
         );
         $loadMore = count($_activities) > $amount;
         $activities = array();
@@ -219,8 +220,8 @@ class ActivitiesController extends AbstractController
         }
 
         $data = array(
-            'activities'=>$activities_data,
-            'loadMore'=>$loadMore
+            'activities' => $activities_data,
+            'loadMore' => $loadMore
         );
 
         return $this->json($data);
@@ -242,14 +243,14 @@ class ActivitiesController extends AbstractController
         $pos,
         $amount
     ): JsonResponse {
-        if ($pos===null) {
-            $pos=0;
+        if ($pos === null) {
+            $pos = 0;
         }
-        if ($amount===null) {
-            $amount=$this->amountActivitiesDefault;
+        if ($amount === null) {
+            $amount = $this->amountActivitiesDefault;
         }
 
-        $_activities = $activityRepository->findBySearch($search, $pos, $amount+1);
+        $_activities = $activityRepository->findBySearch($search, $pos, $amount + 1);
 
         $loadMore = count($_activities) > $amount;
         $activities = array();
@@ -283,8 +284,8 @@ class ActivitiesController extends AbstractController
         }
 
         $data = array(
-            'activities'=>$activities_data,
-            'loadMore'=>$loadMore
+            'activities' => $activities_data,
+            'loadMore' => $loadMore
         );
         return $this->json($data);
     }
@@ -305,7 +306,7 @@ class ActivitiesController extends AbstractController
         }
         $activity = array(
             'id' => $id,
-            'name'=>$activity->getName(),
+            'name' => $activity->getName(),
             'imageSmall' => $activity->hasImage() ? $this->imagineCacheManager->getBrowserPath(
                 // If $activity->hasImage() prove that getImage() return an Image!
                 $activity->getImage()->getStaticImagePath(),
@@ -314,7 +315,7 @@ class ActivitiesController extends AbstractController
         );
 
         $data = array(
-            'activity'=>$activity,
+            'activity' => $activity,
         );
         return $this->json($data);
     }

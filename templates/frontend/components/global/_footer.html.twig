@@ -41,7 +41,7 @@
 
                     {% for filter in filterTagsPinned %}
                         <li>
-                            <a href="{{ path('activitiesFilter', {'filters':filter.title }) }}#activities_filters">
+                            <a href="{{ path('activitiesFilter', {'filters':filter.title | url_encode }) }}#activities_filters">
                                 {{ filter.title }}
                             </a>
                         </li>

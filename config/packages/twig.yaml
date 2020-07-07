@@ -8,6 +8,8 @@ twig:
     globals:
         requestStack: '@App\Twig\AppRequestStack'
         pager: '@App\PageManager\PageManager'
+#        requestStack: '@app_pages.request_stack'
+#        pager: '@app_pages.page_manager'
 # form_themes: ['bootstrap_4_layout.html.twig','@EasyAdmin/form/bootstrap_4.html.twig' ,'@FOSCKEditor/Form/ckeditor_widget.html.twig']
 
 

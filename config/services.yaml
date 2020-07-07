@@ -10,12 +10,12 @@ parameters:
     knp.doctrine_behaviors.blameable_subscriber.user_entity: App\Entity\User
     mailer.sender.address: 'web@kuba-reisen.de'
     default_locale: de
-    locale: '%default_locale%'
+    locale: de
     app_locales: en|de
 
     #Dump the Service Container into a Single File, for performance
-    container.dumper.inline_factories: true
-    container.dumper.inline_class_loader: true
+    #container.dumper.inline_factories: true
+    #container.dumper.inline_class_loader: true
 
 services:
     # default configuration for services in *this* file
@@ -38,11 +38,22 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    App\Naming\FileNamer:
-        public: true
+#    App\Naming\FileNamer:
+#        public: true
+
+#    app_pages.request_stack:
+#        class: App\Twig\AppRequestStack
+#        autowire: true
+#        tags: ['controller.service_arguments']
+#
+#    app_pages.page_manager:
+#        class: App\PageManager\PageManager
+
+    App\Twig\AppRequestStack: ~
+    App\PageManager\PageManager: ~
 
     App\SecurityAuths\CKFinderAuth:
         arguments: ['@security.authorization_checker']
 
-    App\Twig\AppRequestStack: ~
-    App\PageManager\PageManager: ~
+#    App\Twig\AppRequestStack: '@app_pages.request_stack'
+#    App\PageManager\PageManager: '@app_pages.page_manager'

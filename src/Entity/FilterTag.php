@@ -4,19 +4,24 @@ namespace App\Entity;
 
 use App\Entity\Fields\ActiveFieldTrait;
 use App\Entity\Fields\PriorityFieldTrait;
+use App\Exception\SavingException;
 use DateTime;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Exception;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\FilterTagRepository")
  * @Vich\Uploadable()
+ * @ORM\HasLifecycleCallbacks()
  */
 class FilterTag
 {
@@ -36,7 +41,6 @@ class FilterTag
      */
     private $title;
 
-
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Destination", mappedBy="filterTags")
      */
@@ -46,7 +50,6 @@ class FilterTag
      * @ORM\ManyToMany(targetEntity="App\Entity\Activity", mappedBy="filterTags")
      */
     private $activities;
-
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
@@ -61,6 +64,16 @@ class FilterTag
     * @Vich\UploadableField(mapping="tags_icons", fileNameProperty="iconName")
     */
     private $iconFile;
+
+    /**
+     * @ORM\Column(type="date_immutable", length=180)
+     */
+    protected $createdAt;
+
+    /**
+     * @ORM\Column(type="date_immutable", length=180)
+     */
+    protected $updatedAt;
 
     public function __construct()
     {
@@ -180,12 +193,13 @@ class FilterTag
      * @return FilterTag
      * @throws Exception
      */
-    public function setIconFile($iconFile): FilterTag
+    public function setIconFile(?File $iconFile = null): FilterTag
     {
+
         $this->iconFile = $iconFile;
         if ($iconFile) {
             // if 'updatedAt' is not defined in your entity, use another property
-            $this->updatedAt = new DateTime('now');
+            $this->updatedAt = new DateTimeImmutable();
         }
         return $this;
     }
@@ -212,19 +226,32 @@ class FilterTag
     /**
      * @Assert\Callback
      * @param ExecutionContextInterface $context
+     * @throws SavingException
      */
     public function validate(ExecutionContextInterface $context): void
     {
+
+        if ($this->iconFile instanceof UploadedFile && $this->iconFile->getError() !== null) {
+            $context
+                ->buildViolation($this->iconFile->getErrorMessage())
+                ->atPath('iconName')
+                ->addViolation();
+        }
+
         if (
-            ! in_array($this->iconFile->getMimeType(), array(
+            $this->iconFile instanceof UploadedFile
+            && $this->iconFile->getPathname() !== ''
+            && !in_array($this->iconFile->getMimeType(), array(
             'image/svg+xml',
             'image/svg',
             'image/png',
+            'image/jpg',
+            'image/jpeg',
 
             ))
         ) {
             $context
-                ->buildViolation('Wrong file type (svg, png)')
+                ->buildViolation('Wrong file type "'.$this->iconFile->getMimeType().'" (must be one of: .svg, .png, .jpg)')
                 ->atPath('iconName')
                 ->addViolation()
             ;

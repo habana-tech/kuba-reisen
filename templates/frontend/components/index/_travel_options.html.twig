@@ -39,7 +39,7 @@
 
             {% for filter in filterTags %}
                 {% set pos = loop.index + 1 %}
-                <a href="{{ path('activitiesFilter', {'filters':filter.title }) }}#activities" style="grid-area: section{{ pos }}">
+                <a href="{{ path('activitiesFilter', {'filters':filter.title | url_encode}) }}#activities" style="grid-area: section{{ pos }}">
                     <div>
                         <h3>
                             {{ filter.title }}

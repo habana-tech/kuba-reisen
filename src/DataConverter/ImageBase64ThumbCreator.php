@@ -2,7 +2,11 @@
 
 namespace App\DataConverter;
 
+use App\Exception\ProcessException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\ErrorHandler\Error\FatalError;
+use Symfony\Component\Filesystem;
+use Symfony\Component\HttpFoundation\File\File;
 
 class ImageBase64ThumbCreator extends AbstractController
 {
@@ -26,15 +30,32 @@ class ImageBase64ThumbCreator extends AbstractController
      * ImageBase64ThumbCreator constructor.
      * @param string $path
      * @param bool $absoluteFileName
+     * @throws ProcessException
      */
     public function __construct(string $path = 'folder', $absoluteFileName = false)
     {
+
         if ($absoluteFileName) {
             $path = $this::getStaticRelativePath($path);
             $path = __DIR__ . '/../../public/' . $path;
         }
 
-        if (file_exists($path)) {
+        try {
+            $imageFile = new File($path);
+            if (
+                !in_array($imageFile->getMimeType(), array(
+                'image/png',
+                'image/jpg',
+                'image/jpeg',
+                ))
+            ) {
+                throw new \Error(
+                    'Error on thumbnail creation. The file mimeType "' .
+                    $imageFile->getMimeType() .
+                    '" doesn\'t match. Only .png or .jpg files are allowed'
+                );
+            }
+
             if (($image = @imagecreatefromjpeg($path)) || ($image = @imagecreatefrompng($path))) {
                 $width = imagesx($image) ?? 1;
                 $height = imagesy($image) ?? 1;
@@ -67,6 +88,8 @@ class ImageBase64ThumbCreator extends AbstractController
 
                 $this->base64data = 'data:image/jpeg;base64,' . base64_encode($image_data);
             }
+        } catch (\Exception $error) {
+            throw new ProcessException('Error on thumbnail creation and persist at DB. ' . $error->getMessage());
         }
     }
 

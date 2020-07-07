@@ -109,7 +109,6 @@ class ContactController extends AbstractController
         if ($activity === null) {
             //if there are interest checked in the form...
             if ($interest = $request->get('interest')) {
-//            dump($interest);
                 $allInterests .= "\nInterests: \n";
                 foreach ($interest as $index => $item) {
                     $allInterests .= $item . ', ';

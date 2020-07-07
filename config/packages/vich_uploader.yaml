@@ -1,12 +1,14 @@
 vich_uploader:
-    db_driver: orm
+    db_driver:
+        orm
 
     mappings:
         images:
             uri_prefix: '%env(MEDIA_STATIC_HOST_URL)%/uploads/images'
             upload_destination: '%kernel.project_dir%/%env(MEDIA_STATIC_PATH_DIRECTORY)%/uploads/images'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
             #namer: Vich\UploaderBundle\Naming\OrignameNamer
-            namer: App\Naming\FileNamer
+            #namer: App\Naming\FileNamer
             inject_on_load: false
             delete_on_update: true
             delete_on_remove: true
@@ -14,7 +16,8 @@ vich_uploader:
         tags_icons:
             uri_prefix: '%env(MEDIA_STATIC_HOST_URL)%/uploads/icons'
             upload_destination: '%kernel.project_dir%/%env(MEDIA_STATIC_PATH_DIRECTORY)%/uploads/icons'
-            namer: Vich\UploaderBundle\Naming\HashNamer
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+#            namer: Vich\UploaderBundle\Naming\HashNamer
 #            namer: App\Naming\FileNamer
             inject_on_load: false
             delete_on_update: true
