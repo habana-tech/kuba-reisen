@@ -72,7 +72,7 @@ easy_admin:
                     - { property: 'priority' , label: 'Priority on results' }
 
                     - { type: 'group', label: 'Activity description', icon: 'bookmark', columns: 8 }
-                    - { property: 'itineraryTitle', type: 'text' }
+#                    - { property: 'itineraryTitle', type: 'text' }
                     - { property: 'description', type: 'fos_ckeditor' }
                     - { type: 'section', label: 'Describe the days for this activity', icon: 'puzzle-piece', help: 'Describe the Feature components for this Activity' }
                     - { property: 'descriptionFragments', label: '*', help: 'Add many features fragments as you need to describe this activity', type: 'collection',  type_options: { entry_type: 'App\Form\ActivityDescriptionFragmentType', by_reference: true } }
