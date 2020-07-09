@@ -17,7 +17,8 @@ class ActivityMap {
 
         // this.points = document.querySelectorAll('.description-itinerary__content span[data-map]');
         this.points = document.querySelectorAll('.float__container__center span[data-map]');
-        this.paths = document.querySelectorAll('.description-itinerary__content span[data-path-map]');
+        // this.paths = document.querySelectorAll('.description-itinerary__content span[data-path-map]');
+        this.paths = document.querySelectorAll('.float__container__center span[data-path-map]');
 
         this.setMarkersAndZoom();
         this.events();
