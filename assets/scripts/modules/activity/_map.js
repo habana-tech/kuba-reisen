@@ -15,7 +15,8 @@ class ActivityMap {
         this.map.addControl(new mapboxgl.NavigationControl());
         this.map.zoom = 10;
 
-        this.points = document.querySelectorAll('.description-itinerary__content span[data-map]');
+        // this.points = document.querySelectorAll('.description-itinerary__content span[data-map]');
+        this.points = document.querySelectorAll('.float__container__center span[data-map]');
         this.paths = document.querySelectorAll('.description-itinerary__content span[data-path-map]');
 
         this.setMarkersAndZoom();
