@@ -32,11 +32,6 @@ class ActivityMap {
 
         if (this.points.length === 0)
             return;
-        if(this.points.length === 1)
-        {
-            this.map.zoom = 10;
-            return;
-        }
 
         let lats = [];
         let logs = [];
@@ -60,12 +55,30 @@ class ActivityMap {
                     .addTo(this.map);
             }
 
+            if(this.points.length === 1)
+            {
+                this.map.zoom = props.zoom;
+                this.map.center = props.center;
+                console.log("zoom: " + this.map.zoom);
+                console.log("center: " + this.map.center);
+                //return;
 
+                let delta = 0.0002;
+                this.map.fitBounds([
+                    [props.center[0] - props.center[0] * delta, props.center[1]  - props.center[1] * delta],
+                    [props.center[0] + props.center[0] * delta, props.center[1] + props.center[1] * delta]
+                    ], {padding: 15});
+            }
         });
 
-        let maxCoords = getBoundingBox(lats, logs);
+        if(this.points.length > 1)
+        {
+            let maxCoords = getBoundingBox(lats, logs);
+            this.map.fitBounds(maxCoords, {padding: 15});
+        }
 
-        this.map.fitBounds(maxCoords, {padding: 15});
+
+
     }
 
     setPathAndZoom(){
