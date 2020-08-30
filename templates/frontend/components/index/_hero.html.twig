@@ -115,7 +115,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ path('pageLoad', {'name' : 'bucket_list'}) }}">Our Bucket List</a>
+                    <a href="{{ path('pageLoad', {'name' : pager.url('bucket_list') }) }}">
+                            {{ pager.name('bucket_list') }}
+                    </a>
                 </li>
             </ul>
         </div>
