@@ -43,7 +43,7 @@
         "twig/cssinliner-extra": "^3.0",
         "twig/markdown-extra": "^3.0",
         "vich/uploader-bundle": "^1.9",
-        "symfony/polyfill-intl-messageformatter": "*",
+        "symfony/polyfill-intl-messageformatter": "*"
     },
     "require-dev": {
         "symfony/debug-pack": "*",

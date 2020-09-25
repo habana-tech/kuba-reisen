@@ -1,16 +1,5 @@
 {
   "entrypoints": {
-    "bucket_list": {
-      "js": [
-        "/build/runtime.420770e4.js",
-        "/build/1.81e14bc4.js",
-        "/build/3.0a5a32ee.js",
-        "/build/bucket_list.af4e3eab.js"
-      ],
-      "css": [
-        "/build/bucket_list.d32fb415.css"
-      ]
-    },
     "app": {
       "js": [
         "/build/runtime.420770e4.js",
@@ -19,7 +8,17 @@
         "/build/app.8d1ff2d6.js"
       ],
       "css": [
-        "/build/app.5f70f2ad.css"
+        "/build/app.5fab90e9.css"
+      ]
+    },
+    "index": {
+      "js": [
+        "/build/runtime.420770e4.js",
+        "/build/0.183a7ad7.js",
+        "/build/index.892c4d5a.js"
+      ],
+      "css": [
+        "/build/index.dae49594.css"
       ]
     },
     "destination": {
@@ -47,10 +46,10 @@
         "/build/runtime.420770e4.js",
         "/build/0.183a7ad7.js",
         "/build/2.47bc52db.js",
-        "/build/contact.02ee225c.js"
+        "/build/contact.e2e12fdb.js"
       ],
       "css": [
-        "/build/contact.4ed9c1b3.css"
+        "/build/contact.eb04953a.css"
       ]
     },
     "activities": {
@@ -58,7 +57,7 @@
         "/build/runtime.420770e4.js",
         "/build/0.183a7ad7.js",
         "/build/1.81e14bc4.js",
-        "/build/activities.3d7944c0.js"
+        "/build/activities.2f61f2ca.js"
       ],
       "css": [
         "/build/activities.60fc39e1.css"
@@ -69,20 +68,21 @@
         "/build/runtime.420770e4.js",
         "/build/0.183a7ad7.js",
         "/build/1.81e14bc4.js",
-        "/build/activity.9ac82d47.js"
+        "/build/activity.3e9e9c1d.js"
       ],
       "css": [
         "/build/activity.781ed148.css"
       ]
     },
-    "index": {
+    "bucket_list": {
       "js": [
         "/build/runtime.420770e4.js",
-        "/build/0.183a7ad7.js",
-        "/build/index.892c4d5a.js"
+        "/build/1.81e14bc4.js",
+        "/build/3.0a5a32ee.js",
+        "/build/bucket_list.af4e3eab.js"
       ],
       "css": [
-        "/build/index.dae49594.css"
+        "/build/bucket_list.d32fb415.css"
       ]
     },
     "about_us": {
