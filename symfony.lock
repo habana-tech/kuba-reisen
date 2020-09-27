@@ -175,6 +175,9 @@
     "league/flysystem-cached-adapter": {
         "version": "1.0.9"
     },
+    "league/mime-type-detection": {
+        "version": "1.5.0"
+    },
     "liip/imagine-bundle": {
         "version": "1.8",
         "recipe": {
@@ -396,6 +399,9 @@
     },
     "symfony/http-client": {
         "version": "v4.3.0"
+    },
+    "symfony/http-client-contracts": {
+        "version": "v2.2.0"
     },
     "symfony/http-foundation": {
         "version": "v4.2.4"
