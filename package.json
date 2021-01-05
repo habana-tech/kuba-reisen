@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "Kraken": "github:cferdinandi/kraken",
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "cubic-spline": "^2.0.0",
     "d3-ease": "^1.0.6",
     "grapesjs": "^0.14.62",
