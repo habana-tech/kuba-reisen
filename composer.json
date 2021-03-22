@@ -4,10 +4,10 @@
     "require": {
         "php": "^7.3.9",
         "ext-ctype": "*",
+        "ext-fileinfo": "*",
         "ext-gd": "*",
         "ext-iconv": "*",
         "ext-json": "*",
-        "ext-fileinfo": "*",
         "ckfinder/ckfinder-symfony-bundle": "^3.5",
         "easycorp/easyadmin-bundle": "^2.1",
         "friendsofsymfony/ckeditor-bundle": "^2.0",
@@ -29,6 +29,7 @@
         "symfony/mime": "^4.4",
         "symfony/monolog-bundle": "^3.1",
         "symfony/orm-pack": "^1.0.8",
+        "symfony/polyfill-intl-messageformatter": "*",
         "symfony/process": "^4.4",
         "symfony/security-bundle": "^4.4",
         "symfony/serializer-pack": "*",
@@ -41,9 +42,9 @@
         "symfony/webpack-encore-bundle": "^1.7",
         "symfony/yaml": "^4.4",
         "twig/cssinliner-extra": "^3.0",
+        "twig/inky-extra": "^3.3",
         "twig/markdown-extra": "^3.0",
-        "vich/uploader-bundle": "^1.9",
-        "symfony/polyfill-intl-messageformatter": "*"
+        "vich/uploader-bundle": "^1.9"
     },
     "require-dev": {
         "symfony/debug-pack": "*",

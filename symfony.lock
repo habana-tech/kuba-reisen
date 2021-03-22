@@ -191,6 +191,9 @@
             "config/routes/liip_imagine.yaml"
         ]
     },
+    "lorenzo/pinky": {
+        "version": "1.0.5"
+    },
     "monolog/monolog": {
         "version": "1.24.0"
     },
@@ -692,6 +695,9 @@
     },
     "twig/extra-bundle": {
         "version": "v3.0.0"
+    },
+    "twig/inky-extra": {
+        "version": "v3.3.0"
     },
     "twig/markdown-extra": {
         "version": "v3.0.0"
