@@ -228,7 +228,6 @@ class FilterTag
     /**
      * @Assert\Callback
      * @param ExecutionContextInterface $context
-     * @throws SavingException
      */
     public function validate(ExecutionContextInterface $context): void
     {
@@ -253,7 +252,9 @@ class FilterTag
             ))
         ) {
             $context
-                ->buildViolation('Wrong file type "'.$this->iconFile->getMimeType().'" (must be one of: .svg, .png, .jpg)')
+                ->buildViolation(
+                    'Wrong file type "' . $this->iconFile->getMimeType() . '" (must be one of: .svg, .png, .jpg)'
+                )
                 ->atPath('iconName')
                 ->addViolation()
             ;

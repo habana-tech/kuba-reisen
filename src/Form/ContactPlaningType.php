@@ -22,7 +22,8 @@ class ContactPlaningType extends AbstractType
             ->add('travelDate', DateType::class, [
                 'label' => 'Wann planen Sie nach Kuba zu reisen?',
                 'widget' => 'single_text',
-                'attr' => ['min' => date('Y-m-d')]
+                'attr' => ['min' => date('Y-m-d')],
+                'required' => true,
             ])
             ->add('travelDuration', HiddenType::class, [
                 'label' => 'Wie lange wollen Sie dort bleiben?'])

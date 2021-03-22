@@ -22,6 +22,8 @@ class ContactPlaning
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\NotNull
+     * @Assert\DateTime()
      */
     private $travelDate;
 
@@ -203,7 +205,7 @@ class ContactPlaning
 
         return $this;
     }
-    
+
 
     public function getFlyTicket(): ?bool
     {

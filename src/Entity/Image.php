@@ -5,10 +5,12 @@ namespace App\Entity;
 use App\DataConverter\ImageBase64ThumbCreator;
 use App\Exception\SavingException;
 use DateTimeImmutable;
+use Doctrine\Migrations\Tools\Console\Exception\FileTypeNotSupported;
 use Doctrine\ORM\Mapping as ORM;
 use Exception;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
-use Symfony\Component\HttpFoundation\File\UploadedFile as File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -113,7 +115,7 @@ class Image
     public function setImageFile(?File $file = null): self
     {
         $this->imageFile = $file;
-        if ($this->imageFile->getError() !== null) {
+        if ($this->imageFile instanceof UploadedFile && $this->imageFile->getError() !== UPLOAD_ERR_OK) {
             throw new SavingException(
                 get_class($this),
                 $this->imageFile->getErrorMessage(),
@@ -122,8 +124,12 @@ class Image
         }
 
         if (null !== $file) {
-            $base64Converter = new ImageBase64ThumbCreator($file->getRealPath(), false);
-            $this->setBase64($base64Converter->getBase64data());
+            try {
+                $base64Converter = new ImageBase64ThumbCreator($file->getRealPath(), false);
+                $this->setBase64($base64Converter->getBase64data());
+            } catch (FileTypeNotSupported $e) {
+            }
+
             $this->updatedAt = new DateTimeImmutable();
             if (!$this->description && $file->getFilename()) {
                 $this->description = substr(basename($file->getClientOriginalName()), 0, -4);
@@ -172,15 +178,17 @@ class Image
             ! in_array($this->imageFile->getMimeType(), array(
             'image/jpeg',
             'image/jpg',
+            'image/webp',
             'image/gif',
             'image/png',
             'image/svg+xml',
             'image/svg',
 
+
             ))
         ) {
             $context
-                ->buildViolation('Wrong file type (jpg,gif,png,svg)')
+                ->buildViolation('Wrong file type (jpg,gif,png,svg,webp)')
                 ->atPath('fileName')
                 ->addViolation()
             ;

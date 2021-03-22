@@ -3,6 +3,7 @@
 namespace App\DataConverter;
 
 use App\Exception\ProcessException;
+use Doctrine\Migrations\Tools\Console\Exception\FileTypeNotSupported;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\ErrorHandler\Error\FatalError;
 use Symfony\Component\Filesystem;
@@ -47,25 +48,26 @@ class ImageBase64ThumbCreator extends AbstractController
                 'image/png',
                 'image/jpg',
                 'image/jpeg',
+                'image/webp',
                 ))
             ) {
-                throw new \Error(
+                throw new FileTypeNotSupported(
                     'Error on thumbnail creation. The file mimeType "' .
                     $imageFile->getMimeType() .
-                    '" doesn\'t match. Only .png or .jpg files are allowed'
+                    '" doesn\'t match. Only PNG, JPEG or WEBP files are allowed'
                 );
             }
 
             if (($image = @imagecreatefromjpeg($path)) || ($image = @imagecreatefrompng($path))) {
                 $width = imagesx($image) ?? 1;
                 $height = imagesy($image) ?? 1;
-                $original_aspect = $height / $width;
+                $originalAspect = $height / $width;
 
-                $thumb_width = 15; //px
+                $thumbWidth = 15; //px
 
-                $thumb_height = $original_aspect * $thumb_width;
+                $thumbHeight = $originalAspect * $thumbWidth;
 
-                $thumb = imagecreatetruecolor($thumb_width, $thumb_height);
+                $thumb = imagecreatetruecolor($thumbWidth, $thumbHeight);
 
                 imagecopyresampled(
                     $thumb,
@@ -74,8 +76,8 @@ class ImageBase64ThumbCreator extends AbstractController
                     0,
                     0,
                     0,
-                    $thumb_width,
-                    $thumb_height,
+                    $thumbWidth,
+                    $thumbHeight,
                     $width,
                     $height
                 );
@@ -84,9 +86,9 @@ class ImageBase64ThumbCreator extends AbstractController
                 ob_start();
 
                 imagejpeg($thumb);
-                $image_data = ob_get_clean();
+                $imageData = ob_get_clean();
 
-                $this->base64data = 'data:image/jpeg;base64,' . base64_encode($image_data);
+                $this->base64data = 'data:image/jpeg;base64,' . base64_encode($imageData);
             }
         } catch (\Exception $error) {
             throw new ProcessException('Error on thumbnail creation and persist at DB. ' . $error->getMessage());
