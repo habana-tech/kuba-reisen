@@ -9,8 +9,9 @@ fos_ck_editor:
             toolbar: my_toolbar_1
             extraPlugins: ["MapMarker", "MapPath"]
             allowedContent: true # 'span[data-map,class]'
-            filebrowserBrowseUrl: '/admin/ckfinder/modal'
-            filebrowserUploadUrl: '/admin/ckfinder/connector?command=QuickUpload&type=Files'
+            #TODO: enable filebrowsing for select images from ckeditor
+#            filebrowserBrowseUrl: '/admin/ckfinder/modal'
+#            filebrowserUploadUrl: '/admin/ckfinder/connector?command=QuickUpload&type=Files'
     toolbars:
         configs:
             my_toolbar_1: [['PasteText', 'PasteFromWord', '-'],['Bold', 'Italic', 'Strike', 'Styles', 'Format','-', 'RemoveFormat'],['Link', 'Unlink', 'Anchor'],['NumberedList', 'BulletedList', 'Blockquote'],['Image', 'Table'], [ "Source", "MapMarker", "MapPath","Maximize"]]

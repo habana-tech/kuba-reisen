@@ -31,7 +31,6 @@ easy_admin:
             - { entity: 'Page', label: 'Pages', icon: 'file-alt' }
             - { entity: 'Region', label: 'Region' , icon: 'puzzle-piece'}
             - { entity: 'Image', label: 'Manage Images', icon: 'images'}
-            - { label: 'Browse Images folder', route: 'ckfinder_fullpage', icon: 'images'}
 
 #            - { label: 'Config', route: 'ckfinder_fullpage', icon: 'cogs' }
 
