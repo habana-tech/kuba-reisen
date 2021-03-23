@@ -27,7 +27,6 @@ public/static/min_*/
 public/git-deploy/
 ###> symfony/webpack-encore-bundle ###
 /node_modules/
-/public/build/
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
