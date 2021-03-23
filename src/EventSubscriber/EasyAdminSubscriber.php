@@ -10,6 +10,7 @@ use App\Entity\Fields\ImageFieldInterface;
 use App\Entity\Image;
 use App\Repository\ActivityRepository;
 use App\Repository\DestinationRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Persistence\ManagerRegistry;
 use Exception;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;

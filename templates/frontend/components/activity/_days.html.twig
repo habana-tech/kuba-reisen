@@ -1,4 +1,4 @@
-{% for day in activity.descriptionFragments %}
+{% for day in activity.sortDescriptionFragments() %}
 
     <div class="day {% if loop.index == 1 %} day--active {% endif %}">
         <div class="day__title">

@@ -80,4 +80,14 @@ trait DescriptionFragmentFieldTrait
         // return the ordered iterator, pass sorted array to a new ArrayCollection.
         return new ArrayCollection(iterator_to_array($iterator));
     }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function sortDescriptionFragments(): ArrayCollection
+    {
+
+        // return the ordered iterator, pass sorted array to a new ArrayCollection.
+        return $this::orderedDescriptionFragments($this->descriptionFragments);
+    }
 }
