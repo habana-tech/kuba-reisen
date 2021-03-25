@@ -7,6 +7,7 @@ use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\DynamicPageRepository;
@@ -132,6 +133,13 @@ class ContactController extends AbstractController
         $contact->setLocale($request->getDefaultLocale());
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            //spam chek
+            //The custom input for this field, is filled using js lib for tracks
+            //Most of spammers can't fill this field, and fail to store the comment
+            if ($contact->getTravelBudget() === null) {
+                throw new BadRequestHttpException();
+            }
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($contact);
             $entityManager->flush();
