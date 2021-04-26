@@ -43,7 +43,21 @@ class ExceptionSubscriber implements EventSubscriberInterface
             ->subject(self::EMAIL_ERROR_SUBJECT)
             ->importance(NotificationEmail::IMPORTANCE_HIGH)
             ->content(get_class($event->getThrowable()) . "\n\n" . $event->getThrowable()->getMessage())
-            ->attach($event->getThrowable()->getTraceAsString(), 'trace.txt');
+            ->attach($event->getThrowable()->getTraceAsString(), 'trace.txt')
+            ->attach(
+                json_encode(
+                    [
+                        'attributes' => $event->getRequest()->attributes->getIterator(),
+                        'request' => $event->getRequest()->getContent(),
+                        'query' => $event->getRequest()->query->getIterator(),
+                        //  'server' => $event->getRequest()->server->getIterator(),
+                        'cookies' => $event->getRequest()->cookies->getIterator(),
+                        'headers' => $event->getRequest()->headers->getIterator(),
+                    ],
+                    JSON_PRETTY_PRINT | JSON_FORCE_OBJECT
+                ),
+                'request.json'
+            );
 
         try {
             $this->mailer->send($message);

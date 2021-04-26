@@ -138,7 +138,7 @@ class ContactController extends AbstractController
             //The custom input for this field, is filled using js lib for tracks
             //Most of spammers can't fill this field, and fail to store the comment
             if ($contact->getTravelBudget() === null) {
-                throw new BadRequestHttpException();
+                return new JsonResponse(['message' => 'Bad request'], Response::HTTP_BAD_REQUEST);
             }
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($contact);
