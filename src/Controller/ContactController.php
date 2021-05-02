@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\PropertyAccess\Exception\InvalidArgumentException;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\DynamicPageRepository;
 use App\Repository\ActivityRepository;
@@ -103,7 +104,13 @@ class ContactController extends AbstractController
     ): JsonResponse {
         $contact = new ContactPlaning();
         $form = $this->createForm(ContactPlaningType::class, $contact);
-        $form->handleRequest($request);
+
+        try {
+            $form->handleRequest($request);
+        } catch (InvalidArgumentException $exception) {
+            // If any field of the form is not valid, then it throw an InvalidArgumentException
+            return new JsonResponse(['message' => 'Bad request'], Response::HTTP_BAD_REQUEST);
+        };
 
         $allInterests = '';
 
@@ -133,7 +140,6 @@ class ContactController extends AbstractController
         $contact->setLocale($request->getDefaultLocale());
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             //spam chek
             //The custom input for this field, is filled using js lib for tracks
             //Most of spammers can't fill this field, and fail to store the comment
