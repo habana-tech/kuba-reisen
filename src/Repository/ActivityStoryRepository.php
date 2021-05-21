@@ -4,7 +4,7 @@ namespace App\Repository;
 
 use App\Entity\ActivityStory;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Registry as ManagerRegistry;
 
 /**
  * @method ActivityStory|null find($id, $lockMode = null, $lockVersion = null)

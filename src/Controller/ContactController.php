@@ -102,6 +102,11 @@ class ContactController extends AbstractController
         UserRepository $userRepository,
         Activity $activity = null
     ): JsonResponse {
+
+        if(strpos($request->headers->get('user-agent'), 'bot'))
+        {
+            return new RedirectResponse('localhost');
+        }
         $contact = new ContactPlaning();
         $form = $this->createForm(ContactPlaningType::class, $contact);
 
