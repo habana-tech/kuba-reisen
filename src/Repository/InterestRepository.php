@@ -4,7 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Interest;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Bundle\DoctrineBundle\Registry as ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @method Interest|null find($id, $lockMode = null, $lockVersion = null)

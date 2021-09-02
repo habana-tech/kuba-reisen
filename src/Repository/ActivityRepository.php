@@ -6,7 +6,7 @@ use App\Entity\Activity;
 use App\Entity\Destination;
 use App\Entity\FilterTag;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Bundle\DoctrineBundle\Registry as ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @method Activity|null find($id, $lockMode = null, $lockVersion = null)

@@ -18,12 +18,12 @@
     "build": "encore production --progress"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.2",
-    "@babel/preset-env": "^7.10.2",
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
     "@symfony/webpack-encore": "^0.28.3",
     "autoprefixer": "^9.8.0",
     "babel-loader": "^8.1.0",
-    "core-js": "^3.6.5",
+    "core-js": "^3.16.1",
     "del": "^3.0.0",
     "glob-all": "^3.2.1",
     "node-sass": "^4.14.1",
@@ -33,13 +33,14 @@
     "postcss-mixins": "^6.2.3",
     "postcss-simple-vars": "^4.1.0",
     "purgecss-webpack-plugin": "^4.0.3",
-    "regenerator-runtime": "^0.13.5",
+    "regenerator-runtime": "^0.13.9",
     "sass-loader": "^7.3.1",
-    "usemin": "^0.5.0",
-    "vue-template-compiler": "^2.6.10",
+    "usemin": "^0.6.0",
+    "vue-template-compiler": "^2.6.14",
     "webpack-notifier": "^1.8.0"
   },
   "dependencies": {
+    "Kraken": "github:cferdinandi/kraken",
     "axios": "^0.21.1",
     "cubic-spline": "^2.0.0",
     "d3-ease": "^1.0.6",
@@ -47,15 +48,14 @@
     "grapesjs-tui-image-editor": "^0.1.2",
     "headroom.js": "^0.10.4",
     "imagesloaded": "^4.1.4",
-    "Kraken": "github:cferdinandi/kraken",
     "kraken-css": "github:cferdinandi/kraken",
-    "lazysizes": "^5.2.2",
+    "lazysizes": "^5.3.2",
     "leaflet": "^1.6.0",
     "mapbox": "^1.0.0-beta10",
     "mapbox-gl": "^1.10.1",
     "normalize.css": "^8.0.1",
     "nouislider": "^13.1.5",
-    "npm": "^6.14.5",
+    "npm": "^6.14.14",
     "postcss-nesting": "^7.0.1",
     "postcss-scss": "^2.1.1",
     "sal.js": "^0.6.4",
@@ -63,6 +63,6 @@
     "smooth-scroll": "^16.1.3",
     "swipe-listener": "^1.1.0",
     "text-clipper": "^1.3.0",
-    "tui-image-editor": "^3.9.0"
+    "tui-image-editor": "^3.15.0"
   }
 }

@@ -4,7 +4,7 @@ namespace App\Repository;
 
 use App\Entity\ActivityDescriptionFragment;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Bundle\DoctrineBundle\Registry as ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @method ActivityDescriptionFragment|null find($id, $lockMode = null, $lockVersion = null)

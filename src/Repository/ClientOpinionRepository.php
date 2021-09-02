@@ -4,7 +4,7 @@ namespace App\Repository;
 
 use App\Entity\ClientOpinion;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Bundle\DoctrineBundle\Registry as ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @method ClientOpinion|null find($id, $lockMode = null, $lockVersion = null)

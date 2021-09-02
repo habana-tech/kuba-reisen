@@ -5,7 +5,7 @@ namespace App\Repository;
 use App\Entity\DynamicPage;
 use App\PageManager\StaticPagesList;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Bundle\DoctrineBundle\Registry as ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @method DynamicPage|null find($id, $lockMode = null, $lockVersion = null)
