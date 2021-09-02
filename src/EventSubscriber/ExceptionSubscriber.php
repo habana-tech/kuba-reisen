@@ -7,6 +7,7 @@ use Symfony\Bridge\Twig\Mime\NotificationEmail;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 
@@ -34,7 +35,11 @@ class ExceptionSubscriber implements EventSubscriberInterface
 
     public function onKernelException(ExceptionEvent $event): void
     {
-        if (!$event->isMasterRequest() || ($event->getThrowable() instanceof NotFoundHttpException)) {
+        if (
+            !$event->isMasterRequest()
+            || ($event->getThrowable() instanceof NotFoundHttpException)
+            || ($event->getThrowable() instanceof MethodNotAllowedHttpException)
+        ) {
             return;
         }
         $message = (new NotificationEmail())
